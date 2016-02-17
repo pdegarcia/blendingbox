@@ -20,7 +20,6 @@ In this repository, it will be available some interesting stuff which you may wa
 ## Resources
 
 - [ModalWindow] - Creating Pop-ups with HTML5 & CSS.
-- 
 
 ## To-Do
 
