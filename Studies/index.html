@@ -14,33 +14,44 @@
   <script src="js-library/jquery-2.1.4.min.js"></script>
 
   <!-- Includes for javascripts-->
-  <!-- <script src="js/scripts.js"></script> -->
 
 </head>
 
 <body>
   <div class="core-page">
-    <h1>Core Phase</h1>
-    <h1>Core Phase</h1>
-    <h1>Core Phase</h1>
-    <div id="question"></div>
+    <h1 id="title">Color Blending User Study</h1>
+    <h2 id="phase-title">4th Stage - Study Core Phase</h2>
+    <p id="instructions">Nesta fase do teste, vamos investigar como o utilizador lida com misturas de duas cores. Irão ser apresentadas várias misturas de cores, que o utilizador deverá indicar em que cor resultam.
+No final de cada resposta, o utilizador deverá confirmar a mesma e responder à pergunta que lhe é colocada.</p>
+    <div id="question">
+      1. Pretende-se alcançar como resultado de uma mistura a cor apresentada no quadrado. Indique quais duas cores poderá misturar para obter a mesma.
+    </div>
     <div class="mixing_area">
       <div id="obj_color">
         <h1>Cor objectivo</h1>
         <div id="obj_color_shape"></div>
       </div>
-      <div id="equals_symb">=</div>
+      <div id="equals_symb">
+        <img src="./images/equals.png">
+      </div>
       <div id="first_color">
         <h1>Primeira Cor</h1>
         <div id="first_color_shape"></div>
         <div id="slider_one"></div>
       </div>
-      <div id="plus_symb">+</div>
+      <div id="plus_symb">
+        <img src="./images/plus.ico">
+      </div>
       <div id="second_color">
         <h1>Segunda Cor</h1>
         <div id="second_color_shape"></div>
         <div id="slider_two"></div>
       </div>
+    </div>
+    <div class="buttons_area">
+      <button type="button" onclick="">Forget</button>
+      <button type="button" onclick="">Back</button>
+      <button type="button" onclick="">Submit</button>
     </div>
   </div>
 
@@ -50,7 +61,7 @@
 				// Used when debugging
 				cache : false
 			});
-		$.getScript("js/scripts.js");
+		$.getScript("js/core.js");
   </script>
 
 </body>
