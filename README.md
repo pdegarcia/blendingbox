@@ -8,12 +8,19 @@ In this repository, it will be available some interesting stuff which you may wa
  - User Studies Mock-ups.
  - And more!
  
+
 ## Tech Currently Being Used
 
 - HTML5
 - D3.js
 - CSS
 - jQuery
+
+
+## Resources
+
+- [ModalWindow] - Creating Pop-ups with HTML5 & CSS.
+- 
 
 ## To-Do
 
@@ -23,3 +30,5 @@ In this repository, it will be available some interesting stuff which you may wa
 - Check Amazon's Mechanical Turk.
 
 **Let's have some fun coloring around!**
+
+ [ModalWindow]: <http://www.webdesignerdepot.com/2012/10/creating-a-modal-window-with-html5-and-css3/>
