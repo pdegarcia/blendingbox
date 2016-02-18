@@ -20,6 +20,9 @@ In this repository, it will be available some interesting stuff which you may wa
 ## Resources
 
 - [ModalWindow] - Creating Pop-ups with HTML5 & CSS.
+- [ColorMine] - Color Models converter.
+- [Colorizer] - Color picker, calculator and generator with high precision and contrast test. 
+- [Color Codes] - HTML Color Codes.
 
 ## To-Do
 
@@ -31,3 +34,6 @@ In this repository, it will be available some interesting stuff which you may wa
 **Let's have some fun coloring around!**
 
  [ModalWindow]: <http://www.webdesignerdepot.com/2012/10/creating-a-modal-window-with-html5-and-css3/>
+ [ColorMine]: <http://colormine.org/color-converter>
+ [Colorizer]: <http://colorizer.org>
+ [Color Codes]: <http://html-color-codes.info>
