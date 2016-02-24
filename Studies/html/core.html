@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+	<title>Color Blending Study</title>
+
+	<!-- Includes for css styles -->
+  <link href="../css/core.css" rel="stylesheet">
+  <link href="../css/popup.css" rel="stylesheet">
+  <link href="../css/styles.css" rel="stylesheet">
+
+  <!-- Includes for bootstrap and jquery script -->
+  <script src="../js-library/d3.js"></script>
+  <script src="../js-library/d3.min.js"></script>
+  <script src="../js-library/jquery-2.1.4.min.js"></script>
+
+  <!-- Includes for javascripts-->
+
+</head>
+
+<body>
+  <!-- CORE PAGE-->
+  <div class="core-page">
+    <h1 id="title">Color Blending User Study</h1>
+    <h2 id="phase-title">4th Stage - Study Core Phase</h2>
+    <p id="instructions">Nesta fase do teste, vamos investigar como o utilizador lida com misturas de duas cores. Irão ser apresentadas várias misturas de cores, que o utilizador deverá indicar em que cor resultam.
+No final de cada resposta, o utilizador deverá confirmar a mesma e responder à pergunta que lhe é colocada.</p>
+    <div id="question">
+      1. Pretende-se alcançar como resultado de uma mistura a cor apresentada no quadrado. Indique quais duas cores poderá misturar para obter a mesma.
+    </div>
+    <div class="mixing_area">
+      <div id="obj_color">
+        <h1>Cor objectivo</h1>
+        <div id="obj_color_shape"></div>
+      </div>
+      <div id="equals_symb">
+        <img src="../images/equals.png">
+      </div>
+      <div id="first_color">
+        <h1 id="titleFirst">Primeira Cor</h1>
+        <div id="first_color_shape"></div>
+        <div id="slider_one"></div>
+      </div>
+      <div id="plus_symb">
+        <img src="../images/plus.ico">
+      </div>
+      <div id="second_color">
+        <h1 id="titleSec">Segunda Cor</h1>
+        <div id="second_color_shape"></div>
+        <div id="slider_two"></div>
+      </div>
+    </div>
+    <div class="buttons_area">
+      <button type="button" onclick="">Forget</button>
+      <button type="button" onclick="">Back</button>
+      <button type="button" onclick="">Submit</button>
+      <a href="#openBox">Aqui</a>
+    </div>
+    <div id="openBox" class="modalDialog">
+      <div>
+        <a href="#close" title="Close" class="close">X</a>
+    		<h2 id="popup-title">Facilidade de Mistura</h2>
+    		<p id="popup-question">De 1 (Muito Difícil) a 5 (Muito Fácil), quão fácil foi para si identificar esta mistura?</p>
+        <span class="starRating">
+          <input id="rating5" type="radio" name="rating" value="5">
+            <label for="rating5" title="Muito Fácil">5</label>
+          <input id="rating4" type="radio" name="rating" value="4">
+            <label for="rating4" title="Fácil">4</label>
+          <input id="rating3" type="radio" name="rating" value="3" checked>
+            <label for="rating3" title="Nem Difícil, nem Fácil">3</label>
+          <input id="rating2" type="radio" name="rating" value="2">
+            <label for="rating2" title="Difícil">2</label>
+          <input id="rating1" type="radio" name="rating" value="1">
+            <label for="rating1" title="Muito Difícil">1</label>
+        </span>
+        <button type="button" onclick="" id="popup-button">Confirmar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- GOODBYE PAGE -->
+  <div class="bye-page"></div>
+
+  <script>
+		$.ajaxSetup({
+				// Disable caching of AJAX responses
+				// Used when debugging
+				cache : false
+			});
+		$.getScript("../js/core.js");
+  </script>
+
+</body>
+
+</html>
