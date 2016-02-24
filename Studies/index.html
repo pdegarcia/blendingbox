@@ -15,10 +15,21 @@
   <script src="js-library/jquery-2.1.4.min.js"></script>
 
   <!-- Includes for javascripts-->
+  <script src="js/popup.js"></script>
 
 </head>
 
 <body>
+  <!-- INITIAL FORM -->
+  <div class="form-page"></div>
+
+  <!-- CALIBRATION PAGE -->
+  <div class="calibration-page"></div>
+
+  <!-- COLOR DEFICIENCY TEST PAGE -->
+  <div class="ishihara-page"></div>
+  
+  <!-- CORE PAGE-->
   <div class="core-page">
     <h1 id="title">Color Blending User Study</h1>
     <h2 id="phase-title">4th Stage - Study Core Phase</h2>
@@ -36,7 +47,7 @@ No final de cada resposta, o utilizador deverá confirmar a mesma e responder à
         <img src="./images/equals.png">
       </div>
       <div id="first_color">
-        <h1>Primeira Cor</h1>
+        <h1 id="titleFirst">Primeira Cor</h1>
         <div id="first_color_shape"></div>
         <div id="slider_one"></div>
       </div>
@@ -44,7 +55,7 @@ No final de cada resposta, o utilizador deverá confirmar a mesma e responder à
         <img src="./images/plus.ico">
       </div>
       <div id="second_color">
-        <h1>Segunda Cor</h1>
+        <h1 id="titleSec">Segunda Cor</h1>
         <div id="second_color_shape"></div>
         <div id="slider_two"></div>
       </div>
@@ -76,6 +87,9 @@ No final de cada resposta, o utilizador deverá confirmar a mesma e responder à
       </div>
     </div>
   </div>
+
+  <!-- GOODBYE PAGE -->
+  <div class="bye-page"></div>
 
   <script>
 		$.ajaxSetup({
