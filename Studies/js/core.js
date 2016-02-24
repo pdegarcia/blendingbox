@@ -10,11 +10,10 @@ function drawObjective() {
             .attr("width", wObj)
             .attr("height", hObj);
 
-  objShape.append("svg:rect")
-          .attr("x", wObj*0.25 + margin.left)
-          .attr("y", hObj*0.05 + margin.top)
-          .attr("width", 250)
-          .attr("height", 250)
+  objShape.append("circle")
+          .attr("r", wObj*0.3)
+          .attr("cx", wObj*0.45 + margin.left)
+          .attr("cy", hObj*0.5 + margin.top)
           .attr("fill", "#00FF00")
           .style("stroke", "black");
 }
@@ -33,7 +32,7 @@ function drawFirstColor() {
                       .attr("fill", "none");
 
   fstShape.append("circle")
-          .attr("r", 130)
+          .attr("r", wFirst*0.3)
           .attr("cx", wFirst*0.45 + margin.left)
           .attr("cy", hFirst*0.5 + margin.top)
           .attr("fill", "none")
@@ -54,7 +53,7 @@ function drawSecColor() {
                     .attr("height", hSec);
 
   secShape.append("circle")
-          .attr("r", 130)
+          .attr("r", wSec*0.3)
           .attr("cx", wSec*0.45 + margin.left)
           .attr("cy", hSec*0.5 + margin.top)
           .attr("fill", "white")
@@ -206,7 +205,6 @@ function drawSecondSlider() {
         value = scaleX.invert(d3.mouse(this)[0]);
         brush.extent([value, value]);
       }
-      console.log(value);
       handle.attr("cx", scaleX(value));
       circle.style("fill", d3.rgb(value, 0, 0));
 
