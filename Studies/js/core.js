@@ -69,7 +69,7 @@ function drawFirstSlider() {
   var hSlid = $("#slider_one").height();
 
   var scaleX = d3.scale.linear()
-                       .domain([0, 255])
+                       .domain([0, 360])
                        .range([0, wSlid])
                        .clamp(true);
 
@@ -117,7 +117,7 @@ function drawFirstSlider() {
   slider.call(brush.event)
         .transition()
         .duration(750)
-        .call(brush.extent([70, 70]))
+        .call(brush.extent([180, 180]))
         .call(brush.event);
 
   function brushed() {
@@ -131,7 +131,7 @@ function drawFirstSlider() {
       }
       console.log(value);
       handle.attr("cx", scaleX(value));
-      circle.style("fill", d3.rgb(value, value*0.2, value*0.4));
+      circle.attr("fill", d3.hsl(value, 1, 0.50));
 
   }
 }
@@ -145,7 +145,7 @@ function drawSecondSlider() {
   var hSlid = $("#slider_two").height();
 
   var scaleX = d3.scale.linear()
-                       .domain([0, 255])
+                       .domain([0, 360])
                        .range([0, wSlid])
                        .clamp(true);
 
@@ -193,7 +193,7 @@ function drawSecondSlider() {
   slider.call(brush.event)
         .transition()
         .duration(750)
-        .call(brush.extent([70, 70]))
+        .call(brush.extent([180, 180]))
         .call(brush.event);
 
   function brushed() {
@@ -206,7 +206,7 @@ function drawSecondSlider() {
         brush.extent([value, value]);
       }
       handle.attr("cx", scaleX(value));
-      circle.style("fill", d3.rgb(value, 0, 0));
+      circle.style("fill", d3.hsl(value, 1, 0.50));
 
   }
 }
