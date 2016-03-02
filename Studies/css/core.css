@@ -4,17 +4,15 @@
   width: 100%;
   text-align: center;
 }
-
 .headline h1 {
-    font-size: 50px;
-    background: #fff;
-    background: rgba(255,255,255,0.9);
+  font-size: 50px;
+  background: #fff;
+  background: rgba(255, 255, 255, 0.9);
 }
-
 .headline h2 {
-    font-size: 30px;
-    background: #fff;
-    background: rgba(255,255,255,0.9);
+  font-size: 30px;
+  background: #fff;
+  background: rgba(255, 255, 255, 0.9);
 }
 
 /* SLIDERS */
@@ -23,9 +21,9 @@
   font: 10px sans-serif;
   -webkit-user-select: none;
   -moz-user-select: none;
+  -ms-user-select: none;
   user-select: none;
 }
-
 .axis .domain {
   fill: none;
   stroke: #000;
@@ -33,14 +31,12 @@
   stroke-width: 10px;
   stroke-linecap: round;
 }
-
 .axis .halo {
   fill: none;
   stroke: #ddd;
   stroke-width: 8px;
   stroke-linecap: round;
 }
-
 .slider .handle {
   fill: #fff;
   stroke: #000;
@@ -48,85 +44,89 @@
   stroke-width: 1.25px;
   cursor: crosshair;
 }
-
-
-
-#equals_symb {
+.equals_symb {
   float: left;
-  width: 3%;
-
+  width: 30px;
+  margin-top: 170px;
 }
-
-#plus_symb {
+.plus_symb {
   float: left;
-  width: 3%;
-  display: block;
+  width: 30px;
+  margin-top: 170px;
 }
-
-#equals_symb img {
+.equals_symb img {
   width: 100%;
 }
-
-#plus_symb img {
+.plus_symb img {
   width: 100%;
 }
 
 /* COR OBJECTIVO */
-#obj_color {
-  height: 300px;
-  width: 300px;
+
+#titleObj {
+  text-align: center;
+  font-size: 35px;
+}
+.obj_color {
+  height: 350px;
+  width: 350px;
   float: left;
   /*border-style: dotted;*/
 }
-
-#obj_color_shape {
+.obj_color_shape {
   width: 100%;
   height: 100%;
-  margin-top: -20%;
+  margin-top: -23%;
   margin-left: auto;
 }
 
 /* PRIMEIRA COR DE MISTURA */
-#first_color {
-  height: 300px;
-  width: 300px;
+
+#titleFirst {
+  text-align: center;
+  font-size: 35px;
+}
+.first_color {
+  height: 350px;
+  width: 350px;
   float: left;
   background-color: none;
   /*border-style: dotted;*/
 }
-
-#first_color_shape {
+.first_color_shape {
   width: 100%;
   height: 100%;
-  margin-top: -20%;
+  margin-top: -23%;
 }
-
-#slider_one {
+.slider_one {
   width: 90%;
   margin-left: 5%;
-  margin-top: -15%;
+  margin-top: -23%;
   height: 20%;
 }
 
 /* SEGUNDA COR DE MISTURA */
-#second_color {
-  height: 300px;
-  width: 300px;
+
+#titleSec {
+  text-align: center;
+  font-size: 35px;
+}
+.second_color {
+  height: 350px;
+  width: 350px;
   float: left;
   /*border-style: dotted;*/
 }
-
-#second_color_shape {
+.second_color_shape {
   width: 100%;
   height: 100%;
-  margin-top: -20%;
+  margin-top: -23%;
 }
-
-#slider_two {
+.slider_two {
   width: 90%;
   height: 20%;
   margin-left: 5%;
-  margin-top: -15%;
+  margin-top: -23%;
 }
 
 /* BOTOES */
@@ -135,125 +135,6 @@
   width: 100%;
   height: 20%;
   margin-top: 2%;
-  margin-left: 40%;
+  text-align: center;
   float: left;
-  align-items: center;
-}
-
-@media(max-width:1200px) {
-    .headline h1 {
-        font-size: 140px;
-    }
-
-    .headline h2 {
-        font-size: 63px;
-    }
-
-    .featurette-divider {
-        margin: 50px 0;
-    }
-
-    .featurette-image.pull-left {
-        margin-right: 20px;
-    }
-
-    .featurette-image.pull-right {
-        margin-left: 20px;
-    }
-
-    .featurette-heading {
-        font-size: 35px;
-    }
-}
-
-@media(max-width:991px) {
-    .headline h1 {
-        font-size: 105px;
-    }
-
-    .headline h2 {
-        font-size: 50px;
-    }
-
-    .featurette-divider {
-        margin: 40px 0;
-    }
-
-    .featurette-image {
-        max-width: 50%;
-    }
-
-    .featurette-image.pull-left {
-        margin-right: 10px;
-    }
-
-    .featurette-image.pull-right {
-        margin-left: 10px;
-    }
-
-    .featurette-heading {
-        font-size: 30px;
-    }
-}
-
-@media(max-width:768px) {
-    .container {
-        margin: 0 15px;
-    }
-
-    .featurette-divider {
-        margin: 40px 0;
-    }
-
-    .featurette-heading {
-        font-size: 25px;
-    }
-}
-
-@media(max-width:668px) {
-    .headline h1 {
-        font-size: 70px;
-    }
-
-    .headline h2 {
-        font-size: 32px;
-    }
-
-    .featurette-divider {
-        margin: 30px 0;
-    }
-}
-
-@media(max-width:640px) {
-    .headline {
-        padding: 75px 0 25px 0;
-    }
-
-    .headline h1 {
-        font-size: 60px;
-    }
-
-    .headline h2 {
-        font-size: 30px;
-    }
-}
-
-@media(max-width:375px) {
-    .featurette-divider {
-        margin: 10px 0;
-    }
-
-    .featurette-image {
-        max-width: 100%;
-    }
-
-    .featurette-image.pull-left {
-        margin-right: 0;
-        margin-bottom: 10px;
-    }
-
-    .featurette-image.pull-right {
-        margin-bottom: 10px;
-        margin-left: 0;
-    }
 }

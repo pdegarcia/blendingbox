@@ -1,11 +1,17 @@
+function resetMixture() {
+  var handle1 = d3.select(".slider_one circle");
+  var handle2 = d3.select(".slider_two circle");
+
+}
+
 function drawObjective() {
 
   /* VARS TO OBJECTIVE */
-  var wObj = $("#obj_color_shape").width();
-  var hObj = $("#obj_color_shape").height();
-  var margin = {top: 20, right: 150, bottom: 20, left: 20}
+  var wObj = $(".obj_color_shape").width();
+  var hObj = $(".obj_color_shape").height();
+  var margin = {top: 20, right: 150, bottom: 20, left: 20};
 
-  var objShape = d3.select("#obj_color_shape")
+  var objShape = d3.select(".obj_color_shape")
             .append("svg:svg")
             .attr("width", wObj)
             .attr("height", hObj);
@@ -21,11 +27,11 @@ function drawObjective() {
 function drawFirstColor() {
 
   /* VARS TO FIRST COLOR MIXTURE */
-  var wFirst = $("#first_color_shape").width();
-  var hFirst = $("#first_color_shape").height();
-  var margin = {top: 20, right: 150, bottom: 20, left: 20}
+  var wFirst = $(".first_color_shape").width();
+  var hFirst = $(".first_color_shape").height();
+  var margin = {top: 20, right: 150, bottom: 20, left: 20};
 
-  var fstShape = d3.select("#first_color_shape")
+  var fstShape = d3.select(".first_color_shape")
                       .append("svg")
                       .attr("width", wFirst)
                       .attr("height", hFirst)
@@ -43,11 +49,11 @@ function drawFirstColor() {
 function drawSecColor() {
 
   /* VARS TO SECOND COLOR MIXTURE */
-  var wSec = $("#second_color_shape").width();
-  var hSec = $("#second_color_shape").height();
-  var margin = {top: 20, right: 150, bottom: 20, left: 20}
+  var wSec = $(".second_color_shape").width();
+  var hSec = $(".second_color_shape").height();
+  var margin = {top: 20, right: 150, bottom: 20, left: 20};
 
-  var secShape = d3.select("#second_color_shape")
+  var secShape = d3.select(".second_color_shape")
                     .append("svg")
                     .attr("width", wSec)
                     .attr("height", hSec);
@@ -65,8 +71,8 @@ function drawFirstSlider() {
 
   /* VARS TO SET SVG CANVAS*/
   var margin = {top: 20, right: 150, bottom: 20, left: 5};
-  var wSlid = $("#slider_one").width();
-  var hSlid = $("#slider_one").height();
+  var wSlid = $(".slider_one").width();
+  var hSlid = $(".slider_one").height();
 
   var scaleX = d3.scale.linear()
                        .domain([0, 360])
@@ -78,7 +84,7 @@ function drawFirstSlider() {
                      .extent([0, 0])
                      .on("brush", brushed);
 
-  var sliderBar = d3.select("#slider_one").append("svg")
+  var sliderBar = d3.select(".slider_one").append("svg")
                  .attr("width", wSlid + margin.left + margin.right)
                  .attr("height", hSlid + margin.top + margin.bottom)
                  .append("g")
@@ -122,14 +128,13 @@ function drawFirstSlider() {
 
   function brushed() {
       var value = brush.extent()[0];
-      var svg = d3.select("#first_color_shape svg");
+      var svg = d3.select(".first_color_shape svg");
       var circle = svg.select("circle");
 
       if (d3.event.sourceEvent) { // not a programmatic event
         value = scaleX.invert(d3.mouse(this)[0]);
         brush.extent([value, value]);
       }
-      console.log(value);
       handle.attr("cx", scaleX(value));
       circle.attr("fill", d3.hsl(value, 1, 0.50));
 
@@ -141,8 +146,8 @@ function drawSecondSlider() {
 
   /* VARS TO SET SVG CANVAS*/
   var margin = {top: 20, right: 150, bottom: 20, left: 5};
-  var wSlid = $("#slider_two").width();
-  var hSlid = $("#slider_two").height();
+  var wSlid = $(".slider_two").width();
+  var hSlid = $(".slider_two").height();
 
   var scaleX = d3.scale.linear()
                        .domain([0, 360])
@@ -154,7 +159,7 @@ function drawSecondSlider() {
                      .extent([0, 0])
                      .on("brush", brushed);
 
-  var sliderBar = d3.select("#slider_two").append("svg")
+  var sliderBar = d3.select(".slider_two").append("svg")
                  .attr("width", wSlid + margin.left + margin.right)
                  .attr("height", hSlid + margin.top + margin.bottom)
                  .append("g")
@@ -198,7 +203,7 @@ function drawSecondSlider() {
 
   function brushed() {
       var value = brush.extent()[0];
-      var svg = d3.select("#second_color_shape svg");
+      var svg = d3.select(".second_color_shape svg");
       var circle = svg.select("circle");
 
       if (d3.event.sourceEvent) { // not a programmatic event
