@@ -26,6 +26,7 @@ In this repository, it will be available some interesting stuff which you may wa
 - [Color Codes] - HTML Color Codes.
 - [Bootstrap Grids] - Grid Template for Bootstrap.
 - [Bootstrap Components] - Bootstrap Component's Documentation.
+- [Krajee] - Web Development Evolved
 
 ## To-Do
 
@@ -43,3 +44,4 @@ In this repository, it will be available some interesting stuff which you may wa
  [Color Codes]: <http://html-color-codes.info>
  [Bootstrap Grids]: <https://getbootstrap.com/examples/grid/>
  [Bootstrap Components]: <http://v4-alpha.getbootstrap.com/components/buttons>
+ [Krajee]: <http://krajee.com>
