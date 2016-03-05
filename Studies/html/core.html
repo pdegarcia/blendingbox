@@ -1,142 +1,179 @@
 <!DOCTYPE html>
 <html lang="pt">
 
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Will It Blend?</title>
+  <title>Will It Blend?</title>
 
-    <!-- Includes for css styles -->
-    <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="../css/entry.css" rel="stylesheet">
-    <link href="../css/core.css" rel="stylesheet">
-    <link href="../css/popup.css" rel="stylesheet">
+  <!-- Includes for css styles -->
+  <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../css/entry.css" rel="stylesheet">
+  <link href="../css/core.css" rel="stylesheet">
+  <link href="../css/popup.css" rel="stylesheet">
 
-    <!-- Includes for bootstrap and jquery script -->
-    <script src="../js-library/d3.js"></script>
-    <script src="../js-library/d3.min.js"></script>
-    <script src="../js-library/jquery-2.1.4.min.js"></script>
+  <!-- Includes for bootstrap and jquery script -->
+  <script src="../js-library/d3.js"></script>
+  <script src="../js-library/d3.min.js"></script>
+  <script src="../js-library/jquery-2.1.4.min.js"></script>
 
-    <!-- Includes for Star Rating-->
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="../css/star-rating.css" media="all" type="text/css"/>
-    <script src="../js-library/star-rating.js" type="text/javascript"></script>
-    <script src="../js-library/star-rating_locale_pt.js" type="text/javascript"></script>
+  <!-- Includes for Star Rating-->
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="../css/star-rating.css" media="all" type="text/css" />
+  <script src="../js-library/star-rating.js" type="text/javascript"></script>
+  <script src="../js-library/star-rating_locale_pt.js" type="text/javascript"></script>
 
-  </head>
+  <script>
+  </script>
 
-  <body>
-    <!-- Navigation -->
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-      <div class="container">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="../index.html">Will It Blend?</a>
-        </div>
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-          <ul class="nav navbar-nav">
-            <li>
-              <a href="#about" onclick="alertAbout()">Sobre</a>
-            </li>
-          </ul>
-        </div>
-        <!-- /.navbar-collapse -->
-      </div>
-      <!-- /.container -->
-    </nav>
+</head>
 
-    <div class="headline">
-      <div class="container">
-        <h1>Will It Blend?</h1>
-        <h2>Passo 4 - Parte Principal do Estudo.</h2>
-      </div>
-    </div>
-
+<body>
+  <!-- Navigation -->
+  <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="container">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../index.html">Will It Blend?</a>
+      </div>
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          <li>
+            <a href="#about" onclick="alertAbout()">Sobre</a>
+          </li>
+        </ul>
+      </div>
+      <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+  </nav>
 
-      <hr class="featurette-divider">
+  <div class="headline">
+    <div class="container">
+      <h1>Will It Blend?</h1>
+      <h2>Passo 4 - Parte Principal do Estudo.</h2>
+    </div>
+  </div>
 
-      <div class="featurette" id="questions">
-        <h2 class="featurette-heading" id="questionNumber">Questão 1 de N.</h2>
-        <p class="lead" id="questionField">Pretende-se alcançar como resultado de uma mistura a cor apresentada no quadrado. Indique quais duas cores poderá misturar para obter a mesma.</p>
+  <div class="container">
 
-        <!-- MIXING COLORS -->
+    <hr class="featurette-divider">
+
+    <div class="featurette" id="questions">
+      <h2 class="featurette-heading" id="questionNumber">Questão 1 de N.</h2>
+      <p class="lead" id="questionField">Pretende-se alcançar como resultado de uma mistura a cor apresentada no quadrado. Indique quais duas cores poderá misturar para obter a mesma.</p>
+
+      <!-- MIXING COLORS : ONE MIX = COLOR + COLOR -->
+      <div id="mixture0">
         <div class="obj_color">
-          <h2 class="featurette-heading" id="titleObj">Cor Objectivo</h2>
-          <div class="obj_color_shape"></div>
+          <h2 class="featurette-heading" id="titleObj0">Cor Objectivo</h2>
+          <div class="obj_color_shape0"></div>
         </div>
         <div class="equals_symb">
           <img src="../images/equals.png">
         </div>
         <div class="first_color">
-          <h2 class="featurette-heading" id="titleFirst">Primeira Cor</h2>
-          <div class="first_color_shape"></div>
-          <div class="slider_one"></div>
+          <h2 class="featurette-heading" id="titleFirst0">Primeira Cor</h2>
+          <div class="first_color_shape0"></div>
+          <div class="slider_one0"></div>
         </div>
         <div class="plus_symb">
           <img src="../images/plus.ico">
         </div>
         <div class="second_color">
-          <h2 class="featurette-heading" id="titleSec">Segunda Cor</h2>
-          <div class="second_color_shape"></div>
-          <div class="slider_two"></div>
-        </div>
-        <!-- ./ MIXING COLORS -->
-
-        <!-- BUTTONS -->
-        <div class="buttons_area">
-          <input type="button" class="btn btn-lg btn-warning" onclick="resetMixture()" value="Reiniciar Mistura">
-          <a href="#openBox" class="btn btn-success btn-lg" role="button">Confirmar Mistura</a>
-        </div>
-        <!-- ./ BUTTONS -->
-      </div>
-
-      <!-- POP-UP SATISFACTION -->
-      <div id="openBox" class="modalDialog">
-        <div>
-          <a href="#close" title="Close" class="close">X</a>
-          <p class="lead" id="popup-question">Quão fácil foi para si identificar esta mistura? Quantifique utilizando as estrelas abaixo.</p>
-          <form id="ratingStars" action="">
-            <input type="text" id="stars" class="rating rating-loading" value="0" data-size="sm" data-step="1" title="">
-            <input type="submit" id="popup-button" class="btn btn-success btn-lg" value="Confirmar" onclick="">
-          </form>
+          <h2 class="featurette-heading" id="titleSec0">Segunda Cor</h2>
+          <div class="second_color_shape0"></div>
+          <div class="slider_two0"></div>
         </div>
       </div>
-      <!-- ./ POP-UP SATISFACTION -->
+      <!-- ./ MIXING COLORS : ONE MIX = COLOR + COLOR -->
 
-      <hr class="featurette-divider">
-
-      <!-- Footer -->
-      <footer>
-        <div class="row">
-          <div class="col-lg-12">
-            <p>Copyright &copy; Paulo Garcia 2016</p>
-          </div>
+      <!-- MIXING COLORS : COLOR + COLOR = ONE MIX -->
+      <div id="mixture1">
+        <div class="first_color">
+          <h2 class="featurette-heading" id="titleFirst1">Primeira Cor</h2>
+          <div class="first_color_shape1"></div>
+          <div class="slider_one1"></div>
         </div>
-      </footer>
+        <div class="plus_symb">
+          <img src="../images/plus.ico">
+        </div>
+        <div class="second_color">
+          <h2 class="featurette-heading" id="titleSec1">Segunda Cor</h2>
+          <div class="second_color_shape1"></div>
+          <div class="slider_two1"></div>
+        </div>
+        <div class="equals_symb">
+          <img src="../images/equals.png">
+        </div>
+        <div class="obj_color">
+          <h2 class="featurette-heading" id="titleObj1">Cor Objectivo</h2>
+          <div class="obj_color_shape1"></div>
+        </div>
+      </div>
 
+      <!-- ./ MIXING COLORS : COLOR + COLOR = ONE MIX -->
+
+      <!-- MIXING COLORS : ONE MIX = COLOR + COLOR + COLOR -->
+      <!-- ./ MIXING COLORS : ONE MIX = COLOR + COLOR + COLOR -->
+
+      <!-- MIXING COLORS : COLOR + COLOR + COLOR = ONE MIX  -->
+      <!-- ./ MIXING COLORS : COLOR + COLOR + COLOR = ONE MIX  -->
+
+      <!-- BUTTONS -->
+      <div class="buttons_area">
+        <input type="button" class="btn btn-lg btn-warning" onclick="resetMixture()" value="Reiniciar Mistura">
+        <a href="#openBox" class="btn btn-success btn-lg" role="button">Confirmar Mistura</a>
+      </div>
+      <!-- ./ BUTTONS -->
     </div>
 
-    <script>
-      $.ajaxSetup({
-        // Disable caching of AJAX responses Used when debugging
-        cache: false
-      });
-      $.getScript("https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js");
-      $.getScript("../bootstrap/js/bootstrap.min.js");
-      $.getScript("../js/core.js");
-    </script>
+    <!-- POP-UP SATISFACTION -->
+    <div id="openBox" class="modalDialog">
+      <div>
+        <a href="#close" title="Close" class="close">X</a>
+        <p class="lead" id="popup-question">Quão fácil foi para si identificar esta mistura? Quantifique utilizando as estrelas abaixo.</p>
+        <form id="ratingStars" action="">
+          <input type="text" id="stars" class="rating rating-loading" value="0" data-size="sm" data-step="1" title="">
+          <input type="submit" id="popup-button" class="btn btn-success btn-lg" value="Confirmar" onclick="">
+        </form>
+      </div>
+    </div>
+    <!-- ./ POP-UP SATISFACTION -->
 
-  </body>
+    <hr class="featurette-divider">
+
+    <!-- Footer -->
+    <footer>
+      <div class="row">
+        <div class="col-lg-12">
+          <p>Copyright &copy; Paulo Garcia 2016</p>
+        </div>
+      </div>
+    </footer>
+
+  </div>
+
+  <script>
+    $.ajaxSetup({
+      // Disable caching of AJAX responses Used when debugging
+      cache: false
+    });
+    $.getScript("https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js");
+    $.getScript("../bootstrap/js/bootstrap.min.js");
+    $.getScript("../js/core.js");
+  </script>
+
+</body>
 
 </html>

@@ -1,17 +1,29 @@
-function resetMixture() {
-  var handle1 = d3.select(".slider_one circle");
-  var handle2 = d3.select(".slider_two circle");
+function alertAbout() {
+    var r = confirm("Voltar atrás fará com que perca toda a informação. Tem a certeza?");
+    if (r === true) {
+        location.href = "../index.html#about";
+    } else {
 
+    }
 }
 
-function drawObjective() {
+function resetMixture() {
 
+  d3.select(".slider_one circle").attr("cx", 0)
+                                 .attr("cy", 0)
+                                 .attr("fill", d3.hsl(360, 1, 1));
+  d3.select(".slider_two circle").attr("cx", 0)
+                                 .attr("cy", 0)
+                                 .attr("fill", "none");
+}
+
+function drawObjective(selectedDiv) {
   /* VARS TO OBJECTIVE */
-  var wObj = $(".obj_color_shape").width();
-  var hObj = $(".obj_color_shape").height();
+  var wObj = $(".obj_color_shape"+(selectedDiv)).width();
+  var hObj = $(".obj_color_shape" + (selectedDiv)).height();
   var margin = {top: 20, right: 150, bottom: 20, left: 20};
 
-  var objShape = d3.select(".obj_color_shape")
+  var objShape = d3.select(".obj_color_shape"+(selectedDiv))
             .append("svg:svg")
             .attr("width", wObj)
             .attr("height", hObj);
@@ -21,17 +33,18 @@ function drawObjective() {
           .attr("cx", wObj*0.45 + margin.left)
           .attr("cy", hObj*0.5 + margin.top)
           .attr("fill", "#00FF00")
+          .attr("stroke-width", 2.5)
           .style("stroke", "black");
 }
 
-function drawFirstColor() {
+function drawFirstColor(selectedDiv) {
 
   /* VARS TO FIRST COLOR MIXTURE */
-  var wFirst = $(".first_color_shape").width();
-  var hFirst = $(".first_color_shape").height();
+  var wFirst = $(".first_color_shape"+(selectedDiv)).width();
+  var hFirst = $(".first_color_shape"+(selectedDiv)).height();
   var margin = {top: 20, right: 150, bottom: 20, left: 20};
 
-  var fstShape = d3.select(".first_color_shape")
+  var fstShape = d3.select(".first_color_shape"+(selectedDiv))
                       .append("svg")
                       .attr("width", wFirst)
                       .attr("height", hFirst)
@@ -42,18 +55,19 @@ function drawFirstColor() {
           .attr("cx", wFirst*0.45 + margin.left)
           .attr("cy", hFirst*0.5 + margin.top)
           .attr("fill", "none")
+          .attr("stroke-width", 2.5)
           .style("stroke", "black")
           .style("background-color", "none");
 }
 
-function drawSecColor() {
+function drawSecColor(selectedDiv) {
 
   /* VARS TO SECOND COLOR MIXTURE */
-  var wSec = $(".second_color_shape").width();
-  var hSec = $(".second_color_shape").height();
+  var wSec = $(".second_color_shape"+(selectedDiv)).width();
+  var hSec = $(".second_color_shape"+(selectedDiv)).height();
   var margin = {top: 20, right: 150, bottom: 20, left: 20};
 
-  var secShape = d3.select(".second_color_shape")
+  var secShape = d3.select(".second_color_shape"+(selectedDiv))
                     .append("svg")
                     .attr("width", wSec)
                     .attr("height", hSec);
@@ -63,16 +77,17 @@ function drawSecColor() {
           .attr("cx", wSec*0.45 + margin.left)
           .attr("cy", hSec*0.5 + margin.top)
           .attr("fill", "white")
+          .attr("stroke-width", 2.5)
           .style("stroke", "black");
 }
 
 /* FUNCTION TO DRAW FIRST SLIDER AND HANDLE ITS MOVEMENT */
-function drawFirstSlider() {
+function drawFirstSlider(selectedDiv) {
 
   /* VARS TO SET SVG CANVAS*/
   var margin = {top: 20, right: 150, bottom: 20, left: 5};
-  var wSlid = $(".slider_one").width();
-  var hSlid = $(".slider_one").height();
+  var wSlid = $(".slider_one"+(selectedDiv)).width();
+  var hSlid = $(".slider_one"+(selectedDiv)).height();
 
   var scaleX = d3.scale.linear()
                        .domain([0, 360])
@@ -84,7 +99,7 @@ function drawFirstSlider() {
                      .extent([0, 0])
                      .on("brush", brushed);
 
-  var sliderBar = d3.select(".slider_one").append("svg")
+  var sliderBar = d3.select(".slider_one"+(selectedDiv)).append("svg")
                  .attr("width", wSlid + margin.left + margin.right)
                  .attr("height", hSlid + margin.top + margin.bottom)
                  .append("g")
@@ -123,12 +138,13 @@ function drawFirstSlider() {
   slider.call(brush.event)
         .transition()
         .duration(750)
-        .call(brush.extent([180, 180]))
+        .call(brush.extent([0, 0]))
         .call(brush.event);
 
   function brushed() {
       var value = brush.extent()[0];
-      var svg = d3.select(".first_color_shape svg");
+      var colorShape = ".first_color_shape"+(selectedDiv)+" svg";
+      var svg = d3.select(colorShape);
       var circle = svg.select("circle");
 
       if (d3.event.sourceEvent) { // not a programmatic event
@@ -136,18 +152,23 @@ function drawFirstSlider() {
         brush.extent([value, value]);
       }
       handle.attr("cx", scaleX(value));
-      circle.attr("fill", d3.hsl(value, 1, 0.50));
+
+      if (value === 0) { //Default config = white
+        circle.attr("fill", d3.hsl(360, 1, 1));
+      } else {
+          circle.attr("fill", d3.hsl(value, 1, 0.50));
+      }
 
   }
 }
 
 /* FUNCTION TO DRAW SECOND SLIDER AND HANDLE ITS MOVEMENT */
-function drawSecondSlider() {
+function drawSecondSlider(selectedDiv) {
 
   /* VARS TO SET SVG CANVAS*/
   var margin = {top: 20, right: 150, bottom: 20, left: 5};
-  var wSlid = $(".slider_two").width();
-  var hSlid = $(".slider_two").height();
+  var wSlid = $(".slider_two"+(selectedDiv)).width();
+  var hSlid = $(".slider_two"+(selectedDiv)).height();
 
   var scaleX = d3.scale.linear()
                        .domain([0, 360])
@@ -159,7 +180,7 @@ function drawSecondSlider() {
                      .extent([0, 0])
                      .on("brush", brushed);
 
-  var sliderBar = d3.select(".slider_two").append("svg")
+  var sliderBar = d3.select(".slider_two"+(selectedDiv)).append("svg")
                  .attr("width", wSlid + margin.left + margin.right)
                  .attr("height", hSlid + margin.top + margin.bottom)
                  .append("g")
@@ -198,12 +219,13 @@ function drawSecondSlider() {
   slider.call(brush.event)
         .transition()
         .duration(750)
-        .call(brush.extent([180, 180]))
+        .call(brush.extent([0, 0]))
         .call(brush.event);
 
   function brushed() {
       var value = brush.extent()[0];
-      var svg = d3.select(".second_color_shape svg");
+      var colorShape = ".second_color_shape"+(selectedDiv)+" svg";
+      var svg = d3.select(colorShape);
       var circle = svg.select("circle");
 
       if (d3.event.sourceEvent) { // not a programmatic event
@@ -211,7 +233,12 @@ function drawSecondSlider() {
         brush.extent([value, value]);
       }
       handle.attr("cx", scaleX(value));
-      circle.style("fill", d3.hsl(value, 1, 0.50));
+
+      if (value === 0) { //Default config = white
+        circle.attr("fill", d3.hsl(360, 1, 1));
+      } else {
+          circle.attr("fill", d3.hsl(value, 1, 0.50));
+      }
 
   }
 }
@@ -223,14 +250,17 @@ function drawSecondSlider() {
   width = w*0.45 - margin.left - margin.right,
   height = h*0.45 - margin.top - margin.bottom;*/
 
+  var selectdiv = new Date().getTime() % 2;
+  $("#mixture"+(selectdiv)).css("display", "block");
+
   /* SHAPES */
-  drawObjective();
-  drawFirstColor();
-  drawSecColor();
+  drawObjective(selectdiv);
+  drawFirstColor(selectdiv);
+  drawSecColor(selectdiv);
 
   /* SLIDERS */
-  drawFirstSlider();
-  drawSecondSlider();
+  drawFirstSlider(selectdiv);
+  drawSecondSlider(selectdiv);
 
 
 })(d3);
