@@ -1,0 +1,53 @@
+.headline {
+  height: 20%;
+  display: block;
+  width: 100%;
+  text-align: center;
+}
+
+.headline h1 {
+    font-size: 50px;
+}
+
+.headline h2 {
+    font-size: 30px;
+}
+
+#plateOne {
+  width: 70%;
+  margin-left: 15%;
+  margin-right: 15%;
+}
+
+#plateTwo {
+  width: 60%;
+  margin-top: 5%;
+  margin-left: 20%;
+  margin-right: 20%;
+}
+
+#formGroupPlateTwo {
+  margin-top: 5%;
+}
+
+#plateThree {
+  width: 60%;
+  margin-top: 5%;
+  margin-left: 20%;
+  margin-right: 20%;
+}
+
+#formGroupPlateThree {
+  margin-top: 5%;
+}
+
+#plateFour {
+  width: 60%;
+  margin-top: 5%;
+  margin-left: 20%;
+  margin-right: 20%;
+}
+
+#formGroupPlateFour {
+  margin-top: 5%;
+}
