@@ -7,7 +7,6 @@ body {
   width: 100%;
   text-align: center;
   background: url('../images/color-background.jpeg') no-repeat center center scroll;
-  background-blend-mode: luminosity;
   opacity: 0.9;
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -16,20 +15,14 @@ body {
 }
 .headline {
   padding: 120px 0;
-  z-index: 2;
 }
 .headline h1 {
   font-size: 130px;
-  z-index: 2;
   color: rgb(0, 0, 0);
-  /*background: #fff;
-    background: rgba(255,255,255,0.9);*/
 }
 .headline h2 {
   font-size: 77px;
   color: rgb(0, 0, 0);
-  /*background: #fff;
-    background: rgba(255,255,255,0.9);*/
 }
 .featurette-divider {
   margin: 80px 0;

@@ -12,3 +12,12 @@
 .headline h2 {
     font-size: 30px;
 }
+
+#questionNumber {
+  font-size: 30px;
+}
+
+#questionField {
+  font-size: 20px;
+  text-align: left;
+}

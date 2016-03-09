@@ -6,15 +6,16 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<title>Will It Blend?</title>
+  <title>Will It Blend?</title>
 
-	<!-- Includes for css styles -->
+  <!-- Includes for css styles -->
   <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="../css/entry.css" rel="stylesheet">
   <link href="../css/profiling.css" rel="stylesheet">
 
   <!-- Includes for bootstrap and jquery script -->
   <script src="../js-library/jquery-2.1.4.min.js"></script>
+  <script src="../js/handleAlerts.js"></script>
 
   <!-- Includes for javascripts-->
 
@@ -23,162 +24,678 @@
 <body>
   <!-- Navigation -->
   <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-      <div class="container">
-          <!-- Brand and toggle get grouped for better mobile display -->
-          <div class="navbar-header">
-              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                  <span class="sr-only">Toggle navigation</span>
-                  <span class="icon-bar"></span>
-                  <span class="icon-bar"></span>
-                  <span class="icon-bar"></span>
-              </button>
-              <a class="navbar-brand" href="../index.html">Will It Blend?</a>
-          </div>
-          <!-- Collect the nav links, forms, and other content for toggling -->
-          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-              <ul class="nav navbar-nav">
-                  <li>
-                      <a href="#about" onclick="alertAbout()">Sobre</a>
-                  </li>
-              </ul>
-          </div>
-          <!-- /.navbar-collapse -->
+    <div class="container">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../index.html" onclick="alertTitle(); return false;">Will It Blend?</a>
       </div>
-      <!-- /.container -->
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          <li>
+            <a href="#about" onclick="alertAbout(); return false;">Sobre</a>
+          </li>
+        </ul>
+      </div>
+      <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
   </nav>
 
-  <div class="headline">
+  <header class="header-image">
+    <div class="headline">
       <div class="container">
-          <h1>Will It Blend?</h1>
-          <h2>Passo 1 - Características Pessoais.</h2>
+        <h1>Will It Blend?</h1>
+        <h2>Passo 1 - Características Pessoais.</h2>
       </div>
-  </div>
+    </div>
+  </header>
 
   <!-- Page Content -->
   <div class="container">
 
-      <hr class="featurette-divider">
+    <hr class="featurette-divider">
 
-      <!-- First Featurette -->
-      <div class="featurette" id="profiling">
-          <!-- <img class="featurette-image img-circle img-responsive pull-right" src="../images/profiling.jpg"> -->
-          <h2 class="featurette-heading">Questões rápidas.</h2>
-          <p class="lead">Por favor, responda às seguintes perguntas.</p>
+    <!-- First Featurette -->
+    <div class="featurette" id="profiling">
+      <img class="featurette-image img-circle img-responsive pull-right" src="../images/user.png">
+      <h2 class="featurette-heading">Questões rápidas.</h2>
+      <p class="lead">Por favor, responda às seguintes perguntas.</p>
+      <div class="col-md-14">
+        <form id="profilingForm">
+          <!-- IDADE -->
+          <div class="form-group row">
+            <label for="inputAge" class="col-sm-2 ">1. Idade:</label>
+            <div class="col-sm-3">
+              <input type="age" class="form-control" id="inputAge" placeholder="Idade">
+            </div>
+          </div>
+          <!-- ./IDADE -->
 
-          <form id="profilingForm">
-            <!-- IDADE -->
-            <div class="form-group row">
-              <label for="inputAge" class="col-sm-2 ">1. Idade:</label>
-              <div class="col-sm-3">
-                <input type="age" class="form-control" id="inputAge" placeholder="Idade">
+          <!-- GENERO -->
+          <div class="form-group row">
+            <label class="col-sm-2">2. Género:</label>
+            <div class="col-sm-3">
+              <div class="radio">
+                <label>
+                  <input type="radio" name="gridRadios" id="gridRadios1" value="feminino" checked> Feminino
+                </label>
+              </div>
+              <div class="radio">
+                <label>
+                  <input type="radio" name="gridRadios" id="gridRadios2" value="masculino"> Masculino
+                </label>
               </div>
             </div>
-            <!-- ./IDADE -->
+          </div>
+          <!-- ./GENERO -->
 
-            <!-- GENERO -->
-            <div class="form-group row">
-              <label class="col-sm-2">2. Género:</label>
-                <div class="col-sm-3">
-                  <div class="radio">
-                    <label>
-                      <input type="radio" name="gridRadios" id="gridRadios1" value="feminino" checked>
-                      Feminino
-                    </label>
-                  </div>
-                <div class="radio">
-                  <label>
-                    <input type="radio" name="gridRadios" id="gridRadios2" value="masculino">
-                    Masculino
-                  </label>
-                </div>
-              </div>
-            </div>
-            <!-- ./GENERO -->
-
-            <!-- GRAU ACADEMICO -->
-            <div class="form-group row">
-              <label for="academic" class="col-sm-2 form-control-label" >3. Grau Académico:</label>
-                <div class="col-sm-3 selectContainer">
-                <div class="input-group">
-                <select name="academic" class="form-control selectpicker" >
+          <!-- GRAU ACADEMICO -->
+          <div class="form-group row">
+            <label for="academic" class="col-sm-2 form-control-label">3. Grau Académico:</label>
+            <div class="col-sm-3 selectContainer">
+              <div class="input-group">
+                <select name="academic" class="form-control">
                   <option value="">Escolha um Grau</option>
                   <option>Ensino Pré-Escolar</option>
-                  <option>Ensino Primário (1º Ciclo)</option>
-                  <option>Ensino Primário (2º Ciclo)</option>
-                  <option>Ensino Primário (3º Ciclo)</option>
+                  <option>Ensino Primário</option>
                   <option>Ensino Secundário</option>
-                  <option>Ensino Superior (Licenciatura)</option>
-                  <option>Ensino Superior (Mestrado)</option>
-                  <option>Ensino Superior (Doutoramento)</option>
+                  <option>Ensino Superior</option>
                   <option>Bacharelato</option>
-                </select>
-              </div>
-              </div>
-            </div>
-            <!-- ./GRAU ACADEMICO -->
-
-            <!-- NACIONALIDADE -->
-            <div class="form-group row">
-              <label for="nacional" class="col-sm-2 form-control-label" >4. Nacionalidade:</label>
-                <div class="col-md-3 selectContainer">
-                <div class="input-group">
-                <select name="nacional" class="form-control selectpicker" >
-                  <option value="">Escolha uma Nacionalidade</option>
-                  <option>Portuguesa</option>
+                  <option>Sem Formação</option>
                 </select>
               </div>
             </div>
-            </div>
-            <!-- ./NACIONALIDADE -->
-
-            <!-- PAÍS DE RESIDENCIA -->
-            <div class="form-group row">
-              <label for="countryResidence" class="col-sm-2 form-control-label" >5. País de Residência:</label>
-                <div class="col-md-3 selectContainer">
-                <div class="input-group">
-                <select name="countryResidence" class="form-control selectpicker" >
-                  <option value="">Escolha uma País de Residência</option>
-                  <option>Portugal</option>
-                </select>
-              </div>
-              </div>
-            </div>
-            <!-- ./PAÍS DE RESIDENCIA -->
-
-            <!-- BOTÃO CONFIRMAR -->
-            <div class="form-group row">
-              <div class="col-sm-offset-2 col-sm-10">
-                <button id="confirm" type="submit" class="btn btn-secondary" onclick="../html/calibration.html">Confirmar</button>
-              </div>
-            </div>
-            <!-- ./BOTÃO CONFIRMAR -->
-
-          </form>
-      </div>
-
-      <hr class="featurette-divider">
-
-
-      <!-- Footer -->
-      <footer>
-          <div class="row">
-              <div class="col-lg-12">
-                  <p>Copyright &copy; Paulo Garcia 2016</p>
-              </div>
           </div>
-      </footer>
+          <!-- ./GRAU ACADEMICO -->
+
+          <!-- NACIONALIDADE -->
+          <div class="form-group row">
+            <label for="nacional" class="col-sm-2 form-control-label">4. Nacionalidade:</label>
+            <div class="col-md-3 selectContainer">
+              <div class="input-group">
+                <select name="nacional" class="form-control selectpicker">
+                  <option value="">Escolha um País de Nacionalidade</option>
+                  <option>Andorra</option>
+            			<option>Emirados Árabes Unidos</option>
+            			<option>Afeganistão</option>
+            			<option>Antígua e Barbuda</option>
+            			<option>Anguilla</option>
+            			<option>Albânia</option>
+            			<option>Armênia</option>
+            			<option>Antilhas Holandesas</option>
+            			<option>Angola</option>
+            			<option>Antártida</option>
+            			<option>Argentina</option>
+            			<option>Samoa Americana</option>
+            			<option>Áustria</option>
+            			<option>Austrália</option>
+            			<option>Aruba</option>
+            			<option>Ilhas Åland</option>
+            			<option>Azerbaijão</option>
+            			<option>Bósnia e Herzegovina</option>
+            			<option>Barbados</option>
+            			<option>Bangladesh</option>
+            			<option>Bélgica</option>
+            			<option>Burquina Faso</option>
+            			<option>Bulgária</option>
+            			<option>Bahrein</option>
+            			<option>Burundi</option>
+            			<option>Benin</option>
+            			<option>São Bartolomeu</option>
+            			<option>Bermudas</option>
+            			<option>Brunei</option>
+            			<option>Bolívia</option>
+            			<option>Países Baixos Caribenhos</option>
+            			<option>Brasil</option>
+            			<option>Bahamas</option>
+            			<option>Butão</option>
+            			<option>Ilha Bouvet</option>
+            			<option>Botsuana</option>
+            			<option>Bielorrússia</option>
+            			<option>Belize</option>
+            			<option>Canadá</option>
+            			<option>Ilhas Cocos (Keeling)</option>
+            			<option>Congo - Kinshasa</option>
+            			<option>República Democrática do Congo</option>
+            			<option>República Centro-Africana</option>
+            			<option>Congo - Brazzaville</option>
+            			<option>Suíça</option>
+            			<option>Costa do Marfim</option>
+            			<option>Ilhas Cook</option>
+            			<option>Chile</option>
+            			<option>República dos Camarões</option>
+            			<option>China</option>
+            			<option>Colômbia</option>
+            			<option>Ilha de Clipperton</option>
+            			<option>Costa Rica</option>
+            			<option>Cuba</option>
+            			<option>Cabo Verde</option>
+            			<option>Curaçao</option>
+            			<option>Ilha Christmas</option>
+            			<option>Chipre</option>
+            			<option>República Tcheca</option>
+            			<option>Alemanha</option>
+            			<option>Diego Garcia</option>
+            			<option>Djibuti</option>
+            			<option>Dinamarca</option>
+            			<option>Dominica</option>
+            			<option>República Dominicana</option>
+            			<option>Argélia</option>
+            			<option>Ceuta e Melilha</option>
+            			<option>Equador</option>
+            			<option>Estônia</option>
+            			<option>Egito</option>
+            			<option>Saara Ocidental</option>
+            			<option>Eritreia</option>
+            			<option>Espanha</option>
+            			<option>Etiópia</option>
+            			<option>União Europeia</option>
+            			<option>Finlândia</option>
+            			<option>Fiji</option>
+            			<option>Ilhas Malvinas</option>
+            			<option>Micronésia</option>
+            			<option>Ilhas Faroe</option>
+            			<option>França</option>
+            			<option>Gabão</option>
+            			<option>Reino Unido</option>
+            			<option>Granada</option>
+            			<option>Geórgia</option>
+            			<option>Guiana Francesa</option>
+            			<option>Guernsey</option>
+            			<option>Gana</option>
+            			<option>Gibraltar</option>
+            			<option>Groenlândia</option>
+            			<option>Gâmbia</option>
+            			<option>Guiné</option>
+            			<option>Guadalupe</option>
+            			<option>Guiné Equatorial</option>
+            			<option>Grécia</option>
+            			<option>Ilhas Geórgia do Sul e Sandwich do Sul</option>
+            			<option>Guatemala</option>
+            			<option>Guam</option>
+            			<option>Guiné-Bissau</option>
+            			<option>Guiana</option>
+            			<option>Hong Kong</option>
+            			<option>Ilhas Heard e McDonald</option>
+            			<option>Honduras</option>
+            			<option>Croácia</option>
+            			<option>Haiti</option>
+            			<option>Hungria</option>
+            			<option>Ilhas Canárias</option>
+            			<option>Indonésia</option>
+            			<option>Irlanda</option>
+            			<option>Israel</option>
+            			<option>Ilha de Man</option>
+            			<option>Índia</option>
+            			<option>Território Britânico do Oceano Índico</option>
+            			<option>Iraque</option>
+            			<option>Irã</option>
+            			<option>Islândia</option>
+            			<option>Itália</option>
+            			<option>Jersey</option>
+            			<option>Jamaica</option>
+            			<option>Jordânia</option>
+            			<option>Japão</option>
+            			<option>Quênia</option>
+            			<option>Quirguistão</option>
+            			<option>Camboja</option>
+            			<option>Quiribati</option>
+            			<option>Comores</option>
+            			<option>São Cristóvão e Nevis</option>
+            			<option>Coreia do Norte</option>
+            			<option>Coreia do Sul</option>
+            			<option>Kuwait</option>
+            			<option>Ilhas Cayman</option>
+            			<option>Cazaquistão</option>
+            			<option>Laos</option>
+            			<option>Líbano</option>
+            			<option>Santa Lúcia</option>
+            			<option>Liechtenstein</option>
+            			<option>Sri Lanka</option>
+            			<option>Libéria</option>
+            			<option>Lesoto</option>
+            			<option>Lituânia</option>
+            			<option>Luxemburgo</option>
+            			<option>Letônia</option>
+            			<option>Líbia</option>
+            			<option>Marrocos</option>
+            			<option>Mônaco</option>
+            			<option>Moldávia</option>
+            			<option>Montenegro</option>
+            			<option>São Martinho</option>
+            			<option>Madagascar</option>
+            			<option>Ilhas Marshall</option>
+            			<option>Macedónia</option>
+            			<option>Mali</option>
+            			<option>Mianmar (Birmânia)</option>
+            			<option>Mongólia</option>
+            			<option>Macau</option>
+            			<option>Ilhas Marianas do Norte</option>
+            			<option>Martinica</option>
+            			<option>Mauritânia</option>
+            			<option>Montserrat</option>
+            			<option>Malta</option>
+            			<option>Maurício</option>
+            			<option>Maldivas</option>
+            			<option>Malawi</option>
+            			<option>México</option>
+            			<option>Malásia</option>
+            			<option>Moçambique</option>
+            			<option>Namíbia</option>
+            			<option>Nova Caledônia</option>
+            			<option>Níger</option>
+            			<option>Ilha Norfolk</option>
+            			<option>Nigéria</option>
+            			<option>Nicarágua</option>
+            			<option>Holanda</option>
+            			<option>Noruega</option>
+            			<option>Nepal</option>
+            			<option>Nauru</option>
+            			<option>Niue</option>
+            			<option>Nova Zelândia</option>
+            			<option>Omã</option>
+            			<option>Panamá</option>
+            			<option>Peru</option>
+            			<option>Polinésia Francesa</option>
+            			<option>Papua-Nova Guiné</option>
+            			<option>Filipinas</option>
+            			<option>Paquistão</option>
+            			<option>Polônia</option>
+            			<option>Saint Pierre e Miquelon</option>
+            			<option>Ilhas Pitcairn</option>
+            			<option>Porto Rico</option>
+            			<option>Palestina</option>
+            			<option>Portugal</option>
+            			<option>Palau</option>
+            			<option>Paraguai</option>
+            			<option>Catar</option>
+            			<option>Oceania Remota</option>
+            			<option>Reunião</option>
+            			<option>Romênia</option>
+            			<option>Sérvia</option>
+            			<option>Rússia</option>
+            			<option>Ruanda</option>
+            			<option>Arábia Saudita</option>
+            			<option>Ilhas Salomão</option>
+            			<option>Seychelles</option>
+            			<option>Sudão</option>
+            			<option>Suécia</option>
+            			<option>Cingapura</option>
+            			<option>Santa Helena</option>
+            			<option>Eslovênia</option>
+            			<option>Svalbard e Jan Mayen</option>
+            			<option>Eslováquia</option>
+            			<option>Serra Leoa</option>
+            			<option>San Marino</option>
+            			<option>Senegal</option>
+            			<option>Somália</option>
+            			<option>Suriname</option>
+            			<option>Sudão do Sul</option>
+            			<option>São Tomé e Príncipe</option>
+            			<option>El Salvador</option>
+            			<option>Sint Maarten</option>
+            			<option>Síria</option>
+            			<option>Suazilândia</option>
+            			<option>Tristão da Cunha</option>
+            			<option>Ilhas Turks e Caicos</option>
+            			<option>Chade</option>
+            			<option>Territórios Franceses do Sul</option>
+            			<option>Togo</option>
+            			<option>Tailândia</option>
+            			<option>Tajiquistão</option>
+            			<option>Tokelau</option>
+            			<option>Timor-Leste</option>
+            			<option>Turcomenistão</option>
+            			<option>Tunísia</option>
+            			<option>Tonga</option>
+            			<option>Turquia</option>
+            			<option>Trinidad e Tobago</option>
+            			<option>Tuvalu</option>
+            			<option>Taiwan</option>
+            			<option>Tanzânia</option>
+            			<option>Ucrânia</option>
+            			<option>Uganda</option>
+            			<option>Ilhas Menores Distantes dos EUA</option>
+            			<option>Estados Unidos da América</option>
+            			<option>Uruguai</option>
+            			<option>Uzbequistão</option>
+            			<option>Cidade do Vaticano</option>
+            			<option>São Vicente e Granadinas</option>
+            			<option>Venezuela</option>
+            			<option>Ilhas Virgens Britânicas</option>
+            			<option>Ilhas Virgens dos EUA</option>
+            			<option>Vietnã</option>
+            			<option>Vanuatu</option>
+            			<option>Wallis e Futuna</option>
+            			<option>Samoa</option>
+            			<option>Kosovo</option>
+            			<option>Iêmen</option>
+            			<option>Mayotte</option>
+            			<option>África do Sul</option>
+            			<option>Zâmbia</option>
+            			<option>Zimbábue</option>
+            			<option>Região desconhecida</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <!-- ./NACIONALIDADE -->
+
+          <!-- PAÍS DE RESIDENCIA -->
+          <div class="form-group row">
+            <label for="countryResidence" class="col-sm-2 form-control-label">5. País de Residência:</label>
+            <div class="col-md-3 selectContainer">
+              <div class="input-group">
+                <select name="countryResidence" class="form-control selectpicker">
+                  <option value="">Escolha uma País de Residência</option>
+                  <option>Andorra</option>
+            			<option>Emirados Árabes Unidos</option>
+            			<option>Afeganistão</option>
+            			<option>Antígua e Barbuda</option>
+            			<option>Anguilla</option>
+            			<option>Albânia</option>
+            			<option>Armênia</option>
+            			<option>Antilhas Holandesas</option>
+            			<option>Angola</option>
+            			<option>Antártida</option>
+            			<option>Argentina</option>
+            			<option>Samoa Americana</option>
+            			<option>Áustria</option>
+            			<option>Austrália</option>
+            			<option>Aruba</option>
+            			<option>Ilhas Åland</option>
+            			<option>Azerbaijão</option>
+            			<option>Bósnia e Herzegovina</option>
+            			<option>Barbados</option>
+            			<option>Bangladesh</option>
+            			<option>Bélgica</option>
+            			<option>Burquina Faso</option>
+            			<option>Bulgária</option>
+            			<option>Bahrein</option>
+            			<option>Burundi</option>
+            			<option>Benin</option>
+            			<option>São Bartolomeu</option>
+            			<option>Bermudas</option>
+            			<option>Brunei</option>
+            			<option>Bolívia</option>
+            			<option>Países Baixos Caribenhos</option>
+            			<option>Brasil</option>
+            			<option>Bahamas</option>
+            			<option>Butão</option>
+            			<option>Ilha Bouvet</option>
+            			<option>Botsuana</option>
+            			<option>Bielorrússia</option>
+            			<option>Belize</option>
+            			<option>Canadá</option>
+            			<option>Ilhas Cocos (Keeling)</option>
+            			<option>Congo - Kinshasa</option>
+            			<option>República Democrática do Congo</option>
+            			<option>República Centro-Africana</option>
+            			<option>Congo - Brazzaville</option>
+            			<option>Suíça</option>
+            			<option>Costa do Marfim</option>
+            			<option>Ilhas Cook</option>
+            			<option>Chile</option>
+            			<option>República dos Camarões</option>
+            			<option>China</option>
+            			<option>Colômbia</option>
+            			<option>Ilha de Clipperton</option>
+            			<option>Costa Rica</option>
+            			<option>Cuba</option>
+            			<option>Cabo Verde</option>
+            			<option>Curaçao</option>
+            			<option>Ilha Christmas</option>
+            			<option>Chipre</option>
+            			<option>República Tcheca</option>
+            			<option>Alemanha</option>
+            			<option>Diego Garcia</option>
+            			<option>Djibuti</option>
+            			<option>Dinamarca</option>
+            			<option>Dominica</option>
+            			<option>República Dominicana</option>
+            			<option>Argélia</option>
+            			<option>Ceuta e Melilha</option>
+            			<option>Equador</option>
+            			<option>Estônia</option>
+            			<option>Egito</option>
+            			<option>Saara Ocidental</option>
+            			<option>Eritreia</option>
+            			<option>Espanha</option>
+            			<option>Etiópia</option>
+            			<option>União Europeia</option>
+            			<option>Finlândia</option>
+            			<option>Fiji</option>
+            			<option>Ilhas Malvinas</option>
+            			<option>Micronésia</option>
+            			<option>Ilhas Faroe</option>
+            			<option>França</option>
+            			<option>Gabão</option>
+            			<option>Reino Unido</option>
+            			<option>Granada</option>
+            			<option>Geórgia</option>
+            			<option>Guiana Francesa</option>
+            			<option>Guernsey</option>
+            			<option>Gana</option>
+            			<option>Gibraltar</option>
+            			<option>Groenlândia</option>
+            			<option>Gâmbia</option>
+            			<option>Guiné</option>
+            			<option>Guadalupe</option>
+            			<option>Guiné Equatorial</option>
+            			<option>Grécia</option>
+            			<option>Ilhas Geórgia do Sul e Sandwich do Sul</option>
+            			<option>Guatemala</option>
+            			<option>Guam</option>
+            			<option>Guiné-Bissau</option>
+            			<option>Guiana</option>
+            			<option>Hong Kong</option>
+            			<option>Ilhas Heard e McDonald</option>
+            			<option>Honduras</option>
+            			<option>Croácia</option>
+            			<option>Haiti</option>
+            			<option>Hungria</option>
+            			<option>Ilhas Canárias</option>
+            			<option>Indonésia</option>
+            			<option>Irlanda</option>
+            			<option>Israel</option>
+            			<option>Ilha de Man</option>
+            			<option>Índia</option>
+            			<option>Território Britânico do Oceano Índico</option>
+            			<option>Iraque</option>
+            			<option>Irã</option>
+            			<option>Islândia</option>
+            			<option>Itália</option>
+            			<option>Jersey</option>
+            			<option>Jamaica</option>
+            			<option>Jordânia</option>
+            			<option>Japão</option>
+            			<option>Quênia</option>
+            			<option>Quirguistão</option>
+            			<option>Camboja</option>
+            			<option>Quiribati</option>
+            			<option>Comores</option>
+            			<option>São Cristóvão e Nevis</option>
+            			<option>Coreia do Norte</option>
+            			<option>Coreia do Sul</option>
+            			<option>Kuwait</option>
+            			<option>Ilhas Cayman</option>
+            			<option>Cazaquistão</option>
+            			<option>Laos</option>
+            			<option>Líbano</option>
+            			<option>Santa Lúcia</option>
+            			<option>Liechtenstein</option>
+            			<option>Sri Lanka</option>
+            			<option>Libéria</option>
+            			<option>Lesoto</option>
+            			<option>Lituânia</option>
+            			<option>Luxemburgo</option>
+            			<option>Letônia</option>
+            			<option>Líbia</option>
+            			<option>Marrocos</option>
+            			<option>Mônaco</option>
+            			<option>Moldávia</option>
+            			<option>Montenegro</option>
+            			<option>São Martinho</option>
+            			<option>Madagascar</option>
+            			<option>Ilhas Marshall</option>
+            			<option>Macedónia</option>
+            			<option>Mali</option>
+            			<option>Mianmar (Birmânia)</option>
+            			<option>Mongólia</option>
+            			<option>Macau</option>
+            			<option>Ilhas Marianas do Norte</option>
+            			<option>Martinica</option>
+            			<option>Mauritânia</option>
+            			<option>Montserrat</option>
+            			<option>Malta</option>
+            			<option>Maurício</option>
+            			<option>Maldivas</option>
+            			<option>Malawi</option>
+            			<option>México</option>
+            			<option>Malásia</option>
+            			<option>Moçambique</option>
+            			<option>Namíbia</option>
+            			<option>Nova Caledônia</option>
+            			<option>Níger</option>
+            			<option>Ilha Norfolk</option>
+            			<option>Nigéria</option>
+            			<option>Nicarágua</option>
+            			<option>Holanda</option>
+            			<option>Noruega</option>
+            			<option>Nepal</option>
+            			<option>Nauru</option>
+            			<option>Niue</option>
+            			<option>Nova Zelândia</option>
+            			<option>Omã</option>
+            			<option>Panamá</option>
+            			<option>Peru</option>
+            			<option>Polinésia Francesa</option>
+            			<option>Papua-Nova Guiné</option>
+            			<option>Filipinas</option>
+            			<option>Paquistão</option>
+            			<option>Polônia</option>
+            			<option>Saint Pierre e Miquelon</option>
+            			<option>Ilhas Pitcairn</option>
+            			<option>Porto Rico</option>
+            			<option>Palestina</option>
+            			<option>Portugal</option>
+            			<option>Palau</option>
+            			<option>Paraguai</option>
+            			<option>Catar</option>
+            			<option>Oceania Remota</option>
+            			<option>Reunião</option>
+            			<option>Romênia</option>
+            			<option>Sérvia</option>
+            			<option>Rússia</option>
+            			<option>Ruanda</option>
+            			<option>Arábia Saudita</option>
+            			<option>Ilhas Salomão</option>
+            			<option>Seychelles</option>
+            			<option>Sudão</option>
+            			<option>Suécia</option>
+            			<option>Cingapura</option>
+            			<option>Santa Helena</option>
+            			<option>Eslovênia</option>
+            			<option>Svalbard e Jan Mayen</option>
+            			<option>Eslováquia</option>
+            			<option>Serra Leoa</option>
+            			<option>San Marino</option>
+            			<option>Senegal</option>
+            			<option>Somália</option>
+            			<option>Suriname</option>
+            			<option>Sudão do Sul</option>
+            			<option>São Tomé e Príncipe</option>
+            			<option>El Salvador</option>
+            			<option>Sint Maarten</option>
+            			<option>Síria</option>
+            			<option>Suazilândia</option>
+            			<option>Tristão da Cunha</option>
+            			<option>Ilhas Turks e Caicos</option>
+            			<option>Chade</option>
+            			<option>Territórios Franceses do Sul</option>
+            			<option>Togo</option>
+            			<option>Tailândia</option>
+            			<option>Tajiquistão</option>
+            			<option>Tokelau</option>
+            			<option>Timor-Leste</option>
+            			<option>Turcomenistão</option>
+            			<option>Tunísia</option>
+            			<option>Tonga</option>
+            			<option>Turquia</option>
+            			<option>Trinidad e Tobago</option>
+            			<option>Tuvalu</option>
+            			<option>Taiwan</option>
+            			<option>Tanzânia</option>
+            			<option>Ucrânia</option>
+            			<option>Uganda</option>
+            			<option>Ilhas Menores Distantes dos EUA</option>
+            			<option>Estados Unidos da América</option>
+            			<option>Uruguai</option>
+            			<option>Uzbequistão</option>
+            			<option>Cidade do Vaticano</option>
+            			<option>São Vicente e Granadinas</option>
+            			<option>Venezuela</option>
+            			<option>Ilhas Virgens Britânicas</option>
+            			<option>Ilhas Virgens dos EUA</option>
+            			<option>Vietnã</option>
+            			<option>Vanuatu</option>
+            			<option>Wallis e Futuna</option>
+            			<option>Samoa</option>
+            			<option>Kosovo</option>
+            			<option>Iêmen</option>
+            			<option>Mayotte</option>
+            			<option>África do Sul</option>
+            			<option>Zâmbia</option>
+            			<option>Zimbábue</option>
+            			<option>Região desconhecida</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <!-- ./PAÍS DE RESIDENCIA -->
+
+          <!-- BOTÃO CONFIRMAR -->
+          <div class="form-group row">
+            <div class="col-sm-7">
+              <button type="submit" id="profiling-submit" class="btn btn-success btn-lg pull-right">Confirmar</button>
+            </div>
+          </div>
+          <!-- ./BOTÃO CONFIRMAR -->
+
+        </form>
+      </div>
+    </div>
+
+    <hr class="featurette-divider">
+
+
+    <!-- Footer -->
+    <footer>
+      <div class="row">
+        <div class="col-lg-12">
+          <p>Copyright &copy; Paulo Garcia 2016</p>
+        </div>
+      </div>
+    </footer>
 
   </div>
   <!-- /.container -->
 
   <script>
-		$.ajaxSetup({
-				// Disable caching of AJAX responses
-				// Used when debugging
-				cache : false
-			});
+    $.ajaxSetup({
+      // Disable caching of AJAX responses
+      // Used when debugging
+      cache: false
+    });
     $.getScript("https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js");
-		$.getScript("../bootstrap/js/bootstrap.min.js");
+    $.getScript("../bootstrap/js/bootstrap.min.js");
     $.getScript("../js/profiling.js");
   </script>
 
