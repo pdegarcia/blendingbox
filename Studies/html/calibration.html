@@ -63,19 +63,48 @@
     <hr class="featurette-divider">
 
     <div class="featurette" id="ishihara">
-      <h2 class="featurette-heading">Vamos decifrar a calibração do seu monitor.</h2>
-      <p class="lead">Neste passo, são-lhe apresentadas algumas imagens. Deverá indicar-nos as respostas às questões colocadas.</p>
+      <h2 class="featurette-heading">Vamos calibrar o seu monitor.</h2>
+      <p class="lead">Neste passo, são-lhe apresentadas algumas imagens. Deverá ajustar as definições do seu ecrã, como por exemplo a luminosidade, de tal modo que lhe permita responder às questões colocadas, preservando as mesmas ao longo de todo o estudo.</p>
 
-      <!-- QUADRADOS PRETOS -->
-      <h2 class="featurette-heading" id="questionNumber">Questão 1 de 2.</h2>
-      <p class="lead" id="questionField">Na seguinte imagem, são apresentados diferentes quadrados em diferentes tons de preto. Indique, por favor, quantos quadrados consegue detectar.</p>
-      <!-- ./QUADRADOS PRETOS -->
 
-      <!-- FRASES ESCONDIDAS -->
-      <!-- ./FRASES ESCONDIDAS -->
+      <form role="form" id="calibrationForm">
+        <!-- QUADRADOS PRETOS -->
+        <div class="col-md-10 col-md-offset-1">
+          <h2 class="featurette-heading" id="questionNumber1">Questão 1 de 2.</h2>
+          <p class="lead" id="questionField1">Na seguinte imagem, são apresentados diferentes quadrados em diferentes tons de preto. Indique, por favor, quantos quadrados consegue distinguir.</p>
+          <img src="../images/blacktest.png" alt="Black Squares Test" id="blackSquares">
+          <div class="form-group row" style="padding: 15px;">
+            <label for="inputSquares" class="col-sm-5 col-sm-offset-1" style="font-size:20px; ">Número de Quadrados Perceptíveis:</label>
+            <div class="col-sm-5">
+              <input type="numberSquares" class="form-control" id="inputSquares" placeholder="Número de Quadrados" style="inherit">
+            </div>
+          </div>
+        </div>
+        <!-- ./QUADRADOS PRETOS -->
 
-      <!-- TERCEIRA PLACA -->
-      <!-- ./TERCEIRA PLACA -->
+        <!-- FRASES ESCONDIDAS -->
+        <div class="col-md-10 col-md-offset-1">
+          <h2 class="featurette-heading" id="questionNumber2">Questão 2 de 2.</h2>
+          <p class="lead" id="questionField2">Na seguinte imagem, são apresentadas diferentes palavras em diferentes níveis. Indique, por favor, qual o nível mais baixo que consegue distinguir, escrevendo a palavra na caixa abaixo.</p>
+          <img src="../images/phrases-placeholder.png" alt="Last Perceivable Word" id="lastPerceivableWord">
+          <div class="form-group row" style="padding: 15px;">
+            <label for="lastWord" class="col-sm-5 col-sm-offset-1" style="font-size:20px;">Última Palavra Perceptível:</label>
+            <div class="col-sm-5">
+              <input type="lastWord" class="form-control" id="lastWord" placeholder="Última Palavra" style="inherit">
+            </div>
+          </div>
+        </div>
+        <!-- ./FRASES ESCONDIDAS -->
+
+        <!-- BOTÃO CONFIRMAR -->
+        <div class="form-group row">
+          <div class="col-md-10 col-md-offset-5">
+            <button type="submit" id="calibration-submit" class="btn btn-success btn-lg">Confirmar</button>
+          </div>
+        </div>
+        <!-- ./BOTÃO CONFIRMAR -->
+      </form>
+
 
     </div>
 
@@ -96,6 +125,13 @@
   <!-- /.container -->
 
   <script>
+  $.ajaxSetup({
+    // Disable caching of AJAX responses Used when debugging
+    cache: false
+  });
+  $.getScript("https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js");
+  $.getScript("bootstrap/js/bootstrap.min.js");
+  $.getScript("../js/calibration.js");
   </script>
 
 </body>

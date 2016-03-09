@@ -13,11 +13,30 @@
     font-size: 30px;
 }
 
-#questionNumber {
+#questionNumber1 {
   font-size: 30px;
 }
 
-#questionField {
+#questionField1 {
   font-size: 20px;
-  text-align: left;
+  text-align: justify;
+}
+
+#blackSquares {
+  margin-left: 10%;
+  width: 80%;
+}
+
+#questionNumber2 {
+  font-size: 30px;
+}
+
+#questionField2 {
+  font-size: 20px;
+  text-align: justify;
+}
+
+#lastPerceivableWord {
+  margin-left: 10%;
+  width: 80%;
 }
