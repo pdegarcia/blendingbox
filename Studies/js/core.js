@@ -103,9 +103,10 @@ function drawFirstSlider(selectedDiv) {
            .call(d3.svg.axis()
                  .scale(scaleX)
                  .orient("bottom")
-                 .tickFormat(function(d) { return d; })
+                 .tickFormat(function(d) { return "|"; })
+                 .ticks(0)    //SET NUMBER OF TICKS
                  .tickSize(0)
-                 .tickPadding(10))
+                 .tickPadding(5))
            .select(".domain")
            .select(function() { return this.parentNode.appendChild(this.cloneNode(true)); })
            .attr("class", "halo");
@@ -184,7 +185,8 @@ function drawSecondSlider(selectedDiv) {
            .call(d3.svg.axis()
                  .scale(scaleX)
                  .orient("bottom")
-                 .tickFormat(function(d) { return d; })
+                 .tickFormat(function(d) { return "|"; })
+                 .ticks(0)
                  .tickSize(0)
                  .tickPadding(10))
            .select(".domain")
@@ -235,6 +237,87 @@ function drawSecondSlider(selectedDiv) {
   }
 }
 
+function drawObjectiveSlider(selectedDiv) {
+
+  /* VARS TO SET SVG CANVAS*/
+  var margin = {top: 20, right: 150, bottom: 20, left: 5};
+  var wSlid = $(".slider_objective"+(selectedDiv)).width();
+  var hSlid = $(".slider_objective"+(selectedDiv)).height();
+
+  var scaleX = d3.scale.linear()
+                       .domain([0, 360])
+                       .range([0, wSlid])
+                       .clamp(true);
+
+  var brush = d3.svg.brush()
+                     .x(scaleX)
+                     .extent([0, 0])
+                     .on("brush", brushed);
+
+  var sliderBar = d3.select(".slider_objective"+(selectedDiv)).append("svg")
+                 .attr("width", wSlid + margin.left + margin.right)
+                 .attr("height", hSlid + margin.top + margin.bottom)
+                 .append("g")
+                 .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+  sliderBar.append("g")
+           .attr("class", "x axis")
+           .attr("transform", "translate(0," + hSlid/2 + ")")
+           .call(d3.svg.axis()
+                 .scale(scaleX)
+                 .orient("bottom")
+                 .tickFormat(function(d) { return "|"; })
+                 .ticks(0)
+                 .tickSize(0)
+                 .tickPadding(10))
+           .select(".domain")
+           .select(function() { return this.parentNode.appendChild(this.cloneNode(true)); })
+           .attr("class", "halo");
+
+  /* SLIDER BAR */
+  var slider = sliderBar.append("g")
+                  .attr("class", "slider")
+                  .call(brush);
+
+  slider.selectAll(".extent,.resize")
+        .remove();
+
+  slider.select(".background")
+      .attr("height", hSlid);
+
+  /* SLIDER HANDLE */
+  var handle = slider.append("circle")
+                     .attr("class", "handle")
+                     .attr("transform", "translate(0," + hSlid / 2 + ")")
+                     .attr("r", 9);
+
+  slider.call(brush.event)
+        .transition()
+        .duration(750)
+        .call(brush.extent([0, 0]))
+        .call(brush.event);
+
+  function brushed() {
+      var value = brush.extent()[0];
+      var colorShape = ".obj_color_shape"+(selectedDiv)+" svg";
+      var svg = d3.select(colorShape);
+      var circle = svg.select("circle");
+
+      if (d3.event.sourceEvent) { // not a programmatic event
+        value = scaleX.invert(d3.mouse(this)[0]);
+        brush.extent([value, value]);
+      }
+      handle.attr("cx", scaleX(value));
+
+      if (value === 0) { //Default config = white
+        circle.attr("fill", d3.hsl(360, 1, 1));
+      } else {
+          circle.attr("fill", d3.hsl(value, 1, 0.50));
+      }
+
+  }
+}
+
 !(function (d3) {
 
   /* SVG CANVAS DIMENSION */
@@ -253,6 +336,6 @@ function drawSecondSlider(selectedDiv) {
   /* SLIDERS */
   drawFirstSlider(selectdiv);
   drawSecondSlider(selectdiv);
-
+  drawObjectiveSlider(selectdiv);
 
 })(d3);
