@@ -1,12 +1,27 @@
+if(!countClicks) {
+  console.log("oi");
+  var countClicks = 0;
+}
+
+function incCountClicks() { console.log("click!");}
 
 function resetMixture() {
+  var shapeOne = d3.select(".first_color_shape0").select("circle");
+  var shapeTwo = d3.select(".second_color_shape0").select("circle");
+  var shapeObj = d3.select(".obj_color_shape1").select("circle");
+  var sliderOne = d3.select(".slider_one0").select("circle");
+  var sliderTwo = d3.select(".slider_two0").select("circle");
+  var sliderObj = d3.select(".slider_objective1").select("circle");
 
-  d3.select(".slider_one circle").attr("cx", 0)
-                                 .attr("cy", 0)
-                                 .attr("fill", d3.hsl(360, 1, 1));
-  d3.select(".slider_two circle").attr("cx", 0)
-                                 .attr("cy", 0)
-                                 .attr("fill", "none");
+  // RESET COLORS (shapeOne & Two NULL if selectedDiv === 1)
+  shapeOne.attr("fill", "#FFF");
+  shapeTwo.attr("fill", "#FFF");
+  shapeObj.attr("fill", "#FFF");
+
+  // RESET POSITIONS (sliderOne & Two NULL if selectedDiv === 1)
+  sliderOne.transition().duration("750").attr("cx", 0);
+  sliderTwo.transition().duration("750").attr("cx", 0);
+  sliderObj.transition().duration("750").attr("cx", 0);
 }
 
 function drawObjective(selectedDiv) {
@@ -149,8 +164,11 @@ function drawFirstSlider(selectedDiv) {
       if (value === 0) { //Default config = white
         circle.attr("fill", d3.hsl(360, 1, 1));
       } else {
+          console.log("clicked!");
           circle.attr("fill", d3.hsl(value, 1, 0.50));
       }
+
+      //incCountClicks();
 
   }
 }
