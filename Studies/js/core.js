@@ -9,24 +9,30 @@ $("#ratingForm").submit(function(event) {
 function submitForm() {
   // TODO: PHP
   // TODO: INC CONTADORES DE QUESTÃO
-  // TODO: MUDAR QUESTÃO
+  // TODO: MUDAR QUESTÃO e eliminar questão actual
   // TODO: RANDOM
 }
 
 /********* GLOBAL VARIABLES *********/
 
+var selectdiv;
+
 var countClicks = 0;
 var countQuestions = 0;
 var start = new Date();
-var questionsSet;
+
+var type0QuestionSet = [];
+var type1QuestionSet = [];
 var numberOfQuestions = 1;
 var currentQuestion = 1;
+var currentQuestionObject;
 
 function incCountClicks() {
+  console.log("Count clicks inc!");
   countClicks++;
 }
 
-function incNumberOfQuestions(){
+function incNumberOfQuestions() {
   numberOfQuestions++;
 }
 
@@ -35,23 +41,53 @@ function submitColors() {
   var ended = Math.round((new Date() - start) / 1000);
 }
 
-/********* D3 FUNCTIONS *********/
+/********* DATA POPULATE *********/
 
 //Load Questions data.
-d3.json("../data/questions.json", function(error, json){
-  if(error) return console.warn(error);
+d3.json("../data/questions.json", function(error, json) {
+  if (error) return console.warn(error);
   else {
-    questionsSet = json;
-    numberOfQuestions = questionsSet.length-1;  //BECAUSE 0.
+    for (var k in json) {
+      switch (json[k].typeOf) { //DEPENDING ON TYPE OF QUESTION.
+        case "objTwoColors":    // MIXTURE = COLOR + COLOR
+          console.log("type 0!");
+          type0QuestionSet.push(json[k]);
+          break;
+        case "twoColorsObj":    // COLOR + COLOR = MIXTURE
+          console.log("type 1!");
+          type1QuestionSet.push(json[k]);
+          break;
+      }
+    }
+    numberOfQuestions = json.length - 1; //BECAUSE 0.
+    populateMixtureArea();
   }
 });
 
-function populateMixtureArea(selectedDiv){
-  console.log("oi");
-  console.log(selectedDiv);
+function populateMixtureArea() {
+  var index = 0;
+
   $("#questionNumber").append("Questão " + currentQuestion + " de " + numberOfQuestions);
-  console.log(questionsSet);
+
+  switch (selectdiv) {
+    case 0:     // MIXTURE = COLOR + COLOR
+      index = Math.floor(Math.random() * (type0QuestionSet.length));
+      currentQuestionObject = type0QuestionSet[index];
+      break;
+    case 1:     // COLOR + COLOR = MIXTURE
+      index = Math.floor(Math.random() * (type1QuestionSet.length));
+      currentQuestionObject = type1QuestionSet[index];
+      break;
+  }
+
+  // TODO: INCLUDE ENGLISH APPEND
+  $("#questionField").append(currentQuestionObject.questionPT);
+  d3.select(".obj_color_shape" + (selectdiv)).select("circle").attr("fill", currentQuestionObject.colorObjective);
+  d3.select(".first_color_shape" + (selectdiv)).select("circle").attr("fill", currentQuestionObject.firstColor);
+  d3.select(".second_color_shape" + (selectdiv)).select("circle").attr("fill", currentQuestionObject.secondColor);
 }
+
+/********* D3 FUNCTIONS *********/
 
 function resetMixture() {
   var shapeOne = d3.select(".first_color_shape0").select("circle");
@@ -72,10 +108,10 @@ function resetMixture() {
   sliderObj.transition().duration("750").attr("cx", 0);
 }
 
-function drawObjective(selectedDiv) {
+function drawObjective() {
   /* VARS TO OBJECTIVE */
-  var wObj = $(".obj_color_shape" + (selectedDiv)).width();
-  var hObj = $(".obj_color_shape" + (selectedDiv)).height();
+  var wObj = $(".obj_color_shape" + (selectdiv)).width();
+  var hObj = $(".obj_color_shape" + (selectdiv)).height();
   var margin = {
     top: 20,
     right: 150,
@@ -83,7 +119,7 @@ function drawObjective(selectedDiv) {
     left: 20
   };
 
-  var objShape = d3.select(".obj_color_shape" + (selectedDiv))
+  var objShape = d3.select(".obj_color_shape" + (selectdiv))
     .append("svg:svg")
     .attr("width", wObj)
     .attr("height", hObj);
@@ -92,16 +128,17 @@ function drawObjective(selectedDiv) {
     .attr("r", wObj * 0.3)
     .attr("cx", wObj * 0.45 + margin.left)
     .attr("cy", hObj * 0.5 + margin.top)
-    .attr("fill", "#00FF00")
+    .attr("fill", "none")
     .attr("stroke-width", 2.5)
     .style("stroke", "black");
+
 }
 
-function drawFirstColor(selectedDiv) {
+function drawFirstColor() {
 
   /* VARS TO FIRST COLOR MIXTURE */
-  var wFirst = $(".first_color_shape" + (selectedDiv)).width();
-  var hFirst = $(".first_color_shape" + (selectedDiv)).height();
+  var wFirst = $(".first_color_shape" + (selectdiv)).width();
+  var hFirst = $(".first_color_shape" + (selectdiv)).height();
   var margin = {
     top: 20,
     right: 150,
@@ -109,7 +146,7 @@ function drawFirstColor(selectedDiv) {
     left: 20
   };
 
-  var fstShape = d3.select(".first_color_shape" + (selectedDiv))
+  var fstShape = d3.select(".first_color_shape" + (selectdiv))
     .append("svg")
     .attr("width", wFirst)
     .attr("height", hFirst)
@@ -125,11 +162,11 @@ function drawFirstColor(selectedDiv) {
     .style("background-color", "none");
 }
 
-function drawSecColor(selectedDiv) {
+function drawSecColor() {
 
   /* VARS TO SECOND COLOR MIXTURE */
-  var wSec = $(".second_color_shape" + (selectedDiv)).width();
-  var hSec = $(".second_color_shape" + (selectedDiv)).height();
+  var wSec = $(".second_color_shape" + (selectdiv)).width();
+  var hSec = $(".second_color_shape" + (selectdiv)).height();
   var margin = {
     top: 20,
     right: 150,
@@ -137,7 +174,7 @@ function drawSecColor(selectedDiv) {
     left: 20
   };
 
-  var secShape = d3.select(".second_color_shape" + (selectedDiv))
+  var secShape = d3.select(".second_color_shape" + (selectdiv))
     .append("svg")
     .attr("width", wSec)
     .attr("height", hSec);
@@ -152,7 +189,7 @@ function drawSecColor(selectedDiv) {
 }
 
 /* FUNCTION TO DRAW FIRST SLIDER AND HANDLE ITS MOVEMENT */
-function drawFirstSlider(selectedDiv) {
+function drawFirstSlider() {
 
   /* VARS TO SET SVG CANVAS*/
   var margin = {
@@ -161,8 +198,8 @@ function drawFirstSlider(selectedDiv) {
     bottom: 20,
     left: 5
   };
-  var wSlid = $(".slider_one" + (selectedDiv)).width();
-  var hSlid = $(".slider_one" + (selectedDiv)).height();
+  var wSlid = $(".slider_one" + (selectdiv)).width();
+  var hSlid = $(".slider_one" + (selectdiv)).height();
 
   var scaleX = d3.scale.linear()
     .domain([0, 360])
@@ -174,7 +211,7 @@ function drawFirstSlider(selectedDiv) {
     .extent([0, 0])
     .on("brush", brushed);
 
-  var sliderBar = d3.select(".slider_one" + (selectedDiv)).append("svg")
+  var sliderBar = d3.select(".slider_one" + (selectdiv)).append("svg")
     .attr("width", wSlid + margin.left + margin.right)
     .attr("height", hSlid + margin.top + margin.bottom)
     .append("g")
@@ -223,7 +260,7 @@ function drawFirstSlider(selectedDiv) {
 
   function brushed() {
     var value = brush.extent()[0];
-    var colorShape = ".first_color_shape" + (selectedDiv) + " svg";
+    var colorShape = ".first_color_shape" + (selectdiv) + " svg";
     var svg = d3.select(colorShape);
     var circle = svg.select("circle");
 
@@ -236,17 +273,15 @@ function drawFirstSlider(selectedDiv) {
     if (value === 0) { //Default config = white
       circle.attr("fill", d3.hsl(360, 1, 1));
     } else {
-      console.log("clicked!");
+      incCountClicks();
       circle.attr("fill", d3.hsl(value, 1, 0.50));
     }
-
-    //incCountClicks();
 
   }
 }
 
 /* FUNCTION TO DRAW SECOND SLIDER AND HANDLE ITS MOVEMENT */
-function drawSecondSlider(selectedDiv) {
+function drawSecondSlider() {
 
   /* VARS TO SET SVG CANVAS*/
   var margin = {
@@ -255,8 +290,8 @@ function drawSecondSlider(selectedDiv) {
     bottom: 20,
     left: 5
   };
-  var wSlid = $(".slider_two" + (selectedDiv)).width();
-  var hSlid = $(".slider_two" + (selectedDiv)).height();
+  var wSlid = $(".slider_two" + (selectdiv)).width();
+  var hSlid = $(".slider_two" + (selectdiv)).height();
 
   var scaleX = d3.scale.linear()
     .domain([0, 360])
@@ -268,7 +303,7 @@ function drawSecondSlider(selectedDiv) {
     .extent([0, 0])
     .on("brush", brushed);
 
-  var sliderBar = d3.select(".slider_two" + (selectedDiv)).append("svg")
+  var sliderBar = d3.select(".slider_two" + (selectdiv)).append("svg")
     .attr("width", wSlid + margin.left + margin.right)
     .attr("height", hSlid + margin.top + margin.bottom)
     .append("g")
@@ -317,7 +352,7 @@ function drawSecondSlider(selectedDiv) {
 
   function brushed() {
     var value = brush.extent()[0];
-    var colorShape = ".second_color_shape" + (selectedDiv) + " svg";
+    var colorShape = ".second_color_shape" + (selectdiv) + " svg";
     var svg = d3.select(colorShape);
     var circle = svg.select("circle");
 
@@ -331,12 +366,13 @@ function drawSecondSlider(selectedDiv) {
       circle.attr("fill", d3.hsl(360, 1, 1));
     } else {
       circle.attr("fill", d3.hsl(value, 1, 0.50));
+      incCountClicks();
     }
 
   }
 }
 
-function drawObjectiveSlider(selectedDiv) {
+function drawObjectiveSlider() {
 
   /* VARS TO SET SVG CANVAS*/
   var margin = {
@@ -345,8 +381,8 @@ function drawObjectiveSlider(selectedDiv) {
     bottom: 20,
     left: 5
   };
-  var wSlid = $(".slider_objective" + (selectedDiv)).width();
-  var hSlid = $(".slider_objective" + (selectedDiv)).height();
+  var wSlid = $(".slider_objective" + (selectdiv)).width();
+  var hSlid = $(".slider_objective" + (selectdiv)).height();
 
   var scaleX = d3.scale.linear()
     .domain([0, 360])
@@ -358,7 +394,7 @@ function drawObjectiveSlider(selectedDiv) {
     .extent([0, 0])
     .on("brush", brushed);
 
-  var sliderBar = d3.select(".slider_objective" + (selectedDiv)).append("svg")
+  var sliderBar = d3.select(".slider_objective" + (selectdiv)).append("svg")
     .attr("width", wSlid + margin.left + margin.right)
     .attr("height", hSlid + margin.top + margin.bottom)
     .append("g")
@@ -407,7 +443,7 @@ function drawObjectiveSlider(selectedDiv) {
 
   function brushed() {
     var value = brush.extent()[0];
-    var colorShape = ".obj_color_shape" + (selectedDiv) + " svg";
+    var colorShape = ".obj_color_shape" + (selectdiv) + " svg";
     var svg = d3.select(colorShape);
     var circle = svg.select("circle");
 
@@ -428,24 +464,17 @@ function drawObjectiveSlider(selectedDiv) {
 
 !(function(d3) {
 
-  /* SVG CANVAS DIMENSION */
-  /*var margin = {top: h*0.05, right: w*0.025, bottom: h*0.05, left: w*0.06},
-  width = w*0.45 - margin.left - margin.right,
-  height = h*0.45 - margin.top - margin.bottom;*/
-
-  var selectdiv = new Date().getTime() % 2;
+  selectdiv = new Date().getTime() % 2;
   $("#mixture" + (selectdiv)).css("display", "block");
 
   /* SHAPES */
-  drawObjective(selectdiv);
-  drawFirstColor(selectdiv);
-  drawSecColor(selectdiv);
+  drawObjective();
+  drawFirstColor();
+  drawSecColor();
 
   /* SLIDERS */
-  drawFirstSlider(selectdiv);
-  drawSecondSlider(selectdiv);
-  drawObjectiveSlider(selectdiv);
-
-  populateMixtureArea(selectdiv);
+  drawFirstSlider();
+  drawSecondSlider();
+  drawObjectiveSlider();
 
 })(d3);
