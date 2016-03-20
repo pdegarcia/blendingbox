@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="en">
 
 <head>
   <meta charset="utf-8">
@@ -9,13 +9,13 @@
   <title>Will It Blend?</title>
 
   <!-- Includes for css styles -->
-  <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="../css/entry.css" rel="stylesheet">
-  <link href="../css/ishihara.css" rel="stylesheet">
+  <link href="../../bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../../css/entry.css" rel="stylesheet">
+  <link href="../../css/ishihara.css" rel="stylesheet">
 
   <!-- Includes for bootstrap and jquery script -->
-  <script src="../js-library/jquery-2.1.4.min.js"></script>
-  <script src="../js/handleAlerts.js"></script>
+  <script src="../../js-library/jquery-2.1.4.min.js"></script>
+  <script src="../../js/handleAlerts.js"></script>
 
   <!-- Includes for javascripts-->
 
@@ -38,9 +38,9 @@
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
-          <li>
-            <a href="#about" onclick="alertAbout(); return false;">Sobre</a>
-          </li>
+          <!-- <li>
+            <a href="#about" onclick="alertAbout(); return false;">About</a>
+          </li> -->
         </ul>
       </div>
       <!-- /.navbar-collapse -->
@@ -52,7 +52,7 @@
     <div class="headline">
       <div class="container">
         <h1>Will It Blend?</h1>
-        <h2>Passo 3 - Controlo de Deficiências de Visão de Cor.</h2>
+        <h2>Step Three - Color Deficiency Test Phase.</h2>
       </div>
     </div>
   </header>
@@ -63,73 +63,74 @@
     <hr class="featurette-divider">
 
     <div class="featurette" id="ishihara">
-      <h2 class="featurette-heading">Este é o Teste de Ishihara.</h2>
+      <h2 class="featurette-heading">This is the Ishihara Color Vision Test.</h2>
       <p class="lead" style="text-align: justify;">
-        Neste passo, são-lhe apresentadas quatro placas com um padrão colorido.
-        Deverá indicar-nos o número que consegue visualizar na mesma. Consoante a resposta, este teste informará se você
-        detém algum tipo de deficiência visual na detecção de cor.
+        In this step, it is going to be presented four plates with a colored pattern.
+        Your job is to identify the number present in each plate, typing it down in the text box below. According
+        to your answer, this test will inform us if you have any type of color vision deficiency which may undermine
+        the job of color detection.
       </p>
 
       <form role="form" id="ishiharaForm">
-        <!-- PLACA 1 -->
+        <!-- PLATE 1 -->
         <div class="col-md-6">
-          <h2 class="featurette-heading" id="plate1Title" style="text-align: center;">Placa 1</h2>
-          <img src="../images/Plates/Ishihara_Plate1.png" alt="Ishihara Test Plate 1" id="plateOne">
+          <h2 class="featurette-heading" id="plate1Title" style="text-align: center;">Plate 1</h2>
+          <img src="../../images/Plates/Ishihara_Plate1.png" alt="Ishihara Test Plate 1" id="plateOne">
           <div class="form-group row" style="padding: 15px;">
-            <label for="inputPlateOne" class="col-sm-3 col-sm-offset-1" style="font-size:20px; ">Número:</label>
+            <label for="inputPlateOne" class="col-sm-3 col-sm-offset-1" style="font-size:20px; ">Number:</label>
             <div class="col-sm-5">
-              <input type="plateNumber" class="form-control" id="inputPlateOne" placeholder="Número " style="inherit">
+              <input type="plateNumber" class="form-control" id="inputPlateOne" placeholder="Number " style="inherit">
             </div>
           </div>
         </div>
-        <!-- ./PLACA 1 -->
+        <!-- ./PLATE 1 -->
 
-        <!-- PLACA 2 -->
+        <!-- PLATE 2 -->
         <div class="col-md-6">
-          <h2 class="featurette-heading" id="plate2Title" style="text-align: center;">Placa 2</h2>
-          <img src="../images/Plates/Ishihara_Plate9.png" alt="Ishihara Test Plate 2" id="plateTwo">
+          <h2 class="featurette-heading" id="plate2Title" style="text-align: center;">Plate 2</h2>
+          <img src="../../images/Plates/Ishihara_Plate9.png" alt="Ishihara Test Plate 2" id="plateTwo">
           <div class="form-group row" style="padding: 15px;" id="formGroupPlateTwo">
-            <label for="inputPlateTwo" class="col-sm-3 col-sm-offset-1" style="font-size:20px; ">Número:</label>
+            <label for="inputPlateTwo" class="col-sm-3 col-sm-offset-1" style="font-size:20px; ">Number:</label>
             <div class="col-sm-5">
-              <input type="plateNumber" class="form-control" id="inputPlateTwo" placeholder="Número " style="inherit">
+              <input type="plateNumber" class="form-control" id="inputPlateTwo" placeholder="Number " style="inherit">
             </div>
           </div>
         </div>
-        <!-- ./PLACA 2 -->
+        <!-- ./PLATE 2 -->
 
-        <!-- PLACA 3 -->
+        <!-- PLATE 3 -->
         <div class="col-md-6">
-          <h2 class="featurette-heading" id="plate3Title" style="text-align: center;">Placa 3</h2>
-          <img src="../images/Plates/Ishihara_Plate13.png" alt="Ishihara Test Plate 3" id="plateThree">
+          <h2 class="featurette-heading" id="plate3Title" style="text-align: center;">Plate 3</h2>
+          <img src="../../images/Plates/Ishihara_Plate13.png" alt="Ishihara Test Plate 3" id="plateThree">
           <div class="form-group row" style="padding: 15px;" id="formGroupPlateThree">
-            <label for="inputPlateThree" class="col-sm-3 col-sm-offset-1" style="font-size:20px; ">Número:</label>
+            <label for="inputPlateThree" class="col-sm-3 col-sm-offset-1" style="font-size:20px; ">Number:</label>
             <div class="col-sm-5">
-              <input type="plateNumber" class="form-control" id="inputPlateThree" placeholder="Número " style="inherit">
+              <input type="plateNumber" class="form-control" id="inputPlateThree" placeholder="Number " style="inherit">
             </div>
           </div>
         </div>
-        <!-- ./PLACA 3 -->
+        <!-- ./PLATE 3 -->
 
-        <!-- PLACA 4 -->
+        <!-- PLATE 4 -->
         <div class="col-md-6">
-          <h2 class="featurette-heading" id="plate4Title" style="text-align: center;">Placa 4</h2>
-          <img src="../images/Plates/Ishihara_Plate24.jpeg" alt="Ishihara Test Plate 4" id="plateFour">
+          <h2 class="featurette-heading" id="plate4Title" style="text-align: center;">Plate 4</h2>
+          <img src="../../images/Plates/Ishihara_Plate24.jpeg" alt="Ishihara Test Plate 4" id="plateFour">
           <div class="form-group row" style="padding: 15px;" id="formGroupPlateFour">
-            <label for="inputPlateFour" class="col-sm-3 col-sm-offset-1" style="font-size:20px; ">Número:</label>
+            <label for="inputPlateFour" class="col-sm-3 col-sm-offset-1" style="font-size:20px; ">Number:</label>
             <div class="col-sm-5">
-              <input type="plateNumber" class="form-control" id="inputPlateFour" placeholder="Número " style="inherit">
+              <input type="plateNumber" class="form-control" id="inputPlateFour" placeholder="Number " style="inherit">
             </div>
           </div>
         </div>
-        <!-- ./PLACA 4 -->
+        <!-- ./PLATE 4 -->
 
-        <!-- BOTÃO CONFIRMAR -->
+        <!-- CONFIRM -->
         <div class="form-group row">
           <div class="col-md-10 col-md-offset-5">
-            <button type="submit" id="ishihara-submit" class="btn btn-success btn-lg">Confirmar</button>
+            <button type="submit" id="ishihara-submit" class="btn btn-success btn-lg">Confirm</button>
           </div>
         </div>
-        <!-- ./BOTÃO CONFIRMAR -->
+        <!-- ./CONFIRM -->
       </form>
     </div>
 
@@ -154,7 +155,7 @@
     cache: false
   });
   $.getScript("https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js");
-  $.getScript("../bootstrap/js/bootstrap.min.js");
+  $.getScript("../../bootstrap/js/bootstrap.min.js");
   $.getScript("../js/ishihara.js");
   </script>
 

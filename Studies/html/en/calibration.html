@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="en">
 
 <head>
   <meta charset="utf-8">
@@ -9,13 +9,13 @@
   <title>Will It Blend?</title>
 
   <!-- Includes for css styles -->
-  <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="../css/entry.css" rel="stylesheet">
-  <link href="../css/calibration.css" rel="stylesheet">
+  <link href="../../bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../../css/entry.css" rel="stylesheet">
+  <link href="../../css/calibration.css" rel="stylesheet">
 
   <!-- Includes for bootstrap and jquery script -->
-  <script src="../js-library/jquery-2.1.4.min.js"></script>
-  <script src="../js/handleAlerts.js"></script>
+  <script src="../../js-library/jquery-2.1.4.min.js"></script>
+  <script src="../../js/handleAlerts.js"></script>
 
   <!-- Includes for javascripts-->
 
@@ -38,9 +38,6 @@
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
-          <li>
-            <a href="#about" onclick="alertAbout(); return false;">Sobre</a>
-          </li>
         </ul>
       </div>
       <!-- /.navbar-collapse -->
@@ -52,7 +49,7 @@
     <div class="headline">
       <div class="container">
         <h1>Will It Blend?</h1>
-        <h2>Passo 2 - Calibração do Ecrã.</h2>
+        <h2>Step Two - Screen Calibration.</h2>
       </div>
     </div>
   </header>
@@ -63,34 +60,35 @@
     <hr class="featurette-divider">
 
     <div class="featurette" id="ishihara">
-      <h2 class="featurette-heading">Vamos calibrar o seu monitor.</h2>
-      <p class="lead">Neste passo, são-lhe apresentadas algumas imagens. Deverá ajustar as definições do seu ecrã, como por exemplo a luminosidade, de tal modo que lhe permita responder às questões colocadas, preservando as mesmas ao longo de todo o estudo.</p>
-
+      <h2 class="featurette-heading">Let's Calibrate Your Screen.</h2>
+      <p class="lead">In this step, it is going to be presented to you a set of images.
+        You should tune you screen definitions, such as the luminosity, in order to answer
+        the questions, keeping them until the end of this study.</p>
 
       <form role="form" id="calibrationForm">
-        <!-- QUADRADOS PRETOS -->
+        <!-- SQUARES -->
         <div class="col-md-10 col-md-offset-1">
-          <h2 class="featurette-heading" id="questionNumber1">Questão 1 de 2.</h2>
-          <p class="lead" id="questionField1">Na seguinte imagem, são apresentados diferentes quadrados em diferentes tons de preto. Indique, por favor, quantos quadrados consegue distinguir.</p>
-          <img src="../images/blacktest.png" alt="Black Squares Test" id="blackSquares">
+          <h2 class="featurette-heading" id="questionNumber1">Question 1 of 2.</h2>
+          <p class="lead" id="questionField1">Instructions.</p>
+          <img src="../../images/blacktest.png" alt="Black Squares Test" id="blackSquares">
           <div class="form-group row" style="padding: 15px;">
-            <label for="inputSquares" class="col-sm-5 col-sm-offset-1" style="font-size:20px; ">Número de Quadrados Perceptíveis:</label>
+            <label for="inputSquares" class="col-sm-5 col-sm-offset-1" style="font-size:20px; ">Number of things:</label>
             <div class="col-sm-5">
-              <input type="numberSquares" class="form-control" id="inputSquares" placeholder="Número de Quadrados" style="inherit">
+              <input type="numberSquares" class="form-control" id="inputSquares" placeholder="number" style="inherit">
             </div>
           </div>
         </div>
-        <!-- ./QUADRADOS PRETOS -->
+        <!-- ./SQUARES -->
 
         <!-- FRASES ESCONDIDAS -->
         <div class="col-md-10 col-md-offset-1">
-          <h2 class="featurette-heading" id="questionNumber2">Questão 2 de 2.</h2>
-          <p class="lead" id="questionField2">Na seguinte imagem, são apresentadas diferentes palavras em diferentes níveis. Indique, por favor, qual o nível mais baixo que consegue distinguir, escrevendo a palavra na caixa abaixo.</p>
-          <img src="../images/phrases-placeholder.png" alt="Last Perceivable Word" id="lastPerceivableWord">
+          <h2 class="featurette-heading" id="questionNumber2">Question 2 of 2.</h2>
+          <p class="lead" id="questionField2">Instructions.</p>
+          <img src="../../images/phrases-placeholder.png" alt="Last Perceivable Word" id="lastPerceivableWord">
           <div class="form-group row" style="padding: 15px;">
-            <label for="lastWord" class="col-sm-5 col-sm-offset-1" style="font-size:20px;">Última Palavra Perceptível:</label>
+            <label for="lastWord" class="col-sm-5 col-sm-offset-1" style="font-size:20px;">Last perceivable:</label>
             <div class="col-sm-5">
-              <input type="lastWord" class="form-control" id="lastWord" placeholder="Última Palavra" style="inherit">
+              <input type="lastWord" class="form-control" id="lastWord" placeholder="word" style="inherit">
             </div>
           </div>
         </div>
@@ -98,9 +96,9 @@
 
         <!-- INFOS SCREEN -->
         <div class="col-md-10 col-md-offset-1">
-          <h2 class="featurette-heading" id="infosScreen">Informações do seu ecrã.</h2>
-          <p class="lead" id="resolutionField">Dimensões: </p>
-          <p class="lead" id="availableResolutionField">Dimensões disponíveis: </p>
+          <h2 class="featurette-heading" id="infosScreen">Your Screen Informations.</h2>
+          <p class="lead" id="resolutionField">Dimensions: </p>
+          <p class="lead" id="availableResolutionField">Available Dimensions: </p>
           <p class="lead" id="colorDepthField">Color Depth: </p>
         </div>
         <!-- ./INFOS SCREEN -->
@@ -108,7 +106,7 @@
         <!-- BOTÃO CONFIRMAR -->
         <div class="form-group row">
           <div class="col-md-10 col-md-offset-5">
-            <button type="submit" id="calibration-submit" class="btn btn-success btn-lg">Confirmar</button>
+            <button type="submit" id="calibration-submit" class="btn btn-success btn-lg">Confirm</button>
           </div>
         </div>
         <!-- ./BOTÃO CONFIRMAR -->
@@ -139,8 +137,8 @@
     cache: false
   });
   $.getScript("https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js");
-  $.getScript("../bootstrap/js/bootstrap.min.js");
-  $.getScript("../js/calibration.js");
+  $.getScript("../../bootstrap/js/bootstrap.min.js");
+  $.getScript("../../js/calibration.js");
   </script>
 
 </body>

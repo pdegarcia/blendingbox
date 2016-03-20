@@ -134,7 +134,15 @@ footer {
     margin-left: 0;
   }
 }
-#advance {
+#advancePT {
+  margin-top: 100px;
+  width: 300px;
+  height: 80px;
+  font-size: 20px;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+#advanceEN {
   margin-top: 100px;
   width: 300px;
   height: 80px;
