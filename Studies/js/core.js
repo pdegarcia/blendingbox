@@ -16,6 +16,7 @@ function submitForm() {
 /********* GLOBAL VARIABLES *********/
 
 var selectdiv;
+var path;
 
 var countClicks = 0;
 var countQuestions = 0;
@@ -43,17 +44,28 @@ function submitColors() {
 
 /********* DATA POPULATE *********/
 
+switch (document.documentElement.lang) { //handle JSON location.
+  case 'pt':
+    path = "../data/questions.json";
+    break;
+  case 'en':
+    path = "../../data/questions.json";
+    break;
+  default:
+    path = "../../data/questions.json"; //Langs to come.
+}
+
 //Load Questions data.
-d3.json("../data/questions.json", function(error, json) {
+d3.json(path, function(error, json) {
   if (error) return console.warn(error);
   else {
     for (var k in json) {
       switch (json[k].typeOf) { //DEPENDING ON TYPE OF QUESTION.
-        case "objTwoColors":    // MIXTURE = COLOR + COLOR
+        case "objTwoColors": // MIXTURE = COLOR + COLOR
           console.log("type 0!");
           type0QuestionSet.push(json[k]);
           break;
-        case "twoColorsObj":    // COLOR + COLOR = MIXTURE
+        case "twoColorsObj": // COLOR + COLOR = MIXTURE
           console.log("type 1!");
           type1QuestionSet.push(json[k]);
           break;
@@ -67,21 +79,28 @@ d3.json("../data/questions.json", function(error, json) {
 function populateMixtureArea() {
   var index = 0;
 
-  $("#questionNumber").append("Questão " + currentQuestion + " de " + numberOfQuestions);
-
   switch (selectdiv) {
-    case 0:     // MIXTURE = COLOR + COLOR
+    case 0: // MIXTURE = COLOR + COLOR
       index = Math.floor(Math.random() * (type0QuestionSet.length));
       currentQuestionObject = type0QuestionSet[index];
       break;
-    case 1:     // COLOR + COLOR = MIXTURE
+    case 1: // COLOR + COLOR = MIXTURE
       index = Math.floor(Math.random() * (type1QuestionSet.length));
       currentQuestionObject = type1QuestionSet[index];
       break;
   }
 
-  // TODO: INCLUDE ENGLISH APPEND
-  $("#questionField").append(currentQuestionObject.questionPT);
+  switch (document.documentElement.lang) {
+    case 'pt':
+      $("#questionNumber").append("Questão número " + currentQuestion + " de " + numberOfQuestions + ".");
+      $("#questionField").append(currentQuestionObject.questionPT);
+      break;
+    case 'en':
+      $("#questionNumber").append("Question number " + currentQuestion + " of " + numberOfQuestions + ".");
+      $("#questionField").append(currentQuestionObject.questionEN);
+      break;
+    }
+
   d3.select(".obj_color_shape" + (selectdiv)).select("circle").attr("fill", currentQuestionObject.colorObjective);
   d3.select(".first_color_shape" + (selectdiv)).select("circle").attr("fill", currentQuestionObject.firstColor);
   d3.select(".second_color_shape" + (selectdiv)).select("circle").attr("fill", currentQuestionObject.secondColor);
