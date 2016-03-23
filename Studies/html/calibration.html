@@ -67,7 +67,7 @@
       <p class="lead">Neste passo, são-lhe apresentadas algumas imagens. Deverá ajustar as definições do seu ecrã, como por exemplo a luminosidade, de tal modo que lhe permita responder às questões colocadas, preservando as mesmas ao longo de todo o estudo.</p>
 
 
-      <form role="form" id="calibrationForm">
+      <form role="form" id="calibrationForm" action="../php/addCalibrationForm.php" method="post" accept-charset="UTF-8">
         <!-- QUADRADOS PRETOS -->
         <div class="col-md-10 col-md-offset-1">
           <h2 class="featurette-heading" id="questionNumber1">Questão 1 de 2.</h2>
@@ -76,7 +76,7 @@
           <div class="form-group row" style="padding: 15px;">
             <label for="inputSquares" class="col-sm-5 col-sm-offset-1" style="font-size:20px; ">Número de Quadrados Perceptíveis:</label>
             <div class="col-sm-5">
-              <input type="numberSquares" class="form-control" id="inputSquares" placeholder="Número de Quadrados" style="inherit">
+              <input type="text" class="form-control" id="inputSquares" placeholder="Número de Quadrados" style="inherit">
             </div>
           </div>
         </div>

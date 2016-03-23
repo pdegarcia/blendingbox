@@ -1,7 +1,7 @@
-$("#profilingForm").submit(function (event) {
+/*$("#profilingForm").submit(function (event) {
       event.preventDefault();
       submitForm();
-});
+});*/
 
 /*var $academic = $('#academic');
 

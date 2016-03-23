@@ -79,12 +79,12 @@
       <h2 class="featurette-heading">Questões rápidas.</h2>
       <p class="lead">Por favor, responda às seguintes perguntas.</p>
       <div class="col-md-14">
-        <form id="profilingForm">
+        <form id="profilingForm" action="../php/addProfilingForm.php" method="post" accept-charset="UTF-8">
           <!-- IDADE -->
           <div class="form-group row">
             <label for="inputAge" class="col-sm-2 ">1. Idade:</label>
             <div class="col-sm-3">
-              <input type="age" class="form-control" id="inputAge" placeholder="Idade">
+              <input type="text" class="form-control" name="inputAge" placeholder="Idade">
             </div>
           </div>
           <!-- ./IDADE -->
