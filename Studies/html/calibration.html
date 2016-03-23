@@ -38,9 +38,6 @@
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
-          <li>
-            <a href="#about" onclick="alertAbout(); return false;">Sobre</a>
-          </li>
         </ul>
       </div>
       <!-- /.navbar-collapse -->
@@ -63,47 +60,106 @@
     <hr class="featurette-divider">
 
     <div class="featurette" id="ishihara">
-      <h2 class="featurette-heading">Vamos calibrar o seu monitor.</h2>
-      <p class="lead">Neste passo, são-lhe apresentadas algumas imagens. Deverá ajustar as definições do seu ecrã, como por exemplo a luminosidade, de tal modo que lhe permita responder às questões colocadas, preservando as mesmas ao longo de todo o estudo.</p>
+      <h2 class="featurette-heading">Vamos calibrar o seu ecrã.</h2>
+      <p class="lead">Neste passo, são-lhe apresentadas duas imagens. Deverá ajustar as definições do seu ecrã, de tal modo que lhe permita responder às questões colocadas, preservando as mesmas ao longo de todo o estudo.</p>
+      <p class="lead">Sabemos também que o seu ecrã tem as seguintes características: </p>
+      <p class="lead" id="resolutionField">Dimensões: </p>
+      <p class="lead" id="availableResolutionField">Dimensões disponíveis: </p>
+      <p class="lead" id="colorDepthField">Color Depth: </p>
 
+      <div class="col-md-10 col-md-offset-1">
+        <h2 class="featurette-heading" id="instructions">Instruções.</h2>
+        <p class="lead">Por favor, siga os passos abaixo descritos e responda às questões abaixo colocadas.</p>
+        <p style="font-size:20px;"> <b>(Passo 1) - </b> Se possível, ajustar as luzes da divisão para uma condição normal de visão.</p>
+        <p style="font-size:20px;"> <b>(Passo 2) - </b> Desviar o ecrã de qualquer reflexo. Este passo é importante, uma vez que os reflexos podem alterar a forma como as imagens são visualizadas.</p>
+        <p style="font-size:20px;"> <b>(Passo 3) - </b> Para ajustar o <b>Ponto Preto</b> do seu ecrã, defina o <u>Contraste</u> e o <u>Brilho</u> do ecrã para o seu máximo.</p>
+        <p style="font-size:20px;"> <b>(Passo 4) - </b> Após o Passo 3, reduzir gradualmente o <u>Brilho</u> do seu ecrã, de modo a que as os quadrados das imagens abaixo sejam perfeitamente diferenciáveis.</p>
+        <p style="font-size:20px;"> <b>(Passo 5) - </b> Se possível, defina a <u>Temperatura da Cor</u> do seu ecrã para 6500 Graus Kelvin.</p>
+        <p style="font-size:20px;"> <b>(Passo 6) - </b> Pode dar início às perguntas.</p>
+      </div>
 
       <form role="form" id="calibrationForm" action="../php/addCalibrationForm.php" method="post" accept-charset="UTF-8">
         <!-- QUADRADOS PRETOS -->
         <div class="col-md-10 col-md-offset-1">
           <h2 class="featurette-heading" id="questionNumber1">Questão 1 de 2.</h2>
-          <p class="lead" id="questionField1">Na seguinte imagem, são apresentados diferentes quadrados em diferentes tons de preto. Indique, por favor, quantos quadrados consegue distinguir.</p>
-          <img src="../images/blacktest.png" alt="Black Squares Test" id="blackSquares">
+          <p class="lead" id="questionField1">Na seguinte imagem, são apresentados diferentes quadrados em diferentes tons de preto. Indique na caixa de texto correspondente, que palavra consegue ler por baixo de cada quadrado, ou <b>NADA</b> se não conseguir detectar a palavra relativa a esse quadrado.</p>
+          <img src="../images/calibration_blackLevel.jpg" alt="Black Squares Test" id="blackSquares">
           <div class="form-group row" style="padding: 15px;">
-            <label for="inputSquares" class="col-sm-5 col-sm-offset-1" style="font-size:20px; ">Número de Quadrados Perceptíveis:</label>
-            <div class="col-sm-5">
-              <input type="text" class="form-control" id="inputSquares" placeholder="Número de Quadrados" style="inherit">
+            <label for="inputBlackSquares" class="col-md-2 col-sm-offset-1" style="padding: 15px; font-size:20px; ">Palavras:</label>
+            <div class="col-md-2" id="inputBlackSquares" style="padding: 15px;">
+              <input type="text" class="form-control" id="inputBlackSquare1" placeholder="Quadrado #1" style="inherit">
+            </div>
+            <div class="col-md-2" style="padding: 15px;">
+              <input type="text" class="form-control" id="inputBlackSquare2" placeholder="Quadrado #2" style="inherit">
+            </div>
+            <div class="col-md-2" style="padding: 15px;">
+              <input type="text" class="form-control" id="inputBlackSquare3" placeholder="Quadrado #3" style="inherit">
+            </div>
+            <div class="col-md-2" style="padding: 15px;">
+              <input type="text" class="form-control" id="inputBlackSquare4" placeholder="Quadrado #4" style="inherit">
+            </div>
+            <div class="col-md-2" style="padding: 15px;">
+              <input type="text" class="form-control" id="inputBlackSquare5" placeholder="Quadrado #5" style="inherit">
+            </div>
+            <div class="col-md-2" style="padding: 15px;">
+              <input type="text" class="form-control" id="inputBlackSquare6" placeholder="Quadrado #6" style="inherit">
+            </div>
+            <div class="col-md-2" style="padding: 15px;">
+              <input type="text" class="form-control" id="inputBlackSquare7" placeholder="Quadrado #7" style="inherit">
+            </div>
+            <div class="col-md-2" style="padding: 15px;">
+              <input type="text" class="form-control" id="inputBlackSquare8" placeholder="Quadrado #8" style="inherit">
+            </div>
+            <div class="col-md-2" style="padding: 15px;">
+              <input type="text" class="form-control" id="inputBlackSquare9" placeholder="Quadrado #9" style="inherit">
+            </div>
+            <div class="col-md-2" style="padding: 15px;">
+              <input type="text" class="form-control" id="inputBlackSquare10" placeholder="Quadrado #10" style="inherit">
             </div>
           </div>
         </div>
         <!-- ./QUADRADOS PRETOS -->
 
-        <!-- FRASES ESCONDIDAS -->
+        <!-- QUADRADOS BRANCOS -->
         <div class="col-md-10 col-md-offset-1">
           <h2 class="featurette-heading" id="questionNumber2">Questão 2 de 2.</h2>
-          <p class="lead" id="questionField2">Na seguinte imagem, são apresentadas diferentes palavras em diferentes níveis. Indique, por favor, qual o nível mais baixo que consegue distinguir, escrevendo a palavra na caixa abaixo.</p>
-          <img src="../images/phrases-placeholder.png" alt="Last Perceivable Word" id="lastPerceivableWord">
+          <p class="lead" id="questionField2">Na seguinte imagem, são apresentados diferentes quadrados em diferentes tons de branco. Indique na caixa de texto correspondente, que palavra consegue ler por baixo de cada quadrado, ou <b>NADA</b> se não conseguir detectar a palavra relativa a esse quadrado.</p>
+          <img src="../images/calibration_whiteLevel.jpg" alt="White Squares Test" id="whiteSquares">
           <div class="form-group row" style="padding: 15px;">
-            <label for="lastWord" class="col-sm-5 col-sm-offset-1" style="font-size:20px;">Última Palavra Perceptível:</label>
-            <div class="col-sm-5">
-              <input type="lastWord" class="form-control" id="lastWord" placeholder="Última Palavra" style="inherit">
+            <label for="inputWhiteSquares" class="col-md-2 col-sm-offset-1" style="padding: 15px; font-size:20px; ">Palavras:</label>
+            <div class="col-md-2" id="inputWhiteSquares" style="padding: 15px;">
+              <input type="text" class="form-control" id="inputWhiteSquare1" placeholder="Quadrado #1" style="inherit">
+            </div>
+            <div class="col-md-2" style="padding: 15px;">
+              <input type="text" class="form-control" id="inputWhiteSquare2" placeholder="Quadrado #2" style="inherit">
+            </div>
+            <div class="col-md-2" style="padding: 15px;">
+              <input type="text" class="form-control" id="inputWhiteSquare3" placeholder="Quadrado #3" style="inherit">
+            </div>
+            <div class="col-md-2" style="padding: 15px;">
+              <input type="text" class="form-control" id="inputWhiteSquare4" placeholder="Quadrado #4" style="inherit">
+            </div>
+            <div class="col-md-2" style="padding: 15px;">
+              <input type="text" class="form-control" id="inputWhiteSquare5" placeholder="Quadrado #5" style="inherit">
+            </div>
+            <div class="col-md-2" style="padding: 15px;">
+              <input type="text" class="form-control" id="inputWhiteSquare6" placeholder="Quadrado #6" style="inherit">
+            </div>
+            <div class="col-md-2" style="padding: 15px;">
+              <input type="text" class="form-control" id="inputWhiteSquare7" placeholder="Quadrado #7" style="inherit">
+            </div>
+            <div class="col-md-2" style="padding: 15px;">
+              <input type="text" class="form-control" id="inputWhiteSquare8" placeholder="Quadrado #8" style="inherit">
+            </div>
+            <div class="col-md-2" style="padding: 15px;">
+              <input type="text" class="form-control" id="inputWhiteSquare9" placeholder="Quadrado #9" style="inherit">
+            </div>
+            <div class="col-md-2" style="padding: 15px;">
+              <input type="text" class="form-control" id="inputWhiteSquare10" placeholder="Quadrado #10" style="inherit">
             </div>
           </div>
         </div>
-        <!-- ./FRASES ESCONDIDAS -->
-
-        <!-- INFOS SCREEN -->
-        <div class="col-md-10 col-md-offset-1">
-          <h2 class="featurette-heading" id="infosScreen">Informações do seu ecrã.</h2>
-          <p class="lead" id="resolutionField">Dimensões: </p>
-          <p class="lead" id="availableResolutionField">Dimensões disponíveis: </p>
-          <p class="lead" id="colorDepthField">Color Depth: </p>
-        </div>
-        <!-- ./INFOS SCREEN -->
+        <!-- ./QUADRADOS BRANCOS -->
 
         <!-- BOTÃO CONFIRMAR -->
         <div class="form-group row">

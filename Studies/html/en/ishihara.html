@@ -65,14 +65,14 @@
     <div class="featurette" id="ishihara">
       <h2 class="featurette-heading">This is the Ishihara Color Vision Test.</h2>
       <p class="lead" style="text-align: justify;">
-        In this step, it is going to be presented four plates with a colored pattern.
+        In this step, it is going to be presented six plates with a colored pattern.
         Your job is to identify the number present in each plate, typing it down in the text box below. According
         to your answer, this test will inform us if you have any type of color vision deficiency which may undermine
         the job of color detection.
       </p>
 
       <form role="form" id="ishiharaForm">
-        <!-- PLATE 1 -->
+        <!-- PLACA 1 -->
         <div class="col-md-6">
           <h2 class="featurette-heading" id="plate1Title" style="text-align: center;">Plate 1</h2>
           <img src="../../images/Plates/Ishihara_Plate1.png" alt="Ishihara Test Plate 1" id="plateOne">
@@ -83,12 +83,12 @@
             </div>
           </div>
         </div>
-        <!-- ./PLATE 1 -->
+        <!-- ./PLACA 1 -->
 
-        <!-- PLATE 2 -->
+        <!-- PLACA 2 -->
         <div class="col-md-6">
           <h2 class="featurette-heading" id="plate2Title" style="text-align: center;">Plate 2</h2>
-          <img src="../../images/Plates/Ishihara_Plate9.png" alt="Ishihara Test Plate 2" id="plateTwo">
+          <img src="../../images/Plates/Ishihara_Plate4.png" alt="Ishihara Test Plate 2" id="plateTwo">
           <div class="form-group row" style="padding: 15px;" id="formGroupPlateTwo">
             <label for="inputPlateTwo" class="col-sm-3 col-sm-offset-1" style="font-size:20px; ">Number:</label>
             <div class="col-sm-5">
@@ -96,12 +96,12 @@
             </div>
           </div>
         </div>
-        <!-- ./PLATE 2 -->
+        <!-- ./PLACA 2 -->
 
-        <!-- PLATE 3 -->
+        <!-- PLACA 3 -->
         <div class="col-md-6">
           <h2 class="featurette-heading" id="plate3Title" style="text-align: center;">Plate 3</h2>
-          <img src="../../images/Plates/Ishihara_Plate13.png" alt="Ishihara Test Plate 3" id="plateThree">
+          <img src="../../images/Plates/Ishihara_Plate9.png" alt="Ishihara Test Plate 3" id="plateThree">
           <div class="form-group row" style="padding: 15px;" id="formGroupPlateThree">
             <label for="inputPlateThree" class="col-sm-3 col-sm-offset-1" style="font-size:20px; ">Number:</label>
             <div class="col-sm-5">
@@ -109,12 +109,12 @@
             </div>
           </div>
         </div>
-        <!-- ./PLATE 3 -->
+        <!-- ./PLACA 3 -->
 
-        <!-- PLATE 4 -->
+        <!-- PLACA 4 -->
         <div class="col-md-6">
           <h2 class="featurette-heading" id="plate4Title" style="text-align: center;">Plate 4</h2>
-          <img src="../../images/Plates/Ishihara_Plate24.jpeg" alt="Ishihara Test Plate 4" id="plateFour">
+          <img src="../../images/Plates/Ishihara_Plate13.png" alt="Ishihara Test Plate 4" id="plateFour">
           <div class="form-group row" style="padding: 15px;" id="formGroupPlateFour">
             <label for="inputPlateFour" class="col-sm-3 col-sm-offset-1" style="font-size:20px; ">Number:</label>
             <div class="col-sm-5">
@@ -122,7 +122,33 @@
             </div>
           </div>
         </div>
-        <!-- ./PLATE 4 -->
+        <!-- ./PLACA 4 -->
+
+        <!-- PLACA 5 -->
+        <div class="col-md-6">
+          <h2 class="featurette-heading" id="plate5Title" style="text-align: center;">Plate 5</h2>
+          <img src="../../images/Plates/Ishihara_Plate22.png" alt="Ishihara Test Plate 5" id="plateFive">
+          <div class="form-group row" style="padding: 15px;" id="formGroupPlateFive">
+            <label for="inputPlateFive" class="col-sm-3 col-sm-offset-1" style="font-size:20px; ">Number:</label>
+            <div class="col-sm-5">
+              <input type="plateNumber" class="form-control" id="inputPlateFive" placeholder="Number " style="inherit">
+            </div>
+          </div>
+        </div>
+        <!-- ./PLACA 5 -->
+
+        <!-- PLACA 6 -->
+        <div class="col-md-6">
+          <h2 class="featurette-heading" id="plate6Title" style="text-align: center;">Plate 6</h2>
+          <img src="../../images/Plates/Ishihara_Plate24.jpeg" alt="Ishihara Test Plate 6" id="plateSix">
+          <div class="form-group row" style="padding: 15px;" id="formGroupPlateSix">
+            <label for="inputPlateSix" class="col-sm-3 col-sm-offset-1" style="font-size:20px; ">Number:</label>
+            <div class="col-sm-5">
+              <input type="plateNumber" class="form-control" id="inputPlateSix" placeholder="Number " style="inherit">
+            </div>
+          </div>
+        </div>
+        <!-- ./PLACA 6 -->
 
         <!-- CONFIRM -->
         <div class="form-group row">
@@ -156,7 +182,7 @@
   });
   $.getScript("https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js");
   $.getScript("../../bootstrap/js/bootstrap.min.js");
-  $.getScript("../js/ishihara.js");
+  $.getScript("../../js/ishihara.js");
   </script>
 
 </body>

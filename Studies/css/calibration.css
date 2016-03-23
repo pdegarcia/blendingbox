@@ -27,6 +27,11 @@
   width: 80%;
 }
 
+#whiteSquares {
+  margin-left: 10%;
+  width: 80%;
+}
+
 #questionNumber2 {
   font-size: 30px;
 }

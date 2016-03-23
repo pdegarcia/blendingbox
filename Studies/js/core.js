@@ -475,6 +475,7 @@ function drawObjectiveSlider() {
     if (value === 0) { //Default config = white
       circle.attr("fill", d3.hsl(360, 1, 1));
     } else {
+      incCountClicks();
       circle.attr("fill", d3.hsl(value, 1, 0.50));
     }
 
