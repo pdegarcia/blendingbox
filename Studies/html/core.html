@@ -123,6 +123,14 @@
           </div>
         </div>
 
+        <input type="hidden" name="typeOfQuestion" id="typeOfQuestion" value="">
+        <input type="hidden" name="firstColor" id="firstColor" value="">
+        <input type="hidden" name="secColor" id="secColor" value="">
+        <input type="hidden" name="thirdColor" id="thirdColor" value="">
+        <input type="hidden" name="numClicks" id="numClicks" value="">
+        <input type="hidden" name="pageTime" id="pageTime" value="">
+        <input type="hidden" name="numResets" id="numResets" value="">
+
         <!-- BUTTONS -->
         <div class="buttons_area">
           <input type="button" class="btn btn-lg btn-default" onclick="resetMixture()" value="Reiniciar Mistura">
@@ -137,8 +145,8 @@
       <div>
         <a href="#close" title="Close" class="close">X</a>
         <p class="lead" id="popup-question">Quão fácil foi para si identificar esta mistura? Quantifique utilizando as estrelas abaixo.</p>
-        <form id="ratingForm" action="">
-          <input type="text" id="stars" class="rating rating-loading" value="0" data-size="sm" data-step="1" title="">
+        <form id="ratingForm" action="../php/addCoreForm.php" method="post" accept-charset="UTF-8"> 
+          <input type="text" name="stars" id="stars" class="rating rating-loading" value="0" data-size="sm" data-step="1" title="">
           <input type="submit" id="popup-button" class="btn btn-success btn-lg" value="Confirmar" onclick="">
         </form>
       </div>

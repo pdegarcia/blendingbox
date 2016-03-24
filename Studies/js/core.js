@@ -1,6 +1,6 @@
 /********* FORMS HANDLERS *********/
 
-$("#ratingForm").submit(function(event) {
+/*$("#ratingForm").submit(function(event) {
   // TODO: SUBMIT RATING
   event.preventDefault();
   submitForm();
@@ -11,7 +11,7 @@ function submitForm() {
   // TODO: INC CONTADORES DE QUESTÃO
   // TODO: MUDAR QUESTÃO e eliminar questão actual
   // TODO: RANDOM
-}
+}*/
 
 /********* GLOBAL VARIABLES *********/
 
@@ -19,6 +19,7 @@ var selectdiv;
 var path;
 
 var countClicks = 0;
+var countResets = 0;
 var countQuestions = 0;
 var start = new Date();
 
@@ -29,7 +30,6 @@ var currentQuestion = 1;
 var currentQuestionObject;
 
 function incCountClicks() {
-  console.log("Count clicks inc!");
   countClicks++;
 }
 
@@ -40,6 +40,13 @@ function incNumberOfQuestions() {
 function submitColors() {
   // TODO: SUBMIT COLORS PHP
   var ended = Math.round((new Date() - start) / 1000);
+  document.getElementById('typeOfQuestion').value = currentQuestionObject.typeOf;
+  //document.getElementById('firstColor').value = ;
+  //document.getElementById('secColor').value = ;
+  //document.getElementById('thirdColor').value = ;
+  document.getElementById('numClicks').value = countClicks;
+  document.getElementById('pageTime').value = ended;
+  document.getElementById('numResets').value = countResets;
 }
 
 /********* DATA POPULATE *********/
@@ -62,11 +69,9 @@ d3.json(path, function(error, json) {
     for (var k in json) {
       switch (json[k].typeOf) { //DEPENDING ON TYPE OF QUESTION.
         case "objTwoColors": // MIXTURE = COLOR + COLOR
-          console.log("type 0!");
           type0QuestionSet.push(json[k]);
           break;
         case "twoColorsObj": // COLOR + COLOR = MIXTURE
-          console.log("type 1!");
           type1QuestionSet.push(json[k]);
           break;
       }
@@ -109,6 +114,8 @@ function populateMixtureArea() {
 /********* D3 FUNCTIONS *********/
 
 function resetMixture() {
+  countResets++;
+
   var shapeOne = d3.select(".first_color_shape0").select("circle");
   var shapeTwo = d3.select(".second_color_shape0").select("circle");
   var shapeObj = d3.select(".obj_color_shape1").select("circle");
