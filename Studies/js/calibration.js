@@ -1,8 +1,11 @@
-/*$("#calibrationForm").submit(function (event) {
-      event.preventDefault();
-      submitForm();
-});*/
+function start() {
+  var ref1 = document.getElementById('resolutionField');
+  var ref2 = document.getElementById('availableResolutionField');
+  var ref3 = document.getElementById('colorDepthField');
 
-$("#resolutionField").append(window.screen.width + "x" + window.screen.height);
-$("#availableResolutionField").append("<b>" + window.screen.availWidth + "x" + window.screen.availHeight + "</b>");
-$("#colorDepthField").append(window.screen.colorDepth);
+  ref1.value = window.screen.width + "x" + window.screen.height;
+  ref2.value = window.screen.availWidth + "x" + window.screen.availHeight;
+  ref3.value = window.screen.colorDepth;
+}
+
+window.onload = start;

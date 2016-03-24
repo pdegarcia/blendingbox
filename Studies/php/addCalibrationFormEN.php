@@ -60,5 +60,6 @@
 
    echo("<p>Connection closed.</p>");
 
-   header('Location:../html/ishihara.html');
+   header('Location:../html/en/ishihara.html');
+
 ?>

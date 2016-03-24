@@ -60,14 +60,15 @@
     <hr class="featurette-divider">
 
     <div class="featurette" id="ishihara">
+      <form role="form" id="calibrationForm" action="../../php/addCalibrationFormEN.php" method="post" accept-charset="UTF-8">
       <h2 class="featurette-heading">Let's Calibrate Your Screen.</h2>
       <p class="lead">In this step, it is going to be presented to you a set of images.
         You should tune you screen definitions, in order to answer
         the questions, keeping them until the end of this study.</p>
-        <p class="lead">We also know some of your screen settings: </p>
-        <p class="lead" id="resolutionField">Dimensions: </p>
-        <p class="lead" id="availableResolutionField">Available Dimensions: </p>
-        <p class="lead" id="colorDepthField">Color Depth: </p>
+
+        <input type="hidden" name="resolutionField" id="resolutionField" value="">
+        <input type="hidden" name="availableResolutionField" id="availableResolutionField" value="">
+        <input type="hidden" name="colorDepthField" id="colorDepthField" value="">
 
         <div class="col-md-10 col-md-offset-1">
           <h2 class="featurette-heading" id="instructions">Instructions.</h2>
@@ -80,43 +81,42 @@
           <p style="font-size:20px;"> <b>(Step 6) - </b> You can start the Calibration Phase.</p>
         </div>
 
-      <form role="form" id="calibrationForm" action="../../php/addCalibrationForm.php" method="post" accept-charset="UTF-8">
         <!-- BLACK SQUARES -->
         <div class="col-md-10 col-md-offset-1">
           <h2 class="featurette-heading" id="questionNumber1">Question 1 of 2.</h2>
           <p class="lead" id="questionField1">In the following image, there are presented different squares with different <b>shades of black</b>. Write in the according textboxes below the image, which words you can read below each square, or <b>NONE</b> if you cannot detect any word related to that square.</p>
-          <img src="../../images/calibration_blackLevel.jpg" alt="Black Squares Test" id="blackSquares">
+          <img src="../../images/Calibration_blackLevel.jpg" alt="Black Squares Test" id="blackSquares">
           <div class="form-group row" style="padding: 15px;">
             <label for="inputBlackSquares" class="col-md-2 col-sm-offset-1" style="padding: 15px; font-size:20px; ">Words:</label>
-            <div class="col-md-2" id="inputBlackSquares" style="padding: 15px;">
-              <input type="text" class="form-control" id="inputBlackSquare1" placeholder="Square #1" style="inherit">
+            <div class="col-md-3" id="inputBlackSquares" style="padding: 15px;">
+              <input type="text" class="form-control" name="inputBlackSquare1" placeholder="Square #1" style="inherit">
             </div>
-            <div class="col-md-2" style="padding: 15px;">
-              <input type="text" class="form-control" id="inputBlackSquare2" placeholder="Square #2" style="inherit">
+            <div class="col-md-3" style="padding: 15px;">
+              <input type="text" class="form-control" name="inputBlackSquare2" placeholder="Square #2" style="inherit">
             </div>
-            <div class="col-md-2" style="padding: 15px;">
-              <input type="text" class="form-control" id="inputBlackSquare3" placeholder="Square #3" style="inherit">
+            <div class="col-md-3" style="padding: 15px;">
+              <input type="text" class="form-control" name="inputBlackSquare3" placeholder="Square #3" style="inherit">
             </div>
-            <div class="col-md-2" style="padding: 15px;">
-              <input type="text" class="form-control" id="inputBlackSquare4" placeholder="Square #4" style="inherit">
+            <div class="col-md-3" style="padding: 15px;">
+              <input type="text" class="form-control" name="inputBlackSquare4" placeholder="Square #4" style="inherit">
             </div>
-            <div class="col-md-2" style="padding: 15px;">
-              <input type="text" class="form-control" id="inputBlackSquare5" placeholder="Square #5" style="inherit">
+            <div class="col-md-3" style="padding: 15px;">
+              <input type="text" class="form-control" name="inputBlackSquare5" placeholder="Square #5" style="inherit">
             </div>
-            <div class="col-md-2" style="padding: 15px;">
-              <input type="text" class="form-control" id="inputBlackSquare6" placeholder="Square #6" style="inherit">
+            <div class="col-md-3" style="padding: 15px;">
+              <input type="text" class="form-control" name="inputBlackSquare6" placeholder="Square #6" style="inherit">
             </div>
-            <div class="col-md-2" style="padding: 15px;">
-              <input type="text" class="form-control" id="inputBlackSquare7" placeholder="Square #7" style="inherit">
+            <div class="col-md-3" style="padding: 15px;">
+              <input type="text" class="form-control" name="inputBlackSquare7" placeholder="Square #7" style="inherit">
             </div>
-            <div class="col-md-2" style="padding: 15px;">
-              <input type="text" class="form-control" id="inputBlackSquare8" placeholder="Square #8" style="inherit">
+            <div class="col-md-3" style="padding: 15px;">
+              <input type="text" class="form-control" name="inputBlackSquare8" placeholder="Square #8" style="inherit">
             </div>
-            <div class="col-md-2" style="padding: 15px;">
-              <input type="text" class="form-control" id="inputBlackSquare9" placeholder="Square #9" style="inherit">
+            <div class="col-md-3" style="padding: 15px;">
+              <input type="text" class="form-control" name="inputBlackSquare9" placeholder="Square #9" style="inherit">
             </div>
-            <div class="col-md-2" style="padding: 15px;">
-              <input type="text" class="form-control" id="inputBlackSquare10" placeholder="Square #10" style="inherit">
+            <div class="col-md-3" style="padding: 15px;">
+              <input type="text" class="form-control" name="inputBlackSquare10" placeholder="Square #10" style="inherit">
             </div>
           </div>
         </div>
@@ -126,38 +126,38 @@
         <div class="col-md-10 col-md-offset-1">
           <h2 class="featurette-heading" id="questionNumber2">Question 2 of 2.</h2>
           <p class="lead" id="questionField2">In the following image, there are presented different squares with different <b>shades of black</b>. Write in the according textboxes below the image, which words you can read below each square, or <b>NONE</b> if you cannot detect any word related to that square.</p>
-          <img src="../../images/calibration_whiteLevel.jpg" alt="White Squares Test" id="whiteSquares">
+          <img src="../../images/Calibration_whiteLevel.jpg" alt="White Squares Test" id="whiteSquares">
           <div class="form-group row" style="padding: 15px;">
             <label for="inputWhiteSquares" class="col-md-2 col-sm-offset-1" style="padding: 15px; font-size:20px; ">Words:</label>
-            <div class="col-md-2" id="inputWhiteSquares" style="padding: 15px;">
-              <input type="text" class="form-control" id="inputWhiteSquare1" placeholder="Square #1" style="inherit">
+            <div class="col-md-3" id="inputWhiteSquares" style="padding: 15px;">
+              <input type="text" class="form-control" name="inputWhiteSquare1" placeholder="Square #1" style="inherit">
             </div>
-            <div class="col-md-2" style="padding: 15px;">
-              <input type="text" class="form-control" id="inputWhiteSquare2" placeholder="Square #2" style="inherit">
+            <div class="col-md-3" style="padding: 15px;">
+              <input type="text" class="form-control" name="inputWhiteSquare2" placeholder="Square #2" style="inherit">
             </div>
-            <div class="col-md-2" style="padding: 15px;">
-              <input type="text" class="form-control" id="inputWhiteSquare3" placeholder="Square #3" style="inherit">
+            <div class="col-md-3" style="padding: 15px;">
+              <input type="text" class="form-control" name="inputWhiteSquare3" placeholder="Square #3" style="inherit">
             </div>
-            <div class="col-md-2" style="padding: 15px;">
-              <input type="text" class="form-control" id="inputWhiteSquare4" placeholder="Square #4" style="inherit">
+            <div class="col-md-3" style="padding: 15px;">
+              <input type="text" class="form-control" name="inputWhiteSquare4" placeholder="Square #4" style="inherit">
             </div>
-            <div class="col-md-2" style="padding: 15px;">
-              <input type="text" class="form-control" id="inputWhiteSquare5" placeholder="Square #5" style="inherit">
+            <div class="col-md-3" style="padding: 15px;">
+              <input type="text" class="form-control" name="inputWhiteSquare5" placeholder="Square #5" style="inherit">
             </div>
-            <div class="col-md-2" style="padding: 15px;">
-              <input type="text" class="form-control" id="inputWhiteSquare6" placeholder="Square #6" style="inherit">
+            <div class="col-md-3" style="padding: 15px;">
+              <input type="text" class="form-control" name="inputWhiteSquare6" placeholder="Square #6" style="inherit">
             </div>
-            <div class="col-md-2" style="padding: 15px;">
-              <input type="text" class="form-control" id="inputWhiteSquare7" placeholder="Square #7" style="inherit">
+            <div class="col-md-3" style="padding: 15px;">
+              <input type="text" class="form-control" name="inputWhiteSquare7" placeholder="Square #7" style="inherit">
             </div>
-            <div class="col-md-2" style="padding: 15px;">
-              <input type="text" class="form-control" id="inputWhiteSquare8" placeholder="Square #8" style="inherit">
+            <div class="col-md-3" style="padding: 15px;">
+              <input type="text" class="form-control" name="inputWhiteSquare8" placeholder="Square #8" style="inherit">
             </div>
-            <div class="col-md-2" style="padding: 15px;">
-              <input type="text" class="form-control" id="inputWhiteSquare9" placeholder="Square #9" style="inherit">
+            <div class="col-md-3" style="padding: 15px;">
+              <input type="text" class="form-control" name="inputWhiteSquare9" placeholder="Square #9" style="inherit">
             </div>
-            <div class="col-md-2" style="padding: 15px;">
-              <input type="text" class="form-control" id="inputWhiteSquare10" placeholder="Square #10" style="inherit">
+            <div class="col-md-3" style="padding: 15px;">
+              <input type="text" class="form-control" name="inputWhiteSquare10" placeholder="Square #10" style="inherit">
             </div>
           </div>
         </div>

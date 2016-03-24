@@ -1,4 +1,4 @@
-$("#ishiharaForm").submit(function (event) {
+/*$("#ishiharaForm").submit(function (event) {
       event.preventDefault();
       submitForm();
-});
+});*/

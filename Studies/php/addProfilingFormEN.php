@@ -1,6 +1,6 @@
 <?php
 
-  //session_start();
+  session_start();
 
   $user="ist167051";		// -> substituir pelo nome de utilizador
   $host="db.tecnico.ulisboa.pt";	// o Postgres esta disponivel nesta maquina
