@@ -1,5 +1,6 @@
 <?php
 
+  session_destroy(); //destroy any session open before.
   session_start();
 
   $user="ist167051";		// -> substituir pelo nome de utilizador

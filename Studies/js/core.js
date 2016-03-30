@@ -1,26 +1,86 @@
 /********* FORMS HANDLERS *********/
 
-/*$("#ratingForm").submit(function(event) {
-  // TODO: SUBMIT RATING
-  event.preventDefault();
-  submitForm();
+$(function() {
+  $('#popup-button').click(function() {
+    var values = {
+      typeOfQuestion: document.getElementById('typeOfQuestion').value,
+      firstColor: document.getElementById('firstColor').value,
+      secColor: document.getElementById('secColor').value,
+      thirdColor: document.getElementById('thirdColor').value,
+      numClicks: document.getElementById('numClicks').value,
+      pageTime: document.getElementById('pageTime').value,
+      stars: document.getElementById('stars').value,
+      numResets: document.getElementById('numResets').value
+    };
+    $.ajax({
+      type: "POST",
+      url: phpURL,
+      data: values,
+      success: function(response) {
+        //updateScreen();
+      },
+      error: function(jqXHR, textStatus, errorThrown) {
+        console.log(textStatus, errorThrown);
+      }
+    });
+    return false;
+  });
+  $('#popup-button').click(function() {
+    updateScreen();
+  });
 });
 
-function submitForm() {
-  // TODO: PHP
-  // TODO: INC CONTADORES DE QUESTÃO
-  // TODO: MUDAR QUESTÃO e eliminar questão actual
-  // TODO: RANDOM
-}*/
+
+function updateScreen() {
+  selectdiv = new Date().getTime() % 2;
+
+  if ((selectdiv === 0) && (type0QuestionSet.length === 0)) { //se 0 empty
+    if(type1QuestionSet.length !== 0) {selectdiv = 1;}
+    else { window.location = pathToFinish;
+    }
+  }
+
+  if ((selectdiv === 1) && (type1QuestionSet.length === 0)) { //se 0 empty
+    if(type0QuestionSet.length !== 0) {selectdiv = 0;}
+    else { window.location = pathToFinish;
+    }
+  }
+
+  switch (selectdiv) {
+    case 0:
+      $("#mixture0").css("display", "block");
+      $("#mixture1").css("display", "none");
+      break;
+    case 1:
+      $("#mixture0").css("display", "none");
+      $("#mixture1").css("display", "block");
+      break;
+  }
+
+  resetMixture();
+
+  countClicks = 0;
+  countResets = 0;
+  document.getElementById('firstColor').value = "NONE";
+  document.getElementById('secColor').value = "NONE";
+  document.getElementById('thirdColor').value = "NONE";
+  start = new Date();
+  incCurrentQuestion();
+
+  populateMixtureArea();
+
+}
 
 /********* GLOBAL VARIABLES *********/
 
 var selectdiv;
 var path;
+var pathToReturn;
+var pathToFinish;
+var phpURL;
 
 var countClicks = 0;
 var countResets = 0;
-var countQuestions = 0;
 var start = new Date();
 
 var type0QuestionSet = [];
@@ -33,17 +93,12 @@ function incCountClicks() {
   countClicks++;
 }
 
-function incNumberOfQuestions() {
-  numberOfQuestions++;
+function incCurrentQuestion() {
+  currentQuestion++;
 }
 
 function submitColors() {
-  // TODO: SUBMIT COLORS PHP
   var ended = Math.round((new Date() - start) / 1000);
-  document.getElementById('typeOfQuestion').value = currentQuestionObject.typeOf;
-  //document.getElementById('firstColor').value = ;
-  //document.getElementById('secColor').value = ;
-  //document.getElementById('thirdColor').value = ;
   document.getElementById('numClicks').value = countClicks;
   document.getElementById('pageTime').value = ended;
   document.getElementById('numResets').value = countResets;
@@ -54,9 +109,15 @@ function submitColors() {
 switch (document.documentElement.lang) { //handle JSON location.
   case 'pt':
     path = "../data/questions.json";
+    pathToReturn = "../html/core.html#close";
+    pathToFinish = "../html/thankyou.html";
+    phpURL = "../php/addCoreForm.php";
     break;
   case 'en':
     path = "../../data/questions.json";
+    pathToReturn = "../en/core.html#close";
+    pathToFinish = "../en/thankyou.html";
+    phpURL = "../../php/addCoreForm.php";
     break;
   default:
     path = "../../data/questions.json"; //Langs to come.
@@ -76,10 +137,11 @@ d3.json(path, function(error, json) {
           break;
       }
     }
-    numberOfQuestions = json.length - 1; //BECAUSE 0.
+    numberOfQuestions = json.length;
     populateMixtureArea();
   }
 });
+
 
 function populateMixtureArea() {
   var index = 0;
@@ -88,12 +150,20 @@ function populateMixtureArea() {
     case 0: // MIXTURE = COLOR + COLOR
       index = Math.floor(Math.random() * (type0QuestionSet.length));
       currentQuestionObject = type0QuestionSet[index];
+      type0QuestionSet.splice(index, 1);
+      document.getElementById('firstColor').value = currentQuestionObject.colorObjective;
       break;
     case 1: // COLOR + COLOR = MIXTURE
       index = Math.floor(Math.random() * (type1QuestionSet.length));
       currentQuestionObject = type1QuestionSet[index];
+      type1QuestionSet.splice(index, 1);
+      document.getElementById('firstColor').value = currentQuestionObject.firstColor;
+      document.getElementById('secColor').value = currentQuestionObject.secondColor;
       break;
   }
+
+  $("#questionNumber").empty();
+  $("#questionField").empty();
 
   switch (document.documentElement.lang) {
     case 'pt':
@@ -104,8 +174,9 @@ function populateMixtureArea() {
       $("#questionNumber").append("Question number " + currentQuestion + " of " + numberOfQuestions + ".");
       $("#questionField").append(currentQuestionObject.questionEN);
       break;
-    }
+  }
 
+  document.getElementById('typeOfQuestion').value = currentQuestionObject.typeOf;
   d3.select(".obj_color_shape" + (selectdiv)).select("circle").attr("fill", currentQuestionObject.colorObjective);
   d3.select(".first_color_shape" + (selectdiv)).select("circle").attr("fill", currentQuestionObject.firstColor);
   d3.select(".second_color_shape" + (selectdiv)).select("circle").attr("fill", currentQuestionObject.secondColor);
@@ -134,10 +205,10 @@ function resetMixture() {
   sliderObj.transition().duration("750").attr("cx", 0);
 }
 
-function drawObjective() {
+function drawObjective(selectedDiv) {
   /* VARS TO OBJECTIVE */
-  var wObj = $(".obj_color_shape" + (selectdiv)).width();
-  var hObj = $(".obj_color_shape" + (selectdiv)).height();
+  var wObj = $(".obj_color_shape" + (selectedDiv)).width();
+  var hObj = $(".obj_color_shape" + (selectedDiv)).height();
   var margin = {
     top: 20,
     right: 150,
@@ -145,7 +216,7 @@ function drawObjective() {
     left: 20
   };
 
-  var objShape = d3.select(".obj_color_shape" + (selectdiv))
+  var objShape = d3.select(".obj_color_shape" + (selectedDiv))
     .append("svg:svg")
     .attr("width", wObj)
     .attr("height", hObj);
@@ -160,11 +231,11 @@ function drawObjective() {
 
 }
 
-function drawFirstColor() {
+function drawFirstColor(selectedDiv) {
 
   /* VARS TO FIRST COLOR MIXTURE */
-  var wFirst = $(".first_color_shape" + (selectdiv)).width();
-  var hFirst = $(".first_color_shape" + (selectdiv)).height();
+  var wFirst = $(".first_color_shape" + (selectedDiv)).width();
+  var hFirst = $(".first_color_shape" + (selectedDiv)).height();
   var margin = {
     top: 20,
     right: 150,
@@ -172,7 +243,7 @@ function drawFirstColor() {
     left: 20
   };
 
-  var fstShape = d3.select(".first_color_shape" + (selectdiv))
+  var fstShape = d3.select(".first_color_shape" + (selectedDiv))
     .append("svg")
     .attr("width", wFirst)
     .attr("height", hFirst)
@@ -188,11 +259,11 @@ function drawFirstColor() {
     .style("background-color", "none");
 }
 
-function drawSecColor() {
+function drawSecColor(selectedDiv) {
 
   /* VARS TO SECOND COLOR MIXTURE */
-  var wSec = $(".second_color_shape" + (selectdiv)).width();
-  var hSec = $(".second_color_shape" + (selectdiv)).height();
+  var wSec = $(".second_color_shape" + (selectedDiv)).width();
+  var hSec = $(".second_color_shape" + (selectedDiv)).height();
   var margin = {
     top: 20,
     right: 150,
@@ -200,7 +271,7 @@ function drawSecColor() {
     left: 20
   };
 
-  var secShape = d3.select(".second_color_shape" + (selectdiv))
+  var secShape = d3.select(".second_color_shape" + (selectedDiv))
     .append("svg")
     .attr("width", wSec)
     .attr("height", hSec);
@@ -215,7 +286,7 @@ function drawSecColor() {
 }
 
 /* FUNCTION TO DRAW FIRST SLIDER AND HANDLE ITS MOVEMENT */
-function drawFirstSlider() {
+function drawFirstSlider(selectedDiv) {
 
   /* VARS TO SET SVG CANVAS*/
   var margin = {
@@ -224,8 +295,8 @@ function drawFirstSlider() {
     bottom: 20,
     left: 5
   };
-  var wSlid = $(".slider_one" + (selectdiv)).width();
-  var hSlid = $(".slider_one" + (selectdiv)).height();
+  var wSlid = $(".slider_one" + (selectedDiv)).width();
+  var hSlid = $(".slider_one" + (selectedDiv)).height();
 
   var scaleX = d3.scale.linear()
     .domain([0, 360])
@@ -237,7 +308,7 @@ function drawFirstSlider() {
     .extent([0, 0])
     .on("brush", brushed);
 
-  var sliderBar = d3.select(".slider_one" + (selectdiv)).append("svg")
+  var sliderBar = d3.select(".slider_one" + (selectedDiv)).append("svg")
     .attr("width", wSlid + margin.left + margin.right)
     .attr("height", hSlid + margin.top + margin.bottom)
     .append("g")
@@ -286,7 +357,7 @@ function drawFirstSlider() {
 
   function brushed() {
     var value = brush.extent()[0];
-    var colorShape = ".first_color_shape" + (selectdiv) + " svg";
+    var colorShape = ".first_color_shape" + (selectedDiv) + " svg";
     var svg = d3.select(colorShape);
     var circle = svg.select("circle");
 
@@ -298,16 +369,18 @@ function drawFirstSlider() {
 
     if (value === 0) { //Default config = white
       circle.attr("fill", d3.hsl(360, 1, 1));
+      document.getElementById('thirdColor').value = "NONE";
     } else {
-      incCountClicks();
       circle.attr("fill", d3.hsl(value, 1, 0.50));
+      incCountClicks();
+      document.getElementById('secColor').value = "hsl(" + value + ",1,0.50)";
     }
 
   }
 }
 
 /* FUNCTION TO DRAW SECOND SLIDER AND HANDLE ITS MOVEMENT */
-function drawSecondSlider() {
+function drawSecondSlider(selectedDiv) {
 
   /* VARS TO SET SVG CANVAS*/
   var margin = {
@@ -316,8 +389,8 @@ function drawSecondSlider() {
     bottom: 20,
     left: 5
   };
-  var wSlid = $(".slider_two" + (selectdiv)).width();
-  var hSlid = $(".slider_two" + (selectdiv)).height();
+  var wSlid = $(".slider_two" + (selectedDiv)).width();
+  var hSlid = $(".slider_two" + (selectedDiv)).height();
 
   var scaleX = d3.scale.linear()
     .domain([0, 360])
@@ -329,7 +402,7 @@ function drawSecondSlider() {
     .extent([0, 0])
     .on("brush", brushed);
 
-  var sliderBar = d3.select(".slider_two" + (selectdiv)).append("svg")
+  var sliderBar = d3.select(".slider_two" + (selectedDiv)).append("svg")
     .attr("width", wSlid + margin.left + margin.right)
     .attr("height", hSlid + margin.top + margin.bottom)
     .append("g")
@@ -378,7 +451,7 @@ function drawSecondSlider() {
 
   function brushed() {
     var value = brush.extent()[0];
-    var colorShape = ".second_color_shape" + (selectdiv) + " svg";
+    var colorShape = ".second_color_shape" + (selectedDiv) + " svg";
     var svg = d3.select(colorShape);
     var circle = svg.select("circle");
 
@@ -390,8 +463,10 @@ function drawSecondSlider() {
 
     if (value === 0) { //Default config = white
       circle.attr("fill", d3.hsl(360, 1, 1));
+      document.getElementById('thirdColor').value = "NONE";
     } else {
       circle.attr("fill", d3.hsl(value, 1, 0.50));
+      document.getElementById('thirdColor').value = "hsl(" + value + ",1,0.50)";
       incCountClicks();
     }
 
@@ -407,8 +482,8 @@ function drawObjectiveSlider() {
     bottom: 20,
     left: 5
   };
-  var wSlid = $(".slider_objective" + (selectdiv)).width();
-  var hSlid = $(".slider_objective" + (selectdiv)).height();
+  var wSlid = $(".slider_objective1").width();
+  var hSlid = $(".slider_objective1").height();
 
   var scaleX = d3.scale.linear()
     .domain([0, 360])
@@ -420,7 +495,7 @@ function drawObjectiveSlider() {
     .extent([0, 0])
     .on("brush", brushed);
 
-  var sliderBar = d3.select(".slider_objective" + (selectdiv)).append("svg")
+  var sliderBar = d3.select(".slider_objective1").append("svg")
     .attr("width", wSlid + margin.left + margin.right)
     .attr("height", hSlid + margin.top + margin.bottom)
     .append("g")
@@ -469,7 +544,7 @@ function drawObjectiveSlider() {
 
   function brushed() {
     var value = brush.extent()[0];
-    var colorShape = ".obj_color_shape" + (selectdiv) + " svg";
+    var colorShape = ".obj_color_shape1 svg";
     var svg = d3.select(colorShape);
     var circle = svg.select("circle");
 
@@ -481,27 +556,51 @@ function drawObjectiveSlider() {
 
     if (value === 0) { //Default config = white
       circle.attr("fill", d3.hsl(360, 1, 1));
+      document.getElementById('thirdColor').value = "NONE";
     } else {
-      incCountClicks();
       circle.attr("fill", d3.hsl(value, 1, 0.50));
+      document.getElementById('thirdColor').value = "hsl(" + value + ",1,0.50)";
+      incCountClicks();
     }
 
   }
 }
 
-!(function(d3) {
+function initScreen() {
 
   selectdiv = new Date().getTime() % 2;
-  $("#mixture" + (selectdiv)).css("display", "block");
+
+  switch (selectdiv) {
+    case 0:
+      $("#mixture0").css("display", "block");
+      $("#mixture1").css("display", "none");
+      break;
+    case 1:
+      $("#mixture0").css("display", "none");
+      $("#mixture1").css("display", "block");
+      break;
+  }
 
   /* SHAPES */
-  drawObjective();
-  drawFirstColor();
-  drawSecColor();
+  drawObjective(0);
+  drawObjective(1);
+  //Draw both mixtures
+  drawFirstColor(0);
+  drawFirstColor(1);
+
+  drawSecColor(0);
+  drawSecColor(1);
 
   /* SLIDERS */
-  drawFirstSlider();
-  drawSecondSlider();
+  drawFirstSlider(0);
+  drawFirstSlider(1);
+  drawSecondSlider(0);
+  drawSecondSlider(1);
   drawObjectiveSlider();
+}
+
+!(function(d3) {
+
+  initScreen();
 
 })(d3);

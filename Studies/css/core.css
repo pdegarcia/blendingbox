@@ -80,14 +80,14 @@
   /*border-style: dotted;*/
 }
 .obj_color_shape0 {
-  width: 100%;
-  height: 100%;
+  width: 350px;
+  height: 350px;
   margin-top: -23%;
   margin-left: auto;
 }
 .obj_color_shape1 {
-  width: 100%;
-  height: 100%;
+  width: 350px;
+  height: 350px;
   margin-top: -23%;
   margin-left: auto;
 }
@@ -110,26 +110,26 @@
   /*border-style: dotted;*/
 }
 .first_color_shape0 {
-  width: 100%;
-  height: 100%;
+  width: 350px;
+  height: 350px;
   margin-top: -23%;
 }
 .first_color_shape1 {
-  width: 100%;
-  height: 100%;
+  width: 350px;
+  height: 350px;
   margin-top: -23%;
 }
 .slider_one0 {
-  width: 90%;
+  width: 340px;
   margin-left: 5%;
   margin-top: -23%;
-  height: 20%;
+  height: 50px;
 }
 .slider_one1 {
-  width: 90%;
+  width: 340px;
   margin-left: 5%;
   margin-top: -23%;
-  height: 20%;
+  height: 50px;
 }
 
 /* SEGUNDA COR DE MISTURA */
@@ -149,24 +149,31 @@
   /*border-style: dotted;*/
 }
 .second_color_shape0 {
-  width: 100%;
-  height: 100%;
+  width: 350px;
+  height: 350px;
   margin-top: -23%;
 }
 .second_color_shape1 {
-  width: 100%;
-  height: 100%;
+  width: 350px;
+  height: 350px;
   margin-top: -23%;
 }
 .slider_two0 {
-  width: 90%;
-  height: 20%;
+  width: 340px;
+  height: 50px;
   margin-left: 5%;
   margin-top: -23%;
 }
 .slider_two1 {
-  width: 90%;
-  height: 20%;
+  width: 340px;
+  height: 50px;
+  margin-left: 5%;
+  margin-top: -23%;
+}
+
+.slider_objective1 {
+  width: 340px;
+  height: 50px;
   margin-left: 5%;
   margin-top: -23%;
 }

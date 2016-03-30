@@ -1,30 +1,65 @@
-$("#contactForm").validator().on("submit", function (event) {
-    if (event.isDefaultPrevented()) {
-        // handle the invalid form...
-    } else {
-        // everything looks good!
-        event.preventDefault();
-        submitForm();
+var phpURL;
+var quote1;
+var quote2;
+
+switch (document.documentElement.lang) {
+  case 'pt':
+    phpURL = "../php/addMessageForm.php";
+    quote1 = "Obrigado!";
+    quote2 = "Entraremos em contacto brevemente.";
+    break;
+  case 'en':
+    phpURL = "../../php/addMessageForm.php";
+    quote1 = "Thank you!";
+    quote2 = "We will be in touch soon.";
+    break;
+}
+
+$(function() {
+  $('.error').hide();
+  $('#form-submit').click(function() {
+    $('.error').hide();
+    var name = $("input#name").val();
+    if (name === '') {
+      $("label#name_error").show();
+      $("input#name").focus();
+      return false;
     }
-});
+    var email = $("input#email").val();
+    if (email === '') {
+      $("label#email_error").show();
+      $("input#email").focus();
+      return false;
+    }
+    var message = $("input#message").val();
+    if (message === '') {
+      $("label#message_error").show();
+      $("input#message").focus();
+      return false;
+    }
 
-function submitForm() {
-  var name = $("#name").val(); //Form content
-  var email = $("#email").val();
-  var message = $("#message").val();
-
-  $.ajax({
-    type: "POST",
-    url: "../php/form-process.php",
-    data: "name=" + name + "&email=" + email + "&message=" + message,
-    success: function(text) {
-      if (text === "success") {
-        formSuccess();
+    var values = {
+      name: $("input#name").val(),
+      email: $("input#email").val(),
+      message: $("textarea#message").val(),
+    };
+    $.ajax({
+      type: "POST",
+      url: phpURL,
+      data: values,
+      success: function() {
+        $('#contact_form').html("<div id='message'></div>");
+        $('#message').html("<h3>" + quote1 + "</h3>")
+          .append("<p>" + quote2 + "</p>")
+          .hide()
+          .fadeIn(1500, function() {
+            $('#message').append("<img id='checkmark' src='../../images/check.png' />");
+          });
+      },
+      error: function(jqXHR, textStatus, errorThrown) {
+        console.log(textStatus, errorThrown);
       }
-    }
+    });
+    return false;
   });
-}
-
-function formSuccess() {
-  $("#msgSubmit").removeClass("hidden");
-}
+});

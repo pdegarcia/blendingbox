@@ -2,6 +2,8 @@
 
   session_start();
 
+  $file = 'log.txt';
+
   $user="ist167051";		// -> substituir pelo nome de utilizador
   $host="db.tecnico.ulisboa.pt";	// o Postgres esta disponivel nesta maquina
   $port=5432;				// por omissao, o Postgres responde nesta porta
@@ -12,20 +14,15 @@
 
   echo("<p>Connected to Postgres on $host as user $user on database $dbname.</p>");
 
-  $typeOfQuestion = pg_escape_string($_POST['typeOfQuestion']);
-  $firstColor = pg_escape_string($_POST['firstColor']);
-  $secColor = pg_escape_string($_POST['secColor']);
-  $thirdColor = pg_escape_string($_POST['thirdColor']);
-  $numClicks = pg_escape_string($_POST['numClicks']);
-  $pageTime = pg_escape_string($_POST['pageTime']);
-  $rating = pg_escape_string($_POST['stars']);
-  $resets = pg_escape_string($_POST['numResets']);
+  $name = pg_escape_string($_POST['name']);
+  $email = pg_escape_string($_POST['email']);
+  $message = pg_escape_string($_POST['message']);
 
-  $query = "insert into results values
+  $query = "insert into contacts values
   ('" . $_SESSION["id"] . "',
-   '" . $typeOfQuestion . "', '" . $firstColor . "', '" . $secColor . "',
-   '" . $thirdColor . "', '" . $numClicks . "', '" . $pageTime . "',
-   '" . $rating . "', '" . $resets . "')";
+   '" . $name . "', '" . $email . "', '" . $message . "')";
+
+   file_put_contents($file, $query);
 
    $result = pg_query($query) or die('ERROR with query: ' . pg_last_error());
 
@@ -37,4 +34,5 @@
 
    echo("<p>Connection closed.</p>");
 
+   session_destroy();
 ?>

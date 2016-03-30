@@ -41,6 +41,7 @@
 
 .rating-container .empty-stars {
     color: #aaa;
+    width: 0%;
 }
 
 .rating-container .filled-stars {
