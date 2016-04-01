@@ -1,7 +1,12 @@
 /********* FORMS HANDLERS *********/
 
+$('.rating').on('rating.change', function(event, value, caption) {
+  document.getElementById('rating-button').style.visibility = 'visible';
+});
+
 $(function() {
-  $('#popup-button').click(function() {
+  $('#rating-button').click(function() {
+    console.log(document.getElementById('stars').value);
     var values = {
       typeOfQuestion: document.getElementById('typeOfQuestion').value,
       firstColor: document.getElementById('firstColor').value,
@@ -17,7 +22,6 @@ $(function() {
       url: phpURL,
       data: values,
       success: function(response) {
-        //updateScreen();
       },
       error: function(jqXHR, textStatus, errorThrown) {
         console.log(textStatus, errorThrown);
@@ -25,13 +29,16 @@ $(function() {
     });
     return false;
   });
-  $('#popup-button').click(function() {
+  $('#rating-button').click(function() {
     updateScreen();
   });
 });
 
-
 function updateScreen() {
+  //STARS RESET
+  document.getElementById('satisfaction').style.visibility = 'hidden';
+  document.getElementById('rating-button').style.visibility = 'hidden';
+
   selectdiv = new Date().getTime() % 2;
 
   if ((selectdiv === 0) && (type0QuestionSet.length === 0)) { //se 0 empty
@@ -75,7 +82,6 @@ function updateScreen() {
 
 var selectdiv;
 var path;
-var pathToReturn;
 var pathToFinish;
 var phpURL;
 
@@ -102,6 +108,8 @@ function submitColors() {
   document.getElementById('numClicks').value = countClicks;
   document.getElementById('pageTime').value = ended;
   document.getElementById('numResets').value = countResets;
+
+  document.getElementById('satisfaction').style.visibility = 'visible';
 }
 
 /********* DATA POPULATE *********/
@@ -109,13 +117,11 @@ function submitColors() {
 switch (document.documentElement.lang) { //handle JSON location.
   case 'pt':
     path = "../data/questions.json";
-    pathToReturn = "../html/core.html#close";
     pathToFinish = "../html/thankyou.html";
     phpURL = "../php/addCoreForm.php";
     break;
   case 'en':
     path = "../../data/questions.json";
-    pathToReturn = "../en/core.html#close";
     pathToFinish = "../en/thankyou.html";
     phpURL = "../../php/addCoreForm.php";
     break;
@@ -293,7 +299,7 @@ function drawFirstSlider(selectedDiv) {
     top: 20,
     right: 150,
     bottom: 20,
-    left: 5
+    left: 10
   };
   var wSlid = $(".slider_one" + (selectedDiv)).width();
   var hSlid = $(".slider_one" + (selectedDiv)).height();
@@ -387,7 +393,7 @@ function drawSecondSlider(selectedDiv) {
     top: 20,
     right: 150,
     bottom: 20,
-    left: 5
+    left: 10
   };
   var wSlid = $(".slider_two" + (selectedDiv)).width();
   var hSlid = $(".slider_two" + (selectedDiv)).height();
@@ -480,14 +486,15 @@ function drawObjectiveSlider() {
     top: 20,
     right: 150,
     bottom: 20,
-    left: 5
+    left: 10
   };
   var wSlid = $(".slider_objective1").width();
   var hSlid = $(".slider_objective1").height();
 
   var scaleX = d3.scale.linear()
-    .domain([0, 360])
-    .range([0, wSlid])
+    //.domain([0, 10])
+    .domain([0,360])
+    .range([0, wSlid]) //tamanho slider - width
     .clamp(true);
 
   var brush = d3.svg.brush()
@@ -558,6 +565,7 @@ function drawObjectiveSlider() {
       circle.attr("fill", d3.hsl(360, 1, 1));
       document.getElementById('thirdColor').value = "NONE";
     } else {
+      //console.log(Math.round(value));
       circle.attr("fill", d3.hsl(value, 1, 0.50));
       document.getElementById('thirdColor').value = "hsl(" + value + ",1,0.50)";
       incCountClicks();

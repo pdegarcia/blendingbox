@@ -542,15 +542,15 @@
         defaultCaption: '{rating} Stars',
         starCaptions: {
             0.5: 'Half Star',
-            1: 'One Star',
+            1: 'Very Hard',
             1.5: 'One & Half Star',
-            2: 'Two Stars',
+            2: 'Hard',
             2.5: 'Two & Half Stars',
-            3: 'Three Stars',
+            3: 'Medium',
             3.5: 'Three & Half Stars',
-            4: 'Four Stars',
+            4: 'Easy',
             4.5: 'Four & Half Stars',
-            5: 'Five Stars'
+            5: 'Very Easy'
         },
         clearButtonTitle: 'Clear',
         clearCaption: 'Not Rated'
