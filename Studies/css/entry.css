@@ -6,7 +6,8 @@ body {
   display: block;
   width: 100%;
   text-align: center;
-  background: url('../images/color-background.jpeg') no-repeat center center scroll;
+  height: auto;
+  background: url('../images/header.jpg') no-repeat center center scroll;
   opacity: 0.9;
   -webkit-background-size: cover;
   -moz-background-size: cover;
