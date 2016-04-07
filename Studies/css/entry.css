@@ -7,8 +7,9 @@ body {
   width: 100%;
   text-align: center;
   height: auto;
-  background: url('../images/header.jpg') no-repeat center center scroll;
-  opacity: 0.9;
+  max-width: 998px;
+  max-height: 500px;
+  background: url('../images/header.jpg') no-repeat center scroll;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   background-size: cover;
@@ -64,6 +65,10 @@ footer {
   }
 }
 @media(max-width:991px) {
+  .header-image {
+    margin-top: -5%;
+    background: url('../images/header720.jpg') no-repeat center scroll;
+  }
   .headline h1 {
     font-size: 105px;
   }
@@ -87,6 +92,10 @@ footer {
   }
 }
 @media(max-width:768px) {
+  .header-image {
+    background: url('../images/header668.jpg') no-repeat center scroll;
+    margin-top: -7%;
+  }
   .container {
     margin: 0 15px;
   }
@@ -98,6 +107,10 @@ footer {
   }
 }
 @media(max-width:668px) {
+  .header-image {
+    background: url('../images/header640.jpg') no-repeat center scroll;
+    margin-top: -7%;
+  }
   .headline h1 {
     font-size: 70px;
   }
@@ -109,6 +122,10 @@ footer {
   }
 }
 @media(max-width:640px) {
+  .header-image {
+    background: url('../images/header500.jpg') no-repeat center scroll;
+    margin-top: -5%;
+  }
   .headline {
     padding: 75px 0 25px 0;
   }
@@ -119,7 +136,33 @@ footer {
     font-size: 30px;
   }
 }
+
+@media(max-width:531px) {
+  .header-image {
+    background: url('../images/header400.jpg') no-repeat center scroll;
+    margin-top: -10%;
+  }
+}
+
+@media(max-width:443px) {
+  .header-image {
+    background: url('../images/header375.jpg') no-repeat center scroll;
+    margin-top: -10%;
+  }
+}
+
+@media(max-width:417px) {
+  .header-image {
+    background: url('../images/header320.jpg') no-repeat center scroll;
+    margin-top: -15%;
+  }
+}
+
 @media(max-width:375px) {
+  .header-image {
+    background: url('../images/header320.jpg') no-repeat center scroll;
+    margin-top: -17%;
+  }
   .featurette-divider {
     margin: 10px 0;
   }
@@ -134,9 +177,25 @@ footer {
     margin-bottom: 10px;
     margin-left: 0;
   }
+
 }
+
+@media(max-width:360px) {
+  .header-image {
+    background: url('../images/header300.jpg') no-repeat center scroll;
+    margin-top: -20%;
+  }
+}
+
+@media(max-width:320px) {
+  .header-image {
+    background: url('../images/header260.jpg') no-repeat center scroll;
+    margin-top: -25%;
+  }
+}
+
 #advancePT {
-  margin-top: 100px;
+  margin-top: 230px;
   width: 250px;
   height: 60px;
   font-size: 20px;
@@ -144,7 +203,7 @@ footer {
 }
 
 #advanceEN {
-  margin-top: 100px;
+  margin-top: 230px;
   width: 250px;
   height: 60px;
   font-size: 20px;

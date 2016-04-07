@@ -1,16 +1,6 @@
-.headline {
-  height: 20%;
-  display: block;
-  width: 100%;
-  text-align: center;
-}
-
-.headline h1 {
-    font-size: 50px;
-}
-
 .headline h2 {
-    font-size: 30px;
+  font-size: 65px;
+  margin-top: 365px;
 }
 
 #share {

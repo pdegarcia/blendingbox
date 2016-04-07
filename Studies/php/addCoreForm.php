@@ -10,9 +10,10 @@
 
   $connection = pg_connect("host=$host port=$port user=$user password=$password dbname=$dbname") or die(pg_last_error());
 
-  echo("<p>Connected to Postgres on $host as user $user on database $dbname.</p>");
+  //echo("<p>Connected to Postgres on $host as user $user on database $dbname.</p>");
 
   $typeOfQuestion = pg_escape_string($_POST['typeOfQuestion']);
+  $numberOfQuestion = pg_escape_string($_POST['idQuestion']);
   $firstColor = pg_escape_string($_POST['firstColor']);
   $secColor = pg_escape_string($_POST['secColor']);
   $thirdColor = pg_escape_string($_POST['thirdColor']);
@@ -21,20 +22,27 @@
   $rating = pg_escape_string($_POST['stars']);
   $resets = pg_escape_string($_POST['numResets']);
 
+  $_SESSION["countAnswers"]++;
+
   $query = "insert into results values
   ('" . $_SESSION["id"] . "',
    '" . $typeOfQuestion . "', '" . $firstColor . "', '" . $secColor . "',
    '" . $thirdColor . "', '" . $numClicks . "', '" . $pageTime . "',
-   '" . $rating . "', '" . $resets . "')";
+   '" . $rating . "', '" . $resets . "', '" . $numberOfQuestion . "')";
+
+   $update = "update profiling_info set num_answers = '" . $_SESSION["countAnswers"] . "' where id = '" . $_SESSION["id"] . "'";
 
    $result = pg_query($query) or die('ERROR with query: ' . pg_last_error());
+   $resultUpdate = pg_query($update) or die('ERROR with query: ' . pg_last_error());
 
    $result = pg_free_result($result) or die('ERROR: ' . pg_last_error());
+   $resultUpdate = pg_free_result($resultUpdate) or die('ERROR: ' . pg_last_error());
 
-   echo("<p>Query result freed.</p>");
+
+   //echo("<p>Query result freed.</p>");
 
    pg_close($connection);
 
-   echo("<p>Connection closed.</p>");
+   //echo("<p>Connection closed.</p>");
 
 ?>

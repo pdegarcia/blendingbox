@@ -12,12 +12,11 @@
   <link href="../../bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="../../css/entry.css" rel="stylesheet">
   <link href="../../css/calibration.css" rel="stylesheet">
+  <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
   <!-- Includes for bootstrap and jquery script -->
   <script src="../../js-library/jquery-2.1.4.min.js"></script>
   <script src="../../js/handleAlerts.js"></script>
-
-  <!-- Includes for javascripts-->
 
 </head>
 
@@ -45,14 +44,15 @@
     <!-- /.container -->
   </nav>
 
-  <header class="header-image">
-    <div class="headline">
-      <div class="container">
-        <h1>Will It Blend?</h1>
-        <h2>Step Two - Screen Calibration.</h2>
+  <div class="container">
+    <header class="header-image">
+      <div class="headline">
+        <div class="container">
+          <h2>Step Two - Screen Calibration.</h2>
+        </div>
       </div>
-    </div>
-  </header>
+    </header>
+  </div>
 
   <!-- Page Content -->
   <div class="container">
@@ -61,10 +61,8 @@
 
     <div class="featurette" id="ishihara">
       <form role="form" id="calibrationForm" action="../../php/addCalibrationFormEN.php" method="post" accept-charset="UTF-8" autocomplete="off">
-      <h2 class="featurette-heading">Let's Calibrate Your Screen.</h2>
-      <p class="lead">In this step, it's going to be presented to you a set of images.
-        You should tune you screen definitions, in order to answer
-        the questions, keeping them until the end of this study.</p>
+        <h2 class="featurette-heading">Let's Calibrate Your Screen.</h2>
+        <p class="lead">In this step, it's going to be presented to you a set of images. You should tune you screen definitions, in order to answer the questions, keeping them until the end of this study.</p>
 
         <input type="hidden" name="resolutionField" id="resolutionField" value="">
         <input type="hidden" name="availableResolutionField" id="availableResolutionField" value="">
@@ -73,51 +71,27 @@
         <div class="col-md-10 col-md-offset-1">
           <h2 class="featurette-heading" id="instructions">Instructions.</h2>
           <p class="lead">Please, follow the steps below indicated and answer the questions.</p>
-          <p style="font-size:20px;"> <b>(Step 1) - </b> If possible, adjust your room lights for a normal vision condition.</p>
+          <p style="font-size:20px;"> <b>(Step 1) - </b> If possible, adjust your room lights for a comfortable usage of your device.</p>
           <p style="font-size:20px;"> <b>(Step 2) - </b> Avoid reflections on your screen, by diverting the screen from direct sources of light. This step is important, since light reflections can affect visualization of images.</p>
           <p style="font-size:20px;"> <b>(Step 3) - </b> To adjust the <b>Black Point</b> of your screen, define the <u>Contrast</u> and <u>Brightness</u> of your screen to their maximum..</p>
           <p style="font-size:20px;"> <b>(Step 4) - </b> After Step 3, gradually reduce <u>Brightness</u> value of your screen, in order to correctly distinguish the squares of each image below.</p>
           <p style="font-size:20px;"> <b>(Step 5) - </b> If possible, define the <u>Color Temperature</u> of your screen to 6500 Kelvin Degrees.</p>
-          <p style="font-size:20px;"> <b>(Step 6) - </b> You can start answering the following questions.</p>
+          <p style="font-size:20px;"> <b>(Step 6) - </b> You are now ready to answer the following questions!</p>
         </div>
 
         <!-- BLACK SQUARES -->
         <div class="col-md-10 col-md-offset-1">
           <h2 class="featurette-heading" id="questionNumber1">Question 1 of 2.</h2>
-          <p class="lead" id="questionField1">In the following image, there are presented different squares with different <b>shades of black</b>.
-             Write in the according textboxes below the image, which words you can read below each square, or <b>NONE</b> if you cannot detect any word related to that square.</p>
+          <p class="lead" id="questionField1">In the following image, there are presented different squares with different <b>shades of black</b>, numbered in red. Which is the last perceivable square for you? Write in the according textboxes below the image, the word and the correspondent
+            number of that square, or <b>NONE</b> if you cannot detect any word or square.</p>
           <img src="../../images/Calibration_blackLevel.jpg" alt="Black Squares Test" id="blackSquares">
           <div class="form-group row" style="padding: 15px;">
-            <label for="inputBlackSquares" class="col-md-2 col-sm-offset-1" style="padding: 15px; font-size:20px; ">Words:</label>
+            <label for="inputBlackSquares" class="col-md-4 col-sm-offset-1" style="padding: 15px; font-size:20px; ">Last Perceivable Square:</label>
             <div class="col-md-3" id="inputBlackSquares" style="padding: 15px;">
-              <input type="text" class="form-control" name="inputBlackSquare1" placeholder="Square #1" style="inherit">
+              <input type="number" class="form-control" name="inputBlackSquare1" placeholder="Number of the Square" style="inherit" min="1" max="10" step="1" required>
             </div>
             <div class="col-md-3" style="padding: 15px;">
-              <input type="text" class="form-control" name="inputBlackSquare2" placeholder="Square #2" style="inherit">
-            </div>
-            <div class="col-md-3" style="padding: 15px;">
-              <input type="text" class="form-control" name="inputBlackSquare3" placeholder="Square #3" style="inherit">
-            </div>
-            <div class="col-md-3" style="padding: 15px;">
-              <input type="text" class="form-control" name="inputBlackSquare4" placeholder="Square #4" style="inherit">
-            </div>
-            <div class="col-md-3" style="padding: 15px;">
-              <input type="text" class="form-control" name="inputBlackSquare5" placeholder="Square #5" style="inherit">
-            </div>
-            <div class="col-md-3" style="padding: 15px;">
-              <input type="text" class="form-control" name="inputBlackSquare6" placeholder="Square #6" style="inherit">
-            </div>
-            <div class="col-md-3" style="padding: 15px;">
-              <input type="text" class="form-control" name="inputBlackSquare7" placeholder="Square #7" style="inherit">
-            </div>
-            <div class="col-md-3" style="padding: 15px;">
-              <input type="text" class="form-control" name="inputBlackSquare8" placeholder="Square #8" style="inherit">
-            </div>
-            <div class="col-md-3" style="padding: 15px;">
-              <input type="text" class="form-control" name="inputBlackSquare9" placeholder="Square #9" style="inherit">
-            </div>
-            <div class="col-md-3" style="padding: 15px;">
-              <input type="text" class="form-control" name="inputBlackSquare10" placeholder="Square #10" style="inherit">
+              <input type="text" class="form-control" name="inputBlackSquare2" placeholder="Correspondent Word" style="inherit" required>
             </div>
           </div>
         </div>
@@ -126,40 +100,16 @@
         <!-- WHITE SQUARES -->
         <div class="col-md-10 col-md-offset-1">
           <h2 class="featurette-heading" id="questionNumber2">Question 2 of 2.</h2>
-          <p class="lead" id="questionField2">In the following image, there are presented different squares with different <b>shades of white</b>. 
-            Write in the according textboxes below the image, which words you can read below each square, or <b>NONE</b> if you cannot detect any word related to that square.</p>
+          <p class="lead" id="questionField2">In the following image, there are presented different squares with different <b>shades of white</b>, numbered in red. Which is the last perceivable square for you? Write in the according textboxes below the image, the word and the correspondent
+            number of that square, or <b>NONE</b> if you cannot detect any word or square.</p>
           <img src="../../images/Calibration_whiteLevel.jpg" alt="White Squares Test" id="whiteSquares">
           <div class="form-group row" style="padding: 15px;">
-            <label for="inputWhiteSquares" class="col-md-2 col-sm-offset-1" style="padding: 15px; font-size:20px; ">Words:</label>
+            <label for="inputWhiteSquares" class="col-md-4 col-sm-offset-1" style="padding: 15px; font-size:20px; ">Last Perceivable Square:</label>
             <div class="col-md-3" id="inputWhiteSquares" style="padding: 15px;">
-              <input type="text" class="form-control" name="inputWhiteSquare1" placeholder="Square #1" style="inherit">
+              <input type="number" class="form-control" name="inputWhiteSquare1" placeholder="Number of the Square" style="inherit" min="1" max="10" step="1" required>
             </div>
             <div class="col-md-3" style="padding: 15px;">
-              <input type="text" class="form-control" name="inputWhiteSquare2" placeholder="Square #2" style="inherit">
-            </div>
-            <div class="col-md-3" style="padding: 15px;">
-              <input type="text" class="form-control" name="inputWhiteSquare3" placeholder="Square #3" style="inherit">
-            </div>
-            <div class="col-md-3" style="padding: 15px;">
-              <input type="text" class="form-control" name="inputWhiteSquare4" placeholder="Square #4" style="inherit">
-            </div>
-            <div class="col-md-3" style="padding: 15px;">
-              <input type="text" class="form-control" name="inputWhiteSquare5" placeholder="Square #5" style="inherit">
-            </div>
-            <div class="col-md-3" style="padding: 15px;">
-              <input type="text" class="form-control" name="inputWhiteSquare6" placeholder="Square #6" style="inherit">
-            </div>
-            <div class="col-md-3" style="padding: 15px;">
-              <input type="text" class="form-control" name="inputWhiteSquare7" placeholder="Square #7" style="inherit">
-            </div>
-            <div class="col-md-3" style="padding: 15px;">
-              <input type="text" class="form-control" name="inputWhiteSquare8" placeholder="Square #8" style="inherit">
-            </div>
-            <div class="col-md-3" style="padding: 15px;">
-              <input type="text" class="form-control" name="inputWhiteSquare9" placeholder="Square #9" style="inherit">
-            </div>
-            <div class="col-md-3" style="padding: 15px;">
-              <input type="text" class="form-control" name="inputWhiteSquare10" placeholder="Square #10" style="inherit">
+              <input type="text" class="form-control" name="inputWhiteSquare2" placeholder="Correspondent Word" style="inherit" required>
             </div>
           </div>
         </div>
@@ -168,7 +118,9 @@
         <!-- BOTÃO CONFIRMAR -->
         <div class="form-group row">
           <div class="col-md-10 col-md-offset-5">
-            <button type="submit" id="calibration-submit" class="btn btn-success btn-lg">Confirm</button>
+            <button type="submit" id="calibration-submit" class="btn btn-success btn-lg">
+              <i class="fa fa-check"></i> Confirm
+            </button>
           </div>
         </div>
         <!-- ./BOTÃO CONFIRMAR -->
@@ -194,13 +146,13 @@
   <!-- /.container -->
 
   <script>
-  $.ajaxSetup({
-    // Disable caching of AJAX responses Used when debugging
-    cache: false
-  });
-  $.getScript("https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js");
-  $.getScript("../../bootstrap/js/bootstrap.min.js");
-  $.getScript("../../js/calibration.js");
+    $.ajaxSetup({
+      // Disable caching of AJAX responses Used when debugging
+      cache: false
+    });
+    $.getScript("https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js");
+    $.getScript("../../bootstrap/js/bootstrap.min.js");
+    $.getScript("../../js/calibration.js");
   </script>
 
 </body>

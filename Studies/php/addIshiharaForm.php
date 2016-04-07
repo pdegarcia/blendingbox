@@ -10,7 +10,7 @@
 
   $connection = pg_connect("host=$host port=$port user=$user password=$password dbname=$dbname") or die(pg_last_error());
 
-  echo("<p>Connected to Postgres on $host as user $user on database $dbname.</p>");
+  //echo("<p>Connected to Postgres on $host as user $user on database $dbname.</p>");
 
   $inputPlate1 = pg_escape_string($_POST['inputPlateOne']);
   $inputPlate2 = pg_escape_string($_POST['inputPlateTwo']);
@@ -19,21 +19,22 @@
   $inputPlate5 = pg_escape_string($_POST['inputPlateFive']);
   $inputPlate6 = pg_escape_string($_POST['inputPlateSix']);
 
-
   $query = "insert into ishihara values
   ('" . $_SESSION["id"] . "',
    '" . $inputPlate1 . "', '" . $inputPlate2 . "', '" . $inputPlate3 . "',
    '" . $inputPlate4 . "', '" . $inputPlate5 . "', '" . $inputPlate6 . "')";
 
-   $result = pg_query($query) or die('ERROR with query: ' . pg_last_error());
-
-   $result = pg_free_result($result) or die('ERROR: ' . pg_last_error());
-
-   echo("<p>Query result freed.</p>");
+   if($_SESSION["addedIshihara"] === FALSE) {
+     $result = pg_query($query) or die('ERROR with query: ' . pg_last_error());
+     $result = pg_free_result($result) or die('ERROR: ' . pg_last_error());
+     //echo("<p>Query result freed.</p>");
+   }
 
    pg_close($connection);
 
-   echo("<p>Connection closed.</p>");
+   $_SESSION["addedIshihara"] = TRUE;
+
+   //echo("<p>Connection closed.</p>");
 
    header('Location:../html/core.html');
 ?>

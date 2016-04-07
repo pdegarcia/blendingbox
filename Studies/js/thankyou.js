@@ -42,6 +42,7 @@ $(function() {
       name: $("input#name").val(),
       email: $("input#email").val(),
       message: $("textarea#message").val(),
+      results: $("input#results").val()
     };
     $.ajax({
       type: "POST",
@@ -53,7 +54,14 @@ $(function() {
           .append("<p>" + quote2 + "</p>")
           .hide()
           .fadeIn(1500, function() {
-            $('#message').append("<img id='checkmark' src='../../images/check.png' />");
+            switch (document.documentElement.lang) {
+              case 'pt':
+                $('#message').append("<img id='checkmark' src='../images/check.png' />");
+                break;
+              case 'en':
+                $('#message').append("<img id='checkmark' src='../../images/check.png' />");
+                break;
+            }
           });
       },
       error: function(jqXHR, textStatus, errorThrown) {

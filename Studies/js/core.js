@@ -9,6 +9,7 @@ $(function() {
     console.log(document.getElementById('stars').value);
     var values = {
       typeOfQuestion: document.getElementById('typeOfQuestion').value,
+      idQuestion: document.getElementById('numberOfQuestion').value,
       firstColor: document.getElementById('firstColor').value,
       secColor: document.getElementById('secColor').value,
       thirdColor: document.getElementById('thirdColor').value,
@@ -183,6 +184,7 @@ function populateMixtureArea() {
   }
 
   document.getElementById('typeOfQuestion').value = currentQuestionObject.typeOf;
+  document.getElementById('numberOfQuestion').value = currentQuestionObject.idQuestion;
   d3.select(".obj_color_shape" + (selectdiv)).select("circle").attr("fill", currentQuestionObject.colorObjective);
   d3.select(".first_color_shape" + (selectdiv)).select("circle").attr("fill", currentQuestionObject.firstColor);
   d3.select(".second_color_shape" + (selectdiv)).select("circle").attr("fill", currentQuestionObject.secondColor);

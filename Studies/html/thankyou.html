@@ -52,14 +52,15 @@
     <!-- /.container -->
   </nav>
 
-  <header class="header-image">
-    <div class="headline">
-      <div class="container">
-        <h1>Will It Blend?</h1>
-        <!-- <h2>Obrigado!</h2> -->
+  <div class="container">
+    <header class="header-image">
+      <div class="headline">
+        <div class="container">
+          <h2>Obrigado!</h2>
+        </div>
       </div>
-    </div>
-  </header>
+    </header>
+  </div>
 
   <!-- Page Content -->
   <div class="container">
@@ -67,7 +68,7 @@
     <hr class="featurette-divider">
 
     <div class="featurette" id="text_thank_share">
-      <h2 class="featurette-heading">Obrigado! O seu contributo foi muito importante.</h2>
+      <h2 class="featurette-heading">O seu contributo foi muito importante.</h2>
       <p class="lead" style="text-align: justify;">
         Passo a passo, vamos crescer o número de respostas e alcançar resultados sólidos. Partilhe com as suas ligações esta página para que possam também elas participar! Obrigado.
       </p>
@@ -98,7 +99,7 @@
     </div>
     <div class="featurette" id="text_thank_contact">
       <p class="lead" style="text-align: justify;">
-        Se quiser, pode entrar em contacto connosco e deixar a sua sugestão!
+        Se quiser, pode entrar em contacto connosco e deixar a sua sugestão! Podemos também dar-lhe a conhecer os resultados deste e futuros estudos: basta assinalar essa opção abaixo no formulário.
       </p>
 
       <div class="featurette" id="contact">
@@ -121,10 +122,15 @@
               </div>
               <div class="form-group">
                 <label for="message" class="h4 ">Mensagem</label>
-                <textarea name="message" id="message" class="form-control" rows="5" placeholder="Escrever Mensagem..." required></textarea>
+                <textarea name="message" id="message" class="form-control" rows="5" placeholder="Escrever Mensagem..."></textarea>
                 <label class="error" for="message" id="message_error">A mensagem é obrigatória!</label>
               </div>
-              <button type="submit" id="form-submit" class="btn btn-success btn-lg pull-right">Enviar</button>
+              <label>
+                <input type="checkbox" name="results" id="results"> Quero saber os resultados!
+              </label>
+              <button type="submit" id="form-submit" class="btn btn-success btn-lg pull-right">
+                <i class="fa fa-paper-plane" style="margin-right: 5px;"></i>Enviar
+              </button>
             </form>
           </div>
         </div>
@@ -133,7 +139,7 @@
       <hr class="featurette-divider">
 
       <button id="home" class="btn btn-default btn-cta btn-lg">
-        <i class="fa fa-chevron-circle-right"></i> Voltar à Página inicial
+        <i class="fa fa-home"></i> Voltar à Página inicial
       </button>
 
 

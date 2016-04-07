@@ -1,7 +1,0 @@
-insert into contacts values
-  ('',
-   'Paulo Garcia', 'pduartegarcia@hotmail.com', 'lkandjsbfajbfasjskgnksdjgans
-
-sdfasgdgasgd
-
-Mensagem de teste aqui!')

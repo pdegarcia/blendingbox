@@ -12,6 +12,7 @@
   <link href="../../bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="../../css/entry.css" rel="stylesheet">
   <link href="../../css/profiling.css" rel="stylesheet">
+  <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
   <!-- Includes for bootstrap and jquery script -->
   <script src="../../js-library/jquery-2.1.4.min.js"></script>
@@ -48,14 +49,15 @@
     <!-- /.container -->
   </nav>
 
-  <header class="header-image">
-    <div class="headline">
-      <div class="container">
-        <h1>Will It Blend?</h1>
-        <h2>Step One - User Profiling.</h2>
+  <div class="container">
+    <header class="header-image">
+      <div class="headline">
+        <div class="container">
+          <h2>Step One - User Profiling.</h2>
+        </div>
       </div>
-    </div>
-  </header>
+    </header>
+  </div>
 
   <!-- Page Content -->
   <div class="container">
@@ -66,10 +68,9 @@
       <img class="featurette-image img-circle img-responsive pull-right" src="../../images/checklist.png">
       <h2 class="featurette-heading">Motivation.</h2>
       <p class="lead">By conducting this first study, we intend to:</p>
-      <p class="lead">- Realize which color mixtures are more easily perceived by the user.</p>
+      <p class="lead">- Realize which color mixtures are more easily perceived by the human visual system.</p>
       <p class="lead">- Realize if the mixture of colors is an appropriate channel to convey information.</p>
-      <p class="lead">- Conclude if the user is capable of, not only building a mental color
-        mixture model, but also deconstructing mixtures into their basic components.</p>
+      <p class="lead">- Conclude if a person is capable of, not only building a mental color mixture model, but also deconstructing mixtures into their basic components.</p>
     </div>
 
     <hr class="featurette-divider">
@@ -78,14 +79,14 @@
     <div class="featurette" id="profiling">
       <img class="featurette-image img-circle img-responsive pull-right" src="../../images/user.png">
       <h2 class="featurette-heading">Quick Questions.</h2>
-      <p class="lead">Please, answer the following answers accordingly.</p>
+      <p class="lead">This study is anonymous and should take you up to 7 minutes. Please, answer the following answers accordingly.</p>
       <div class="col-md-14">
-        <form id="profilingForm" action="../../php/addProfilingFormEN.php" method="post" accept-charset="UTF-8" autocomplete="off">
+        <form id="profilingForm" data-toggle="validator" action="../../php/addProfilingFormEN.php" method="post" accept-charset="UTF-8" autocomplete="off">
           <!-- AGE -->
           <div class="form-group row">
             <label for="inputAge" class="col-sm-2 ">1. Age:</label>
             <div class="col-sm-3">
-              <input type="text" class="form-control" name="inputAge" placeholder="Age">
+              <input type="integer" class="form-control" name="inputAge" placeholder="Age" min="1" max="100" step="1" required>
             </div>
           </div>
           <!-- ./AGE -->
@@ -96,12 +97,12 @@
             <div class="col-sm-3">
               <div class="radio">
                 <label>
-                  <input type="radio" name="gridRadios" id="gridRadios1" value="feminino" checked> Female
+                  <input type="radio" name="gridRadios" id="gridRadios1" value="feminino" required> Female
                 </label>
               </div>
               <div class="radio">
                 <label>
-                  <input type="radio" name="gridRadios" id="gridRadios2" value="masculino"> Male
+                  <input type="radio" name="gridRadios" id="gridRadios2" value="masculino" required> Male
                 </label>
               </div>
             </div>
@@ -113,14 +114,14 @@
             <label for="academic" class="col-sm-2 form-control-label">3. Academic Degree:</label>
             <div class="col-sm-3 selectContainer">
               <div class="input-group">
-                <select name="academic" class="form-control">
+                <select name="academic" class="form-control" required>
                   <option value="">Choose One...</option>
-                  <option>No Academic Degree</option>
                   <option>College</option>
                   <option>High-School</option>
                   <option>Bachelor Degree</option>
                   <option>Master Degree</option>
                   <option>Doctoral Degree</option>
+                  <option>No Academic Degree</option>
                 </select>
               </div>
             </div>
@@ -132,7 +133,7 @@
             <label for="nacional" class="col-sm-2 form-control-label">4. Nationality:</label>
             <div class="col-md-3 selectContainer">
               <div class="input-group">
-                <select name="nacional" class="form-control selectpicker">
+                <select name="nacional" class="form-control selectpicker" required>
                   <option>Choose One...</option>
                   <option>Afghan</option>
                   <option>Albanian</option>
@@ -326,6 +327,7 @@
                   <option>Yemenite</option>
                   <option>Zambian</option>
                   <option>Zimbabwean</option>
+                  <option>-- Unknown Nationality --</option>
                 </select>
               </div>
             </div>
@@ -337,7 +339,7 @@
             <label for="countryResidence" class="col-sm-2 form-control-label">5. Country of Residence:</label>
             <div class="col-md-3 selectContainer">
               <div class="input-group">
-                <select name="countryResidence" class="form-control selectpicker">
+                <select name="countryResidence" class="form-control selectpicker" required>
                   <option>Choose One...</option>
                   <option>Afghanistan</option>
                   <option>Åland Islands</option>
@@ -588,7 +590,7 @@
                   <option>Yemen</option>
                   <option>Zambia</option>
                   <option>Zimbabwe</option>
-                  <option>Unknown Country</option>
+                  <option>-- Unknown Country --</option>
                 </select>
               </div>
             </div>
@@ -598,7 +600,9 @@
           <!-- CONFIRM -->
           <div class="form-group row">
             <div class="col-sm-7">
-              <button type="submit" id="profiling-submit" class="btn btn-success btn-lg pull-right">Confirm</button>
+              <button type="submit" id="profiling-submit" class="btn btn-success btn-lg pull-right">
+                <i class="fa fa-check"></i>Confirm
+              </button>
             </div>
           </div>
           <!-- ./CONFIRM -->

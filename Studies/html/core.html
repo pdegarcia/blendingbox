@@ -53,14 +53,15 @@
     <!-- /.container -->
   </nav>
 
-  <header class="header-image">
-    <div class="headline">
-      <div class="container">
-        <h1>Will It Blend?</h1>
-        <h2>Passo Quatro - Parte Principal do Estudo.</h2>
+  <div class="container">
+    <header class="header-image">
+      <div class="headline">
+        <div class="container">
+          <h2>Passo Quatro - Parte Principal do Estudo.</h2>
+        </div>
       </div>
-    </div>
-  </header>
+    </header>
+  </div>
 
   <div class="container">
 
@@ -122,6 +123,7 @@
 
           <!-- VALUES -->
           <input type="hidden" name="typeOfQuestion" id="typeOfQuestion" value="">
+          <input type="hidden" name="numberOfQuestion" id="numberOfQuestion" value="">
           <input type="hidden" name="firstColor" id="firstColor" value="">
           <input type="hidden" name="secColor" id="secColor" value="">
           <input type="hidden" name="thirdColor" id="thirdColor" value="">
@@ -133,7 +135,7 @@
           <!-- BUTTONS -->
           <div id="buttons_area" class="col-md-6 col-md-offset-4" style="padding: 10px;">
             <input type="button" class="btn btn-lg btn-default" onclick="resetMixture()" value="Reiniciar Mistura">
-            <a class="btn btn-default btn-lg" role="button" onclick="submitColors()">Confirmar Mistura</a>
+            <a class="btn btn-default btn-lg" role="button" onclick="submitColors()"><i class="fa fa-check"></i>Confirmar Mistura</a>
           </div>
           <!-- ./ BUTTONS -->
 
@@ -146,7 +148,7 @@
               <input type="number" name="stars" id="stars" class="rating" value="0" data-size="sm" data-step="1" title="">
             </div>
             <div class="col-md-1">
-              <input type="image" id="rating-button" name="rating-button" src="../images/check_green.jpg" alt="Submit" style="visibility: hidden;" title="Confirmar classificação.">
+              <input type="image" id="rating-button" name="rating-button" src="../images/check_green.jpg" alt="Submit" style="visibility: hidden;" title="Confirmar classificação." required>
             </div>
           </div>
           <!-- ./RATING -->

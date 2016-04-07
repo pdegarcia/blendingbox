@@ -1,16 +1,6 @@
-.headline {
-  height: 20%;
-  display: block;
-  width: 100%;
-  text-align: center;
-}
-
-.headline h1 {
-    font-size: 50px;
-}
-
 .headline h2 {
-    font-size: 30px;
+  font-size: 35px;
+  margin-top: 375px;
 }
 
 #questionNumber1 {
@@ -23,13 +13,12 @@
 }
 
 #blackSquares {
-  margin-left: 10%;
-  width: 80%;
+  width: 100%;
 }
 
 #whiteSquares {
-  margin-left: 10%;
-  width: 80%;
+
+  width: 100%;
 }
 
 #questionNumber2 {
