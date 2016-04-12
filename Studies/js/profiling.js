@@ -19,9 +19,3 @@ function verifyAllFields() {
         return false;
     }
 }
-
-$('#age').change(updateFormEnabled);
-$('#gridRadios').change(updateFormEnabled);
-$('#academic').change(updateFormEnabled);
-$('#nacional').change(updateFormEnabled);
-$('#countryResidence').change(updateFormEnabled);

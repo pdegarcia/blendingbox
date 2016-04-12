@@ -20,10 +20,3 @@ function verifyAllFields() {
         return false;
     }
 }
-
-$('#inputPlateOne').change(updateFormEnabled);
-$('#inputPlateTwo').change(updateFormEnabled);
-$('#inputPlateThree').change(updateFormEnabled);
-$('#inputPlateFour').change(updateFormEnabled);
-$('#inputPlateFive').change(updateFormEnabled);
-$('#inputPlateSix').change(updateFormEnabled);

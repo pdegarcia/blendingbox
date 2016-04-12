@@ -30,8 +30,3 @@ function verifyAllFields() {
         return false;
     }
 }
-
-$('#inputBlackSquare1').change(updateFormEnabled);
-$('#inputBlackSquare2').change(updateFormEnabled);
-$('#inputWhiteSquare1').change(updateFormEnabled);
-$('#inputWhiteSquare2').change(updateFormEnabled);
