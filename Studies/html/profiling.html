@@ -67,10 +67,12 @@
     <div class="featurette" id="aboutStudy">
       <img class="featurette-image img-circle img-responsive pull-right" src="../images/checklist.png">
       <h2 class="featurette-heading">Motivação.</h2>
-      <p class="lead">Com este estudo, pretendemos:</p>
-      <p class="lead">- Entender que misturas de cores são facilmente percebidas pelo sistema visual humano.</p>
-      <p class="lead">- Perceber se a mistura de cores é um bom canal para mostrar informação.</p>
-      <p class="lead">- Concluir se uma pessoa consegue tanto construir mentalmente misturas de cor, como desconstruir misturas nos seus componentes básicos.</p>
+      <p class="lead">Com este estudo, a nossa equipa pretende:</p>
+      <p class="lead">- Tirar conclusões sobre se existe alguma hipótese da envolvência cultural de uma pessoa, influenciar a forma como a mesma percebe a cor.</p>
+      <p class="lead">- Saber se as pessoas conseguem, de uma mais ou menos clara, perceber várias misturas de cores.</p>
+      <p class="lead">- Perceber se ao utilizar cor, se consegue transmitir informação claramente e se é fácil extrair o significado das cores. Isto pode ser bastante útil
+        para visualização de gráficos ou mapas.</p>
+      <p class="lead">- Concluir se é fácil organizar mentalmente as misturas de cores apresentadas, bem como perceber as cores que estão na origem de cada mistura.</p>
     </div>
 
     <hr class="featurette-divider">
@@ -86,7 +88,7 @@
           <div class="form-group row">
             <label for="inputAge" class="col-sm-2 ">1. Idade:</label>
             <div class="col-sm-3">
-              <input type="number" class="form-control" name="inputAge" placeholder="Idade" min="1" max="100" step="1" required>
+              <input type="number" class="form-control" name="inputAge" placeholder="Idade" min="1" max="100" step="1" required onchange="updateFormEnabled()">
             </div>
           </div>
           <!-- ./IDADE -->
@@ -97,12 +99,12 @@
             <div class="col-sm-3">
               <div class="radio">
                 <label>
-                  <input type="radio" name="gridRadios" id="gridRadios1" value="feminino" required> Feminino
+                  <input type="radio" name="gridRadios" id="gridRadios1" value="feminino" required onchange="updateFormEnabled()"> Feminino
                 </label>
               </div>
               <div class="radio">
                 <label>
-                  <input type="radio" name="gridRadios" id="gridRadios2" value="masculino" required> Masculino
+                  <input type="radio" name="gridRadios" id="gridRadios2" value="masculino" required onchange="updateFormEnabled()"> Masculino
                 </label>
               </div>
             </div>
@@ -114,7 +116,7 @@
             <label for="academic" class="col-sm-2 form-control-label">3. Grau Académico:</label>
             <div class="col-sm-3 selectContainer">
               <div class="input-group">
-                <select name="academic" class="form-control selectpicker" required>
+                <select name="academic" class="form-control selectpicker" required onchange="updateFormEnabled()">
                   <option value="">Escolha um Grau</option>
                   <option>Ensino Primário</option>
                   <option>Ensino Secundário</option>
@@ -133,7 +135,7 @@
             <label for="nacional" class="col-sm-2 form-control-label">4. Nacionalidade:</label>
             <div class="col-md-3 selectContainer">
               <div class="input-group">
-                <select name="nacional" class="form-control selectpicker" required>
+                <select name="nacional" class="form-control selectpicker" required onchange="updateFormEnabled()">
                   <option value="">Escolha um País de Nacionalidade</option>
                   <option>Albânia</option>
                   <option>Alemanha</option>
@@ -406,7 +408,7 @@
             <label for="countryResidence" class="col-sm-2 form-control-label">5. País de Residência:</label>
             <div class="col-md-3 selectContainer">
               <div class="input-group">
-                <select name="countryResidence" class="form-control selectpicker" required>
+                <select name="countryResidence" class="form-control selectpicker" required onchange="updateFormEnabled()">
                   <option value="">Escolha uma País de Residência</option>
                   <option>Albânia</option>
                   <option>Alemanha</option>

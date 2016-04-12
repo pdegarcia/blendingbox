@@ -68,8 +68,10 @@
       <img class="featurette-image img-circle img-responsive pull-right" src="../../images/checklist.png">
       <h2 class="featurette-heading">Motivation.</h2>
       <p class="lead">By conducting this first study, we intend to:</p>
-      <p class="lead">- Realize which color mixtures are more easily perceived by the human visual system.</p>
-      <p class="lead">- Realize if the mixture of colors is an appropriate channel to convey information.</p>
+      <p class="lead">- Conclude if there is any chance that cultural behaviours influence the user's color perception.</p>
+      <p class="lead">- Realize which color mixtures are more easily perceived by humans.</p>
+      <p class="lead">- Understand if, by using color, it is possible to clearly and easily convey information. This can be particularly interesting and useful
+        when visualizing graphs or maps.</p>
       <p class="lead">- Conclude if a person is capable of, not only building a mental color mixture model, but also deconstructing mixtures into their basic components.</p>
     </div>
 
@@ -86,7 +88,7 @@
           <div class="form-group row">
             <label for="inputAge" class="col-sm-2 ">1. Age:</label>
             <div class="col-sm-3">
-              <input type="integer" class="form-control" name="inputAge" placeholder="Age" min="1" max="100" step="1" required>
+              <input type="integer" class="form-control" id="inputAge" name="inputAge" placeholder="Age" min="1" max="100" step="1" required onchange="updateFormEnabled()">
             </div>
           </div>
           <!-- ./AGE -->
@@ -97,12 +99,12 @@
             <div class="col-sm-3">
               <div class="radio">
                 <label>
-                  <input type="radio" name="gridRadios" id="gridRadios1" value="feminino" required> Female
+                  <input type="radio" name="gridRadios" id="gridRadios1" value="feminino" required onchange="updateFormEnabled()"> Female
                 </label>
               </div>
               <div class="radio">
                 <label>
-                  <input type="radio" name="gridRadios" id="gridRadios2" value="masculino" required> Male
+                  <input type="radio" name="gridRadios" id="gridRadios2" value="masculino" required onchange="updateFormEnabled()"> Male
                 </label>
               </div>
             </div>
@@ -114,7 +116,7 @@
             <label for="academic" class="col-sm-2 form-control-label">3. Academic Degree:</label>
             <div class="col-sm-3 selectContainer">
               <div class="input-group">
-                <select name="academic" class="form-control" required>
+                <select name="academic" id="academic" class="form-control" required onchange="updateFormEnabled()">
                   <option value="">Choose One...</option>
                   <option>College</option>
                   <option>High-School</option>
@@ -133,8 +135,8 @@
             <label for="nacional" class="col-sm-2 form-control-label">4. Nationality:</label>
             <div class="col-md-3 selectContainer">
               <div class="input-group">
-                <select name="nacional" class="form-control selectpicker" required>
-                  <option>Choose One...</option>
+                <select name="nacional" id="nacional" class="form-control selectpicker" required onchange="updateFormEnabled()">
+                  <option value="">Choose One...</option>
                   <option>Afghan</option>
                   <option>Albanian</option>
                   <option>Algerian</option>
@@ -339,8 +341,8 @@
             <label for="countryResidence" class="col-sm-2 form-control-label">5. Country of Residence:</label>
             <div class="col-md-3 selectContainer">
               <div class="input-group">
-                <select name="countryResidence" class="form-control selectpicker" required>
-                  <option>Choose One...</option>
+                <select name="countryResidence" id="countryResidence" class="form-control selectpicker" required onchange="updateFormEnabled()">
+                  <option value="">Choose One...</option>
                   <option>Afghanistan</option>
                   <option>Åland Islands</option>
                   <option>Albania</option>
@@ -600,7 +602,7 @@
           <!-- CONFIRM -->
           <div class="form-group row">
             <div class="col-sm-7">
-              <button type="submit" id="profiling-submit" class="btn btn-success btn-lg pull-right">
+              <button type="submit" id="profiling-submit" name="profiling-submit" class="btn btn-success btn-lg pull-right">
                 <i class="fa fa-check"></i>Confirm
               </button>
             </div>

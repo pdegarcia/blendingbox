@@ -9,3 +9,29 @@ function start() {
 }
 
 window.onload = start;
+
+$('#calibration-submit').prop('disabled', true);
+
+function updateFormEnabled() {
+    if (verifyAllFields()) {
+        $('#calibration-submit').prop('disabled', false);
+    } else {
+        $('#calibration-submit').prop('disabled', true);
+    }
+}
+
+function verifyAllFields() {
+    if ($('#inputBlackSquare1').val() !== '' &&
+        $('#inputBlackSquare2').val() !== '' &&
+        $('#inputWhiteSquare1').val() !== '' &&
+        $('#inputWhiteSquare2').val() !== '') {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+$('#inputBlackSquare1').change(updateFormEnabled);
+$('#inputBlackSquare2').change(updateFormEnabled);
+$('#inputWhiteSquare1').change(updateFormEnabled);
+$('#inputWhiteSquare2').change(updateFormEnabled);

@@ -90,10 +90,10 @@
           <div class="form-group row" style="padding: 15px;">
             <label for="inputBlackSquares" class="col-md-4 col-sm-offset-1" style="padding: 15px; font-size:20px; ">Último Quadrado Perceptível:</label>
             <div class="col-md-3" id="inputBlackSquares" style="padding: 15px;">
-              <input type="number" class="form-control" name="inputBlackSquare1" placeholder="Número do Quadrado" style="inherit" min="1" max="10" step="1" required>
+              <input type="number" class="form-control" name="inputBlackSquare1" id="inputBlackSquare1" placeholder="Número do Quadrado" style="inherit" min="1" max="10" step="1" required onchange="updateFormEnabled()">
             </div>
             <div class="col-md-3" style="padding: 15px;">
-              <input type="text" class="form-control" name="inputBlackSquare2" placeholder="Palavra Correspondente" style="inherit" required>
+              <input type="text" class="form-control" name="inputBlackSquare2" id="inputBlackSquare2" placeholder="Palavra Correspondente" style="inherit" required onchange="updateFormEnabled()">
             </div>
           </div>
         </div>
@@ -108,10 +108,10 @@
           <div class="form-group row" style="padding: 15px;">
             <label for="inputWhiteSquares" class="col-md-4 col-sm-offset-1" style="padding: 15px; font-size:20px; ">Último Quadrado Perceptível:</label>
             <div class="col-md-3" id="inputWhiteSquares" style="padding: 15px;">
-              <input type="number" class="form-control" name="inputWhiteSquare1" placeholder="Número do Quadrado" style="inherit" min="1" max="10" step="1" required>
+              <input type="number" class="form-control" name="inputWhiteSquare1" id="inputWhiteSquare1" placeholder="Número do Quadrado" style="inherit" min="1" max="10" step="1" required onchange="updateFormEnabled()">
             </div>
             <div class="col-md-3" style="padding: 15px;">
-              <input type="text" class="form-control" name="inputWhiteSquare2" placeholder="Palavra Correspondente" style="inherit" required>
+              <input type="text" class="form-control" name="inputWhiteSquare2" id="inputWhiteSquare2" placeholder="Palavra Correspondente" style="inherit" required onchange="updateFormEnabled()">
             </div>
           </div>
         </div>
