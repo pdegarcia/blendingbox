@@ -6,7 +6,6 @@ $('.rating').on('rating.change', function(event, value, caption) {
 
 $(function() {
   $('#rating-button').click(function() {
-    console.log(document.getElementById('stars').value);
     var values = {
       typeOfQuestion: document.getElementById('typeOfQuestion').value,
       idQuestion: document.getElementById('numberOfQuestion').value,
@@ -31,9 +30,14 @@ $(function() {
     return false;
   });
   $('#rating-button').click(function() {
+    cleanStars();
     updateScreen();
   });
 });
+
+function cleanStars() {
+  $('.filled-stars').css("width", "0%");
+}
 
 function updateScreen() {
   //STARS RESET
