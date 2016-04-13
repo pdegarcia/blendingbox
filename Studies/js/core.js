@@ -21,8 +21,7 @@ $(function() {
       type: "POST",
       url: phpURL,
       data: values,
-      success: function(response) {
-      },
+      success: function(response) {},
       error: function(jqXHR, textStatus, errorThrown) {
         console.log(textStatus, errorThrown);
       }
@@ -47,14 +46,18 @@ function updateScreen() {
   selectdiv = new Date().getTime() % 2;
 
   if ((selectdiv === 0) && (type0QuestionSet.length === 0)) { //se 0 empty
-    if(type1QuestionSet.length !== 0) {selectdiv = 1;}
-    else { window.location = pathToFinish;
+    if (type1QuestionSet.length !== 0) {
+      selectdiv = 1;
+    } else {
+      window.location = pathToFinish;
     }
   }
 
   if ((selectdiv === 1) && (type1QuestionSet.length === 0)) { //se 0 empty
-    if(type0QuestionSet.length !== 0) {selectdiv = 0;}
-    else { window.location = pathToFinish;
+    if (type0QuestionSet.length !== 0) {
+      selectdiv = 0;
+    } else {
+      window.location = pathToFinish;
     }
   }
 
@@ -87,6 +90,7 @@ function updateScreen() {
 
 var selectdiv;
 var path;
+var pathColors;
 var pathToFinish;
 var phpURL;
 
@@ -96,6 +100,7 @@ var start = new Date();
 
 var type0QuestionSet = [];
 var type1QuestionSet = [];
+var colorSet = [];
 var numberOfQuestions = 1;
 var currentQuestion = 1;
 var currentQuestionObject;
@@ -124,11 +129,13 @@ switch (document.documentElement.lang) { //handle JSON location.
     path = "../data/questions.json";
     pathToFinish = "../html/thankyou.html";
     phpURL = "../php/addCoreForm.php";
+    pathColors = "../data/populateSlider.json";
     break;
   case 'en':
     path = "../../data/questions.json";
     pathToFinish = "../en/thankyou.html";
     phpURL = "../../php/addCoreForm.php";
+    pathColors = "../../data/populateSlider.json";
     break;
   default:
     path = "../../data/questions.json"; //Langs to come.
@@ -153,6 +160,14 @@ d3.json(path, function(error, json) {
   }
 });
 
+d3.json(pathColors, function(error, json) {
+  if (error) return console.warn(error);
+  else {
+    for (var k in json) {
+      colorSet.push(json[k]);
+    }
+  }
+});
 
 function populateMixtureArea() {
   var index = 0;
@@ -498,8 +513,7 @@ function drawObjectiveSlider() {
   var hSlid = $(".slider_objective1").height();
 
   var scaleX = d3.scale.linear()
-    //.domain([0, 10])
-    .domain([0,360])
+    .domain([0, 47])
     .range([0, wSlid]) //tamanho slider - width
     .clamp(true);
 
@@ -568,15 +582,13 @@ function drawObjectiveSlider() {
     handle.attr("cx", scaleX(value));
 
     if (value === 0) { //Default config = white
-      circle.attr("fill", d3.hsl(360, 1, 1));
+      circle.attr("fill", "#FFFFFF");
       document.getElementById('thirdColor').value = "NONE";
     } else {
-      //console.log(Math.round(value));
-      circle.attr("fill", d3.hsl(value, 1, 0.50));
-      document.getElementById('thirdColor').value = "hsl(" + value + ",1,0.50)";
+      circle.attr("fill", colorSet[Math.round(value)]);
+      document.getElementById('thirdColor').value = colorSet[Math.round(value)];
       incCountClicks();
     }
-
   }
 }
 
