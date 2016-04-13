@@ -56,10 +56,10 @@ $(function() {
           .fadeIn(1500, function() {
             switch (document.documentElement.lang) {
               case 'pt':
-                $('#message').append("<img id='checkmark' src='../images/check.png' />");
+                $('#message').append("<img id='checkmark' src='../images/check.jpg' />");
                 break;
               case 'en':
-                $('#message').append("<img id='checkmark' src='../../images/check.png' />");
+                $('#message').append("<img id='checkmark' src='../../images/check.jpg' />");
                 break;
             }
           });
