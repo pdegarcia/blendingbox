@@ -17,12 +17,24 @@
   <!-- Includes for bootstrap and jquery script -->
   <script src="../js-library/jquery-2.1.4.min.js"></script>
   <script src="../js/handleAlerts.js"></script>
+  <script src="../js/profiling.js"></script>
 
   <!-- Includes for javascripts-->
 
 </head>
 
 <body>
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-76433564-1', 'auto');
+    ga('require', 'profilingPT');
+    ga('send', 'pageview');
+  </script>
+
   <!-- Navigation -->
   <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="container">
@@ -52,7 +64,7 @@
   <div class="container">
     <header class="header-image">
       <div class="headline">
-            <h2>Passo Um - Características Pessoais.</h2>
+        <h2>Passo Um - Características Pessoais.</h2>
       </div>
     </header>
   </div>
@@ -66,8 +78,7 @@
       <p class="lead">Com este estudo, a nossa equipa pretende:</p>
       <p class="lead">- Tirar conclusões sobre se existe alguma hipótese da envolvência cultural de uma pessoa, influenciar a forma como a mesma percebe a cor.</p>
       <p class="lead">- Saber se as pessoas conseguem, de uma mais ou menos clara, perceber várias misturas de cores.</p>
-      <p class="lead">- Perceber se ao utilizar cor, se consegue transmitir informação claramente e se é fácil extrair o significado das cores. Isto pode ser bastante útil
-        para visualização de gráficos ou mapas.</p>
+      <p class="lead">- Perceber se ao utilizar cor, se consegue transmitir informação claramente e se é fácil extrair o significado das cores. Isto pode ser bastante útil para visualização de gráficos ou mapas.</p>
       <p class="lead">- Concluir se é fácil organizar mentalmente as misturas de cores apresentadas, bem como perceber as cores que estão na origem de cada mistura.</p>
     </div>
 
@@ -84,7 +95,7 @@
           <div class="form-group row">
             <label for="inputAge" class="col-sm-2 ">1. Idade:</label>
             <div class="col-sm-3">
-              <input type="number" class="form-control" name="inputAge" placeholder="Idade" min="1" max="100" step="1" required onchange="updateFormEnabled()">
+              <input type="number" class="form-control" name="inputAge" id="inputAge" placeholder="Idade" min="1" max="100" step="1" required onchange="updateFormEnabled()">
             </div>
           </div>
           <!-- ./IDADE -->
@@ -92,17 +103,13 @@
           <!-- GENERO -->
           <div class="form-group row">
             <label class="col-sm-2">2. Género:</label>
-            <div class="col-sm-3">
-              <div class="radio">
-                <label>
-                  <input type="radio" name="gridRadios" id="gridRadios1" value="feminino" required onchange="updateFormEnabled()"> Feminino
-                </label>
-              </div>
-              <div class="radio">
-                <label>
-                  <input type="radio" name="gridRadios" id="gridRadios2" value="masculino" required onchange="updateFormEnabled()"> Masculino
-                </label>
-              </div>
+            <div class="col-sm-6">
+              <label class="radio-inline">
+                <input type="radio" name="gridRadios" id="gridRadios1" value="Female" required onchange="updateFormEnabled()"> Feminino
+              </label>
+              <label class="radio-inline">
+                <input type="radio" name="gridRadios" id="gridRadios2" value="Male" required onchange="updateFormEnabled()"> Masculino
+              </label>
             </div>
           </div>
           <!-- ./GENERO -->
@@ -112,7 +119,7 @@
             <label for="academic" class="col-sm-2 form-control-label">3. Grau Académico:</label>
             <div class="col-sm-3 selectContainer">
               <div class="input-group">
-                <select name="academic" class="form-control selectpicker" required onchange="updateFormEnabled()">
+                <select name="academic" id="academic" class="form-control selectpicker" required onchange="updateFormEnabled()">
                   <option value="">Escolha um Grau</option>
                   <option>Ensino Primário</option>
                   <option>Ensino Secundário</option>
@@ -131,268 +138,9 @@
             <label for="nacional" class="col-sm-2 form-control-label">4. Nacionalidade:</label>
             <div class="col-md-3 selectContainer">
               <div class="input-group">
-                <select name="nacional" class="form-control selectpicker" required onchange="updateFormEnabled()">
+                <select name="nacional" id="nacional" class="form-control selectpicker" required onchange="updateFormEnabled()">
                   <option value="">Escolha um País de Nacionalidade</option>
-                  <option>Albânia</option>
-                  <option>Alemanha</option>
-                  <option>Andorra</option>
-                  <option>Emirados Árabes Unidos</option>
-                  <option>Afeganistão</option>
-                  <option>Angola</option>
-                  <option>Anguilla</option>
-                  <option>Antilhas Holandesas</option>
-                  <option>Antártida</option>
-                  <option>Antígua e Barbuda</option>
-                  <option>Argentina</option>
-                  <option>Argélia</option>
-                  <option>Arménia</option>
-                  <option>Aruba</option>
-                  <option>Arábia Saudita</option>
-                  <option>Austrália</option>
-                  <option>Azerbaijão</option>
-                  <option>Bahamas</option>
-                  <option>Bahrein</option>
-                  <option>Bangladesh</option>
-                  <option>Barbados</option>
-                  <option>Belize</option>
-                  <option>Benin</option>
-                  <option>Bermudas</option>
-                  <option>Bielorrússia</option>
-                  <option>Bolívia</option>
-                  <option>Botsuana</option>
-                  <option>Brasil</option>
-                  <option>Brunei</option>
-                  <option>Bulgária</option>
-                  <option>Burquina Faso</option>
-                  <option>Burundi</option>
-                  <option>Butão</option>
-                  <option>Bélgica</option>
-                  <option>Bósnia e Herzegovina</option>
-                  <option>Cabo Verde</option>
-                  <option>Camboja</option>
-                  <option>Canadá</option>
-                  <option>Catar</option>
-                  <option>Cazaquistão</option>
-                  <option>Ceuta e Melilha</option>
-                  <option>Chade</option>
-                  <option>Chile</option>
-                  <option>China</option>
-                  <option>Chipre</option>
-                  <option>Cidade do Vaticano</option>
-                  <option>Colômbia</option>
-                  <option>Comores</option>
-                  <option>Congo - Brazzaville</option>
-                  <option>Congo - Kinshasa</option>
-                  <option>Coreia do Norte</option>
-                  <option>Coreia do Sul</option>
-                  <option>Costa do Marfim</option>
-                  <option>Costa Rica</option>
-                  <option>Croácia</option>
-                  <option>Cuba</option>
-                  <option>Curaçao</option>
-                  <option>Diego Garcia</option>
-                  <option>Dinamarca</option>
-                  <option>Djibuti</option>
-                  <option>Dominica</option>
-                  <option>Egito</option>
-                  <option>El Salvador</option>
-                  <option>Equador</option>
-                  <option>Eritreia</option>
-                  <option>Eslováquia</option>
-                  <option>Eslovénia</option>
-                  <option>Espanha</option>
-                  <option>Estados Unidos da América</option>
-                  <option>Estónia</option>
-                  <option>Etiópia</option>
-                  <option>Fiji</option>
-                  <option>Filipinas</option>
-                  <option>Finlândia</option>
-                  <option>França</option>
-                  <option>Gabão</option>
-                  <option>Gana</option>
-                  <option>Geórgia</option>
-                  <option>Gibraltar</option>
-                  <option>Granada</option>
-                  <option>Gronelândia</option>
-                  <option>Grécia</option>
-                  <option>Guadalupe</option>
-                  <option>Guam</option>
-                  <option>Guatemala</option>
-                  <option>Guernsey</option>
-                  <option>Guiana</option>
-                  <option>Guiana Francesa</option>
-                  <option>Guiné-Bissau</option>
-                  <option>Guiné</option>
-                  <option>Guiné Equatorial</option>
-                  <option>Gâmbia</option>
-                  <option>Haiti</option>
-                  <option>Holanda</option>
-                  <option>Honduras</option>
-                  <option>Hong Kong</option>
-                  <option>Hungria</option>
-                  <option>Ilha Bouvet</option>
-                  <option>Ilha Christmas</option>
-                  <option>Ilha de Clipperton</option>
-                  <option>Ilha de Man</option>
-                  <option>Ilha Norfolk</option>
-                  <option>Ilhas Canárias</option>
-                  <option>Ilhas Cayman</option>
-                  <option>Ilhas Cocos (Keeling)</option>
-                  <option>Ilhas Cook</option>
-                  <option>Ilhas Faroé</option>
-                  <option>Ilhas Geórgia do Sul e Sandwich do Sul</option>
-                  <option>Ilhas Heard e McDonald</option>
-                  <option>Ilhas Malvinas</option>
-                  <option>Ilhas Marianas do Norte</option>
-                  <option>Ilhas Marshall</option>
-                  <option>Ilhas Menores Distantes dos EUA</option>
-                  <option>Ilhas Pitcairn</option>
-                  <option>Ilhas Salomão</option>
-                  <option>Ilhas Turks e Caicos</option>
-                  <option>Ilhas Virgens Britânicas</option>
-                  <option>Ilhas Virgens dos EUA</option>
-                  <option>Ilhas Åland</option>
-                  <option>Indonésia</option>
-                  <option>Iraque</option>
-                  <option>Irlanda</option>
-                  <option>Irão</option>
-                  <option>Islândia</option>
-                  <option>Israel</option>
-                  <option>Itália</option>
-                  <option>Iémen</option>
-                  <option>Jamaica</option>
-                  <option>Japão</option>
-                  <option>Jersey</option>
-                  <option>Jordânia</option>
-                  <option>Kosovo</option>
-                  <option>Kuwait</option>
-                  <option>Laos</option>
-                  <option>Lesoto</option>
-                  <option>Letónia</option>
-                  <option>Libéria</option>
-                  <option>Liechtenstein</option>
-                  <option>Lituânia</option>
-                  <option>Luxemburgo</option>
-                  <option>Líbano</option>
-                  <option>Líbia</option>
-                  <option>Macau</option>
-                  <option>Macedónia</option>
-                  <option>Madagascar</option>
-                  <option>Malawi</option>
-                  <option>Maldivas</option>
-                  <option>Mali</option>
-                  <option>Malta</option>
-                  <option>Malásia</option>
-                  <option>Marrocos</option>
-                  <option>Martinica</option>
-                  <option>Mauritânia</option>
-                  <option>Maurício</option>
-                  <option>Mayotte</option>
-                  <option>Mianmar (Birmânia)</option>
-                  <option>Micronésia</option>
-                  <option>Moldávia</option>
-                  <option>Mongólia</option>
-                  <option>Montenegro</option>
-                  <option>Montserrat</option>
-                  <option>Moçambique</option>
-                  <option>México</option>
-                  <option>Mônaco</option>
-                  <option>Namíbia</option>
-                  <option>Nauru</option>
-                  <option>Nepal</option>
-                  <option>Nicarágua</option>
-                  <option>Nigéria</option>
-                  <option>Niue</option>
-                  <option>Noruega</option>
-                  <option>Nova Caledônia</option>
-                  <option>Nova Zelândia</option>
-                  <option>Níger</option>
-                  <option>Oceania Remota</option>
-                  <option>Omã</option>
-                  <option>Palau</option>
-                  <option>Palestina</option>
-                  <option>Panamá</option>
-                  <option>Papua-Nova Guiné</option>
-                  <option>Paquistão</option>
-                  <option>Paraguai</option>
-                  <option>Países Baixos Caribenhos</option>
-                  <option>Peru</option>
-                  <option>Polinésia Francesa</option>
-                  <option>Polónia</option>
-                  <option>Porto Rico</option>
-                  <option>Portugal</option>
-                  <option>Quirguistão</option>
-                  <option>Quiribati</option>
-                  <option>Quênia</option>
-                  <option>Reino Unido</option>
-                  <option>República Centro-Africana</option>
-                  <option>República Democrática do Congo</option>
-                  <option>República Dominicana</option>
-                  <option>República dos Camarões</option>
-                  <option>República Checa</option>
-                  <option>Reunião</option>
-                  <option>Romênia</option>
-                  <option>Ruanda</option>
-                  <option>Rússia</option>
-                  <option>Saara Ocidental</option>
-                  <option>Saint Pierre e Miquelon</option>
-                  <option>Samoa</option>
-                  <option>Samoa Americana</option>
-                  <option>San Marino</option>
-                  <option>Santa Helena</option>
-                  <option>Santa Lúcia</option>
-                  <option>Senegal</option>
-                  <option>Serra Leoa</option>
-                  <option>Seychelles</option>
-                  <option>Singapura</option>
-                  <option>Sint Maarten</option>
-                  <option>Somália</option>
-                  <option>Sri Lanka</option>
-                  <option>Suazilândia</option>
-                  <option>Sudão</option>
-                  <option>Sudão do Sul</option>
-                  <option>Suriname</option>
-                  <option>Suécia</option>
-                  <option>Suíça</option>
-                  <option>Svalbard e Jan Mayen</option>
-                  <option>São Bartolomeu</option>
-                  <option>São Cristóvão e Nevis</option>
-                  <option>São Martinho</option>
-                  <option>São Tomé e Príncipe</option>
-                  <option>São Vicente e Granadinas</option>
-                  <option>Sérvia</option>
-                  <option>Síria</option>
-                  <option>Tailândia</option>
-                  <option>Taiwan</option>
-                  <option>Tajiquistão</option>
-                  <option>Tanzânia</option>
-                  <option>Território Britânico do Oceano Índico</option>
-                  <option>Territórios Franceses do Sul</option>
-                  <option>Timor-Leste</option>
-                  <option>Togo</option>
-                  <option>Tokelau</option>
-                  <option>Tonga</option>
-                  <option>Trinidad e Tobago</option>
-                  <option>Tristão da Cunha</option>
-                  <option>Tunísia</option>
-                  <option>Turcomenistão</option>
-                  <option>Turquia</option>
-                  <option>Tuvalu</option>
-                  <option>Ucrânia</option>
-                  <option>Uganda</option>
-                  <option>União Europeia</option>
-                  <option>Uruguai</option>
-                  <option>Uzbequistão</option>
-                  <option>Vanuatu</option>
-                  <option>Venezuela</option>
-                  <option>Vietname</option>
-                  <option>Wallis e Futuna</option>
-                  <option>Zimbábue</option>
-                  <option>Zâmbia</option>
-                  <option>África do Sul</option>
-                  <option>Áustria</option>
-                  <option>Índia</option>
-                  <option>-- Região desconhecida --</option>
+                  <option value="none">-- Região desconhecida --</option>
                 </select>
               </div>
             </div>
@@ -404,273 +152,28 @@
             <label for="countryResidence" class="col-sm-2 form-control-label">5. País de Residência:</label>
             <div class="col-md-3 selectContainer">
               <div class="input-group">
-                <select name="countryResidence" class="form-control selectpicker" required onchange="updateFormEnabled()">
+                <select name="countryResidence" id="countryResidence" class="form-control selectpicker" required onchange="updateFormEnabled()">
                   <option value="">Escolha uma País de Residência</option>
-                  <option>Albânia</option>
-                  <option>Alemanha</option>
-                  <option>Andorra</option>
-                  <option>Emirados Árabes Unidos</option>
-                  <option>Afeganistão</option>
-                  <option>Angola</option>
-                  <option>Anguilla</option>
-                  <option>Antilhas Holandesas</option>
-                  <option>Antártida</option>
-                  <option>Antígua e Barbuda</option>
-                  <option>Argentina</option>
-                  <option>Argélia</option>
-                  <option>Arménia</option>
-                  <option>Aruba</option>
-                  <option>Arábia Saudita</option>
-                  <option>Austrália</option>
-                  <option>Azerbaijão</option>
-                  <option>Bahamas</option>
-                  <option>Bahrein</option>
-                  <option>Bangladesh</option>
-                  <option>Barbados</option>
-                  <option>Belize</option>
-                  <option>Benin</option>
-                  <option>Bermudas</option>
-                  <option>Bielorrússia</option>
-                  <option>Bolívia</option>
-                  <option>Botsuana</option>
-                  <option>Brasil</option>
-                  <option>Brunei</option>
-                  <option>Bulgária</option>
-                  <option>Burquina Faso</option>
-                  <option>Burundi</option>
-                  <option>Butão</option>
-                  <option>Bélgica</option>
-                  <option>Bósnia e Herzegovina</option>
-                  <option>Cabo Verde</option>
-                  <option>Camboja</option>
-                  <option>Canadá</option>
-                  <option>Catar</option>
-                  <option>Cazaquistão</option>
-                  <option>Ceuta e Melilha</option>
-                  <option>Chade</option>
-                  <option>Chile</option>
-                  <option>China</option>
-                  <option>Chipre</option>
-                  <option>Cidade do Vaticano</option>
-                  <option>Colômbia</option>
-                  <option>Comores</option>
-                  <option>Congo - Brazzaville</option>
-                  <option>Congo - Kinshasa</option>
-                  <option>Coreia do Norte</option>
-                  <option>Coreia do Sul</option>
-                  <option>Costa do Marfim</option>
-                  <option>Costa Rica</option>
-                  <option>Croácia</option>
-                  <option>Cuba</option>
-                  <option>Curaçao</option>
-                  <option>Diego Garcia</option>
-                  <option>Dinamarca</option>
-                  <option>Djibuti</option>
-                  <option>Dominica</option>
-                  <option>Egito</option>
-                  <option>El Salvador</option>
-                  <option>Equador</option>
-                  <option>Eritreia</option>
-                  <option>Eslováquia</option>
-                  <option>Eslovénia</option>
-                  <option>Espanha</option>
-                  <option>Estados Unidos da América</option>
-                  <option>Estónia</option>
-                  <option>Etiópia</option>
-                  <option>Fiji</option>
-                  <option>Filipinas</option>
-                  <option>Finlândia</option>
-                  <option>França</option>
-                  <option>Gabão</option>
-                  <option>Gana</option>
-                  <option>Geórgia</option>
-                  <option>Gibraltar</option>
-                  <option>Granada</option>
-                  <option>Gronelândia</option>
-                  <option>Grécia</option>
-                  <option>Guadalupe</option>
-                  <option>Guam</option>
-                  <option>Guatemala</option>
-                  <option>Guernsey</option>
-                  <option>Guiana</option>
-                  <option>Guiana Francesa</option>
-                  <option>Guiné-Bissau</option>
-                  <option>Guiné</option>
-                  <option>Guiné Equatorial</option>
-                  <option>Gâmbia</option>
-                  <option>Haiti</option>
-                  <option>Holanda</option>
-                  <option>Honduras</option>
-                  <option>Hong Kong</option>
-                  <option>Hungria</option>
-                  <option>Ilha Bouvet</option>
-                  <option>Ilha Christmas</option>
-                  <option>Ilha de Clipperton</option>
-                  <option>Ilha de Man</option>
-                  <option>Ilha Norfolk</option>
-                  <option>Ilhas Canárias</option>
-                  <option>Ilhas Cayman</option>
-                  <option>Ilhas Cocos (Keeling)</option>
-                  <option>Ilhas Cook</option>
-                  <option>Ilhas Faroé</option>
-                  <option>Ilhas Geórgia do Sul e Sandwich do Sul</option>
-                  <option>Ilhas Heard e McDonald</option>
-                  <option>Ilhas Malvinas</option>
-                  <option>Ilhas Marianas do Norte</option>
-                  <option>Ilhas Marshall</option>
-                  <option>Ilhas Menores Distantes dos EUA</option>
-                  <option>Ilhas Pitcairn</option>
-                  <option>Ilhas Salomão</option>
-                  <option>Ilhas Turks e Caicos</option>
-                  <option>Ilhas Virgens Britânicas</option>
-                  <option>Ilhas Virgens dos EUA</option>
-                  <option>Ilhas Åland</option>
-                  <option>Indonésia</option>
-                  <option>Iraque</option>
-                  <option>Irlanda</option>
-                  <option>Irão</option>
-                  <option>Islândia</option>
-                  <option>Israel</option>
-                  <option>Itália</option>
-                  <option>Iémen</option>
-                  <option>Jamaica</option>
-                  <option>Japão</option>
-                  <option>Jersey</option>
-                  <option>Jordânia</option>
-                  <option>Kosovo</option>
-                  <option>Kuwait</option>
-                  <option>Laos</option>
-                  <option>Lesoto</option>
-                  <option>Letónia</option>
-                  <option>Libéria</option>
-                  <option>Liechtenstein</option>
-                  <option>Lituânia</option>
-                  <option>Luxemburgo</option>
-                  <option>Líbano</option>
-                  <option>Líbia</option>
-                  <option>Macau</option>
-                  <option>Macedónia</option>
-                  <option>Madagascar</option>
-                  <option>Malawi</option>
-                  <option>Maldivas</option>
-                  <option>Mali</option>
-                  <option>Malta</option>
-                  <option>Malásia</option>
-                  <option>Marrocos</option>
-                  <option>Martinica</option>
-                  <option>Mauritânia</option>
-                  <option>Maurício</option>
-                  <option>Mayotte</option>
-                  <option>Mianmar (Birmânia)</option>
-                  <option>Micronésia</option>
-                  <option>Moldávia</option>
-                  <option>Mongólia</option>
-                  <option>Montenegro</option>
-                  <option>Montserrat</option>
-                  <option>Moçambique</option>
-                  <option>México</option>
-                  <option>Mônaco</option>
-                  <option>Namíbia</option>
-                  <option>Nauru</option>
-                  <option>Nepal</option>
-                  <option>Nicarágua</option>
-                  <option>Nigéria</option>
-                  <option>Niue</option>
-                  <option>Noruega</option>
-                  <option>Nova Caledônia</option>
-                  <option>Nova Zelândia</option>
-                  <option>Níger</option>
-                  <option>Oceania Remota</option>
-                  <option>Omã</option>
-                  <option>Palau</option>
-                  <option>Palestina</option>
-                  <option>Panamá</option>
-                  <option>Papua-Nova Guiné</option>
-                  <option>Paquistão</option>
-                  <option>Paraguai</option>
-                  <option>Países Baixos Caribenhos</option>
-                  <option>Peru</option>
-                  <option>Polinésia Francesa</option>
-                  <option>Polónia</option>
-                  <option>Porto Rico</option>
-                  <option>Portugal</option>
-                  <option>Quirguistão</option>
-                  <option>Quiribati</option>
-                  <option>Quênia</option>
-                  <option>Reino Unido</option>
-                  <option>República Centro-Africana</option>
-                  <option>República Democrática do Congo</option>
-                  <option>República Dominicana</option>
-                  <option>República dos Camarões</option>
-                  <option>República Checa</option>
-                  <option>Reunião</option>
-                  <option>Romênia</option>
-                  <option>Ruanda</option>
-                  <option>Rússia</option>
-                  <option>Saara Ocidental</option>
-                  <option>Saint Pierre e Miquelon</option>
-                  <option>Samoa</option>
-                  <option>Samoa Americana</option>
-                  <option>San Marino</option>
-                  <option>Santa Helena</option>
-                  <option>Santa Lúcia</option>
-                  <option>Senegal</option>
-                  <option>Serra Leoa</option>
-                  <option>Seychelles</option>
-                  <option>Singapura</option>
-                  <option>Sint Maarten</option>
-                  <option>Somália</option>
-                  <option>Sri Lanka</option>
-                  <option>Suazilândia</option>
-                  <option>Sudão</option>
-                  <option>Sudão do Sul</option>
-                  <option>Suriname</option>
-                  <option>Suécia</option>
-                  <option>Suíça</option>
-                  <option>Svalbard e Jan Mayen</option>
-                  <option>São Bartolomeu</option>
-                  <option>São Cristóvão e Nevis</option>
-                  <option>São Martinho</option>
-                  <option>São Tomé e Príncipe</option>
-                  <option>São Vicente e Granadinas</option>
-                  <option>Sérvia</option>
-                  <option>Síria</option>
-                  <option>Tailândia</option>
-                  <option>Taiwan</option>
-                  <option>Tajiquistão</option>
-                  <option>Tanzânia</option>
-                  <option>Território Britânico do Oceano Índico</option>
-                  <option>Territórios Franceses do Sul</option>
-                  <option>Timor-Leste</option>
-                  <option>Togo</option>
-                  <option>Tokelau</option>
-                  <option>Tonga</option>
-                  <option>Trinidad e Tobago</option>
-                  <option>Tristão da Cunha</option>
-                  <option>Tunísia</option>
-                  <option>Turcomenistão</option>
-                  <option>Turquia</option>
-                  <option>Tuvalu</option>
-                  <option>Ucrânia</option>
-                  <option>Uganda</option>
-                  <option>União Europeia</option>
-                  <option>Uruguai</option>
-                  <option>Uzbequistão</option>
-                  <option>Vanuatu</option>
-                  <option>Venezuela</option>
-                  <option>Vietname</option>
-                  <option>Wallis e Futuna</option>
-                  <option>Zimbábue</option>
-                  <option>Zâmbia</option>
-                  <option>África do Sul</option>
-                  <option>Áustria</option>
-                  <option>Índia</option>
-                  <option>-- Região desconhecida --</option>
+                  <option value="none">-- Região desconhecida --</option>
                 </select>
               </div>
             </div>
           </div>
           <!-- ./PAÍS DE RESIDENCIA -->
+
+          <!-- LINGUA MATERNA -->
+          <div class="form-group row">
+            <label for="language" class="col-sm-2 form-control-label">6. Língua Materna:</label>
+            <div class="col-md-3 selectContainer">
+              <div class="input-group">
+                <select name="language" id="language" class="form-control selectpicker" required onchange="updateFormEnabled()">
+                  <option value="">Escolha uma Lingua Materna</option>
+                  <option value="none">-- Língua desconhecida --</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <!-- ./LINGUA MATERNA -->
 
           <!-- BOTÃO CONFIRMAR -->
           <div class="form-group row">
@@ -708,7 +211,6 @@
     });
     $.getScript("https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js");
     $.getScript("../bootstrap/js/bootstrap.min.js");
-    $.getScript("../js/profiling.js");
   </script>
 
 </body>

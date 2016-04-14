@@ -1,193 +1,193 @@
 [{
   "typeOf": "objTwoColors",
   "idQuestion": "1",
-  "questionPT": "Pretende-se alcançar como <b>Objectivo</b> de uma mistura a cor apresentada à esquerda. Qual pensa ser a mistura de duas cores que pode formar a cor apresentada? Ajuste os círculos apresentados por baixo de cada cor para as indicar.",
-  "questionEN": "The <b>Resulting</b> color of a mixture is presented in the left-most circle. Choose two colors with which you can achieve this color, by adjusting the sliders below each color.",
+  "questionPT": "Qual pensa ser a mistura de duas cores que pode formar a cor <>Objectivo</b>? Ajuste os círculos apresentados por baixo de cada cor para as indicar.",
+  "questionEN": "Choose two colors with which you can achieve the <b>Resulting</b> color, by adjusting the sliders below each color.",
   "colorObjective": "#FFFF00", "firstColor": "none", "secondColor": "none"
 }, {
   "typeOf": "objTwoColors",
   "idQuestion": "2",
-  "questionPT": "Pretende-se alcançar como <b>Objectivo</b> de uma mistura a cor apresentada à esquerda. Qual pensa ser a mistura de duas cores que pode formar a cor apresentada? Ajuste os círculos apresentados por baixo de cada cor para as indicar.",
-  "questionEN": "The <b>Resulting</b> color of a mixture is presented in the left-most circle. Choose two colors with which you can achieve this color, by adjusting the sliders below each color.",
+  "questionPT": "Qual pensa ser a mistura de duas cores que pode formar a cor <>Objectivo</b>? Ajuste os círculos apresentados por baixo de cada cor para as indicar.",
+  "questionEN": "Choose two colors with which you can achieve the <b>Resulting</b> color, by adjusting the sliders below each color.",
   "colorObjective": "#FF00FF", "firstColor": "none", "secondColor": "none"
 }, {
   "typeOf": "objTwoColors",
   "idQuestion": "3",
-  "questionPT": "Pretende-se alcançar como <b>Objectivo</b> de uma mistura a cor apresentada à esquerda. Qual pensa ser a mistura de duas cores que pode formar a cor apresentada? Ajuste os círculos apresentados por baixo de cada cor para as indicar.",
-  "questionEN": "The <b>Resulting</b> color of a mixture is presented in the left-most circle. Choose two colors with which you can achieve this color, by adjusting the sliders below each color.",
+  "questionPT": "Qual pensa ser a mistura de duas cores que pode formar a cor <>Objectivo</b>? Ajuste os círculos apresentados por baixo de cada cor para as indicar.",
+  "questionEN": "Choose two colors with which you can achieve the <b>Resulting</b> color, by adjusting the sliders below each color.",
   "colorObjective": "#80FF00", "firstColor": "none", "secondColor": "none"
 }, {
   "typeOf": "objTwoColors",
   "idQuestion": "4",
-  "questionPT": "Pretende-se alcançar como <b>Objectivo</b> de uma mistura a cor apresentada à esquerda. Qual pensa ser a mistura de duas cores que pode formar a cor apresentada? Ajuste os círculos apresentados por baixo de cada cor para as indicar.",
-  "questionEN": "The <b>Resulting</b> color of a mixture is presented in the left-most circle. Choose two colors with which you can achieve this color, by adjusting the sliders below each color.",
+  "questionPT": "Qual pensa ser a mistura de duas cores que pode formar a cor <>Objectivo</b>? Ajuste os círculos apresentados por baixo de cada cor para as indicar.",
+  "questionEN": "Choose two colors with which you can achieve the <b>Resulting</b> color, by adjusting the sliders below each color.",
   "colorObjective": "#7f00ff", "firstColor": "none", "secondColor": "none"
 }, {
   "typeOf": "objTwoColors",
   "idQuestion": "5",
-  "questionPT": "Pretende-se alcançar como <b>Objectivo</b> de uma mistura a cor apresentada à esquerda. Qual pensa ser a mistura de duas cores que pode formar a cor apresentada? Ajuste os círculos apresentados por baixo de cada cor para as indicar.",
-  "questionEN": "The <b>Resulting</b> color of a mixture is presented in the left-most circle. Choose two colors with which you can achieve this color, by adjusting the sliders below each color.",
+  "questionPT": "Qual pensa ser a mistura de duas cores que pode formar a cor <>Objectivo</b>? Ajuste os círculos apresentados por baixo de cada cor para as indicar.",
+  "questionEN": "Choose two colors with which you can achieve the <b>Resulting</b> color, by adjusting the sliders below each color.",
   "colorObjective": "#FF0080", "firstColor": "none", "secondColor": "none"
 }, {
   "typeOf": "objTwoColors",
   "idQuestion": "6",
-  "questionPT": "Pretende-se alcançar como <b>Objectivo</b> de uma mistura a cor apresentada à esquerda. Qual pensa ser a mistura de duas cores que pode formar a cor apresentada? Ajuste os círculos apresentados por baixo de cada cor para as indicar.",
-  "questionEN": "The <b>Resulting</b> color of a mixture is presented in the left-most circle. Choose two colors with which you can achieve this color, by adjusting the sliders below each color.",
+  "questionPT": "Qual pensa ser a mistura de duas cores que pode formar a cor <>Objectivo</b>? Ajuste os círculos apresentados por baixo de cada cor para as indicar.",
+  "questionEN": "Choose two colors with which you can achieve the <b>Resulting</b> color, by adjusting the sliders below each color.",
   "colorObjective": "#FF8000", "firstColor": "none", "secondColor": "none"
 }, {
   "typeOf": "objTwoColors",
   "idQuestion": "7",
-  "questionPT": "Pretende-se alcançar como <b>Objectivo</b> de uma mistura a cor apresentada à esquerda. Qual pensa ser a mistura de duas cores que pode formar a cor apresentada? Ajuste os círculos apresentados por baixo de cada cor para as indicar.",
-  "questionEN": "The <b>Resulting</b> color of a mixture is presented in the left-most circle. Choose two colors with which you can achieve this color, by adjusting the sliders below each color.",
+  "questionPT": "Qual pensa ser a mistura de duas cores que pode formar a cor <>Objectivo</b>? Ajuste os círculos apresentados por baixo de cada cor para as indicar.",
+  "questionEN": "Choose two colors with which you can achieve the <b>Resulting</b> color, by adjusting the sliders below each color.",
   "colorObjective": "#0000FF", "firstColor": "none", "secondColor": "none"
 }, {
   "typeOf": "objTwoColors",
   "idQuestion": "8",
-  "questionPT": "Pretende-se alcançar como <b>Objectivo</b> de uma mistura a cor apresentada à esquerda. Qual pensa ser a mistura de duas cores que pode formar a cor apresentada? Ajuste os círculos apresentados por baixo de cada cor para as indicar.",
-  "questionEN": "The <b>Resulting</b> color of a mixture is presented in the left-most circle. Choose two colors with which you can achieve this color, by adjusting the sliders below each color.",
+  "questionPT": "Qual pensa ser a mistura de duas cores que pode formar a cor <>Objectivo</b>? Ajuste os círculos apresentados por baixo de cada cor para as indicar.",
+  "questionEN": "Choose two colors with which you can achieve the <b>Resulting</b> color, by adjusting the sliders below each color.",
   "colorObjective": "#FF0000", "firstColor": "none", "secondColor": "none"
 }, {
   "typeOf": "objTwoColors",
   "idQuestion": "9",
-  "questionPT": "Pretende-se alcançar como <b>Objectivo</b> de uma mistura a cor apresentada à esquerda. Qual pensa ser a mistura de duas cores que pode formar a cor apresentada? Ajuste os círculos apresentados por baixo de cada cor para as indicar.",
-  "questionEN": "The <b>Resulting</b> color of a mixture is presented in the left-most circle. Choose two colors with which you can achieve this color, by adjusting the sliders below each color.",
+  "questionPT": "Qual pensa ser a mistura de duas cores que pode formar a cor <>Objectivo</b>? Ajuste os círculos apresentados por baixo de cada cor para as indicar.",
+  "questionEN": "Choose two colors with which you can achieve the <b>Resulting</b> color, by adjusting the sliders below each color.",
   "colorObjective": "#00FF80", "firstColor": "none", "secondColor": "none"
 }, {
   "typeOf": "objTwoColors",
   "idQuestion": "10",
-  "questionPT": "Pretende-se alcançar como <b>Objectivo</b> de uma mistura a cor apresentada à esquerda. Qual pensa ser a mistura de duas cores que pode formar a cor apresentada? Ajuste os círculos apresentados por baixo de cada cor para as indicar.",
-  "questionEN": "The <b>Resulting</b> color of a mixture is presented in the left-most circle. Choose two colors with which you can achieve this color, by adjusting the sliders below each color.",
+  "questionPT": "Qual pensa ser a mistura de duas cores que pode formar a cor <>Objectivo</b>? Ajuste os círculos apresentados por baixo de cada cor para as indicar.",
+  "questionEN": "Choose two colors with which you can achieve the <b>Resulting</b> color, by adjusting the sliders below each color.",
   "colorObjective": "#0080FF", "firstColor": "none", "secondColor": "none"
 }, {
   "typeOf": "objTwoColors",
   "idQuestion": "11",
-  "questionPT": "Pretende-se alcançar como <b>Objectivo</b> de uma mistura a cor apresentada à esquerda. Qual pensa ser a mistura de duas cores que pode formar a cor apresentada? Ajuste os círculos apresentados por baixo de cada cor para as indicar.",
-  "questionEN": "The <b>Resulting</b> color of a mixture is presented in the left-most circle. Choose two colors with which you can achieve this color, by adjusting the sliders below each color.",
+  "questionPT": "Qual pensa ser a mistura de duas cores que pode formar a cor <>Objectivo</b>? Ajuste os círculos apresentados por baixo de cada cor para as indicar.",
+  "questionEN": "Choose two colors with which you can achieve the <b>Resulting</b> color, by adjusting the sliders below each color.",
   "colorObjective": "#FF8000", "firstColor": "none", "secondColor": "none"
 }, {
   "typeOf": "objTwoColors",
   "idQuestion": "12",
-  "questionPT": "Pretende-se alcançar como <b>Objectivo</b> de uma mistura a cor apresentada à esquerda. Qual pensa ser a mistura de duas cores que pode formar a cor apresentada? Ajuste os círculos apresentados por baixo de cada cor para as indicar.",
-  "questionEN": "The <b>Resulting</b> color of a mixture is presented in the left-most circle. Choose two colors with which you can achieve this color, by adjusting the sliders below each color.",
+  "questionPT": "Qual pensa ser a mistura de duas cores que pode formar a cor <>Objectivo</b>? Ajuste os círculos apresentados por baixo de cada cor para as indicar.",
+  "questionEN": "Choose two colors with which you can achieve the <b>Resulting</b> color, by adjusting the sliders below each color.",
   "colorObjective": "#80FF00", "firstColor": "none", "secondColor": "none"
 }, {
   "typeOf": "objTwoColors",
   "idQuestion": "13",
-  "questionPT": "Pretende-se alcançar como <b>Objectivo</b> de uma mistura a cor apresentada à esquerda. Qual pensa ser a mistura de duas cores que pode formar a cor apresentada? Ajuste os círculos apresentados por baixo de cada cor para as indicar.",
-  "questionEN": "The <b>Resulting</b> color of a mixture is presented in the left-most circle. Choose two colors with which you can achieve this color, by adjusting the sliders below each color.",
+  "questionPT": "Qual pensa ser a mistura de duas cores que pode formar a cor <>Objectivo</b>? Ajuste os círculos apresentados por baixo de cada cor para as indicar.",
+  "questionEN": "Choose two colors with which you can achieve the <b>Resulting</b> color, by adjusting the sliders below each color.",
   "colorObjective": "#0080FF", "firstColor": "none", "secondColor": "none"
 }, {
   "typeOf": "objTwoColors",
   "idQuestion": "14",
-  "questionPT": "Pretende-se alcançar como <b>Objectivo</b> de uma mistura a cor apresentada à esquerda. Qual pensa ser a mistura de duas cores que pode formar a cor apresentada? Ajuste os círculos apresentados por baixo de cada cor para as indicar.",
-  "questionEN": "The <b>Resulting</b> color of a mixture is presented in the left-most circle. Choose two colors with which you can achieve this color, by adjusting the sliders below each color.",
+  "questionPT": "Qual pensa ser a mistura de duas cores que pode formar a cor <>Objectivo</b>? Ajuste os círculos apresentados por baixo de cada cor para as indicar.",
+  "questionEN": "Choose two colors with which you can achieve the <b>Resulting</b> color, by adjusting the sliders below each color.",
   "colorObjective": "#8000FF", "firstColor": "none", "secondColor": "none"
 }, {
   "typeOf": "objTwoColors",
   "idQuestion": "15",
-  "questionPT": "Pretende-se alcançar como <b>Objectivo</b> de uma mistura a cor apresentada à esquerda. Qual pensa ser a mistura de duas cores que pode formar a cor apresentada? Ajuste os círculos apresentados por baixo de cada cor para as indicar.",
-  "questionEN": "The <b>Resulting</b> color of a mixture is presented in the left-most circle. Choose two colors with which you can achieve this color, by adjusting the sliders below each color.",
+  "questionPT": "Qual pensa ser a mistura de duas cores que pode formar a cor <>Objectivo</b>? Ajuste os círculos apresentados por baixo de cada cor para as indicar.",
+  "questionEN": "Choose two colors with which you can achieve the <b>Resulting</b> color, by adjusting the sliders below each color.",
   "colorObjective": "#00FF80", "firstColor": "none", "secondColor": "none"
 }, {
   "typeOf": "objTwoColors",
   "idQuestion": "16",
-  "questionPT": "Pretende-se alcançar como <b>Objectivo</b> de uma mistura a cor apresentada à esquerda. Qual pensa ser a mistura de duas cores que pode formar a cor apresentada? Ajuste os círculos apresentados por baixo de cada cor para as indicar.",
-  "questionEN": "The <b>Resulting</b> color of a mixture is presented in the left-most circle. Choose two colors with which you can achieve this color, by adjusting the sliders below each color.",
+  "questionPT": "Qual pensa ser a mistura de duas cores que pode formar a cor <>Objectivo</b>? Ajuste os círculos apresentados por baixo de cada cor para as indicar.",
+  "questionEN": "Choose two colors with which you can achieve the <b>Resulting</b> color, by adjusting the sliders below each color.",
   "colorObjective": "#FF007F", "firstColor": "none", "secondColor": "none"
 }, {
   "typeOf": "objTwoColors",
   "idQuestion": "17",
-  "questionPT": "Pretende-se alcançar como <b>Objectivo</b> de uma mistura a cor apresentada à esquerda. Qual pensa ser a mistura de duas cores que pode formar a cor apresentada? Ajuste os círculos apresentados por baixo de cada cor para as indicar.",
-  "questionEN": "The <b>Resulting</b> color of a mixture is presented in the left-most circle. Choose two colors with which you can achieve this color, by adjusting the sliders below each color.",
+  "questionPT": "Qual pensa ser a mistura de duas cores que pode formar a cor <>Objectivo</b>? Ajuste os círculos apresentados por baixo de cada cor para as indicar.",
+  "questionEN": "Choose two colors with which you can achieve the <b>Resulting</b> color, by adjusting the sliders below each color.",
   "colorObjective": "#00FF00", "firstColor": "none", "secondColor": "none"
 }, {
   "typeOf": "twoColorsObj",
   "idQuestion": "18",
-  "questionPT": "Pretende-se misturar a <b>Primeira</b> e a <b>Segunda</b> cor apresentadas. Qual pensa ser a cor resultante desta mistura? Indique, ajustando o círculo apresentado por baixo da cor <b>Objectivo</b>.",
-  "questionEN": "The Basic colors of a mixture are presented in the two left-most circles. Choose the <b>Resulting</b> color which you believe it is the result of this mixture, by adjusting the slider below the <b>Resulting</b> color.",
+  "questionPT": "Qual pensa ser a cor resultante da mistura da <b>Primeira</b> e <b>Segunda</b> cor? Indique, ajustando o círculo apresentado por baixo da cor <b>Objectivo</b>.",
+  "questionEN": "Choose the <b>Resulting</b> color which you believe it is the result of mixing the <b>First</b> and <b>Second</b> color, by adjusting the slider below the <b>Resulting</b> color.",
   "colorObjective": "none", "firstColor": "#FF0000", "secondColor": "#00FF00"
 }, {
   "typeOf": "twoColorsObj",
   "idQuestion": "19",
-  "questionPT": "Pretende-se misturar a <b>Primeira</b> e a <b>Segunda</b> cor apresentadas. Qual pensa ser a cor resultante desta mistura? Indique, ajustando o círculo apresentado por baixo da cor <b>Objectivo</b>.",
-  "questionEN": "The Basic colors of a mixture are presented in the two left-most circles. Choose the <b>Resulting</b> color which you believe it is the result of this mixture, by adjusting the slider below the <b>Resulting</b> color.",
+  "questionPT": "Qual pensa ser a cor resultante da mistura da <b>Primeira</b> e <b>Segunda</b> cor? Indique, ajustando o círculo apresentado por baixo da cor <b>Objectivo</b>.",
+  "questionEN": "Choose the <b>Resulting</b> color which you believe it is the result of mixing the <b>First</b> and <b>Second</b> color, by adjusting the slider below the <b>Resulting</b> color.",
   "colorObjective": "none", "firstColor": "#FF0000", "secondColor": "#0000FF"
 }, {
   "typeOf": "twoColorsObj",
   "idQuestion": "20",
-  "questionPT": "Pretende-se misturar a <b>Primeira</b> e a <b>Segunda</b> cor apresentadas. Qual pensa ser a cor resultante desta mistura? Indique, ajustando o círculo apresentado por baixo da cor <b>Objectivo</b>.",
-  "questionEN": "The Basic colors of a mixture are presented in the two left-most circles. Choose the <b>Resulting</b> color which you believe it is the result of this mixture, by adjusting the slider below the <b>Resulting</b> color.",
+  "questionPT": "Qual pensa ser a cor resultante da mistura da <b>Primeira</b> e <b>Segunda</b> cor? Indique, ajustando o círculo apresentado por baixo da cor <b>Objectivo</b>.",
+  "questionEN": "Choose the <b>Resulting</b> color which you believe it is the result of mixing the <b>First</b> and <b>Second</b> color, by adjusting the slider below the <b>Resulting</b> color.",
   "colorObjective": "none", "firstColor": "#00FF00", "secondColor": "#0000FF"
 }, {
   "typeOf": "twoColorsObj",
   "idQuestion": "21",
-  "questionPT": "Pretende-se misturar a <b>Primeira</b> e a <b>Segunda</b> cor apresentadas. Qual pensa ser a cor resultante desta mistura? Indique, ajustando o círculo apresentado por baixo da cor <b>Objectivo</b>.",
-  "questionEN": "The Basic colors of a mixture are presented in the two left-most circles. Choose the <b>Resulting</b> color which you believe it is the result of this mixture, by adjusting the slider below the <b>Resulting</b> color.",
+  "questionPT": "Qual pensa ser a cor resultante da mistura da <b>Primeira</b> e <b>Segunda</b> cor? Indique, ajustando o círculo apresentado por baixo da cor <b>Objectivo</b>.",
+  "questionEN": "Choose the <b>Resulting</b> color which you believe it is the result of mixing the <b>First</b> and <b>Second</b> color, by adjusting the slider below the <b>Resulting</b> color.",
   "colorObjective": "none", "firstColor": "#FF0000", "secondColor": "#00FFFF"
 }, {
   "typeOf": "twoColorsObj",
   "idQuestion": "22",
-  "questionPT": "Pretende-se misturar a <b>Primeira</b> e a <b>Segunda</b> cor apresentadas. Qual pensa ser a cor resultante desta mistura? Indique, ajustando o círculo apresentado por baixo da cor <b>Objectivo</b>.",
-  "questionEN": "The Basic colors of a mixture are presented in the two left-most circles. Choose the <b>Resulting</b> color which you believe it is the result of this mixture, by adjusting the slider below the <b>Resulting</b> color.",
+  "questionPT": "Qual pensa ser a cor resultante da mistura da <b>Primeira</b> e <b>Segunda</b> cor? Indique, ajustando o círculo apresentado por baixo da cor <b>Objectivo</b>.",
+  "questionEN": "Choose the <b>Resulting</b> color which you believe it is the result of mixing the <b>First</b> and <b>Second</b> color, by adjusting the slider below the <b>Resulting</b> color.",
   "colorObjective": "none", "firstColor": "#FF0000", "secondColor": "#FF00FF"
 }, {
   "typeOf": "twoColorsObj",
   "idQuestion": "23",
-  "questionPT": "Pretende-se misturar a <b>Primeira</b> e a <b>Segunda</b> cor apresentadas. Qual pensa ser a cor resultante desta mistura? Indique, ajustando o círculo apresentado por baixo da cor <b>Objectivo</b>.",
-  "questionEN": "The Basic colors of a mixture are presented in the two left-most circles. Choose the <b>Resulting</b> color which you believe it is the result of this mixture, by adjusting the slider below the <b>Resulting</b> color.",
+  "questionPT": "Qual pensa ser a cor resultante da mistura da <b>Primeira</b> e <b>Segunda</b> cor? Indique, ajustando o círculo apresentado por baixo da cor <b>Objectivo</b>.",
+  "questionEN": "Choose the <b>Resulting</b> color which you believe it is the result of mixing the <b>First</b> and <b>Second</b> color, by adjusting the slider below the <b>Resulting</b> color.",
   "colorObjective": "none", "firstColor": "#FF0000", "secondColor": "#FFFF00"
 }, {
   "typeOf": "twoColorsObj",
   "idQuestion": "24",
-  "questionPT": "Pretende-se misturar a <b>Primeira</b> e a <b>Segunda</b> cor apresentadas. Qual pensa ser a cor resultante desta mistura? Indique, ajustando o círculo apresentado por baixo da cor <b>Objectivo</b>.",
-  "questionEN": "The Basic colors of a mixture are presented in the two left-most circles. Choose the <b>Resulting</b> color which you believe it is the result of this mixture, by adjusting the slider below the <b>Resulting</b> color.",
+  "questionPT": "Qual pensa ser a cor resultante da mistura da <b>Primeira</b> e <b>Segunda</b> cor? Indique, ajustando o círculo apresentado por baixo da cor <b>Objectivo</b>.",
+  "questionEN": "Choose the <b>Resulting</b> color which you believe it is the result of mixing the <b>First</b> and <b>Second</b> color, by adjusting the slider below the <b>Resulting</b> color.",
   "colorObjective": "none", "firstColor": "#00FFFF", "secondColor": "#FF00FF"
 }, {
   "typeOf": "twoColorsObj",
   "idQuestion": "25",
-  "questionPT": "Pretende-se misturar a <b>Primeira</b> e a <b>Segunda</b> cor apresentadas. Qual pensa ser a cor resultante desta mistura? Indique, ajustando o círculo apresentado por baixo da cor <b>Objectivo</b>.",
-  "questionEN": "The Basic colors of a mixture are presented in the two left-most circles. Choose the <b>Resulting</b> color which you believe it is the result of this mixture, by adjusting the slider below the <b>Resulting</b> color.",
+  "questionPT": "Qual pensa ser a cor resultante da mistura da <b>Primeira</b> e <b>Segunda</b> cor? Indique, ajustando o círculo apresentado por baixo da cor <b>Objectivo</b>.",
+  "questionEN": "Choose the <b>Resulting</b> color which you believe it is the result of mixing the <b>First</b> and <b>Second</b> color, by adjusting the slider below the <b>Resulting</b> color.",
   "colorObjective": "none", "firstColor": "#FF00FF", "secondColor": "#FFFF00"
 }, {
   "typeOf": "twoColorsObj",
   "idQuestion": "26",
-  "questionPT": "Pretende-se misturar a <b>Primeira</b> e a <b>Segunda</b> cor apresentadas. Qual pensa ser a cor resultante desta mistura? Indique, ajustando o círculo apresentado por baixo da cor <b>Objectivo</b>.",
-  "questionEN": "The Basic colors of a mixture are presented in the two left-most circles. Choose the <b>Resulting</b> color which you believe it is the result of this mixture, by adjusting the slider below the <b>Resulting</b> color.",
+  "questionPT": "Qual pensa ser a cor resultante da mistura da <b>Primeira</b> e <b>Segunda</b> cor? Indique, ajustando o círculo apresentado por baixo da cor <b>Objectivo</b>.",
+  "questionEN": "Choose the <b>Resulting</b> color which you believe it is the result of mixing the <b>First</b> and <b>Second</b> color, by adjusting the slider below the <b>Resulting</b> color.",
   "colorObjective": "none", "firstColor": "#00FF00", "secondColor": "#00FFFF"
 }, {
   "typeOf": "twoColorsObj",
   "idQuestion": "27",
-  "questionPT": "Pretende-se misturar a <b>Primeira</b> e a <b>Segunda</b> cor apresentadas. Qual pensa ser a cor resultante desta mistura? Indique, ajustando o círculo apresentado por baixo da cor <b>Objectivo</b>.",
-  "questionEN": "The Basic colors of a mixture are presented in the two left-most circles. Choose the <b>Resulting</b> color which you believe it is the result of this mixture, by adjusting the slider below the <b>Resulting</b> color.",
+  "questionPT": "Qual pensa ser a cor resultante da mistura da <b>Primeira</b> e <b>Segunda</b> cor? Indique, ajustando o círculo apresentado por baixo da cor <b>Objectivo</b>.",
+  "questionEN": "Choose the <b>Resulting</b> color which you believe it is the result of mixing the <b>First</b> and <b>Second</b> color, by adjusting the slider below the <b>Resulting</b> color.",
   "colorObjective": "none", "firstColor": "#00FF00", "secondColor": "#FF00FF"
 }, {
   "typeOf": "twoColorsObj",
   "idQuestion": "28",
-  "questionPT": "Pretende-se misturar a <b>Primeira</b> e a <b>Segunda</b> cor apresentadas. Qual pensa ser a cor resultante desta mistura? Indique, ajustando o círculo apresentado por baixo da cor <b>Objectivo</b>.",
-  "questionEN": "The Basic colors of a mixture are presented in the two left-most circles. Choose the <b>Resulting</b> color which you believe it is the result of this mixture, by adjusting the slider below the <b>Resulting</b> color.",
+  "questionPT": "Qual pensa ser a cor resultante da mistura da <b>Primeira</b> e <b>Segunda</b> cor? Indique, ajustando o círculo apresentado por baixo da cor <b>Objectivo</b>.",
+  "questionEN": "Choose the <b>Resulting</b> color which you believe it is the result of mixing the <b>First</b> and <b>Second</b> color, by adjusting the slider below the <b>Resulting</b> color.",
   "colorObjective": "none", "firstColor": "#00FF00", "secondColor": "#FFFF00"
 }, {
   "typeOf": "twoColorsObj",
   "idQuestion": "29",
-  "questionPT": "Pretende-se misturar a <b>Primeira</b> e a <b>Segunda</b> cor apresentadas. Qual pensa ser a cor resultante desta mistura? Indique, ajustando o círculo apresentado por baixo da cor <b>Objectivo</b>.",
-  "questionEN": "The Basic colors of a mixture are presented in the two left-most circles. Choose the <b>Resulting</b> color which you believe it is the result of this mixture, by adjusting the slider below the <b>Resulting</b> color.",
+  "questionPT": "Qual pensa ser a cor resultante da mistura da <b>Primeira</b> e <b>Segunda</b> cor? Indique, ajustando o círculo apresentado por baixo da cor <b>Objectivo</b>.",
+  "questionEN": "Choose the <b>Resulting</b> color which you believe it is the result of mixing the <b>First</b> and <b>Second</b> color, by adjusting the slider below the <b>Resulting</b> color.",
   "colorObjective": "none", "firstColor": "#0000FF", "secondColor": "#00FFFF"
 }, {
   "typeOf": "twoColorsObj",
   "idQuestion": "30",
-  "questionPT": "Pretende-se misturar a <b>Primeira</b> e a <b>Segunda</b> cor apresentadas. Qual pensa ser a cor resultante desta mistura? Indique, ajustando o círculo apresentado por baixo da cor <b>Objectivo</b>.",
-  "questionEN": "The Basic colors of a mixture are presented in the two left-most circles. Choose the <b>Resulting</b> color which you believe it is the result of this mixture, by adjusting the slider below the <b>Resulting</b> color.",
+  "questionPT": "Qual pensa ser a cor resultante da mistura da <b>Primeira</b> e <b>Segunda</b> cor? Indique, ajustando o círculo apresentado por baixo da cor <b>Objectivo</b>.",
+  "questionEN": "Choose the <b>Resulting</b> color which you believe it is the result of mixing the <b>First</b> and <b>Second</b> color, by adjusting the slider below the <b>Resulting</b> color.",
   "colorObjective": "none", "firstColor": "#0000FF", "secondColor": "#FF00FF"
 }, {
   "typeOf": "twoColorsObj",
   "idQuestion": "31",
-  "questionPT": "Pretende-se misturar a <b>Primeira</b> e a <b>Segunda</b> cor apresentadas. Qual pensa ser a cor resultante desta mistura? Indique, ajustando o círculo apresentado por baixo da cor <b>Objectivo</b>.",
-  "questionEN": "The Basic colors of a mixture are presented in the two left-most circles. Choose the <b>Resulting</b> color which you believe it is the result of this mixture, by adjusting the slider below the <b>Resulting</b> color.",
+  "questionPT": "Qual pensa ser a cor resultante da mistura da <b>Primeira</b> e <b>Segunda</b> cor? Indique, ajustando o círculo apresentado por baixo da cor <b>Objectivo</b>.",
+  "questionEN": "Choose the <b>Resulting</b> color which you believe it is the result of mixing the <b>First</b> and <b>Second</b> color, by adjusting the slider below the <b>Resulting</b> color.",
   "colorObjective": "none", "firstColor": "#0000FF", "secondColor": "#FFFF00"
 }, {
   "typeOf": "twoColorsObj",
   "idQuestion": "32",
-  "questionPT": "Pretende-se misturar a <b>Primeira</b> e a <b>Segunda</b> cor apresentadas. Qual pensa ser a cor resultante desta mistura? Indique, ajustando o círculo apresentado por baixo da cor <b>Objectivo</b>.",
-  "questionEN": "The Basic colors of a mixture are presented in the two left-most circles. Choose the <b>Resulting</b> color which you believe it is the result of this mixture, by adjusting the slider below the <b>Resulting</b> color.",
+  "questionPT": "Qual pensa ser a cor resultante da mistura da <b>Primeira</b> e <b>Segunda</b> cor? Indique, ajustando o círculo apresentado por baixo da cor <b>Objectivo</b>.",
+  "questionEN": "Choose the <b>Resulting</b> color which you believe it is the result of mixing the <b>First</b> and <b>Second</b> color, by adjusting the slider below the <b>Resulting</b> color.",
   "colorObjective": "none", "firstColor": "#00FFFF", "secondColor": "#FFFF00"
 }]

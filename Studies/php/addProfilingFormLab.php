@@ -27,7 +27,7 @@
   $cResidence = pg_escape_string($_POST['countryResidence']);
   $language = pg_escape_string($_POST['language']);
   $date = date("j-M-Y G:i:s T");
-  $inPerson = "no";
+  $inPerson = "yes";
 
   $query = "insert into profiling_info values ('" . $_SESSION["id"] . "', '" . $date . "',
   '" . $age . "', '" . $gender . "', '" . $academic . "', '" . $nationality . "' ,

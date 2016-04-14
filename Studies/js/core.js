@@ -325,12 +325,12 @@ function drawFirstSlider(selectedDiv) {
   var wSlid = $(".slider_one" + (selectedDiv)).width();
   var hSlid = $(".slider_one" + (selectedDiv)).height();
 
-  var scaleX = d3.scale.linear()
-    //.domain([0, 25, 75, 100, 125, 150, 175, 200, 230])
-    //.range([0, 60, 240, 150, 300, 240, 150, 60, 300, 360])
-    .domain([0, 360])
-    .range([0, wSlid])
+  var scaleColor = d3.scale.linear()
+    .domain([0, 46, 46, 92, 92, 138, 138, 184, 184, 230])
+    .range([0, 60, 150, 240, 300, 360, 60, 150, 240, 300])
     .clamp(true);
+
+  var scaleX = d3.scale.linear().domain([0,230]).range([0,230]);
 
   var brush = d3.svg.brush()
     .x(scaleX)
@@ -391,19 +391,24 @@ function drawFirstSlider(selectedDiv) {
     var circle = svg.select("circle");
 
     if (d3.event.sourceEvent) {
-      value = scaleX.invert(d3.mouse(this)[0]);
-      brush.extent([value, value]);
+      value = d3.mouse(this)[0];
+      color = scaleColor(value);
+      //brush.extent([value, value]);
     }
-    handle.attr("cx", scaleX(value));
+
+    if (value < 0)   { value = 0; }
+    if (value > 230) { value = 230; }
+
+    handle.attr("cx", value);
 
     if (value === 0) { //Default config = white
       circle.attr("fill", d3.hsl(360, 1, 1));
       document.getElementById('thirdColor').value = "NONE";
     } else {
-      console.log(value);
-      circle.attr("fill", d3.hsl(value, 1, 0.50));
+      //console.log(d3.mouse(this)[0]+", "+color);
+      circle.attr("fill", d3.hsl(color, 1, 0.50));
       incCountClicks();
-      document.getElementById('secColor').value = "hsl(" + value + ",1,0.50)";
+      document.getElementById('secColor').value = "hsl(" + color + ",1,0.50)";
     }
 
   }
@@ -422,10 +427,12 @@ function drawSecondSlider(selectedDiv) {
   var wSlid = $(".slider_two" + (selectedDiv)).width();
   var hSlid = $(".slider_two" + (selectedDiv)).height();
 
-  var scaleX = d3.scale.linear()
-    .domain([0, 360])
-    .range([0, wSlid])
+  var scaleColor = d3.scale.linear()
+    .domain([0, 46, 46, 92, 92, 138, 138, 184, 184, 230])
+    .range([0, 60, 150, 240, 300, 360, 60, 150, 240, 300])
     .clamp(true);
+
+  var scaleX = d3.scale.linear().domain([0,230]).range([0,230]);
 
   var brush = d3.svg.brush()
     .x(scaleX)
@@ -486,18 +493,22 @@ function drawSecondSlider(selectedDiv) {
     var circle = svg.select("circle");
 
     if (d3.event.sourceEvent) { // not a programmatic event
-      value = scaleX.invert(d3.mouse(this)[0]);
-      brush.extent([value, value]);
+      value = d3.mouse(this)[0];
+      color = scaleColor(value);
     }
-    handle.attr("cx", scaleX(value));
+
+    if (value < 0)   { value = 0; }
+    if (value > 230) { value = 230; }
+
+    handle.attr("cx", value);
 
     if (value === 0) { //Default config = white
       circle.attr("fill", d3.hsl(360, 1, 1));
       document.getElementById('thirdColor').value = "NONE";
     } else {
-      circle.attr("fill", d3.hsl(value, 1, 0.50));
-      document.getElementById('thirdColor').value = "hsl(" + value + ",1,0.50)";
+      circle.attr("fill", d3.hsl(color, 1, 0.50));
       incCountClicks();
+      document.getElementById('thirdColor').value = "hsl(" + color + ",1,0.50)";
     }
 
   }

@@ -24,11 +24,13 @@
   $academic = pg_escape_string($_POST['academic']);
   $nationality = pg_escape_string($_POST['nacional']);
   $cResidence = pg_escape_string($_POST['countryResidence']);
-  $date = date("j/M/Y G:i:s T");
+  $language = pg_escape_string($_POST['language']);
+  $date = date("j-M-Y G:i:s T");
+  $inPerson = "no";
 
-  $query = "insert into profiling_info values ('" . $_SESSION["id"] . "', '" . $age . "',
-  '" . $academic . "', '" . $nationality . "', '" . $cResidence . "', '" . $gender . "' ,
-  '" . $_SESSION["countAnswers"] . "', '" . $date . "', '" . $_SESSION["timeOriginal"] . "')";
+  $query = "insert into profiling_info values ('" . $_SESSION["id"] . "', '" . $date . "',
+  '" . $age . "', '" . $gender . "', '" . $academic . "', '" . $nationality . "' ,
+  '" . $cResidence . "', '" . $language . "', '" . $_SESSION["countAnswers"] . "', '" . $inPerson . "')";
 
   $result = pg_query($query) or die('ERROR with query: ' . pg_last_error());
 
