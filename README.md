@@ -14,8 +14,10 @@ In this repository, it will be available some interesting stuff which you may wa
 - HTML5
 - D3.js
 - CSS
+- JavaScript
 - jQuery
 - Bootstrap
+- PHP
 
 
 ## Resources
@@ -31,8 +33,6 @@ In this repository, it will be available some interesting stuff which you may wa
 ## To-Do
 
 - See **Issues List**.
-- Finish Entire First Study Interface.
-- Relational Database Dev.
 - Deploy First User Study.
 - Check Amazon's Mechanical Turk.
 
