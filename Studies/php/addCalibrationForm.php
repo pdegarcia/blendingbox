@@ -11,6 +11,8 @@
   $connection = pg_connect("host=$host port=$port user=$user password=$password dbname=$dbname") or die(pg_last_error());
 
   //echo("<p>Connected to Postgres on $host as user $user on database $dbname.</p>");
+  $auxTime = date("i:s", time()); //Current time
+  $auxTime = $auxTime - $_SESSION["timeOriginal"]; //Sub ao original
 
   $numBlackSquare = pg_escape_string($_POST['inputBlackSquare1']);
   $wordBlackSquare = pg_escape_string($_POST['inputBlackSquare2']);
@@ -27,9 +29,13 @@
    '" . $numBlackSquare . "', '" . $wordBlackSquare . "', '" . $numWhiteSquare . "',
    '" . $wordWhiteSquare . "', '" . $dimensions . "', '" . $availableDim . "', '" . $colorDepth . "')";
 
+  $update = "update profiling_info set time_spent = '" . $auxTime . "' where id = '" . $_SESSION["id"] . "'";
+
    if ($_SESSION["addedCalibration"] === FALSE) { //IF YES - DO QUERY . IF ALREADY ADDED - LEAVE.
      $result = pg_query($query) or die('ERROR with query: ' . pg_last_error());
+     $resultUpdate = pg_query($update) or die('ERROR with query: ' . pg_last_error());
      $result = pg_free_result($result) or die('ERROR: ' . pg_last_error());
+     $resultUpdate = pg_free_result($resultUpdate) or die('ERROR: ' . pg_last_error());
      //echo("<p>Query result freed.</p>");
    }
 

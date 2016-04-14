@@ -326,6 +326,8 @@ function drawFirstSlider(selectedDiv) {
   var hSlid = $(".slider_one" + (selectedDiv)).height();
 
   var scaleX = d3.scale.linear()
+    //.domain([0, 25, 75, 100, 125, 150, 175, 200, 230])
+    //.range([0, 60, 240, 150, 300, 240, 150, 60, 300, 360])
     .domain([0, 360])
     .range([0, wSlid])
     .clamp(true);
@@ -388,7 +390,7 @@ function drawFirstSlider(selectedDiv) {
     var svg = d3.select(colorShape);
     var circle = svg.select("circle");
 
-    if (d3.event.sourceEvent) { // not a programmatic event
+    if (d3.event.sourceEvent) {
       value = scaleX.invert(d3.mouse(this)[0]);
       brush.extent([value, value]);
     }
@@ -398,6 +400,7 @@ function drawFirstSlider(selectedDiv) {
       circle.attr("fill", d3.hsl(360, 1, 1));
       document.getElementById('thirdColor').value = "NONE";
     } else {
+      console.log(value);
       circle.attr("fill", d3.hsl(value, 1, 0.50));
       incCountClicks();
       document.getElementById('secColor').value = "hsl(" + value + ",1,0.50)";

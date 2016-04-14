@@ -11,6 +11,8 @@
   $connection = pg_connect("host=$host port=$port user=$user password=$password dbname=$dbname") or die(pg_last_error());
 
   //echo("<p>Connected to Postgres on $host as user $user on database $dbname.</p>");
+  $auxTime = date("i:s", time()); //Current time
+  $auxTime = $auxTime - $_SESSION["timeOriginal"]; //Sub ao original
 
   $typeOfQuestion = pg_escape_string($_POST['typeOfQuestion']);
   $numberOfQuestion = pg_escape_string($_POST['idQuestion']);
@@ -30,7 +32,7 @@
    '" . $thirdColor . "', '" . $numClicks . "', '" . $pageTime . "',
    '" . $rating . "', '" . $resets . "', '" . $numberOfQuestion . "')";
 
-   $update = "update profiling_info set num_answers = '" . $_SESSION["countAnswers"] . "' where id = '" . $_SESSION["id"] . "'";
+   $update = "update profiling_info set num_answers = '" . $_SESSION["countAnswers"] . "', time_spent = '" . $auxTime . "' where id = '" . $_SESSION["id"] . "'";
 
    $result = pg_query($query) or die('ERROR with query: ' . pg_last_error());
    $resultUpdate = pg_query($update) or die('ERROR with query: ' . pg_last_error());

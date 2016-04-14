@@ -18,14 +18,18 @@
   $_SESSION["countAnswers"] = 0; //count num of answers given and store on DB.
   $_SESSION["addedCalibration"] = FALSE; //flag if already added to DB calibration.
   $_SESSION["addedIshihara"] = FALSE;
+  $_SESSION["timeSpent"] = date("i:s", time());
 
   $age = pg_escape_string($_POST['inputAge']);
   $gender = pg_escape_string($_POST['gridRadios']);
   $academic = pg_escape_string($_POST['academic']);
   $nationality = pg_escape_string($_POST['nacional']);
   $cResidence = pg_escape_string($_POST['countryResidence']);
+  $date = date("j-M-Y G:i:s T");
 
-  $query = "insert into profiling_info values ('" . $_SESSION["id"] . "', '" . $age . "', '" . $academic . "', '" . $nationality . "', '" . $cResidence . "', '" . $gender . "' , '" . $_SESSION["countAnswers"] . "')";
+  $query = "insert into profiling_info values ('" . $_SESSION["id"] . "', '" . $age . "',
+  '" . $academic . "', '" . $nationality . "', '" . $cResidence . "', '" . $gender . "' ,
+  '" . $_SESSION["countAnswers"] . "', '" . $date . "', '" . $_SESSION["timeSpent"] . "')";
 
   $result = pg_query($query) or die('ERROR with query: ' . pg_last_error());
 
