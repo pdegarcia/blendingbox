@@ -9,8 +9,8 @@ function updateFormEnabled() {
 }
 
 function verifyAllFields() {
-  if ($('#age').val() !== '' &&
-    $('#gridRadios').val() !== '' &&
+  if ($('#age').val() !== "undefined" &&
+    $('#gridRadios').val() !== "undefined" &&
     $('#academic').val() !== '' &&
     $('#nacional').val() !== '' &&
     $('#countryResidence').val() !== '' &&
@@ -35,7 +35,7 @@ function verifyAllFields() {
       });
       $.getJSON(jsonLangPath, function(obj) {
         $.each(obj[0].languagesPT, function(key, value) {
-          var optionLang = $('<option />').val(value.iso).text(value.name);
+          var optionLang = $('<option />').val(value.abr).text(value.name);
           $("#language").append(optionLang);
         });
       });
@@ -58,7 +58,7 @@ function verifyAllFields() {
       });
       $.getJSON(jsonLangPath, function(obj) { //populate Languages
         $.each(obj[0].languagesEN, function(key, value) {
-          var optionLang = $('<option />').val(value.iso).text(value.name);
+          var optionLang = $('<option />').val(value.abr).text(value.name);
           $("#language").append(optionLang);
         });
       });
