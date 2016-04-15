@@ -187,7 +187,7 @@
 @media(max-width:320px) {
   .header-image {
     background: url('../images/sec_header260.jpg') no-repeat center scroll;
-    margin-top: -36%;
+    margin-top: -42%;
   }
   #checklistIcon {
     margin-top: 10px;

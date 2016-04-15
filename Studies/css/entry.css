@@ -195,7 +195,9 @@ footer {
   #advancePT {
     margin-left: -25px;
   }
-  #advanceEN {}
+  #advanceEN {
+    margin-left: -25px;
+  }
 }
 
 #advancePT {
