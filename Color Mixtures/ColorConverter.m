@@ -1,33 +1,60 @@
 
 close all;
-ref = 'Color Blends.csv';
+ref = 'Color Blends_two.csv';
+cformLab = makecform('lab2xyz');
+cformsRGB = makecform('srgb2xyz');
+cformLch = makecform('lch2lab');
+cformCMYK = makecform('cmyk2srgb');
+cformXYZ = makecform('xyz2srgb');
 
-table = readtable(ref, 'Format', '%s%u%u%u%f%f%f%u%u%u%u%f%f%f%f%f%f');
-variables = table.Properties.VariableNames;
+tableC = readtable(ref, 'Delimiter', ';');
+variables = tableC.Properties.VariableNames;
 
 % Tables with every value from each Color Model
-hsvTable = table(:, {'Color','H','S','V'});
-lchTable = table(:, {'Color','L','C','h'});
+hsvTable = tableC(:, {'Color','H','S','V'});
 
-cmykTable = table(:, {'Color','C_1','M','Y', 'K'});
+lchTable = tableC(:, {'Color','L','C','h'});
+missing = ismissing(lchTable);
+lchTable = lchTable(~any(missing, 2), :);
+
+cmykTable = tableC(:, {'Color','C_1','M','Y', 'K'});
     cmykTable.Properties.VariableNames = {'Color' 'C' 'M' 'Y' 'K'};
+missing = ismissing(cmykTable);
+cmykTable = cmykTable(~any(missing, 2), :);
 
-rgbTable = table(:, {'Color','R','G','B'});
+rgbTable = tableC(:, {'Color','R','G','B'});
+missing = ismissing(rgbTable);
+rgbTable = rgbTable(~any(missing, 2), :);
 
-labTable = table(:, {'Color','L_1','a','b'});
+labTable = tableC(:, {'Color','L_1','a','b'});
     labTable.Properties.VariableNames = {'Color' 'L' 'a' 'b'};
-    
-frgb = fopen('rgb_colors_xyz.txt','w');
-flab = fopen('lab_colors_xyz.txt','w');
-    
-for i = 1 : height(table),
+missing = ismissing(labTable);
+labTable = labTable(~any(missing, 2), :);
+       
+for i = 1 : height(rgbTable),
     valuesRGB = rgbTable{i,{'R','G','B'}};
     valuesLAB = labTable{i, {'L','a','b'}};
-    rgb = rgb2xyz(valuesRGB, 'ColorSpace', 'srgb'); %convert rgb -> xyz
-    lab = lab2xyz(valuesLAB);
-    fprintf(frgb, '%u: %s %s %s \n',i, rgb);
-    fprintf(flab, '%u: %s %s %s \n',i, lab);
+    valuesLCh = lchTable{i, {'L','C','h'}};
+    valuesCMYK = cmykTable{i, {'C','M','Y','K'}};
+    
+    rgb = applycform(valuesRGB, cformsRGB);     %convert rgb -> xyz
+    lab = applycform(valuesLAB, cformLab);      %convert Lab -> xyz
+    lch = applycform(valuesLCh, cformLch);      %convert lch -> lab -> xyz
+    lch = applycform(lch, cformLab);
+    cmyk = applycform(valuesCMYK, cformCMYK);   %convert cmyk -> sRGB -> xyz
+    cmyk = applycform(cmyk, cformsRGB);
+    
+    rgbTable(i, 2:4) = num2cell(rgb);
+    labTable(i, 2:4) = num2cell(lab);
+    lchTable(i, 2:4) = num2cell(lch);
+    cmykTable(i, 2:4) = num2cell(cmyk);
+    
 end
 
-fclose(flab);
-fclose(frgb);
+for i = 1 : height(hsvTable)
+   valuesHSV = hsvTable{i,{'H','S','V'}};
+   hsv = hsv2rgb(valuesHSV);                    %convert hsv -> rgb -> xyz
+   hsv = rgb2xyz(hsv);
+   
+   hsvTable(i, 2:4) = num2cell(hsv);
+end
