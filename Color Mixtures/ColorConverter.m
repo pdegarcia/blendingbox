@@ -98,6 +98,8 @@ flab = fopen('lab_colors_hex.txt','w');
 flch = fopen('lch_colors_hex.txt','w');
 fcmy = fopen('cmyk_colors_hex.txt','w');
 fhsv = fopen('hsv_colors_hex.txt','w');
+fslider = fopen('sliders_colors_hex.txt','w');
+fcircles = fopen('circles_colors_hex.txt','w');
 
 for i = 1 : height(rgbTable)
     valuesRGB = rgbTable{i,{'R','G','B'}};
@@ -125,10 +127,18 @@ for i = 1 : height(rgbTable)
     y = strcat(dec2hex(floor((valuesCMYK(3)/16))), dec2hex(floor(rem(valuesCMYK(3), 16))));
     cmy = strcat('#',c,m,y);
     
-    fprintf(frgb, '%u: %s \n',i,rgb);
-    fprintf(flab, '%u: %s \n',i,lab);
-    fprintf(flch, '%u: %s \n',i,lch);
-    fprintf(fcmy, '%u: %s \n',i,cmy);
+    % PRINT ON MULTIPLE FILES %
+    fprintf(frgb, '%s \n',rgb);
+    fprintf(flab, '%s \n',lab);
+    fprintf(flch, '%s \n',lch);
+    fprintf(fcmy, '%s \n',cmy);
+    
+    % PRINT ON SAME FILE FOR SLIDER %
+    fprintf(fslider, '%s \n',rgb);
+    fprintf(fslider, '%s \n',lab);
+    fprintf(fslider, '%s \n',lch);
+    fprintf(fslider, '%s \n',cmy);
+    
 end
 
 for i = 1 : height(hsvTable)
@@ -138,5 +148,9 @@ for i = 1 : height(hsvTable)
     s = strcat(dec2hex(floor((valuesHSV(2)/16))), dec2hex(floor(rem(valuesHSV(2), 16))));
     v = strcat(dec2hex(floor((valuesHSV(3)/16))), dec2hex(floor(rem(valuesHSV(3), 16))));
     hsv = strcat('#',h,s,v);
-    fprintf(fhsv, '%u: %s \n',i,hsv);
+    
+    fprintf(fhsv, '%s \n',hsv);       %HSV FILE
+    fprintf(fcircles, '%s \n',hsv);  %COLORS TO PRESENT IN CIRCLES
 end
+
+fclose('all');
