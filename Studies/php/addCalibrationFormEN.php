@@ -11,7 +11,7 @@
   $connection = pg_connect("host=$host port=$port user=$user password=$password dbname=$dbname") or die(pg_last_error());
 
   //echo("<p>Connected to Postgres on $host as user $user on database $dbname.</p>");
-  $auxTime = date("i:s", time()); //Current time
+  $auxTime = date("H:i:s", time()); //Current time
   $auxTime = $auxTime - $_SESSION["timeOriginal"]; //Sub ao original
 
   $numBlackSquare = pg_escape_string($_POST['inputBlackSquare1']);

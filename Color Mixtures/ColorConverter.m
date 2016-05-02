@@ -98,10 +98,12 @@ flab = fopen('lab_colors_hex.txt','w');
 flch = fopen('lch_colors_hex.txt','w');
 fcmy = fopen('cmyk_colors_hex.txt','w');
 fhsv = fopen('hsv_colors_hex.txt','w');
-fslider = fopen('sliders_colors_hex.txt','w');
-fcircles = fopen('circles_colors_hex.txt','w');
+fslider = fopen('populateSlider_Calibrated.json','w');
+allHex = [];
+j = 0;
 
 for i = 1 : height(rgbTable)
+    j = j+1;
     valuesRGB = rgbTable{i,{'R','G','B'}};
     valuesLAB = labTable{i, {'L','a','b'}};
     valuesLCh = lchTable{i, {'L','C','h'}};
@@ -128,18 +130,29 @@ for i = 1 : height(rgbTable)
     cmy = strcat('#',c,m,y);
     
     % PRINT ON MULTIPLE FILES %
-    fprintf(frgb, '%s \n',rgb);
-    fprintf(flab, '%s \n',lab);
-    fprintf(flch, '%s \n',lch);
-    fprintf(fcmy, '%s \n',cmy);
+    fprintf(frgb, '%s\n',rgb);
+    fprintf(flab, '%s\n',lab);
+    fprintf(flch, '%s\n',lch);
+    fprintf(fcmy, '%s\n',cmy);
     
     % PRINT ON SAME FILE FOR SLIDER %
-    fprintf(fslider, '%s \n',rgb);
-    fprintf(fslider, '%s \n',lab);
-    fprintf(fslider, '%s \n',lch);
-    fprintf(fslider, '%s \n',cmy);
+    allHex{j} = rgb; j = j+1;
+    allHex{j} = lab; j = j+1;
+    allHex{j} = lch; j = j+1;
+    allHex{j} = cmy;
     
 end
+
+sorted = sort(allHex);  %sort crescent
+noRep = unique(sorted); %remove repeated colors
+fprintf(fslider, '{\n');  %OPEN JSON FILE
+    for i = 1 : length(noRep)
+        if(i == length(noRep))
+           fprintf(fslider, '"color%d": "%s"\n',i, noRep{i}); 
+        else fprintf(fslider, '"color%d": "%s",\n',i, noRep{i});
+        end
+    end
+fprintf(fslider, '}');  %CLOSE JSON FILE
 
 for i = 1 : height(hsvTable)
     valuesHSV = hsvTable{i,{'H','S','V'}};
@@ -149,8 +162,7 @@ for i = 1 : height(hsvTable)
     v = strcat(dec2hex(floor((valuesHSV(3)/16))), dec2hex(floor(rem(valuesHSV(3), 16))));
     hsv = strcat('#',h,s,v);
     
-    fprintf(fhsv, '%s \n',hsv);       %HSV FILE
-    fprintf(fcircles, '%s \n',hsv);  %COLORS TO PRESENT IN CIRCLES
+    fprintf(fhsv, '%s\n',hsv);       %HSV FILE
 end
 
 fclose('all');

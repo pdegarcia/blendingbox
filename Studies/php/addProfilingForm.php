@@ -18,7 +18,8 @@
   $_SESSION["countAnswers"] = 0; //count num of answers given and store on DB.
   $_SESSION["addedCalibration"] = FALSE; //flag if already added to DB calibration.
   $_SESSION["addedIshihara"] = FALSE;
-  $_SESSION["timeSpent"] = date("i:s", time());
+  $_SESSION["timeSpent"] = date("H:i:s", time());
+  $_SESSION["inPerson"] = 0;
 
   $age = pg_escape_string($_POST['inputAge']);
   $gender = pg_escape_string($_POST['gridRadios']);

@@ -1,84 +1,84 @@
-#FF0000 
-#FF0000 
-#FF0000 
-#FF0000 
-#00FF00 
-#00FF00 
-#00FF00 
-#00AF47 
-#6500FF 
-#9500FF 
-#9500FF 
-#3E0090 
-#00FFFF 
-#00FFFF 
-#00FFFF 
-#008EF6 
-#FF00FF 
-#FF00FF 
-#FF00FF 
-#FF0066 
-#EFFF00 
-#D7FF00 
-#D7FF00 
-#FBFF00 
-#768E00 
-#C0BD00 
-#D7B800 
-#998800 
-#A00082 
-#FB007E 
-#FF0064 
-#B20050 
-#008687 
-#778EAA 
-#00A5FF 
-#006C83 
-#7E7E7E 
-#ECA465 
-#12DE00 
-#9B8178 
-#FF0059 
-#FF0063 
-#FF0046 
-#FF0000 
-#FF6E00 
-#FFA300 
-#FFA000 
-#FF9000 
-#9700FF 
-#E87CFF 
-#008CFF 
-#9D69C3 
-#FF5853 
-#FF8D8A 
-#FF0000 
-#FF8B47 
-#00FF78 
-#00FF98 
-#00FFBF 
-#00A69D 
-#7E7E7E 
-#CFB197 
-#FF0000 
-#9B8178 
-#00FF00 
-#00FF00 
-#00FF00 
-#45DC00 
-#0026FF 
-#814CFF 
-#0075FF 
-#004FC1 
-#B400FF 
-#F500FF 
-#FB00FF 
-#B40084 
-#7E7E7E 
-#E66EA4 
-#FF0000 
-#9B8178 
-#00FF6E 
-#65FF8A 
-#00FF9C 
-#3CD995 
+"color1": "#FF0000",
+"color1": "#FF0000",
+"color1": "#FF0000",
+"color1": "#FF0000",
+"color2": "#00FF00",
+"color2": "#00FF00",
+"color2": "#00FF00",
+"color2": "#00AF47",
+"color3": "#6500FF",
+"color3": "#9500FF",
+"color3": "#9500FF",
+"color3": "#3E0090",
+"color4": "#00FFFF",
+"color4": "#00FFFF",
+"color4": "#00FFFF",
+"color4": "#008EF6",
+"color5": "#FF00FF",
+"color5": "#FF00FF",
+"color5": "#FF00FF",
+"color5": "#FF0066",
+"color6": "#EFFF00",
+"color6": "#D7FF00",
+"color6": "#D7FF00",
+"color6": "#FBFF00",
+"color7": "#768E00",
+"color7": "#C0BD00",
+"color7": "#D7B800",
+"color7": "#998800",
+"color8": "#A00082",
+"color8": "#FB007E",
+"color8": "#FF0064",
+"color8": "#B20050",
+"color9": "#008687",
+"color9": "#778EAA",
+"color9": "#00A5FF",
+"color9": "#006C83",
+"color10": "#7E7E7E",
+"color10": "#ECA465",
+"color10": "#12DE00",
+"color10": "#9B8178",
+"color11": "#FF0059",
+"color11": "#FF0063",
+"color11": "#FF0046",
+"color11": "#FF0000",
+"color12": "#FF6E00",
+"color12": "#FFA300",
+"color12": "#FFA000",
+"color12": "#FF9000",
+"color13": "#9700FF",
+"color13": "#E87CFF",
+"color13": "#008CFF",
+"color13": "#9D69C3",
+"color14": "#FF5853",
+"color14": "#FF8D8A",
+"color14": "#FF0000",
+"color14": "#FF8B47",
+"color15": "#00FF78",
+"color15": "#00FF98",
+"color15": "#00FFBF",
+"color15": "#00A69D",
+"color16": "#7E7E7E",
+"color16": "#CFB197",
+"color16": "#FF0000",
+"color16": "#9B8178",
+"color17": "#00FF00",
+"color17": "#00FF00",
+"color17": "#00FF00",
+"color17": "#45DC00",
+"color18": "#0026FF",
+"color18": "#814CFF",
+"color18": "#0075FF",
+"color18": "#004FC1",
+"color19": "#B400FF",
+"color19": "#F500FF",
+"color19": "#FB00FF",
+"color19": "#B40084",
+"color20": "#7E7E7E",
+"color20": "#E66EA4",
+"color20": "#FF0000",
+"color20": "#9B8178",
+"color21": "#00FF6E",
+"color21": "#65FF8A",
+"color21": "#00FF9C",
+"color21": "#3CD995",
