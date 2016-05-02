@@ -1,0 +1,152 @@
+Numero: 1
+Tipo: OBJ = MIX + MIX
+Cores Apresentadas: #FFFF00
+Respostas Possiveis: #FF0000 + #00FF00
+
+Numero: 2
+Tipo: OBJ = MIX + MIX
+Cores Apresentadas: #FF00FF
+Respostas Possiveis: #FF0000 + #0000FF
+
+Numero: 3 (semelhante a nº 12)
+Tipo: OBJ = MIX + MIX
+Cores Apresentadas: #80FF00
+Respostas Possiveis: #FF0000 + #00FFFF (HSV) / #00FF00 + #FFFF00
+
+Numero: 4
+Tipo: OBJ = MIX + MIX
+Cores Apresentadas: #B400FF
+Respostas Possiveis: #FF0000 + #00FFFF (HSV)
+
+Numero: 5
+Tipo: OBJ = MIX + MIX
+Cores Apresentadas: #FF007D
+Respostas Possiveis: #FF0000 + #FF00FF
+
+Numero: 6
+Tipo: OBJ = MIX + MIX
+Cores Apresentadas: #FF7500
+Respostas Possiveis: #FF0000 + #FFFF00
+
+Numero: 7
+Tipo: OBJ = MIX + MIX
+Cores Apresentadas: #6C00FF
+Respostas Possiveis:#00FFFF + #FF00FF
+
+Numero: 8
+Tipo: OBJ = MIX + MIX
+Cores Apresentadas: #FF0000
+Respostas Possiveis: #FF00FF + #FFFF00
+
+Numero: 9
+Tipo: OBJ = MIX + MIX
+Cores Apresentadas: #00FF9A
+Respostas Possiveis: #00FF00 + #00FFFF
+
+Numero: 10 (semelhante a nº 13)
+Tipo: OBJ = MIX + MIX
+Cores Apresentadas: #0000FF
+Respostas Possiveis: #00FF00 + #FF00FF (HSV) / #0000FF + #00FFFF
+
+Numero: 11
+Tipo: OBJ = MIX + MIX
+Cores Apresentadas: #FF7500
+Respostas Possiveis: #00FF00 + #FF00FF (HSV)
+
+Numero: 14
+Tipo: OBJ = MIX + MIX
+Cores Apresentadas: #B400FF
+Respostas Possiveis: #0000FF + #FF00FF
+
+Numero: 15
+Tipo: OBJ = MIX + MIX
+Cores Apresentadas: #00FF9A
+Respostas Possiveis: #0000FF + #FFFF00 (HSV)
+
+Numero: 16
+Tipo: OBJ = MIX + MIX
+Cores Apresentadas: #FF007D
+Respostas Possiveis: #0000FF + #FFFF00 (HSV)
+
+Numero: 17
+Tipo: OBJ = MIX + MIX
+Cores Apresentadas: #00FF00
+Respostas Possiveis: #00FFFF + #FFFF00
+
+Numero: 18
+Tipo: MIX + MIX = OBJ
+Cores Apresentadas: #FF0000 + #00FF00
+Respostas Possiveis: #FFFF00 (HSV)	#D7A700 (Lch) #808000 (cmy)	#808000 (rgb)	#c9ab00 (lab)
+
+Numero: 19
+Tipo: MIX + MIX = OBJ
+Cores Apresentadas: #FF0000 + #0000FF
+Respostas Possiveis: #FF00FF	#FB0080	#800080	#800080	#ca0088
+
+Numero: 20
+Tipo: MIX + MIX = OBJ
+Cores Apresentadas: #00FF00 + #0000FF
+Respostas Possiveis: #00FFFF	#00A5FF	#008080	#008080	#7d93a6
+
+Numero: 21
+Tipo: MIX + MIX = OBJ
+Cores Apresentadas: #FF0000 + #00FFFF
+Respostas Possiveis: #80FF00 (HSV)	#91c01d	#808080	#808080	#dda581
+                     #7f00ff (HSV)
+
+Numero: 22
+Tipo: MIX + MIX = OBJ
+Cores Apresentadas: #FF0000 + #FF00FF
+Respostas Possiveis: #FF0080	#FF0080	#FF0080	#FF0080	#ff0087
+
+Numero: 23
+Tipo: MIX + MIX = OBJ
+Cores Apresentadas: #FF0000 + #FFFF00
+Respostas Possiveis: #FF8000	#FF9F00	#FF8000	#FF8000	#ffa100
+
+Numero: 24
+Tipo: MIX + MIX = OBJ
+Cores Apresentadas: #00FFFF + #FF00FF
+Respostas Possiveis: #0000FF	#00caff	#8080FF	#8080FF	#c6aeff
+
+Numero: 25
+Tipo: MIX + MIX = OBJ
+Cores Apresentadas: #FF00FF + #FFFF00
+Respostas Possiveis: #FF0000	#FF6755	#FF8080	#FF8080	#ffa6a6
+
+Numero: 26
+Tipo: MIX + MIX = OBJ
+Cores Apresentadas: #00FF00 + #00FFFF
+Respostas Possiveis: #00FF80	#00ffb7	#00FF80	#00FF80	#46ff9c
+
+Numero: 27
+Tipo: MIX + MIX = OBJ
+Cores Apresentadas: #00FF00 + #FF00FF
+Respostas Possiveis: #0080FF (HSV)	#FF6F00	#808080	#808080	#c9b2a2
+                     #ff8000 (HSV)
+
+Numero: 28
+Tipo: MIX + MIX = OBJ
+Cores Apresentadas: #00FF00 + #FFFF00
+Respostas Possiveis: #80FF00	#B1FF00	#80FF00	#80FF00	#aeff00
+
+Numero: 29
+Tipo: MIX + MIX = OBJ
+Cores Apresentadas: #0000FF + #00FFFF
+Respostas Possiveis: #0080FF	#00acff	#0080FF	#0080FF	#5792ff
+
+Numero: 30
+Tipo: MIX + MIX = OBJ
+Cores Apresentadas: #0000FF + #FF00FF
+Respostas Possiveis: #8000FF	#B000FF	#8000FF	#8000FF	#ab00ff
+
+Numero: 31
+Tipo: MIX + MIX = OBJ
+Cores Apresentadas: #0000FF + #FFFF00
+Respostas Possiveis: #00FF80 (HSV)	#FF0050	#808080	#808080	#ca8aaa
+                     #ff007f (HSV)
+
+Numero: 32
+Tipo: MIX + MIX = OBJ
+Cores Apresentadas: #00FFFF + #FFFF00
+Respostas Possiveis: #00FF00	#6effa3	#80FF80	#80FF80	#c4ff9e

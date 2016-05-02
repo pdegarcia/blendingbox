@@ -3,7 +3,7 @@
   "idQuestion": "1",
   "questionPT": "Qual pensa ser a mistura de duas cores que pode formar a cor <b>Objectivo</b>? Ajuste os círculos apresentados por baixo de cada cor para as indicar.",
   "questionEN": "Choose two colors with which you can achieve the <b>Resulting</b> color, by adjusting the sliders below each color.",
-  "colorObjective": "#CBFF00", "firstColor": "none", "secondColor": "none"
+  "colorObjective": "#CEFF00", "firstColor": "none", "secondColor": "none"
 }, {
   "typeOf": "objTwoColors",
   "idQuestion": "2",
@@ -21,19 +21,19 @@
   "idQuestion": "4",
   "questionPT": "Qual pensa ser a mistura de duas cores que pode formar a cor <b>Objectivo</b>? Ajuste os círculos apresentados por baixo de cada cor para as indicar.",
   "questionEN": "Choose two colors with which you can achieve the <b>Resulting</b> color, by adjusting the sliders below each color.",
-  "colorObjective": "#B400FF", "firstColor": "none", "secondColor": "none"
+  "colorObjective": "#B100FF", "firstColor": "none", "secondColor": "none"
 }, {
   "typeOf": "objTwoColors",
   "idQuestion": "5",
   "questionPT": "Qual pensa ser a mistura de duas cores que pode formar a cor <b>Objectivo</b>? Ajuste os círculos apresentados por baixo de cada cor para as indicar.",
   "questionEN": "Choose two colors with which you can achieve the <b>Resulting</b> color, by adjusting the sliders below each color.",
-  "colorObjective": "#FF007D", "firstColor": "none", "secondColor": "none"
+  "colorObjective": "#FF007A", "firstColor": "none", "secondColor": "none"
 }, {
   "typeOf": "objTwoColors",
   "idQuestion": "6",
   "questionPT": "Qual pensa ser a mistura de duas cores que pode formar a cor <b>Objectivo</b>? Ajuste os círculos apresentados por baixo de cada cor para as indicar.",
   "questionEN": "Choose two colors with which you can achieve the <b>Resulting</b> color, by adjusting the sliders below each color.",
-  "colorObjective": "#FF7500", "firstColor": "none", "secondColor": "none"
+  "colorObjective": "#FF7200", "firstColor": "none", "secondColor": "none"
 }, {
   "typeOf": "objTwoColors",
   "idQuestion": "7",
@@ -63,7 +63,7 @@
   "idQuestion": "11",
   "questionPT": "Qual pensa ser a mistura de duas cores que pode formar a cor <b>Objectivo</b>? Ajuste os círculos apresentados por baixo de cada cor para as indicar.",
   "questionEN": "Choose two colors with which you can achieve the <b>Resulting</b> color, by adjusting the sliders below each color.",
-  "colorObjective": "#FF7500", "firstColor": "none", "secondColor": "none"
+  "colorObjective": "#FF7200", "firstColor": "none", "secondColor": "none"
 }, {
   "typeOf": "objTwoColors",
   "idQuestion": "12",
@@ -81,7 +81,7 @@
   "idQuestion": "14",
   "questionPT": "Qual pensa ser a mistura de duas cores que pode formar a cor <b>Objectivo</b>? Ajuste os círculos apresentados por baixo de cada cor para as indicar.",
   "questionEN": "Choose two colors with which you can achieve the <b>Resulting</b> color, by adjusting the sliders below each color.",
-  "colorObjective": "#B400FF", "firstColor": "none", "secondColor": "none"
+  "colorObjective": "#B100FF", "firstColor": "none", "secondColor": "none"
 }, {
   "typeOf": "objTwoColors",
   "idQuestion": "15",
@@ -93,7 +93,7 @@
   "idQuestion": "16",
   "questionPT": "Qual pensa ser a mistura de duas cores que pode formar a cor <b>Objectivo</b>? Ajuste os círculos apresentados por baixo de cada cor para as indicar.",
   "questionEN": "Choose two colors with which you can achieve the <b>Resulting</b> color, by adjusting the sliders below each color.",
-  "colorObjective": "#FF007D", "firstColor": "none", "secondColor": "none"
+  "colorObjective": "#FF007A", "firstColor": "none", "secondColor": "none"
 }, {
   "typeOf": "objTwoColors",
   "idQuestion": "17",
