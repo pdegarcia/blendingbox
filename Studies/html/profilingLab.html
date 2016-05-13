@@ -93,7 +93,7 @@
     <div class="featurette" id="profiling">
       <img class="featurette-image img-circle img-responsive pull-right" src="../images/user.png" id="userIcon">
       <h2 class="featurette-heading">Questões rápidas.</h2>
-      <p class="lead">Este estudo é anónimo e terá uma duração estimada de 10 minutos. Por favor, responda às seguintes perguntas.</p>
+      <p class="lead">Este estudo é anónimo e terá uma duração estimada de <u>15 minutos</u>. Por favor, responda às seguintes perguntas.</p>
       <div class="col-md-14">
         <form data-toggle="validator" id="profilingForm" action="../php/addProfilingFormLab.php" method="post" accept-charset="UTF-8" autocomplete="off">
           <!-- IDADE -->
@@ -114,6 +114,9 @@
               </label>
               <label class="radio-inline">
                 <input type="radio" name="gridRadios" id="gridRadios2" value="Male" required onchange="updateFormEnabled()"> Masculino
+              </label>
+              <label class="radio-inline">
+                <input type="radio" name="gridRadios" id="gridRadios3" value="Other" required onchange="updateFormEnabled()"> Outro
               </label>
             </div>
           </div>
