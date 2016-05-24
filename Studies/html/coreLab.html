@@ -154,7 +154,9 @@
 
           <!-- BUTTONS -->
           <div id="buttons_area" class="col-md-6 col-md-offset-4" style="padding: 10px;">
-            <input type="button" class="btn btn-lg btn-default" onclick="resetMixture()" value="Reiniciar Mistura">
+            <!--<input type="button" class="btn btn-lg btn-default" onclick="resetMixture()" value="Reiniciar Mistura">-->
+            <a class="btn btn-lg btn-default" role="button" onclick="resetMixture()">
+              <i class="fa fa-undo" aria-hidden="true" style="margin-right: 5px;"></i>Reiniciar Mistura</a>
             <a class="btn btn-default btn-lg" role="button" onclick="submitColors()">
               <i class="fa fa-check" style="margin-right: 5px;"></i>Confirmar Mistura</a>
           </div>
@@ -169,7 +171,9 @@
               <input type="number" name="stars" id="stars" class="rating" value="0" data-size="sm" data-step="1" title="">
             </div>
             <div class="col-md-1">
-              <input type="image" id="rating-button" name="rating-button" src="../images/arrow-flat.png" alt="Submit" style="visibility: hidden;" title="Confirmar classificação." required>
+              <a class="btn btn-success btn-lg disabled" role="button" id="rating-button" name="rating-button" alt="Submit" title="Confirmar classificação." required>
+                <i class="fa fa-hand-o-right" aria-hidden="true" style="margin-right: 5px;"></i>Avançar</a>
+              <!-- <input type="image" id="rating-button" name="rating-button" src="../images/arrow-flat.png" alt="Submit" style="visibility: hidden;" title="Confirmar classificação." required> -->
             </div>
           </div>
           <!-- ./RATING -->

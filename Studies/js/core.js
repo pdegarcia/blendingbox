@@ -1,7 +1,8 @@
 /********* FORMS HANDLERS *********/
 
 $('.rating').on('rating.change', function(event, value, caption) {
-  document.getElementById('rating-button').style.visibility = 'visible';
+  //document.getElementById('rating-button').style.visibility = 'visible';
+  $('#rating-button').removeClass('disabled');
 });
 
 $(function() {
@@ -41,7 +42,8 @@ function cleanStars() {
 function updateScreen() {
   //STARS RESET
   document.getElementById('satisfaction').style.visibility = 'hidden';
-  document.getElementById('rating-button').style.visibility = 'hidden';
+  //document.getElementById('rating-button').style.visibility = 'hidden';
+  $('#rating-button').addClass('disabled');
 
   selectdiv = new Date().getTime() % 2;
 
