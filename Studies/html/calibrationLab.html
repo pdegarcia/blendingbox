@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <script>
+    (function(i, s, o, g, r, a, m) {
+      i['GoogleAnalyticsObject'] = r;
+      i[r] = i[r] || function() {
+        (i[r].q = i[r].q || []).push(arguments)
+      }, i[r].l = 1 * new Date();
+      a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0];
+      a.async = 1;
+      a.src = g;
+      m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-76433564-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+  <!-- Facebook Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+
+fbq('init', '209456059438980');
+fbq('track', "PageView");</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=209456059438980&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Facebook Pixel Code -->
+
+  <title>Will It Blend?</title>
+
+  <!-- Includes for css styles -->
+  <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../css/entry.css" rel="stylesheet">
+  <link href="../css/calibration.css" rel="stylesheet">
+  <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+  <!-- Includes for bootstrap and jquery script -->
+  <script src="../js-library/jquery-2.1.4.min.js"></script>
+  <script src="../js/handleAlerts.js"></script>
+
+  <!-- Includes for javascripts-->
+
+</head>
+
+<body>
+  <!-- Navigation -->
+  <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../indexPT.html" onclick="alertTitle(); return false;">Will It Blend?</a>
+      </div>
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+        </ul>
+      </div>
+      <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+  </nav>
+
+  <div class="container">
+    <header class="header-image">
+      <div class="headline">
+        <h2>Passo Dois - Calibração do Ecrã.</h2>
+      </div>
+    </header>
+  </div>
+
+  <!-- Page Content -->
+  <div class="container">
+
+    <div class="featurette" id="ishihara">
+      <form role="form" id="calibrationForm" action="../php/addCalibrationForm.php" method="post" accept-charset="UTF-8" autocomplete="off">
+        <h2 class="featurette-heading">Vamos detectar a calibração do ecrã.</h2>
+        <p class="lead">Neste passo, são-lhe apresentadas duas imagens. Deverá garantir que a luminosiade do ecrã se encontra no seu máximo, de tal modo que lhe permita responder às questões colocadas, preservando as mesmas ao longo de todo o estudo.</p>
+
+        <input type="hidden" name="resolutionField" id="resolutionField" value="">
+        <input type="hidden" name="availableResolutionField" id="availableResolutionField" value="">
+        <input type="hidden" name="colorDepthField" id="colorDepthField" value="">
+
+        <!-- QUADRADOS PRETOS -->
+        <div class="col-md-10 col-md-offset-1">
+          <h2 class="featurette-heading" id="questionNumber1">Questão 1 de 2.</h2>
+          <p class="lead" id="questionField1">Na seguinte imagem, são apresentados diferentes quadrados em diferentes <b>tons de preto</b>, todos numerados a vermelho. Indique na caixa de texto correspondente, <u>o número e a palava que consegue ler</u> por baixo do último quadrado que
+            lhe é perceptível, ou <b>NADA</b> se não conseguir detectar nenhum quadrado nem nenhuma palavra.</p>
+          <img src="../images/Calibration_blackLevel.jpg" alt="Black Squares Test" id="blackSquares">
+          <div class="form-group row" style="padding: 15px;">
+            <label for="inputBlackSquares" class="col-md-4 col-sm-offset-1" style="padding: 15px; font-size:20px; ">Último Quadrado Perceptível:</label>
+            <div class="col-md-3" id="inputBlackSquares" style="padding: 15px;">
+              <input type="number" class="form-control" name="inputBlackSquare1" id="inputBlackSquare1" placeholder="Número" style="inherit" min="1" max="10" step="1" required onchange="updateFormEnabled()">
+            </div>
+            <div class="col-md-3" style="padding: 15px;">
+              <input type="text" class="form-control" name="inputBlackSquare2" id="inputBlackSquare2" placeholder="Palavra" style="inherit" required onchange="updateFormEnabled()">
+            </div>
+          </div>
+        </div>
+        <!-- ./QUADRADOS PRETOS -->
+
+        <!-- QUADRADOS BRANCOS -->
+        <div class="col-md-10 col-md-offset-1">
+          <h2 class="featurette-heading" id="questionNumber2">Questão 2 de 2.</h2>
+          <p class="lead" id="questionField2">Nesta imagem, são apresentados diferentes quadrados em diferentes <b>tons de branco</b>, todos numerados a vermelho. Indique na caixa de texto correspondente, <u>o número e a palava que consegue ler</u> por baixo do último quadrado que lhe é
+            perceptível, ou <b>NADA</b> se não conseguir detectar nenhum quadrado nem nenhuma palavra.</p>
+          <img src="../images/Calibration_whiteLevel.jpg" alt="White Squares Test" id="whiteSquares">
+          <div class="form-group row" style="padding: 15px;">
+            <label for="inputWhiteSquares" class="col-md-4 col-sm-offset-1" style="padding: 15px; font-size:20px; ">Último Quadrado Perceptível:</label>
+            <div class="col-md-3" id="inputWhiteSquares" style="padding: 15px;">
+              <input type="number" class="form-control" name="inputWhiteSquare1" id="inputWhiteSquare1" placeholder="Número" style="inherit" min="1" max="10" step="1" required onchange="updateFormEnabled()">
+            </div>
+            <div class="col-md-3" style="padding: 15px;">
+              <input type="text" class="form-control" name="inputWhiteSquare2" id="inputWhiteSquare2" placeholder="Palavra" style="inherit" required onchange="updateFormEnabled()">
+            </div>
+          </div>
+        </div>
+        <!-- ./QUADRADOS BRANCOS -->
+
+        <!-- BOTÃO CONFIRMAR -->
+        <div class="form-group row">
+          <div class="col-md-10 col-md-offset-5">
+            <button type="submit" id="calibration-submit" class="btn btn-success btn-lg" title="Confirmar Valores.">
+              <i class="fa fa-check" style="margin-right: 5px;"></i>Confirmar</button>
+          </div>
+        </div>
+        <!-- ./BOTÃO CONFIRMAR -->
+      </form>
+
+
+    </div>
+
+
+    <hr class="featurette-divider">
+
+
+    <!-- Footer -->
+    <footer>
+      <div class="row">
+        <div class="col-lg-12">
+          <p>Copyright &copy; Paulo Garcia 2016</p>
+        </div>
+      </div>
+    </footer>
+
+  </div>
+  <!-- /.container -->
+
+  <script>
+    $.ajaxSetup({
+      // Disable caching of AJAX responses Used when debugging
+      cache: false
+    });
+    $.getScript("https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js");
+    $.getScript("../bootstrap/js/bootstrap.min.js");
+    $.getScript("../js/calibration.js");
+  </script>
+
+</body>
+
+</html>

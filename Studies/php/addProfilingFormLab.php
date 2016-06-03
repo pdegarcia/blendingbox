@@ -44,5 +44,5 @@
 
   //echo("<p>Connection closed.</p>");
 
-  header('Location:../html/calibration.html');
+  header('Location:../html/calibrationLab.html');
 ?>
