@@ -1,4 +1,4 @@
-# Will It Blend?
+![alt tag](https://github.com/pdegarcia/blendingbox/blob/master/Studies/images/header.jpg)
 
 Blendingbox comprises every topic related to the "Will It Blend?" Master's Thesis of Paulo Garcia (67051).
 In this repository, it will be available some interesting stuff which you may want to check out!
@@ -33,8 +33,10 @@ In this repository, it will be available some interesting stuff which you may wa
 ## To-Do
 
 - See **Issues List**.
-- Deploy First User Study.
-- Check Amazon's Mechanical Turk.
+- Analyze Results provided by the First Study.
+- Sketch Second User Study.
+- Analyze Results provided by the Second Study.
+- Write Master Thesis.
 
 **Let's have some fun coloring around!**
 
