@@ -128,7 +128,8 @@ function submitColors() {
 
 switch (document.documentElement.lang) { //handle JSON location.
   case 'pt':
-    path = "../data/questions_Calibrated.json";
+    //path = "../data/questions_Calibrated.json"; //tweaked to present correct colors.
+    path = "../data/questions.json";
     pathToFinish = "../html/thankyou.html";
     phpURL = "../php/addCoreForm.php";
     pathColors = "../data/populateSlider_Calibrated.json";
@@ -529,7 +530,7 @@ function drawObjectiveSlider() {
   var hSlid = $(".slider_objective1").height();
 
   var scaleX = d3.scale.linear()
-    .domain([0, 47])
+    .domain([0, 60])
     .range([0, wSlid]) //tamanho slider - width
     .clamp(true);
 
