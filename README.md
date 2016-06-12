@@ -8,7 +8,11 @@ In this repository, it will be available some interesting stuff which you may wa
  - User Studies Mock-ups.
  - And more!
  
-
+## User Studies
+- First Study **CONCLUDED** (ongoing evaluation)
+- Second Study **PLANNING**
+- Third Study
+ 
 ## Tech Currently Being Used
 
 - HTML5
