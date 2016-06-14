@@ -1,0 +1,31 @@
+"id","date","age","gender","academic_degree","nationality","country_residence","language","num_answers","in_person","time_spent","numBlackSquare","wordBlackSquare","numWhiteSquare","wordWhiteSquare","dimensions","available_dim","color_depth","plate_one","plate_two","plate_three","plate_four","plate_five","plate_six"
+"5711231e370f2","15-Apr-2016 18:21:34 WEST","24","Male","Master Degree","portuguese","PT","pt",32,"yes","20","10","hello","10","cure","1440x900","1440x848","24",12,29,74,45,28,35
+"572767049ccfa","2-May-2016 15:41:08 WEST","24","Male","Ensino Superior - Mestrado","portuguese","PT","pt",32,"yes","15","10","hello","10","cure","1440x900","1440x848","24",12,29,74,45,26,35
+"572c85675a5ef","6-May-2016 12:52:07 WEST","23","Male","Bachelor Degree","portuguese","PT","pt",32,"yes","1","10","hello","10","cure","1440x900","1440x848","24",12,29,74,45,26,35
+"5739ff85289b2","16-May-2016 18:12:37 WEST","56","Female","Ensino Secundário","portuguese","PT","pt",25,"yes","18","10","hello","9","friday","1440x900","1440x825","24",12,29,74,45,26,35
+"573a059da0efd","16-May-2016 18:38:37 WEST","31","Female","Ensino Secundário","portuguese","PT","pt",32,"yes","18","10","hello","10","cure","1440x900","1440x825","24",12,29,74,45,26,35
+"573a0b8280839","16-May-2016 19:03:46 WEST","29","Male","Ensino Secundário","portuguese","PT","pt",21,"yes","19","10","hello","10","cure","1440x900","1440x825","24",12,29,74,45,26,35
+"573c70dabcfe0","18-May-2016 14:40:42 WEST","49","Male","Ensino Secundário","portuguese","PT","pt",32,"yes","15","10","hello","9","friday","1440x900","1440x825","24",12,29,74,45,26,35
+"573c783748e8b","18-May-2016 15:12:07 WEST","37","Female","Ensino Secundário","portuguese","PT","pt",32,"yes","15","10","hello","9","friday","1440x900","1440x825","24",12,28,71,45,26,35
+"573e4022949b1","19-May-2016 23:37:22 WEST","24","Male","Ensino Superior - Licenciatura","british","PT","pt",32,"yes","23","10","hello","8","illusion","1440x900","1440x825","24",12,29,74,45,26,35
+"573e47c26cb8e","20-May-2016 0:09:54 WEST","24","Male","Ensino Superior - Mestrado","portuguese","PT","pt",32,"yes","0","10","hello","10","cure","1440x900","1440x848","24",12,29,74,45,26,35
+"573e4d0eb795b","20-May-2016 0:32:30 WEST","24","Male","Ensino Superior - Licenciatura","portuguese","PT","pt",32,"yes","0","10","hello","10","friday","1440x900","1440x848","24",12,29,74,45,26,35
+"573ec4275ba17","20-May-2016 9:00:39 WEST","24","Female","Ensino Superior - Licenciatura","portuguese","PT","pt",32,"yes","9","10","hello","10","cure","1440x900","1440x848","24",12,29,74,45,26,6
+"573edae85268b","20-May-2016 10:37:44 WEST","27","Male","Ensino Superior - Mestrado","portuguese","PT","pt",32,"yes","11","10","hello","10","cure","1440x900","1440x825","24",12,29,74,45,26,35
+"5740a8b59d448","21-May-2016 19:28:05 WEST","31","Female","Ensino Superior - Mestrado","portuguese","PT","pt",32,"yes","19","10","hello","9","friday","1440x900","1440x848","24",12,29,74,45,26,35
+"5740ad339507d","21-May-2016 19:47:15 WEST","40","Male","Ensino Superior - Licenciatura","portuguese","PT","pt",32,"yes","19","10","hello","10","cure","1440x900","1440x848","24",12,29,74,45,26,35
+"5740b0f8e9734","21-May-2016 20:03:20 WEST","62","Male","Ensino Superior - Mestrado","portuguese","PT","pt",33,"yes","20","9","world","10","cure","1440x900","1440x848","24",12,29,74,45,26,32
+"5740b686127bb","21-May-2016 20:27:02 WEST","32","Male","Ensino Superior - Mestrado","portuguese","PT","pt",32,"yes","20","10","hello","9","friday","1440x900","1440x848","24",12,27,74,45,26,35
+"5740bda9be3dc","21-May-2016 20:57:29 WEST","83","Female","Ensino Superior - Licenciatura","portuguese","PT","pt",32,"yes","21","10","hello","9","friday","1440x900","1440x848","24",12,29,74,45,26,35
+"5740e3f36a945","21-May-2016 23:40:51 WEST","49","Female","Ensino Superior - Licenciatura","portuguese","PT","pt",32,"yes","0","10","hello","10","cure","1440x900","1440x825","24",12,29,74,45,26,35
+"574859b8f3379","27-May-2016 15:29:13 WEST","30","Male","Ensino Superior - Mestrado","portuguese","PT","pt",32,"yes","15","10","hello","10","cure","1440x900","1440x848","24",12,29,74,45,26,35
+"5756ab1701ba0","7-Jun-2016 12:08:07 WEST","21","Male","Ensino Superior - Licenciatura","portuguese","PT","pt",32,"yes","12","10","hello","10","cure","1440x900","1440x825","24",12,29,21,1,28,35
+"5756ae6897296","7-Jun-2016 12:22:16 WEST","21","Male","Ensino Superior - Licenciatura","portuguese","PT","pt",32,"yes","12","10","hello","10","cure","1440x900","1440x848","24",12,29,74,45,26,35
+"5756b2d9bd658","7-Jun-2016 12:41:13 WEST","23","Female","Ensino Superior - Licenciatura","portuguese","PT","pt",32,"yes","12","9","world","8","illusion","1440x900","1440x848","24",12,29,74,45,26,35
+"5757fd2703090","8-Jun-2016 12:10:31 WEST","22","Male","Ensino Superior - Licenciatura","portuguese","PT","pt",32,"yes","12","9","world","10","cure","1440x900","1440x825","24",12,29,74,45,26,35
+"5757ffca0b4b1","8-Jun-2016 12:21:46 WEST","24","Male","Ensino Superior - Licenciatura","portuguese","PT","pt",32,"yes","12","10","hello","10","cure","1440x900","1440x825","24",12,29,74,45,26,35
+"57581518c2c07","8-Jun-2016 13:52:40 WEST","25","Male","Ensino Superior - Mestrado","portuguese","PT","pt",32,"yes","14","10","Hello","9","friday","1440x900","1440x848","24",12,29,71,45,26,35
+"57582b17cd76a","8-Jun-2016 15:26:31 WEST","26","Male","Ensino Superior - Mestrado","PT","PT","pt",32,"yes","15","10","hello","10","cure","1440x900","1440x848","24",12,29,74,45,26,35
+"571151812791a","15-Apr-2016 21:39:29 WEST","20","Male","Bachelor Degree","portuguese","PT","pt",32,"yes","13","10","hello","10","cure","1440x900","1440x848","24",12,29,74,45,26,35
+"5713a02a13044","17-Apr-2016 15:39:38 WEST","24","Female","Bachelor Degree","portuguese","PT","pt",32,"yes","-37","10","hello","10","cure","1440x900","1440x848","24",12,29,74,45,26,35
+"5710ee9e58646","15-Apr-2016 14:37:34 WEST","25","Female","Master Degree","portuguese","PT","pt",32,"yes","18","10","hello","10","cure","1440x900","1140x848","24",12,29,74,45,26,35
