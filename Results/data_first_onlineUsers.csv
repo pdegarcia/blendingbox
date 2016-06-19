@@ -1,0 +1,232 @@
+"id","date","age","gender","academic_degree","nationality","country_residence","language","num_answers","in_person","time_spent","numBlackSquare","wordBlackSquare","numWhiteSquare","wordWhiteSquare","dimensions","available_dim","color_depth","plate_one","plate_two","plate_three","plate_four","plate_five","plate_six"
+"57112da850667","15-Apr-2016 19:06:32 WEST","22","Female","College","portuguese","PT","pt",47,"no","27","10","hello","9","friday","1366x768","1304x768","24",12,29,74,45,26,35
+"57123e4050550","16-Apr-2016 14:29:36 WEST","20","Female","College","portuguese","PT","pt",40,"no","-29","10","hello","10","cure","1366x768","1366x728","24",12,29,74,45,26,35
+"57112b9e10661","15-Apr-2016 18:57:50 WEST","64","Female","Bachelor Degree","portuguese","PT","pt",34,"no","-24","9","world","9","friday","1366x768","1366x728","24",12,29,74,45,26,35
+"57111f6c42412","15-Apr-2016 18:05:48 WEST","22","Male","Bachelor Degree","portuguese","PT","pt",34,"no","15","10","hello","10","cure","1366x768","1366x768","24",12,29,74,45,26,35
+"5745f6f039dc9","25-May-2016 20:03:12 WEST","15","Male","No Academic Degree","canadian","CA","en",33,"no","0","10","Hello","10","Cure","1024x768","1024x768","32",12,1,71,1,28,3
+"571247f66fb51","16-Apr-2016 15:11:02 WEST","27","Male","Master Degree","portuguese","PT","pt",32,"no","18","9","world","10","cure","1920x1080","1920x1040","24",12,29,74,45,26,35
+"57123bec83e8e","16-Apr-2016 14:19:40 WEST","21","Male","Master Degree","portuguese","PT","pt",32,"no","12","10","hello","10","cure","1920x1080","1920x1030","24",12,29,74,45,26,35
+"571130c5cd6e9","15-Apr-2016 19:19:49 WEST","24","Female","Bachelor Degree","portuguese","PT","pt",32,"no","24","10","none","9","friday","1600x900","1600x900","24",12,29,74,45,26,35
+"5745500f6e643","25-May-2016 8:11:11 WEST","24","Female","High-School","american","US","en",32,"no","0","7","Tree","9","Friday","768x1024","768x1004","32",12,29,74,45,26,35
+"5710ce6c1308c","15-Apr-2016 12:20:12 WEST","23","Female","Bachelor Degree","portuguese","PT","pt",32,"no","-12","9","oranges","10","friday","1280x720","1280x683","24",12,29,74,45,26,35
+"5710cc5a7829c","15-Apr-2016 12:11:22 WEST","27","Male","Bachelor Degree","portuguese","PT","pt",32,"no","14","10","hello","10","cure","1366x768","1366x728","24",12,29,74,45,26,35
+"5710cf445718e","15-Apr-2016 12:23:48 WEST","25","Male","Master Degree","portuguese","PT","pt",32,"no","13","10","hello","9","friday","1366x768","1366x728","24",12,29,71,45,26,35
+"5710d140b7c5a","15-Apr-2016 12:32:16 WEST","26","Male","College","portuguese","PT","pt",32,"no","8","10","hello","10","cure","1600x900","1600x860","24",12,29,21,46,26,35
+"57451c3b38192","25-May-2016 4:30:03 WEST","23","Female","Bachelor Degree","american","US","en",32,"no","0","10","Hello","10","Cure","768x1024","1024x748","32",12,29,74,45,26,35
+"5710d28fec2d1","15-Apr-2016 12:37:51 WEST","30","Male","Doctoral Degree","portuguese","PT","pt",32,"no","13","10","hello","10","cure","1280x800","1280x773","24",12,29,74,45,26,35
+"5710d71ff24c3","15-Apr-2016 12:57:19 WEST","20","Female","Bachelor Degree","portuguese","PT","en",32,"no","-42","10","hello","9","friday","1366x768","1366x738","24",12,18,74,45,26,35
+"574511e99b6d9","25-May-2016 3:46:01 WEST","19","Female","College","welsh","GB","en",32,"no","0","10","hello","10","cure","1280x720","1280x720","24",12,29,74,45,28,35
+"574297edae49c","23-May-2016 6:41:01 WEST","24","Male","Master Degree","french","FR","fr",32,"no","0","10","hello","10","cure","1440x900","1440x790","24",12,29,74,45,26,35
+"57427cf6bad0c","23-May-2016 4:45:58 WEST","19","Female","College","american","US","en",32,"no","1","8","Orange","10","Cure","962x601","962x601","32",12,29,74,45,26,35
+"5738cf3d97a58","15-May-2016 20:34:21 WEST","23","Male","Bachelor Degree","south african","ZA","af",32,"no","0","10","hello","7","chair","1680x1050","1680x1010","24",12,29,74,45,26,35
+"571165992a5c1","15-Apr-2016 23:05:13 WEST","67","Female","Ensino Secundário","portuguese","PT","pt",32,"no","43","10","hello","8","illusion","1366x768","1366x728","24",12,29,74,45,26,35
+"57366c199283c","14-May-2016 1:06:49 WEST","19","Male","Bachelor Degree","canadian","CA","en",32,"no","0","10","hello","10","cure","1366x768","1366x728","24",12,29,74,45,26,35
+"57116b9b879bf","15-Apr-2016 23:30:51 WEST","20","Male","College","portuguese","PT","pt",32,"no","14","10","hello","10","cure","1920x1080","1920x1030","24",12,29,74,45,26,35
+"57113d4d93c81","15-Apr-2016 20:13:17 WEST","18","Female","College","portuguese","PT","pt",32,"no","16","10","hello","9","friday","1680x1050","1680x1010","24",12,29,74,45,26,35
+"5710e540a9514","15-Apr-2016 13:57:36 WEST","52","Female","Bachelor Degree","portuguese","PT","pt",32,"no","-29","9","World ","10","Cure","768x1024","768x1004","32",12,29,74,45,28,35
+"573634984323e","13-May-2016 21:10:00 WEST","19","Male","High-School","swedish","SE","sv",32,"no","0","10","Hello","8","Illusion","384x640","384x640","32",12,29,74,45,26,35
+"5710cbc5f0ea4","15-Apr-2016 12:08:53 WEST","23","Male","Bachelor Degree","portuguese","PT","pt",32,"no","21","10","hello","10","cure","1920x1080","1920x1040","24",12,20,21,7,26,3
+"5736048bb110b","13-May-2016 17:44:59 WEST","19","Male","High-School","american","GB","en",32,"no","0","10","hello","10","cure","1920x1080","1920x1028","24",12,29,74,45,26,35
+"5735d3455a84c","13-May-2016 14:14:45 WEST","29","Male","Master Degree","british","GB","en",32,"no","0","10","Hello","9","Friday","1280x1024","1280x984","24",12,24,74,45,26,35
+"5711703bd85fc","15-Apr-2016 23:50:35 WEST","18","Female","Master Degree","portuguese","PT","pt",32,"no","-50","10","hello","10","cure","1366x768","1366x728","24",12,29,74,45,26,35
+"5734918f46823","12-May-2016 15:22:07 WEST","26","Male","Bachelor Degree","canadian","CA","en",32,"no","0","10","hello","9","friday","1680x1050","1680x1023","24",12,29,74,45,26,35
+"572c85675a5ef","6-May-2016 12:52:07 WEST","23","Male","Bachelor Degree","portuguese","PT","pt",32,"no","1","10","hello","10","cure","1920x1080","1920x1053","24",12,29,74,45,26,35
+"57110028bc74b","15-Apr-2016 15:52:24 WEST","48","Female","Master Degree","portuguese","PT","pt",32,"no","-34","10","none","10","NONE","1280x800","1280x770","24",12,29,74,45,26,35
+"571103343658b","15-Apr-2016 16:05:24 WEST","20","Female","High-School","portuguese","PT","pt",32,"no","19","9","world","10","cure","1920x1080","1920x1030","24",12,29,74,45,26,35
+"5711106ab212a","15-Apr-2016 17:01:46 WEST","33","Male","College","portuguese","PT","pt",32,"no","23","10","hello","9","friday","1920x1080","1920x1040","24",12,29,74,45,26,35
+"571183866d73f","16-Apr-2016 1:12:54 WEST","48","Female","College","portuguese","PT","pt",32,"no","40","10","hello","8","illusion","1366x768","1366x728","24",12,29,74,45,26,35
+"571154184c9bd","15-Apr-2016 21:50:32 WEST","47","Female","Master Degree","spanish","PT","es",32,"no","-43","10","None","10","Cure","768x1024","1024x748","32",12,29,74,45,26,35
+"57190633f233f","21-Apr-2016 17:56:19 WEST","30","Male","Master Degree","portuguese","PT","pt",32,"no","-38","9","world","9","friday","1280x1024","1280x994","24",12,29,74,45,26,35
+"5711231e370f2","15-Apr-2016 18:21:34 WEST","24","Male","Master Degree","portuguese","PT","pt",32,"no","20","10","hello","10","cure","1920x1080","1920x1040","24",12,29,74,45,28,35
+"571153ca15566","15-Apr-2016 21:49:14 WEST","32","Male","Ensino Superior - Mestrado","portuguese","PT","pt",32,"no","11","8","oranges","8","illusion","1280x800","1280x717","24",12,29,74,45,26,35
+"5711ace2ee7ed","16-Apr-2016 4:09:22 WEST","24","Male","Bachelor Degree","portuguese","PT","pt",32,"no","14","10","hello","10","cure","1366x768","1366x728","24",12,29,74,45,26,35
+"5745b5cbe3caa","25-May-2016 15:25:15 WEST","34","Female","Master Degree","american","FR","en",32,"no","0","10","hello","10","cure","1366x768","1366x721","24",12,29,74,45,26,35
+"57149713464b1","18-Apr-2016 9:13:07 WEST","51","Female","Doctoral Degree","portuguese","PT","pt",32,"no","5","5","Water","7","Chair","414x736","414x716","32",12,29,74,45,26,35
+"5713fc80c942a","17-Apr-2016 22:13:36 WEST","23","Female","Master Degree","portuguese","PT","pt",32,"no","16","10","hello","10","cure","1280x800","1280x709","24",12,29,74,45,26,35
+"571214121717c","16-Apr-2016 11:29:38 WEST","22","Male","Bachelor Degree","portuguese","PT","pt",32,"no","11","10","hello","10","cure","1024x768","1024x768","32",12,29,74,45,26,35
+"5713b10383207","17-Apr-2016 16:51:31 WEST","40","Male","Master Degree","portuguese","PT","pt",32,"no","-34","7","tree","10","cure","1366x768","1366x728","24",12,29,74,45,26,35
+"5712197fbccd5","16-Apr-2016 11:52:47 WEST","24","Female","Bachelor Degree","portuguese","PT","pt",32,"no","-43","10","hello","9","friday","1366x768","1366x728","24",12,29,74,45,26,35
+"57112d8509632","15-Apr-2016 19:05:57 WEST","45","Female","Master Degree","portuguese","PT","pt",32,"no","22","9","world","8","illusion","1280x768","1280x734","24",12,29,74,45,26,35
+"5711641931da5","15-Apr-2016 22:58:49 WEST","20","Female","Bachelor Degree","portuguese","PT","pt",32,"no","-42","10","hello","9","friday","1366x768","1366x728","24",12,29,74,45,26,35
+"5712c2b021f58","16-Apr-2016 23:54:40 WEST","22","Female","College","portuguese","PT","pt",32,"no","-48","10","hello","10","cure","1366x768","1366x728","24",12,29,71,45,26,35
+"5712bd55a8a13","16-Apr-2016 23:31:49 WEST","27","Female","Master Degree","portuguese","PT","pt",32,"no","10","10","hello","10","cure","1366x768","1366x728","24",12,29,74,45,26,35
+"5711348e42f02","15-Apr-2016 19:35:58 WEST","19","Female","High-School","portuguese","PT","pt",32,"no","14","10","hello","10","cure","1366x768","1366x728","24",12,29,74,45,26,35
+"571130d934bda","15-Apr-2016 19:20:09 WEST","22","Female","Bachelor Degree","portuguese","DE","pt",32,"no","25","10","hello","9","friday","1920x1080","1920x1050","24",12,29,74,45,26,35
+"5710cd99df604","15-Apr-2016 12:16:41 WEST","23","Female","Master Degree","portuguese","PT","pt",32,"no","12","10","hello","10","cure","1536x864","1536x826","24",12,29,74,45,26,35
+"57127bcfaafb0","16-Apr-2016 18:52:15 WEST","22","Female","Bachelor Degree","portuguese","PT","pt",32,"no","-48","10","hello","10","cure","1920x1080","1854x1080","24",12,29,74,45,26,35
+"57112ebc85ba1","15-Apr-2016 19:11:08 WEST","18","Female","High-School","portuguese","PT","pt",32,"no","13","10","hello","10","cure","1368x912","1368x872","24",12,29,74,45,26,35
+"571260c120253","16-Apr-2016 16:56:49 WEST","22","Male","Master Degree","portuguese","PT","pt",32,"no","-43","10","hello","10","cure","1440x900","1440x860","24",12,29,74,45,26,35
+"571252e6d2e70","16-Apr-2016 15:57:42 WEST","31","Female","Master Degree","portuguese","PT","pt",32,"no","-34","10","hello","9","friday","1280x1024","1280x984","24",12,29,74,45,26,35
+"57113a5534205","15-Apr-2016 20:00:37 WEST","22","Male","Bachelor Degree","swiss","PT","de",31,"no","18","10","hello","5","park","1680x1050","1680x1010","24",12,29,74,45,26,35
+"5745c1c07cc0c","25-May-2016 16:16:16 WEST","18","Other","High-School","american","US","en",31,"no","0","10","hello","9","friday","1280x1024","1280x984","24",12,29,74,45,26,35
+"57459c393bbd0","25-May-2016 13:36:09 WEST","29","Male","Bachelor Degree","australian","AU","en",31,"no","0","10","hello","10","cure","1920x1200","1920x1170","24",12,29,74,45,26,35
+"5745350dc1e22","25-May-2016 6:15:57 WEST","19","Female","High-School","canadian","CA","en",31,"no","0","10","Hello","9","Friday","768x1024","1024x748","32",12,29,74,45,26,35
+"5710e60f69205","15-Apr-2016 14:01:03 WEST","24","Female","Bachelor Degree","portuguese","PT","pt",31,"no","25","10","hello","9","friday","1280x800","1280x773","24",12,29,74,45,26,35
+"5716e9900f6ea","20-Apr-2016 3:29:36 WEST","58","Female","Ensino Superior - Licenciatura","portuguese","TL","pt",31,"no","25","10","hello","9","friday","1093x614","1093x574","24",12,29,74,45,26,35
+"57153eb9b4bed","18-Apr-2016 21:08:25 WEST","35","Female","Master Degree","portuguese","PT","pt",31,"no","19","10","hello","10","cure","1280x800","1280x770","24",12,29,74,45,28,35
+"5712c57f97f25","17-Apr-2016 0:06:39 WEST","25","Female","Bachelor Degree","portuguese","PT","pt",31,"no","13","9","world","10","cure","1440x900","1440x833","24",12,29,74,45,26,35
+"571289ef76e18","16-Apr-2016 19:52:31 WEST","55","Female","Ensino Superior - Licenciatura","portuguese","PT","pt",31,"no","26","1","color","10","cure","1366x768","1366x728","24",12,29,74,45,28,35
+"57121e2a63601","16-Apr-2016 12:12:42 WEST","21","Male","Bachelor Degree","luxembourger","PT","pt",31,"no","12","10","hello","9","friday","1366x768","1366x728","24",12,29,74,46,26,35
+"5711cbde51bb0","16-Apr-2016 6:21:34 WEST","24","Male","Master Degree","portuguese","PT","pt",31,"no","11","10","hello","8","Illusion","1366x768","1366x728","24",12,29,74,45,26,35
+"57119224388ef","16-Apr-2016 2:15:16 WEST","24","Male","High-School","portuguese","PT","pt",31,"no","13","10","hello","10","cure","1600x900","1600x900","24",12,29,74,45,26,35
+"57113b7f16c4b","15-Apr-2016 20:05:35 WEST","22","Male","Bachelor Degree","portuguese","PT","pt",31,"no","34","10","hello","9","friday","1366x768","1366x738","24",12,70,21,99,2,3
+"5711800f2c5f3","16-Apr-2016 0:58:07 WEST","59","Female","Bachelor Degree","portuguese","PT","pt",31,"no","-23","9","world","10","cure","1440x900","1440x815","24",12,29,74,45,28,35
+"57113de4aed1a","15-Apr-2016 20:15:48 WEST","21","Male","High-School","portuguese","PT","pt",31,"no","12","10","hello","8","illusion","1366x768","1366x728","24",12,29,74,45,26,35
+"57113e6176346","15-Apr-2016 20:17:53 WEST","23","Female","Bachelor Degree","turkish","TR","tr",30,"no","9","10","hello","8","illusion","1366x768","1366x728","24",12,29,74,45,26,35
+"5734d89183dab","12-May-2016 20:25:05 WEST","19","Female","High-School","british","GB","en",29,"no","0","10","hello","10","cure","","","",12,29,74,45,26,35
+"5713923c1bbc7","17-Apr-2016 14:40:12 WEST","24","Female","Bachelor Degree","portuguese","PT","pt",27,"no","-2","10","hello","10","cure","1920x1080","1920x1050","24",12,29,74,45,26,35
+"571137a34931a","15-Apr-2016 19:49:07 WEST","27","Female","Master Degree","portuguese","PT","pt",25,"no","-45","10","Hello","10","Cure","768x1024","1024x748","32",12,29,74,45,26,35
+"57112a657ac25","15-Apr-2016 18:52:37 WEST","20","Female","College","portuguese","PT","pt",24,"no","-50","10","hello","9","friday","1366x768","1366x720","24",12,29,74,45,26,35
+"5711148c11035","15-Apr-2016 17:19:24 WEST","35","Male","College","portuguese","PT","pt",22,"no","27","10","Hello","9","Friday","360x640","360x640","32",12,29,74,45,26,35
+"5713dd915ca28","17-Apr-2016 20:01:37 WEST","24","Female","Bachelor Degree","portuguese","PT","pt",20,"no","9","10","hello","10","cure","1366x768","1315x744","24",12,29,74,45,26,35
+"571210e10d88b","16-Apr-2016 11:16:01 WEST","23","Male","Master Degree","portuguese","PT","pt",19,"no","15","10","hello","10","cure","360x640","360x640","32",12,29,74,45,26,35
+"5710d9dcc23f0","15-Apr-2016 13:09:00 WEST","21","Male","Bachelor Degree","portuguese","PT","pt",18,"no","9","10","NONE","10","NONE","1280x800","1280x773","24",12,29,74,45,26,35
+"573664e1a4a96","14-May-2016 0:36:01 WEST","49","Male","High-School","british","GB","en",18,"no","0","10","hello","9","friday","1366x768","1304x768","24",12,29,74,45,26,35
+"5712a254e00f7","16-Apr-2016 21:36:36 WEST","18","Female","High-School","portuguese","PT","pt",18,"no","8","10","hello","10","cure","1366x768","1304x768","24",12,29,74,45,26,35
+"57122801e1da9","16-Apr-2016 12:54:41 WEST","23","Male","High-School","portuguese","PT","pt",17,"no","-54","9","world","8","illusion","1366x768","1366x768","24",12,29,74,45,28,35
+"57112e1a2bbbb","15-Apr-2016 19:08:26 WEST","32","Male","College","portuguese","PT","pt",16,"no","15","10","Tree","10","Friday ","360x640","360x640","32",12,1,1,1,26,35
+"57363b3954a26","13-May-2016 21:38:17 WEST","55","Male","Bachelor Degree","american","US","en",16,"no","0","10","ten","10","ten","1024x819","1024x790","24",12,29,74,45,26,35
+"572106a31c230","27-Apr-2016 19:36:19 WEST","24","Male","Master Degree","portuguese","PT","pt",16,"no","20","9","world","10","Cure","768x1024","768x1004","32",12,29,74,45,26,35
+"5710cc2b8a642","15-Apr-2016 12:10:35 WEST","24","Male","Master Degree","portuguese","PT","pt",16,"no","11","10","hello","10","cure","1440x900","1440x896","24",12,29,74,45,26,35
+"5710cbe10cade","15-Apr-2016 12:09:21 WEST","21","Male","Bachelor Degree","portuguese","PT","pt",15,"no","32","10","hello","10","cure","1600x900","1600x870","24",12,29,74,45,26,35
+"5710ceb320fdf","15-Apr-2016 12:21:23 WEST","23","Male","Ensino Secundário","portuguese","PT","pt",15,"no","28","10","hello","10","cure","1440x900","1440x823","24",12,29,74,45,28,35
+"5734aa4c927a8","12-May-2016 17:07:40 WEST","22","Male","Bachelor Degree","belgian","BE","nl",15,"no","0","10","hello","10","cure","1366x768","1366x738","24",12,29,74,45,28,35
+"57112f57403ee","15-Apr-2016 19:13:43 WEST","25","Female","Master Degree","spanish","PT","gl",14,"no","8","10","hello","9","friday","1920x1080","1920x1032","24",12,29,71,45,26,35
+"5744dce84ffa5","24-May-2016 23:59:52 WEST","16","Male","High-School","british","GB","en",13,"no","-23","9","world","9","friday","1366x768","1366x728","24",12,29,74,45,28,35
+"5714d563c6e52","18-Apr-2016 13:38:59 WEST","49","Female","Master Degree","portuguese","PT","pt",13,"no","9","10","none","10","cure","1920x1200","1920x1077","24",12,29,74,45,26,35
+"571163013744e","15-Apr-2016 22:54:09 WEST","53","Female","Master Degree","portuguese","PT","pt",13,"no","-44","6","Dog","10","Cure","768x1024","768x1024","32",12,29,74,45,28,35
+"5711300507308","15-Apr-2016 19:16:37 WEST","21","Female","Bachelor Degree","portuguese","PT","pt",13,"no","18","10","hello","10","cure","1366x768","1366x728","24",12,29,74,45,26,35
+"57113ce1334e0","15-Apr-2016 20:11:29 WEST","19","Female","High-School","portuguese","PT","pt",12,"no","7","10","Hello","10","Cure","601x962","601x962","32",12,29,74,45,26,35
+"571410751e7b0","17-Apr-2016 23:38:45 WEST","22","Female","College","portuguese","PT","pt",12,"no","7","10","hello","10","cure","1366x768","1366x728","24",12,25,24,42,26,35
+"5712a47f6f8a6","16-Apr-2016 21:45:51 WEST","44","Male","Bachelor Degree","portuguese","PT","pt",12,"no","-45","10","hello","10","cure","1366x768","1366x728","24",12,29,74,45,26,35
+"571243bcc8142","16-Apr-2016 14:53:00 WEST","24","Male","College","portuguese","PT","pt",12,"no","-41","10","hello","10","cure","1920x1080","1920x1032","24",12,29,74,45,26,35
+"5712649f2fada","16-Apr-2016 17:13:19 WEST","26","Male","Master Degree","portuguese","PT","pt",12,"no","7","10","Hello","10","Cure","320x568","320x528","32",12,29,74,45,26,35
+"57127cb3ab1fe","16-Apr-2016 18:56:03 WEST","1","Male","Master Degree","portuguese","PT","pt",12,"no","-50","9","world","10","cure","1920x1080","1825x1080","24",12,24,74,45,26,35
+"5713aa57bebec","17-Apr-2016 16:23:03 WEST","24","Female","Master Degree","portuguese","PT","pt",12,"no","7","10","hello","9","friday","1366x768","1366x728","24",12,29,74,45,26,35
+"57113d9cc42b5","15-Apr-2016 20:14:36 WEST","21","Female","High-School","portuguese","PT","pt",12,"no","5","10","hello","10","cure","1366x768","1366x728","24",12,29,74,45,26,35
+"5727633cd6511","2-May-2016 15:25:00 WEST","25","Male","Master Degree","portuguese","PT","pt",11,"no","0","10","hello","10","cure","1366x768","1366x768","24",12,29,74,45,26,35
+"5713b961c216a","17-Apr-2016 17:27:13 WEST","647","Male","Master Degree","argentinean","AQ","none",11,"no","5","10","Hello","10","Cure","768x1024","1024x748","32",12,29,74,45,28,35
+"5710dc0f49c60","15-Apr-2016 13:18:23 WEST","22","Male","Bachelor Degree","portuguese","PT","pt",11,"no","8","10","hello","10","cure","1920x1080","1920x1040","24",12,29,74,45,26,35
+"57112cec29456","15-Apr-2016 19:03:24 WEST","26","Male","Master Degree","portuguese","PT","pt",11,"no","7","10","hello","10","cure","1920x1080","1920x1053","24",12,29,74,45,26,35
+"571153e3025f9","15-Apr-2016 21:49:39 WEST","22","Female","Bachelor Degree","portuguese","PT","pt",11,"no","9","10","hello","10","cure","1366x768","1366x738","24",12,29,74,45,28,35
+"57114ae35c9ec","15-Apr-2016 21:11:15 WEST","47","Female","Bachelor Degree","portuguese","PT","pt",11,"no","20","10","+hello","10","cure","1440x900","1440x870","24",12,29,74,45,26,35
+"5714c6c26c2f6","18-Apr-2016 12:36:34 WEST","21","Male","College","portuguese","PT","pt",11,"no","12","10","hell","10","cure","1920x1080","1920x1052","24",12,29,74,45,28,35
+"57112edad4a17","15-Apr-2016 19:11:38 WEST","23","Male","High-School","portuguese","PT","pt",10,"no","6","9","world","10","cure","1280x800","1280x773","24",12,29,74,45,26,35
+"571290e28820b","16-Apr-2016 20:22:10 WEST","43","Female","College","portuguese","PT","pt",10,"no","8","10","hello","10","cure","1366x768","1366x728","24",12,29,74,45,28,35
+"5727e49793f7b","3-May-2016 0:36:55 WEST","22","Male","Bachelor Degree","portuguese","PT","pt",10,"no","0","10","hello","10","cure","1440x900","1440x873","24",12,29,74,45,26,35
+"572baa7f9493c","5-May-2016 21:18:07 WEST","20","Female","Bachelor Degree","portuguese","PT","pt",10,"no","0","10","hello","10","cure","1366x768","1366x728","24",12,29,74,45,26,35
+"57113163e6fb1","15-Apr-2016 19:22:27 WEST","20","Female","College","portuguese","PT","pt",10,"no","5","10","hello","10","cure","1366x768","1366x728","24",12,29,74,45,26,35
+"571534076a966","18-Apr-2016 20:22:47 WEST","52","Male","Master Degree","portuguese","PT","pt",9,"no","7","10","hello","10","cure","1366x768","1366x768","24",12,29,74,45,26,35
+"57113b9642c48","15-Apr-2016 20:05:58 WEST","21","Female","Master Degree","portuguese","PT","pt",9,"no","15","10","hello","10","cure","1366x768","1366x728","24",12,29,74,45,26,35
+"57153d9a56ce0","18-Apr-2016 21:03:38 WEST","62","Female","Doctoral Degree","portuguese","PT","pt",9,"no","7","10","None","10","Cure","768x1024","1024x748","32",12,29,74,45,26,35
+"57114d8a4c057","15-Apr-2016 21:22:34 WEST","22","Male","Bachelor Degree","portuguese","PT","pt",9,"no","3","10","hello","10","cure","1920x1080","1920x1040","24",12,27,74,45,26,35
+"57142079d871e","18-Apr-2016 0:47:05 WEST","51","Male","Doctoral Degree","portuguese","PT","pt",8,"no","4","10","hello","9","friday","1366x768","1366x728","24",12,29,74,45,26,35
+"5711760a3dfe0","16-Apr-2016 0:15:22 WEST","21","Male","College","portuguese","PT","pt",8,"no","4","10","hello","10","cure","1366x768","1366x728","24",12,29,74,45,28,35
+"571138253c724","15-Apr-2016 19:51:17 WEST","21","Male","High-School","portuguese","PT","pt",8,"no","4","9","world","8","illusion","1360x768","1360x768","24",12,29,74,45,28,35
+"571137cd27765","15-Apr-2016 19:49:49 WEST","18","Female","College","portuguese","PT","pt",8,"no","5","10","hello","10","cure","1366x768","1366x728","24",12,29,74,45,26,35
+"571245dfd5f63","16-Apr-2016 15:02:07 WEST","24","Female","Master Degree","portuguese","PT","pt",8,"no","6","9","world","10","cure","1920x1080","1920x1080","24",12,29,74,45,28,35
+"57277ba3c5a5c","2-May-2016 17:09:07 WEST","20","Male","Bachelor Degree","portuguese","PT","pt",8,"no","0","10","hello","10","cure","1366x768","1366x728","24",12,29,74,45,26,35
+"5710cd9d571f2","15-Apr-2016 12:16:45 WEST","23","Male","Bachelor Degree","portuguese","PT","pt",8,"no","6","10","Hello","10","cure","1920x1080","1920x1053","24",12,29,74,45,26,35
+"5711389736065","15-Apr-2016 19:53:11 WEST","19","Female","High-School","portuguese","PT","pt",8,"no","6","10","Hello","10","Cure","768x1024","768x1004","32",12,29,74,45,26,35
+"57116ce8cf9e5","15-Apr-2016 23:36:24 WEST","50","Female","Master Degree","portuguese","PT","pt",7,"no","16","10","hello","10","cure","1438x808","1438x766","24",12,28,74,45,28,35
+"5711149df2d2a","15-Apr-2016 17:19:41 WEST","20","Male","College","portuguese","PT","pt",7,"no","5","10","hello","10","cure","1366x768","1304x768","24",12,29,74,45,26,35
+"57138ac176750","17-Apr-2016 14:08:17 WEST","21","Male","Bachelor Degree","portuguese","PT","pt",7,"no","8","10","hello","10","cure","1366x768","1366x728","24",12,29,74,45,26,35
+"5727d86840dc8","2-May-2016 23:44:56 WEST","37","Male","Bachelor Degree","portuguese","PT","pt",7,"no","0","10","hello","10","cure","1680x1050","1680x1023","24",12,29,74,45,26,35
+"57112efa50be6","15-Apr-2016 19:12:10 WEST","19","Male","Bachelor Degree","portuguese","PT","pt",7,"no","7","10","hello","10","cure","1920x1080","1920x1042","24",12,29,74,45,28,35
+"5712d9bc0cae3","17-Apr-2016 1:33:00 WEST","20","Female","Bachelor Degree","portuguese","PT","pt",7,"no","6","10","hello","10","cure","1920x1080","1920x1040","24",12,29,74,45,26,35
+"5715f69931d4c","19-Apr-2016 10:12:57 WEST","23","Male","Ensino Superior - Licenciatura","portuguese","PT","pt",7,"no","22","10","hello","10","cure","1440x900","1440x873","24",12,29,74,45,26,35
+"5710ee3fd83e6","15-Apr-2016 14:35:59 WEST","23","Male","Master Degree","portuguese","PT","pt",7,"no","5","10","hello","10","cure","1280x720","1280x680","24",12,29,74,45,26,35
+"573613f4689a3","13-May-2016 18:50:44 WEST","18","Male","High-School","british","GB","en",7,"no","0","1","hello","10","cure","1920x1080","1920x1033","24",12,29,74,45,26,35
+"5710cd0a515bb","15-Apr-2016 12:14:18 WEST","25","Male","Master Degree","portuguese","PT","pt",7,"no","15","10","hello","10","cure","1920x1080","1920x1040","24",12,29,80,43,26,35
+"5710d8d6aecd6","15-Apr-2016 13:04:38 WEST","23","Female","Bachelor Degree","portuguese","PT","pt",7,"no","6","10","hello","10","cure","1280x800","1280x708","24",12,29,74,45,26,35
+"57121540dbb98","16-Apr-2016 11:34:40 WEST","18","Male","High-School","portuguese","PT","pt",7,"no","8","10","hello","10","cure","1366x768","1366x728","24",12,29,74,45,26,35
+"5712787a337a9","16-Apr-2016 18:38:02 WEST","18","Female","College","portuguese","PT","pt",7,"no","5","10","hello","10","cute","1440x900","1440x810","24",12,29,74,45,26,35
+"5713acb331c3c","17-Apr-2016 16:33:07 WEST","24","Female","Master Degree","portuguese","PT","pt",7,"no","5","8","oranges","9","friday","1920x1080","1920x1032","24",12,29,74,45,26,35
+"57112ce735a14","15-Apr-2016 19:03:19 WEST","19","Male","High-School","portuguese","PT","pt",6,"no","9","9","world","10","cure","1920x1080","1920x1032","24",12,29,74,45,28,35
+"5710ffa5dd7be","15-Apr-2016 15:50:13 WEST","22","Male","Bachelor Degree","portuguese","PT","pt",6,"no","6","10","hello","9","friday","1920x1080","1920x1032","24",12,29,74,45,28,35
+"57113e3362c9f","15-Apr-2016 20:17:07 WEST","24","Male","High-School","portuguese","PT","pt",6,"no","6","9","World","10","Cure","768x1024","768x1004","32",12,29,74,45,26,35
+"572934019041e","4-May-2016 0:28:01 WEST","20","Female","High-School","portuguese","PT","pt",6,"no","0","10","hello","10","cure","1440x900","1440x809","24",12,29,74,45,26,36
+"572a7874c1e2e","4-May-2016 23:32:20 WEST","19","Male","High-School","portuguese","PT","pt",6,"no","0","10","hello","9","friday","1366x768","1366x728","24",12,29,71,45,26,35
+"5711f4ec96b9c","16-Apr-2016 9:16:44 WEST","45","Female","Master Degree","portuguese","PT","pt",6,"no","5","6","dog","10","cure","1920x1080","1920x1032","24",12,29,74,46,26,35
+"5710dc97aac05","15-Apr-2016 13:20:39 WEST","20","Male","College","portuguese","PT","pt",6,"no","7","10","hello","9","friday","1366x768","1366x728","24",12,29,74,45,26,35
+"57112e8f42ab6","15-Apr-2016 19:10:23 WEST","21","Female","Bachelor Degree","portuguese","PT","pt",6,"no","8","10","hello","9","friday","1366x768","1366x728","24",12,29,74,45,26,35
+"5734e397122ce","12-May-2016 21:12:07 WEST","19","Male","College","german","DE","de",6,"no","0","10","hello","10","cure","1920x1080","1920x1040","24",12,29,74,45,26,35
+"5710ee55dcd72","15-Apr-2016 14:36:21 WEST","23","Female","Bachelor Degree","portuguese","PT","pt",6,"no","8","10","hello","9","friday","1440x900","1440x860","24",12,29,74,42,26,35
+"5710ea84d4c6f","15-Apr-2016 14:20:04 WEST","25","Male","Master Degree","portuguese","PT","pt",5,"no","11","9","world","10","cure","1920x1080","1920x1032","24",12,29,74,45,26,35
+"5711338142ff8","15-Apr-2016 19:31:29 WEST","23","Male","Master Degree","portuguese","PT","pt",5,"no","13","10","hello","10","cure","1366x768","1366x728","24",12,29,74,45,26,35
+"5712d16eb8094","17-Apr-2016 0:57:34 WEST","22","Male","Master Degree","portuguese","PT","pt",5,"no","-49","10","hello","10","cure","1920x1080","1920x1030","24",12,29,74,45,26,35
+"574121b9e952d","22-May-2016 4:04:25 WEST","22","Female","College","vietnamese","US","en",5,"no","0","10","hello","10","cure","1366x768","1366x728","24",12,29,74,45,26,35
+"57112d73dfafe","15-Apr-2016 19:05:39 WEST","25","Male","Master Degree","portuguese","PT","pt",5,"no","8","10","hello","10","cure","1920x1080","1920x1040","24",12,29,74,45,26,35
+"57117fe7495aa","16-Apr-2016 0:57:27 WEST","48","Female","College","portuguese","PT","pt",5,"no","-46","10","color","10","red","1366x768","1366x728","24",12,24,74,45,26,35
+"5727f6d19e901","3-May-2016 1:54:41 WEST","19","Female","High-School","portuguese","PT","pt",5,"no","0","9","world","9","friday","1280x800","1280x773","24",12,1,74,45,26,35
+"57410611290e3","22-May-2016 2:06:25 WEST","22","Other","Bachelor Degree","british","GB","en",5,"no","0","10","hello","10","cure","1366x768","1366x768","24",12,29,74,45,26,35
+"57276731cfba9","2-May-2016 15:41:53 WEST","20","Male","College","portuguese","PT","pt",5,"no","0","10","hello","10","cure","1920x1080","1920x1040","24",12,29,74,45,26,35
+"5727635041e99","2-May-2016 15:25:20 WEST","38","Male","Master Degree","portuguese","PT","pt",5,"no","0","10","ten","10","ten","1366x768","1366x728","24",12,29,74,45,26,35
+"571128aba60e2","15-Apr-2016 18:45:15 WEST","22","Female","Bachelor Degree","portuguese","PT","pt",5,"no","13","10","hello","10","NONE","1366x768","1366x728","24",12,29,71,45,26,35
+"57112e639a100","15-Apr-2016 19:09:39 WEST","18","Male","College","portuguese","PT","pt",5,"no","5","10","hello","9","friday","412x732","412x732","32",12,29,74,45,26,35
+"5711405eb4abb","15-Apr-2016 20:26:22 WEST","18","Male","High-School","portuguese","PT","pt",5,"no","4","10","hello","9","friday","1920x1080","1920x1040","24",12,29,74,45,26,35
+"573607add000c","13-May-2016 17:58:21 WEST","38","Male","High-School","canadian","CA","en",5,"no","1","9","world","10","cure","1680x1050","1680x1050","24",12,29,74,45,26,35
+"5711602ded5e3","15-Apr-2016 22:42:05 WEST","48","Female","Doctoral Degree","portuguese","PT","pt",4,"no","16","10","8","10","9","375x667","375x647","32",12,29,74,45,26,35
+"571158157bb3c","15-Apr-2016 22:07:33 WEST","20","Male","Bachelor Degree","portuguese","PT","pt",4,"no","5","10","hello","10","cure","1680x1050","1680x1010","24",12,29,74,45,28,35
+"574628a9e94a1","25-May-2016 23:35:21 WEST","18","Male","No Academic Degree","spanish","ES","es",4,"no","0","8","oranges","9","friday","360x640","360x640","32",12,29,74,45,26,35
+"57122f7e5768f","16-Apr-2016 13:26:38 WEST","23","Male","Master Degree","portuguese","PT","pt",4,"no","5","10","hello","8","illusion","1366x768","1304x768","24",12,29,74,45,26,35
+"57122e814fb61","16-Apr-2016 13:22:25 WEST","26","Male","Master Degree","portuguese","PT","pt",4,"no","4","10","hello","10","cure","1366x768","1366x728","24",12,29,74,45,26,35
+"5734e848ad81a","12-May-2016 21:32:08 WEST","21","Male","High-School","german","US","en",4,"no","0","10","hello","9","friday","1366x768","1366x728","24",12,29,74,45,28,35
+"5713d766113e9","17-Apr-2016 19:35:18 WEST","21","Male","College","portuguese","PT","pt",4,"no","5","10","hello","9","friday","1366x768","1366x737","24",12,29,74,45,26,35
+"5734b3efd45eb","12-May-2016 17:48:47 WEST","26","Male","College","american","US","en",4,"no","0","8","Oranges","10","Cure","","","",12,29,74,45,26,35
+"5713e73998df9","17-Apr-2016 20:42:49 WEST","25","Male","Bachelor Degree","portuguese","FI","pt",4,"no","5","10","hello","10","cure","1440x900","1440x873","24",12,29,74,45,26,35
+"571123dc69a60","15-Apr-2016 18:24:44 WEST","21","Male","Bachelor Degree","portuguese","PT","pt",4,"no","4","10","hello","6","walk","1920x1080","1920x1040","24",12,29,74,45,26,35
+"5711e54c50f6b","16-Apr-2016 8:10:04 WEST","19","Male","College","portuguese","PT","pt",4,"no","8","10","hello","10","cure","1366x768","1366x728","24",12,29,74,45,26,35
+"57113a4121a89","15-Apr-2016 20:00:17 WEST","19","Male","High-School","portuguese","PT","pt",4,"no","9","10","hello","10","cure","1600x900","1600x860","24",12,29,74,45,26,35
+"5710d8ca226a2","15-Apr-2016 13:04:26 WEST","21","Male","Bachelor Degree","portuguese","PT","pt",4,"no","3","10","hello","9","friday","1600x900","1600x860","24",12,29,74,45,26,35
+"5715ea836193d","19-Apr-2016 9:21:23 WEST","83","Female","Ensino Primário","portuguese","PT","pt",3,"no","34","10","hello","8","illusion","1680x1050","1680x1050","24",12,29,74,45,26,35
+"57114ca79a200","15-Apr-2016 21:18:47 WEST","21","Male","Bachelor Degree","portuguese","PT","pt",3,"no","3","10","hello","9","friday","1366x768","1366x728","24",12,29,74,45,26,35
+"571171d59aaee","15-Apr-2016 23:57:25 WEST","21","Male","High-School","portuguese","PT","pt",3,"no","-56","10","hello","10","cure","1366x768","1366x728","24",12,29,74,45,26,35
+"57117b1840694","16-Apr-2016 0:36:56 WEST","23","Male","Bachelor Degree","portuguese","PT","pt",3,"no","3","10","hello","10","cure","1366x768","1366x728","24",12,29,74,45,26,35
+"5711eaec4b831","16-Apr-2016 8:34:04 WEST","22","Male","Master Degree","french","DE","fr",3,"no","5","10","Hello","8","illusion","1366x768","1366x728","24",12,29,74,45,26,35
+"57112fc882a10","15-Apr-2016 19:15:36 WEST","18","Male","High-School","portuguese","PT","pt",3,"no","3","9","world","10","cure","1440x900","1440x870","24",12,29,74,45,28,35
+"571245f0af12d","16-Apr-2016 15:02:24 WEST","21","Male","High-School","portuguese","PT","pt",3,"no","4","10","hello","9","illusion","1366x768","1366x728","24",12,29,74,45,26,35
+"57112f7103d57","15-Apr-2016 19:14:09 WEST","21","Male","College","portuguese","PT","pt",3,"no","3","10","hello","9","friday","1920x1080","1920x1032","24",12,29,74,45,26,35
+"571254945e4d5","16-Apr-2016 16:04:52 WEST","20","Male","High-School","portuguese","PT","pt",3,"no","4","10","hello","10","cure","1366x768","1366x728","24",12,29,74,45,26,35
+"57112e43d4668","15-Apr-2016 19:09:07 WEST","19","Male","High-School","portuguese","PT","pt",3,"no","3","10","hello","9","friday","1366x768","1366x728","24",12,29,74,45,26,35
+"5712c1176d5f8","16-Apr-2016 23:47:51 WEST","23","Male","Bachelor Degree","portuguese","PT","pt",3,"no","4","10","hello","10","cure","1366x768","1366x728","24",12,29,74,45,26,35
+"57112db321110","15-Apr-2016 19:06:43 WEST","20","Male","College","portuguese","PT","pt",3,"no","6","10","hello","10","cure","1920x1080","1920x1030","24",12,29,74,45,28,35
+"57112de7f0c00","15-Apr-2016 19:07:35 WEST","24","Male","Master Degree","portuguese","PT","pt",3,"no","2","10","hello","8","illusion","1920x1080","1920x1053","24",12,29,74,45,26,35
+"5714dc153397f","18-Apr-2016 14:07:33 WEST","27","Female","Master Degree","portuguese","PT","pt",3,"no","5","10","hello","10","cure","1280x800","1280x760","24",12,29,74,45,26,35
+"57276995206d6","2-May-2016 15:52:05 WEST","23","Male","Bachelor Degree","portuguese","PT","pt",3,"no","0","10","hello","10","cure","1600x900","1600x870","24",12,29,74,45,26,35
+"5734779e28d4b","12-May-2016 13:31:26 WEST","23","Female","Bachelor Degree","new zealander","NZ","en",3,"no","0","10","hello","10","cure","1440x900","1440x823","24",12,29,74,45,26,35
+"5734d81ba001b","12-May-2016 20:23:07 WEST","19","Female","High-School","welsh","GB","en",3,"no","0","10","hello","10","cure","1280x720","1280x720","24",12,29,74,45,26,35
+"5710e9f31cdc4","15-Apr-2016 14:17:39 WEST","21","Male","Bachelor Degree","portuguese","PT","pt",3,"no","8","10","hello","10","cure","1417x797","1417x758","24",12,29,74,45,26,35
+"5710e5bc55564","15-Apr-2016 13:59:40 WEST","29","Male","Master Degree","portuguese","PT","pt",3,"no","-51","10","hello","10","cure","1366x768","1366x728","24",12,29,74,45,26,35
+"5710d87585247","15-Apr-2016 13:03:01 WEST","31","Male","Master Degree","portuguese","PT","pt",3,"no","4","9","World","10","cure","1920x1080","1920x1040","24",12,29,74,45,26,35
+"5710cbf204d10","15-Apr-2016 12:09:38 WEST","22","Male","Master Degree","portuguese","PT","pt",3,"no","5","10","hello","10","cure","1920x1080","1920x1030","24",12,29,74,45,26,35
+"57129d6d25453","16-Apr-2016 21:15:41 WEST","21","Female","Bachelor Degree","portuguese","PT","pt",2,"no","7","9","world","8","illusion","1920x1080","1920x1030","24",12,29,74,45,26,35
+"57115317eb242","15-Apr-2016 21:46:15 WEST","22","Male","Master Degree","portuguese","PT","pt",2,"no","4","10","hello","8","illusion","1366x768","1366x741","24",12,29,74,45,28,35
+"5711541e3ef89","15-Apr-2016 21:50:38 WEST","53","Male","Master Degree","portuguese","PT","pt",2,"no","-48","10","Hello","10","cure","1366x768","1366x738","24",12,29,74,45,26,35
+"5710e3d7c1247","15-Apr-2016 13:51:35 WEST","41","Male","Master Degree","portuguese","PT","pt",2,"no","6","9","World ","10","Cure","375x667","375x647","32",12,29,74,45,26,35
+"5713ce8c57c5e","17-Apr-2016 18:57:32 WEST","40","Female","College","american","US","en",2,"no","-55","10","hello","9","friday","1366x768","1366x738","24",12,29,74,45,26,35
+"5710d243c9715","15-Apr-2016 12:36:35 WEST","22","Male","Bachelor Degree","portuguese","PT","pt",2,"no","2","10","hello","9","friday","1920x1080","1920x1040","24",12,29,71,45,26,35
+"571252b436ab0","16-Apr-2016 15:56:52 WEST","22","Male","Bachelor Degree","portuguese","PT","pt",2,"no","-55","10","hello","9","friday","1920x1080","1920x1040","24",12,29,74,45,26,35
+"573678e895606","14-May-2016 2:01:28 WEST","27","Male","Bachelor Degree","polish","PL","pl",2,"no","0","10","hello","10","cure","1366x768","1366x768","24",12,29,74,45,26,35
+"57113664403aa","15-Apr-2016 19:43:48 WEST","19","Male","High-School","portuguese","PT","pt",2,"no","6","10","hello","10","cure","1536x864","1536x824","24",12,29,74,75,26,35
+"57120d338509d","16-Apr-2016 11:00:19 WEST","28","Male","Master Degree","portuguese","PT","pt",2,"no","4","8","oranges","9","friday","1366x768","1366x728","24",12,29,21,45,28,35
+"5711613cca97d","15-Apr-2016 22:46:36 WEST","23","Female","Bachelor Degree","portuguese","PT","pt",2,"no","7","10","hello","9","friday","1366x768","1366x728","24",12,29,74,45,26,35
+"5716d167b95e4","20-Apr-2016 1:46:31 WEST","69","Female","Ensino Superior - Licenciatura","portuguese","PT","pt",2,"no","-39","9","world","8","illusion","1366x768","1366x728","24",12,29,75,45,26,35
+"57112cb820ea5","15-Apr-2016 19:02:32 WEST","18","Male","High-School","portuguese","PT","pt",2,"no","3","10","world","10","cure","1440x900","1440x823","24",12,29,74,45,16,35
+"57114f82eb4e8","15-Apr-2016 21:30:58 WEST","21","Female","College","portuguese","PT","pt",2,"no","4","10","hello","10","cure","1366x768","1366x728","24",12,29,74,45,26,35
+"57111b2c36e0c","15-Apr-2016 17:47:40 WEST","23","Male","Master Degree","portuguese","PT","pt",1,"no","4","6","dog","8","illusion ","720x1280","720x1280","32",12,29,74,45,26,35
+"5749c6a70055f","28-May-2016 17:26:15 WEST","17","Male","No Academic Degree","american","US","en",1,"no","0","10","hello","10","Cure","360x640","360x640","32",12,29,74,45,26,35
+"57113869c7da3","15-Apr-2016 19:52:25 WEST","23","Female","Bachelor Degree","turkish","TR","tr",1,"no","3","9","world","8","illusion","","","",12,29,74,45,26,35
+"5713ddde59251","17-Apr-2016 20:02:54 WEST","22","Female","Bachelor Degree","portuguese","PT","pt",1,"no","5","10","hello","10","cure","375x667","375x647","32",12,29,74,45,26,35
+"57112d320ff16","15-Apr-2016 19:04:34 WEST","20","Male","High-School","portuguese","PT","pt",1,"no","4","10","hello","10","cure","1920x1080","1855x1056","24",12,29,71,45,26,35
+"5710cca334d60","15-Apr-2016 12:12:35 WEST","25","Female","Master Degree","portuguese","PT","pt",1,"no","5","10","hello","10","cure","1366x768","1366x728","24",12,29,74,45,28,35
+"5713ad43312ab","17-Apr-2016 16:35:31 WEST","23","Female","Bachelor Degree","portuguese","PT","pt",1,"no","2","10","hello","10","cure","1440x900","1440x854","24",12,29,74,45,26,35
+"57126595532de","16-Apr-2016 17:17:25 WEST","22","Male","Master Degree","portuguese","PT","pt",1,"no","2","7","tree","10","cure","1366x768","1366x728","24",12,29,74,45,28,35
+"5710cd289f4c3","15-Apr-2016 12:14:48 WEST","46","Female","College","portuguese","PT","pt",1,"no","6","9","6","8","8","360x640","360x640","32",12,29,74,45,26,35
+"574185703370e","22-May-2016 11:09:52 WEST","22","Male","College","american","US","en",1,"no","0","10","hello","8","illusion","1920x1080","1920x1080","24",12,29,74,45,26,35
+"57116853496b5","15-Apr-2016 23:16:51 WEST","20","Female","Bachelor Degree","portuguese","PT","pt",1,"no","5","8","Oranges","10","Cure","360x640","360x640","32",12,29,74,45,28,35
+"5711666e6f11e","15-Apr-2016 23:08:46 WEST","35","Female","Master Degree","portuguese","PT","pt",1,"no","5","10","Hello","10","Cure","","","",12,29,75,45,26,35
+"5710d7b312b93","15-Apr-2016 12:59:47 WEST","23","Female","Bachelor Degree","portuguese","PT","pt",1,"no","-58","8","Orange","9","Friday","414x736","414x716","32",12,29,74,45,26,35
+"5710ce96dd6a3","15-Apr-2016 12:20:54 WEST","24","Male","Bachelor Degree","portuguese","PT","pt",1,"no","3","10","hello","10","cure","1600x900","1600x860","24",12,29,74,45,26,35
+"5711490b2e8f1","15-Apr-2016 21:03:23 WEST","38","Male","Master Degree","portuguese","PT","pt",1,"no","6","8","Orange ","9","Friday ","360x640","360x640","32",12,1,1,1,23,1
+"572a791f6405b","4-May-2016 23:35:11 WEST","22","Male","Bachelor Degree","portuguese","PT","pt",1,"no","0","10","hello","10","cure","1680x1050","1680x1020","24",12,29,74,45,26,35
