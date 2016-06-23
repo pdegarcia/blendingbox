@@ -14,7 +14,7 @@ id,typeOfQuestion,first_color,second_color,third_color,clicks,page_time,rating,r
 573ec4275ba17,objTwoColors,#0000FF,227,220,421,38,3,0,13
 573ec4275ba17,objTwoColors,#8000FF,73,230,258,26,5,0,14
 573ec4275ba17,objTwoColors,#00FF80,1,121,108,6,4,0,15
-573ec4275ba17,objTwoColors,#FF007F,,3,1,17,3,0,16
+573ec4275ba17,objTwoColors,#FF007F,0,3,1,17,3,0,16
 573ec4275ba17,objTwoColors,#00FF00,108,140,416,40,3,0,17
 573ec4275ba17,twoColorsObj,#FF0000,#00FF00,#B000FF,353,35,2,0,18
 573ec4275ba17,twoColorsObj,#FF0000,#0000FF,#9700FF,144,13,3,0,19

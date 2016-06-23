@@ -421,7 +421,7 @@ id,typeOfQuestion,first_color,second_color,third_color,clicks,page_time,rating,r
 5757ffca0b4b1,objTwoColors,#00FF80,67,181,205,31,4,0,15
 573edae85268b,objTwoColors,#00FF80,79,146,496,26,4,0,15
 5757fd2703090,objTwoColors,#00FF80,133,0,109,7,2,0,15
-573a0b8280839,objTwoColors,#00FF80,,37,211,35,3,0,15
+573a0b8280839,objTwoColors,#00FF80,0,37,211,35,3,0,15
 5740a8b59d448,objTwoColors,#00FF80,130,0,531,19,5,0,15
 573a059da0efd,objTwoColors,#00FF80,199,63,181,26,5,0,15
 573c783748e8b,objTwoColors,#00FF80,142,0,350,17,3,0,15
@@ -505,7 +505,7 @@ id,typeOfQuestion,first_color,second_color,third_color,clicks,page_time,rating,r
 5740bda9be3dc,twoColorsObj,#FF0000,#00FF00,#998077,314,45,5,0,18
 5740a8b59d448,twoColorsObj,#FF0000,#00FF00,#978900,905,56,3,0,18
 573a0b8280839,twoColorsObj,#FF0000,#00FF00,#998077,384,31,3,0,18
-5757fd2703090,twoColorsObj,#FF0000,#00FF00,0,99,15,1,0,18
+5757fd2703090,twoColorsObj,#FF0000,#00FF00,#FFFFFF,99,15,1,0,18
 5739ff85289b2,twoColorsObj,#FF0000,#00FF00,#998077,8,11,3,0,18
 572767049ccfa,twoColorsObj,#FF0000,#00FF00,#D9FF00,201,10,4,0,18
 574859b8f3379,twoColorsObj,#FF0000,#00FF00,#BFBE00,754,68,4,0,18
@@ -640,7 +640,7 @@ id,typeOfQuestion,first_color,second_color,third_color,clicks,page_time,rating,r
 5757fd2703090,twoColorsObj,#FF0000,#FFFF00,#FF6700,58,5,5,0,23
 5756ae6897296,twoColorsObj,#FF0000,#FFFF00,#E8A362,278,18,4,0,23
 5756b2d9bd658,twoColorsObj,#FF0000,#FFFF00,#E8A362,813,59,2,0,23
-573a059da0efd,twoColorsObj,#FF0000,#FFFF00,0,0,49,1,0,23
+573a059da0efd,twoColorsObj,#FF0000,#FFFF00,#FFFFFF,0,49,1,0,23
 5740e3f36a945,twoColorsObj,#FF0000,#FFFF00,#768F00,173,36,2,0,23
 5757ffca0b4b1,twoColorsObj,#FF0000,#FFFF00,#FF8600,131,21,3,0,23
 5713a02a13044,twoColorsObj,#FF0000,#FFFF00,#FF6F00,35,9,3,0,23
@@ -668,7 +668,7 @@ id,typeOfQuestion,first_color,second_color,third_color,clicks,page_time,rating,r
 5710ee9e58646,twoColorsObj,#00FFFF,#FF00FF,#B000FF,379,19,3,0,24
 5740a8b59d448,twoColorsObj,#00FFFF,#FF00FF,#8342FF,189,10,4,0,24
 5740ad339507d,twoColorsObj,#00FFFF,#FF00FF,#978900,287,16,2,0,24
-573a059da0efd,twoColorsObj,#00FFFF,#FF00FF,0,79,42,1,0,24
+573a059da0efd,twoColorsObj,#00FFFF,#FF00FF,#FFFFFF,79,42,1,0,24
 5739ff85289b2,twoColorsObj,#00FFFF,#FF00FF,#8342FF,169,34,2,0,24
 5740b0f8e9734,twoColorsObj,#00FFFF,#FF00FF,#9700FF,171,18,5,0,24
 5740b686127bb,twoColorsObj,#00FFFF,#FF00FF,#6500FF,138,17,4,0,24
@@ -682,7 +682,7 @@ id,typeOfQuestion,first_color,second_color,third_color,clicks,page_time,rating,r
 5756ae6897296,twoColorsObj,#00FFFF,#FF00FF,#B000FF,251,20,4,0,24
 571151812791a,twoColorsObj,#00FFFF,#FF00FF,#FB0080,259,80,1,0,24
 5711231e370f2,twoColorsObj,#00FFFF,#FF00FF,#c6aeff,294,42,2,0,24
-5757fd2703090,twoColorsObj,#00FFFF,#FF00FF,0,317,25,2,0,24
+5757fd2703090,twoColorsObj,#00FFFF,#FF00FF,#FFFFFF,317,25,2,0,24
 5757ffca0b4b1,twoColorsObj,#00FFFF,#FF00FF,#B20084,178,23,4,0,24
 57581518c2c07,twoColorsObj,#00FFFF,#FF00FF,#9E5DC8,71,5,5,0,24
 573e4022949b1,twoColorsObj,#00FFFF,#FF00FF,#E26AA4,128,11,3,0,24
@@ -707,7 +707,7 @@ id,typeOfQuestion,first_color,second_color,third_color,clicks,page_time,rating,r
 5757fd2703090,twoColorsObj,#FF00FF,#FFFF00,#FF6700,244,44,3,0,25
 5756b2d9bd658,twoColorsObj,#FF00FF,#FFFF00,#E26AA4,239,42,4,0,25
 572767049ccfa,twoColorsObj,#FF00FF,#FFFF00,#008788,14,19,2,0,25
-573a059da0efd,twoColorsObj,#FF00FF,#FFFF00,0,0,54,1,0,25
+573a059da0efd,twoColorsObj,#FF00FF,#FFFF00,#FFFFFF,0,54,1,0,25
 5710ee9e58646,twoColorsObj,#FF00FF,#FFFF00,#FF6755,257,45,3,0,25
 5740ad339507d,twoColorsObj,#FF00FF,#FFFF00,#00FFFF,134,14,3,0,25
 572c85675a5ef,twoColorsObj,#FF00FF,#FFFF00,#ff007f,424,60,3,0,25
@@ -719,7 +719,7 @@ id,typeOfQuestion,first_color,second_color,third_color,clicks,page_time,rating,r
 5711231e370f2,twoColorsObj,#00FF00,#00FFFF,#46ff9c,273,19,4,0,26
 573e4022949b1,twoColorsObj,#00FF00,#00FFFF,#8342FF,163,18,2,0,26
 5740a8b59d448,twoColorsObj,#00FF00,#00FFFF,#00A89E,205,14,3,0,26
-572767049ccfa,twoColorsObj,#00FF00,#00FFFF,0,0,44,1,0,26
+572767049ccfa,twoColorsObj,#00FF00,#00FFFF,#FFFFFF,0,44,1,0,26
 574859b8f3379,twoColorsObj,#00FF00,#00FFFF,#008788,23,42,3,0,26
 573e47c26cb8e,twoColorsObj,#00FF00,#00FFFF,#798DAB,93,10,2,0,26
 572c85675a5ef,twoColorsObj,#00FF00,#00FFFF,#00ffb7,491,242,4,0,26
@@ -746,7 +746,7 @@ id,typeOfQuestion,first_color,second_color,third_color,clicks,page_time,rating,r
 574859b8f3379,twoColorsObj,#00FF00,#FF00FF,#3F0091,395,44,3,0,27
 571151812791a,twoColorsObj,#00FF00,#FF00FF,#808080,239,11,3,0,27
 573e4022949b1,twoColorsObj,#00FF00,#FF00FF,#8342FF,99,18,2,0,27
-573a059da0efd,twoColorsObj,#00FF00,#FF00FF,0,0,40,1,0,27
+573a059da0efd,twoColorsObj,#00FF00,#FF00FF,#FFFFFF,0,40,1,0,27
 5757fd2703090,twoColorsObj,#00FF00,#FF00FF,#7100FF,288,43,3,0,27
 5756ae6897296,twoColorsObj,#00FF00,#FF00FF,#9200FF,186,31,4,0,27
 5740a8b59d448,twoColorsObj,#00FF00,#FF00FF,#978900,173,19,3,0,27
@@ -842,7 +842,7 @@ id,typeOfQuestion,first_color,second_color,third_color,clicks,page_time,rating,r
 5740e3f36a945,twoColorsObj,#0000FF,#FF00FF,#3F0091,115,26,2,0,30
 5757fd2703090,twoColorsObj,#0000FF,#FF00FF,#430096,59,7,5,0,30
 5713a02a13044,twoColorsObj,#0000FF,#FF00FF,#7f00ff,145,11,3,0,30
-573a059da0efd,twoColorsObj,#0000FF,#FF00FF,0,0,6,1,0,30
+573a059da0efd,twoColorsObj,#0000FF,#FF00FF,#FFFFFF,0,6,1,0,30
 5740bda9be3dc,twoColorsObj,#0000FF,#FF00FF,#9C0083,254,55,5,0,30
 5740a8b59d448,twoColorsObj,#0000FF,#FF00FF,#9700FF,176,11,4,0,30
 5756ab1701ba0,twoColorsObj,#0000FF,#FF00FF,#9C0083,176,12,5,0,30
