@@ -10,6 +10,11 @@ x_aux = 0;
 y_aux = 0;
 pathLab = '/Users/PauloGarcia/Documents/MATLAB/lab_diagrams';
 
+profileSrc = 'DEI-1';                % MODIFY PROFILE NAME.
+
+profile = iccread(profileSrc);
+iccTransform = makecform('mattrc', profile, 'Direction', 'forward');
+
 %% Analyze Laboratory Users %%
 
 users_lab = 'data_first_labUsers.csv';
@@ -1833,7 +1838,8 @@ for i = 1 : height(q18_lab)
     r = (hex2dec(strcat(tColor(2), tColor(3)))/255);        % RR
     g = (hex2dec(strcat(tColor(4), tColor(5)))/255);        % GG    
     b = (hex2dec(strcat(tColor(6), tColor(7)))/255);        % BB
-    tColor = rgb2xyz([r g b]);                             
+    tColor = applycform([r g b], iccTransform);
+    tColor = applycform([r g b], iccTransform);                             
     x_aux = tColor(1)/(tColor(1) + tColor(2) + tColor(3)); y_aux = tColor(2)/(tColor(1) + tColor(2) + tColor(3)); 
     x_values = [x_values x_aux]; y_values = [y_values y_aux];
     
@@ -1856,7 +1862,7 @@ for i = 1 : height(q18_dalt_lab)
     r = (hex2dec(strcat(tColor(2), tColor(3)))/255);        % RR
     g = (hex2dec(strcat(tColor(4), tColor(5)))/255);        % GG    
     b = (hex2dec(strcat(tColor(6), tColor(7)))/255);        % BB
-    tColor = rgb2xyz([r g b]);                             
+    tColor = applycform([r g b], iccTransform);                             
     x_aux = tColor(1)/(tColor(1) + tColor(2) + tColor(3)); y_aux = tColor(2)/(tColor(1) + tColor(2) + tColor(3)); 
     x_values = [x_values x_aux]; y_values = [y_values y_aux];
     
@@ -1893,7 +1899,7 @@ for i = 1 : height(q19_lab)
     r = (hex2dec(strcat(tColor(2), tColor(3)))/255);        % RR
     g = (hex2dec(strcat(tColor(4), tColor(5)))/255);        % GG    
     b = (hex2dec(strcat(tColor(6), tColor(7)))/255);        % BB
-    tColor = rgb2xyz([r g b]);                             
+    tColor = applycform([r g b], iccTransform);                             
     x_aux = tColor(1)/(tColor(1) + tColor(2) + tColor(3)); y_aux = tColor(2)/(tColor(1) + tColor(2) + tColor(3)); 
     x_values = [x_values x_aux]; y_values = [y_values y_aux];
     
@@ -1916,7 +1922,7 @@ for i = 1 : height(q19_dalt_lab)
     r = (hex2dec(strcat(tColor(2), tColor(3)))/255);        % RR
     g = (hex2dec(strcat(tColor(4), tColor(5)))/255);        % GG    
     b = (hex2dec(strcat(tColor(6), tColor(7)))/255);        % BB
-    tColor = rgb2xyz([r g b]);                             
+    tColor = applycform([r g b], iccTransform);                             
     x_aux = tColor(1)/(tColor(1) + tColor(2) + tColor(3)); y_aux = tColor(2)/(tColor(1) + tColor(2) + tColor(3)); 
     x_values = [x_values x_aux]; y_values = [y_values y_aux];
     
@@ -1953,7 +1959,7 @@ for i = 1 : height(q20_lab)
     r = (hex2dec(strcat(tColor(2), tColor(3)))/255);        % RR
     g = (hex2dec(strcat(tColor(4), tColor(5)))/255);        % GG    
     b = (hex2dec(strcat(tColor(6), tColor(7)))/255);        % BB
-    tColor = rgb2xyz([r g b]);                             
+    tColor = applycform([r g b], iccTransform);                             
     x_aux = tColor(1)/(tColor(1) + tColor(2) + tColor(3)); y_aux = tColor(2)/(tColor(1) + tColor(2) + tColor(3)); 
     x_values = [x_values x_aux]; y_values = [y_values y_aux];
     
@@ -1976,7 +1982,7 @@ for i = 1 : height(q20_dalt_lab)
     r = (hex2dec(strcat(tColor(2), tColor(3)))/255);        % RR
     g = (hex2dec(strcat(tColor(4), tColor(5)))/255);        % GG    
     b = (hex2dec(strcat(tColor(6), tColor(7)))/255);        % BB
-    tColor = rgb2xyz([r g b]);                             
+    tColor = applycform([r g b], iccTransform);                             
     x_aux = tColor(1)/(tColor(1) + tColor(2) + tColor(3)); y_aux = tColor(2)/(tColor(1) + tColor(2) + tColor(3)); 
     x_values = [x_values x_aux]; y_values = [y_values y_aux];
     
@@ -2014,7 +2020,7 @@ for i = 1 : height(q21_lab)
     r = (hex2dec(strcat(tColor(2), tColor(3)))/255);        % RR
     g = (hex2dec(strcat(tColor(4), tColor(5)))/255);        % GG    
     b = (hex2dec(strcat(tColor(6), tColor(7)))/255);        % BB
-    tColor = rgb2xyz([r g b]);                             
+    tColor = applycform([r g b], iccTransform);                             
     x_aux = tColor(1)/(tColor(1) + tColor(2) + tColor(3)); y_aux = tColor(2)/(tColor(1) + tColor(2) + tColor(3)); 
     x_values = [x_values x_aux]; y_values = [y_values y_aux];
     
@@ -2038,7 +2044,7 @@ for i = 1 : height(q21_dalt_lab)
     r = (hex2dec(strcat(tColor(2), tColor(3)))/255);        % RR
     g = (hex2dec(strcat(tColor(4), tColor(5)))/255);        % GG    
     b = (hex2dec(strcat(tColor(6), tColor(7)))/255);        % BB
-    tColor = rgb2xyz([r g b]);                             
+    tColor = applycform([r g b], iccTransform);                             
     x_aux = tColor(1)/(tColor(1) + tColor(2) + tColor(3)); y_aux = tColor(2)/(tColor(1) + tColor(2) + tColor(3)); 
     x_values = [x_values x_aux]; y_values = [y_values y_aux];
     
@@ -2075,7 +2081,7 @@ for i = 1 : height(q22_lab)
     r = (hex2dec(strcat(tColor(2), tColor(3)))/255);        % RR
     g = (hex2dec(strcat(tColor(4), tColor(5)))/255);        % GG    
     b = (hex2dec(strcat(tColor(6), tColor(7)))/255);        % BB
-    tColor = rgb2xyz([r g b]);                             
+    tColor = applycform([r g b], iccTransform);                             
     x_aux = tColor(1)/(tColor(1) + tColor(2) + tColor(3)); y_aux = tColor(2)/(tColor(1) + tColor(2) + tColor(3)); 
     x_values = [x_values x_aux]; y_values = [y_values y_aux];
     
@@ -2098,7 +2104,7 @@ for i = 1 : height(q22_dalt_lab)
     r = (hex2dec(strcat(tColor(2), tColor(3)))/255);        % RR
     g = (hex2dec(strcat(tColor(4), tColor(5)))/255);        % GG    
     b = (hex2dec(strcat(tColor(6), tColor(7)))/255);        % BB
-    tColor = rgb2xyz([r g b]);                             
+    tColor = applycform([r g b], iccTransform);                             
     x_aux = tColor(1)/(tColor(1) + tColor(2) + tColor(3)); y_aux = tColor(2)/(tColor(1) + tColor(2) + tColor(3)); 
     x_values = [x_values x_aux]; y_values = [y_values y_aux];
     
@@ -2135,7 +2141,7 @@ for i = 1 : height(q23_lab)
     r = (hex2dec(strcat(tColor(2), tColor(3)))/255);        % RR
     g = (hex2dec(strcat(tColor(4), tColor(5)))/255);        % GG    
     b = (hex2dec(strcat(tColor(6), tColor(7)))/255);        % BB
-    tColor = rgb2xyz([r g b]);                             
+    tColor = applycform([r g b], iccTransform);                             
     x_aux = tColor(1)/(tColor(1) + tColor(2) + tColor(3)); y_aux = tColor(2)/(tColor(1) + tColor(2) + tColor(3)); 
     x_values = [x_values x_aux]; y_values = [y_values y_aux];
     
@@ -2158,7 +2164,7 @@ for i = 1 : height(q23_dalt_lab)
     r = (hex2dec(strcat(tColor(2), tColor(3)))/255);        % RR
     g = (hex2dec(strcat(tColor(4), tColor(5)))/255);        % GG    
     b = (hex2dec(strcat(tColor(6), tColor(7)))/255);        % BB
-    tColor = rgb2xyz([r g b]);                             
+    tColor = applycform([r g b], iccTransform);                             
     x_aux = tColor(1)/(tColor(1) + tColor(2) + tColor(3)); y_aux = tColor(2)/(tColor(1) + tColor(2) + tColor(3)); 
     x_values = [x_values x_aux]; y_values = [y_values y_aux];
     
@@ -2195,7 +2201,7 @@ for i = 1 : height(q24_lab)
     r = (hex2dec(strcat(tColor(2), tColor(3)))/255);        % RR
     g = (hex2dec(strcat(tColor(4), tColor(5)))/255);        % GG    
     b = (hex2dec(strcat(tColor(6), tColor(7)))/255);        % BB
-    tColor = rgb2xyz([r g b]);                             
+    tColor = applycform([r g b], iccTransform);                             
     x_aux = tColor(1)/(tColor(1) + tColor(2) + tColor(3)); y_aux = tColor(2)/(tColor(1) + tColor(2) + tColor(3)); 
     x_values = [x_values x_aux]; y_values = [y_values y_aux];
     
@@ -2218,7 +2224,7 @@ for i = 1 : height(q24_dalt_lab)
     r = (hex2dec(strcat(tColor(2), tColor(3)))/255);        % RR
     g = (hex2dec(strcat(tColor(4), tColor(5)))/255);        % GG    
     b = (hex2dec(strcat(tColor(6), tColor(7)))/255);        % BB
-    tColor = rgb2xyz([r g b]);                             
+    tColor = applycform([r g b], iccTransform);                             
     x_aux = tColor(1)/(tColor(1) + tColor(2) + tColor(3)); y_aux = tColor(2)/(tColor(1) + tColor(2) + tColor(3)); 
     x_values = [x_values x_aux]; y_values = [y_values y_aux];
     
@@ -2255,7 +2261,7 @@ for i = 1 : height(q25_lab)
     r = (hex2dec(strcat(tColor(2), tColor(3)))/255);        % RR
     g = (hex2dec(strcat(tColor(4), tColor(5)))/255);        % GG    
     b = (hex2dec(strcat(tColor(6), tColor(7)))/255);        % BB
-    tColor = rgb2xyz([r g b]);                             
+    tColor = applycform([r g b], iccTransform);                             
     x_aux = tColor(1)/(tColor(1) + tColor(2) + tColor(3)); y_aux = tColor(2)/(tColor(1) + tColor(2) + tColor(3)); 
     x_values = [x_values x_aux]; y_values = [y_values y_aux];
     
@@ -2278,7 +2284,7 @@ for i = 1 : height(q25_dalt_lab)
     r = (hex2dec(strcat(tColor(2), tColor(3)))/255);        % RR
     g = (hex2dec(strcat(tColor(4), tColor(5)))/255);        % GG    
     b = (hex2dec(strcat(tColor(6), tColor(7)))/255);        % BB
-    tColor = rgb2xyz([r g b]);                             
+    tColor = applycform([r g b], iccTransform);                             
     x_aux = tColor(1)/(tColor(1) + tColor(2) + tColor(3)); y_aux = tColor(2)/(tColor(1) + tColor(2) + tColor(3)); 
     x_values = [x_values x_aux]; y_values = [y_values y_aux];
     
@@ -2315,7 +2321,7 @@ for i = 1 : height(q26_lab)
     r = (hex2dec(strcat(tColor(2), tColor(3)))/255);        % RR
     g = (hex2dec(strcat(tColor(4), tColor(5)))/255);        % GG    
     b = (hex2dec(strcat(tColor(6), tColor(7)))/255);        % BB
-    tColor = rgb2xyz([r g b]);                             
+    tColor = applycform([r g b], iccTransform);                             
     x_aux = tColor(1)/(tColor(1) + tColor(2) + tColor(3)); y_aux = tColor(2)/(tColor(1) + tColor(2) + tColor(3)); 
     x_values = [x_values x_aux]; y_values = [y_values y_aux];
     
@@ -2338,7 +2344,7 @@ for i = 1 : height(q26_dalt_lab)
     r = (hex2dec(strcat(tColor(2), tColor(3)))/255);        % RR
     g = (hex2dec(strcat(tColor(4), tColor(5)))/255);        % GG    
     b = (hex2dec(strcat(tColor(6), tColor(7)))/255);        % BB
-    tColor = rgb2xyz([r g b]);                             
+    tColor = applycform([r g b], iccTransform);                             
     x_aux = tColor(1)/(tColor(1) + tColor(2) + tColor(3)); y_aux = tColor(2)/(tColor(1) + tColor(2) + tColor(3)); 
     x_values = [x_values x_aux]; y_values = [y_values y_aux];
     
@@ -2376,7 +2382,7 @@ for i = 1 : height(q27_lab)
     r = (hex2dec(strcat(tColor(2), tColor(3)))/255);        % RR
     g = (hex2dec(strcat(tColor(4), tColor(5)))/255);        % GG    
     b = (hex2dec(strcat(tColor(6), tColor(7)))/255);        % BB
-    tColor = rgb2xyz([r g b]);                             
+    tColor = applycform([r g b], iccTransform);                             
     x_aux = tColor(1)/(tColor(1) + tColor(2) + tColor(3)); y_aux = tColor(2)/(tColor(1) + tColor(2) + tColor(3)); 
     x_values = [x_values x_aux]; y_values = [y_values y_aux];
     
@@ -2400,7 +2406,7 @@ for i = 1 : height(q27_dalt_lab)
     r = (hex2dec(strcat(tColor(2), tColor(3)))/255);        % RR
     g = (hex2dec(strcat(tColor(4), tColor(5)))/255);        % GG    
     b = (hex2dec(strcat(tColor(6), tColor(7)))/255);        % BB
-    tColor = rgb2xyz([r g b]);                             
+    tColor = applycform([r g b], iccTransform);                             
     x_aux = tColor(1)/(tColor(1) + tColor(2) + tColor(3)); y_aux = tColor(2)/(tColor(1) + tColor(2) + tColor(3)); 
     x_values = [x_values x_aux]; y_values = [y_values y_aux];
     
@@ -2437,7 +2443,7 @@ for i = 1 : height(q28_lab)
     r = (hex2dec(strcat(tColor(2), tColor(3)))/255);        % RR
     g = (hex2dec(strcat(tColor(4), tColor(5)))/255);        % GG    
     b = (hex2dec(strcat(tColor(6), tColor(7)))/255);        % BB
-    tColor = rgb2xyz([r g b]);                             
+    tColor = applycform([r g b], iccTransform);                             
     x_aux = tColor(1)/(tColor(1) + tColor(2) + tColor(3)); y_aux = tColor(2)/(tColor(1) + tColor(2) + tColor(3)); 
     x_values = [x_values x_aux]; y_values = [y_values y_aux];
     
@@ -2460,7 +2466,7 @@ for i = 1 : height(q28_dalt_lab)
     r = (hex2dec(strcat(tColor(2), tColor(3)))/255);        % RR
     g = (hex2dec(strcat(tColor(4), tColor(5)))/255);        % GG    
     b = (hex2dec(strcat(tColor(6), tColor(7)))/255);        % BB
-    tColor = rgb2xyz([r g b]);                             
+    tColor = applycform([r g b], iccTransform);                             
     x_aux = tColor(1)/(tColor(1) + tColor(2) + tColor(3)); y_aux = tColor(2)/(tColor(1) + tColor(2) + tColor(3)); 
     x_values = [x_values x_aux]; y_values = [y_values y_aux];
     
@@ -2497,7 +2503,7 @@ for i = 1 : height(q29_lab)
     r = (hex2dec(strcat(tColor(2), tColor(3)))/255);        % RR
     g = (hex2dec(strcat(tColor(4), tColor(5)))/255);        % GG    
     b = (hex2dec(strcat(tColor(6), tColor(7)))/255);        % BB
-    tColor = rgb2xyz([r g b]);                             
+    tColor = applycform([r g b], iccTransform);                             
     x_aux = tColor(1)/(tColor(1) + tColor(2) + tColor(3)); y_aux = tColor(2)/(tColor(1) + tColor(2) + tColor(3)); 
     x_values = [x_values x_aux]; y_values = [y_values y_aux];
     
@@ -2520,7 +2526,7 @@ for i = 1 : height(q29_dalt_lab)
     r = (hex2dec(strcat(tColor(2), tColor(3)))/255);        % RR
     g = (hex2dec(strcat(tColor(4), tColor(5)))/255);        % GG    
     b = (hex2dec(strcat(tColor(6), tColor(7)))/255);        % BB
-    tColor = rgb2xyz([r g b]);                             
+    tColor = applycform([r g b], iccTransform);                             
     x_aux = tColor(1)/(tColor(1) + tColor(2) + tColor(3)); y_aux = tColor(2)/(tColor(1) + tColor(2) + tColor(3)); 
     x_values = [x_values x_aux]; y_values = [y_values y_aux];
     
@@ -2557,7 +2563,7 @@ for i = 1 : height(q30_lab)
     r = (hex2dec(strcat(tColor(2), tColor(3)))/255);        % RR
     g = (hex2dec(strcat(tColor(4), tColor(5)))/255);        % GG    
     b = (hex2dec(strcat(tColor(6), tColor(7)))/255);        % BB
-    tColor = rgb2xyz([r g b]);                             
+    tColor = applycform([r g b], iccTransform);                             
     x_aux = tColor(1)/(tColor(1) + tColor(2) + tColor(3)); y_aux = tColor(2)/(tColor(1) + tColor(2) + tColor(3)); 
     x_values = [x_values x_aux]; y_values = [y_values y_aux];
     
@@ -2580,7 +2586,7 @@ for i = 1 : height(q30_dalt_lab)
     r = (hex2dec(strcat(tColor(2), tColor(3)))/255);        % RR
     g = (hex2dec(strcat(tColor(4), tColor(5)))/255);        % GG    
     b = (hex2dec(strcat(tColor(6), tColor(7)))/255);        % BB
-    tColor = rgb2xyz([r g b]);                             
+    tColor = applycform([r g b], iccTransform);                             
     x_aux = tColor(1)/(tColor(1) + tColor(2) + tColor(3)); y_aux = tColor(2)/(tColor(1) + tColor(2) + tColor(3)); 
     x_values = [x_values x_aux]; y_values = [y_values y_aux];
     
@@ -2618,7 +2624,7 @@ for i = 1 : height(q31_lab)
     r = (hex2dec(strcat(tColor(2), tColor(3)))/255);        % RR
     g = (hex2dec(strcat(tColor(4), tColor(5)))/255);        % GG    
     b = (hex2dec(strcat(tColor(6), tColor(7)))/255);        % BB
-    tColor = rgb2xyz([r g b]);                             
+    tColor = applycform([r g b], iccTransform);                             
     x_aux = tColor(1)/(tColor(1) + tColor(2) + tColor(3)); y_aux = tColor(2)/(tColor(1) + tColor(2) + tColor(3)); 
     x_values = [x_values x_aux]; y_values = [y_values y_aux];
     
@@ -2641,7 +2647,7 @@ for i = 1 : height(q31_dalt_lab)
     r = (hex2dec(strcat(tColor(2), tColor(3)))/255);        % RR
     g = (hex2dec(strcat(tColor(4), tColor(5)))/255);        % GG    
     b = (hex2dec(strcat(tColor(6), tColor(7)))/255);        % BB
-    tColor = rgb2xyz([r g b]);                             
+    tColor = applycform([r g b], iccTransform);                             
     x_aux = tColor(1)/(tColor(1) + tColor(2) + tColor(3)); y_aux = tColor(2)/(tColor(1) + tColor(2) + tColor(3)); 
     x_values = [x_values x_aux]; y_values = [y_values y_aux];
     
@@ -2678,7 +2684,7 @@ for i = 1 : height(q32_lab)
     r = (hex2dec(strcat(tColor(2), tColor(3)))/255);        % RR
     g = (hex2dec(strcat(tColor(4), tColor(5)))/255);        % GG    
     b = (hex2dec(strcat(tColor(6), tColor(7)))/255);        % BB
-    tColor = rgb2xyz([r g b]);                             
+    tColor = applycform([r g b], iccTransform);                             
     x_aux = tColor(1)/(tColor(1) + tColor(2) + tColor(3)); y_aux = tColor(2)/(tColor(1) + tColor(2) + tColor(3)); 
     x_values = [x_values x_aux]; y_values = [y_values y_aux];
     
@@ -2701,7 +2707,7 @@ for i = 1 : height(q32_dalt_lab)
     r = (hex2dec(strcat(tColor(2), tColor(3)))/255);        % RR
     g = (hex2dec(strcat(tColor(4), tColor(5)))/255);        % GG    
     b = (hex2dec(strcat(tColor(6), tColor(7)))/255);        % BB
-    tColor = rgb2xyz([r g b]);                             
+    tColor = applycform([r g b], iccTransform);                             
     x_aux = tColor(1)/(tColor(1) + tColor(2) + tColor(3)); y_aux = tColor(2)/(tColor(1) + tColor(2) + tColor(3)); 
     x_values = [x_values x_aux]; y_values = [y_values y_aux];
     
