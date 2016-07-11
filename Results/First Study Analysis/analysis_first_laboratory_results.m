@@ -1838,8 +1838,7 @@ for i = 1 : height(q18_lab)
     r = (hex2dec(strcat(tColor(2), tColor(3)))/255);        % RR
     g = (hex2dec(strcat(tColor(4), tColor(5)))/255);        % GG    
     b = (hex2dec(strcat(tColor(6), tColor(7)))/255);        % BB
-    tColor = applycform([r g b], iccTransform);
-    tColor = applycform([r g b], iccTransform);                             
+    tColor = applycform([r g b], iccTransform);                         
     x_aux = tColor(1)/(tColor(1) + tColor(2) + tColor(3)); y_aux = tColor(2)/(tColor(1) + tColor(2) + tColor(3)); 
     x_values = [x_values x_aux]; y_values = [y_values y_aux];
     
