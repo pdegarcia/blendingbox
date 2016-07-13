@@ -17,7 +17,8 @@ diff_cmyk = [];
 diff_rgb = [];
 x_aux = 0;
 y_aux = 0;
-pathLab = '/Users/PauloGarcia/Documents/MATLAB/lab_diagrams';
+
+pathLab = '/Users/PauloGarcia/Documents/MATLAB/Diagrams/First Study/Laboratory';
 
 profileSrc = 'DEI-1';                % MODIFY PROFILE NAME.
 
@@ -37,8 +38,8 @@ tableDR_lab = readtable(daltonic_results_lab, 'Delimiter', ',');
 
 %% Question 1 - objTwoColors: Yellow = Red + Green
 
-q1_lab = tableR_lab(tableR_lab.id_question == 1,:); q1_lab = sortrows(q1_lab, 'id');
-q1_dalt_lab = tableDR_lab(tableDR_lab.id_question == 1,:); q1_dalt_lab = sortrows(q1_dalt_lab, 'id');
+q1_lab = tableR_lab(tableR_lab.id_question == 1,:); q1_lab = sortrows(q1_lab, 'id'); q1_lab.id_question = []; 
+q1_dalt_lab = tableDR_lab(tableDR_lab.id_question == 1,:); q1_dalt_lab = sortrows(q1_dalt_lab, 'id'); q1_dalt_lab.id_question = [];
 
 pre_HSV  =  hsvTable{7,{'H','S','V'}};  pre_HSV  =  applycform((pre_HSV/255), cformsRGB);                  %obtain values pre calculated 
 pre_LCh  =  lchTable{7,{'L','C','h'}};  pre_LCh  =  applycform((pre_LCh/255), cformsRGB);                  % 7 - 'R-G'
@@ -103,11 +104,11 @@ for i = 1 : height(q1_lab)                                  %draw every pair of 
     y_aux = rColor(2)/(rColor(1) + rColor(2) + rColor(3));
     x_resulting_answers = [x_resulting_answers x_aux];
     y_resulting_answers = [y_resulting_answers y_aux];
-    diff_hsv_1 = [diff_hsv_1; pdist([[x_aux y_aux]; [x_pre_models(1) y_pre_models(1)]])];
-    diff_lch = [diff_lch; pdist([[x_aux y_aux]; [x_pre_models(2) y_pre_models(2)]])];
-    diff_cmyk = [diff_cmyk; pdist([[x_aux y_aux]; [x_pre_models(3) y_pre_models(3)]])];
-    diff_rgb = [diff_rgb; pdist([[x_aux y_aux]; [x_pre_models(4) y_pre_models(4)]])];
-    diff_lab = [diff_lab; pdist([[x_aux y_aux]; [x_pre_models(5) y_pre_models(5)]])];
+    diff_hsv_1 = [diff_hsv_1; round(pdist([[x_aux y_aux]; [x_pre_models(1) y_pre_models(1)]]),2)];
+    diff_lch = [diff_lch; round(pdist([[x_aux y_aux]; [x_pre_models(2) y_pre_models(2)]]), 2)];
+    diff_cmyk = [diff_cmyk; round(pdist([[x_aux y_aux]; [x_pre_models(3) y_pre_models(3)]]), 2)];
+    diff_rgb = [diff_rgb; round(pdist([[x_aux y_aux]; [x_pre_models(4) y_pre_models(4)]]), 2)];
+    diff_lab = [diff_lab; round(pdist([[x_aux y_aux]; [x_pre_models(5) y_pre_models(5)]]), 2)];
     
     scatter(x_values, y_values, 50, 'white');                         %draw two responses
     plot(x_values, y_values, 'Color', 'black');                     %draw relations between answers
@@ -180,11 +181,13 @@ x_resulting_answers = []; y_resulting_answers = [];
 hold off;
 
 saveas(gcf, fullfile(pathLab, 'Question_1'), 'png');
+writetable(q1_lab, '/Users/PauloGarcia/Documents/MATLAB/Tables/First Study/Laboratory/q1_lab_regular.csv');
+writetable(q1_dalt_lab, '/Users/PauloGarcia/Documents/MATLAB/Tables/First Study/Laboratory/q1_lab_dalt.csv');
 
 %% Question 2 - objTwoColors: Magenta = Red + Blue
 
-q2_lab = tableR_lab(tableR_lab.id_question == 2,:); q2_lab = sortrows(q2_lab, 'id');
-q2_dalt_lab = tableDR_lab(tableDR_lab.id_question == 2,:); q2_dalt_lab = sortrows(q2_dalt_lab, 'id');
+q2_lab = tableR_lab(tableR_lab.id_question == 2,:); q2_lab = sortrows(q2_lab, 'id'); q2_lab.id_question = []; 
+q2_dalt_lab = tableDR_lab(tableDR_lab.id_question == 2,:); q2_dalt_lab = sortrows(q2_dalt_lab, 'id'); q2_dalt_lab.id_question = [];
 
 pre_HSV  =  hsvTable{8,{'H','S','V'}};  pre_HSV  =  applycform((pre_HSV/255), cformsRGB);                  %obtain values pre calculated 
 pre_LCh  =  lchTable{8,{'L','C','h'}};  pre_LCh  =  applycform((pre_LCh/255), cformsRGB);                  
@@ -249,11 +252,11 @@ for i = 1 : height(q2_lab)
     y_aux = rColor(2)/(rColor(1) + rColor(2) + rColor(3));
     x_resulting_answers = [x_resulting_answers x_aux];
     y_resulting_answers = [y_resulting_answers y_aux];
-    diff_hsv_1 = [diff_hsv_1; pdist([[x_aux y_aux]; [x_pre_models(1) y_pre_models(1)]])];
-    diff_lch = [diff_lch; pdist([[x_aux y_aux]; [x_pre_models(2) y_pre_models(2)]])];
-    diff_cmyk = [diff_cmyk; pdist([[x_aux y_aux]; [x_pre_models(3) y_pre_models(3)]])];
-    diff_rgb = [diff_rgb; pdist([[x_aux y_aux]; [x_pre_models(4) y_pre_models(4)]])];
-    diff_lab = [diff_lab; pdist([[x_aux y_aux]; [x_pre_models(5) y_pre_models(5)]])];
+    diff_hsv_1 = [diff_hsv_1; round(round(pdist([[x_aux y_aux]; [x_pre_models(1) y_pre_models(1)]]),2), 2)];
+    diff_lch = [diff_lch; round(pdist([[x_aux y_aux]; [x_pre_models(2) y_pre_models(2)]]), 2)];
+    diff_cmyk = [diff_cmyk; round(pdist([[x_aux y_aux]; [x_pre_models(3) y_pre_models(3)]]), 2)];
+    diff_rgb = [diff_rgb; round(pdist([[x_aux y_aux]; [x_pre_models(4) y_pre_models(4)]]), 2)];
+    diff_lab = [diff_lab; round(pdist([[x_aux y_aux]; [x_pre_models(5) y_pre_models(5)]]), 2)];
     
     scatter(x_values, y_values, 50, 'white');                   
     plot(x_values, y_values, 'Color', 'black');               
@@ -326,11 +329,13 @@ x_resulting_answers = []; y_resulting_answers = [];
 hold off;
 
 saveas(gcf, fullfile(pathLab, 'Question_2'), 'png');
+writetable(q1_lab, '/Users/PauloGarcia/Documents/MATLAB/Tables/First Study/Laboratory/q2_lab_regular.csv');
+writetable(q1_dalt_lab, '/Users/PauloGarcia/Documents/MATLAB/Tables/First Study/Laboratory/q2_lab_dalt.csv');
 
 %% Question 3 - objTwoColors: Green = Red + Cyan
 
-q3_lab = tableR_lab(tableR_lab.id_question == 3,:); q3_lab = sortrows(q3_lab, 'id');
-q3_dalt_lab = tableDR_lab(tableDR_lab.id_question == 3,:); q3_dalt_lab = sortrows(q3_dalt_lab, 'id');
+q3_lab = tableR_lab(tableR_lab.id_question == 3,:); q3_lab = sortrows(q3_lab, 'id'); q3_lab.id_question = []; 
+q3_dalt_lab = tableDR_lab(tableDR_lab.id_question == 3,:); q3_dalt_lab = sortrows(q3_dalt_lab, 'id'); q3_dalt_lab.id_question = [];
 
 pre_HSV  =  hsvTable{10,{'H','S','V'}};  pre_HSV  =  applycform((pre_HSV/255), cformsRGB);                  %obtain values pre calculated 
 pre_LCh  =  lchTable{10,{'L','C','h'}};  pre_LCh  =  applycform((pre_LCh/255), cformsRGB);                  
@@ -395,11 +400,11 @@ for i = 1 : height(q3_lab)
     y_aux = rColor(2)/(rColor(1) + rColor(2) + rColor(3));
     x_resulting_answers = [x_resulting_answers x_aux];
     y_resulting_answers = [y_resulting_answers y_aux];
-    diff_hsv_1 = [diff_hsv_1; pdist([[x_aux y_aux]; [x_pre_models(1) y_pre_models(1)]])];
-    diff_lch = [diff_lch; pdist([[x_aux y_aux]; [x_pre_models(2) y_pre_models(2)]])];
-    diff_cmyk = [diff_cmyk; pdist([[x_aux y_aux]; [x_pre_models(3) y_pre_models(3)]])];
-    diff_rgb = [diff_rgb; pdist([[x_aux y_aux]; [x_pre_models(4) y_pre_models(4)]])];
-    diff_lab = [diff_lab; pdist([[x_aux y_aux]; [x_pre_models(5) y_pre_models(5)]])];
+    diff_hsv_1 = [diff_hsv_1; round(pdist([[x_aux y_aux]; [x_pre_models(1) y_pre_models(1)]]),2)];
+    diff_lch = [diff_lch; round(pdist([[x_aux y_aux]; [x_pre_models(2) y_pre_models(2)]]), 2)];
+    diff_cmyk = [diff_cmyk; round(pdist([[x_aux y_aux]; [x_pre_models(3) y_pre_models(3)]]), 2)];
+    diff_rgb = [diff_rgb; round(pdist([[x_aux y_aux]; [x_pre_models(4) y_pre_models(4)]]), 2)];
+    diff_lab = [diff_lab; round(pdist([[x_aux y_aux]; [x_pre_models(5) y_pre_models(5)]]), 2)];
         
     scatter(x_values, y_values, 50, 'white');                   
     plot(x_values, y_values, 'Color', 'black');               
@@ -472,11 +477,13 @@ x_resulting_answers = []; y_resulting_answers = [];
 hold off;
 
 saveas(gcf, fullfile(pathLab, 'Question_3'), 'png');
+writetable(q1_lab, '/Users/PauloGarcia/Documents/MATLAB/Tables/First Study/Laboratory/q3_lab_regular.csv');
+writetable(q1_dalt_lab, '/Users/PauloGarcia/Documents/MATLAB/Tables/First Study/Laboratory/q3_lab_dalt.csv');
 
 %% Question 4 - objTwoColors: Purple = Red + Cyan
 
-q4_lab = tableR_lab(tableR_lab.id_question == 4,:); q4_lab = sortrows(q4_lab, 'id');
-q4_dalt_lab = tableDR_lab(tableDR_lab.id_question == 4,:); q4_dalt_lab = sortrows(q4_dalt_lab, 'id');
+q4_lab = tableR_lab(tableR_lab.id_question == 4,:); q4_lab = sortrows(q4_lab, 'id'); q4_lab.id_question = []; 
+q4_dalt_lab = tableDR_lab(tableDR_lab.id_question == 4,:); q4_dalt_lab = sortrows(q4_dalt_lab, 'id'); q4_dalt_lab.id_question = [];
 
 pre_HSV  =  hsvTable{11,{'H','S','V'}};  pre_HSV  =  applycform((pre_HSV/255), cformsRGB);                  %obtain values pre calculated 
 %pre_LCh  =  lchTable{11,{'L','C','h'}};  pre_LCh  =  applycform((pre_LCh/255), cformsRGB);                  
@@ -541,11 +548,11 @@ for i = 1 : height(q4_lab)
     y_aux = rColor(2)/(rColor(1) + rColor(2) + rColor(3));
     x_resulting_answers = [x_resulting_answers x_aux];
     y_resulting_answers = [y_resulting_answers y_aux];
-    diff_hsv_1 = [diff_hsv_1; pdist([[x_aux y_aux]; [x_pre_models(1) y_pre_models(1)]])];
-    %diff_lch = [diff_lch; pdist([[x_aux y_aux]; [x_pre_models(2) y_pre_models(2)]])];
-    %diff_cmyk = [diff_cmyk; pdist([[x_aux y_aux]; [x_pre_models(3) y_pre_models(3)]])];
-    %diff_rgb = [diff_rgb; pdist([[x_aux y_aux]; [x_pre_models(4) y_pre_models(4)]])];
-    %diff_lab = [diff_lab; pdist([[x_aux y_aux]; [x_pre_models(5) y_pre_models(5)]])];
+    diff_hsv_1 = [diff_hsv_1; round(pdist([[x_aux y_aux]; [x_pre_models(1) y_pre_models(1)]]),2)];
+    %diff_lch = [diff_lch; round(pdist([[x_aux y_aux]; [x_pre_models(2) y_pre_models(2)]]), 2)];
+    %diff_cmyk = [diff_cmyk; round(pdist([[x_aux y_aux]; [x_pre_models(3) y_pre_models(3)]]), 2)];
+    %diff_rgb = [diff_rgb; round(pdist([[x_aux y_aux]; [x_pre_models(4) y_pre_models(4)]]), 2)];
+    %diff_lab = [diff_lab; round(pdist([[x_aux y_aux]; [x_pre_models(5) y_pre_models(5)]]), 2)];
     
     scatter(x_values, y_values, 50, 'white');                   
     plot(x_values, y_values, 'Color', 'black');               
@@ -617,11 +624,13 @@ x_resulting_answers = []; y_resulting_answers = [];
 hold off;
 
 saveas(gcf, fullfile(pathLab, 'Question_4'), 'png');
+writetable(q1_lab, '/Users/PauloGarcia/Documents/MATLAB/Tables/First Study/Laboratory/q4_lab_regular.csv');
+writetable(q1_dalt_lab, '/Users/PauloGarcia/Documents/MATLAB/Tables/First Study/Laboratory/q4_lab_dalt.csv');
 
 %% Question 5 - objTwoColors: Dark Red = Red + Magenta 
 
-q5_lab = tableR_lab(tableR_lab.id_question == 5,:); q5_lab = sortrows(q5_lab, 'id');
-q5_dalt_lab = tableDR_lab(tableDR_lab.id_question == 5,:); q5_dalt_lab = sortrows(q5_dalt_lab, 'id');
+q5_lab = tableR_lab(tableR_lab.id_question == 5,:); q5_lab = sortrows(q5_lab, 'id'); q5_lab.id_question = []; 
+q5_dalt_lab = tableDR_lab(tableDR_lab.id_question == 5,:); q5_dalt_lab = sortrows(q5_dalt_lab, 'id'); q5_dalt_lab.id_question = [];
 
 pre_HSV  =  hsvTable{12,{'H','S','V'}};  pre_HSV  =  applycform((pre_HSV/255), cformsRGB);                  %obtain values pre calculated 
 pre_LCh  =  lchTable{11,{'L','C','h'}};  pre_LCh  =  applycform((pre_LCh/255), cformsRGB);                  
@@ -686,11 +695,11 @@ for i = 1 : height(q5_lab)
     y_aux = rColor(2)/(rColor(1) + rColor(2) + rColor(3));
     x_resulting_answers = [x_resulting_answers x_aux];
     y_resulting_answers = [y_resulting_answers y_aux];
-    diff_hsv_1 = [diff_hsv_1; pdist([[x_aux y_aux]; [x_pre_models(1) y_pre_models(1)]])];
-    diff_lch = [diff_lch; pdist([[x_aux y_aux]; [x_pre_models(2) y_pre_models(2)]])];
-    diff_cmyk = [diff_cmyk; pdist([[x_aux y_aux]; [x_pre_models(3) y_pre_models(3)]])];
-    diff_rgb = [diff_rgb; pdist([[x_aux y_aux]; [x_pre_models(4) y_pre_models(4)]])];
-    diff_lab = [diff_lab; pdist([[x_aux y_aux]; [x_pre_models(5) y_pre_models(5)]])];
+    diff_hsv_1 = [diff_hsv_1; round(pdist([[x_aux y_aux]; [x_pre_models(1) y_pre_models(1)]]),2)];
+    diff_lch = [diff_lch; round(pdist([[x_aux y_aux]; [x_pre_models(2) y_pre_models(2)]]), 2)];
+    diff_cmyk = [diff_cmyk; round(pdist([[x_aux y_aux]; [x_pre_models(3) y_pre_models(3)]]), 2)];
+    diff_rgb = [diff_rgb; round(pdist([[x_aux y_aux]; [x_pre_models(4) y_pre_models(4)]]), 2)];
+    diff_lab = [diff_lab; round(pdist([[x_aux y_aux]; [x_pre_models(5) y_pre_models(5)]]), 2)];
     
     scatter(x_values, y_values, 50, 'white');                   
     plot(x_values, y_values, 'Color', 'black');               
@@ -762,11 +771,13 @@ x_resulting_answers = []; y_resulting_answers = [];
 hold off;
 
 saveas(gcf, fullfile(pathLab, 'Question_5'), 'png');
+writetable(q1_lab, '/Users/PauloGarcia/Documents/MATLAB/Tables/First Study/Laboratory/q5_lab_regular.csv');
+writetable(q1_dalt_lab, '/Users/PauloGarcia/Documents/MATLAB/Tables/First Study/Laboratory/q5_lab_dalt.csv');
 
 %% Question 6 - objTwoColors: Orange = Red + Yellow
 
-q6_lab = tableR_lab(tableR_lab.id_question == 6,:); q6_lab = sortrows(q6_lab, 'id');
-q6_dalt_lab = tableDR_lab(tableDR_lab.id_question == 6,:); q6_dalt_lab = sortrows(q6_dalt_lab, 'id');
+q6_lab = tableR_lab(tableR_lab.id_question == 6,:); q6_lab = sortrows(q6_lab, 'id'); q6_lab.id_question = []; 
+q6_dalt_lab = tableDR_lab(tableDR_lab.id_question == 6,:); q6_dalt_lab = sortrows(q6_dalt_lab, 'id'); q6_dalt_lab.id_question = [];
 
 pre_HSV  =  hsvTable{13,{'H','S','V'}};  pre_HSV  =  applycform((pre_HSV/255), cformsRGB);                  %obtain values pre calculated 
 pre_LCh  =  lchTable{12,{'L','C','h'}};  pre_LCh  =  applycform((pre_LCh/255), cformsRGB);                  
@@ -831,11 +842,11 @@ for i = 1 : height(q6_lab)
     y_aux = rColor(2)/(rColor(1) + rColor(2) + rColor(3));
     x_resulting_answers = [x_resulting_answers x_aux];
     y_resulting_answers = [y_resulting_answers y_aux];
-    diff_hsv_1 = [diff_hsv_1; pdist([[x_aux y_aux]; [x_pre_models(1) y_pre_models(1)]])];
-    diff_lch = [diff_lch; pdist([[x_aux y_aux]; [x_pre_models(2) y_pre_models(2)]])];
-    diff_cmyk = [diff_cmyk; pdist([[x_aux y_aux]; [x_pre_models(3) y_pre_models(3)]])];
-    diff_rgb = [diff_rgb; pdist([[x_aux y_aux]; [x_pre_models(4) y_pre_models(4)]])];
-    diff_lab = [diff_lab; pdist([[x_aux y_aux]; [x_pre_models(5) y_pre_models(5)]])];
+    diff_hsv_1 = [diff_hsv_1; round(pdist([[x_aux y_aux]; [x_pre_models(1) y_pre_models(1)]]),2)];
+    diff_lch = [diff_lch; round(pdist([[x_aux y_aux]; [x_pre_models(2) y_pre_models(2)]]), 2)];
+    diff_cmyk = [diff_cmyk; round(pdist([[x_aux y_aux]; [x_pre_models(3) y_pre_models(3)]]), 2)];
+    diff_rgb = [diff_rgb; round(pdist([[x_aux y_aux]; [x_pre_models(4) y_pre_models(4)]]), 2)];
+    diff_lab = [diff_lab; round(pdist([[x_aux y_aux]; [x_pre_models(5) y_pre_models(5)]]), 2)];
     
     scatter(x_values, y_values, 50, 'white');                   
     plot(x_values, y_values, 'Color', 'black');               
@@ -907,11 +918,13 @@ x_resulting_answers = []; y_resulting_answers = [];
 hold off;
 
 saveas(gcf, fullfile(pathLab, 'Question_6'), 'png');
+writetable(q1_lab, '/Users/PauloGarcia/Documents/MATLAB/Tables/First Study/Laboratory/q6_lab_regular.csv');
+writetable(q1_dalt_lab, '/Users/PauloGarcia/Documents/MATLAB/Tables/First Study/Laboratory/q6_lab_dalt.csv');
 
 %% Question 7 - objTwoColors: Purplish-Blue = Cyan + Magenta
 
-q7_lab = tableR_lab(tableR_lab.id_question == 7,:); q7_lab = sortrows(q7_lab, 'id');
-q7_dalt_lab = tableDR_lab(tableDR_lab.id_question == 7,:); q7_dalt_lab = sortrows(q7_dalt_lab, 'id');
+q7_lab = tableR_lab(tableR_lab.id_question == 7,:); q7_lab = sortrows(q7_lab, 'id'); q7_lab.id_question = []; 
+q7_dalt_lab = tableDR_lab(tableDR_lab.id_question == 7,:); q7_dalt_lab = sortrows(q7_dalt_lab, 'id'); q7_dalt_lab.id_question = [];
 
 pre_HSV  =  hsvTable{14,{'H','S','V'}};  pre_HSV  =  applycform((pre_HSV/255), cformsRGB);                  %obtain values pre calculated 
 pre_LCh  =  lchTable{13,{'L','C','h'}};  pre_LCh  =  applycform((pre_LCh/255), cformsRGB);                  
@@ -976,11 +989,11 @@ for i = 1 : height(q7_lab)
     y_aux = rColor(2)/(rColor(1) + rColor(2) + rColor(3));
     x_resulting_answers = [x_resulting_answers x_aux];
     y_resulting_answers = [y_resulting_answers y_aux];
-    diff_hsv_1 = [diff_hsv_1; pdist([[x_aux y_aux]; [x_pre_models(1) y_pre_models(1)]])];
-    diff_lch = [diff_lch; pdist([[x_aux y_aux]; [x_pre_models(2) y_pre_models(2)]])];
-    diff_cmyk = [diff_cmyk; pdist([[x_aux y_aux]; [x_pre_models(3) y_pre_models(3)]])];
-    diff_rgb = [diff_rgb; pdist([[x_aux y_aux]; [x_pre_models(4) y_pre_models(4)]])];
-    diff_lab = [diff_lab; pdist([[x_aux y_aux]; [x_pre_models(5) y_pre_models(5)]])];
+    diff_hsv_1 = [diff_hsv_1; round(pdist([[x_aux y_aux]; [x_pre_models(1) y_pre_models(1)]]),2)];
+    diff_lch = [diff_lch; round(pdist([[x_aux y_aux]; [x_pre_models(2) y_pre_models(2)]]), 2)];
+    diff_cmyk = [diff_cmyk; round(pdist([[x_aux y_aux]; [x_pre_models(3) y_pre_models(3)]]), 2)];
+    diff_rgb = [diff_rgb; round(pdist([[x_aux y_aux]; [x_pre_models(4) y_pre_models(4)]]), 2)];
+    diff_lab = [diff_lab; round(pdist([[x_aux y_aux]; [x_pre_models(5) y_pre_models(5)]]), 2)];
     
     scatter(x_values, y_values, 50, 'white');                   
     plot(x_values, y_values, 'Color', 'black');               
@@ -1052,11 +1065,13 @@ x_resulting_answers = []; y_resulting_answers = [];
 hold off;
 
 saveas(gcf, fullfile(pathLab, 'Question_7'), 'png');
+writetable(q1_lab, '/Users/PauloGarcia/Documents/MATLAB/Tables/First Study/Laboratory/q7_lab_regular.csv');
+writetable(q1_dalt_lab, '/Users/PauloGarcia/Documents/MATLAB/Tables/First Study/Laboratory/q7_lab_dalt.csv');
 
 %% Question 8 - objTwoColors: Red = Magenta + Yellow
 
-q8_lab = tableR_lab(tableR_lab.id_question == 8,:); q8_lab = sortrows(q8_lab, 'id');
-q8_dalt_lab = tableDR_lab(tableDR_lab.id_question == 8,:); q8_dalt_lab = sortrows(q8_dalt_lab, 'id');
+q8_lab = tableR_lab(tableR_lab.id_question == 8,:); q8_lab = sortrows(q8_lab, 'id'); q8_lab.id_question = []; 
+q8_dalt_lab = tableDR_lab(tableDR_lab.id_question == 8,:); q8_dalt_lab = sortrows(q8_dalt_lab, 'id'); q8_dalt_lab.id_question = [];
 
 pre_HSV  =  hsvTable{15,{'H','S','V'}};  pre_HSV  =  applycform((pre_HSV/255), cformsRGB);                  %obtain values pre calculated 
 pre_LCh  =  lchTable{14,{'L','C','h'}};  pre_LCh  =  applycform((pre_LCh/255), cformsRGB);                  
@@ -1121,11 +1136,11 @@ for i = 1 : height(q8_lab)
     y_aux = rColor(2)/(rColor(1) + rColor(2) + rColor(3));
     x_resulting_answers = [x_resulting_answers x_aux];
     y_resulting_answers = [y_resulting_answers y_aux];
-    diff_hsv_1 = [diff_hsv_1; pdist([[x_aux y_aux]; [x_pre_models(1) y_pre_models(1)]])];
-    diff_lch = [diff_lch; pdist([[x_aux y_aux]; [x_pre_models(2) y_pre_models(2)]])];
-    diff_cmyk = [diff_cmyk; pdist([[x_aux y_aux]; [x_pre_models(3) y_pre_models(3)]])];
-    diff_rgb = [diff_rgb; pdist([[x_aux y_aux]; [x_pre_models(4) y_pre_models(4)]])];
-    diff_lab = [diff_lab; pdist([[x_aux y_aux]; [x_pre_models(5) y_pre_models(5)]])];
+    diff_hsv_1 = [diff_hsv_1; round(pdist([[x_aux y_aux]; [x_pre_models(1) y_pre_models(1)]]),2)];
+    diff_lch = [diff_lch; round(pdist([[x_aux y_aux]; [x_pre_models(2) y_pre_models(2)]]), 2)];
+    diff_cmyk = [diff_cmyk; round(pdist([[x_aux y_aux]; [x_pre_models(3) y_pre_models(3)]]), 2)];
+    diff_rgb = [diff_rgb; round(pdist([[x_aux y_aux]; [x_pre_models(4) y_pre_models(4)]]), 2)];
+    diff_lab = [diff_lab; round(pdist([[x_aux y_aux]; [x_pre_models(5) y_pre_models(5)]]), 2)];
     
     scatter(x_values, y_values, 50, 'white');                   
     plot(x_values, y_values, 'Color', 'black');               
@@ -1197,11 +1212,13 @@ x_resulting_answers = []; y_resulting_answers = [];
 hold off;
 
 saveas(gcf, fullfile(pathLab, 'Question_8'), 'png');
+writetable(q1_lab, '/Users/PauloGarcia/Documents/MATLAB/Tables/First Study/Laboratory/q8_lab_regular.csv');
+writetable(q1_dalt_lab, '/Users/PauloGarcia/Documents/MATLAB/Tables/First Study/Laboratory/q8_lab_dalt.csv');
 
 %% Question 9 - objTwoColors: Lime-Green = Green + Cyan 
 
-q9_lab = tableR_lab(tableR_lab.id_question == 9,:); q9_lab = sortrows(q9_lab, 'id');
-q9_dalt_lab = tableDR_lab(tableDR_lab.id_question == 9,:); q9_dalt_lab = sortrows(q9_dalt_lab, 'id');
+q9_lab = tableR_lab(tableR_lab.id_question == 9,:); q9_lab = sortrows(q9_lab, 'id'); q9_lab.id_question = []; 
+q9_dalt_lab = tableDR_lab(tableDR_lab.id_question == 9,:); q9_dalt_lab = sortrows(q9_dalt_lab, 'id'); q9_dalt_lab.id_question = [];
 
 pre_HSV  =  hsvTable{16,{'H','S','V'}};  pre_HSV  =  applycform((pre_HSV/255), cformsRGB);                  %obtain values pre calculated 
 pre_LCh  =  lchTable{15,{'L','C','h'}};  pre_LCh  =  applycform((pre_LCh/255), cformsRGB);                  
@@ -1266,11 +1283,11 @@ for i = 1 : height(q9_lab)
     y_aux = rColor(2)/(rColor(1) + rColor(2) + rColor(3));
     x_resulting_answers = [x_resulting_answers x_aux];
     y_resulting_answers = [y_resulting_answers y_aux];
-    diff_hsv_1 = [diff_hsv_1; pdist([[x_aux y_aux]; [x_pre_models(1) y_pre_models(1)]])];
-    diff_lch = [diff_lch; pdist([[x_aux y_aux]; [x_pre_models(2) y_pre_models(2)]])];
-    diff_cmyk = [diff_cmyk; pdist([[x_aux y_aux]; [x_pre_models(3) y_pre_models(3)]])];
-    diff_rgb = [diff_rgb; pdist([[x_aux y_aux]; [x_pre_models(4) y_pre_models(4)]])];
-    diff_lab = [diff_lab; pdist([[x_aux y_aux]; [x_pre_models(5) y_pre_models(5)]])];
+    diff_hsv_1 = [diff_hsv_1; round(pdist([[x_aux y_aux]; [x_pre_models(1) y_pre_models(1)]]),2)];
+    diff_lch = [diff_lch; round(pdist([[x_aux y_aux]; [x_pre_models(2) y_pre_models(2)]]), 2)];
+    diff_cmyk = [diff_cmyk; round(pdist([[x_aux y_aux]; [x_pre_models(3) y_pre_models(3)]]), 2)];
+    diff_rgb = [diff_rgb; round(pdist([[x_aux y_aux]; [x_pre_models(4) y_pre_models(4)]]), 2)];
+    diff_lab = [diff_lab; round(pdist([[x_aux y_aux]; [x_pre_models(5) y_pre_models(5)]]), 2)];
     
     scatter(x_values, y_values, 50, 'white');                   
     plot(x_values, y_values, 'Color', 'black');               
@@ -1342,11 +1359,13 @@ x_resulting_answers = []; y_resulting_answers = [];
 hold off;
 
 saveas(gcf, fullfile(pathLab, 'Question_9'), 'png');
+writetable(q1_lab, '/Users/PauloGarcia/Documents/MATLAB/Tables/First Study/Laboratory/q9_lab_regular.csv');
+writetable(q1_dalt_lab, '/Users/PauloGarcia/Documents/MATLAB/Tables/First Study/Laboratory/q9_lab_dalt.csv');
 
 %% Question 10 - objTwoColors: Blue = Green + Magenta
 
-q10_lab = tableR_lab(tableR_lab.id_question == 10,:); q10_lab = sortrows(q10_lab, 'id');
-q10_dalt_lab = tableDR_lab(tableDR_lab.id_question == 10,:); q10_dalt_lab = sortrows(q10_dalt_lab, 'id');
+q10_lab = tableR_lab(tableR_lab.id_question == 10,:); q10_lab = sortrows(q10_lab, 'id'); q10_lab.id_question = []; 
+q10_dalt_lab = tableDR_lab(tableDR_lab.id_question == 10,:); q10_dalt_lab = sortrows(q10_dalt_lab, 'id'); q10_dalt_lab.id_question = [];
 
 pre_HSV  =  hsvTable{17,{'H','S','V'}};  pre_HSV  =  applycform((pre_HSV/255), cformsRGB);                  %obtain values pre calculated 
 pre_LCh  =  lchTable{16,{'L','C','h'}};  pre_LCh  =  applycform((pre_LCh/255), cformsRGB);                  
@@ -1411,11 +1430,11 @@ for i = 1 : height(q10_lab)
     y_aux = rColor(2)/(rColor(1) + rColor(2) + rColor(3));
     x_resulting_answers = [x_resulting_answers x_aux];
     y_resulting_answers = [y_resulting_answers y_aux];
-    diff_hsv_1 = [diff_hsv_1; pdist([[x_aux y_aux]; [x_pre_models(1) y_pre_models(1)]])];
-    diff_lch = [diff_lch; pdist([[x_aux y_aux]; [x_pre_models(2) y_pre_models(2)]])];
-    diff_cmyk = [diff_cmyk; pdist([[x_aux y_aux]; [x_pre_models(3) y_pre_models(3)]])];
-    diff_rgb = [diff_rgb; pdist([[x_aux y_aux]; [x_pre_models(4) y_pre_models(4)]])];
-    diff_lab = [diff_lab; pdist([[x_aux y_aux]; [x_pre_models(5) y_pre_models(5)]])];
+    diff_hsv_1 = [diff_hsv_1; round(pdist([[x_aux y_aux]; [x_pre_models(1) y_pre_models(1)]]),2)];
+    diff_lch = [diff_lch; round(pdist([[x_aux y_aux]; [x_pre_models(2) y_pre_models(2)]]), 2)];
+    diff_cmyk = [diff_cmyk; round(pdist([[x_aux y_aux]; [x_pre_models(3) y_pre_models(3)]]), 2)];
+    diff_rgb = [diff_rgb; round(pdist([[x_aux y_aux]; [x_pre_models(4) y_pre_models(4)]]), 2)];
+    diff_lab = [diff_lab; round(pdist([[x_aux y_aux]; [x_pre_models(5) y_pre_models(5)]]), 2)];
     
     scatter(x_values, y_values, 50, 'white');                   
     plot(x_values, y_values, 'Color', 'black');               
@@ -1487,11 +1506,13 @@ x_resulting_answers = []; y_resulting_answers = [];
 hold off;
 
 saveas(gcf, fullfile(pathLab, 'Question_10'), 'png');
+writetable(q1_lab, '/Users/PauloGarcia/Documents/MATLAB/Tables/First Study/Laboratory/q10_lab_regular.csv');
+writetable(q1_dalt_lab, '/Users/PauloGarcia/Documents/MATLAB/Tables/First Study/Laboratory/q10_lab_dalt.csv');
 
 %% Question 11 - objTwoColors: Orange = Green + Magenta
 
-q11_lab = tableR_lab(tableR_lab.id_question == 11,:); q11_lab = sortrows(q11_lab, 'id');
-q11_dalt_lab = tableDR_lab(tableDR_lab.id_question == 11,:); q11_dalt_lab = sortrows(q11_dalt_lab, 'id');
+q11_lab = tableR_lab(tableR_lab.id_question == 11,:); q11_lab = sortrows(q11_lab, 'id'); q11_lab.id_question = []; 
+q11_dalt_lab = tableDR_lab(tableDR_lab.id_question == 11,:); q11_dalt_lab = sortrows(q11_dalt_lab, 'id'); q11_dalt_lab.id_question = [];
 
 pre_HSV  =  hsvTable{18,{'H','S','V'}};  pre_HSV  =  applycform((pre_HSV/255), cformsRGB);                  %obtain values pre calculated 
 % pre_LCh  =  lchTable{18,{'L','C','h'}};  pre_LCh  =  applycform((pre_LCh/255), cformsRGB);                  
@@ -1557,11 +1578,11 @@ for i = 1 : height(q11_lab)
     x_resulting_answers = [x_resulting_answers x_aux];
     y_resulting_answers = [y_resulting_answers y_aux];
     
-    diff_hsv_1 = [diff_hsv_1; pdist([[x_aux y_aux]; [x_pre_models(1) y_pre_models(1)]])];
-%     diff_lch = [diff_lch; pdist([[x_aux y_aux]; [x_pre_models(2) y_pre_models(2)]])];
-%     diff_cmyk = [diff_cmyk; pdist([[x_aux y_aux]; [x_pre_models(3) y_pre_models(3)]])];
-%     diff_rgb = [diff_rgb; pdist([[x_aux y_aux]; [x_pre_models(4) y_pre_models(4)]])];
-%     diff_lab = [diff_lab; pdist([[x_aux y_aux]; [x_pre_models(5) y_pre_models(5)]])];
+    diff_hsv_1 = [diff_hsv_1; round(pdist([[x_aux y_aux]; [x_pre_models(1) y_pre_models(1)]]),2)];
+%     diff_lch = [diff_lch; round(pdist([[x_aux y_aux]; [x_pre_models(2) y_pre_models(2)]]), 2)];
+%     diff_cmyk = [diff_cmyk; round(pdist([[x_aux y_aux]; [x_pre_models(3) y_pre_models(3)]]), 2)];
+%     diff_rgb = [diff_rgb; round(pdist([[x_aux y_aux]; [x_pre_models(4) y_pre_models(4)]]), 2)];
+%     diff_lab = [diff_lab; round(pdist([[x_aux y_aux]; [x_pre_models(5) y_pre_models(5)]]), 2)];
     
     scatter(x_values, y_values, 50, 'white');                   
     plot(x_values, y_values, 'Color', 'black');               
@@ -1633,11 +1654,13 @@ x_resulting_answers = []; y_resulting_answers = [];
 hold off;
 
 saveas(gcf, fullfile(pathLab, 'Question_11'), 'png');
+writetable(q1_lab, '/Users/PauloGarcia/Documents/MATLAB/Tables/First Study/Laboratory/q11_lab_regular.csv');
+writetable(q1_dalt_lab, '/Users/PauloGarcia/Documents/MATLAB/Tables/First Study/Laboratory/q11_lab_dalt.csv');
 
 %% Question 12 - objTwoColors: Lighter-Green = Green + Yellow
 
-q12_lab = tableR_lab(tableR_lab.id_question == 12,:); q12_lab = sortrows(q12_lab, 'id');
-q12_dalt_lab = tableDR_lab(tableDR_lab.id_question == 12,:); q12_dalt_lab = sortrows(q12_dalt_lab, 'id');
+q12_lab = tableR_lab(tableR_lab.id_question == 12,:); q12_lab = sortrows(q12_lab, 'id'); q12_lab.id_question = []; 
+q12_dalt_lab = tableDR_lab(tableDR_lab.id_question == 12,:); q12_dalt_lab = sortrows(q12_dalt_lab, 'id'); q12_dalt_lab.id_question = [];
 
 pre_HSV  =  hsvTable{19,{'H','S','V'}};  pre_HSV  =  applycform((pre_HSV/255), cformsRGB);                  %obtain values pre calculated 
 pre_LCh  =  lchTable{17,{'L','C','h'}};  pre_LCh  =  applycform((pre_LCh/255), cformsRGB);                  
@@ -1702,11 +1725,11 @@ for i = 1 : height(q12_lab)
     y_aux = rColor(2)/(rColor(1) + rColor(2) + rColor(3));
     x_resulting_answers = [x_resulting_answers x_aux];
     y_resulting_answers = [y_resulting_answers y_aux];
-    diff_hsv_1 = [diff_hsv_1; pdist([[x_aux y_aux]; [x_pre_models(1) y_pre_models(1)]])];
-    diff_lch = [diff_lch; pdist([[x_aux y_aux]; [x_pre_models(2) y_pre_models(2)]])];
-    diff_cmyk = [diff_cmyk; pdist([[x_aux y_aux]; [x_pre_models(3) y_pre_models(3)]])];
-    diff_rgb = [diff_rgb; pdist([[x_aux y_aux]; [x_pre_models(4) y_pre_models(4)]])];
-    diff_lab = [diff_lab; pdist([[x_aux y_aux]; [x_pre_models(5) y_pre_models(5)]])];
+    diff_hsv_1 = [diff_hsv_1; round(pdist([[x_aux y_aux]; [x_pre_models(1) y_pre_models(1)]]),2)];
+    diff_lch = [diff_lch; round(pdist([[x_aux y_aux]; [x_pre_models(2) y_pre_models(2)]]), 2)];
+    diff_cmyk = [diff_cmyk; round(pdist([[x_aux y_aux]; [x_pre_models(3) y_pre_models(3)]]), 2)];
+    diff_rgb = [diff_rgb; round(pdist([[x_aux y_aux]; [x_pre_models(4) y_pre_models(4)]]), 2)];
+    diff_lab = [diff_lab; round(pdist([[x_aux y_aux]; [x_pre_models(5) y_pre_models(5)]]), 2)];
     
     scatter(x_values, y_values, 50, 'white');                   
     plot(x_values, y_values, 'Color', 'black');               
@@ -1778,11 +1801,13 @@ x_resulting_answers = []; y_resulting_answers = [];
 hold off;
 
 saveas(gcf, fullfile(pathLab, 'Question_12'), 'png');
+writetable(q1_lab, '/Users/PauloGarcia/Documents/MATLAB/Tables/First Study/Laboratory/q12_lab_regular.csv');
+writetable(q1_dalt_lab, '/Users/PauloGarcia/Documents/MATLAB/Tables/First Study/Laboratory/q12_lab_dalt.csv');
 
 %% Question 13 - objTwoColors: Blue-? = Blue + Cyan
 
-q13_lab = tableR_lab(tableR_lab.id_question == 13,:); q13_lab = sortrows(q13_lab, 'id');
-q13_dalt_lab = tableDR_lab(tableDR_lab.id_question == 13,:); q13_dalt_lab = sortrows(q13_dalt_lab, 'id');
+q13_lab = tableR_lab(tableR_lab.id_question == 13,:); q13_lab = sortrows(q13_lab, 'id'); q13_lab.id_question = []; 
+q13_dalt_lab = tableDR_lab(tableDR_lab.id_question == 13,:); q13_dalt_lab = sortrows(q13_dalt_lab, 'id'); q13_dalt_lab.id_question = [];
 
 pre_HSV  =  hsvTable{20,{'H','S','V'}};  pre_HSV  =  applycform((pre_HSV/255), cformsRGB);                  %obtain values pre calculated 
 pre_LCh  =  lchTable{18,{'L','C','h'}};  pre_LCh  =  applycform((pre_LCh/255), cformsRGB);                  
@@ -1847,11 +1872,11 @@ for i = 1 : height(q13_lab)
     y_aux = rColor(2)/(rColor(1) + rColor(2) + rColor(3));
     x_resulting_answers = [x_resulting_answers x_aux];
     y_resulting_answers = [y_resulting_answers y_aux];
-    diff_hsv_1 = [diff_hsv_1; pdist([[x_aux y_aux]; [x_pre_models(1) y_pre_models(1)]])];
-    diff_lch = [diff_lch; pdist([[x_aux y_aux]; [x_pre_models(2) y_pre_models(2)]])];
-    diff_cmyk = [diff_cmyk; pdist([[x_aux y_aux]; [x_pre_models(3) y_pre_models(3)]])];
-    diff_rgb = [diff_rgb; pdist([[x_aux y_aux]; [x_pre_models(4) y_pre_models(4)]])];
-    diff_lab = [diff_lab; pdist([[x_aux y_aux]; [x_pre_models(5) y_pre_models(5)]])];
+    diff_hsv_1 = [diff_hsv_1; round(pdist([[x_aux y_aux]; [x_pre_models(1) y_pre_models(1)]]),2)];
+    diff_lch = [diff_lch; round(pdist([[x_aux y_aux]; [x_pre_models(2) y_pre_models(2)]]), 2)];
+    diff_cmyk = [diff_cmyk; round(pdist([[x_aux y_aux]; [x_pre_models(3) y_pre_models(3)]]), 2)];
+    diff_rgb = [diff_rgb; round(pdist([[x_aux y_aux]; [x_pre_models(4) y_pre_models(4)]]), 2)];
+    diff_lab = [diff_lab; round(pdist([[x_aux y_aux]; [x_pre_models(5) y_pre_models(5)]]), 2)];
     
     scatter(x_values, y_values, 50, 'white');                   
     plot(x_values, y_values, 'Color', 'black');               
@@ -1923,11 +1948,13 @@ x_resulting_answers = []; y_resulting_answers = [];
 hold off;
 
 saveas(gcf, fullfile(pathLab, 'Question_13'), 'png');
+writetable(q1_lab, '/Users/PauloGarcia/Documents/MATLAB/Tables/First Study/Laboratory/q13_lab_regular.csv');
+writetable(q1_dalt_lab, '/Users/PauloGarcia/Documents/MATLAB/Tables/First Study/Laboratory/q13_lab_dalt.csv');
 
 %% Question 14 - objTwoColors: Purple = Blue + Magenta
 
-q14_lab = tableR_lab(tableR_lab.id_question == 14,:); q14_lab = sortrows(q14_lab, 'id');
-q14_dalt_lab = tableDR_lab(tableDR_lab.id_question == 14,:); q14_dalt_lab = sortrows(q14_dalt_lab, 'id');
+q14_lab = tableR_lab(tableR_lab.id_question == 14,:); q14_lab = sortrows(q14_lab, 'id'); q14_lab.id_question = []; 
+q14_dalt_lab = tableDR_lab(tableDR_lab.id_question == 14,:); q14_dalt_lab = sortrows(q14_dalt_lab, 'id'); q14_dalt_lab.id_question = [];
 
 pre_HSV  =  hsvTable{21,{'H','S','V'}};  pre_HSV  =  applycform((pre_HSV/255), cformsRGB);                  %obtain values pre calculated 
 pre_LCh  =  lchTable{19,{'L','C','h'}};  pre_LCh  =  applycform((pre_LCh/255), cformsRGB);                  
@@ -1992,11 +2019,11 @@ for i = 1 : height(q14_lab)
     y_aux = rColor(2)/(rColor(1) + rColor(2) + rColor(3));
     x_resulting_answers = [x_resulting_answers x_aux];
     y_resulting_answers = [y_resulting_answers y_aux];
-    diff_hsv_1 = [diff_hsv_1; pdist([[x_aux y_aux]; [x_pre_models(1) y_pre_models(1)]])];
-    diff_lch = [diff_lch; pdist([[x_aux y_aux]; [x_pre_models(2) y_pre_models(2)]])];
-    diff_cmyk = [diff_cmyk; pdist([[x_aux y_aux]; [x_pre_models(3) y_pre_models(3)]])];
-    diff_rgb = [diff_rgb; pdist([[x_aux y_aux]; [x_pre_models(4) y_pre_models(4)]])];
-    diff_lab = [diff_lab; pdist([[x_aux y_aux]; [x_pre_models(5) y_pre_models(5)]])];
+    diff_hsv_1 = [diff_hsv_1; round(pdist([[x_aux y_aux]; [x_pre_models(1) y_pre_models(1)]]),2)];
+    diff_lch = [diff_lch; round(pdist([[x_aux y_aux]; [x_pre_models(2) y_pre_models(2)]]), 2)];
+    diff_cmyk = [diff_cmyk; round(pdist([[x_aux y_aux]; [x_pre_models(3) y_pre_models(3)]]), 2)];
+    diff_rgb = [diff_rgb; round(pdist([[x_aux y_aux]; [x_pre_models(4) y_pre_models(4)]]), 2)];
+    diff_lab = [diff_lab; round(pdist([[x_aux y_aux]; [x_pre_models(5) y_pre_models(5)]]), 2)];
     
     scatter(x_values, y_values, 50, 'white');                   
     plot(x_values, y_values, 'Color', 'black');               
@@ -2068,11 +2095,13 @@ x_resulting_answers = []; y_resulting_answers = [];
 hold off;
 
 saveas(gcf, fullfile(pathLab, 'Question_14'), 'png');
+writetable(q1_lab, '/Users/PauloGarcia/Documents/MATLAB/Tables/First Study/Laboratory/q14_lab_regular.csv');
+writetable(q1_dalt_lab, '/Users/PauloGarcia/Documents/MATLAB/Tables/First Study/Laboratory/q14_lab_dalt.csv');
 
 %% Question 15 - objTwoColors: Lime-Green = Blue + Yellow
 
-q15_lab = tableR_lab(tableR_lab.id_question == 15,:); q15_lab = sortrows(q15_lab, 'id');
-q15_dalt_lab = tableDR_lab(tableDR_lab.id_question == 15,:); q15_dalt_lab = sortrows(q15_dalt_lab, 'id');
+q15_lab = tableR_lab(tableR_lab.id_question == 15,:); q15_lab = sortrows(q15_lab, 'id'); q15_lab.id_question = []; 
+q15_dalt_lab = tableDR_lab(tableDR_lab.id_question == 15,:); q15_dalt_lab = sortrows(q15_dalt_lab, 'id'); q15_dalt_lab.id_question = [];
 
 pre_HSV  =  hsvTable{22,{'H','S','V'}};  pre_HSV  =  applycform((pre_HSV/255), cformsRGB);                  %obtain values pre calculated 
 pre_LCh  =  lchTable{20,{'L','C','h'}};  pre_LCh  =  applycform((pre_LCh/255), cformsRGB);                  
@@ -2137,11 +2166,11 @@ for i = 1 : height(q15_lab)
     y_aux = rColor(2)/(rColor(1) + rColor(2) + rColor(3));
     x_resulting_answers = [x_resulting_answers x_aux];
     y_resulting_answers = [y_resulting_answers y_aux];
-    diff_hsv_1 = [diff_hsv_1; pdist([[x_aux y_aux]; [x_pre_models(1) y_pre_models(1)]])];
-    diff_lch = [diff_lch; pdist([[x_aux y_aux]; [x_pre_models(2) y_pre_models(2)]])];
-    diff_cmyk = [diff_cmyk; pdist([[x_aux y_aux]; [x_pre_models(3) y_pre_models(3)]])];
-    diff_rgb = [diff_rgb; pdist([[x_aux y_aux]; [x_pre_models(4) y_pre_models(4)]])];
-    diff_lab = [diff_lab; pdist([[x_aux y_aux]; [x_pre_models(5) y_pre_models(5)]])];
+    diff_hsv_1 = [diff_hsv_1; round(pdist([[x_aux y_aux]; [x_pre_models(1) y_pre_models(1)]]),2)];
+    diff_lch = [diff_lch; round(pdist([[x_aux y_aux]; [x_pre_models(2) y_pre_models(2)]]), 2)];
+    diff_cmyk = [diff_cmyk; round(pdist([[x_aux y_aux]; [x_pre_models(3) y_pre_models(3)]]), 2)];
+    diff_rgb = [diff_rgb; round(pdist([[x_aux y_aux]; [x_pre_models(4) y_pre_models(4)]]), 2)];
+    diff_lab = [diff_lab; round(pdist([[x_aux y_aux]; [x_pre_models(5) y_pre_models(5)]]), 2)];
     
     scatter(x_values, y_values, 50, 'white');                   
     plot(x_values, y_values, 'Color', 'black');               
@@ -2213,11 +2242,13 @@ x_resulting_answers = []; y_resulting_answers = [];
 hold off;
 
 saveas(gcf, fullfile(pathLab, 'Question_15'), 'png');
+writetable(q1_lab, '/Users/PauloGarcia/Documents/MATLAB/Tables/First Study/Laboratory/q15_lab_regular.csv');
+writetable(q1_dalt_lab, '/Users/PauloGarcia/Documents/MATLAB/Tables/First Study/Laboratory/q15_lab_dalt.csv');
 
 %% Question 16 - objTwoColors: Red = Blue + Yellow
 
-q16_lab = tableR_lab(tableR_lab.id_question == 16,:); q16_lab = sortrows(q16_lab, 'id');
-q16_dalt_lab = tableDR_lab(tableDR_lab.id_question == 16,:); q16_dalt_lab = sortrows(q16_dalt_lab, 'id');
+q16_lab = tableR_lab(tableR_lab.id_question == 16,:); q16_lab = sortrows(q16_lab, 'id'); q16_lab.id_question = []; 
+q16_dalt_lab = tableDR_lab(tableDR_lab.id_question == 16,:); q16_dalt_lab = sortrows(q16_dalt_lab, 'id'); q16_dalt_lab.id_question = [];
 
 pre_HSV  =  hsvTable{23,{'H','S','V'}};  pre_HSV  =  applycform((pre_HSV/255), cformsRGB);                  %obtain values pre calculated 
 % pre_LCh  =  lchTable{23,{'L','C','h'}};  pre_LCh  =  applycform((pre_LCh/255), cformsRGB);                  
@@ -2282,11 +2313,11 @@ for i = 1 : height(q16_lab)
     y_aux = rColor(2)/(rColor(1) + rColor(2) + rColor(3));
     x_resulting_answers = [x_resulting_answers x_aux];
     y_resulting_answers = [y_resulting_answers y_aux];
-    diff_hsv_1 = [diff_hsv_1; pdist([[x_aux y_aux]; [x_pre_models(1) y_pre_models(1)]])];
-%     diff_lch = [diff_lch; pdist([[x_aux y_aux]; [x_pre_models(2) y_pre_models(2)]])];
-%     diff_cmyk = [diff_cmyk; pdist([[x_aux y_aux]; [x_pre_models(3) y_pre_models(3)]])];
-%     diff_rgb = [diff_rgb; pdist([[x_aux y_aux]; [x_pre_models(4) y_pre_models(4)]])];
-%     diff_lab = [diff_lab; pdist([[x_aux y_aux]; [x_pre_models(5) y_pre_models(5)]])];
+    diff_hsv_1 = [diff_hsv_1; round(pdist([[x_aux y_aux]; [x_pre_models(1) y_pre_models(1)]]),2)];
+%     diff_lch = [diff_lch; round(pdist([[x_aux y_aux]; [x_pre_models(2) y_pre_models(2)]]), 2)];
+%     diff_cmyk = [diff_cmyk; round(pdist([[x_aux y_aux]; [x_pre_models(3) y_pre_models(3)]]), 2)];
+%     diff_rgb = [diff_rgb; round(pdist([[x_aux y_aux]; [x_pre_models(4) y_pre_models(4)]]), 2)];
+%     diff_lab = [diff_lab; round(pdist([[x_aux y_aux]; [x_pre_models(5) y_pre_models(5)]]), 2)];
     
     scatter(x_values, y_values, 50, 'white');                   
     plot(x_values, y_values, 'Color', 'black');               
@@ -2358,11 +2389,13 @@ x_resulting_answers = []; y_resulting_answers = [];
 hold off;
 
 saveas(gcf, fullfile(pathLab, 'Question_16'), 'png');
+writetable(q1_lab, '/Users/PauloGarcia/Documents/MATLAB/Tables/First Study/Laboratory/q16_lab_regular.csv');
+writetable(q1_dalt_lab, '/Users/PauloGarcia/Documents/MATLAB/Tables/First Study/Laboratory/q16_lab_dalt.csv');
 
 %% Question 17 - objTwoColors: Green = Cyan + Yellow
 
-q17_lab = tableR_lab(tableR_lab.id_question == 17,:); q17_lab = sortrows(q17_lab, 'id');
-q17_dalt_lab = tableDR_lab(tableDR_lab.id_question == 17,:); q17_dalt_lab = sortrows(q17_dalt_lab, 'id');
+q17_lab = tableR_lab(tableR_lab.id_question == 17,:); q17_lab = sortrows(q17_lab, 'id'); q17_lab.id_question = []; 
+q17_dalt_lab = tableDR_lab(tableDR_lab.id_question == 17,:); q17_dalt_lab = sortrows(q17_dalt_lab, 'id'); q17_dalt_lab.id_question = [];
 
 pre_HSV  =  hsvTable{24,{'H','S','V'}};  pre_HSV  =  applycform((pre_HSV/255), cformsRGB);                  %obtain values pre calculated 
 pre_LCh  =  lchTable{21,{'L','C','h'}};  pre_LCh  =  applycform((pre_LCh/255), cformsRGB);                  
@@ -2427,11 +2460,11 @@ for i = 1 : height(q17_lab)
     y_aux = rColor(2)/(rColor(1) + rColor(2) + rColor(3));
     x_resulting_answers = [x_resulting_answers x_aux];
     y_resulting_answers = [y_resulting_answers y_aux];
-    diff_hsv_1 = [diff_hsv_1; pdist([[x_aux y_aux]; [x_pre_models(1) y_pre_models(1)]])];
-    diff_lch = [diff_lch; pdist([[x_aux y_aux]; [x_pre_models(2) y_pre_models(2)]])];
-    diff_cmyk = [diff_cmyk; pdist([[x_aux y_aux]; [x_pre_models(3) y_pre_models(3)]])];
-    diff_rgb = [diff_rgb; pdist([[x_aux y_aux]; [x_pre_models(4) y_pre_models(4)]])];
-    diff_lab = [diff_lab; pdist([[x_aux y_aux]; [x_pre_models(5) y_pre_models(5)]])];
+    diff_hsv_1 = [diff_hsv_1; round(pdist([[x_aux y_aux]; [x_pre_models(1) y_pre_models(1)]]),2)];
+    diff_lch = [diff_lch; round(pdist([[x_aux y_aux]; [x_pre_models(2) y_pre_models(2)]]), 2)];
+    diff_cmyk = [diff_cmyk; round(pdist([[x_aux y_aux]; [x_pre_models(3) y_pre_models(3)]]), 2)];
+    diff_rgb = [diff_rgb; round(pdist([[x_aux y_aux]; [x_pre_models(4) y_pre_models(4)]]), 2)];
+    diff_lab = [diff_lab; round(pdist([[x_aux y_aux]; [x_pre_models(5) y_pre_models(5)]]), 2)];
     
     scatter(x_values, y_values, 50, 'white');                   
     plot(x_values, y_values, 'Color', 'black');               
@@ -2503,13 +2536,15 @@ x_resulting_answers = []; y_resulting_answers = [];
 hold off;
 
 saveas(gcf, fullfile(pathLab, 'Question_17'), 'png');
+writetable(q1_lab, '/Users/PauloGarcia/Documents/MATLAB/Tables/First Study/Laboratory/q17_lab_regular.csv');
+writetable(q1_dalt_lab, '/Users/PauloGarcia/Documents/MATLAB/Tables/First Study/Laboratory/q17_lab_dalt.csv');
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %% Question 18 - twoColorsObj: Red + Green = Yellow
 
-q18_lab = tableR_lab(tableR_lab.id_question == 18,:); q18_lab = sortrows(q18_lab, 'id');
-q18_dalt_lab = tableDR_lab(tableDR_lab.id_question == 18,:); q18_dalt_lab = sortrows(q18_dalt_lab, 'id');
+q18_lab = tableR_lab(tableR_lab.id_question == 18,:); q18_lab = sortrows(q18_lab, 'id'); q18_lab.id_question = []; 
+q18_dalt_lab = tableDR_lab(tableDR_lab.id_question == 18,:); q18_dalt_lab = sortrows(q18_dalt_lab, 'id'); q18_dalt_lab.id_question = [];
 
 pre_HSV  =  hsvTable{7,{'H','S','V'}};  pre_HSV  =  applycform((pre_HSV/255), cformsRGB);                  %obtain values pre calculated 
 pre_LCh  =  lchTable{7,{'L','C','h'}};  pre_LCh  =  applycform((pre_LCh/255), cformsRGB);                  
@@ -2546,11 +2581,11 @@ for i = 1 : height(q18_lab)
     x_values = [x_values x_aux]; y_values = [y_values y_aux];
     
     %Calculate distance to pre-calc answers
-    diff_hsv_1 = [diff_hsv_1; pdist([[x_aux y_aux]; [x_pre_models(1) y_pre_models(1)]])];
-    diff_lch = [diff_lch; pdist([[x_aux y_aux]; [x_pre_models(2) y_pre_models(2)]])];
-    diff_cmyk = [diff_cmyk; pdist([[x_aux y_aux]; [x_pre_models(3) y_pre_models(3)]])];
-    diff_rgb = [diff_rgb; pdist([[x_aux y_aux]; [x_pre_models(4) y_pre_models(4)]])];
-    diff_lab = [diff_lab; pdist([[x_aux y_aux]; [x_pre_models(5) y_pre_models(5)]])];
+    diff_hsv_1 = [diff_hsv_1; round(pdist([[x_aux y_aux]; [x_pre_models(1) y_pre_models(1)]]),2)];
+    diff_lch = [diff_lch; round(pdist([[x_aux y_aux]; [x_pre_models(2) y_pre_models(2)]]), 2)];
+    diff_cmyk = [diff_cmyk; round(pdist([[x_aux y_aux]; [x_pre_models(3) y_pre_models(3)]]), 2)];
+    diff_rgb = [diff_rgb; round(pdist([[x_aux y_aux]; [x_pre_models(4) y_pre_models(4)]]), 2)];
+    diff_lab = [diff_lab; round(pdist([[x_aux y_aux]; [x_pre_models(5) y_pre_models(5)]]), 2)];
     
     scatter(x_values, y_values, 50, 'white'); plot(x_values, y_values, 'Color', 'black');               
     text(x_values + 0.01, y_values, strcat('\leftarrow ',num2str(i)), 'FontSize', 10);                           %identify the points
@@ -2598,11 +2633,13 @@ diff_hsv_1 = []; diff_lch = []; diff_cmyk = []; diff_rgb = []; diff_lab = [];
 hold off;
 
 saveas(gcf, fullfile(pathLab, 'Question_18'), 'png');
+writetable(q1_lab, '/Users/PauloGarcia/Documents/MATLAB/Tables/First Study/Laboratory/q18_lab_regular.csv');
+writetable(q1_dalt_lab, '/Users/PauloGarcia/Documents/MATLAB/Tables/First Study/Laboratory/q18_lab_dalt.csv');
 
 %% Question 19 - twoColorsObj: Red + Blue = Magenta
 
-q19_lab = tableR_lab(tableR_lab.id_question == 19,:); q19_lab = sortrows(q19_lab, 'id');
-q19_dalt_lab = tableDR_lab(tableDR_lab.id_question == 19,:); q19_dalt_lab = sortrows(q19_dalt_lab, 'id');
+q19_lab = tableR_lab(tableR_lab.id_question == 19,:); q19_lab = sortrows(q19_lab, 'id'); q19_lab.id_question = []; 
+q19_dalt_lab = tableDR_lab(tableDR_lab.id_question == 19,:); q19_dalt_lab = sortrows(q19_dalt_lab, 'id'); q19_dalt_lab.id_question = [];
 
 pre_HSV  =  hsvTable{8,{'H','S','V'}};  pre_HSV  =  applycform((pre_HSV/255), cformsRGB);                  %obtain values pre calculated 
 pre_LCh  =  lchTable{8,{'L','C','h'}};  pre_LCh  =  applycform((pre_LCh/255), cformsRGB);                  
@@ -2639,11 +2676,11 @@ for i = 1 : height(q19_lab)
     x_values = [x_values x_aux]; y_values = [y_values y_aux];
     
     %Calculate distance to pre-calc answers
-    diff_hsv_1 = [diff_hsv_1; pdist([[x_aux y_aux]; [x_pre_models(1) y_pre_models(1)]])];
-    diff_lch = [diff_lch; pdist([[x_aux y_aux]; [x_pre_models(2) y_pre_models(2)]])];
-    diff_cmyk = [diff_cmyk; pdist([[x_aux y_aux]; [x_pre_models(3) y_pre_models(3)]])];
-    diff_rgb = [diff_rgb; pdist([[x_aux y_aux]; [x_pre_models(4) y_pre_models(4)]])];
-    diff_lab = [diff_lab; pdist([[x_aux y_aux]; [x_pre_models(5) y_pre_models(5)]])];
+    diff_hsv_1 = [diff_hsv_1; round(pdist([[x_aux y_aux]; [x_pre_models(1) y_pre_models(1)]]),2)];
+    diff_lch = [diff_lch; round(pdist([[x_aux y_aux]; [x_pre_models(2) y_pre_models(2)]]), 2)];
+    diff_cmyk = [diff_cmyk; round(pdist([[x_aux y_aux]; [x_pre_models(3) y_pre_models(3)]]), 2)];
+    diff_rgb = [diff_rgb; round(pdist([[x_aux y_aux]; [x_pre_models(4) y_pre_models(4)]]), 2)];
+    diff_lab = [diff_lab; round(pdist([[x_aux y_aux]; [x_pre_models(5) y_pre_models(5)]]), 2)];
     
     scatter(x_values, y_values, 50, 'white'); plot(x_values, y_values, 'Color', 'black');               
     text(x_values + 0.01, y_values, strcat('\leftarrow ',num2str(i)), 'FontSize', 10);                           %identify the points
@@ -2691,11 +2728,13 @@ diff_hsv_1 = []; diff_lch = []; diff_cmyk = []; diff_rgb = []; diff_lab = [];
 hold off;
 
 saveas(gcf, fullfile(pathLab, 'Question_19'), 'png');
+writetable(q1_lab, '/Users/PauloGarcia/Documents/MATLAB/Tables/First Study/Laboratory/q19_lab_regular.csv');
+writetable(q1_dalt_lab, '/Users/PauloGarcia/Documents/MATLAB/Tables/First Study/Laboratory/q19_lab_dalt.csv');
 
 %% Question 20 - twoColorsObj: Green + Blue = Cyan
 
-q20_lab = tableR_lab(tableR_lab.id_question == 20,:); q20_lab = sortrows(q20_lab, 'id');
-q20_dalt_lab = tableDR_lab(tableDR_lab.id_question == 20,:); q20_dalt_lab = sortrows(q20_dalt_lab, 'id');
+q20_lab = tableR_lab(tableR_lab.id_question == 20,:); q20_lab = sortrows(q20_lab, 'id'); q20_lab.id_question = []; 
+q20_dalt_lab = tableDR_lab(tableDR_lab.id_question == 20,:); q20_dalt_lab = sortrows(q20_dalt_lab, 'id'); q20_dalt_lab.id_question = [];
 
 pre_HSV  =  hsvTable{9,{'H','S','V'}};  pre_HSV  =  applycform((pre_HSV/255), cformsRGB);                  %obtain values pre calculated 
 pre_LCh  =  lchTable{9,{'L','C','h'}};  pre_LCh  =  applycform((pre_LCh/255), cformsRGB);                  
@@ -2732,11 +2771,11 @@ for i = 1 : height(q20_lab)
     x_values = [x_values x_aux]; y_values = [y_values y_aux];
     
     %Calculate distance to pre-calc answers
-    diff_hsv_1 = [diff_hsv_1; pdist([[x_aux y_aux]; [x_pre_models(1) y_pre_models(1)]])];
-    diff_lch = [diff_lch; pdist([[x_aux y_aux]; [x_pre_models(2) y_pre_models(2)]])];
-    diff_cmyk = [diff_cmyk; pdist([[x_aux y_aux]; [x_pre_models(3) y_pre_models(3)]])];
-    diff_rgb = [diff_rgb; pdist([[x_aux y_aux]; [x_pre_models(4) y_pre_models(4)]])];
-    diff_lab = [diff_lab; pdist([[x_aux y_aux]; [x_pre_models(5) y_pre_models(5)]])];
+    diff_hsv_1 = [diff_hsv_1; round(pdist([[x_aux y_aux]; [x_pre_models(1) y_pre_models(1)]]),2)];
+    diff_lch = [diff_lch; round(pdist([[x_aux y_aux]; [x_pre_models(2) y_pre_models(2)]]), 2)];
+    diff_cmyk = [diff_cmyk; round(pdist([[x_aux y_aux]; [x_pre_models(3) y_pre_models(3)]]), 2)];
+    diff_rgb = [diff_rgb; round(pdist([[x_aux y_aux]; [x_pre_models(4) y_pre_models(4)]]), 2)];
+    diff_lab = [diff_lab; round(pdist([[x_aux y_aux]; [x_pre_models(5) y_pre_models(5)]]), 2)];
     
     scatter(x_values, y_values, 50, 'white'); plot(x_values, y_values, 'Color', 'black');               
     text(x_values + 0.01, y_values, strcat('\leftarrow ',num2str(i)), 'FontSize', 10);                           %identify the points
@@ -2784,11 +2823,13 @@ diff_hsv_1 = []; diff_lch = []; diff_cmyk = []; diff_rgb = []; diff_lab = [];
 hold off;
 
 saveas(gcf, fullfile(pathLab, 'Question_20'), 'png');
+writetable(q1_lab, '/Users/PauloGarcia/Documents/MATLAB/Tables/First Study/Laboratory/q20_lab_regular.csv');
+writetable(q1_dalt_lab, '/Users/PauloGarcia/Documents/MATLAB/Tables/First Study/Laboratory/q20_lab_dalt.csv');
 
 %% Question 21 - twoColorsObj: Red + Cyan = Green || Purple (HSV)
 
-q21_lab = tableR_lab(tableR_lab.id_question == 21,:); q21_lab = sortrows(q21_lab, 'id');
-q21_dalt_lab = tableDR_lab(tableDR_lab.id_question == 21,:); q21_dalt_lab = sortrows(q21_dalt_lab, 'id');
+q21_lab = tableR_lab(tableR_lab.id_question == 21,:); q21_lab = sortrows(q21_lab, 'id'); q21_lab.id_question = []; 
+q21_dalt_lab = tableDR_lab(tableDR_lab.id_question == 21,:); q21_dalt_lab = sortrows(q21_dalt_lab, 'id'); q21_dalt_lab.id_question = [];
 
 pre_HSV_1  =  hsvTable{10,{'H','S','V'}};  pre_HSV_1  =  applycform((pre_HSV_1/255), cformsRGB);                  %obtain values pre calculated 
 pre_HSV_2  =  hsvTable{11,{'H','S','V'}};  pre_HSV_2  =  applycform((pre_HSV_2/255), cformsRGB);
@@ -2827,12 +2868,12 @@ for i = 1 : height(q21_lab)
     x_values = [x_values x_aux]; y_values = [y_values y_aux];
     
     %Calculate distance to pre-calc answers
-    diff_hsv_1 = [diff_hsv_1; pdist([[x_aux y_aux]; [x_pre_models(1) y_pre_models(1)]])];
-    diff_hsv_2 = [diff_hsv_2; pdist([[x_aux y_aux]; [x_pre_models(2) y_pre_models(2)]])];
-    diff_lch = [diff_lch; pdist([[x_aux y_aux]; [x_pre_models(3) y_pre_models(3)]])];
-    diff_cmyk = [diff_cmyk; pdist([[x_aux y_aux]; [x_pre_models(4) y_pre_models(4)]])];
-    diff_rgb = [diff_rgb; pdist([[x_aux y_aux]; [x_pre_models(5) y_pre_models(5)]])];
-    diff_lab = [diff_lab; pdist([[x_aux y_aux]; [x_pre_models(6) y_pre_models(6)]])];
+    diff_hsv_1 = [diff_hsv_1; round(pdist([[x_aux y_aux]; [x_pre_models(1) y_pre_models(1)]]),2)];
+    diff_hsv_2 = [diff_hsv_2; round(pdist([[x_aux y_aux]; [x_pre_models(2) y_pre_models(2)]]), 2)];
+    diff_lch = [diff_lch; round(pdist([[x_aux y_aux]; [x_pre_models(3) y_pre_models(3)]]), 2)];
+    diff_cmyk = [diff_cmyk; round(pdist([[x_aux y_aux]; [x_pre_models(4) y_pre_models(4)]]), 2)];
+    diff_rgb = [diff_rgb; round(pdist([[x_aux y_aux]; [x_pre_models(5) y_pre_models(5)]]), 2)];
+    diff_lab = [diff_lab; round(pdist([[x_aux y_aux]; [x_pre_models(6) y_pre_models(6)]]), 2)];
     
     scatter(x_values, y_values, 50, 'white'); plot(x_values, y_values, 'Color', 'black');               
     text(x_values + 0.01, y_values, strcat('\leftarrow ',num2str(i)), 'FontSize', 10);                           %identify the points
@@ -2881,11 +2922,13 @@ diff_hsv_1 = []; diff_hsv_2 = []; diff_lch = []; diff_cmyk = []; diff_rgb = []; 
 hold off;
 
 saveas(gcf, fullfile(pathLab, 'Question_21'), 'png');
+writetable(q1_lab, '/Users/PauloGarcia/Documents/MATLAB/Tables/First Study/Laboratory/q21_lab_regular.csv');
+writetable(q1_dalt_lab, '/Users/PauloGarcia/Documents/MATLAB/Tables/First Study/Laboratory/q21_lab_dalt.csv');
 
 %% Question 22 - twoColorsObj: Red + Magenta = Darker-Red
 
-q22_lab = tableR_lab(tableR_lab.id_question == 22,:); q22_lab = sortrows(q22_lab, 'id');
-q22_dalt_lab = tableDR_lab(tableDR_lab.id_question == 22,:); q22_dalt_lab = sortrows(q22_dalt_lab, 'id');
+q22_lab = tableR_lab(tableR_lab.id_question == 22,:); q22_lab = sortrows(q22_lab, 'id'); q22_lab.id_question = []; 
+q22_dalt_lab = tableDR_lab(tableDR_lab.id_question == 22,:); q22_dalt_lab = sortrows(q22_dalt_lab, 'id'); q22_dalt_lab.id_question = [];
 
 pre_HSV  =  hsvTable{12,{'H','S','V'}};  pre_HSV  =  applycform((pre_HSV/255), cformsRGB);                  %obtain values pre calculated 
 pre_LCh  =  lchTable{11,{'L','C','h'}};  pre_LCh  =  applycform((pre_LCh/255), cformsRGB);                  
@@ -2922,11 +2965,11 @@ for i = 1 : height(q22_lab)
     x_values = [x_values x_aux]; y_values = [y_values y_aux];
     
     %Calculate distance to pre-calc answers
-    diff_hsv_1 = [diff_hsv_1; pdist([[x_aux y_aux]; [x_pre_models(1) y_pre_models(1)]])];
-    diff_lch = [diff_lch; pdist([[x_aux y_aux]; [x_pre_models(2) y_pre_models(2)]])];
-    diff_cmyk = [diff_cmyk; pdist([[x_aux y_aux]; [x_pre_models(3) y_pre_models(3)]])];
-    diff_rgb = [diff_rgb; pdist([[x_aux y_aux]; [x_pre_models(4) y_pre_models(4)]])];
-    diff_lab = [diff_lab; pdist([[x_aux y_aux]; [x_pre_models(5) y_pre_models(5)]])];
+    diff_hsv_1 = [diff_hsv_1; round(pdist([[x_aux y_aux]; [x_pre_models(1) y_pre_models(1)]]),2)];
+    diff_lch = [diff_lch; round(pdist([[x_aux y_aux]; [x_pre_models(2) y_pre_models(2)]]), 2)];
+    diff_cmyk = [diff_cmyk; round(pdist([[x_aux y_aux]; [x_pre_models(3) y_pre_models(3)]]), 2)];
+    diff_rgb = [diff_rgb; round(pdist([[x_aux y_aux]; [x_pre_models(4) y_pre_models(4)]]), 2)];
+    diff_lab = [diff_lab; round(pdist([[x_aux y_aux]; [x_pre_models(5) y_pre_models(5)]]), 2)];
     
     scatter(x_values, y_values, 50, 'white'); plot(x_values, y_values, 'Color', 'black');               
     text(x_values + 0.01, y_values, strcat('\leftarrow ',num2str(i)), 'FontSize', 10);                           %identify the points
@@ -2974,11 +3017,13 @@ diff_hsv_1 = []; diff_lch = []; diff_cmyk = []; diff_rgb = []; diff_lab = [];
 hold off;
 
 saveas(gcf, fullfile(pathLab, 'Question_22'), 'png');
+writetable(q1_lab, '/Users/PauloGarcia/Documents/MATLAB/Tables/First Study/Laboratory/q22_lab_regular.csv');
+writetable(q1_dalt_lab, '/Users/PauloGarcia/Documents/MATLAB/Tables/First Study/Laboratory/q22_lab_dalt.csv');
 
 %% Question 23 - twoColorsObj: Red + Yellow = Orange
 
-q23_lab = tableR_lab(tableR_lab.id_question == 23,:); q23_lab = sortrows(q23_lab, 'id');
-q23_dalt_lab = tableDR_lab(tableDR_lab.id_question == 23,:); q23_dalt_lab = sortrows(q23_dalt_lab, 'id');
+q23_lab = tableR_lab(tableR_lab.id_question == 23,:); q23_lab = sortrows(q23_lab, 'id'); q23_lab.id_question = []; 
+q23_dalt_lab = tableDR_lab(tableDR_lab.id_question == 23,:); q23_dalt_lab = sortrows(q23_dalt_lab, 'id'); q23_dalt_lab.id_question = [];
 
 pre_HSV  =  hsvTable{13,{'H','S','V'}};  pre_HSV  =  applycform((pre_HSV/255), cformsRGB);                  %obtain values pre calculated 
 pre_LCh  =  lchTable{12,{'L','C','h'}};  pre_LCh  =  applycform((pre_LCh/255), cformsRGB);                  
@@ -3015,11 +3060,11 @@ for i = 1 : height(q23_lab)
     x_values = [x_values x_aux]; y_values = [y_values y_aux];
     
     %Calculate distance to pre-calc answers
-    diff_hsv_1 = [diff_hsv_1; pdist([[x_aux y_aux]; [x_pre_models(1) y_pre_models(1)]])];
-    diff_lch = [diff_lch; pdist([[x_aux y_aux]; [x_pre_models(2) y_pre_models(2)]])];
-    diff_cmyk = [diff_cmyk; pdist([[x_aux y_aux]; [x_pre_models(3) y_pre_models(3)]])];
-    diff_rgb = [diff_rgb; pdist([[x_aux y_aux]; [x_pre_models(4) y_pre_models(4)]])];
-    diff_lab = [diff_lab; pdist([[x_aux y_aux]; [x_pre_models(5) y_pre_models(5)]])];
+    diff_hsv_1 = [diff_hsv_1; round(pdist([[x_aux y_aux]; [x_pre_models(1) y_pre_models(1)]]),2)];
+    diff_lch = [diff_lch; round(pdist([[x_aux y_aux]; [x_pre_models(2) y_pre_models(2)]]), 2)];
+    diff_cmyk = [diff_cmyk; round(pdist([[x_aux y_aux]; [x_pre_models(3) y_pre_models(3)]]), 2)];
+    diff_rgb = [diff_rgb; round(pdist([[x_aux y_aux]; [x_pre_models(4) y_pre_models(4)]]), 2)];
+    diff_lab = [diff_lab; round(pdist([[x_aux y_aux]; [x_pre_models(5) y_pre_models(5)]]), 2)];
     
     scatter(x_values, y_values, 50, 'white'); plot(x_values, y_values, 'Color', 'black');               
     text(x_values + 0.01, y_values, strcat('\leftarrow ',num2str(i)), 'FontSize', 10);                           %identify the points
@@ -3067,11 +3112,13 @@ diff_hsv_1 = []; diff_lch = []; diff_cmyk = []; diff_rgb = []; diff_lab = [];
 hold off;
 
 saveas(gcf, fullfile(pathLab, 'Question_23'), 'png');
+writetable(q1_lab, '/Users/PauloGarcia/Documents/MATLAB/Tables/First Study/Laboratory/q23_lab_regular.csv');
+writetable(q1_dalt_lab, '/Users/PauloGarcia/Documents/MATLAB/Tables/First Study/Laboratory/q23_lab_dalt.csv');
 
 %% Question 24 - twoColorsObj: Cyan + Magenta = Purple
 
-q24_lab = tableR_lab(tableR_lab.id_question == 24,:); q24_lab = sortrows(q24_lab, 'id');
-q24_dalt_lab = tableDR_lab(tableDR_lab.id_question == 24,:); q24_dalt_lab = sortrows(q24_dalt_lab, 'id');
+q24_lab = tableR_lab(tableR_lab.id_question == 24,:); q24_lab = sortrows(q24_lab, 'id');  q24_lab.id_question = []; 
+q24_dalt_lab = tableDR_lab(tableDR_lab.id_question == 24,:); q24_dalt_lab = sortrows(q24_dalt_lab, 'id'); q24_dalt_lab.id_question = [];
 
 pre_HSV  =  hsvTable{14,{'H','S','V'}};  pre_HSV  =  applycform((pre_HSV/255), cformsRGB);                  %obtain values pre calculated 
 pre_LCh  =  lchTable{13,{'L','C','h'}};  pre_LCh  =  applycform((pre_LCh/255), cformsRGB);                  
@@ -3108,11 +3155,11 @@ for i = 1 : height(q24_lab)
     x_values = [x_values x_aux]; y_values = [y_values y_aux];
     
     %Calculate distance to pre-calc answers
-    diff_hsv_1 = [diff_hsv_1; pdist([[x_aux y_aux]; [x_pre_models(1) y_pre_models(1)]])];
-    diff_lch = [diff_lch; pdist([[x_aux y_aux]; [x_pre_models(2) y_pre_models(2)]])];
-    diff_cmyk = [diff_cmyk; pdist([[x_aux y_aux]; [x_pre_models(3) y_pre_models(3)]])];
-    diff_rgb = [diff_rgb; pdist([[x_aux y_aux]; [x_pre_models(4) y_pre_models(4)]])];
-    diff_lab = [diff_lab; pdist([[x_aux y_aux]; [x_pre_models(5) y_pre_models(5)]])];
+    diff_hsv_1 = [diff_hsv_1; round(pdist([[x_aux y_aux]; [x_pre_models(1) y_pre_models(1)]]),2)];
+    diff_lch = [diff_lch; round(pdist([[x_aux y_aux]; [x_pre_models(2) y_pre_models(2)]]), 2)];
+    diff_cmyk = [diff_cmyk; round(pdist([[x_aux y_aux]; [x_pre_models(3) y_pre_models(3)]]), 2)];
+    diff_rgb = [diff_rgb; round(pdist([[x_aux y_aux]; [x_pre_models(4) y_pre_models(4)]]), 2)];
+    diff_lab = [diff_lab; round(pdist([[x_aux y_aux]; [x_pre_models(5) y_pre_models(5)]]), 2)];
     
     scatter(x_values, y_values, 50, 'white'); plot(x_values, y_values, 'Color', 'black');               
     text(x_values + 0.01, y_values, strcat('\leftarrow ',num2str(i)), 'FontSize', 10);                           %identify the points
@@ -3160,11 +3207,13 @@ diff_hsv_1 = []; diff_lch = []; diff_cmyk = []; diff_rgb = []; diff_lab = [];
 hold off;
 
 saveas(gcf, fullfile(pathLab, 'Question_24'), 'png');
+writetable(q1_lab, '/Users/PauloGarcia/Documents/MATLAB/Tables/First Study/Laboratory/q24_lab_regular.csv');
+writetable(q1_dalt_lab, '/Users/PauloGarcia/Documents/MATLAB/Tables/First Study/Laboratory/q24_lab_dalt.csv');
 
 %% Question 25 - twoColorsObj: Magenta + Yellow = Red
 
-q25_lab = tableR_lab(tableR_lab.id_question == 25,:); q25_lab = sortrows(q25_lab, 'id');
-q25_dalt_lab = tableDR_lab(tableDR_lab.id_question == 25,:); q25_dalt_lab = sortrows(q25_dalt_lab, 'id');
+q25_lab = tableR_lab(tableR_lab.id_question == 25,:); q25_lab = sortrows(q25_lab, 'id');  q25_lab.id_question = []; 
+q25_dalt_lab = tableDR_lab(tableDR_lab.id_question == 25,:); q25_dalt_lab = sortrows(q25_dalt_lab, 'id'); q25_dalt_lab.id_question = [];
 
 pre_HSV  =  hsvTable{15,{'H','S','V'}};  pre_HSV  =  applycform((pre_HSV/255), cformsRGB);                  %obtain values pre calculated 
 pre_LCh  =  lchTable{14,{'L','C','h'}};  pre_LCh  =  applycform((pre_LCh/255), cformsRGB);                  
@@ -3201,11 +3250,11 @@ for i = 1 : height(q25_lab)
     x_values = [x_values x_aux]; y_values = [y_values y_aux];
     
     %Calculate distance to pre-calc answers
-    diff_hsv_1 = [diff_hsv_1; pdist([[x_aux y_aux]; [x_pre_models(1) y_pre_models(1)]])];
-    diff_lch = [diff_lch; pdist([[x_aux y_aux]; [x_pre_models(2) y_pre_models(2)]])];
-    diff_cmyk = [diff_cmyk; pdist([[x_aux y_aux]; [x_pre_models(3) y_pre_models(3)]])];
-    diff_rgb = [diff_rgb; pdist([[x_aux y_aux]; [x_pre_models(4) y_pre_models(4)]])];
-    diff_lab = [diff_lab; pdist([[x_aux y_aux]; [x_pre_models(5) y_pre_models(5)]])];
+    diff_hsv_1 = [diff_hsv_1; round(pdist([[x_aux y_aux]; [x_pre_models(1) y_pre_models(1)]]),2)];
+    diff_lch = [diff_lch; round(pdist([[x_aux y_aux]; [x_pre_models(2) y_pre_models(2)]]), 2)];
+    diff_cmyk = [diff_cmyk; round(pdist([[x_aux y_aux]; [x_pre_models(3) y_pre_models(3)]]), 2)];
+    diff_rgb = [diff_rgb; round(pdist([[x_aux y_aux]; [x_pre_models(4) y_pre_models(4)]]), 2)];
+    diff_lab = [diff_lab; round(pdist([[x_aux y_aux]; [x_pre_models(5) y_pre_models(5)]]), 2)];
     
     scatter(x_values, y_values, 50, 'white'); plot(x_values, y_values, 'Color', 'black');               
     text(x_values + 0.01, y_values, strcat('\leftarrow ',num2str(i)), 'FontSize', 10);                           %identify the points
@@ -3253,11 +3302,13 @@ diff_hsv_1 = []; diff_lch = []; diff_cmyk = []; diff_rgb = []; diff_lab = [];
 hold off;
 
 saveas(gcf, fullfile(pathLab, 'Question_25'), 'png');
+writetable(q1_lab, '/Users/PauloGarcia/Documents/MATLAB/Tables/First Study/Laboratory/q25_lab_regular.csv');
+writetable(q1_dalt_lab, '/Users/PauloGarcia/Documents/MATLAB/Tables/First Study/Laboratory/q25_lab_dalt.csv');
 
 %% Question 26 - twoColorsObj: Green + Cyan = Lime-green
 
-q26_lab = tableR_lab(tableR_lab.id_question == 26,:); q26_lab = sortrows(q26_lab, 'id');
-q26_dalt_lab = tableDR_lab(tableDR_lab.id_question == 26,:); q26_dalt_lab = sortrows(q26_dalt_lab, 'id');
+q26_lab = tableR_lab(tableR_lab.id_question == 26,:); q26_lab = sortrows(q26_lab, 'id'); q26_lab.id_question = []; 
+q26_dalt_lab = tableDR_lab(tableDR_lab.id_question == 26,:); q26_dalt_lab = sortrows(q26_dalt_lab, 'id'); q26_dalt_lab.id_question = [];
 
 pre_HSV  =  hsvTable{16,{'H','S','V'}};  pre_HSV  =  applycform((pre_HSV/255), cformsRGB);                  %obtain values pre calculated 
 pre_LCh  =  lchTable{15,{'L','C','h'}};  pre_LCh  =  applycform((pre_LCh/255), cformsRGB);                  
@@ -3294,11 +3345,11 @@ for i = 1 : height(q26_lab)
     x_values = [x_values x_aux]; y_values = [y_values y_aux];
     
     %Calculate distance to pre-calc answers
-    diff_hsv_1 = [diff_hsv_1; pdist([[x_aux y_aux]; [x_pre_models(1) y_pre_models(1)]])];
-    diff_lch = [diff_lch; pdist([[x_aux y_aux]; [x_pre_models(2) y_pre_models(2)]])];
-    diff_cmyk = [diff_cmyk; pdist([[x_aux y_aux]; [x_pre_models(3) y_pre_models(3)]])];
-    diff_rgb = [diff_rgb; pdist([[x_aux y_aux]; [x_pre_models(4) y_pre_models(4)]])];
-    diff_lab = [diff_lab; pdist([[x_aux y_aux]; [x_pre_models(5) y_pre_models(5)]])];
+    diff_hsv_1 = [diff_hsv_1; round(pdist([[x_aux y_aux]; [x_pre_models(1) y_pre_models(1)]]),2)];
+    diff_lch = [diff_lch; round(pdist([[x_aux y_aux]; [x_pre_models(2) y_pre_models(2)]]), 2)];
+    diff_cmyk = [diff_cmyk; round(pdist([[x_aux y_aux]; [x_pre_models(3) y_pre_models(3)]]), 2)];
+    diff_rgb = [diff_rgb; round(pdist([[x_aux y_aux]; [x_pre_models(4) y_pre_models(4)]]), 2)];
+    diff_lab = [diff_lab; round(pdist([[x_aux y_aux]; [x_pre_models(5) y_pre_models(5)]]), 2)];
     
     scatter(x_values, y_values, 50, 'white'); plot(x_values, y_values, 'Color', 'black');               
     text(x_values + 0.01, y_values, strcat('\leftarrow ',num2str(i)), 'FontSize', 10);                           %identify the points
@@ -3346,11 +3397,13 @@ diff_hsv_1 = []; diff_lch = []; diff_cmyk = []; diff_rgb = []; diff_lab = [];
 hold off;
 
 saveas(gcf, fullfile(pathLab, 'Question_26'), 'png');
+writetable(q1_lab, '/Users/PauloGarcia/Documents/MATLAB/Tables/First Study/Laboratory/q26_lab_regular.csv');
+writetable(q1_dalt_lab, '/Users/PauloGarcia/Documents/MATLAB/Tables/First Study/Laboratory/q26_lab_dalt.csv');
 
 %% Question 27 - twoColorsObj: Green + Magenta = Blue || Orange (HSV)
 
-q27_lab = tableR_lab(tableR_lab.id_question == 27,:); q27_lab = sortrows(q27_lab, 'id');
-q27_dalt_lab = tableDR_lab(tableDR_lab.id_question == 27,:); q27_dalt_lab = sortrows(q27_dalt_lab, 'id');
+q27_lab = tableR_lab(tableR_lab.id_question == 27,:); q27_lab = sortrows(q27_lab, 'id'); q27_lab.id_question = []; 
+q27_dalt_lab = tableDR_lab(tableDR_lab.id_question == 27,:); q27_dalt_lab = sortrows(q27_dalt_lab, 'id'); q27_dalt_lab.id_question = [];
 
 pre_HSV_1  =  hsvTable{17,{'H','S','V'}};  pre_HSV_1  =  applycform((pre_HSV_1/255), cformsRGB);                  %obtain values pre calculated 
 pre_HSV_2  =  hsvTable{18,{'H','S','V'}};  pre_HSV_2  =  applycform((pre_HSV_2/255), cformsRGB);
@@ -3389,12 +3442,12 @@ for i = 1 : height(q27_lab)
     x_values = [x_values x_aux]; y_values = [y_values y_aux];
     
     %Calculate distance to pre-calc answers
-    diff_hsv_1 = [diff_hsv_1; pdist([[x_aux y_aux]; [x_pre_models(1) y_pre_models(1)]])];
-    diff_hsv_2 = [diff_hsv_2; pdist([[x_aux y_aux]; [x_pre_models(2) y_pre_models(2)]])];
-    diff_lch = [diff_lch; pdist([[x_aux y_aux]; [x_pre_models(3) y_pre_models(3)]])];
-    diff_cmyk = [diff_cmyk; pdist([[x_aux y_aux]; [x_pre_models(4) y_pre_models(4)]])];
-    diff_rgb = [diff_rgb; pdist([[x_aux y_aux]; [x_pre_models(5) y_pre_models(5)]])];
-    diff_lab = [diff_lab; pdist([[x_aux y_aux]; [x_pre_models(6) y_pre_models(6)]])];
+    diff_hsv_1 = [diff_hsv_1; round(pdist([[x_aux y_aux]; [x_pre_models(1) y_pre_models(1)]]),2)];
+    diff_hsv_2 = [diff_hsv_2; round(pdist([[x_aux y_aux]; [x_pre_models(2) y_pre_models(2)]]), 2)];
+    diff_lch = [diff_lch; round(pdist([[x_aux y_aux]; [x_pre_models(3) y_pre_models(3)]]), 2)];
+    diff_cmyk = [diff_cmyk; round(pdist([[x_aux y_aux]; [x_pre_models(4) y_pre_models(4)]]), 2)];
+    diff_rgb = [diff_rgb; round(pdist([[x_aux y_aux]; [x_pre_models(5) y_pre_models(5)]]), 2)];
+    diff_lab = [diff_lab; round(pdist([[x_aux y_aux]; [x_pre_models(6) y_pre_models(6)]]), 2)];
     
     scatter(x_values, y_values, 50, 'white'); plot(x_values, y_values, 'Color', 'black');               
     text(x_values + 0.01, y_values, strcat('\leftarrow ',num2str(i)), 'FontSize', 10);                           %identify the points
@@ -3443,11 +3496,13 @@ diff_hsv_1 = []; diff_hsv_2 = []; diff_lch = []; diff_cmyk = []; diff_rgb = []; 
 hold off;
 
 saveas(gcf, fullfile(pathLab, 'Question_27'), 'png');
+writetable(q1_lab, '/Users/PauloGarcia/Documents/MATLAB/Tables/First Study/Laboratory/q27_lab_regular.csv');
+writetable(q1_dalt_lab, '/Users/PauloGarcia/Documents/MATLAB/Tables/First Study/Laboratory/q27_lab_dalt.csv');
 
 %% Question 28 - twoColorsObj: Green + Yellow = Yellower-Green
 
-q28_lab = tableR_lab(tableR_lab.id_question == 28,:); q28_lab = sortrows(q28_lab, 'id');
-q28_dalt_lab = tableDR_lab(tableDR_lab.id_question == 28,:); q28_dalt_lab = sortrows(q28_dalt_lab, 'id');
+q28_lab = tableR_lab(tableR_lab.id_question == 28,:); q28_lab = sortrows(q28_lab, 'id'); q28_lab.id_question = []; 
+q28_dalt_lab = tableDR_lab(tableDR_lab.id_question == 28,:); q28_dalt_lab = sortrows(q28_dalt_lab, 'id'); q28_dalt_lab.id_question = [];
 
 pre_HSV  =  hsvTable{19,{'H','S','V'}};  pre_HSV  =  applycform((pre_HSV/255), cformsRGB);                  %obtain values pre calculated 
 pre_LCh  =  lchTable{17,{'L','C','h'}};  pre_LCh  =  applycform((pre_LCh/255), cformsRGB);                  
@@ -3484,11 +3539,11 @@ for i = 1 : height(q28_lab)
     x_values = [x_values x_aux]; y_values = [y_values y_aux];
     
     %Calculate distance to pre-calc answers
-    diff_hsv_1 = [diff_hsv_1; pdist([[x_aux y_aux]; [x_pre_models(1) y_pre_models(1)]])];
-    diff_lch = [diff_lch; pdist([[x_aux y_aux]; [x_pre_models(2) y_pre_models(2)]])];
-    diff_cmyk = [diff_cmyk; pdist([[x_aux y_aux]; [x_pre_models(3) y_pre_models(3)]])];
-    diff_rgb = [diff_rgb; pdist([[x_aux y_aux]; [x_pre_models(4) y_pre_models(4)]])];
-    diff_lab = [diff_lab; pdist([[x_aux y_aux]; [x_pre_models(5) y_pre_models(5)]])];
+    diff_hsv_1 = [diff_hsv_1; round(pdist([[x_aux y_aux]; [x_pre_models(1) y_pre_models(1)]]),2)];
+    diff_lch = [diff_lch; round(pdist([[x_aux y_aux]; [x_pre_models(2) y_pre_models(2)]]), 2)];
+    diff_cmyk = [diff_cmyk; round(pdist([[x_aux y_aux]; [x_pre_models(3) y_pre_models(3)]]), 2)];
+    diff_rgb = [diff_rgb; round(pdist([[x_aux y_aux]; [x_pre_models(4) y_pre_models(4)]]), 2)];
+    diff_lab = [diff_lab; round(pdist([[x_aux y_aux]; [x_pre_models(5) y_pre_models(5)]]), 2)];
     
     scatter(x_values, y_values, 50, 'white'); plot(x_values, y_values, 'Color', 'black');               
     text(x_values + 0.01, y_values, strcat('\leftarrow ',num2str(i)), 'FontSize', 10);                           %identify the points
@@ -3536,11 +3591,13 @@ diff_hsv_1 = []; diff_lch = []; diff_cmyk = []; diff_rgb = []; diff_lab = [];
 hold off;
 
 saveas(gcf, fullfile(pathLab, 'Question_28'), 'png');
+writetable(q1_lab, '/Users/PauloGarcia/Documents/MATLAB/Tables/First Study/Laboratory/q28_lab_regular.csv');
+writetable(q1_dalt_lab, '/Users/PauloGarcia/Documents/MATLAB/Tables/First Study/Laboratory/q28_lab_dalt.csv');
 
 %% Question 29 - twoColorsObj: Blue + Cyan = Darker-Blue
 
-q29_lab = tableR_lab(tableR_lab.id_question == 29,:); q29_lab = sortrows(q29_lab, 'id');
-q29_dalt_lab = tableDR_lab(tableDR_lab.id_question == 29,:); q29_dalt_lab = sortrows(q29_dalt_lab, 'id');
+q29_lab = tableR_lab(tableR_lab.id_question == 29,:); q29_lab = sortrows(q29_lab, 'id'); q29_lab.id_question = []; 
+q29_dalt_lab = tableDR_lab(tableDR_lab.id_question == 29,:); q29_dalt_lab = sortrows(q29_dalt_lab, 'id'); q29_dalt_lab.id_question = [];
 
 pre_HSV  =  hsvTable{20,{'H','S','V'}};  pre_HSV  =  applycform((pre_HSV/255), cformsRGB);                  %obtain values pre calculated 
 pre_LCh  =  lchTable{18,{'L','C','h'}};  pre_LCh  =  applycform((pre_LCh/255), cformsRGB);                  
@@ -3577,11 +3634,11 @@ for i = 1 : height(q29_lab)
     x_values = [x_values x_aux]; y_values = [y_values y_aux];
     
     %Calculate distance to pre-calc answers
-    diff_hsv_1 = [diff_hsv_1; pdist([[x_aux y_aux]; [x_pre_models(1) y_pre_models(1)]])];
-    diff_lch = [diff_lch; pdist([[x_aux y_aux]; [x_pre_models(2) y_pre_models(2)]])];
-    diff_cmyk = [diff_cmyk; pdist([[x_aux y_aux]; [x_pre_models(3) y_pre_models(3)]])];
-    diff_rgb = [diff_rgb; pdist([[x_aux y_aux]; [x_pre_models(4) y_pre_models(4)]])];
-    diff_lab = [diff_lab; pdist([[x_aux y_aux]; [x_pre_models(5) y_pre_models(5)]])];
+    diff_hsv_1 = [diff_hsv_1; round(pdist([[x_aux y_aux]; [x_pre_models(1) y_pre_models(1)]]),2)];
+    diff_lch = [diff_lch; round(pdist([[x_aux y_aux]; [x_pre_models(2) y_pre_models(2)]]), 2)];
+    diff_cmyk = [diff_cmyk; round(pdist([[x_aux y_aux]; [x_pre_models(3) y_pre_models(3)]]), 2)];
+    diff_rgb = [diff_rgb; round(pdist([[x_aux y_aux]; [x_pre_models(4) y_pre_models(4)]]), 2)];
+    diff_lab = [diff_lab; round(pdist([[x_aux y_aux]; [x_pre_models(5) y_pre_models(5)]]), 2)];
     
     scatter(x_values, y_values, 50, 'white'); plot(x_values, y_values, 'Color', 'black');               
     text(x_values + 0.01, y_values, strcat('\leftarrow ',num2str(i)), 'FontSize', 10);                           %identify the points
@@ -3629,11 +3686,13 @@ diff_hsv_1 = []; diff_lch = []; diff_cmyk = []; diff_rgb = []; diff_lab = [];
 hold off;
 
 saveas(gcf, fullfile(pathLab, 'Question_29'), 'png');
+writetable(q1_lab, '/Users/PauloGarcia/Documents/MATLAB/Tables/First Study/Laboratory/q29_lab_regular.csv');
+writetable(q1_dalt_lab, '/Users/PauloGarcia/Documents/MATLAB/Tables/First Study/Laboratory/q29_lab_dalt.csv');
 
 %% Question 30 - twoColorsObj: Blue + Magenta = Purple 
 
-q30_lab = tableR_lab(tableR_lab.id_question == 30,:); q30_lab = sortrows(q30_lab, 'id');
-q30_dalt_lab = tableDR_lab(tableDR_lab.id_question == 30,:); q30_dalt_lab = sortrows(q30_dalt_lab, 'id');
+q30_lab = tableR_lab(tableR_lab.id_question == 30,:); q30_lab = sortrows(q30_lab, 'id'); q30_lab.id_question = []; 
+q30_dalt_lab = tableDR_lab(tableDR_lab.id_question == 30,:); q30_dalt_lab = sortrows(q30_dalt_lab, 'id'); q30_dalt_lab.id_question = [];
 
 pre_HSV  =  hsvTable{21,{'H','S','V'}};  pre_HSV  =  applycform((pre_HSV/255), cformsRGB);                  %obtain values pre calculated 
 pre_LCh  =  lchTable{19,{'L','C','h'}};  pre_LCh  =  applycform((pre_LCh/255), cformsRGB);                  
@@ -3670,11 +3729,11 @@ for i = 1 : height(q30_lab)
     x_values = [x_values x_aux]; y_values = [y_values y_aux];
     
     %Calculate distance to pre-calc answers
-    diff_hsv_1 = [diff_hsv_1; pdist([[x_aux y_aux]; [x_pre_models(1) y_pre_models(1)]])];
-    diff_lch = [diff_lch; pdist([[x_aux y_aux]; [x_pre_models(2) y_pre_models(2)]])];
-    diff_cmyk = [diff_cmyk; pdist([[x_aux y_aux]; [x_pre_models(3) y_pre_models(3)]])];
-    diff_rgb = [diff_rgb; pdist([[x_aux y_aux]; [x_pre_models(4) y_pre_models(4)]])];
-    diff_lab = [diff_lab; pdist([[x_aux y_aux]; [x_pre_models(5) y_pre_models(5)]])];
+    diff_hsv_1 = [diff_hsv_1; round(pdist([[x_aux y_aux]; [x_pre_models(1) y_pre_models(1)]]),2)];
+    diff_lch = [diff_lch; round(pdist([[x_aux y_aux]; [x_pre_models(2) y_pre_models(2)]]), 2)];
+    diff_cmyk = [diff_cmyk; round(pdist([[x_aux y_aux]; [x_pre_models(3) y_pre_models(3)]]), 2)];
+    diff_rgb = [diff_rgb; round(pdist([[x_aux y_aux]; [x_pre_models(4) y_pre_models(4)]]), 2)];
+    diff_lab = [diff_lab; round(pdist([[x_aux y_aux]; [x_pre_models(5) y_pre_models(5)]]), 2)];
     
     scatter(x_values, y_values, 50, 'white'); plot(x_values, y_values, 'Color', 'black');               
     text(x_values + 0.01, y_values, strcat('\leftarrow ',num2str(i)), 'FontSize', 10);                           %identify the points
@@ -3721,11 +3780,13 @@ diff_hsv_1 = []; diff_lch = []; diff_cmyk = []; diff_rgb = []; diff_lab = [];
 hold off;
 
 saveas(gcf, fullfile(pathLab, 'Question_30'), 'png');
+writetable(q1_lab, '/Users/PauloGarcia/Documents/MATLAB/Tables/First Study/Laboratory/q30_lab_regular.csv');
+writetable(q1_dalt_lab, '/Users/PauloGarcia/Documents/MATLAB/Tables/First Study/Laboratory/q30_lab_dalt.csv');
 
 %% Question 31 - twoColorsObj: Blue + Yellow = Lime-Green || Red (HSV)
 
-q31_lab = tableR_lab(tableR_lab.id_question == 31,:); q31_lab = sortrows(q31_lab, 'id');
-q31_dalt_lab = tableDR_lab(tableDR_lab.id_question == 31,:); q31_dalt_lab = sortrows(q31_dalt_lab, 'id');
+q31_lab = tableR_lab(tableR_lab.id_question == 31,:); q31_lab = sortrows(q31_lab, 'id'); q31_lab.id_question = []; 
+q31_dalt_lab = tableDR_lab(tableDR_lab.id_question == 31,:); q31_dalt_lab = sortrows(q31_dalt_lab, 'id'); q31_dalt_lab.id_question = [];
 
 pre_HSV_1  =  hsvTable{22,{'H','S','V'}};  pre_HSV_1  =  applycform((pre_HSV_1/255), cformsRGB);  %obtain values pre calculated 
 pre_HSV_2  =  hsvTable{23,{'H','S','V'}};  pre_HSV_2  =  applycform((pre_HSV_2/255), cformsRGB);  
@@ -3764,12 +3825,12 @@ for i = 1 : height(q31_lab)
     x_values = [x_values x_aux]; y_values = [y_values y_aux];
     
     %Calculate distance to pre-calc answers
-    diff_hsv_1 = [diff_hsv_1; pdist([[x_aux y_aux]; [x_pre_models(1) y_pre_models(1)]])];
-    diff_hsv_2 = [diff_hsv_2; pdist([[x_aux y_aux]; [x_pre_models(2) y_pre_models(2)]])];
-    diff_lch = [diff_lch; pdist([[x_aux y_aux]; [x_pre_models(3) y_pre_models(3)]])];
-    diff_cmyk = [diff_cmyk; pdist([[x_aux y_aux]; [x_pre_models(4) y_pre_models(4)]])];
-    diff_rgb = [diff_rgb; pdist([[x_aux y_aux]; [x_pre_models(5) y_pre_models(5)]])];
-    diff_lab = [diff_lab; pdist([[x_aux y_aux]; [x_pre_models(6) y_pre_models(6)]])];
+    diff_hsv_1 = [diff_hsv_1; round(pdist([[x_aux y_aux]; [x_pre_models(1) y_pre_models(1)]]),2)];
+    diff_hsv_2 = [diff_hsv_2; round(pdist([[x_aux y_aux]; [x_pre_models(2) y_pre_models(2)]]), 2)];
+    diff_lch = [diff_lch; round(pdist([[x_aux y_aux]; [x_pre_models(3) y_pre_models(3)]]), 2)];
+    diff_cmyk = [diff_cmyk; round(pdist([[x_aux y_aux]; [x_pre_models(4) y_pre_models(4)]]), 2)];
+    diff_rgb = [diff_rgb; round(pdist([[x_aux y_aux]; [x_pre_models(5) y_pre_models(5)]]), 2)];
+    diff_lab = [diff_lab; round(pdist([[x_aux y_aux]; [x_pre_models(6) y_pre_models(6)]]), 2)];
     
     scatter(x_values, y_values, 50, 'white'); plot(x_values, y_values, 'Color', 'black');               
     text(x_values + 0.01, y_values, strcat('\leftarrow ',num2str(i)), 'FontSize', 10);                           %identify the points
@@ -3817,11 +3878,13 @@ diff_hsv_1 = []; diff_hsv_2 = []; diff_lch = []; diff_cmyk = []; diff_rgb = []; 
 hold off;
 
 saveas(gcf, fullfile(pathLab, 'Question_31'), 'png');
+writetable(q1_lab, '/Users/PauloGarcia/Documents/MATLAB/Tables/First Study/Laboratory/q31_lab_regular.csv');
+writetable(q1_dalt_lab, '/Users/PauloGarcia/Documents/MATLAB/Tables/First Study/Laboratory/q31_lab_dalt.csv');
 
 %% Question 32 - twoColorsObj: Cyan + Yellow = Green
 
-q32_lab = tableR_lab(tableR_lab.id_question == 32,:); q32_lab = sortrows(q32_lab, 'id');
-q32_dalt_lab = tableDR_lab(tableDR_lab.id_question == 32,:); q32_dalt_lab = sortrows(q32_dalt_lab, 'id');
+q32_lab = tableR_lab(tableR_lab.id_question == 32,:); q32_lab = sortrows(q32_lab, 'id'); q32_lab.id_question = []; 
+q32_dalt_lab = tableDR_lab(tableDR_lab.id_question == 32,:); q32_dalt_lab = sortrows(q32_dalt_lab, 'id'); q32_dalt_lab.id_question = [];
 
 pre_HSV  =  hsvTable{24,{'H','S','V'}};  pre_HSV  =  applycform((pre_HSV/255), cformsRGB);                  %obtain values pre calculated 
 pre_LCh  =  lchTable{21,{'L','C','h'}};  pre_LCh  =  applycform((pre_LCh/255), cformsRGB);                  
@@ -3858,11 +3921,11 @@ for i = 1 : height(q32_lab)
     x_values = [x_values x_aux]; y_values = [y_values y_aux];
     
     %Calculate distance to pre-calc answers
-    diff_hsv_1 = [diff_hsv_1; pdist([[x_aux y_aux]; [x_pre_models(1) y_pre_models(1)]])];
-    diff_lch = [diff_lch; pdist([[x_aux y_aux]; [x_pre_models(2) y_pre_models(2)]])];
-    diff_cmyk = [diff_cmyk; pdist([[x_aux y_aux]; [x_pre_models(3) y_pre_models(3)]])];
-    diff_rgb = [diff_rgb; pdist([[x_aux y_aux]; [x_pre_models(4) y_pre_models(4)]])];
-    diff_lab = [diff_lab; pdist([[x_aux y_aux]; [x_pre_models(5) y_pre_models(5)]])];
+    diff_hsv_1 = [diff_hsv_1; round(pdist([[x_aux y_aux]; [x_pre_models(1) y_pre_models(1)]]),2)];
+    diff_lch = [diff_lch; round(pdist([[x_aux y_aux]; [x_pre_models(2) y_pre_models(2)]]), 2)];
+    diff_cmyk = [diff_cmyk; round(pdist([[x_aux y_aux]; [x_pre_models(3) y_pre_models(3)]]), 2)];
+    diff_rgb = [diff_rgb; round(pdist([[x_aux y_aux]; [x_pre_models(4) y_pre_models(4)]]), 2)];
+    diff_lab = [diff_lab; round(pdist([[x_aux y_aux]; [x_pre_models(5) y_pre_models(5)]]), 2)];
     
     scatter(x_values, y_values, 50, 'white'); plot(x_values, y_values, 'Color', 'black');               
     text(x_values + 0.01, y_values, strcat('\leftarrow ',num2str(i)), 'FontSize', 10);                           %identify the points
@@ -3910,3 +3973,5 @@ diff_hsv_1 = []; diff_hsv_2 = []; diff_lch = []; diff_cmyk = []; diff_rgb = []; 
 hold off;
 
 saveas(gcf, fullfile(pathLab, 'Question_32'), 'png');
+writetable(q1_lab, '/Users/PauloGarcia/Documents/MATLAB/Tables/First Study/Laboratory/q32_lab_regular.csv');
+writetable(q1_dalt_lab, '/Users/PauloGarcia/Documents/MATLAB/Tables/First Study/Laboratory/q32_lab_dalt.csv');
