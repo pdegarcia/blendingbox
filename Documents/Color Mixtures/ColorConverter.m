@@ -4,7 +4,7 @@ close all;
 %% MODIFIABLE VALUES%%
 
 valuesTable = 'Color Blends_two.csv';   % MODIFY TABLE NAME.
-profileSrc = 'profileA';                % MODIFY PROFILE NAME.
+profileSrc = 'DEI-1';                % MODIFY PROFILE NAME.
 
 profile = iccread(profileSrc);
 iccTransform = makecform('mattrc', profile, 'Direction', 'inverse');
@@ -15,6 +15,7 @@ cformLab = makecform('lab2xyz');
 cformsRGB = makecform('srgb2xyz');
 cformLch = makecform('lch2lab');
 cformCMYK = makecform('cmyk2srgb');
+cformXYZ = makecform('xyz2srgb');
 
 % Tables with every value from each Color Model
 hsvTable = tableC(:, {'Color','H','S','V'});
@@ -66,6 +67,32 @@ for i = 1 : height(hsvTable)
 end
 
 %% CONVERSION BETWEEN XYZ -> RGB, with .icc profile %%
+% 
+% cmykTable.K = [];   % Get rid of K value.
+% for i = 1 : height(rgbTable)
+%     valuesRGB = rgbTable{i,{'R','G','B'}};
+%     valuesLAB = labTable{i, {'L','a','b'}};
+%     valuesLCh = lchTable{i, {'L','C','h'}};
+%     valuesCMYK = cmykTable{i, {'C','M','Y'}};
+%     
+%     rgb = (applycform(valuesRGB, iccTransform)*255);
+%     lab = (applycform(valuesLAB, iccTransform)*255);
+%     lch = (applycform(valuesLCh, iccTransform)*255);
+%     cmyk = (applycform(valuesCMYK, iccTransform)*255);
+%     
+%     rgbTable(i, 2:4) = num2cell(rgb);
+%     labTable(i, 2:4) = num2cell(lab);
+%     lchTable(i, 2:4) = num2cell(lch);
+%     cmykTable(i, 2:4) = num2cell(cmyk);
+% end
+% 
+% for i = 1 : height(hsvTable)
+%     valuesHSV = hsvTable{i,{'H','S','V'}};
+%     hsv = (applycform(valuesHSV, iccTransform)*255);
+%     hsvTable(i, 2:4) = num2cell(hsv);
+% end
+
+%% CONVERSION BETWEEN XYZ -> RGB, regular %%
 
 cmykTable.K = [];   % Get rid of K value.
 for i = 1 : height(rgbTable)
@@ -74,10 +101,10 @@ for i = 1 : height(rgbTable)
     valuesLCh = lchTable{i, {'L','C','h'}};
     valuesCMYK = cmykTable{i, {'C','M','Y'}};
     
-    rgb = (applycform(valuesRGB, iccTransform)*255);
-    lab = (applycform(valuesLAB, iccTransform)*255);
-    lch = (applycform(valuesLCh, iccTransform)*255);
-    cmyk = (applycform(valuesCMYK, iccTransform)*255);
+    rgb = (applycform(valuesRGB, cformXYZ)*255);
+    lab = (applycform(valuesLAB, cformXYZ)*255);
+    lch = (applycform(valuesLCh, cformXYZ)*255);
+    cmyk = (applycform(valuesCMYK, cformXYZ)*255);
     
     rgbTable(i, 2:4) = num2cell(rgb);
     labTable(i, 2:4) = num2cell(lab);
@@ -87,7 +114,7 @@ end
 
 for i = 1 : height(hsvTable)
     valuesHSV = hsvTable{i,{'H','S','V'}};
-    hsv = (applycform(valuesHSV, iccTransform)*255);
+    hsv = (applycform(valuesHSV, cformXYZ)*255);
     hsvTable(i, 2:4) = num2cell(hsv);
 end
 
