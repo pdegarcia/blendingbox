@@ -1,0 +1,4 @@
+id,typeOfQuestion,first_color,second_color,third_color,clicks,rating,distance_expectedC3,distance_HSV,distance_LCh,distance_CMYK,distance_RGB,distance_Lab
+57113a5534205,twoColorsObj,#00FFFF,#FFFF00,#00FF80,259,4,0.12,0.12,0.04,0.04,0.04,0.02
+571289ef76e18,twoColorsObj,#00FFFF,#FFFF00,#80FF00,151,5,0.11,0.11,0.08,0.09,0.05,0.05
+57149713464b1,twoColorsObj,#00FFFF,#FFFF00,#FFFFFF,0,1,0.23,0.23,0.12,0.07,0.15,0.1
