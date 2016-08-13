@@ -294,7 +294,7 @@ id,age,gender,num_answers,in_person,typeOfQuestion,first_color,second_color,thir
 5714c6c26c2f6,21,Male,11,no,objTwoColors,#7f00ff,223,327,189,15,2,0,4
 5711641931da5,20,Female,32,no,objTwoColors,#7f00ff,300,245,159,16,4,0,4
 5756b2d9bd658,23,Female,32,yes,objTwoColors,#B100FF,200,303,186,22,5,0,4
-5710d7b312b93,23,Female,1,no,objTwoColors,#7f00ff,,0,0,36,5,1,4
+5710d7b312b93,23,Female,1,no,objTwoColors,#7f00ff,0,0,0,36,5,1,4
 5756ab1701ba0,21,Male,32,yes,objTwoColors,#B100FF,180,300,261,22,4,0,4
 572c85675a5ef,23,Male,32,yes,objTwoColors,#7f00ff,239,279,276,21,3,0,4
 57112a657ac25,20,Female,24,no,objTwoColors,#7f00ff,264,279,317,39,3,0,4
@@ -542,7 +542,7 @@ id,age,gender,num_answers,in_person,typeOfQuestion,first_color,second_color,thir
 5715f69931d4c,23,Male,7,no,objTwoColors,#0000FF,227,0,219,28,5,0,7
 5713fc80c942a,23,Female,32,no,objTwoColors,#0000FF,231,238,137,16,5,0,7
 571130d934bda,22,Female,32,no,objTwoColors,#0000FF,225,223,94,12,5,0,7
-57113869c7da3,23,Female,1,no,objTwoColors,#0000FF,,0,0,48,1,1,7
+57113869c7da3,23,Female,1,no,objTwoColors,#0000FF,0,0,0,48,1,1,7
 571137a34931a,27,Female,25,no,objTwoColors,#0000FF,258,196,395,26,2,0,7
 5713d766113e9,21,Male,4,no,objTwoColors,#0000FF,52,102,474,41,5,0,7
 57113a5534205,22,Male,31,no,objTwoColors,#0000FF,234,233,283,20,5,0,7
@@ -1177,7 +1177,7 @@ id,age,gender,num_answers,in_person,typeOfQuestion,first_color,second_color,thir
 5710d71ff24c3,20,Female,32,no,objTwoColors,#00FF80,68,180,290,19,3,0,15
 5710cbc5f0ea4,23,Male,32,no,objTwoColors,#00FF80,1,122,461,20,5,0,15
 5757ffca0b4b1,24,Male,32,yes,objTwoColors,#00FF80,67,181,205,31,4,0,15
-573a0b8280839,29,Male,21,yes,objTwoColors,#00FF9A,,37,211,35,3,0,15
+573a0b8280839,29,Male,21,yes,objTwoColors,#00FF9A,0,37,211,35,3,0,15
 5710cc2b8a642,24,Male,16,no,objTwoColors,#00FF80,58,201,117,25,4,0,15
 5745500f6e643,24,Female,32,no,objTwoColors,#00FF80,109,0,194,12,3,0,15
 5711ace2ee7ed,24,Male,32,no,objTwoColors,#00FF80,59,206,106,17,4,0,15
@@ -1277,7 +1277,7 @@ id,age,gender,num_answers,in_person,typeOfQuestion,first_color,second_color,thir
 573e4022949b1,24,Male,32,yes,objTwoColors,#FF007A,333,0,151,24,5,0,16
 573e47c26cb8e,24,Male,32,yes,objTwoColors,#FF007A,3,40,138,82,3,0,16
 573e4d0eb795b,24,Male,32,yes,objTwoColors,#FF007A,331,0,79,20,5,0,16
-573ec4275ba17,24,Female,32,yes,objTwoColors,#FF007A,,3,1,17,3,0,16
+573ec4275ba17,24,Female,32,yes,objTwoColors,#FF007A,0,3,1,17,3,0,16
 573edae85268b,27,Male,32,yes,objTwoColors,#FF007A,358,300,383,39,3,0,16
 57410611290e3,22,Other,5,no,objTwoColors,#FF007F,357,0,121,16,3,0,16
 574297edae49c,24,Male,32,no,objTwoColors,#FF007F,333,327,163,14,5,0,16

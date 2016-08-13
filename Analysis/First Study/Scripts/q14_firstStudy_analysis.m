@@ -88,16 +88,37 @@ daltonic_results_online = 'data_first_online_daltonic_results.csv';         % On
 
 uncalibrated_results_online = 'data_first_online_uncalibrated_results.csv'; % Uncalibrated Results (Only online)
 
-tableU_lab = readtable(users_lab, 'Delimiter', ',');
-tableU_online = readtable(users_online, 'Delimiter', ',');
+demographic_ageLess20 = 'data_first_demograph_ageMen20.csv';                    % Demograph. - Age < 20
+demographic_age20_29 = 'data_first_demograph_age20-29.csv';                     % Demograph. - Age 20-29
+demographic_age30_39 = 'data_first_demograph_age30-39.csv';                     % Demograph. - Age 30-39
+demographic_age40_49 = 'data_first_demograph_age40-49.csv';                     % Demograph. - Age 40-49
+demographic_age50_59 = 'data_first_demograph_age50-59.csv';                     % Demograph. - Age 50-59
+demographic_ageMore60 = 'data_first_demograph_ageMais60.csv';                   % Demograph. - Age > 60
+demographic_genderFemale = 'data_first_demograph_genderFemale.csv';             % Demograph. - Gender Female
+demographic_genderMale = 'data_first_demograph_genderMale.csv';                 % Demograph. - Gender Male
+demographic_genderOther = 'data_first_demograph_genderOther.csv';               % Demograph. - Gender Other
 
-tableR_lab = readtable(results_lab, 'Delimiter', ',');
-tableR_online = readtable(results_online, 'Delimiter', ';');
+tableU_lab      = readtable(users_lab, 'Delimiter', ',');
+tableU_online   = readtable(users_online, 'Delimiter', ',');
 
-tableDR_lab = readtable(daltonic_results_lab, 'Delimiter', ',');
-tableDR_online = readtable(daltonic_results_online, 'Delimiter', ';');
+tableR_lab      = readtable(results_lab, 'Delimiter', ',');
+tableR_online   = readtable(results_online, 'Delimiter', ';');
 
-tableUR_online = readtable(uncalibrated_results_online, 'Delimiter', ';');
+tableDR_lab     = readtable(daltonic_results_lab, 'Delimiter', ',');
+tableDR_online  = readtable(daltonic_results_online, 'Delimiter', ';');
+
+tableUR_online  = readtable(uncalibrated_results_online, 'Delimiter', ';');
+
+tableDEM_age20      = readtable(demographic_ageLess20, 'Delimiter', ',');
+tableDEM_age20_29   = readtable(demographic_age20_29, 'Delimiter', ',');
+tableDEM_age30_39   = readtable(demographic_age30_39, 'Delimiter', ',');
+tableDEM_age40_49   = readtable(demographic_age40_49, 'Delimiter', ',');
+tableDEM_age50_59   = readtable(demographic_age50_59, 'Delimiter', ',');
+tableDEM_age60      = readtable(demographic_ageMore60, 'Delimiter', ',');
+tableDEM_genF       = readtable(demographic_genderFemale, 'Delimiter', ',');
+tableDEM_genM       = readtable(demographic_genderMale, 'Delimiter', ',');
+tableDEM_genO       = readtable(demographic_genderOther, 'Delimiter', ',');
+
 
 %% Tables
 
@@ -109,6 +130,17 @@ laboratoryResults_dalt = tableDR_lab(tableDR_lab.id_question == 14,:); laborator
 onlineResults = tableR_online(tableR_online.id_question == 14,:); onlineResults = sortrows(onlineResults, 'id'); onlineResults.id_question = []; onlineResults.page_time = []; onlineResults.resets = []; 
 onlineResults_dalt = tableDR_online(tableDR_online.id_question == 14,:); onlineResults_dalt = sortrows(onlineResults_dalt, 'id'); onlineResults_dalt.id_question = []; onlineResults_dalt.page_time = []; onlineResults_dalt.resets = [];
 onlineResults_uncal = tableUR_online(tableUR_online.id_question == 14,:); onlineResults_uncal = sortrows(onlineResults_uncal, 'id'); onlineResults_uncal.id_question = []; onlineResults_uncal.page_time = []; onlineResults_uncal.resets = [];
+
+% Demographic Tables -- CHANGE HERE
+demoResultsAge_20        = tableDEM_age20(tableDEM_age20.id_question == 14,:); demoResultsAge_20 = sortrows(demoResultsAge_20, 'id'); demoResultsAge_20.id_question = []; demoResultsAge_20.page_time = []; demoResultsAge_20.resets = [];
+demoResultsAge_20_29     = tableDEM_age20_29(tableDEM_age20_29.id_question == 14,:); demoResultsAge_20_29 = sortrows(demoResultsAge_20_29, 'id'); demoResultsAge_20_29.id_question = []; demoResultsAge_20_29.page_time = []; demoResultsAge_20_29.resets = [];
+demoResultsAge_30_39     = tableDEM_age30_39(tableDEM_age30_39.id_question == 14,:); demoResultsAge_30_39 = sortrows(demoResultsAge_30_39, 'id'); demoResultsAge_30_39.id_question = []; demoResultsAge_30_39.page_time = []; demoResultsAge_30_39.resets = [];
+demoResultsAge_40_49     = tableDEM_age40_49(tableDEM_age40_49.id_question == 14,:); demoResultsAge_40_49 = sortrows(demoResultsAge_40_49, 'id'); demoResultsAge_40_49.id_question = []; demoResultsAge_40_49.page_time = []; demoResultsAge_40_49.resets = [];
+demoResultsAge_50_59     = tableDEM_age20_29(tableDEM_age20_29.id_question == 14,:); demoResultsAge_20_29 = sortrows(demoResultsAge_20_29, 'id'); demoResultsAge_50_59.id_question = []; demoResultsAge_50_59.page_time = []; demoResultsAge_50_59.resets = [];
+demoResultsAge_60        = tableDEM_age60(tableDEM_age60.id_question == 14,:); demoResultsAge_60 = sortrows(demoResultsAge_60, 'id'); demoResultsAge_60.id_question = []; demoResultsAge_60.page_time = []; demoResultsAge_60.resets = [];
+demoResultsGender_Female = tableDEM_genF(tableDEM_genF.id_question == 14,:); demoResultsGender_Female = sortrows(demoResultsGender_Female, 'id'); demoResultsGender_Female.id_question = []; demoResultsGender_Female.page_time = []; demoResultsGender_Female.resets = [];
+demoResultsGender_Male   = tableDEM_genM(tableDEM_genM.id_question == 14,:); demoResultsGender_Male = sortrows(demoResultsGender_Male, 'id'); demoResultsGender_Male.id_question = []; demoResultsGender_Male.page_time = []; demoResultsGender_Male.resets = [];
+demoResultsGender_Other  = tableDEM_genO(tableDEM_genO.id_question == 14,:); demoResultsGender_Other = sortrows(demoResultsGender_Other, 'id'); demoResultsGender_Other.id_question = []; demoResultsGender_Other.page_time = []; demoResultsGender_Other.resets = [];
 
 %% Pre-calculated Values
 
@@ -159,8 +191,6 @@ hold on;
 scatter(x_pre_expectedColors(1), y_pre_expectedColors(1), 60, 'black', 'Filled');                     % draw GIVEN COLOR
 scatter(x_pre_expectedColors(2), y_pre_expectedColors(2), 60, 'black');                               % draw EXPECTED COLOR
 scatter(x_pre_expectedColors(3), y_pre_expectedColors(3), 60, 'black');                               % draw EXPECTED COLOR
-plot(x_pre_expectedColors, y_pre_expectedColors, '--', 'Color', 'white');
-
 
 % Draw every pair of responses.
 for i = 1 : height(laboratoryResults)                                  
@@ -600,7 +630,7 @@ hold on;
 scatter(x_pre_models(1), y_pre_models(1), 50, 'black', 'Filled');          % Draw expected response for this model
 scatter(x_values_HSV, y_values_HSV, 50, 'white');                          % Draw responses mixed in HSV   
 hold off;
-saveas(gcf, fullfile(path, 'lab_HSVresponses'), 'png');
+saveas(gcf, fullfile(path, 'online_HSVresponses'), 'png');
 
 figure('NumberTitle','off');
 cieplot();
@@ -611,7 +641,7 @@ hold on;
 scatter(x_pre_models(2), y_pre_models(2), 50, 'black', 'Filled');          % Draw expected response for this model
 scatter(x_values_LCh, y_values_LCh, 50, 'white');                          % Draw responses mixed in LCh   
 hold off;
-saveas(gcf, fullfile(path, 'lab_LChresponses'), 'png');
+saveas(gcf, fullfile(path, 'online_LChresponses'), 'png');
 
 figure('NumberTitle','off');
 cieplot();
@@ -622,7 +652,7 @@ hold on;
 scatter(x_pre_models(3), y_pre_models(3), 50, 'black', 'Filled');          % Draw expected response for this model
 scatter(x_values_CMYK, y_values_CMYK, 50, 'white');                          % Draw responses mixed in CMYK   
 hold off;
-saveas(gcf, fullfile(path, 'lab_CMYKresponses'), 'png');
+saveas(gcf, fullfile(path, 'online_CMYKresponses'), 'png');
 
 figure('NumberTitle','off');
 cieplot();
@@ -633,7 +663,7 @@ hold on;
 scatter(x_pre_models(4), y_pre_models(4), 50, 'black', 'Filled');          % Draw expected response for this model
 scatter(x_values_RGB, y_values_RGB, 50, 'white');                          % Draw responses mixed in RGB   
 hold off;
-saveas(gcf, fullfile(path, 'lab_RGBresponses'), 'png');
+saveas(gcf, fullfile(path, 'online_RGBresponses'), 'png');
 
 figure('NumberTitle','off');
 cieplot();
@@ -644,7 +674,7 @@ hold on;
 scatter(x_pre_models(5), y_pre_models(5), 50, 'black', 'Filled');          % Draw expected response for this model
 scatter(x_values_Lab, y_values_Lab, 50, 'white');                          % Draw responses mixed in Lab   
 hold off;
-saveas(gcf, fullfile(path, 'lab_Labresponses'), 'png');
+saveas(gcf, fullfile(path, 'online_Labresponses'), 'png');
 
 % Clean all the tables! -- CHANGE HERE
 x_values_HSV = []; y_values_HSV = []; x_values_LCh = []; y_values_LCh = []; x_values_CMYK = []; y_values_CMYK = []; x_values_RGB = []; y_values_RGB = []; x_values_Lab = []; y_values_Lab = [];  
@@ -868,6 +898,9 @@ centroidsTable  = table(centroid_HSV, distance_centroid_HSV, centroid_LCh, dista
 
 %% Save Tables
 
+rowNames = {'Laboratory Users';'Online Users (Regular)';'Online Users (Uncalibrated)';'Users aged Less Than 20 Years';'Users aged Between 20 and 29 Years';'Users aged Between 30 and 39 Years';'Users aged Between 40 and 49 Years';'Users aged Between 50 and 59 Years';'Users aged Above 60 Years';'Female Users';'Male Users';'Other Gender Users';};
+centroidsTable  = table(centroid_HSV, distance_centroid_HSV, centroid_LCh, distance_centroid_LCh, centroid_CMYK, distance_centroid_CMYK, centroid_RGB, distance_centroid_RGB, centroid_Lab, distance_centroid_Lab, 'RowNames', rowNames);
+
 writetable(onlineResults, '/Users/PauloGarcia/Documents/MATLAB/Results/First Study/Question 14/q14_online_regular.csv');   % Online Regular Users Results Digested
 writetable(onlineResults_dalt, '/Users/PauloGarcia/Documents/MATLAB/Results/First Study/Question 14/q14_online_dalt.csv'); % Online Daltonic Users Results Digested
 writetable(onlineResults_uncal, '/Users/PauloGarcia/Documents/MATLAB/Results/First Study/Question 14/q14_online_uncal.csv'); % Online Uncalibrated Users Results Digested
@@ -876,3 +909,13 @@ writetable(laboratoryResults, '/Users/PauloGarcia/Documents/MATLAB/Results/First
 writetable(laboratoryResults_dalt, '/Users/PauloGarcia/Documents/MATLAB/Results/First Study/Question 14/q14_lab_dalt.csv');   % Laboratory Daltonic Users Results Digested
 
 writetable(centroidsTable, '/Users/PauloGarcia/Documents/MATLAB/Results/First Study/Question 14/q14_centroids.csv', 'WriteRowNames', true);   % Centroids of all users' responses.
+
+writetable(demoResultsAge_20, '/Users/PauloGarcia/Documents/MATLAB/Results/First Study/Question 14/q14_age_20.csv', 'WriteRowNames', true);
+writetable(demoResultsAge_20_29, '/Users/PauloGarcia/Documents/MATLAB/Results/First Study/Question 14/q14_age_20_29.csv', 'WriteRowNames', true);
+writetable(demoResultsAge_30_39, '/Users/PauloGarcia/Documents/MATLAB/Results/First Study/Question 14/q14_age_30_39.csv', 'WriteRowNames', true);
+writetable(demoResultsAge_40_49, '/Users/PauloGarcia/Documents/MATLAB/Results/First Study/Question 14/q14_age_40_49.csv', 'WriteRowNames', true);
+writetable(demoResultsAge_50_59, '/Users/PauloGarcia/Documents/MATLAB/Results/First Study/Question 14/q14_age_50_59.csv', 'WriteRowNames', true);
+writetable(demoResultsAge_60, '/Users/PauloGarcia/Documents/MATLAB/Results/First Study/Question 14/q14_age_60.csv', 'WriteRowNames', true);
+writetable(demoResultsGender_Female, '/Users/PauloGarcia/Documents/MATLAB/Results/First Study/Question 14/q14_femaleGender.csv', 'WriteRowNames', true);
+writetable(demoResultsGender_Male, '/Users/PauloGarcia/Documents/MATLAB/Results/First Study/Question 14/q14_maleGender.csv', 'WriteRowNames', true);
+writetable(demoResultsGender_Other, '/Users/PauloGarcia/Documents/MATLAB/Results/First Study/Question 14/q14_otherGender.csv', 'WriteRowNames', true);

@@ -85,7 +85,7 @@ id,age,gender,num_answers,in_person,typeOfQuestion,first_color,second_color,thir
 571183866d73f,48,Female,32,no,objTwoColors,#FF0000,59,36,105,27,5,0,8
 571290e28820b,43,Female,10,no,objTwoColors,#FF0000,4,5,161,32,3,0,8
 573664e1a4a96,49,Male,18,no,objTwoColors,#FF0000,314,49,67,24,3,0,8
-5710cd289f4c3,46,Female,1,no,objTwoColors,#FF0000,,0,0,129,0,1,8
+5710cd289f4c3,46,Female,1,no,objTwoColors,#FF0000,0,0,0,129,0,1,8
 5776cc574bf84,45,Female,21,no,objTwoColors,#00FF80,179,46,372,75,5,0,9
 571183866d73f,48,Female,32,no,objTwoColors,#00FF80,55,169,89,19,5,0,9
 5711f4ec96b9c,45,Female,6,no,objTwoColors,#00FF80,48,12,289,41,1,0,9

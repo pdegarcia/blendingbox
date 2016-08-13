@@ -195,7 +195,7 @@ id,age,gender,num_answers,in_person,typeOfQuestion,first_color,second_color,thir
 5710dc0f49c60,22,Male,11,no,objTwoColors,#80FF00,0,151,797,37,3,0,3
 5713b10383207,40,Male,32,no,objTwoColors,#80FF00,181,59,146,16,4,0,3
 57366c199283c,19,Male,32,no,objTwoColors,#80FF00,59,173,245,16,3,0,3
-5710e3d7c1247,41,Male,2,no,objTwoColors,#80FF00,,0,0,78,1,2,3
+5710e3d7c1247,41,Male,2,no,objTwoColors,#80FF00,0,0,0,78,1,2,3
 5738cf3d97a58,23,Male,32,no,objTwoColors,#80FF00,117,0,164,10,4,0,3
 574297edae49c,24,Male,32,no,objTwoColors,#80FF00,96,80,239,20,4,0,3
 57113de4aed1a,21,Male,31,no,objTwoColors,#80FF00,50,171,124,9,3,0,3
@@ -1027,7 +1027,7 @@ id,age,gender,num_answers,in_person,typeOfQuestion,first_color,second_color,thir
 5710ea84d4c6f,25,Male,5,no,objTwoColors,#00FF80,123,171,219,36,2,0,15
 574297edae49c,24,Male,32,no,objTwoColors,#00FF80,159,156,92,20,4,0,15
 5740ad339507d,40,Male,32,yes,objTwoColors,#00FF9A,117,0,136,10,3,0,15
-573a0b8280839,29,Male,21,yes,objTwoColors,#00FF9A,,37,211,35,3,0,15
+573a0b8280839,29,Male,21,yes,objTwoColors,#00FF9A,0,37,211,35,3,0,15
 57113a5534205,22,Male,31,no,objTwoColors,#00FF80,53,212,649,50,4,0,15
 5711231e370f2,24,Male,32,yes,objTwoColors,#00FF80,0,145,637,40,3,0,15
 573c70dabcfe0,49,Male,32,yes,objTwoColors,#00FF9A,74,246,321,41,3,0,15
