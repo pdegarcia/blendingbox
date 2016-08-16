@@ -1,0 +1,5 @@
+id,age,gender,num_answers,in_person,typeOfQuestion,first_color,second_color,third_color,clicks,rating,distance_expectedC1C2,distance_HSV,distance_LCh,distance_CMYK,distance_RGB,distance_Lab
+57112b9e10661,64,Female,34,no,objTwoColors,#00FF80,254,54,298,3,0.77,0.33,0.36,0.1,0.23,0.22
+571165992a5c1,67,Female,32,no,objTwoColors,#00FF80,185,149,200,3,0.44,0.1,0.24,0.04,0.1,0.1
+5740b0f8e9734,62,Male,33,yes,objTwoColors,#00FF9A,156,0,345,5,0.52,0.09,0.29,0.19,0.13,0.14
+5740bda9be3dc,83,Female,32,yes,objTwoColors,#00FF9A,56,188,107,5,0.24,0.1,0.24,0.11,0.06,0.09

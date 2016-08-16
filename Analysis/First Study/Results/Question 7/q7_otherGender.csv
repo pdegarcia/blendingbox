@@ -1,0 +1,2 @@
+id,age,gender,num_answers,in_person,typeOfQuestion,first_color,second_color,third_color,clicks,rating,distance_expectedC1C2,distance_HSV,distance_LCh,distance_CMYK,distance_RGB,distance_Lab
+5745c1c07cc0c,18,Other,31,no,objTwoColors,#0000FF,226,225,582,5,0.52,0.02,0.45,0.1,0.13,0.24

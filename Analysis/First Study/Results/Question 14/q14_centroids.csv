@@ -1,4 +1,0 @@
-Row,centroid_HSV_1,centroid_HSV_2,distance_centroid_HSV,centroid_LCh_1,centroid_LCh_2,distance_centroid_LCh,centroid_CMYK_1,centroid_CMYK_2,distance_centroid_CMYK,centroid_RGB_1,centroid_RGB_2,distance_centroid_RGB,centroid_Lab_1,centroid_Lab_2,distance_centroid_Lab
-Laboratory Users,0.34,0.17,0.15,0.57,0.23,0.29,0.42,0.29,0.08,0.36,0.2,0.17,0.39,0.21,0.13
-Online Users (Regular),0.28,0.16,0.09,0.58,0.22,0.3,0.39,0.29,0.07,0.31,0.19,0.12,0.35,0.21,0.1
-Online Users (Uncalibrated),0.38,0.19,0.19,0.63,0.24,0.35,0.48,0.31,0.12,0.4,0.21,0.21,0.47,0.23,0.21

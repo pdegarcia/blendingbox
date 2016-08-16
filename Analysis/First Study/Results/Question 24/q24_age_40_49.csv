@@ -1,0 +1,12 @@
+id,age,gender,num_answers,in_person,typeOfQuestion,first_color,second_color,third_color,clicks,rating,distance_expectedC3,distance_HSV,distance_LCh,distance_CMYK,distance_RGB,distance_Lab
+57110028bc74b,48,Female,32,no,twoColorsObj,#00FFFF,#FF00FF,#7f00ff,125,3,0.16,0.16,0.09,0.1,0.01,0.1
+57112d8509632,45,Female,32,no,twoColorsObj,#00FFFF,#FF00FF,#5792ff,99,1,0.23,0.23,0.03,0.05,0.08,0.06
+571154184c9bd,47,Female,32,no,twoColorsObj,#00FFFF,#FF00FF,#FF8080,47,1,0.39,0.39,0.21,0.14,0.24,0.14
+571183866d73f,48,Female,32,no,twoColorsObj,#00FFFF,#FF00FF,#c6aeff,114,5,0.29,0.29,0.09,0.03,0.13,0.04
+571290e28820b,43,Female,10,no,twoColorsObj,#00FFFF,#FF00FF,#008080,49,2,0.33,0.33,0.09,0.09,0.17,0.1
+5713b10383207,40,Male,32,no,twoColorsObj,#00FFFF,#FF00FF,#800080,262,2,0.25,0.25,0.11,0.04,0.1,0.03
+573664e1a4a96,49,Male,18,no,twoColorsObj,#00FFFF,#FF00FF,#7f00ff,237,3,0.16,0.16,0.09,0.1,0.01,0.1
+573c70dabcfe0,49,Male,32,yes,twoColorsObj,#00FFFF,#FF00FF,#6500FF,185,4,0.15,0.15,0.1,0.12,0.02,0.12
+5740ad339507d,40,Male,32,yes,twoColorsObj,#00FFFF,#FF00FF,#978900,287,2,0.46,0.46,0.25,0.2,0.31,0.21
+5740e3f36a945,49,Female,32,yes,twoColorsObj,#00FFFF,#FF00FF,#6500FF,145,2,0.15,0.15,0.1,0.12,0.02,0.12
+5776cc574bf84,45,Female,21,no,twoColorsObj,#00FFFF,#FF00FF,#800080,230,5,0.25,0.25,0.11,0.04,0.1,0.03

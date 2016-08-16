@@ -1,0 +1,16 @@
+id,age,gender,num_answers,in_person,typeOfQuestion,first_color,second_color,third_color,clicks,rating,distance_expectedC1C2,distance_HSV,distance_LCh,distance_CMYK,distance_RGB,distance_Lab
+57112ebc85ba1,18,Female,32,no,objTwoColors,#FF8000,334,58,80,5,0.14,0.08,0.16,0.08,0.06,0.06
+5711348e42f02,19,Female,32,no,objTwoColors,#FF8000,356,65,225,4,0.03,0,0.16,0.04,0.04,0.02
+5711389736065,19,Female,8,no,objTwoColors,#FF8000,353,60,462,5,0.01,0.02,0.16,0.03,0.03,0.01
+57113a4121a89,19,Male,4,no,objTwoColors,#FF8000,355,54,241,4,0.03,0.03,0.16,0.02,0.01,0.02
+57113d4d93c81,18,Female,32,no,objTwoColors,#FF8000,1,58,68,4,0.01,0,0.16,0.03,0.02,0.01
+5711703bd85fc,18,Female,32,no,objTwoColors,#FF8000,7,57,67,5,0.02,0.01,0.16,0.03,0.03,0.01
+5734d89183dab,19,Female,29,no,objTwoColors,#FF8000,48,18,59,4,0.46,0.02,0.16,0.02,0.03,0.01
+5736048bb110b,19,Male,32,no,objTwoColors,#FF8000,28,26,60,5,0.29,0.02,0.16,0.03,0.01,0.06
+573634984323e,19,Male,32,no,objTwoColors,#FF8000,13,56,82,4,0.04,0.03,0.16,0.03,0.04,0.01
+57366c199283c,19,Male,32,no,objTwoColors,#FF8000,4,54,57,4,0.02,0.01,0.16,0.02,0.02,0.01
+57427cf6bad0c,19,Female,32,no,objTwoColors,#FF8000,45,23,27,2,0.41,0.03,0.16,0.02,0.04,0.01
+574511e99b6d9,19,Female,32,no,objTwoColors,#FF8000,355,58,367,4,0.02,0.02,0.16,0.03,0.02,0.01
+5745350dc1e22,19,Female,31,no,objTwoColors,#FF8000,10,53,52,5,0.05,0.01,0.16,0.02,0.03,0.01
+5745c1c07cc0c,18,Other,31,no,objTwoColors,#FF8000,4,46,33,4,0.06,0.03,0.16,0.02,0.02,0.04
+5745f6f039dc9,15,Male,33,no,objTwoColors,#FF8000,0,0,0,4,0.28,0.12,0.16,0.12,0.11,0.16
