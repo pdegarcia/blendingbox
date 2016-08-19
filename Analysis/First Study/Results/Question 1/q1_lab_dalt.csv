@@ -1,2 +1,2 @@
-id,typeOfQuestion,first_color,second_color,third_color,clicks,rating
-573ec4275ba17,objTwoColors,#FFFF00,55,82,223,3
+id,typeOfQuestion,first_color,second_color,third_color,clicks,rating,colors_names1,colors_names2
+573ec4275ba17,objTwoColors,#FFFF00,55,82,223,3,Yellow,LI-Green

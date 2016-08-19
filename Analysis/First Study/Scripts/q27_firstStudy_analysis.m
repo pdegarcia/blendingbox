@@ -26,8 +26,8 @@ distance_LCh = [];
 distance_Lab = [];
 distance_CMYK = [];
 distance_RGB = [];
-distance_expectedC3_green = [];
-distance_expectedC3_purple = [];
+distance_expectedC3_blue = [];
+distance_expectedC3_orange = [];
 
 profileICC      = iccread(profileICC_src);
 cformICC        = makecform('mattrc', profileICC, 'Direction', 'forward');
@@ -166,8 +166,8 @@ for i = 1 : height(laboratoryResults)
     %% Categorize Colors - Bins
     
     %% Difference between C3 and expected colors C3
-    distance_expectedC3_green = [distance_expectedC3_green ; round(pdist([[x_values(1) y_values(1)] ; [x_pre_expectedColors(3) y_pre_expectedColors(3)]]), 2)];  % [given given -C3-]
-    distance_expectedC3_purple = [distance_expectedC3_purple ; round(pdist([[x_values(1) y_values(1)] ; [x_pre_expectedColors(4) y_pre_expectedColors(4)]]), 2)];  % [given given -C3-]
+    distance_expectedC3_blue = [distance_expectedC3_blue ; round(pdist([[x_values(1) y_values(1)] ; [x_pre_expectedColors(3) y_pre_expectedColors(3)]]), 2)];  % [given given -C3-]
+    distance_expectedC3_orange = [distance_expectedC3_orange ; round(pdist([[x_values(1) y_values(1)] ; [x_pre_expectedColors(4) y_pre_expectedColors(4)]]), 2)];  % [given given -C3-]
        
     %% Difference between C3 against pre-calc values
     %%%%%% Compare-it in HSV
@@ -195,12 +195,12 @@ hold off;
 saveas(gcf, fullfile(path, 'lab_regularUsers'), 'png');
 
 % Catenate all Tables               -- CHANGE HERE
-diffs_table = table(distance_expectedC3_green, distance_expectedC3_purple, distance_HSV, distance_LCh, distance_CMYK, distance_RGB, distance_Lab);
+diffs_table = table(distance_expectedC3_blue, distance_expectedC3_orange, distance_HSV, distance_LCh, distance_CMYK, distance_RGB, distance_Lab);
 laboratoryResults = [laboratoryResults diffs_table];
 
 % Clean all the tables!
 distance_HSV = []; distance_LCh = []; distance_CMYK = []; distance_RGB = []; distance_Lab = [];
-distance_expectedC3_green = []; distance_expectedC3_purple = [];
+distance_expectedC3_blue = []; distance_expectedC3_orange = [];
 
 %% Laboratory Results - Daltonic Users
 
@@ -292,8 +292,8 @@ for i = 1 : height(onlineResults)                                  %draw every p
     %% Categorize Colors - Bins
     
     %% Difference between C3 and expected colors C3
-    distance_expectedC3_green = [distance_expectedC3_green ; round(pdist([[x_values(1) y_values(1)] ; [x_pre_expectedColors(3) y_pre_expectedColors(3)]]), 2)];  % [given given -C3-]
-    distance_expectedC3_purple = [distance_expectedC3_purple ; round(pdist([[x_values(1) y_values(1)] ; [x_pre_expectedColors(4) y_pre_expectedColors(4)]]), 2)];  % [given given -C3-]
+    distance_expectedC3_blue = [distance_expectedC3_blue ; round(pdist([[x_values(1) y_values(1)] ; [x_pre_expectedColors(3) y_pre_expectedColors(3)]]), 2)];  % [given given -C3-]
+    distance_expectedC3_orange = [distance_expectedC3_orange ; round(pdist([[x_values(1) y_values(1)] ; [x_pre_expectedColors(4) y_pre_expectedColors(4)]]), 2)];  % [given given -C3-]
         
     %% Difference between C1/C2 blended onto Color Models against pre-calc values
     %%%%%% Compare-it in HSV
@@ -320,12 +320,12 @@ hold off;
 
 saveas(gcf, fullfile(path, 'online_regularUsers'), 'png'); 
 
-diffs_table = table(distance_expectedC3_green, distance_expectedC3_purple, distance_HSV, distance_LCh, distance_CMYK, distance_RGB, distance_Lab);
+diffs_table = table(distance_expectedC3_blue, distance_expectedC3_orange, distance_HSV, distance_LCh, distance_CMYK, distance_RGB, distance_Lab);
 onlineResults = [onlineResults diffs_table];
 
 % Clean all the tables!
 distance_HSV = []; distance_LCh = []; distance_CMYK = []; distance_RGB = []; distance_Lab = [];
-distance_expectedC3_green = []; distance_expectedC3_purple = [];
+distance_expectedC3_blue = []; distance_expectedC3_orange = [];
 
 %% Online Results - Daltonic Users
 
@@ -417,8 +417,8 @@ for i = 1 : height(onlineResults_uncal)                                  %draw e
     %% Categorize Colors - Bins
     
     %% Difference between C3 and expected colors C3
-    distance_expectedC3_green = [distance_expectedC3_green ; round(pdist([[x_values(1) y_values(1)] ; [x_pre_expectedColors(3) y_pre_expectedColors(3)]]), 2)];  % [given given -C3-]
-    distance_expectedC3_purple = [distance_expectedC3_purple ; round(pdist([[x_values(1) y_values(1)] ; [x_pre_expectedColors(4) y_pre_expectedColors(4)]]), 2)];  % [given given -C3-]
+    distance_expectedC3_blue = [distance_expectedC3_blue ; round(pdist([[x_values(1) y_values(1)] ; [x_pre_expectedColors(3) y_pre_expectedColors(3)]]), 2)];  % [given given -C3-]
+    distance_expectedC3_orange = [distance_expectedC3_orange ; round(pdist([[x_values(1) y_values(1)] ; [x_pre_expectedColors(4) y_pre_expectedColors(4)]]), 2)];  % [given given -C3-]
         
     %% Difference between C3  against pre-calc values
     %%%%%% Compare-it in HSV
@@ -445,8 +445,705 @@ hold off;
 
 saveas(gcf, fullfile(path, 'online_uncalibratedUsers'), 'png'); 
 
-diffs_table = table(distance_expectedC3_green, distance_expectedC3_purple, distance_HSV, distance_LCh, distance_CMYK, distance_RGB, distance_Lab);
+diffs_table = table(distance_expectedC3_blue, distance_expectedC3_orange, distance_HSV, distance_LCh, distance_CMYK, distance_RGB, distance_Lab);
 onlineResults_uncal = [onlineResults_uncal diffs_table];
+
+% Clean all the tables!
+distance_HSV = []; distance_LCh = []; distance_CMYK = []; distance_RGB = []; distance_Lab = [];
+distance_expectedC3_blue = []; distance_expectedC3_orange = [];
+
+%% Demographic Analysis - AGE < 20
+
+figure('NumberTitle','off');
+cieplot();
+title('Question 27: Users Aged Less than 20 Years', 'FontSize', 13);                 %% -- CHANGE HERE
+xlabel('X Value');
+ylabel('Y Value');
+hold on;
+
+scatter(x_pre_expectedColors(1), y_pre_expectedColors(1), 60, 'black', 'Filled');         %draw GIVEN COLOR
+scatter(x_pre_expectedColors(2), y_pre_expectedColors(2), 60, 'black', 'Filled');         %draw GIVEN COLOR
+scatter(x_pre_expectedColors(3), y_pre_expectedColors(3), 60, 'diamond', 'black');                   %draw EXPECTED COLOR 1
+scatter(x_pre_expectedColors(4), y_pre_expectedColors(4), 60, 'diamond', 'black');                   %draw EXPECTED COLOR 2
+
+scatter(x_pre_models(1), y_pre_models(1), 50, 'diamond', 'black', 'Filled');
+text(x_pre_models(1) - 0.11, y_pre_models(1), 'HSV (1) \rightarrow');
+scatter(x_pre_models(2), y_pre_models(2), 50, 'diamond', 'black', 'Filled');
+text(x_pre_models(2) - 0.11, y_pre_models(2), 'HSV (2) \rightarrow');
+scatter(x_pre_models(3), y_pre_models(3), 50, 'diamond', 'black', 'Filled');
+text(x_pre_models(3) + 0.01, y_pre_models(3), '\leftarrow LCh');
+scatter(x_pre_models(4), y_pre_models(4), 50, 'diamond', 'black', 'Filled');
+text(x_pre_models(4) - 0.02, y_pre_models(4) - 0.02, 'CMYK');
+scatter(x_pre_models(5), y_pre_models(5), 50, 'diamond', 'black', 'Filled');
+text(x_pre_models(5) - 0.1, y_pre_models(5), 'RGB \rightarrow');
+scatter(x_pre_models(6), y_pre_models(6), 50, 'diamond', 'black', 'Filled');
+text(x_pre_models(6) - 0.02, y_pre_models(6) + 0.03, 'Lab');
+
+for i = 1 : height(demoResultsAge_20)                                  %draw every pair of responses.
+    %% Third Color - C3
+    tColor = cell2mat(demoResultsAge_20.third_color(i));       % #RRGGBB
+    r = (hex2dec(strcat(tColor(2), tColor(3)))/255);                    % RR
+    g = (hex2dec(strcat(tColor(4), tColor(5)))/255);                    % GG    
+    b = (hex2dec(strcat(tColor(6), tColor(7)))/255);                    % BB
+    tColor = applycform([r g b], cformICC);                         
+    x_aux = tColor(1)/(tColor(1) + tColor(2) + tColor(3)); 
+    y_aux = tColor(2)/(tColor(1) + tColor(2) + tColor(3)); 
+    x_values = [x_values x_aux];                                        % store coordinates X and Y
+    y_values = [y_values y_aux];
+    
+    %% Categorize Colors - Bins
+    
+    %% Difference between C3 and expected colors C3
+    distance_expectedC3_blue = [distance_expectedC3_blue ; round(pdist([[x_values(1) y_values(1)] ; [x_pre_expectedColors(3) y_pre_expectedColors(3)]]), 2)];  % [given given -C3-]
+    distance_expectedC3_orange = [distance_expectedC3_orange ; round(pdist([[x_values(1) y_values(1)] ; [x_pre_expectedColors(4) y_pre_expectedColors(4)]]), 2)];  % [given given -C3-]
+        
+    %% Difference between C1/C2 blended onto Color Models against pre-calc values
+    %%%%%% Compare-it in HSV
+    distance_HSV = [distance_HSV; round(pdist([[x_values y_values]; [x_pre_models(1) y_pre_models(1)]]),2)];
+    
+    %%%%%% Compare-it in CIE-LCh
+    distance_LCh = [distance_LCh; round(pdist([[x_values y_values]; [x_pre_models(2) y_pre_models(2)]]), 2)];
+    
+    %%%%%% Compare-it in CMYK
+    distance_CMYK = [distance_CMYK; round(pdist([[x_values y_values]; [x_pre_models(3) y_pre_models(3)]]), 2)];
+    
+    %%%%%% Compare-it in RGB
+    distance_RGB = [distance_RGB; round(pdist([[x_values y_values]; [x_pre_models(4) y_pre_models(4)]]), 2)];
+    
+    %%%%%% Blend-it in CIE-Lab
+    distance_Lab = [distance_Lab; round(pdist([[x_values y_values]; [x_pre_models(5) y_pre_models(5)]]), 2)];
+
+    scatter(x_values, y_values, 50, 'white');                         %draw two responses
+    plot(x_values, y_values, 'Color', 'black');                     %draw relations between answers
+    x_values = [];                                              %clean the arrays
+    y_values = [];
+end
+hold off;
+
+saveas(gcf, fullfile(path, 'demographic_age20'), 'png'); 
+
+diffs_table = table(distance_expectedC3_blue, distance_expectedC3_orange, distance_HSV, distance_LCh, distance_CMYK, distance_RGB, distance_Lab);
+demoResultsAge_20 = [demoResultsAge_20 diffs_table];
+
+% Clean all the tables!
+distance_HSV = []; distance_LCh = []; distance_CMYK = []; distance_RGB = []; distance_Lab = [];
+distance_expectedC3_blue = []; distance_expectedC3_orange = [];
+
+%% Demographic Analysis - AGE 20 - 29
+
+figure('NumberTitle','off');
+cieplot();
+title('Question 27: Users Aged Between 20 and 29 Years', 'FontSize', 13);                 %% -- CHANGE HERE
+xlabel('X Value');
+ylabel('Y Value');
+hold on;
+
+scatter(x_pre_expectedColors(1), y_pre_expectedColors(1), 60, 'black', 'Filled');         %draw GIVEN COLOR
+scatter(x_pre_expectedColors(2), y_pre_expectedColors(2), 60, 'black', 'Filled');         %draw GIVEN COLOR
+scatter(x_pre_expectedColors(3), y_pre_expectedColors(3), 60, 'diamond', 'black');                   %draw EXPECTED COLOR 1
+scatter(x_pre_expectedColors(4), y_pre_expectedColors(4), 60, 'diamond', 'black');                   %draw EXPECTED COLOR 2
+
+scatter(x_pre_models(1), y_pre_models(1), 50, 'diamond', 'black', 'Filled');
+text(x_pre_models(1) - 0.11, y_pre_models(1), 'HSV (1) \rightarrow');
+scatter(x_pre_models(2), y_pre_models(2), 50, 'diamond', 'black', 'Filled');
+text(x_pre_models(2) - 0.11, y_pre_models(2), 'HSV (2) \rightarrow');
+scatter(x_pre_models(3), y_pre_models(3), 50, 'diamond', 'black', 'Filled');
+text(x_pre_models(3) + 0.01, y_pre_models(3), '\leftarrow LCh');
+scatter(x_pre_models(4), y_pre_models(4), 50, 'diamond', 'black', 'Filled');
+text(x_pre_models(4) - 0.02, y_pre_models(4) - 0.02, 'CMYK');
+scatter(x_pre_models(5), y_pre_models(5), 50, 'diamond', 'black', 'Filled');
+text(x_pre_models(5) - 0.1, y_pre_models(5), 'RGB \rightarrow');
+scatter(x_pre_models(6), y_pre_models(6), 50, 'diamond', 'black', 'Filled');
+text(x_pre_models(6) - 0.02, y_pre_models(6) + 0.03, 'Lab');
+
+for i = 1 : height(demoResultsAge_20_29)                                  %draw every pair of responses.
+    %% Third Color - C3
+    tColor = cell2mat(demoResultsAge_20_29.third_color(i));       % #RRGGBB
+    r = (hex2dec(strcat(tColor(2), tColor(3)))/255);                    % RR
+    g = (hex2dec(strcat(tColor(4), tColor(5)))/255);                    % GG    
+    b = (hex2dec(strcat(tColor(6), tColor(7)))/255);                    % BB
+    tColor = applycform([r g b], cformICC);                         
+    x_aux = tColor(1)/(tColor(1) + tColor(2) + tColor(3)); 
+    y_aux = tColor(2)/(tColor(1) + tColor(2) + tColor(3)); 
+    x_values = [x_values x_aux];                                        % store coordinates X and Y
+    y_values = [y_values y_aux];
+    
+    %% Categorize Colors - Bins
+    
+    %% Difference between C3 and expected colors C3
+    distance_expectedC3_blue = [distance_expectedC3_blue ; round(pdist([[x_values(1) y_values(1)] ; [x_pre_expectedColors(3) y_pre_expectedColors(3)]]), 2)];  % [given given -C3-]
+    distance_expectedC3_orange = [distance_expectedC3_orange ; round(pdist([[x_values(1) y_values(1)] ; [x_pre_expectedColors(4) y_pre_expectedColors(4)]]), 2)];  % [given given -C3-]
+        
+    %% Difference between C1/C2 blended onto Color Models against pre-calc values
+    %%%%%% Compare-it in HSV
+    distance_HSV = [distance_HSV; round(pdist([[x_values y_values]; [x_pre_models(1) y_pre_models(1)]]),2)];
+    
+    %%%%%% Compare-it in CIE-LCh
+    distance_LCh = [distance_LCh; round(pdist([[x_values y_values]; [x_pre_models(2) y_pre_models(2)]]), 2)];
+    
+    %%%%%% Compare-it in CMYK
+    distance_CMYK = [distance_CMYK; round(pdist([[x_values y_values]; [x_pre_models(3) y_pre_models(3)]]), 2)];
+    
+    %%%%%% Compare-it in RGB
+    distance_RGB = [distance_RGB; round(pdist([[x_values y_values]; [x_pre_models(4) y_pre_models(4)]]), 2)];
+    
+    %%%%%% Blend-it in CIE-Lab
+    distance_Lab = [distance_Lab; round(pdist([[x_values y_values]; [x_pre_models(5) y_pre_models(5)]]), 2)];
+
+    scatter(x_values, y_values, 50, 'white');                         %draw two responses
+    plot(x_values, y_values, 'Color', 'black');                     %draw relations between answers
+    x_values = [];                                              %clean the arrays
+    y_values = [];
+end
+hold off;
+
+saveas(gcf, fullfile(path, 'demographic_age20_29'), 'png'); 
+
+diffs_table = table(distance_expectedC3_blue, distance_expectedC3_orange, distance_HSV, distance_LCh, distance_CMYK, distance_RGB, distance_Lab);
+demoResultsAge_20_29 = [demoResultsAge_20_29 diffs_table];
+
+% Clean all the tables!
+distance_HSV = []; distance_LCh = []; distance_CMYK = []; distance_RGB = []; distance_Lab = [];
+distance_expectedC3_blue = []; distance_expectedC3_orange = [];
+
+%% Demographic Analysis - AGE 30 - 39
+
+figure('NumberTitle','off');
+cieplot();
+title('Question 27: Users Aged Between 30 and 39 Years', 'FontSize', 13);                 %% -- CHANGE HERE
+xlabel('X Value');
+ylabel('Y Value');
+hold on;
+
+scatter(x_pre_expectedColors(1), y_pre_expectedColors(1), 60, 'black', 'Filled');         %draw GIVEN COLOR
+scatter(x_pre_expectedColors(2), y_pre_expectedColors(2), 60, 'black', 'Filled');         %draw GIVEN COLOR
+scatter(x_pre_expectedColors(3), y_pre_expectedColors(3), 60, 'diamond', 'black');                   %draw EXPECTED COLOR 1
+scatter(x_pre_expectedColors(4), y_pre_expectedColors(4), 60, 'diamond', 'black');                   %draw EXPECTED COLOR 2
+
+scatter(x_pre_models(1), y_pre_models(1), 50, 'diamond', 'black', 'Filled');
+text(x_pre_models(1) - 0.11, y_pre_models(1), 'HSV (1) \rightarrow');
+scatter(x_pre_models(2), y_pre_models(2), 50, 'diamond', 'black', 'Filled');
+text(x_pre_models(2) - 0.11, y_pre_models(2), 'HSV (2) \rightarrow');
+scatter(x_pre_models(3), y_pre_models(3), 50, 'diamond', 'black', 'Filled');
+text(x_pre_models(3) + 0.01, y_pre_models(3), '\leftarrow LCh');
+scatter(x_pre_models(4), y_pre_models(4), 50, 'diamond', 'black', 'Filled');
+text(x_pre_models(4) - 0.02, y_pre_models(4) - 0.02, 'CMYK');
+scatter(x_pre_models(5), y_pre_models(5), 50, 'diamond', 'black', 'Filled');
+text(x_pre_models(5) - 0.1, y_pre_models(5), 'RGB \rightarrow');
+scatter(x_pre_models(6), y_pre_models(6), 50, 'diamond', 'black', 'Filled');
+text(x_pre_models(6) - 0.02, y_pre_models(6) + 0.03, 'Lab');
+
+for i = 1 : height(demoResultsAge_30_39)                                  %draw every pair of responses.
+    %% Third Color - C3
+    tColor = cell2mat(demoResultsAge_30_39.third_color(i));       % #RRGGBB
+    r = (hex2dec(strcat(tColor(2), tColor(3)))/255);                    % RR
+    g = (hex2dec(strcat(tColor(4), tColor(5)))/255);                    % GG    
+    b = (hex2dec(strcat(tColor(6), tColor(7)))/255);                    % BB
+    tColor = applycform([r g b], cformICC);                         
+    x_aux = tColor(1)/(tColor(1) + tColor(2) + tColor(3)); 
+    y_aux = tColor(2)/(tColor(1) + tColor(2) + tColor(3)); 
+    x_values = [x_values x_aux];                                        % store coordinates X and Y
+    y_values = [y_values y_aux];
+    
+    %% Categorize Colors - Bins
+    
+    %% Difference between C3 and expected colors C3
+    distance_expectedC3_blue = [distance_expectedC3_blue ; round(pdist([[x_values(1) y_values(1)] ; [x_pre_expectedColors(3) y_pre_expectedColors(3)]]), 2)];  % [given given -C3-]
+    distance_expectedC3_orange = [distance_expectedC3_orange ; round(pdist([[x_values(1) y_values(1)] ; [x_pre_expectedColors(4) y_pre_expectedColors(4)]]), 2)];  % [given given -C3-]
+        
+    %% Difference between C1/C2 blended onto Color Models against pre-calc values
+    %%%%%% Compare-it in HSV
+    distance_HSV = [distance_HSV; round(pdist([[x_values y_values]; [x_pre_models(1) y_pre_models(1)]]),2)];
+    
+    %%%%%% Compare-it in CIE-LCh
+    distance_LCh = [distance_LCh; round(pdist([[x_values y_values]; [x_pre_models(2) y_pre_models(2)]]), 2)];
+    
+    %%%%%% Compare-it in CMYK
+    distance_CMYK = [distance_CMYK; round(pdist([[x_values y_values]; [x_pre_models(3) y_pre_models(3)]]), 2)];
+    
+    %%%%%% Compare-it in RGB
+    distance_RGB = [distance_RGB; round(pdist([[x_values y_values]; [x_pre_models(4) y_pre_models(4)]]), 2)];
+    
+    %%%%%% Blend-it in CIE-Lab
+    distance_Lab = [distance_Lab; round(pdist([[x_values y_values]; [x_pre_models(5) y_pre_models(5)]]), 2)];
+
+    scatter(x_values, y_values, 50, 'white');                         %draw two responses
+    plot(x_values, y_values, 'Color', 'black');                     %draw relations between answers
+    x_values = [];                                              %clean the arrays
+    y_values = [];
+end
+hold off;
+
+saveas(gcf, fullfile(path, 'demographic_age30_39'), 'png'); 
+
+diffs_table = table(distance_expectedC3_blue, distance_expectedC3_orange, distance_HSV, distance_LCh, distance_CMYK, distance_RGB, distance_Lab);
+demoResultsAge_30_39 = [demoResultsAge_30_39 diffs_table];
+
+% Clean all the tables!
+distance_HSV = []; distance_LCh = []; distance_CMYK = []; distance_RGB = []; distance_Lab = [];
+distance_expectedC3_blue = []; distance_expectedC3_orange = [];
+
+%% Demographic Analysis - AGE 40 - 49
+
+figure('NumberTitle','off');
+cieplot();
+title('Question 27: Users Aged Between 40 and 49 Years', 'FontSize', 13);                 %% -- CHANGE HERE
+xlabel('X Value');
+ylabel('Y Value');
+hold on;
+
+scatter(x_pre_expectedColors(1), y_pre_expectedColors(1), 60, 'black', 'Filled');         %draw GIVEN COLOR
+scatter(x_pre_expectedColors(2), y_pre_expectedColors(2), 60, 'black', 'Filled');         %draw GIVEN COLOR
+scatter(x_pre_expectedColors(3), y_pre_expectedColors(3), 60, 'diamond', 'black');                   %draw EXPECTED COLOR 1
+scatter(x_pre_expectedColors(4), y_pre_expectedColors(4), 60, 'diamond', 'black');                   %draw EXPECTED COLOR 2
+
+scatter(x_pre_models(1), y_pre_models(1), 50, 'diamond', 'black', 'Filled');
+text(x_pre_models(1) - 0.11, y_pre_models(1), 'HSV (1) \rightarrow');
+scatter(x_pre_models(2), y_pre_models(2), 50, 'diamond', 'black', 'Filled');
+text(x_pre_models(2) - 0.11, y_pre_models(2), 'HSV (2) \rightarrow');
+scatter(x_pre_models(3), y_pre_models(3), 50, 'diamond', 'black', 'Filled');
+text(x_pre_models(3) + 0.01, y_pre_models(3), '\leftarrow LCh');
+scatter(x_pre_models(4), y_pre_models(4), 50, 'diamond', 'black', 'Filled');
+text(x_pre_models(4) - 0.02, y_pre_models(4) - 0.02, 'CMYK');
+scatter(x_pre_models(5), y_pre_models(5), 50, 'diamond', 'black', 'Filled');
+text(x_pre_models(5) - 0.1, y_pre_models(5), 'RGB \rightarrow');
+scatter(x_pre_models(6), y_pre_models(6), 50, 'diamond', 'black', 'Filled');
+text(x_pre_models(6) - 0.02, y_pre_models(6) + 0.03, 'Lab');
+
+for i = 1 : height(demoResultsAge_40_49)                                  %draw every pair of responses.
+    %% Third Color - C3
+    tColor = cell2mat(demoResultsAge_40_49.third_color(i));       % #RRGGBB
+    r = (hex2dec(strcat(tColor(2), tColor(3)))/255);                    % RR
+    g = (hex2dec(strcat(tColor(4), tColor(5)))/255);                    % GG    
+    b = (hex2dec(strcat(tColor(6), tColor(7)))/255);                    % BB
+    tColor = applycform([r g b], cformICC);                         
+    x_aux = tColor(1)/(tColor(1) + tColor(2) + tColor(3)); 
+    y_aux = tColor(2)/(tColor(1) + tColor(2) + tColor(3)); 
+    x_values = [x_values x_aux];                                        % store coordinates X and Y
+    y_values = [y_values y_aux];
+    
+    %% Categorize Colors - Bins
+    
+    %% Difference between C3 and expected colors C3
+    distance_expectedC3_blue = [distance_expectedC3_blue ; round(pdist([[x_values(1) y_values(1)] ; [x_pre_expectedColors(3) y_pre_expectedColors(3)]]), 2)];  % [given given -C3-]
+    distance_expectedC3_orange = [distance_expectedC3_orange ; round(pdist([[x_values(1) y_values(1)] ; [x_pre_expectedColors(4) y_pre_expectedColors(4)]]), 2)];  % [given given -C3-]
+        
+    %% Difference between C1/C2 blended onto Color Models against pre-calc values
+    %%%%%% Compare-it in HSV
+    distance_HSV = [distance_HSV; round(pdist([[x_values y_values]; [x_pre_models(1) y_pre_models(1)]]),2)];
+    
+    %%%%%% Compare-it in CIE-LCh
+    distance_LCh = [distance_LCh; round(pdist([[x_values y_values]; [x_pre_models(2) y_pre_models(2)]]), 2)];
+    
+    %%%%%% Compare-it in CMYK
+    distance_CMYK = [distance_CMYK; round(pdist([[x_values y_values]; [x_pre_models(3) y_pre_models(3)]]), 2)];
+    
+    %%%%%% Compare-it in RGB
+    distance_RGB = [distance_RGB; round(pdist([[x_values y_values]; [x_pre_models(4) y_pre_models(4)]]), 2)];
+    
+    %%%%%% Blend-it in CIE-Lab
+    distance_Lab = [distance_Lab; round(pdist([[x_values y_values]; [x_pre_models(5) y_pre_models(5)]]), 2)];
+
+    scatter(x_values, y_values, 50, 'white');                         %draw two responses
+    plot(x_values, y_values, 'Color', 'black');                     %draw relations between answers
+    x_values = [];                                              %clean the arrays
+    y_values = [];
+end
+hold off;
+
+saveas(gcf, fullfile(path, 'demographic_age40_49'), 'png'); 
+
+diffs_table = table(distance_expectedC3_blue, distance_expectedC3_orange, distance_HSV, distance_LCh, distance_CMYK, distance_RGB, distance_Lab);
+demoResultsAge_40_49 = [demoResultsAge_40_49 diffs_table];
+
+% Clean all the tables!
+distance_HSV = []; distance_LCh = []; distance_CMYK = []; distance_RGB = []; distance_Lab = [];
+distance_expectedC3_blue = []; distance_expectedC3_orange = [];
+
+%% Demographic Analysis - AGE 50 - 59
+
+figure('NumberTitle','off');
+cieplot();
+title('Question 27: Users Aged Between 50 and 59 Years', 'FontSize', 13);                 %% -- CHANGE HERE
+xlabel('X Value');
+ylabel('Y Value');
+hold on;
+
+scatter(x_pre_expectedColors(1), y_pre_expectedColors(1), 60, 'black', 'Filled');         %draw GIVEN COLOR
+scatter(x_pre_expectedColors(2), y_pre_expectedColors(2), 60, 'black', 'Filled');         %draw GIVEN COLOR
+scatter(x_pre_expectedColors(3), y_pre_expectedColors(3), 60, 'diamond', 'black');                   %draw EXPECTED COLOR 1
+scatter(x_pre_expectedColors(4), y_pre_expectedColors(4), 60, 'diamond', 'black');                   %draw EXPECTED COLOR 2
+
+scatter(x_pre_models(1), y_pre_models(1), 50, 'diamond', 'black', 'Filled');
+text(x_pre_models(1) - 0.11, y_pre_models(1), 'HSV (1) \rightarrow');
+scatter(x_pre_models(2), y_pre_models(2), 50, 'diamond', 'black', 'Filled');
+text(x_pre_models(2) - 0.11, y_pre_models(2), 'HSV (2) \rightarrow');
+scatter(x_pre_models(3), y_pre_models(3), 50, 'diamond', 'black', 'Filled');
+text(x_pre_models(3) + 0.01, y_pre_models(3), '\leftarrow LCh');
+scatter(x_pre_models(4), y_pre_models(4), 50, 'diamond', 'black', 'Filled');
+text(x_pre_models(4) - 0.02, y_pre_models(4) - 0.02, 'CMYK');
+scatter(x_pre_models(5), y_pre_models(5), 50, 'diamond', 'black', 'Filled');
+text(x_pre_models(5) - 0.1, y_pre_models(5), 'RGB \rightarrow');
+scatter(x_pre_models(6), y_pre_models(6), 50, 'diamond', 'black', 'Filled');
+text(x_pre_models(6) - 0.02, y_pre_models(6) + 0.03, 'Lab');
+
+for i = 1 : height(demoResultsAge_50_59)                                  %draw every pair of responses.
+    %% Third Color - C3
+    tColor = cell2mat(demoResultsAge_50_59.third_color(i));       % #RRGGBB
+    r = (hex2dec(strcat(tColor(2), tColor(3)))/255);                    % RR
+    g = (hex2dec(strcat(tColor(4), tColor(5)))/255);                    % GG    
+    b = (hex2dec(strcat(tColor(6), tColor(7)))/255);                    % BB
+    tColor = applycform([r g b], cformICC);                         
+    x_aux = tColor(1)/(tColor(1) + tColor(2) + tColor(3)); 
+    y_aux = tColor(2)/(tColor(1) + tColor(2) + tColor(3)); 
+    x_values = [x_values x_aux];                                        % store coordinates X and Y
+    y_values = [y_values y_aux];
+    
+    %% Categorize Colors - Bins
+    
+    %% Difference between C3 and expected colors C3
+    distance_expectedC3_blue = [distance_expectedC3_blue ; round(pdist([[x_values(1) y_values(1)] ; [x_pre_expectedColors(3) y_pre_expectedColors(3)]]), 2)];  % [given given -C3-]
+    distance_expectedC3_orange = [distance_expectedC3_orange ; round(pdist([[x_values(1) y_values(1)] ; [x_pre_expectedColors(4) y_pre_expectedColors(4)]]), 2)];  % [given given -C3-]
+        
+    %% Difference between C1/C2 blended onto Color Models against pre-calc values
+    %%%%%% Compare-it in HSV
+    distance_HSV = [distance_HSV; round(pdist([[x_values y_values]; [x_pre_models(1) y_pre_models(1)]]),2)];
+    
+    %%%%%% Compare-it in CIE-LCh
+    distance_LCh = [distance_LCh; round(pdist([[x_values y_values]; [x_pre_models(2) y_pre_models(2)]]), 2)];
+    
+    %%%%%% Compare-it in CMYK
+    distance_CMYK = [distance_CMYK; round(pdist([[x_values y_values]; [x_pre_models(3) y_pre_models(3)]]), 2)];
+    
+    %%%%%% Compare-it in RGB
+    distance_RGB = [distance_RGB; round(pdist([[x_values y_values]; [x_pre_models(4) y_pre_models(4)]]), 2)];
+    
+    %%%%%% Blend-it in CIE-Lab
+    distance_Lab = [distance_Lab; round(pdist([[x_values y_values]; [x_pre_models(5) y_pre_models(5)]]), 2)];
+
+    scatter(x_values, y_values, 50, 'white');                         %draw two responses
+    plot(x_values, y_values, 'Color', 'black');                     %draw relations between answers
+    x_values = [];                                              %clean the arrays
+    y_values = [];
+end
+hold off;
+
+saveas(gcf, fullfile(path, 'demographic_age50_59'), 'png'); 
+
+diffs_table = table(distance_expectedC3_blue, distance_expectedC3_orange, distance_HSV, distance_LCh, distance_CMYK, distance_RGB, distance_Lab);
+demoResultsAge_50_59 = [demoResultsAge_50_59 diffs_table];
+
+% Clean all the tables!
+distance_HSV = []; distance_LCh = []; distance_CMYK = []; distance_RGB = []; distance_Lab = [];
+distance_expectedC3_blue = []; distance_expectedC3_orange = [];
+
+%% Demographic Analysis - AGE >= 60
+
+figure('NumberTitle','off');
+cieplot();
+title('Question 27: Users Aged Over 60 Years', 'FontSize', 13);                 %% -- CHANGE HERE
+xlabel('X Value');
+ylabel('Y Value');
+hold on;
+
+scatter(x_pre_expectedColors(1), y_pre_expectedColors(1), 60, 'black', 'Filled');         %draw GIVEN COLOR
+scatter(x_pre_expectedColors(2), y_pre_expectedColors(2), 60, 'black', 'Filled');         %draw GIVEN COLOR
+scatter(x_pre_expectedColors(3), y_pre_expectedColors(3), 60, 'diamond', 'black');                   %draw EXPECTED COLOR 1
+scatter(x_pre_expectedColors(4), y_pre_expectedColors(4), 60, 'diamond', 'black');                   %draw EXPECTED COLOR 2
+
+scatter(x_pre_models(1), y_pre_models(1), 50, 'diamond', 'black', 'Filled');
+text(x_pre_models(1) - 0.11, y_pre_models(1), 'HSV (1) \rightarrow');
+scatter(x_pre_models(2), y_pre_models(2), 50, 'diamond', 'black', 'Filled');
+text(x_pre_models(2) - 0.11, y_pre_models(2), 'HSV (2) \rightarrow');
+scatter(x_pre_models(3), y_pre_models(3), 50, 'diamond', 'black', 'Filled');
+text(x_pre_models(3) + 0.01, y_pre_models(3), '\leftarrow LCh');
+scatter(x_pre_models(4), y_pre_models(4), 50, 'diamond', 'black', 'Filled');
+text(x_pre_models(4) - 0.02, y_pre_models(4) - 0.02, 'CMYK');
+scatter(x_pre_models(5), y_pre_models(5), 50, 'diamond', 'black', 'Filled');
+text(x_pre_models(5) - 0.1, y_pre_models(5), 'RGB \rightarrow');
+scatter(x_pre_models(6), y_pre_models(6), 50, 'diamond', 'black', 'Filled');
+text(x_pre_models(6) - 0.02, y_pre_models(6) + 0.03, 'Lab');
+
+for i = 1 : height(demoResultsAge_60)                                  %draw every pair of responses.
+    %% Third Color - C3
+    tColor = cell2mat(demoResultsAge_60.third_color(i));       % #RRGGBB
+    r = (hex2dec(strcat(tColor(2), tColor(3)))/255);                    % RR
+    g = (hex2dec(strcat(tColor(4), tColor(5)))/255);                    % GG    
+    b = (hex2dec(strcat(tColor(6), tColor(7)))/255);                    % BB
+    tColor = applycform([r g b], cformICC);                         
+    x_aux = tColor(1)/(tColor(1) + tColor(2) + tColor(3)); 
+    y_aux = tColor(2)/(tColor(1) + tColor(2) + tColor(3)); 
+    x_values = [x_values x_aux];                                        % store coordinates X and Y
+    y_values = [y_values y_aux];
+    
+    %% Categorize Colors - Bins
+    
+    %% Difference between C3 and expected colors C3
+    distance_expectedC3_blue = [distance_expectedC3_blue ; round(pdist([[x_values(1) y_values(1)] ; [x_pre_expectedColors(3) y_pre_expectedColors(3)]]), 2)];  % [given given -C3-]
+    distance_expectedC3_orange = [distance_expectedC3_orange ; round(pdist([[x_values(1) y_values(1)] ; [x_pre_expectedColors(4) y_pre_expectedColors(4)]]), 2)];  % [given given -C3-]
+        
+    %% Difference between C1/C2 blended onto Color Models against pre-calc values
+    %%%%%% Compare-it in HSV
+    distance_HSV = [distance_HSV; round(pdist([[x_values y_values]; [x_pre_models(1) y_pre_models(1)]]),2)];
+    
+    %%%%%% Compare-it in CIE-LCh
+    distance_LCh = [distance_LCh; round(pdist([[x_values y_values]; [x_pre_models(2) y_pre_models(2)]]), 2)];
+    
+    %%%%%% Compare-it in CMYK
+    distance_CMYK = [distance_CMYK; round(pdist([[x_values y_values]; [x_pre_models(3) y_pre_models(3)]]), 2)];
+    
+    %%%%%% Compare-it in RGB
+    distance_RGB = [distance_RGB; round(pdist([[x_values y_values]; [x_pre_models(4) y_pre_models(4)]]), 2)];
+    
+    %%%%%% Blend-it in CIE-Lab
+    distance_Lab = [distance_Lab; round(pdist([[x_values y_values]; [x_pre_models(5) y_pre_models(5)]]), 2)];
+
+    scatter(x_values, y_values, 50, 'white');                         %draw two responses
+    plot(x_values, y_values, 'Color', 'black');                     %draw relations between answers
+    x_values = [];                                              %clean the arrays
+    y_values = [];
+end
+hold off;
+
+saveas(gcf, fullfile(path, 'demographic_age60'), 'png'); 
+
+diffs_table = table(distance_expectedC3_blue, distance_expectedC3_orange, distance_HSV, distance_LCh, distance_CMYK, distance_RGB, distance_Lab);
+demoResultsAge_60 = [demoResultsAge_60 diffs_table];
+
+% Clean all the tables!
+distance_HSV = []; distance_LCh = []; distance_CMYK = []; distance_RGB = []; distance_Lab = [];
+distance_expectedC3_blue = []; distance_expectedC3_orange = [];
+
+%% Demographic Analysis - GENDER Female
+
+figure('NumberTitle','off');
+cieplot();
+title('Question 27: Female Users', 'FontSize', 13);                 %% -- CHANGE HERE
+xlabel('X Value');
+ylabel('Y Value');
+hold on;
+
+scatter(x_pre_expectedColors(1), y_pre_expectedColors(1), 60, 'black', 'Filled');         %draw GIVEN COLOR
+scatter(x_pre_expectedColors(2), y_pre_expectedColors(2), 60, 'black', 'Filled');         %draw GIVEN COLOR
+scatter(x_pre_expectedColors(3), y_pre_expectedColors(3), 60, 'diamond', 'black');                   %draw EXPECTED COLOR 1
+scatter(x_pre_expectedColors(4), y_pre_expectedColors(4), 60, 'diamond', 'black');                   %draw EXPECTED COLOR 2
+
+scatter(x_pre_models(1), y_pre_models(1), 50, 'diamond', 'black', 'Filled');
+text(x_pre_models(1) - 0.11, y_pre_models(1), 'HSV (1) \rightarrow');
+scatter(x_pre_models(2), y_pre_models(2), 50, 'diamond', 'black', 'Filled');
+text(x_pre_models(2) - 0.11, y_pre_models(2), 'HSV (2) \rightarrow');
+scatter(x_pre_models(3), y_pre_models(3), 50, 'diamond', 'black', 'Filled');
+text(x_pre_models(3) + 0.01, y_pre_models(3), '\leftarrow LCh');
+scatter(x_pre_models(4), y_pre_models(4), 50, 'diamond', 'black', 'Filled');
+text(x_pre_models(4) - 0.02, y_pre_models(4) - 0.02, 'CMYK');
+scatter(x_pre_models(5), y_pre_models(5), 50, 'diamond', 'black', 'Filled');
+text(x_pre_models(5) - 0.1, y_pre_models(5), 'RGB \rightarrow');
+scatter(x_pre_models(6), y_pre_models(6), 50, 'diamond', 'black', 'Filled');
+text(x_pre_models(6) - 0.02, y_pre_models(6) + 0.03, 'Lab');
+
+for i = 1 : height(demoResultsGender_Female)                                  %draw every pair of responses.
+    %% Third Color - C3
+    tColor = cell2mat(demoResultsGender_Female.third_color(i));       % #RRGGBB
+    r = (hex2dec(strcat(tColor(2), tColor(3)))/255);                    % RR
+    g = (hex2dec(strcat(tColor(4), tColor(5)))/255);                    % GG    
+    b = (hex2dec(strcat(tColor(6), tColor(7)))/255);                    % BB
+    tColor = applycform([r g b], cformICC);                         
+    x_aux = tColor(1)/(tColor(1) + tColor(2) + tColor(3)); 
+    y_aux = tColor(2)/(tColor(1) + tColor(2) + tColor(3)); 
+    x_values = [x_values x_aux];                                        % store coordinates X and Y
+    y_values = [y_values y_aux];
+    
+    %% Categorize Colors - Bins
+    
+    %% Difference between C3 and expected colors C3
+    distance_expectedC3_blue = [distance_expectedC3_blue ; round(pdist([[x_values(1) y_values(1)] ; [x_pre_expectedColors(3) y_pre_expectedColors(3)]]), 2)];  % [given given -C3-]
+    distance_expectedC3_orange = [distance_expectedC3_orange ; round(pdist([[x_values(1) y_values(1)] ; [x_pre_expectedColors(4) y_pre_expectedColors(4)]]), 2)];  % [given given -C3-]
+        
+    %% Difference between C1/C2 blended onto Color Models against pre-calc values
+    %%%%%% Compare-it in HSV
+    distance_HSV = [distance_HSV; round(pdist([[x_values y_values]; [x_pre_models(1) y_pre_models(1)]]),2)];
+    
+    %%%%%% Compare-it in CIE-LCh
+    distance_LCh = [distance_LCh; round(pdist([[x_values y_values]; [x_pre_models(2) y_pre_models(2)]]), 2)];
+    
+    %%%%%% Compare-it in CMYK
+    distance_CMYK = [distance_CMYK; round(pdist([[x_values y_values]; [x_pre_models(3) y_pre_models(3)]]), 2)];
+    
+    %%%%%% Compare-it in RGB
+    distance_RGB = [distance_RGB; round(pdist([[x_values y_values]; [x_pre_models(4) y_pre_models(4)]]), 2)];
+    
+    %%%%%% Blend-it in CIE-Lab
+    distance_Lab = [distance_Lab; round(pdist([[x_values y_values]; [x_pre_models(5) y_pre_models(5)]]), 2)];
+
+    scatter(x_values, y_values, 50, 'white');                         %draw two responses
+    plot(x_values, y_values, 'Color', 'black');                     %draw relations between answers
+    x_values = [];                                              %clean the arrays
+    y_values = [];
+end
+hold off;
+
+saveas(gcf, fullfile(path, 'demographic_genderFemale'), 'png'); 
+
+diffs_table = table(distance_expectedC3_blue, distance_expectedC3_orange, distance_HSV, distance_LCh, distance_CMYK, distance_RGB, distance_Lab);
+demoResultsGender_Female = [demoResultsGender_Female diffs_table];
+
+% Clean all the tables!
+distance_HSV = []; distance_LCh = []; distance_CMYK = []; distance_RGB = []; distance_Lab = [];
+distance_expectedC3_blue = []; distance_expectedC3_orange = [];
+
+%% Demographic Analysis - GENDER Male
+
+figure('NumberTitle','off');
+cieplot();
+title('Question 27: Male Users', 'FontSize', 13);                 %% -- CHANGE HERE
+xlabel('X Value');
+ylabel('Y Value');
+hold on;
+
+scatter(x_pre_expectedColors(1), y_pre_expectedColors(1), 60, 'black', 'Filled');         %draw GIVEN COLOR
+scatter(x_pre_expectedColors(2), y_pre_expectedColors(2), 60, 'black', 'Filled');         %draw GIVEN COLOR
+scatter(x_pre_expectedColors(3), y_pre_expectedColors(3), 60, 'diamond', 'black');                   %draw EXPECTED COLOR 1
+scatter(x_pre_expectedColors(4), y_pre_expectedColors(4), 60, 'diamond', 'black');                   %draw EXPECTED COLOR 2
+
+scatter(x_pre_models(1), y_pre_models(1), 50, 'diamond', 'black', 'Filled');
+text(x_pre_models(1) - 0.11, y_pre_models(1), 'HSV (1) \rightarrow');
+scatter(x_pre_models(2), y_pre_models(2), 50, 'diamond', 'black', 'Filled');
+text(x_pre_models(2) - 0.11, y_pre_models(2), 'HSV (2) \rightarrow');
+scatter(x_pre_models(3), y_pre_models(3), 50, 'diamond', 'black', 'Filled');
+text(x_pre_models(3) + 0.01, y_pre_models(3), '\leftarrow LCh');
+scatter(x_pre_models(4), y_pre_models(4), 50, 'diamond', 'black', 'Filled');
+text(x_pre_models(4) - 0.02, y_pre_models(4) - 0.02, 'CMYK');
+scatter(x_pre_models(5), y_pre_models(5), 50, 'diamond', 'black', 'Filled');
+text(x_pre_models(5) - 0.1, y_pre_models(5), 'RGB \rightarrow');
+scatter(x_pre_models(6), y_pre_models(6), 50, 'diamond', 'black', 'Filled');
+text(x_pre_models(6) - 0.02, y_pre_models(6) + 0.03, 'Lab');
+
+for i = 1 : height(demoResultsGender_Male)                                  %draw every pair of responses.
+    %% Third Color - C3
+    tColor = cell2mat(demoResultsGender_Male.third_color(i));       % #RRGGBB
+    r = (hex2dec(strcat(tColor(2), tColor(3)))/255);                    % RR
+    g = (hex2dec(strcat(tColor(4), tColor(5)))/255);                    % GG    
+    b = (hex2dec(strcat(tColor(6), tColor(7)))/255);                    % BB
+    tColor = applycform([r g b], cformICC);                         
+    x_aux = tColor(1)/(tColor(1) + tColor(2) + tColor(3)); 
+    y_aux = tColor(2)/(tColor(1) + tColor(2) + tColor(3)); 
+    x_values = [x_values x_aux];                                        % store coordinates X and Y
+    y_values = [y_values y_aux];
+    
+    %% Categorize Colors - Bins
+    
+    %% Difference between C3 and expected colors C3
+    distance_expectedC3_blue = [distance_expectedC3_blue ; round(pdist([[x_values(1) y_values(1)] ; [x_pre_expectedColors(3) y_pre_expectedColors(3)]]), 2)];  % [given given -C3-]
+    distance_expectedC3_orange = [distance_expectedC3_orange ; round(pdist([[x_values(1) y_values(1)] ; [x_pre_expectedColors(4) y_pre_expectedColors(4)]]), 2)];  % [given given -C3-]
+        
+    %% Difference between C1/C2 blended onto Color Models against pre-calc values
+    %%%%%% Compare-it in HSV
+    distance_HSV = [distance_HSV; round(pdist([[x_values y_values]; [x_pre_models(1) y_pre_models(1)]]),2)];
+    
+    %%%%%% Compare-it in CIE-LCh
+    distance_LCh = [distance_LCh; round(pdist([[x_values y_values]; [x_pre_models(2) y_pre_models(2)]]), 2)];
+    
+    %%%%%% Compare-it in CMYK
+    distance_CMYK = [distance_CMYK; round(pdist([[x_values y_values]; [x_pre_models(3) y_pre_models(3)]]), 2)];
+    
+    %%%%%% Compare-it in RGB
+    distance_RGB = [distance_RGB; round(pdist([[x_values y_values]; [x_pre_models(4) y_pre_models(4)]]), 2)];
+    
+    %%%%%% Blend-it in CIE-Lab
+    distance_Lab = [distance_Lab; round(pdist([[x_values y_values]; [x_pre_models(5) y_pre_models(5)]]), 2)];
+
+    scatter(x_values, y_values, 50, 'white');                         %draw two responses
+    plot(x_values, y_values, 'Color', 'black');                     %draw relations between answers
+    x_values = [];                                              %clean the arrays
+    y_values = [];
+end
+hold off;
+
+saveas(gcf, fullfile(path, 'demographic_genderMale'), 'png'); 
+
+diffs_table = table(distance_expectedC3_blue, distance_expectedC3_orange, distance_HSV, distance_LCh, distance_CMYK, distance_RGB, distance_Lab);
+demoResultsGender_Male = [demoResultsGender_Male diffs_table];
+
+% Clean all the tables!
+distance_HSV = []; distance_LCh = []; distance_CMYK = []; distance_RGB = []; distance_Lab = [];
+distance_expectedC3_blue = []; distance_expectedC3_orange = [];
+
+%% Demographic Analysis - GENDER Other
+
+figure('NumberTitle','off');
+cieplot();
+title('Question 27: Other Gender Users', 'FontSize', 13);                 %% -- CHANGE HERE
+xlabel('X Value');
+ylabel('Y Value');
+hold on;
+
+scatter(x_pre_expectedColors(1), y_pre_expectedColors(1), 60, 'black', 'Filled');         %draw GIVEN COLOR
+scatter(x_pre_expectedColors(2), y_pre_expectedColors(2), 60, 'black', 'Filled');         %draw GIVEN COLOR
+scatter(x_pre_expectedColors(3), y_pre_expectedColors(3), 60, 'diamond', 'black');                   %draw EXPECTED COLOR 1
+scatter(x_pre_expectedColors(4), y_pre_expectedColors(4), 60, 'diamond', 'black');                   %draw EXPECTED COLOR 2
+
+scatter(x_pre_models(1), y_pre_models(1), 50, 'diamond', 'black', 'Filled');
+text(x_pre_models(1) - 0.11, y_pre_models(1), 'HSV (1) \rightarrow');
+scatter(x_pre_models(2), y_pre_models(2), 50, 'diamond', 'black', 'Filled');
+text(x_pre_models(2) - 0.11, y_pre_models(2), 'HSV (2) \rightarrow');
+scatter(x_pre_models(3), y_pre_models(3), 50, 'diamond', 'black', 'Filled');
+text(x_pre_models(3) + 0.01, y_pre_models(3), '\leftarrow LCh');
+scatter(x_pre_models(4), y_pre_models(4), 50, 'diamond', 'black', 'Filled');
+text(x_pre_models(4) - 0.02, y_pre_models(4) - 0.02, 'CMYK');
+scatter(x_pre_models(5), y_pre_models(5), 50, 'diamond', 'black', 'Filled');
+text(x_pre_models(5) - 0.1, y_pre_models(5), 'RGB \rightarrow');
+scatter(x_pre_models(6), y_pre_models(6), 50, 'diamond', 'black', 'Filled');
+text(x_pre_models(6) - 0.02, y_pre_models(6) + 0.03, 'Lab');
+
+for i = 1 : height(demoResultsGender_Other)                                  %draw every pair of responses.
+    %% Third Color - C3
+    tColor = cell2mat(demoResultsGender_Other.third_color(i));       % #RRGGBB
+    r = (hex2dec(strcat(tColor(2), tColor(3)))/255);                    % RR
+    g = (hex2dec(strcat(tColor(4), tColor(5)))/255);                    % GG    
+    b = (hex2dec(strcat(tColor(6), tColor(7)))/255);                    % BB
+    tColor = applycform([r g b], cformICC);                         
+    x_aux = tColor(1)/(tColor(1) + tColor(2) + tColor(3)); 
+    y_aux = tColor(2)/(tColor(1) + tColor(2) + tColor(3)); 
+    x_values = [x_values x_aux];                                        % store coordinates X and Y
+    y_values = [y_values y_aux];
+    
+    %% Categorize Colors - Bins
+    
+    %% Difference between C3 and expected colors C3
+    distance_expectedC3_blue = [distance_expectedC3_blue ; round(pdist([[x_values(1) y_values(1)] ; [x_pre_expectedColors(3) y_pre_expectedColors(3)]]), 2)];  % [given given -C3-]
+    distance_expectedC3_orange = [distance_expectedC3_orange ; round(pdist([[x_values(1) y_values(1)] ; [x_pre_expectedColors(4) y_pre_expectedColors(4)]]), 2)];  % [given given -C3-]
+        
+    %% Difference between C1/C2 blended onto Color Models against pre-calc values
+    %%%%%% Compare-it in HSV
+    distance_HSV = [distance_HSV; round(pdist([[x_values y_values]; [x_pre_models(1) y_pre_models(1)]]),2)];
+    
+    %%%%%% Compare-it in CIE-LCh
+    distance_LCh = [distance_LCh; round(pdist([[x_values y_values]; [x_pre_models(2) y_pre_models(2)]]), 2)];
+    
+    %%%%%% Compare-it in CMYK
+    distance_CMYK = [distance_CMYK; round(pdist([[x_values y_values]; [x_pre_models(3) y_pre_models(3)]]), 2)];
+    
+    %%%%%% Compare-it in RGB
+    distance_RGB = [distance_RGB; round(pdist([[x_values y_values]; [x_pre_models(4) y_pre_models(4)]]), 2)];
+    
+    %%%%%% Blend-it in CIE-Lab
+    distance_Lab = [distance_Lab; round(pdist([[x_values y_values]; [x_pre_models(5) y_pre_models(5)]]), 2)];
+
+    scatter(x_values, y_values, 50, 'white');                         %draw two responses
+    plot(x_values, y_values, 'Color', 'black');                     %draw relations between answers
+    x_values = [];                                              %clean the arrays
+    y_values = [];
+end
+hold off;
+
+saveas(gcf, fullfile(path, 'demographic_genderOther'), 'png'); 
+
+diffs_table = table(distance_expectedC3_blue, distance_expectedC3_orange, distance_HSV, distance_LCh, distance_CMYK, distance_RGB, distance_Lab);
+demoResultsGender_Other = [demoResultsGender_Other diffs_table];
+
+% Clean all the tables!
+distance_HSV = []; distance_LCh = []; distance_CMYK = []; distance_RGB = []; distance_Lab = [];
+distance_expectedC3_blue = []; distance_expectedC3_orange = [];
 
 %% Save Tables
 

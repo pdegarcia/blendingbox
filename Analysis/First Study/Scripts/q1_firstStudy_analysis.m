@@ -9,7 +9,11 @@
 % #2 Step: Comparing C1 and C2 with other pairs which generate the same objective color.
 % #3 Step: Blend C1 and C2 in HSV, CIE LCh, CMYK, RGB and CIE Lab Color Models,
 % comparing the result against pre-calculated results for each model.
-close all;
+%
+% INFO: TO ACCESS colorBins variable array, you must LEAVE the generated
+% plots from processColorbins OPEN.
+%
+% close all;
 
 centroid_HSV = [];
 distance_centroid_HSV = [];
@@ -51,6 +55,12 @@ distance_Lab = [];
 distance_CMYK = [];
 distance_RGB = [];
 distance_expectedC1C2 = [];
+
+distance_givenColor = [];
+whiteAnswers = [];
+rowsToEliminate = [];
+C1_name = [];
+C2_name = [];
 
 % PAIRS VARIABLES ZONE % -- CHANGE HERE
 %distance_pair1 = [];
@@ -175,12 +185,21 @@ scatter(x_pre_expectedColors(1), y_pre_expectedColors(1), 60, 'black', 'Filled')
 scatter(x_pre_expectedColors(2), y_pre_expectedColors(2), 60, 'black');                               % draw EXPECTED COLOR
 scatter(x_pre_expectedColors(3), y_pre_expectedColors(3), 60, 'black');                               % draw EXPECTED COLOR
 
-
 % Draw every pair of responses.
-for i = 1 : height(laboratoryResults)                                  
+for i = 1 : height(laboratoryResults)
+    %% Check if any Component is white or empty Answer
+    sColor = str2num(cell2mat(laboratoryResults.second_color(i)));
+    tColor = str2num(cell2mat(laboratoryResults.third_color(i)));
+    
+    if sColor == 0 || tColor == 0
+        whiteAnswers = [whiteAnswers ; laboratoryResults(i,:)];
+        rowsToEliminate = [rowsToEliminate i];
+        continue
+    end
+        
     %% First Color - C1
     sColor = str2num(cell2mat(laboratoryResults.second_color(i)));      % cell2mat serve para converter cell para matriz de uint
-    valuesSColor = [valuesSColor sColor];                               % store integers values of answers
+                                   % store integers values of answers
     sColor = sColor/360;                                                % scale value to [0,1] instead of [0, 360]
     sColor = [sColor 1 1];                                             % form triplet (sColor, 1, 1)
     hsv_C1 = sColor;
@@ -207,16 +226,40 @@ for i = 1 : height(laboratoryResults)
     y_values = [y_values y_aux];
     
     %% Categorize Colors - Bins
+    for j = 1 : length(colorBins)
+        valuesofx = round(colorBins(j).XData, 1);
+        valuesofy = round(colorBins(j).YData, 1);
+        if ismember(round(x_values(1), 1), valuesofx) && ismember(round(y_values(1),1), valuesofy)
+            color_C1 = colorBins(j).Tag;
+            foundC1 = 1;
+        end
+        if ismember(round(x_values(2),1), valuesofx) && ismember(round(y_values(2),1), valuesofy)
+            color_C2 = colorBins(j).Tag;
+            foundC2 = 1;
+        end
+    end
+    
+    if foundC1 == 0 && foundC2 == 0
+        C1_name = [C1_name ; 'NA       '];
+        C2_name = [C2_name ; 'NA       '];
+    else if foundC1 == 1 && foundC2 == 0
+            C1_name = [C1_name ; color_C1];
+            C2_name = [C2_name ; 'NA       '];
+        else if foundC1 == 0 && foundC2 == 1
+                C1_name = [C1_name ; 'NA       '];
+                C2_name = [C2_name ; color_C2];
+            else
+                C1_name = [C1_name ; color_C1];
+                C2_name = [C2_name ; color_C2];
+            end
+        end
+    end
+    foundC1 = 0; foundC2 = 0;
     
     %% Difference between C1/C2 and expected colors C1/C2
     diff_c1_expected = round(pdist([[x_values(1) y_values(1)] ; [x_pre_expectedColors(2) y_pre_expectedColors(2)]]), 2);  % [given -C1- C2]
     diff_c2_expected = round(pdist([[x_values(2) y_values(2)] ; [x_pre_expectedColors(3) y_pre_expectedColors(3)]]), 2);  % [given C1 -C2-]
     distance_expectedC1C2 = [distance_expectedC1C2 ; diff_c1_expected + diff_c2_expected];
-    
-    %% Difference between C1/C2 and other pairs which generate the same color       %% -- CHANGE HERE (ADD MORE PAIRS IF NEEDED)
-%     diff_c1_pair1c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair1(1) y_pair1(1)]]), 2);
-%     diff_c2_pair1c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair1(2) y_pair1(2)]]), 2);
-%     distance_pair1 = [distance_pair1 ; diff_c1_pair1c1 + diff_c2_pair1c2];
     
     %% Difference between C1/C2 blended onto Color Models against pre-calc values
     %%%%%% Blend-it in HSV
@@ -306,6 +349,8 @@ hold off;
 
 saveas(gcf, fullfile(path, 'lab_regularUsers'), 'png');
 
+laboratoryResults(rowsToEliminate, :) = []; rowsToEliminate = [];
+
 % Centroids of Color Models
 centroid_HSV    = [centroid_HSV  ; [round(mean(x_values_HSV),2) round(mean(y_values_HSV),2)]];
 centroid_LCh    = [centroid_LCh  ; [round(mean(x_values_LCh),2) round(mean(y_values_LCh),2)]];
@@ -321,10 +366,22 @@ distance_centroid_Lab = [distance_centroid_Lab ; round(pdist([mean(x_values_Lab)
 
 % Catenate all Tables               -- CHANGE HERE
 diffs_table = table(distance_expectedC1C2, distance_HSV, distance_LCh, distance_CMYK, distance_RGB, distance_Lab);
+
+if size(C1_name, 1) == 1
+    colors_names = cell(1,2);
+    colors_names(1,1) = cellstr(C1_name);
+    colors_names(1,2) = cellstr(C2_name);
+    colors_names = cell2table(colors_names);
+else
+    colors_names = table(C1_name, C2_name);
+end
+
+C1_name = []; C2_name = [];
+
 % diffs_pairs = table(distance_pair1 ...)
 % diffs_table = [diffs_table diffs_pairs]
 
-laboratoryResults = [laboratoryResults diffs_table];
+laboratoryResults = [laboratoryResults colors_names diffs_table];
 
 % Plot Results for each Color Model
 figure('NumberTitle','off');
@@ -404,7 +461,7 @@ scatter(x_pre_expectedColors(3), y_pre_expectedColors(3), 60, 'black');         
 for i = 1 : height(laboratoryResults_dalt)
 %First Color
     sColor = str2num(cell2mat(laboratoryResults_dalt.second_color(i)));
-    valuesSColor = [valuesSColor sColor];                   
+                       
     sColor = sColor/360;                                    
     sColor = [sColor 1 1];                                 
     sColor = hsv2rgb(sColor);                               
@@ -426,6 +483,37 @@ for i = 1 : height(laboratoryResults_dalt)
     x_values = [x_values x_aux];                            
     y_values = [y_values y_aux];
     
+    %% Categorize Colors - Bins
+    for j = 1 : length(colorBins)
+        valuesofx = round(colorBins(j).XData, 1);
+        valuesofy = round(colorBins(j).YData, 1);
+        if ismember(round(x_values(1), 1), valuesofx) && ismember(round(y_values(1),1), valuesofy)
+            color_C1 = colorBins(j).Tag;
+            foundC1 = 1;
+        end
+        if ismember(round(x_values(2),1), valuesofx) && ismember(round(y_values(2),1), valuesofy)
+            color_C2 = colorBins(j).Tag;
+            foundC2 = 1;
+        end
+    end
+    
+    if foundC1 == 0 && foundC2 == 0
+        C1_name = [C1_name ; 'NA       '];
+        C2_name = [C2_name ; 'NA       '];
+    else if foundC1 == 1 && foundC2 == 0
+            C1_name = [C1_name ; color_C1];
+            C2_name = [C2_name ; 'NA       '];
+        else if foundC1 == 0 && foundC2 == 1
+                C1_name = [C1_name ; 'NA       '];
+                C2_name = [C2_name ; color_C2];
+            else
+                C1_name = [C1_name ; color_C1];
+                C2_name = [C2_name ; color_C2];
+            end
+        end
+    end
+    foundC1 = 0; foundC2 = 0;
+    
     scatter(x_values, y_values, 50, 'white');                 
     plot(x_values, y_values, 'Color', 'black');             
     x_values = [];                                          
@@ -434,6 +522,18 @@ end
 hold off;
 
 saveas(gcf, fullfile(path, 'lab_daltonicUsers'), 'png'); 
+
+if size(C1_name, 1) == 1
+    colors_names = cell(1,2);
+    colors_names(1,1) = cellstr(C1_name);
+    colors_names(1,2) = cellstr(C2_name);
+    colors_names = cell2table(colors_names);
+else
+    colors_names = table(C1_name, C2_name);
+end
+
+laboratoryResults_dalt = [laboratoryResults_dalt colors_names];
+C1_name = []; C2_name = [];
 
 %% Online Results - Regular Users
 
@@ -449,9 +549,19 @@ scatter(x_pre_expectedColors(2), y_pre_expectedColors(2), 60, 'black');         
 scatter(x_pre_expectedColors(3), y_pre_expectedColors(3), 60, 'black');                   %draw EXPECTED COLOR
 
 for i = 1 : height(onlineResults)                                  %draw every pair of responses.
+    %% Check if any Component is white or empty Answer
+    sColor = str2num(cell2mat(onlineResults.second_color(i)));
+    tColor = str2num(cell2mat(onlineResults.third_color(i)));
+    
+    if sColor == 0 || tColor == 0
+        whiteAnswers = [whiteAnswers ; onlineResults(i,:)];
+        rowsToEliminate = [rowsToEliminate i];
+        continue
+    end   
+    
     %First Color
     sColor = str2num(cell2mat(onlineResults.second_color(i)));     %cell2mat serve para converter cell para matriz de uint
-    valuesSColor = [valuesSColor sColor];                   %store integers values of answers
+                       
     sColor = sColor/360;                                    %scale value to [0,1] instead of [0, 360]
     sColor = [sColor 1 1];                                 %form triplet (sColor, 1, 0.5)
     hsv_C1 = sColor;
@@ -476,7 +586,36 @@ for i = 1 : height(onlineResults)                                  %draw every p
     y_values = [y_values y_aux];
     
     %% Categorize Colors - Bins
+    for j = 1 : length(colorBins)
+        valuesofx = round(colorBins(j).XData, 1);
+        valuesofy = round(colorBins(j).YData, 1);
+        if ismember(round(x_values(1), 1), valuesofx) && ismember(round(y_values(1),1), valuesofy)
+            color_C1 = colorBins(j).Tag;
+            foundC1 = 1;
+        end
+        if ismember(round(x_values(2),1), valuesofx) && ismember(round(y_values(2),1), valuesofy)
+            color_C2 = colorBins(j).Tag;
+            foundC2 = 1;
+        end
+    end
     
+    if foundC1 == 0 && foundC2 == 0
+        C1_name = [C1_name ; 'NA       '];
+        C2_name = [C2_name ; 'NA       '];
+    else if foundC1 == 1 && foundC2 == 0
+            C1_name = [C1_name ; color_C1];
+            C2_name = [C2_name ; 'NA       '];
+        else if foundC1 == 0 && foundC2 == 1
+                C1_name = [C1_name ; 'NA       '];
+                C2_name = [C2_name ; color_C2];
+            else
+                C1_name = [C1_name ; color_C1];
+                C2_name = [C2_name ; color_C2];
+            end
+        end
+    end
+    foundC1 = 0; foundC2 = 0;
+       
     %% Difference between C1/C2 and expected colors C1/C2
     diff_c1_expected = round(pdist([[x_values(1) y_values(1)] ; [x_pre_expectedColors(2) y_pre_expectedColors(2)]]), 2);  % [given -C1- C2]
     diff_c2_expected = round(pdist([[x_values(2) y_values(2)] ; [x_pre_expectedColors(3) y_pre_expectedColors(3)]]), 2);  % [given C1 -C2-]
@@ -575,6 +714,8 @@ hold off;
 
 saveas(gcf, fullfile(path, 'online_regularUsers'), 'png'); 
 
+onlineResults(rowsToEliminate, :) = []; rowsToEliminate = [];
+
 % Centroids of Color Models
 centroid_HSV    = [centroid_HSV  ; [round(mean(x_values_HSV),2) round(mean(y_values_HSV),2)]];
 centroid_LCh    = [centroid_LCh  ; [round(mean(x_values_LCh),2) round(mean(y_values_LCh),2)]];
@@ -589,10 +730,18 @@ distance_centroid_RGB = [distance_centroid_RGB ; round(pdist([mean(x_values_RGB)
 distance_centroid_Lab = [distance_centroid_Lab ; round(pdist([mean(x_values_Lab) mean(y_values_Lab); [x_pre_models(5) y_pre_models(5)]]), 2)];
 
 diffs_table = table(distance_expectedC1C2, distance_HSV, distance_LCh, distance_CMYK, distance_RGB, distance_Lab);
-% diffs_pairs = table(distance_pair1 ...)
-% diffs_table = [diffs_table diffs_pairs]
 
-onlineResults = [onlineResults diffs_table];
+if size(C1_name, 1) == 1
+    colors_names = cell(1,2);
+    colors_names(1,1) = cellstr(C1_name);
+    colors_names(1,2) = cellstr(C2_name);
+    colors_names = cell2table(colors_names);
+else
+    colors_names = table(C1_name, C2_name);
+end
+C1_name = []; C2_name = [];
+
+onlineResults = [onlineResults colors_names diffs_table];
 
 % Plot Results for each Color Model
 figure('NumberTitle','off');
@@ -672,7 +821,7 @@ scatter(x_pre_expectedColors(3), y_pre_expectedColors(3), 60, 'black');         
 for i = 1 : height(onlineResults_dalt)
 %First Color
     sColor = str2num(cell2mat(onlineResults_dalt.second_color(i)));
-    valuesSColor = [valuesSColor sColor];                   
+                       
     sColor = sColor/360;                                    
     sColor = [sColor 1 .5];                                 
     sColor = hsv2rgb(sColor);                               
@@ -694,6 +843,37 @@ for i = 1 : height(onlineResults_dalt)
     x_values = [x_values x_aux];                            
     y_values = [y_values y_aux];
     
+    %% Categorize Colors - Bins
+    for j = 1 : length(colorBins)
+        valuesofx = round(colorBins(j).XData, 1);
+        valuesofy = round(colorBins(j).YData, 1);
+        if ismember(round(x_values(1), 1), valuesofx) && ismember(round(y_values(1),1), valuesofy)
+            color_C1 = colorBins(j).Tag;
+            foundC1 = 1;
+        end
+        if ismember(round(x_values(2),1), valuesofx) && ismember(round(y_values(2),1), valuesofy)
+            color_C2 = colorBins(j).Tag;
+            foundC2 = 1;
+        end
+    end
+    
+    if foundC1 == 0 && foundC2 == 0
+        C1_name = [C1_name ; 'NA       '];
+        C2_name = [C2_name ; 'NA       '];
+    else if foundC1 == 1 && foundC2 == 0
+            C1_name = [C1_name ; color_C1];
+            C2_name = [C2_name ; 'NA       '];
+        else if foundC1 == 0 && foundC2 == 1
+                C1_name = [C1_name ; 'NA       '];
+                C2_name = [C2_name ; color_C2];
+            else
+                C1_name = [C1_name ; color_C1];
+                C2_name = [C2_name ; color_C2];
+            end
+        end
+    end
+    foundC1 = 0; foundC2 = 0;
+        
     scatter(x_values, y_values, 50, 'white');                 
     plot(x_values, y_values, 'Color', 'black');             
     x_values = [];                                          
@@ -702,6 +882,18 @@ end
 hold off;
 
 saveas(gcf, fullfile(path, 'online_daltonicUsers'), 'png'); 
+
+if size(C1_name, 1) == 1
+    colors_names = cell(1,2);
+    colors_names(1,1) = cellstr(C1_name);
+    colors_names(1,2) = cellstr(C2_name);
+    colors_names = cell2table(colors_names);
+else
+    colors_names = table(C1_name, C2_name);
+end
+
+onlineResults_dalt = [onlineResults_dalt colors_names];
+C1_name = []; C2_name = [];
 
 %% Online Results - Uncalibrated Users
 
@@ -719,7 +911,7 @@ scatter(x_pre_expectedColors(3), y_pre_expectedColors(3), 60, 'black');         
 for i = 1 : height(onlineResults_uncal)                                  %draw every pair of responses.
     %First Color
     sColor = str2num(cell2mat(onlineResults_uncal.second_color(i)));     %cell2mat serve para converter cell para matriz de uint
-    valuesSColor = [valuesSColor sColor];                   %store integers values of answers
+                       %store integers values of answers
     sColor = sColor/360;                                    %scale value to [0,1] instead of [0, 360]
     sColor = [sColor 1 1];                                 %form triplet (sColor, 1, 0.5)
     hsv_C1 = sColor;
@@ -744,17 +936,41 @@ for i = 1 : height(onlineResults_uncal)                                  %draw e
     y_values = [y_values y_aux];
     
     %% Categorize Colors - Bins
+    for j = 1 : length(colorBins)
+        valuesofx = round(colorBins(j).XData, 1);
+        valuesofy = round(colorBins(j).YData, 1);
+        if ismember(round(x_values(1), 1), valuesofx) && ismember(round(y_values(1),1), valuesofy)
+            color_C1 = colorBins(j).Tag;
+            foundC1 = 1;
+        end
+        if ismember(round(x_values(2),1), valuesofx) && ismember(round(y_values(2),1), valuesofy)
+            color_C2 = colorBins(j).Tag;
+            foundC2 = 1;
+        end
+    end
     
+    if foundC1 == 0 && foundC2 == 0
+        C1_name = [C1_name ; 'NA       '];
+        C2_name = [C2_name ; 'NA       '];
+    else if foundC1 == 1 && foundC2 == 0
+            C1_name = [C1_name ; color_C1];
+            C2_name = [C2_name ; 'NA       '];
+        else if foundC1 == 0 && foundC2 == 1
+                C1_name = [C1_name ; 'NA       '];
+                C2_name = [C2_name ; color_C2];
+            else
+                C1_name = [C1_name ; color_C1];
+                C2_name = [C2_name ; color_C2];
+            end
+        end
+    end
+    foundC1 = 0; foundC2 = 0;
+        
     %% Difference between C1/C2 and expected colors C1/C2
     diff_c1_expected = round(pdist([[x_values(1) y_values(1)] ; [x_pre_expectedColors(2) y_pre_expectedColors(2)]]), 2);  % [given -C1- C2]
     diff_c2_expected = round(pdist([[x_values(2) y_values(2)] ; [x_pre_expectedColors(3) y_pre_expectedColors(3)]]), 2);  % [given C1 -C2-]
     distance_expectedC1C2 = [distance_expectedC1C2 ; diff_c1_expected + diff_c2_expected];
-    
-    %% Difference between C1/C2 and other pairs which generate the same color       %% -- CHANGE HERE (ADD MORE PAIRS IF NEEDED)
-%     diff_c1_pair1c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair1(1) y_pair1(1)]]), 2);
-%     diff_c2_pair1c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair1(2) y_pair1(2)]]), 2);
-%     distance_pair1 = [distance_pair1 ; diff_c1_pair1c1 + diff_c2_pair1c2];
-    
+
     %% Difference between C1/C2 blended onto Color Models against pre-calc values
     %%%%%% Blend-it in HSV
     sColor_hsv = [(hsv_C1(1)*360) hsv_C1(2) hsv_C1(3)]; tColor_hsv = [(hsv_C2(1)*360) hsv_C2(2) hsv_C2(3)];     
@@ -858,7 +1074,18 @@ distance_centroid_Lab = [distance_centroid_Lab ; round(pdist([mean(x_values_Lab)
 
 diffs_table = table(distance_expectedC1C2, distance_HSV, distance_LCh, distance_CMYK, distance_RGB, distance_Lab);
 
-onlineResults_uncal = [onlineResults_uncal diffs_table];
+if size(C1_name, 1) == 1
+    colors_names = cell(1,2);
+    colors_names(1,1) = cellstr(C1_name);
+    colors_names(1,2) = cellstr(C2_name);
+    colors_names = cell2table(colors_names);
+else
+    colors_names = table(C1_name, C2_name);
+end
+
+C1_name = []; C2_name = [];
+
+onlineResults_uncal = [onlineResults_uncal colors_names diffs_table];
 
 % Clean all the tables!
 x_values_HSV = []; y_values_HSV = []; x_values_LCh = []; y_values_LCh = []; x_values_CMYK = []; y_values_CMYK = []; x_values_RGB = []; y_values_RGB = []; x_values_Lab = []; y_values_Lab = [];  
@@ -883,7 +1110,7 @@ scatter(x_pre_expectedColors(3), y_pre_expectedColors(3), 60, 'black');         
 for i = 1 : height(demoResultsAge_20)                                  
     %% First Color - C1
     sColor = str2num(cell2mat(demoResultsAge_20.second_color(i)));      
-    valuesSColor = [valuesSColor sColor];                               
+                                   
     sColor = sColor/360;                                                
     sColor = [sColor 1 1];                                             
     hsv_C1 = sColor;
@@ -910,6 +1137,36 @@ for i = 1 : height(demoResultsAge_20)
     y_values = [y_values y_aux];
     
     %% Categorize Colors - Bins
+    for j = 1 : length(colorBins)
+        valuesofx = round(colorBins(j).XData, 1);
+        valuesofy = round(colorBins(j).YData, 1);
+        if ismember(round(x_values(1), 1), valuesofx) && ismember(round(y_values(1),1), valuesofy)
+            color_C1 = colorBins(j).Tag;
+            foundC1 = 1;
+        end
+        if ismember(round(x_values(2),1), valuesofx) && ismember(round(y_values(2),1), valuesofy)
+            color_C2 = colorBins(j).Tag;
+            foundC2 = 1;
+        end
+    end
+    
+    if foundC1 == 0 && foundC2 == 0
+        C1_name = [C1_name ; 'NA       '];
+        C2_name = [C2_name ; 'NA       '];
+    else if foundC1 == 1 && foundC2 == 0
+            C1_name = [C1_name ; color_C1];
+            C2_name = [C2_name ; 'NA       '];
+        else if foundC1 == 0 && foundC2 == 1
+                C1_name = [C1_name ; 'NA       '];
+                C2_name = [C2_name ; color_C2];
+            else
+                C1_name = [C1_name ; color_C1];
+                C2_name = [C2_name ; color_C2];
+            end
+        end
+    end
+    foundC1 = 0; foundC2 = 0;
+    
     
     %% Difference between C1/C2 and expected colors C1/C2
     diff_c1_expected = round(pdist([[x_values(1) y_values(1)] ; [x_pre_expectedColors(2) y_pre_expectedColors(2)]]), 2);  % [given -C1- C2]
@@ -1020,7 +1277,18 @@ distance_centroid_Lab = [distance_centroid_Lab ; round(pdist([mean(x_values_Lab)
 % Catenate all Tables               -- CHANGE HERE
 diffs_table = table(distance_expectedC1C2, distance_HSV, distance_LCh, distance_CMYK, distance_RGB, distance_Lab);
 
-demoResultsAge_20 = [demoResultsAge_20 diffs_table];
+if size(C1_name, 1) == 1
+    colors_names = cell(1,2);
+    colors_names(1,1) = cellstr(C1_name);
+    colors_names(1,2) = cellstr(C2_name);
+    colors_names = cell2table(colors_names);
+else
+    colors_names = table(C1_name, C2_name);
+end
+
+C1_name = []; C2_name = [];
+
+demoResultsAge_20 = [demoResultsAge_20 colors_names diffs_table];
 
 % Plot Results for each Color Model
 figure('NumberTitle','off');
@@ -1101,7 +1369,7 @@ scatter(x_pre_expectedColors(3), y_pre_expectedColors(3), 60, 'black');         
 for i = 1 : height(demoResultsAge_20_29)                                  
     %% First Color - C1
     sColor = str2num(cell2mat(demoResultsAge_20_29.second_color(i)));      
-    valuesSColor = [valuesSColor sColor];                               
+                                   
     sColor = sColor/360;                                                
     sColor = [sColor 1 1];                                             
     hsv_C1 = sColor;
@@ -1128,7 +1396,36 @@ for i = 1 : height(demoResultsAge_20_29)
     y_values = [y_values y_aux];
     
     %% Categorize Colors - Bins
+    for j = 1 : length(colorBins)
+        valuesofx = round(colorBins(j).XData, 1);
+        valuesofy = round(colorBins(j).YData, 1);
+        if ismember(round(x_values(1), 1), valuesofx) && ismember(round(y_values(1),1), valuesofy)
+            color_C1 = colorBins(j).Tag;
+            foundC1 = 1;
+        end
+        if ismember(round(x_values(2),1), valuesofx) && ismember(round(y_values(2),1), valuesofy)
+            color_C2 = colorBins(j).Tag;
+            foundC2 = 1;
+        end
+    end
     
+    if foundC1 == 0 && foundC2 == 0
+        C1_name = [C1_name ; 'NA       '];
+        C2_name = [C2_name ; 'NA       '];
+    else if foundC1 == 1 && foundC2 == 0
+            C1_name = [C1_name ; color_C1];
+            C2_name = [C2_name ; 'NA       '];
+        else if foundC1 == 0 && foundC2 == 1
+                C1_name = [C1_name ; 'NA       '];
+                C2_name = [C2_name ; color_C2];
+            else
+                C1_name = [C1_name ; color_C1];
+                C2_name = [C2_name ; color_C2];
+            end
+        end
+    end
+    foundC1 = 0; foundC2 = 0;
+        
     %% Difference between C1/C2 and expected colors C1/C2
     diff_c1_expected = round(pdist([[x_values(1) y_values(1)] ; [x_pre_expectedColors(2) y_pre_expectedColors(2)]]), 2);  % [given -C1- C2]
     diff_c2_expected = round(pdist([[x_values(2) y_values(2)] ; [x_pre_expectedColors(3) y_pre_expectedColors(3)]]), 2);  % [given C1 -C2-]
@@ -1238,7 +1535,18 @@ distance_centroid_Lab = [distance_centroid_Lab ; round(pdist([mean(x_values_Lab)
 % Catenate all Tables               -- CHANGE HERE
 diffs_table = table(distance_expectedC1C2, distance_HSV, distance_LCh, distance_CMYK, distance_RGB, distance_Lab);
 
-demoResultsAge_20_29 = [demoResultsAge_20_29 diffs_table];
+if size(C1_name, 1) == 1
+    colors_names = cell(1,2);
+    colors_names(1,1) = cellstr(C1_name);
+    colors_names(1,2) = cellstr(C2_name);
+    colors_names = cell2table(colors_names);
+else
+    colors_names = table(C1_name, C2_name);
+end
+
+C1_name = []; C2_name = [];
+
+demoResultsAge_20_29 = [demoResultsAge_20_29 colors_names diffs_table];
 
 % Plot Results for each Color Model
 figure('NumberTitle','off');
@@ -1319,7 +1627,7 @@ scatter(x_pre_expectedColors(3), y_pre_expectedColors(3), 60, 'black');         
 for i = 1 : height(demoResultsAge_30_39)                                  
     %% First Color - C1
     sColor = str2num(cell2mat(demoResultsAge_30_39.second_color(i)));      
-    valuesSColor = [valuesSColor sColor];                               
+                                   
     sColor = sColor/360;                                                
     sColor = [sColor 1 1];                                             
     hsv_C1 = sColor;
@@ -1346,7 +1654,36 @@ for i = 1 : height(demoResultsAge_30_39)
     y_values = [y_values y_aux];
     
     %% Categorize Colors - Bins
+    for j = 1 : length(colorBins)
+        valuesofx = round(colorBins(j).XData, 1);
+        valuesofy = round(colorBins(j).YData, 1);
+        if ismember(round(x_values(1), 1), valuesofx) && ismember(round(y_values(1),1), valuesofy)
+            color_C1 = colorBins(j).Tag;
+            foundC1 = 1;
+        end
+        if ismember(round(x_values(2),1), valuesofx) && ismember(round(y_values(2),1), valuesofy)
+            color_C2 = colorBins(j).Tag;
+            foundC2 = 1;
+        end
+    end
     
+    if foundC1 == 0 && foundC2 == 0
+        C1_name = [C1_name ; 'NA       '];
+        C2_name = [C2_name ; 'NA       '];
+    else if foundC1 == 1 && foundC2 == 0
+            C1_name = [C1_name ; color_C1];
+            C2_name = [C2_name ; 'NA       '];
+        else if foundC1 == 0 && foundC2 == 1
+                C1_name = [C1_name ; 'NA       '];
+                C2_name = [C2_name ; color_C2];
+            else
+                C1_name = [C1_name ; color_C1];
+                C2_name = [C2_name ; color_C2];
+            end
+        end
+    end
+    foundC1 = 0; foundC2 = 0;
+        
     %% Difference between C1/C2 and expected colors C1/C2
     diff_c1_expected = round(pdist([[x_values(1) y_values(1)] ; [x_pre_expectedColors(2) y_pre_expectedColors(2)]]), 2);  % [given -C1- C2]
     diff_c2_expected = round(pdist([[x_values(2) y_values(2)] ; [x_pre_expectedColors(3) y_pre_expectedColors(3)]]), 2);  % [given C1 -C2-]
@@ -1456,7 +1793,18 @@ distance_centroid_Lab = [distance_centroid_Lab ; round(pdist([mean(x_values_Lab)
 % Catenate all Tables               -- CHANGE HERE
 diffs_table = table(distance_expectedC1C2, distance_HSV, distance_LCh, distance_CMYK, distance_RGB, distance_Lab);
 
-demoResultsAge_30_39 = [demoResultsAge_30_39 diffs_table];
+if size(C1_name, 1) == 1
+    colors_names = cell(1,2);
+    colors_names(1,1) = cellstr(C1_name);
+    colors_names(1,2) = cellstr(C2_name);
+    colors_names = cell2table(colors_names);
+else
+    colors_names = table(C1_name, C2_name);
+end
+
+C1_name = []; C2_name = [];
+
+demoResultsAge_30_39 = [demoResultsAge_30_39 colors_names diffs_table];
 
 % Plot Results for each Color Model
 figure('NumberTitle','off');
@@ -1537,7 +1885,7 @@ scatter(x_pre_expectedColors(3), y_pre_expectedColors(3), 60, 'black');         
 for i = 1 : height(demoResultsAge_40_49)                                  
     %% First Color - C1
     sColor = str2num(cell2mat(demoResultsAge_40_49.second_color(i)));      
-    valuesSColor = [valuesSColor sColor];                               
+                                   
     sColor = sColor/360;                                                
     sColor = [sColor 1 1];                                             
     hsv_C1 = sColor;
@@ -1564,7 +1912,36 @@ for i = 1 : height(demoResultsAge_40_49)
     y_values = [y_values y_aux];
     
     %% Categorize Colors - Bins
+    for j = 1 : length(colorBins)
+        valuesofx = round(colorBins(j).XData, 1);
+        valuesofy = round(colorBins(j).YData, 1);
+        if ismember(round(x_values(1), 1), valuesofx) && ismember(round(y_values(1),1), valuesofy)
+            color_C1 = colorBins(j).Tag;
+            foundC1 = 1;
+        end
+        if ismember(round(x_values(2),1), valuesofx) && ismember(round(y_values(2),1), valuesofy)
+            color_C2 = colorBins(j).Tag;
+            foundC2 = 1;
+        end
+    end
     
+    if foundC1 == 0 && foundC2 == 0
+        C1_name = [C1_name ; 'NA       '];
+        C2_name = [C2_name ; 'NA       '];
+    else if foundC1 == 1 && foundC2 == 0
+            C1_name = [C1_name ; color_C1];
+            C2_name = [C2_name ; 'NA       '];
+        else if foundC1 == 0 && foundC2 == 1
+                C1_name = [C1_name ; 'NA       '];
+                C2_name = [C2_name ; color_C2];
+            else
+                C1_name = [C1_name ; color_C1];
+                C2_name = [C2_name ; color_C2];
+            end
+        end
+    end
+    foundC1 = 0; foundC2 = 0;
+        
     %% Difference between C1/C2 and expected colors C1/C2
     diff_c1_expected = round(pdist([[x_values(1) y_values(1)] ; [x_pre_expectedColors(2) y_pre_expectedColors(2)]]), 2);  % [given -C1- C2]
     diff_c2_expected = round(pdist([[x_values(2) y_values(2)] ; [x_pre_expectedColors(3) y_pre_expectedColors(3)]]), 2);  % [given C1 -C2-]
@@ -1674,7 +2051,18 @@ distance_centroid_Lab = [distance_centroid_Lab ; round(pdist([mean(x_values_Lab)
 % Catenate all Tables               -- CHANGE HERE
 diffs_table = table(distance_expectedC1C2, distance_HSV, distance_LCh, distance_CMYK, distance_RGB, distance_Lab);
 
-demoResultsAge_40_49 = [demoResultsAge_40_49 diffs_table];
+if size(C1_name, 1) == 1
+    colors_names = cell(1,2);
+    colors_names(1,1) = cellstr(C1_name);
+    colors_names(1,2) = cellstr(C2_name);
+    colors_names = cell2table(colors_names);
+else
+    colors_names = table(C1_name, C2_name);
+end
+
+C1_name = []; C2_name = [];
+
+demoResultsAge_40_49 = [demoResultsAge_40_49 colors_names diffs_table];
 
 % Plot Results for each Color Model
 figure('NumberTitle','off');
@@ -1755,7 +2143,7 @@ scatter(x_pre_expectedColors(3), y_pre_expectedColors(3), 60, 'black');         
 for i = 1 : height(demoResultsAge_50_59)                                  
     %% First Color - C1
     sColor = str2num(cell2mat(demoResultsAge_50_59.second_color(i)));      
-    valuesSColor = [valuesSColor sColor];                               
+                                   
     sColor = sColor/360;                                                
     sColor = [sColor 1 1];                                             
     hsv_C1 = sColor;
@@ -1782,7 +2170,36 @@ for i = 1 : height(demoResultsAge_50_59)
     y_values = [y_values y_aux];
     
     %% Categorize Colors - Bins
+    for j = 1 : length(colorBins)
+        valuesofx = round(colorBins(j).XData, 1);
+        valuesofy = round(colorBins(j).YData, 1);
+        if ismember(round(x_values(1), 1), valuesofx) && ismember(round(y_values(1),1), valuesofy)
+            color_C1 = colorBins(j).Tag;
+            foundC1 = 1;
+        end
+        if ismember(round(x_values(2),1), valuesofx) && ismember(round(y_values(2),1), valuesofy)
+            color_C2 = colorBins(j).Tag;
+            foundC2 = 1;
+        end
+    end
     
+    if foundC1 == 0 && foundC2 == 0
+        C1_name = [C1_name ; 'NA       '];
+        C2_name = [C2_name ; 'NA       '];
+    else if foundC1 == 1 && foundC2 == 0
+            C1_name = [C1_name ; color_C1];
+            C2_name = [C2_name ; 'NA       '];
+        else if foundC1 == 0 && foundC2 == 1
+                C1_name = [C1_name ; 'NA       '];
+                C2_name = [C2_name ; color_C2];
+            else
+                C1_name = [C1_name ; color_C1];
+                C2_name = [C2_name ; color_C2];
+            end
+        end
+    end
+    foundC1 = 0; foundC2 = 0;
+        
     %% Difference between C1/C2 and expected colors C1/C2
     diff_c1_expected = round(pdist([[x_values(1) y_values(1)] ; [x_pre_expectedColors(2) y_pre_expectedColors(2)]]), 2);  % [given -C1- C2]
     diff_c2_expected = round(pdist([[x_values(2) y_values(2)] ; [x_pre_expectedColors(3) y_pre_expectedColors(3)]]), 2);  % [given C1 -C2-]
@@ -1892,7 +2309,18 @@ distance_centroid_Lab = [distance_centroid_Lab ; round(pdist([mean(x_values_Lab)
 % Catenate all Tables               -- CHANGE HERE
 diffs_table = table(distance_expectedC1C2, distance_HSV, distance_LCh, distance_CMYK, distance_RGB, distance_Lab);
 
-demoResultsAge_50_59 = [demoResultsAge_50_59 diffs_table];
+if size(C1_name, 1) == 1
+    colors_names = cell(1,2);
+    colors_names(1,1) = cellstr(C1_name);
+    colors_names(1,2) = cellstr(C2_name);
+    colors_names = cell2table(colors_names);
+else
+    colors_names = table(C1_name, C2_name);
+end
+
+C1_name = []; C2_name = [];
+
+demoResultsAge_50_59 = [demoResultsAge_50_59 colors_names diffs_table];
 
 % Plot Results for each Color Model
 figure('NumberTitle','off');
@@ -1973,7 +2401,7 @@ scatter(x_pre_expectedColors(3), y_pre_expectedColors(3), 60, 'black');         
 for i = 1 : height(demoResultsAge_60)                                  
     %% First Color - C1
     sColor = str2num(cell2mat(demoResultsAge_60.second_color(i)));      
-    valuesSColor = [valuesSColor sColor];                               
+                                   
     sColor = sColor/360;                                                
     sColor = [sColor 1 1];                                             
     hsv_C1 = sColor;
@@ -2000,7 +2428,36 @@ for i = 1 : height(demoResultsAge_60)
     y_values = [y_values y_aux];
     
     %% Categorize Colors - Bins
+    for j = 1 : length(colorBins)
+        valuesofx = round(colorBins(j).XData, 1);
+        valuesofy = round(colorBins(j).YData, 1);
+        if ismember(round(x_values(1), 1), valuesofx) && ismember(round(y_values(1),1), valuesofy)
+            color_C1 = colorBins(j).Tag;
+            foundC1 = 1;
+        end
+        if ismember(round(x_values(2),1), valuesofx) && ismember(round(y_values(2),1), valuesofy)
+            color_C2 = colorBins(j).Tag;
+            foundC2 = 1;
+        end
+    end
     
+    if foundC1 == 0 && foundC2 == 0
+        C1_name = [C1_name ; 'NA       '];
+        C2_name = [C2_name ; 'NA       '];
+    else if foundC1 == 1 && foundC2 == 0
+            C1_name = [C1_name ; color_C1];
+            C2_name = [C2_name ; 'NA       '];
+        else if foundC1 == 0 && foundC2 == 1
+                C1_name = [C1_name ; 'NA       '];
+                C2_name = [C2_name ; color_C2];
+            else
+                C1_name = [C1_name ; color_C1];
+                C2_name = [C2_name ; color_C2];
+            end
+        end
+    end
+    foundC1 = 0; foundC2 = 0;
+        
     %% Difference between C1/C2 and expected colors C1/C2
     diff_c1_expected = round(pdist([[x_values(1) y_values(1)] ; [x_pre_expectedColors(2) y_pre_expectedColors(2)]]), 2);  % [given -C1- C2]
     diff_c2_expected = round(pdist([[x_values(2) y_values(2)] ; [x_pre_expectedColors(3) y_pre_expectedColors(3)]]), 2);  % [given C1 -C2-]
@@ -2110,7 +2567,18 @@ distance_centroid_Lab = [distance_centroid_Lab ; round(pdist([mean(x_values_Lab)
 % Catenate all Tables               -- CHANGE HERE
 diffs_table = table(distance_expectedC1C2, distance_HSV, distance_LCh, distance_CMYK, distance_RGB, distance_Lab);
 
-demoResultsAge_60 = [demoResultsAge_60 diffs_table];
+if size(C1_name, 1) == 1
+    colors_names = cell(1,2);
+    colors_names(1,1) = cellstr(C1_name);
+    colors_names(1,2) = cellstr(C2_name);
+    colors_names = cell2table(colors_names);
+else
+    colors_names = table(C1_name, C2_name);
+end
+
+C1_name = []; C2_name = [];
+
+demoResultsAge_60 = [demoResultsAge_60 colors_names diffs_table];
 
 % Plot Results for each Color Model
 figure('NumberTitle','off');
@@ -2191,7 +2659,7 @@ scatter(x_pre_expectedColors(3), y_pre_expectedColors(3), 60, 'black');         
 for i = 1 : height(demoResultsGender_Female)                                  
     %% First Color - C1
     sColor = str2num(cell2mat(demoResultsGender_Female.second_color(i)));      
-    valuesSColor = [valuesSColor sColor];                               
+                                   
     sColor = sColor/360;                                                
     sColor = [sColor 1 1];                                             
     hsv_C1 = sColor;
@@ -2218,7 +2686,36 @@ for i = 1 : height(demoResultsGender_Female)
     y_values = [y_values y_aux];
     
     %% Categorize Colors - Bins
+    for j = 1 : length(colorBins)
+        valuesofx = round(colorBins(j).XData, 1);
+        valuesofy = round(colorBins(j).YData, 1);
+        if ismember(round(x_values(1), 1), valuesofx) && ismember(round(y_values(1),1), valuesofy)
+            color_C1 = colorBins(j).Tag;
+            foundC1 = 1;
+        end
+        if ismember(round(x_values(2),1), valuesofx) && ismember(round(y_values(2),1), valuesofy)
+            color_C2 = colorBins(j).Tag;
+            foundC2 = 1;
+        end
+    end
     
+    if foundC1 == 0 && foundC2 == 0
+        C1_name = [C1_name ; 'NA       '];
+        C2_name = [C2_name ; 'NA       '];
+    else if foundC1 == 1 && foundC2 == 0
+            C1_name = [C1_name ; color_C1];
+            C2_name = [C2_name ; 'NA       '];
+        else if foundC1 == 0 && foundC2 == 1
+                C1_name = [C1_name ; 'NA       '];
+                C2_name = [C2_name ; color_C2];
+            else
+                C1_name = [C1_name ; color_C1];
+                C2_name = [C2_name ; color_C2];
+            end
+        end
+    end
+    foundC1 = 0; foundC2 = 0;
+        
     %% Difference between C1/C2 and expected colors C1/C2
     diff_c1_expected = round(pdist([[x_values(1) y_values(1)] ; [x_pre_expectedColors(2) y_pre_expectedColors(2)]]), 2);  % [given -C1- C2]
     diff_c2_expected = round(pdist([[x_values(2) y_values(2)] ; [x_pre_expectedColors(3) y_pre_expectedColors(3)]]), 2);  % [given C1 -C2-]
@@ -2328,7 +2825,18 @@ distance_centroid_Lab = [distance_centroid_Lab ; round(pdist([mean(x_values_Lab)
 % Catenate all Tables               -- CHANGE HERE
 diffs_table = table(distance_expectedC1C2, distance_HSV, distance_LCh, distance_CMYK, distance_RGB, distance_Lab);
 
-demoResultsGender_Female = [demoResultsGender_Female diffs_table];
+if size(C1_name, 1) == 1
+    colors_names = cell(1,2);
+    colors_names(1,1) = cellstr(C1_name);
+    colors_names(1,2) = cellstr(C2_name);
+    colors_names = cell2table(colors_names);
+else
+    colors_names = table(C1_name, C2_name);
+end
+
+C1_name = []; C2_name = [];
+
+demoResultsGender_Female = [demoResultsGender_Female colors_names diffs_table];
 
 % Plot Results for each Color Model
 figure('NumberTitle','off');
@@ -2409,7 +2917,7 @@ scatter(x_pre_expectedColors(3), y_pre_expectedColors(3), 60, 'black');         
 for i = 1 : height(demoResultsGender_Male)                                  
     %% First Color - C1
     sColor = str2num(cell2mat(demoResultsGender_Male.second_color(i)));      
-    valuesSColor = [valuesSColor sColor];                               
+                                   
     sColor = sColor/360;                                                
     sColor = [sColor 1 1];                                             
     hsv_C1 = sColor;
@@ -2436,6 +2944,35 @@ for i = 1 : height(demoResultsGender_Male)
     y_values = [y_values y_aux];
     
     %% Categorize Colors - Bins
+    for j = 1 : length(colorBins)
+        valuesofx = round(colorBins(j).XData, 1);
+        valuesofy = round(colorBins(j).YData, 1);
+        if ismember(round(x_values(1), 1), valuesofx) && ismember(round(y_values(1),1), valuesofy)
+            color_C1 = colorBins(j).Tag;
+            foundC1 = 1;
+        end
+        if ismember(round(x_values(2),1), valuesofx) && ismember(round(y_values(2),1), valuesofy)
+            color_C2 = colorBins(j).Tag;
+            foundC2 = 1;
+        end
+    end
+    
+    if foundC1 == 0 && foundC2 == 0
+        C1_name = [C1_name ; 'NA       '];
+        C2_name = [C2_name ; 'NA       '];
+    else if foundC1 == 1 && foundC2 == 0
+            C1_name = [C1_name ; color_C1];
+            C2_name = [C2_name ; 'NA       '];
+        else if foundC1 == 0 && foundC2 == 1
+                C1_name = [C1_name ; 'NA       '];
+                C2_name = [C2_name ; color_C2];
+            else
+                C1_name = [C1_name ; color_C1];
+                C2_name = [C2_name ; color_C2];
+            end
+        end
+    end
+    foundC1 = 0; foundC2 = 0;
     
     %% Difference between C1/C2 and expected colors C1/C2
     diff_c1_expected = round(pdist([[x_values(1) y_values(1)] ; [x_pre_expectedColors(2) y_pre_expectedColors(2)]]), 2);  % [given -C1- C2]
@@ -2546,7 +3083,18 @@ distance_centroid_Lab = [distance_centroid_Lab ; round(pdist([mean(x_values_Lab)
 % Catenate all Tables               -- CHANGE HERE
 diffs_table = table(distance_expectedC1C2, distance_HSV, distance_LCh, distance_CMYK, distance_RGB, distance_Lab);
 
-demoResultsGender_Male = [demoResultsGender_Male diffs_table];
+if size(C1_name, 1) == 1
+    colors_names = cell(1,2);
+    colors_names(1,1) = cellstr(C1_name);
+    colors_names(1,2) = cellstr(C2_name);
+    colors_names = cell2table(colors_names);
+else
+    colors_names = table(C1_name, C2_name);
+end
+
+C1_name = []; C2_name = [];
+
+demoResultsGender_Male = [demoResultsGender_Male colors_names diffs_table];
 
 % Plot Results for each Color Model
 figure('NumberTitle','off');
@@ -2622,12 +3170,11 @@ scatter(x_pre_expectedColors(1), y_pre_expectedColors(1), 60, 'black', 'Filled')
 scatter(x_pre_expectedColors(2), y_pre_expectedColors(2), 60, 'black');                               % draw EXPECTED COLOR
 scatter(x_pre_expectedColors(3), y_pre_expectedColors(3), 60, 'black');                               % draw EXPECTED COLOR
 
-
 % Draw every pair of responses.
 for i = 1 : height(demoResultsGender_Other)                                  
     %% First Color - C1
     sColor = str2num(cell2mat(demoResultsGender_Other.second_color(i)));      
-    valuesSColor = [valuesSColor sColor];                               
+                                   
     sColor = sColor/360;                                                
     sColor = [sColor 1 1];                                             
     hsv_C1 = sColor;
@@ -2654,6 +3201,35 @@ for i = 1 : height(demoResultsGender_Other)
     y_values = [y_values y_aux];
     
     %% Categorize Colors - Bins
+    for j = 1 : length(colorBins)
+        valuesofx = round(colorBins(j).XData, 1);
+        valuesofy = round(colorBins(j).YData, 1);
+        if ismember(round(x_values(1), 1), valuesofx) && ismember(round(y_values(1),1), valuesofy)
+            color_C1 = colorBins(j).Tag;
+            foundC1 = 1;
+        end
+        if ismember(round(x_values(2),1), valuesofx) && ismember(round(y_values(2),1), valuesofy)
+            color_C2 = colorBins(j).Tag;
+            foundC2 = 1;
+        end
+    end
+    
+    if foundC1 == 0 && foundC2 == 0
+        C1_name = [C1_name ; 'NA       '];
+        C2_name = [C2_name ; 'NA       '];
+    else if foundC1 == 1 && foundC2 == 0
+            C1_name = [C1_name ; color_C1];
+            C2_name = [C2_name ; 'NA       '];
+        else if foundC1 == 0 && foundC2 == 1
+                C1_name = [C1_name ; 'NA       '];
+                C2_name = [C2_name ; color_C2];
+            else
+                C1_name = [C1_name ; color_C1];
+                C2_name = [C2_name ; color_C2];
+            end
+        end
+    end
+    foundC1 = 0; foundC2 = 0;
     
     %% Difference between C1/C2 and expected colors C1/C2
     diff_c1_expected = round(pdist([[x_values(1) y_values(1)] ; [x_pre_expectedColors(2) y_pre_expectedColors(2)]]), 2);  % [given -C1- C2]
@@ -2764,7 +3340,18 @@ distance_centroid_Lab = [distance_centroid_Lab ; round(pdist([mean(x_values_Lab)
 % Catenate all Tables               -- CHANGE HERE
 diffs_table = table(distance_expectedC1C2, distance_HSV, distance_LCh, distance_CMYK, distance_RGB, distance_Lab);
 
-demoResultsGender_Other = [demoResultsGender_Other diffs_table];
+if size(C1_name, 1) == 1
+    colors_names = cell(1,2);
+    colors_names(1,1) = cellstr(C1_name);
+    colors_names(1,2) = cellstr(C2_name);
+    colors_names = cell2table(colors_names);
+else
+    colors_names = table(C1_name, C2_name);
+end
+
+C1_name = []; C2_name = [];
+
+demoResultsGender_Other = [demoResultsGender_Other colors_names diffs_table];
 
 % Plot Results for each Color Model
 figure('NumberTitle','off');
@@ -2827,6 +3414,72 @@ x_values_HSV = []; y_values_HSV = []; x_values_LCh = []; y_values_LCh = []; x_va
 distance_HSV = []; distance_LCh = []; distance_CMYK = []; distance_RGB = []; distance_Lab = [];
 distance_expectedC1C2 = [];
 
+%% White Answers Analysis
+figure('NumberTitle','off');
+cieplot();
+title('Question 1: Response-Pairs with one White Component', 'FontSize', 13);              %% -- CHANGE HERE
+xlabel('X Value');
+ylabel('Y Value');
+hold on;
+
+scatter(x_pre_expectedColors(1), y_pre_expectedColors(1), 60, 'black', 'Filled');                     % draw GIVEN COLOR
+scatter(x_pre_expectedColors(2), y_pre_expectedColors(2), 60, 'black');                               % draw EXPECTED COLOR
+scatter(x_pre_expectedColors(3), y_pre_expectedColors(3), 60, 'black');                               % draw EXPECTED COLOR
+
+for i = 1 : height(whiteAnswers)    
+    %% Identify which color is missing
+    sColor = str2num(cell2mat(whiteAnswers.second_color(i)));
+    tColor = str2num(cell2mat(whiteAnswers.third_color(i)));
+    if sColor == 0
+        otherColor = tColor;
+    else otherColor = sColor;
+    end
+    
+    %% Color given                              
+    otherColor = otherColor/360;                                                
+    otherColor = [otherColor 1 1];                                             
+    otherColor = hsv2rgb(otherColor);
+    otherColor = rgb2xyz(otherColor);
+    x_aux = otherColor(1)/(otherColor(1) + otherColor(2) + otherColor(3));              
+    y_aux = otherColor(2)/(otherColor(1) + otherColor(2) + otherColor(3));              
+    x_values = [x_values x_aux];                                        
+    y_values = [y_values y_aux];
+    
+    %% Categorize Colors - Bins
+    for j = 1 : length(colorBins)
+        valuesofx = round(colorBins(j).XData, 1);
+        valuesofy = round(colorBins(j).YData, 1);
+        if ismember(round(x_values(1), 1), valuesofx) && ismember(round(y_values(1),1), valuesofy)
+            color_C1 = colorBins(j).Tag;
+            foundC1 = 1;
+        end
+    end
+    
+    if foundC1 == 0 
+        C1_name = [C1_name ; 'NA       '];
+    else
+        C1_name = [C1_name ; color_C1];
+    end
+
+    foundC1 = 0;
+        
+    %% Distance to Given Color
+    diff_c0_expected = round(pdist([[x_values(1) y_values(1)] ; [x_pre_expectedColors(1) y_pre_expectedColors(1)]]), 2);
+    distance_givenColor = [distance_givenColor ; diff_c0_expected];
+    
+    %% Draw Points
+    scatter(x_values, y_values, 50, 'white');                         
+    x_values = []; y_values = [];
+end
+hold off;
+
+saveas(gcf, fullfile(path, 'white_answers'), 'png');
+
+colors_names = table(C1_name);
+whiteAnswers = [whiteAnswers table(distance_givenColor) colors_names];
+distance_givenColor = [];
+C1_name = [];
+
 %% Save Tables
 
 rowNames = {'Laboratory Users';'Online Users (Regular)';'Online Users (Uncalibrated)';'Users aged Less Than 20 Years';'Users aged Between 20 and 29 Years';'Users aged Between 30 and 39 Years';'Users aged Between 40 and 49 Years';'Users aged Between 50 and 59 Years';'Users aged Above 60 Years';'Female Users';'Male Users';'Other Gender Users';};
@@ -2840,6 +3493,7 @@ writetable(laboratoryResults, '/Users/PauloGarcia/Documents/MATLAB/Results/First
 writetable(laboratoryResults_dalt, '/Users/PauloGarcia/Documents/MATLAB/Results/First Study/Question 1/q1_lab_dalt.csv');   % Laboratory Daltonic Users Results Digested
 
 writetable(centroidsTable, '/Users/PauloGarcia/Documents/MATLAB/Results/First Study/Question 1/q1_centroids.csv', 'WriteRowNames', true);   % Centroids of all users' responses.
+writetable(whiteAnswers,  '/Users/PauloGarcia/Documents/MATLAB/Results/First Study/Question 1/q1_whiteAnswers.csv', 'WriteRowNames', true)
 
 writetable(demoResultsAge_20, '/Users/PauloGarcia/Documents/MATLAB/Results/First Study/Question 1/q1_age_20.csv', 'WriteRowNames', true);
 writetable(demoResultsAge_20_29, '/Users/PauloGarcia/Documents/MATLAB/Results/First Study/Question 1/q1_age_20_29.csv', 'WriteRowNames', true);

@@ -29,7 +29,7 @@ close all;
 ColorConverter; 
 
 % Create Color Bins table and other stuff.
-process_colorBins;
+process_colorBins; % -- UNCOMMENT HERE TO PROCESS ALL COLOR BINS (WARNING: extensively resource-consuming task).
 
 % Processing questions of type 'objTwoColors': OBJ (Given) = C1 (Requested) + C2 (Requested)
 q1_firstStudy_analysis;
@@ -51,18 +51,21 @@ q16_firstStudy_analysis;
 q17_firstStudy_analysis;
 
 % Processing questions of type 'twoColorsObj': C1 (Given) + C2 (Given) = OBJ (Requested)
-q18_firstStudy_analysis;
-q19_firstStudy_analysis;
-q20_firstStudy_analysis;
-q21_firstStudy_analysis;
-q22_firstStudy_analysis;
-q23_firstStudy_analysis;
-q24_firstStudy_analysis;
-q25_firstStudy_analysis;
-q26_firstStudy_analysis;
-q27_firstStudy_analysis;
-q28_firstStudy_analysis;
-q29_firstStudy_analysis;
-q30_firstStudy_analysis;
-q31_firstStudy_analysis;
-q32_firstStudy_analysis;
+% q18_firstStudy_analysis;
+% q19_firstStudy_analysis;
+% q20_firstStudy_analysis;
+% q21_firstStudy_analysis;
+% q22_firstStudy_analysis;
+% q23_firstStudy_analysis;
+% q24_firstStudy_analysis;
+% q25_firstStudy_analysis;
+% q26_firstStudy_analysis;
+% q27_firstStudy_analysis;
+% q28_firstStudy_analysis;
+% q29_firstStudy_analysis;
+% q30_firstStudy_analysis;
+% q31_firstStudy_analysis;
+% q32_firstStudy_analysis;
+
+% Close all plots generated.
+close all; 
