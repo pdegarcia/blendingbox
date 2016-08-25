@@ -343,8 +343,8 @@ for i = 1 : height(laboratoryResults)
 
     %%%%%% Blend-it in CIE-LCh (XYZ -> Lab -> LCh)
     sColor_lch = sColor; tColor_lch = tColor;
-    sColor_lch = applycform(applycform(sColor_lch, cformXYZ_Lab), cformLab_LCh); tColor_lch = applycform(applycform(tColor_lch, cformXYZ_Lab), cformLab_LCh);
-    sColor_lch = [sColor_lch(1) sColor_lch(2) (sColor_lch(3)*360)]; tColor_lch = [tColor_lch(1) tColor_lch(2) (tColor_lch(3)*360)];
+    sColor_lch = applycform(sColor_lch, cformXYZ_Lab); sColor_lch = applycform(sColor_lch, cformLab_LCh);
+    
     l_aux = (abs(sColor_lch(1) - tColor_lch(1)) / 2) + min([sColor_lch(1) tColor_lch(1)]);  % diff between colors, and add half to the smallest
     c_aux = (abs(sColor_lch(2) - tColor_lch(2)) / 2) + min([sColor_lch(2) tColor_lch(2)]);
     diff_angles = abs(sColor_lch(3) - tColor_lch(3));
@@ -360,7 +360,7 @@ for i = 1 : height(laboratoryResults)
     else
         h_aux = min([sColor_lch(3) tColor_lch(3)]) + (diff_angles / 2);
     end
-    rColor = applycform(applycform([l_aux c_aux (h_aux/360)], cformLCh_Lab), cformLab_XYZ);
+    rColor = applycform(applycform([l_aux c_aux h_aux], cformLCh_Lab), cformLab_XYZ);
     x_aux  = rColor(1)/(rColor(1) + rColor(2) + rColor(3)); y_aux = rColor(2)/(rColor(1) + rColor(2) + rColor(3));
     distance_LCh = [distance_LCh; round(pdist([[x_aux y_aux]; [x_pre_models(2) y_pre_models(2)]]), 2)];
     x_values_LCh = [x_values_LCh x_aux]; y_values_LCh = [y_values_LCh y_aux];
@@ -725,8 +725,8 @@ for i = 1 : height(onlineResults)                                  %draw every p
 
     %%%%%% Blend-it in CIE-LCh (XYZ -> Lab -> LCh)
     sColor_lch = sColor; tColor_lch = tColor;
-    sColor_lch = applycform(applycform(sColor_lch, cformXYZ_Lab), cformLab_LCh); tColor_lch = applycform(applycform(tColor_lch, cformXYZ_Lab), cformLab_LCh);
-    sColor_lch = [sColor_lch(1) sColor_lch(2) (sColor_lch(3)*360)]; tColor_lch = [tColor_lch(1) tColor_lch(2) (tColor_lch(3)*360)];
+    sColor_lch = applycform(sColor_lch, cformXYZ_Lab); sColor_lch = applycform(sColor_lch, cformLab_LCh);
+
     l_aux = (abs(sColor_lch(1) - tColor_lch(1)) / 2) + min([sColor_lch(1) tColor_lch(1)]);  % diff between colors, and add half to the smallest
     c_aux = (abs(sColor_lch(2) - tColor_lch(2)) / 2) + min([sColor_lch(2) tColor_lch(2)]);
     diff_angles = abs(sColor_lch(3) - tColor_lch(3));
@@ -742,7 +742,7 @@ for i = 1 : height(onlineResults)                                  %draw every p
     else
         h_aux = min([sColor_lch(3) tColor_lch(3)]) + (diff_angles / 2);
     end
-    rColor = applycform(applycform([l_aux c_aux (h_aux/360)], cformLCh_Lab), cformLab_XYZ);
+    rColor = applycform(applycform([l_aux c_aux h_aux], cformLCh_Lab), cformLab_XYZ);
     x_aux  = rColor(1)/(rColor(1) + rColor(2) + rColor(3)); y_aux = rColor(2)/(rColor(1) + rColor(2) + rColor(3));
     distance_LCh = [distance_LCh; round(pdist([[x_aux y_aux]; [x_pre_models(2) y_pre_models(2)]]), 2)];
     x_values_LCh = [x_values_LCh x_aux]; y_values_LCh = [y_values_LCh y_aux];
@@ -1097,8 +1097,8 @@ for i = 1 : height(onlineResults_uncal)                                  %draw e
 
     %%%%%% Blend-it in CIE-LCh (XYZ -> Lab -> LCh)
     sColor_lch = sColor; tColor_lch = tColor;
-    sColor_lch = applycform(applycform(sColor_lch, cformXYZ_Lab), cformLab_LCh); tColor_lch = applycform(applycform(tColor_lch, cformXYZ_Lab), cformLab_LCh);
-    sColor_lch = [sColor_lch(1) sColor_lch(2) (sColor_lch(3)*360)]; tColor_lch = [tColor_lch(1) tColor_lch(2) (tColor_lch(3)*360)];
+    sColor_lch = applycform(sColor_lch, cformXYZ_Lab); sColor_lch = applycform(sColor_lch, cformLab_LCh);
+
     l_aux = (abs(sColor_lch(1) - tColor_lch(1)) / 2) + min([sColor_lch(1) tColor_lch(1)]);  % diff between colors, and add half to the smallest
     c_aux = (abs(sColor_lch(2) - tColor_lch(2)) / 2) + min([sColor_lch(2) tColor_lch(2)]);
     diff_angles = abs(sColor_lch(3) - tColor_lch(3));
@@ -1114,7 +1114,7 @@ for i = 1 : height(onlineResults_uncal)                                  %draw e
     else
         h_aux = min([sColor_lch(3) tColor_lch(3)]) + (diff_angles / 2);
     end
-    rColor = applycform(applycform([l_aux c_aux (h_aux/360)], cformLCh_Lab), cformLab_XYZ);
+    rColor = applycform(applycform([l_aux c_aux h_aux], cformLCh_Lab), cformLab_XYZ);
     x_aux  = rColor(1)/(rColor(1) + rColor(2) + rColor(3)); y_aux = rColor(2)/(rColor(1) + rColor(2) + rColor(3));
     distance_LCh = [distance_LCh; round(pdist([[x_aux y_aux]; [x_pre_models(2) y_pre_models(2)]]), 2)];
     x_values_LCh = [x_values_LCh x_aux]; y_values_LCh = [y_values_LCh y_aux];
@@ -1324,8 +1324,8 @@ for i = 1 : height(demoResultsAge_20)
 
     %%%%%% Blend-it in CIE-LCh (XYZ -> Lab -> LCh)
     sColor_lch = sColor; tColor_lch = tColor;
-    sColor_lch = applycform(applycform(sColor_lch, cformXYZ_Lab), cformLab_LCh); tColor_lch = applycform(applycform(tColor_lch, cformXYZ_Lab), cformLab_LCh);
-    sColor_lch = [sColor_lch(1) sColor_lch(2) (sColor_lch(3)*360)]; tColor_lch = [tColor_lch(1) tColor_lch(2) (tColor_lch(3)*360)];
+    sColor_lch = applycform(sColor_lch, cformXYZ_Lab); sColor_lch = applycform(sColor_lch, cformLab_LCh);
+
     l_aux = (abs(sColor_lch(1) - tColor_lch(1)) / 2) + min([sColor_lch(1) tColor_lch(1)]);  % diff between colors, and add half to the smallest
     c_aux = (abs(sColor_lch(2) - tColor_lch(2)) / 2) + min([sColor_lch(2) tColor_lch(2)]);
     diff_angles = abs(sColor_lch(3) - tColor_lch(3));
@@ -1341,7 +1341,7 @@ for i = 1 : height(demoResultsAge_20)
     else
         h_aux = min([sColor_lch(3) tColor_lch(3)]) + (diff_angles / 2);
     end
-    rColor = applycform(applycform([l_aux c_aux (h_aux/360)], cformLCh_Lab), cformLab_XYZ);
+    rColor = applycform(applycform([l_aux c_aux h_aux], cformLCh_Lab), cformLab_XYZ);
     x_aux  = rColor(1)/(rColor(1) + rColor(2) + rColor(3)); y_aux = rColor(2)/(rColor(1) + rColor(2) + rColor(3));
     distance_LCh = [distance_LCh; round(pdist([[x_aux y_aux]; [x_pre_models(2) y_pre_models(2)]]), 2)];
     x_values_LCh = [x_values_LCh x_aux]; y_values_LCh = [y_values_LCh y_aux];
@@ -1608,8 +1608,8 @@ for i = 1 : height(demoResultsAge_20_29)
 
     %%%%%% Blend-it in CIE-LCh (XYZ -> Lab -> LCh)
     sColor_lch = sColor; tColor_lch = tColor;
-    sColor_lch = applycform(applycform(sColor_lch, cformXYZ_Lab), cformLab_LCh); tColor_lch = applycform(applycform(tColor_lch, cformXYZ_Lab), cformLab_LCh);
-    sColor_lch = [sColor_lch(1) sColor_lch(2) (sColor_lch(3)*360)]; tColor_lch = [tColor_lch(1) tColor_lch(2) (tColor_lch(3)*360)];
+    sColor_lch = applycform(sColor_lch, cformXYZ_Lab); sColor_lch = applycform(sColor_lch, cformLab_LCh);
+
     l_aux = (abs(sColor_lch(1) - tColor_lch(1)) / 2) + min([sColor_lch(1) tColor_lch(1)]);  % diff between colors, and add half to the smallest
     c_aux = (abs(sColor_lch(2) - tColor_lch(2)) / 2) + min([sColor_lch(2) tColor_lch(2)]);
     diff_angles = abs(sColor_lch(3) - tColor_lch(3));
@@ -1625,7 +1625,7 @@ for i = 1 : height(demoResultsAge_20_29)
     else
         h_aux = min([sColor_lch(3) tColor_lch(3)]) + (diff_angles / 2);
     end
-    rColor = applycform(applycform([l_aux c_aux (h_aux/360)], cformLCh_Lab), cformLab_XYZ);
+    rColor = applycform(applycform([l_aux c_aux h_aux], cformLCh_Lab), cformLab_XYZ);
     x_aux  = rColor(1)/(rColor(1) + rColor(2) + rColor(3)); y_aux = rColor(2)/(rColor(1) + rColor(2) + rColor(3));
     distance_LCh = [distance_LCh; round(pdist([[x_aux y_aux]; [x_pre_models(2) y_pre_models(2)]]), 2)];
     x_values_LCh = [x_values_LCh x_aux]; y_values_LCh = [y_values_LCh y_aux];
@@ -1892,8 +1892,8 @@ for i = 1 : height(demoResultsAge_30_39)
 
     %%%%%% Blend-it in CIE-LCh (XYZ -> Lab -> LCh)
     sColor_lch = sColor; tColor_lch = tColor;
-    sColor_lch = applycform(applycform(sColor_lch, cformXYZ_Lab), cformLab_LCh); tColor_lch = applycform(applycform(tColor_lch, cformXYZ_Lab), cformLab_LCh);
-    sColor_lch = [sColor_lch(1) sColor_lch(2) (sColor_lch(3)*360)]; tColor_lch = [tColor_lch(1) tColor_lch(2) (tColor_lch(3)*360)];
+    sColor_lch = applycform(sColor_lch, cformXYZ_Lab); sColor_lch = applycform(sColor_lch, cformLab_LCh);
+
     l_aux = (abs(sColor_lch(1) - tColor_lch(1)) / 2) + min([sColor_lch(1) tColor_lch(1)]);  % diff between colors, and add half to the smallest
     c_aux = (abs(sColor_lch(2) - tColor_lch(2)) / 2) + min([sColor_lch(2) tColor_lch(2)]);
     diff_angles = abs(sColor_lch(3) - tColor_lch(3));
@@ -1909,7 +1909,7 @@ for i = 1 : height(demoResultsAge_30_39)
     else
         h_aux = min([sColor_lch(3) tColor_lch(3)]) + (diff_angles / 2);
     end
-    rColor = applycform(applycform([l_aux c_aux (h_aux/360)], cformLCh_Lab), cformLab_XYZ);
+    rColor = applycform(applycform([l_aux c_aux h_aux], cformLCh_Lab), cformLab_XYZ);
     x_aux  = rColor(1)/(rColor(1) + rColor(2) + rColor(3)); y_aux = rColor(2)/(rColor(1) + rColor(2) + rColor(3));
     distance_LCh = [distance_LCh; round(pdist([[x_aux y_aux]; [x_pre_models(2) y_pre_models(2)]]), 2)];
     x_values_LCh = [x_values_LCh x_aux]; y_values_LCh = [y_values_LCh y_aux];
@@ -2176,8 +2176,8 @@ for i = 1 : height(demoResultsAge_40_49)
 
     %%%%%% Blend-it in CIE-LCh (XYZ -> Lab -> LCh)
     sColor_lch = sColor; tColor_lch = tColor;
-    sColor_lch = applycform(applycform(sColor_lch, cformXYZ_Lab), cformLab_LCh); tColor_lch = applycform(applycform(tColor_lch, cformXYZ_Lab), cformLab_LCh);
-    sColor_lch = [sColor_lch(1) sColor_lch(2) (sColor_lch(3)*360)]; tColor_lch = [tColor_lch(1) tColor_lch(2) (tColor_lch(3)*360)];
+    sColor_lch = applycform(sColor_lch, cformXYZ_Lab); sColor_lch = applycform(sColor_lch, cformLab_LCh);
+
     l_aux = (abs(sColor_lch(1) - tColor_lch(1)) / 2) + min([sColor_lch(1) tColor_lch(1)]);  % diff between colors, and add half to the smallest
     c_aux = (abs(sColor_lch(2) - tColor_lch(2)) / 2) + min([sColor_lch(2) tColor_lch(2)]);
     diff_angles = abs(sColor_lch(3) - tColor_lch(3));
@@ -2193,7 +2193,7 @@ for i = 1 : height(demoResultsAge_40_49)
     else
         h_aux = min([sColor_lch(3) tColor_lch(3)]) + (diff_angles / 2);
     end
-    rColor = applycform(applycform([l_aux c_aux (h_aux/360)], cformLCh_Lab), cformLab_XYZ);
+    rColor = applycform(applycform([l_aux c_aux h_aux], cformLCh_Lab), cformLab_XYZ);
     x_aux  = rColor(1)/(rColor(1) + rColor(2) + rColor(3)); y_aux = rColor(2)/(rColor(1) + rColor(2) + rColor(3));
     distance_LCh = [distance_LCh; round(pdist([[x_aux y_aux]; [x_pre_models(2) y_pre_models(2)]]), 2)];
     x_values_LCh = [x_values_LCh x_aux]; y_values_LCh = [y_values_LCh y_aux];
@@ -2460,8 +2460,8 @@ for i = 1 : height(demoResultsAge_50_59)
 
     %%%%%% Blend-it in CIE-LCh (XYZ -> Lab -> LCh)
     sColor_lch = sColor; tColor_lch = tColor;
-    sColor_lch = applycform(applycform(sColor_lch, cformXYZ_Lab), cformLab_LCh); tColor_lch = applycform(applycform(tColor_lch, cformXYZ_Lab), cformLab_LCh);
-    sColor_lch = [sColor_lch(1) sColor_lch(2) (sColor_lch(3)*360)]; tColor_lch = [tColor_lch(1) tColor_lch(2) (tColor_lch(3)*360)];
+    sColor_lch = applycform(sColor_lch, cformXYZ_Lab); sColor_lch = applycform(sColor_lch, cformLab_LCh);
+
     l_aux = (abs(sColor_lch(1) - tColor_lch(1)) / 2) + min([sColor_lch(1) tColor_lch(1)]);  % diff between colors, and add half to the smallest
     c_aux = (abs(sColor_lch(2) - tColor_lch(2)) / 2) + min([sColor_lch(2) tColor_lch(2)]);
     diff_angles = abs(sColor_lch(3) - tColor_lch(3));
@@ -2477,7 +2477,7 @@ for i = 1 : height(demoResultsAge_50_59)
     else
         h_aux = min([sColor_lch(3) tColor_lch(3)]) + (diff_angles / 2);
     end
-    rColor = applycform(applycform([l_aux c_aux (h_aux/360)], cformLCh_Lab), cformLab_XYZ);
+    rColor = applycform(applycform([l_aux c_aux h_aux], cformLCh_Lab), cformLab_XYZ);
     x_aux  = rColor(1)/(rColor(1) + rColor(2) + rColor(3)); y_aux = rColor(2)/(rColor(1) + rColor(2) + rColor(3));
     distance_LCh = [distance_LCh; round(pdist([[x_aux y_aux]; [x_pre_models(2) y_pre_models(2)]]), 2)];
     x_values_LCh = [x_values_LCh x_aux]; y_values_LCh = [y_values_LCh y_aux];
@@ -2744,8 +2744,8 @@ for i = 1 : height(demoResultsAge_60)
 
     %%%%%% Blend-it in CIE-LCh (XYZ -> Lab -> LCh)
     sColor_lch = sColor; tColor_lch = tColor;
-    sColor_lch = applycform(applycform(sColor_lch, cformXYZ_Lab), cformLab_LCh); tColor_lch = applycform(applycform(tColor_lch, cformXYZ_Lab), cformLab_LCh);
-    sColor_lch = [sColor_lch(1) sColor_lch(2) (sColor_lch(3)*360)]; tColor_lch = [tColor_lch(1) tColor_lch(2) (tColor_lch(3)*360)];
+    sColor_lch = applycform(sColor_lch, cformXYZ_Lab); sColor_lch = applycform(sColor_lch, cformLab_LCh);
+
     l_aux = (abs(sColor_lch(1) - tColor_lch(1)) / 2) + min([sColor_lch(1) tColor_lch(1)]);  % diff between colors, and add half to the smallest
     c_aux = (abs(sColor_lch(2) - tColor_lch(2)) / 2) + min([sColor_lch(2) tColor_lch(2)]);
     diff_angles = abs(sColor_lch(3) - tColor_lch(3));
@@ -2761,7 +2761,7 @@ for i = 1 : height(demoResultsAge_60)
     else
         h_aux = min([sColor_lch(3) tColor_lch(3)]) + (diff_angles / 2);
     end
-    rColor = applycform(applycform([l_aux c_aux (h_aux/360)], cformLCh_Lab), cformLab_XYZ);
+    rColor = applycform(applycform([l_aux c_aux h_aux], cformLCh_Lab), cformLab_XYZ);
     x_aux  = rColor(1)/(rColor(1) + rColor(2) + rColor(3)); y_aux = rColor(2)/(rColor(1) + rColor(2) + rColor(3));
     distance_LCh = [distance_LCh; round(pdist([[x_aux y_aux]; [x_pre_models(2) y_pre_models(2)]]), 2)];
     x_values_LCh = [x_values_LCh x_aux]; y_values_LCh = [y_values_LCh y_aux];
@@ -3028,8 +3028,8 @@ for i = 1 : height(demoResultsGender_Female)
 
     %%%%%% Blend-it in CIE-LCh (XYZ -> Lab -> LCh)
     sColor_lch = sColor; tColor_lch = tColor;
-    sColor_lch = applycform(applycform(sColor_lch, cformXYZ_Lab), cformLab_LCh); tColor_lch = applycform(applycform(tColor_lch, cformXYZ_Lab), cformLab_LCh);
-    sColor_lch = [sColor_lch(1) sColor_lch(2) (sColor_lch(3)*360)]; tColor_lch = [tColor_lch(1) tColor_lch(2) (tColor_lch(3)*360)];
+    sColor_lch = applycform(sColor_lch, cformXYZ_Lab); sColor_lch = applycform(sColor_lch, cformLab_LCh);
+
     l_aux = (abs(sColor_lch(1) - tColor_lch(1)) / 2) + min([sColor_lch(1) tColor_lch(1)]);  % diff between colors, and add half to the smallest
     c_aux = (abs(sColor_lch(2) - tColor_lch(2)) / 2) + min([sColor_lch(2) tColor_lch(2)]);
     diff_angles = abs(sColor_lch(3) - tColor_lch(3));
@@ -3045,7 +3045,7 @@ for i = 1 : height(demoResultsGender_Female)
     else
         h_aux = min([sColor_lch(3) tColor_lch(3)]) + (diff_angles / 2);
     end
-    rColor = applycform(applycform([l_aux c_aux (h_aux/360)], cformLCh_Lab), cformLab_XYZ);
+    rColor = applycform(applycform([l_aux c_aux h_aux], cformLCh_Lab), cformLab_XYZ);
     x_aux  = rColor(1)/(rColor(1) + rColor(2) + rColor(3)); y_aux = rColor(2)/(rColor(1) + rColor(2) + rColor(3));
     distance_LCh = [distance_LCh; round(pdist([[x_aux y_aux]; [x_pre_models(2) y_pre_models(2)]]), 2)];
     x_values_LCh = [x_values_LCh x_aux]; y_values_LCh = [y_values_LCh y_aux];
@@ -3312,8 +3312,8 @@ for i = 1 : height(demoResultsGender_Male)
 
     %%%%%% Blend-it in CIE-LCh (XYZ -> Lab -> LCh)
     sColor_lch = sColor; tColor_lch = tColor;
-    sColor_lch = applycform(applycform(sColor_lch, cformXYZ_Lab), cformLab_LCh); tColor_lch = applycform(applycform(tColor_lch, cformXYZ_Lab), cformLab_LCh);
-    sColor_lch = [sColor_lch(1) sColor_lch(2) (sColor_lch(3)*360)]; tColor_lch = [tColor_lch(1) tColor_lch(2) (tColor_lch(3)*360)];
+    sColor_lch = applycform(sColor_lch, cformXYZ_Lab); sColor_lch = applycform(sColor_lch, cformLab_LCh);
+
     l_aux = (abs(sColor_lch(1) - tColor_lch(1)) / 2) + min([sColor_lch(1) tColor_lch(1)]);  % diff between colors, and add half to the smallest
     c_aux = (abs(sColor_lch(2) - tColor_lch(2)) / 2) + min([sColor_lch(2) tColor_lch(2)]);
     diff_angles = abs(sColor_lch(3) - tColor_lch(3));
@@ -3329,7 +3329,7 @@ for i = 1 : height(demoResultsGender_Male)
     else
         h_aux = min([sColor_lch(3) tColor_lch(3)]) + (diff_angles / 2);
     end
-    rColor = applycform(applycform([l_aux c_aux (h_aux/360)], cformLCh_Lab), cformLab_XYZ);
+    rColor = applycform(applycform([l_aux c_aux h_aux], cformLCh_Lab), cformLab_XYZ);
     x_aux  = rColor(1)/(rColor(1) + rColor(2) + rColor(3)); y_aux = rColor(2)/(rColor(1) + rColor(2) + rColor(3));
     distance_LCh = [distance_LCh; round(pdist([[x_aux y_aux]; [x_pre_models(2) y_pre_models(2)]]), 2)];
     x_values_LCh = [x_values_LCh x_aux]; y_values_LCh = [y_values_LCh y_aux];
@@ -3596,8 +3596,8 @@ for i = 1 : height(demoResultsGender_Other)
 
     %%%%%% Blend-it in CIE-LCh (XYZ -> Lab -> LCh)
     sColor_lch = sColor; tColor_lch = tColor;
-    sColor_lch = applycform(applycform(sColor_lch, cformXYZ_Lab), cformLab_LCh); tColor_lch = applycform(applycform(tColor_lch, cformXYZ_Lab), cformLab_LCh);
-    sColor_lch = [sColor_lch(1) sColor_lch(2) (sColor_lch(3)*360)]; tColor_lch = [tColor_lch(1) tColor_lch(2) (tColor_lch(3)*360)];
+    sColor_lch = applycform(sColor_lch, cformXYZ_Lab); sColor_lch = applycform(sColor_lch, cformLab_LCh);
+
     l_aux = (abs(sColor_lch(1) - tColor_lch(1)) / 2) + min([sColor_lch(1) tColor_lch(1)]);  % diff between colors, and add half to the smallest
     c_aux = (abs(sColor_lch(2) - tColor_lch(2)) / 2) + min([sColor_lch(2) tColor_lch(2)]);
     diff_angles = abs(sColor_lch(3) - tColor_lch(3));
@@ -3613,7 +3613,7 @@ for i = 1 : height(demoResultsGender_Other)
     else
         h_aux = min([sColor_lch(3) tColor_lch(3)]) + (diff_angles / 2);
     end
-    rColor = applycform(applycform([l_aux c_aux (h_aux/360)], cformLCh_Lab), cformLab_XYZ);
+    rColor = applycform(applycform([l_aux c_aux h_aux], cformLCh_Lab), cformLab_XYZ);
     x_aux  = rColor(1)/(rColor(1) + rColor(2) + rColor(3)); y_aux = rColor(2)/(rColor(1) + rColor(2) + rColor(3));
     distance_LCh = [distance_LCh; round(pdist([[x_aux y_aux]; [x_pre_models(2) y_pre_models(2)]]), 2)];
     x_values_LCh = [x_values_LCh x_aux]; y_values_LCh = [y_values_LCh y_aux];
