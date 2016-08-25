@@ -1,5 +1,5 @@
 %% Question 17 - objTwoColors: Green = Cyan + Yellow
-% Explanation: 
+% Explanation:
 % This file is divided onto some main sections: processing the Laboratory
 % Results (both Regular and Daltonic Users) and Online Results
 %
@@ -10,7 +10,7 @@
 % #3 Step: Blend C1 and C2 in HSV, CIE LCh, CMYK, RGB and CIE Lab Color Models,
 % comparing the result against pre-calculated results for each model.
 
-close all;
+% close all;
 
 centroid_HSV = [];
 distance_centroid_HSV = [];
@@ -83,6 +83,13 @@ pair12_C1 = []; pair12_C2 = [];
 pair13_C1 = []; pair13_C2 = [];
 % END
 
+distance_givenColor = [];
+whiteAnswers = [];
+rowsToEliminate = [];
+C1_name = [];
+C2_name = [];
+foundC1 = 0; foundC2 = 0;
+
 cformRGB_XYZ    = makecform('srgb2xyz');
 cformLab_LCh    = makecform('lab2lch');
 cformLab_XYZ    = makecform('lab2xyz');
@@ -137,15 +144,14 @@ tableDEM_genF       = readtable(demographic_genderFemale, 'Delimiter', ',');
 tableDEM_genM       = readtable(demographic_genderMale, 'Delimiter', ',');
 tableDEM_genO       = readtable(demographic_genderOther, 'Delimiter', ',');
 
-
 %% Tables
 
 % Laboratory Tables -- CHANGE HERE
-laboratoryResults = tableR_lab(tableR_lab.id_question == 17,:); laboratoryResults = sortrows(laboratoryResults, 'id'); laboratoryResults.id_question = []; laboratoryResults.page_time = []; laboratoryResults.resets = []; 
+laboratoryResults = tableR_lab(tableR_lab.id_question == 17,:); laboratoryResults = sortrows(laboratoryResults, 'id'); laboratoryResults.id_question = []; laboratoryResults.page_time = []; laboratoryResults.resets = [];
 laboratoryResults_dalt = tableDR_lab(tableDR_lab.id_question == 17,:); laboratoryResults_dalt = sortrows(laboratoryResults_dalt, 'id'); laboratoryResults_dalt.id_question = []; laboratoryResults_dalt.page_time = []; laboratoryResults_dalt.resets = [];
 
 % Online Tables     -- CHANGE HERE
-onlineResults = tableR_online(tableR_online.id_question == 17,:); onlineResults = sortrows(onlineResults, 'id'); onlineResults.id_question = []; onlineResults.page_time = []; onlineResults.resets = []; 
+onlineResults = tableR_online(tableR_online.id_question == 17,:); onlineResults = sortrows(onlineResults, 'id'); onlineResults.id_question = []; onlineResults.page_time = []; onlineResults.resets = [];
 onlineResults_dalt = tableDR_online(tableDR_online.id_question == 17,:); onlineResults_dalt = sortrows(onlineResults_dalt, 'id'); onlineResults_dalt.id_question = []; onlineResults_dalt.page_time = []; onlineResults_dalt.resets = [];
 onlineResults_uncal = tableUR_online(tableUR_online.id_question == 17,:); onlineResults_uncal = sortrows(onlineResults_uncal, 'id'); onlineResults_uncal.id_question = []; onlineResults_uncal.page_time = []; onlineResults_uncal.resets = [];
 
@@ -168,31 +174,31 @@ expected_C1 = hsvTable{4,{'H','S','V'}}; expected_C1 = applycform((expected_C1/2
 expected_C2 = hsvTable{6,{'H','S','V'}}; expected_C2 = applycform((expected_C2/255), cformRGB_XYZ);    % Position - 'Y'
 
 % Other pairs which generate the same given color (if they exist).          -- CHANGE HERE
-pair1_C1 = hsvTable{2,{'H','S','V'}} ; pair1_C2 = hsvTable{6,{'H','S','V'}};    pair1_C1 = applycform((pair1_C1/255), cformRGB_XYZ); pair1_C2 = applycform((pair1_C2/255), cformRGB_XYZ);          
-pair2_C1 = lchTable{2,{'L','C','h'}} ; pair2_C2 = lchTable{6,{'L','C','h'}};    pair2_C1 = applycform((pair2_C1/255), cformRGB_XYZ); pair2_C2 = applycform((pair2_C2/255), cformRGB_XYZ);        
-pair3_C1 = cmykTable{2,{'C','M','Y'}} ; pair3_C2 = cmykTable{6,{'C','M','Y'}};    pair3_C1 = applycform((pair3_C1/255), cformRGB_XYZ); pair3_C2 = applycform((pair3_C2/255), cformRGB_XYZ);         
-pair4_C1 = rgbTable{2,{'R','G','B'}} ; pair4_C2 = rgbTable{6,{'R','G','B'}};    pair4_C1 = applycform((pair4_C1/255), cformRGB_XYZ); pair4_C2 = applycform((pair4_C2/255), cformRGB_XYZ);          
-pair5_C1 = labTable{2,{'L','a','b'}} ; pair5_C2 = labTable{6,{'L','a','b'}};    pair5_C1 = applycform((pair5_C1/255), cformRGB_XYZ); pair5_C2 = applycform((pair5_C2/255), cformRGB_XYZ);          
+pair1_C1 = hsvTable{2,{'H','S','V'}} ; pair1_C2 = hsvTable{6,{'H','S','V'}};    pair1_C1 = applycform((pair1_C1/255), cformRGB_XYZ); pair1_C2 = applycform((pair1_C2/255), cformRGB_XYZ);
+pair2_C1 = lchTable{2,{'L','C','h'}} ; pair2_C2 = lchTable{6,{'L','C','h'}};    pair2_C1 = applycform((pair2_C1/255), cformRGB_XYZ); pair2_C2 = applycform((pair2_C2/255), cformRGB_XYZ);
+pair3_C1 = cmykTable{2,{'C','M','Y'}} ; pair3_C2 = cmykTable{6,{'C','M','Y'}};    pair3_C1 = applycform((pair3_C1/255), cformRGB_XYZ); pair3_C2 = applycform((pair3_C2/255), cformRGB_XYZ);
+pair4_C1 = rgbTable{2,{'R','G','B'}} ; pair4_C2 = rgbTable{6,{'R','G','B'}};    pair4_C1 = applycform((pair4_C1/255), cformRGB_XYZ); pair4_C2 = applycform((pair4_C2/255), cformRGB_XYZ);
+pair5_C1 = labTable{2,{'L','a','b'}} ; pair5_C2 = labTable{6,{'L','a','b'}};    pair5_C1 = applycform((pair5_C1/255), cformRGB_XYZ); pair5_C2 = applycform((pair5_C2/255), cformRGB_XYZ);
 
-pair6_C1 = hsvTable{2,{'H','S','V'}} ; pair6_C2 = hsvTable{4,{'H','S','V'}};    pair6_C1 = applycform((pair6_C1/255), cformRGB_XYZ); pair6_C2 = applycform((pair6_C2/255), cformRGB_XYZ);         
-pair7_C1 = lchTable{2,{'L','C','h'}} ; pair7_C2 = lchTable{4,{'L','C','h'}};    pair7_C1 = applycform((pair7_C1/255), cformRGB_XYZ); pair7_C2 = applycform((pair7_C2/255), cformRGB_XYZ);         
-pair8_C1 = cmykTable{2,{'C','M','Y'}} ; pair8_C2 = cmykTable{4,{'C','M','Y'}};    pair8_C1 = applycform((pair8_C1/255), cformRGB_XYZ); pair8_C2 = applycform((pair8_C2/255), cformRGB_XYZ);         
-pair9_C1 = rgbTable{2,{'R','G','B'}} ; pair9_C2 = rgbTable{4,{'R','G','B'}};    pair9_C1 = applycform((pair9_C1/255), cformRGB_XYZ); pair9_C2 = applycform((pair9_C2/255), cformRGB_XYZ);         
-pair10_C1 = labTable{2,{'L','a','b'}} ; pair10_C2 = labTable{4,{'L','a','b'}};    pair10_C1 = applycform((pair10_C1/255), cformRGB_XYZ); pair10_C2 = applycform((pair10_C2/255), cformRGB_XYZ);    
+pair6_C1 = hsvTable{2,{'H','S','V'}} ; pair6_C2 = hsvTable{4,{'H','S','V'}};    pair6_C1 = applycform((pair6_C1/255), cformRGB_XYZ); pair6_C2 = applycform((pair6_C2/255), cformRGB_XYZ);
+pair7_C1 = lchTable{2,{'L','C','h'}} ; pair7_C2 = lchTable{4,{'L','C','h'}};    pair7_C1 = applycform((pair7_C1/255), cformRGB_XYZ); pair7_C2 = applycform((pair7_C2/255), cformRGB_XYZ);
+pair8_C1 = cmykTable{2,{'C','M','Y'}} ; pair8_C2 = cmykTable{4,{'C','M','Y'}};    pair8_C1 = applycform((pair8_C1/255), cformRGB_XYZ); pair8_C2 = applycform((pair8_C2/255), cformRGB_XYZ);
+pair9_C1 = rgbTable{2,{'R','G','B'}} ; pair9_C2 = rgbTable{4,{'R','G','B'}};    pair9_C1 = applycform((pair9_C1/255), cformRGB_XYZ); pair9_C2 = applycform((pair9_C2/255), cformRGB_XYZ);
+pair10_C1 = labTable{2,{'L','a','b'}} ; pair10_C2 = labTable{4,{'L','a','b'}};    pair10_C1 = applycform((pair10_C1/255), cformRGB_XYZ); pair10_C2 = applycform((pair10_C2/255), cformRGB_XYZ);
 
-pair11_C1 = hsvTable{1,{'H','S','V'}} ; pair11_C2 = hsvTable{4,{'H','S','V'}};    pair11_C1 = applycform((pair11_C1/255), cformRGB_XYZ); pair11_C2 = applycform((pair11_C2/255), cformRGB_XYZ);    
-pair12_C1 = lchTable{1,{'L','C','h'}} ; pair12_C2 = lchTable{4,{'L','C','h'}};    pair12_C1 = applycform((pair12_C1/255), cformRGB_XYZ); pair12_C2 = applycform((pair12_C2/255), cformRGB_XYZ);    
+pair11_C1 = hsvTable{1,{'H','S','V'}} ; pair11_C2 = hsvTable{4,{'H','S','V'}};    pair11_C1 = applycform((pair11_C1/255), cformRGB_XYZ); pair11_C2 = applycform((pair11_C2/255), cformRGB_XYZ);
+pair12_C1 = lchTable{1,{'L','C','h'}} ; pair12_C2 = lchTable{4,{'L','C','h'}};    pair12_C1 = applycform((pair12_C1/255), cformRGB_XYZ); pair12_C2 = applycform((pair12_C2/255), cformRGB_XYZ);
 
-pair13_C1 = hsvTable{3,{'H','S','V'}} ; pair13_C2 = hsvTable{6,{'H','S','V'}};    pair13_C1 = applycform((pair13_C1/255), cformRGB_XYZ); pair13_C2 = applycform((pair13_C2/255), cformRGB_XYZ);    
+pair13_C1 = hsvTable{3,{'H','S','V'}} ; pair13_C2 = hsvTable{6,{'H','S','V'}};    pair13_C1 = applycform((pair13_C1/255), cformRGB_XYZ); pair13_C2 = applycform((pair13_C2/255), cformRGB_XYZ);
 
 % Results of this combination in each Color Model (Pair: 'C-Y', Position 24/21) -- CHANGE HERE
-pre_HSV  =  hsvTable{24,{'H','S','V'}};  pre_HSV  =  applycform((pre_HSV/255), cformRGB_XYZ);                  
-pre_LCh  =  lchTable{21,{'L','C','h'}};  pre_LCh  =  applycform((pre_LCh/255), cformRGB_XYZ);                  
+pre_HSV  =  hsvTable{24,{'H','S','V'}};  pre_HSV  =  applycform((pre_HSV/255), cformRGB_XYZ);
+pre_LCh  =  lchTable{21,{'L','C','h'}};  pre_LCh  =  applycform((pre_LCh/255), cformRGB_XYZ);
 pre_CMYK =  cmykTable{21,{'C','M','Y'}}; pre_CMYK =  applycform((pre_CMYK/255), cformRGB_XYZ);
 pre_RGB  =  rgbTable{21,{'R','G','B'}};  pre_RGB  =  applycform((pre_RGB/255), cformRGB_XYZ);
 pre_Lab  =  labTable{21,{'L','a','b'}};  pre_Lab  =  applycform((pre_Lab/255), cformRGB_XYZ);
 
-% Coordinates XYY for Expected Colors (for CIE Chromaticity Diagram) 
+% Coordinates XYY for Expected Colors (for CIE Chromaticity Diagram)
 x_pre_expectedColors = [given_color(1)/(given_color(1) + given_color(2) + given_color(3)) expected_C1(1)/(expected_C1(1) + expected_C1(2) + expected_C1(3)) expected_C2(1)/(expected_C2(1) + expected_C2(2) + expected_C2(3))];
 y_pre_expectedColors = [given_color(2)/(given_color(1) + given_color(2) + given_color(3)) expected_C1(2)/(expected_C1(1) + expected_C1(2) + expected_C1(3)) expected_C2(2)/(expected_C2(1) + expected_C2(2) + expected_C2(3))];
 
@@ -254,7 +260,17 @@ scatter(x_pre_expectedColors(2), y_pre_expectedColors(2), 60, 'black');         
 scatter(x_pre_expectedColors(3), y_pre_expectedColors(3), 60, 'black');                               % draw EXPECTED COLOR
 
 % Draw every pair of responses.
-for i = 1 : height(laboratoryResults)                                  
+for i = 1 : height(laboratoryResults)
+    %% Check if any Component is white or empty Answer
+    sColor = str2num(cell2mat(laboratoryResults.second_color(i)));
+    tColor = str2num(cell2mat(laboratoryResults.third_color(i)));
+
+    if sColor == 0 || tColor == 0
+        whiteAnswers = [whiteAnswers ; laboratoryResults(i,:)];
+        rowsToEliminate = [rowsToEliminate i];
+        continue
+    end
+
     %% First Color - C1
     sColor = str2num(cell2mat(laboratoryResults.second_color(i)));      % cell2mat serve para converter cell para matriz de uint
     valuesSColor = [valuesSColor sColor];                               % store integers values of answers
@@ -268,7 +284,7 @@ for i = 1 : height(laboratoryResults)
     y_aux = sColor(2)/(sColor(1) + sColor(2) + sColor(3));              % x = Y / (X + Y + Z)
     x_values = [x_values x_aux];                                        % store coordinates X and Y
     y_values = [y_values y_aux];
-    
+
     %% Second Color - C2
     tColor = str2num(cell2mat(laboratoryResults.third_color(i)));
     valuesTColor = [valuesTColor tColor];                               % store integers values of answers
@@ -282,57 +298,87 @@ for i = 1 : height(laboratoryResults)
     y_aux = tColor(2)/(tColor(1) + tColor(2) + tColor(3));              % x = Y / (X + Y + Z)
     x_values = [x_values x_aux];                                        % store coordinates X and Y
     y_values = [y_values y_aux];
-    
+
     %% Categorize Colors - Bins
-    
+    for j = 1 : length(colorBins)
+        valuesofx = round(colorBins(j).XData, 1);
+        valuesofy = round(colorBins(j).YData, 1);
+        if foundC1 == 0 && ismember(round(x_values(1), 1), valuesofx) && ismember(round(y_values(1),1), valuesofy)
+            color_C1 = colorBins(j).Tag;
+            foundC1 = 1;
+        end
+        if foundC2 == 0 && ismember(round(x_values(2), 1), valuesofx) && ismember(round(y_values(2),1), valuesofy)
+            color_C2 = colorBins(j).Tag;
+            foundC2 = 1;
+        end
+    end
+
+    if foundC1 == 0 && foundC2 == 0
+        C1_name = [C1_name ; 'NA       '];
+        C2_name = [C2_name ; 'NA       '];
+    else if foundC1 == 1 && foundC2 == 0
+            C1_name = [C1_name ; color_C1];
+            C2_name = [C2_name ; 'NA       '];
+        else if foundC1 == 0 && foundC2 == 1
+                C1_name = [C1_name ; 'NA       '];
+                C2_name = [C2_name ; color_C2];
+            else
+                C1_name = [C1_name ; color_C1];
+                C2_name = [C2_name ; color_C2];
+            end
+        end
+    end
+    foundC1 = 0; foundC2 = 0;
+
+
     %% Difference between C1/C2 and expected colors C1/C2
     diff_c1_expected = round(pdist([[x_values(1) y_values(1)] ; [x_pre_expectedColors(2) y_pre_expectedColors(2)]]), 2);  % [given -C1- C2]
     diff_c2_expected = round(pdist([[x_values(2) y_values(2)] ; [x_pre_expectedColors(3) y_pre_expectedColors(3)]]), 2);  % [given C1 -C2-]
     distance_expectedC1C2 = [distance_expectedC1C2 ; diff_c1_expected + diff_c2_expected];
-    
+
     %% Difference between C1/C2 and other pairs which generate the same color       %% -- CHANGE HERE (ADD MORE PAIRS IF NEEDED)
     diff_c1_pair1c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair1(1) y_pair1(1)]]), 2);   diff_c2_pair1c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair1(2) y_pair1(2)]]), 2);
     distance_pair1 = [distance_pair1 ; diff_c1_pair1c1 + diff_c2_pair1c2];
-    
+
     diff_c1_pair2c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair2(1) y_pair2(1)]]), 2);   diff_c2_pair2c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair2(2) y_pair2(2)]]), 2);
     distance_pair2 = [distance_pair2 ; diff_c1_pair2c1 + diff_c2_pair2c2];
-    
+
     diff_c1_pair3c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair3(1) y_pair3(1)]]), 2);   diff_c2_pair3c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair3(2) y_pair3(2)]]), 2);
     distance_pair3 = [distance_pair3 ; diff_c1_pair3c1 + diff_c2_pair3c2];
-    
+
     diff_c1_pair4c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair4(1) y_pair4(1)]]), 2);   diff_c2_pair4c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair4(2) y_pair4(2)]]), 2);
     distance_pair4 = [distance_pair4 ; diff_c1_pair4c1 + diff_c2_pair4c2];
-    
+
     diff_c1_pair5c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair5(1) y_pair5(1)]]), 2);   diff_c2_pair5c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair5(2) y_pair5(2)]]), 2);
     distance_pair5 = [distance_pair5 ; diff_c1_pair5c1 + diff_c2_pair5c2];
-    
+
     diff_c1_pair6c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair6(1) y_pair6(1)]]), 2);   diff_c2_pair6c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair6(2) y_pair6(2)]]), 2);
     distance_pair6 = [distance_pair6 ; diff_c1_pair6c1 + diff_c2_pair6c2];
-    
+
     diff_c1_pair7c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair7(1) y_pair7(1)]]), 2);   diff_c2_pair7c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair7(2) y_pair7(2)]]), 2);
     distance_pair7 = [distance_pair7 ; diff_c1_pair7c1 + diff_c2_pair7c2];
-    
+
     diff_c1_pair8c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair8(1) y_pair8(1)]]), 2);   diff_c2_pair8c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair8(2) y_pair8(2)]]), 2);
     distance_pair8 = [distance_pair8 ; diff_c1_pair8c1 + diff_c2_pair8c2];
-    
+
     diff_c1_pair9c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair9(1) y_pair9(1)]]), 2);   diff_c2_pair9c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair9(2) y_pair9(2)]]), 2);
     distance_pair9 = [distance_pair9 ; diff_c1_pair9c1 + diff_c2_pair9c2];
-    
+
     diff_c1_pair10c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair10(1) y_pair10(1)]]), 2);   diff_c2_pair10c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair10(2) y_pair10(2)]]), 2);
     distance_pair10 = [distance_pair10 ; diff_c1_pair10c1 + diff_c2_pair10c2];
-    
+
     diff_c1_pair11c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair11(1) y_pair11(1)]]), 2);   diff_c2_pair11c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair11(2) y_pair11(2)]]), 2);
     distance_pair11 = [distance_pair11 ; diff_c1_pair11c1 + diff_c2_pair11c2];
-    
+
     diff_c1_pair12c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair12(1) y_pair12(1)]]), 2);   diff_c2_pair12c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair12(2) y_pair12(2)]]), 2);
     distance_pair12 = [distance_pair12 ; diff_c1_pair12c1 + diff_c2_pair12c2];
-  
+
     diff_c1_pair13c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair13(1) y_pair13(1)]]), 2);   diff_c2_pair13c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair13(2) y_pair13(2)]]), 2);
     distance_pair13 = [distance_pair13 ; diff_c1_pair13c1 + diff_c2_pair13c2];
-    
+
     %% Difference between C1/C2 blended onto Color Models against pre-calc values
     %%%%%% Blend-it in HSV
-    sColor_hsv = [(hsv_C1(1)*360) hsv_C1(2) hsv_C1(3)]; tColor_hsv = [(hsv_C2(1)*360) hsv_C2(2) hsv_C2(3)];     
+    sColor_hsv = [(hsv_C1(1)*360) hsv_C1(2) hsv_C1(3)]; tColor_hsv = [(hsv_C2(1)*360) hsv_C2(2) hsv_C2(3)];
     diff_angles = abs(sColor_hsv(1) - tColor_hsv(1));
     if diff_angles > 180
         angle_small = (360 - diff_angles);  % smallest angle
@@ -346,11 +392,11 @@ for i = 1 : height(laboratoryResults)
     else
         angle = min([sColor_hsv(1) tColor_hsv(1)]) + (diff_angles / 2);
     end
-    rColor = rgb2xyz(hsv2rgb(([angle/360 sColor_hsv(2) sColor_hsv(3)])));                                  % hsv -> rgb -> xyz -> compare 
+    rColor = rgb2xyz(hsv2rgb(([angle/360 sColor_hsv(2) sColor_hsv(3)])));                                  % hsv -> rgb -> xyz -> compare
     x_aux  = rColor(1)/(rColor(1) + rColor(2) + rColor(3)); y_aux = rColor(2)/(rColor(1) + rColor(2) + rColor(3));
     distance_HSV = [distance_HSV; round(pdist([[x_aux y_aux]; [x_pre_models(1) y_pre_models(1)]]),2)];
     x_values_HSV = [x_values_HSV x_aux]; y_values_HSV = [y_values_HSV y_aux];
-    
+
     %%%%%% Blend-it in CIE-LCh (XYZ -> Lab -> LCh)
     sColor_lch = sColor; tColor_lch = tColor;
     sColor_lch = applycform(applycform(sColor_lch, cformXYZ_Lab), cformLab_LCh); tColor_lch = applycform(applycform(tColor_lch, cformXYZ_Lab), cformLab_LCh);
@@ -374,7 +420,7 @@ for i = 1 : height(laboratoryResults)
     x_aux  = rColor(1)/(rColor(1) + rColor(2) + rColor(3)); y_aux = rColor(2)/(rColor(1) + rColor(2) + rColor(3));
     distance_LCh = [distance_LCh; round(pdist([[x_aux y_aux]; [x_pre_models(2) y_pre_models(2)]]), 2)];
     x_values_LCh = [x_values_LCh x_aux]; y_values_LCh = [y_values_LCh y_aux];
-    
+
     %%%%%% Blend-it in CMYK
     sColor_cmyk = sColor; tColor_cmyk = tColor;
     sColor_cmyk = applycform(applycform(sColor_cmyk, cformXYZ_RGB), cformRGB_CMYK); tColor_cmyk = applycform(applycform(tColor_cmyk, cformXYZ_RGB), cformRGB_CMYK);
@@ -386,7 +432,7 @@ for i = 1 : height(laboratoryResults)
     x_aux  = rColor(1)/(rColor(1) + rColor(2) + rColor(3)); y_aux = rColor(2)/(rColor(1) + rColor(2) + rColor(3));
     distance_CMYK = [distance_CMYK; round(pdist([[x_aux y_aux]; [x_pre_models(3) y_pre_models(3)]]), 2)];
     x_values_CMYK = [x_values_CMYK x_aux]; y_values_CMYK = [y_values_CMYK y_aux];
-    
+
     %%%%%% Blend-it in RGB
     sColor_rgb = sColor; tColor_rgb = tColor;
     sColor_rgb = applycform(sColor_rgb, cformXYZ_RGB); tColor_rgb = applycform(tColor_rgb, cformXYZ_RGB);
@@ -397,7 +443,7 @@ for i = 1 : height(laboratoryResults)
     x_aux  = rColor(1)/(rColor(1) + rColor(2) + rColor(3)); y_aux = rColor(2)/(rColor(1) + rColor(2) + rColor(3));
     distance_RGB = [distance_RGB; round(pdist([[x_aux y_aux]; [x_pre_models(4) y_pre_models(4)]]), 2)];
     x_values_RGB = [x_values_RGB x_aux]; y_values_RGB = [y_values_RGB y_aux];
-    
+
     %%%%%% Blend-it in CIE-Lab
     sColor_lab = sColor; tColor_lab = tColor;
     sColor_lab = applycform(sColor_lab, cformXYZ_Lab); tColor_lab = applycform(tColor_lab, cformXYZ_Lab);
@@ -416,7 +462,8 @@ for i = 1 : height(laboratoryResults)
 end
 hold off;
 
-saveas(gcf, fullfile(path, 'lab_regularUsers'), 'png');
+saveas(gcf, fullfile(path, 'lab_regularUsers'), 'png'); close;
+laboratoryResults(rowsToEliminate, :) = []; rowsToEliminate = [];
 
 % Centroids of Color Models
 centroid_HSV    = [centroid_HSV  ; [round(mean(x_values_HSV),2) round(mean(y_values_HSV),2)]];
@@ -435,8 +482,17 @@ distance_centroid_Lab = [distance_centroid_Lab ; round(pdist([mean(x_values_Lab)
 diffs_table = table(distance_expectedC1C2, distance_HSV, distance_LCh, distance_CMYK, distance_RGB, distance_Lab);
 diffs_pairs = table(distance_pair1,distance_pair2,distance_pair3,distance_pair4,distance_pair5,distance_pair6,distance_pair7,distance_pair8,distance_pair9,distance_pair10,distance_pair11,distance_pair12,distance_pair13);
 diffs_table = [diffs_table diffs_pairs];
+if size(C1_name, 1) == 1
+    colors_names = cell(1,2);
+    colors_names(1,1) = cellstr(C1_name);
+    colors_names(1,2) = cellstr(C2_name);
+    colors_names = cell2table(colors_names);
+else
+    colors_names = table(C1_name, C2_name);
+end
 
-laboratoryResults = [laboratoryResults diffs_table];
+C1_name = []; C2_name = [];
+laboratoryResults = [laboratoryResults colors_names diffs_table];
 
 % Plot Results for each Color Model
 figure('NumberTitle','off');
@@ -446,9 +502,9 @@ xlabel('X Value');
 ylabel('Y Value');
 hold on;
 scatter(x_pre_models(1), y_pre_models(1), 50, 'black', 'Filled');          % Draw expected response for this model
-scatter(x_values_HSV, y_values_HSV, 50, 'white');                          % Draw responses mixed in HSV   
+scatter(x_values_HSV, y_values_HSV, 50, 'white');                          % Draw responses mixed in HSV
 hold off;
-saveas(gcf, fullfile(path, 'lab_HSVresponses'), 'png');
+saveas(gcf, fullfile(path, 'lab_HSVresponses'), 'png'); close;
 
 figure('NumberTitle','off');
 cieplot();
@@ -457,9 +513,9 @@ xlabel('X Value');
 ylabel('Y Value');
 hold on;
 scatter(x_pre_models(2), y_pre_models(2), 50, 'black', 'Filled');          % Draw expected response for this model
-scatter(x_values_LCh, y_values_LCh, 50, 'white');                          % Draw responses mixed in LCh   
+scatter(x_values_LCh, y_values_LCh, 50, 'white');                          % Draw responses mixed in LCh
 hold off;
-saveas(gcf, fullfile(path, 'lab_LChresponses'), 'png');
+saveas(gcf, fullfile(path, 'lab_LChresponses'), 'png'); close;
 
 figure('NumberTitle','off');
 cieplot();
@@ -468,9 +524,9 @@ xlabel('X Value');
 ylabel('Y Value');
 hold on;
 scatter(x_pre_models(3), y_pre_models(3), 50, 'black', 'Filled');          % Draw expected response for this model
-scatter(x_values_CMYK, y_values_CMYK, 50, 'white');                          % Draw responses mixed in CMYK   
+scatter(x_values_CMYK, y_values_CMYK, 50, 'white');                          % Draw responses mixed in CMYK
 hold off;
-saveas(gcf, fullfile(path, 'lab_CMYKresponses'), 'png');
+saveas(gcf, fullfile(path, 'lab_CMYKresponses'), 'png'); close;
 
 figure('NumberTitle','off');
 cieplot();
@@ -479,9 +535,9 @@ xlabel('X Value');
 ylabel('Y Value');
 hold on;
 scatter(x_pre_models(4), y_pre_models(4), 50, 'black', 'Filled');          % Draw expected response for this model
-scatter(x_values_RGB, y_values_RGB, 50, 'white');                          % Draw responses mixed in RGB   
+scatter(x_values_RGB, y_values_RGB, 50, 'white');                          % Draw responses mixed in RGB
 hold off;
-saveas(gcf, fullfile(path, 'lab_RGBresponses'), 'png');
+saveas(gcf, fullfile(path, 'lab_RGBresponses'), 'png'); close;
 
 figure('NumberTitle','off');
 cieplot();
@@ -490,12 +546,12 @@ xlabel('X Value');
 ylabel('Y Value');
 hold on;
 scatter(x_pre_models(5), y_pre_models(5), 50, 'black', 'Filled');          % Draw expected response for this model
-scatter(x_values_Lab, y_values_Lab, 50, 'white');                          % Draw responses mixed in Lab   
+scatter(x_values_Lab, y_values_Lab, 50, 'white');                          % Draw responses mixed in Lab
 hold off;
-saveas(gcf, fullfile(path, 'lab_Labresponses'), 'png');
+saveas(gcf, fullfile(path, 'lab_Labresponses'), 'png'); close;
 
 % Clean all the tables!
-x_values_HSV = []; y_values_HSV = []; x_values_LCh = []; y_values_LCh = []; x_values_CMYK = []; y_values_CMYK = []; x_values_RGB = []; y_values_RGB = []; x_values_Lab = []; y_values_Lab = [];  
+x_values_HSV = []; y_values_HSV = []; x_values_LCh = []; y_values_LCh = []; x_values_CMYK = []; y_values_CMYK = []; x_values_RGB = []; y_values_RGB = []; x_values_Lab = []; y_values_Lab = [];
 distance_HSV = []; distance_LCh = []; distance_CMYK = []; distance_RGB = []; distance_Lab = [];
 distance_expectedC1C2 = [];
 distance_pair1 = []; distance_pair2 = []; distance_pair3 = []; distance_pair4 = []; distance_pair5 = []; distance_pair6 = []; distance_pair7 = []; distance_pair8 = []; distance_pair9 = []; distance_pair10 = []; distance_pair11 = []; distance_pair12 = []; distance_pair13 = [];
@@ -516,36 +572,79 @@ scatter(x_pre_expectedColors(3), y_pre_expectedColors(3), 60, 'black');         
 for i = 1 : height(laboratoryResults_dalt)
 %First Color
     sColor = str2num(cell2mat(laboratoryResults_dalt.second_color(i)));
-    valuesSColor = [valuesSColor sColor];                   
-    sColor = sColor/360;                                    
-    sColor = [sColor 1 1];                                 
-    sColor = hsv2rgb(sColor);                               
-    sColor = rgb2xyz(sColor);                               
-    x_aux = sColor(1)/(sColor(1) + sColor(2) + sColor(3));  
-    y_aux = sColor(2)/(sColor(1) + sColor(2) + sColor(3));  
-    x_values = [x_values x_aux];                            
+    valuesSColor = [valuesSColor sColor];
+    sColor = sColor/360;
+    sColor = [sColor 1 1];
+    sColor = hsv2rgb(sColor);
+    sColor = rgb2xyz(sColor);
+    x_aux = sColor(1)/(sColor(1) + sColor(2) + sColor(3));
+    y_aux = sColor(2)/(sColor(1) + sColor(2) + sColor(3));
+    x_values = [x_values x_aux];
     y_values = [y_values y_aux];
-    
+
     %Second Color
     tColor = str2num(cell2mat(laboratoryResults_dalt.third_color(i)));
-    valuesTColor = [valuesTColor tColor];                   
-    tColor = tColor/360;                                    
-    tColor = [tColor 1 1];                                 
-    tColor = hsv2rgb(tColor);                               
-    tColor = rgb2xyz(tColor);                               
-    x_aux = tColor(1)/(tColor(1) + tColor(2) + tColor(3));  
-    y_aux = tColor(2)/(tColor(1) + tColor(2) + tColor(3));  
-    x_values = [x_values x_aux];                            
+    valuesTColor = [valuesTColor tColor];
+    tColor = tColor/360;
+    tColor = [tColor 1 1];
+    tColor = hsv2rgb(tColor);
+    tColor = rgb2xyz(tColor);
+    x_aux = tColor(1)/(tColor(1) + tColor(2) + tColor(3));
+    y_aux = tColor(2)/(tColor(1) + tColor(2) + tColor(3));
+    x_values = [x_values x_aux];
     y_values = [y_values y_aux];
-    
-    scatter(x_values, y_values, 50, 'white');                 
-    plot(x_values, y_values, 'Color', 'black');             
-    x_values = [];                                          
+
+    %% Categorize Colors - Bins
+    for j = 1 : length(colorBins)
+        valuesofx = round(colorBins(j).XData, 1);
+        valuesofy = round(colorBins(j).YData, 1);
+        if foundC1 == 0 && ismember(round(x_values(1), 1), valuesofx) && ismember(round(y_values(1),1), valuesofy)
+            color_C1 = colorBins(j).Tag;
+            foundC1 = 1;
+        end
+        if foundC2 == 0 && ismember(round(x_values(2), 1), valuesofx) && ismember(round(y_values(2),1), valuesofy)
+            color_C2 = colorBins(j).Tag;
+            foundC2 = 1;
+        end
+    end
+
+    if foundC1 == 0 && foundC2 == 0
+        C1_name = [C1_name ; 'NA       '];
+        C2_name = [C2_name ; 'NA       '];
+    else if foundC1 == 1 && foundC2 == 0
+            C1_name = [C1_name ; color_C1];
+            C2_name = [C2_name ; 'NA       '];
+        else if foundC1 == 0 && foundC2 == 1
+                C1_name = [C1_name ; 'NA       '];
+                C2_name = [C2_name ; color_C2];
+            else
+                C1_name = [C1_name ; color_C1];
+                C2_name = [C2_name ; color_C2];
+            end
+        end
+    end
+    foundC1 = 0; foundC2 = 0;
+
+    scatter(x_values, y_values, 50, 'white');
+    plot(x_values, y_values, 'Color', 'black');
+    x_values = [];
     y_values = [];
 end
 hold off;
 
-saveas(gcf, fullfile(path, 'lab_daltonicUsers'), 'png'); 
+saveas(gcf, fullfile(path, 'lab_daltonicUsers'), 'png'); close;
+
+if size(C1_name, 1) == 1
+    colors_names = cell(1,2);
+    colors_names(1,1) = cellstr(C1_name);
+    colors_names(1,2) = cellstr(C2_name);
+    colors_names = cell2table(colors_names);
+else
+    colors_names = table(C1_name, C2_name);
+end
+
+C1_name = []; C2_name = [];
+laboratoryResults_dalt = [laboratoryResults_dalt colors_names];
 
 %% Online Results - Regular Users
 
@@ -561,6 +660,16 @@ scatter(x_pre_expectedColors(2), y_pre_expectedColors(2), 60, 'black');         
 scatter(x_pre_expectedColors(3), y_pre_expectedColors(3), 60, 'black');                   %draw EXPECTED COLOR
 
 for i = 1 : height(onlineResults)                                  %draw every pair of responses.
+    %% Check if any Component is white or empty Answer
+    sColor = str2num(cell2mat(onlineResults.second_color(i)));
+    tColor = str2num(cell2mat(onlineResults.third_color(i)));
+
+    if sColor == 0 || tColor == 0
+        whiteAnswers = [whiteAnswers ; onlineResults(i,:)];
+        rowsToEliminate = [rowsToEliminate i];
+        continue
+    end
+
     %First Color
     sColor = str2num(cell2mat(onlineResults.second_color(i)));     %cell2mat serve para converter cell para matriz de uint
     valuesSColor = [valuesSColor sColor];                   %store integers values of answers
@@ -573,7 +682,7 @@ for i = 1 : height(onlineResults)                                  %draw every p
     y_aux = sColor(2)/(sColor(1) + sColor(2) + sColor(3));  %x = Y / (X + Y + Z)
     x_values = [x_values x_aux];                                    %store coordinates X and Y
     y_values = [y_values y_aux];
-    
+
     %Second Color
     tColor = str2num(cell2mat(onlineResults.third_color(i)));
     valuesTColor = [valuesTColor tColor];                   %store integers values of answers
@@ -586,57 +695,87 @@ for i = 1 : height(onlineResults)                                  %draw every p
     y_aux = tColor(2)/(tColor(1) + tColor(2) + tColor(3));  %x = Y / (X + Y + Z)
     x_values = [x_values x_aux];                                    %store coordinates X and Y
     y_values = [y_values y_aux];
-    
+
     %% Categorize Colors - Bins
-    
+    for j = 1 : length(colorBins)
+        valuesofx = round(colorBins(j).XData, 1);
+        valuesofy = round(colorBins(j).YData, 1);
+        if foundC1 == 0 && ismember(round(x_values(1), 1), valuesofx) && ismember(round(y_values(1),1), valuesofy)
+            color_C1 = colorBins(j).Tag;
+            foundC1 = 1;
+        end
+        if foundC2 == 0 && ismember(round(x_values(2), 1), valuesofx) && ismember(round(y_values(2),1), valuesofy)
+            color_C2 = colorBins(j).Tag;
+            foundC2 = 1;
+        end
+    end
+
+    if foundC1 == 0 && foundC2 == 0
+        C1_name = [C1_name ; 'NA       '];
+        C2_name = [C2_name ; 'NA       '];
+    else if foundC1 == 1 && foundC2 == 0
+            C1_name = [C1_name ; color_C1];
+            C2_name = [C2_name ; 'NA       '];
+        else if foundC1 == 0 && foundC2 == 1
+                C1_name = [C1_name ; 'NA       '];
+                C2_name = [C2_name ; color_C2];
+            else
+                C1_name = [C1_name ; color_C1];
+                C2_name = [C2_name ; color_C2];
+            end
+        end
+    end
+    foundC1 = 0; foundC2 = 0;
+
+
     %% Difference between C1/C2 and expected colors C1/C2
     diff_c1_expected = round(pdist([[x_values(1) y_values(1)] ; [x_pre_expectedColors(2) y_pre_expectedColors(2)]]), 2);  % [given -C1- C2]
     diff_c2_expected = round(pdist([[x_values(2) y_values(2)] ; [x_pre_expectedColors(3) y_pre_expectedColors(3)]]), 2);  % [given C1 -C2-]
     distance_expectedC1C2 = [distance_expectedC1C2 ; diff_c1_expected + diff_c2_expected];
-    
+
     %% Difference between C1/C2 and other pairs which generate the same color       %% -- CHANGE HERE (ADD MORE PAIRS IF NEEDED)
     diff_c1_pair1c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair1(1) y_pair1(1)]]), 2);   diff_c2_pair1c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair1(2) y_pair1(2)]]), 2);
     distance_pair1 = [distance_pair1 ; diff_c1_pair1c1 + diff_c2_pair1c2];
-    
+
     diff_c1_pair2c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair2(1) y_pair2(1)]]), 2);   diff_c2_pair2c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair2(2) y_pair2(2)]]), 2);
     distance_pair2 = [distance_pair2 ; diff_c1_pair2c1 + diff_c2_pair2c2];
-    
+
     diff_c1_pair3c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair3(1) y_pair3(1)]]), 2);   diff_c2_pair3c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair3(2) y_pair3(2)]]), 2);
     distance_pair3 = [distance_pair3 ; diff_c1_pair3c1 + diff_c2_pair3c2];
-    
+
     diff_c1_pair4c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair4(1) y_pair4(1)]]), 2);   diff_c2_pair4c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair4(2) y_pair4(2)]]), 2);
     distance_pair4 = [distance_pair4 ; diff_c1_pair4c1 + diff_c2_pair4c2];
-    
+
     diff_c1_pair5c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair5(1) y_pair5(1)]]), 2);   diff_c2_pair5c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair5(2) y_pair5(2)]]), 2);
     distance_pair5 = [distance_pair5 ; diff_c1_pair5c1 + diff_c2_pair5c2];
-    
+
     diff_c1_pair6c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair6(1) y_pair6(1)]]), 2);   diff_c2_pair6c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair6(2) y_pair6(2)]]), 2);
     distance_pair6 = [distance_pair6 ; diff_c1_pair6c1 + diff_c2_pair6c2];
-    
+
     diff_c1_pair7c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair7(1) y_pair7(1)]]), 2);   diff_c2_pair7c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair7(2) y_pair7(2)]]), 2);
     distance_pair7 = [distance_pair7 ; diff_c1_pair7c1 + diff_c2_pair7c2];
-    
+
     diff_c1_pair8c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair8(1) y_pair8(1)]]), 2);   diff_c2_pair8c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair8(2) y_pair8(2)]]), 2);
     distance_pair8 = [distance_pair8 ; diff_c1_pair8c1 + diff_c2_pair8c2];
-    
+
     diff_c1_pair9c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair9(1) y_pair9(1)]]), 2);   diff_c2_pair9c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair9(2) y_pair9(2)]]), 2);
     distance_pair9 = [distance_pair9 ; diff_c1_pair9c1 + diff_c2_pair9c2];
-    
+
     diff_c1_pair10c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair10(1) y_pair10(1)]]), 2);   diff_c2_pair10c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair10(2) y_pair10(2)]]), 2);
     distance_pair10 = [distance_pair10 ; diff_c1_pair10c1 + diff_c2_pair10c2];
-    
+
     diff_c1_pair11c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair11(1) y_pair11(1)]]), 2);   diff_c2_pair11c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair11(2) y_pair11(2)]]), 2);
     distance_pair11 = [distance_pair11 ; diff_c1_pair11c1 + diff_c2_pair11c2];
-    
+
     diff_c1_pair12c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair12(1) y_pair12(1)]]), 2);   diff_c2_pair12c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair12(2) y_pair12(2)]]), 2);
     distance_pair12 = [distance_pair12 ; diff_c1_pair12c1 + diff_c2_pair12c2];
-    
+
     diff_c1_pair13c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair13(1) y_pair13(1)]]), 2);   diff_c2_pair13c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair13(2) y_pair13(2)]]), 2);
     distance_pair13 = [distance_pair13 ; diff_c1_pair13c1 + diff_c2_pair13c2];
-    
+
     %% Difference between C1/C2 blended onto Color Models against pre-calc values
     %%%%%% Blend-it in HSV
-    sColor_hsv = [(hsv_C1(1)*360) hsv_C1(2) hsv_C1(3)]; tColor_hsv = [(hsv_C2(1)*360) hsv_C2(2) hsv_C2(3)];     
+    sColor_hsv = [(hsv_C1(1)*360) hsv_C1(2) hsv_C1(3)]; tColor_hsv = [(hsv_C2(1)*360) hsv_C2(2) hsv_C2(3)];
     diff_angles = abs(sColor_hsv(1) - tColor_hsv(1));
     if diff_angles > 180
         angle_small = (360 - diff_angles);  % smallest angle
@@ -650,11 +789,11 @@ for i = 1 : height(onlineResults)                                  %draw every p
     else
         angle = min([sColor_hsv(1) tColor_hsv(1)]) + (diff_angles / 2);
     end
-    rColor = rgb2xyz(hsv2rgb(([(angle/360) sColor_hsv(2) sColor_hsv(3)])));                                  % hsv -> rgb -> xyz -> compare 
+    rColor = rgb2xyz(hsv2rgb(([(angle/360) sColor_hsv(2) sColor_hsv(3)])));                                  % hsv -> rgb -> xyz -> compare
     x_aux  = rColor(1)/(rColor(1) + rColor(2) + rColor(3)); y_aux = rColor(2)/(rColor(1) + rColor(2) + rColor(3));
     distance_HSV = [distance_HSV; round(pdist([[x_aux y_aux]; [x_pre_models(1) y_pre_models(1)]]),2)];
     x_values_HSV = [x_values_HSV x_aux]; y_values_HSV = [y_values_HSV y_aux];
-    
+
     %%%%%% Blend-it in CIE-LCh (XYZ -> Lab -> LCh)
     sColor_lch = sColor; tColor_lch = tColor;
     sColor_lch = applycform(applycform(sColor_lch, cformXYZ_Lab), cformLab_LCh); tColor_lch = applycform(applycform(tColor_lch, cformXYZ_Lab), cformLab_LCh);
@@ -678,7 +817,7 @@ for i = 1 : height(onlineResults)                                  %draw every p
     x_aux  = rColor(1)/(rColor(1) + rColor(2) + rColor(3)); y_aux = rColor(2)/(rColor(1) + rColor(2) + rColor(3));
     distance_LCh = [distance_LCh; round(pdist([[x_aux y_aux]; [x_pre_models(2) y_pre_models(2)]]), 2)];
     x_values_LCh = [x_values_LCh x_aux]; y_values_LCh = [y_values_LCh y_aux];
-    
+
     %%%%%% Blend-it in CMYK
     sColor_cmyk = sColor; tColor_cmyk = tColor;
     sColor_cmyk = applycform(applycform(sColor_cmyk, cformXYZ_RGB), cformRGB_CMYK); tColor_cmyk = applycform(applycform(tColor_cmyk, cformXYZ_RGB), cformRGB_CMYK);
@@ -690,7 +829,7 @@ for i = 1 : height(onlineResults)                                  %draw every p
     x_aux  = rColor(1)/(rColor(1) + rColor(2) + rColor(3)); y_aux = rColor(2)/(rColor(1) + rColor(2) + rColor(3));
     distance_CMYK = [distance_CMYK; round(pdist([[x_aux y_aux]; [x_pre_models(3) y_pre_models(3)]]), 2)];
     x_values_CMYK = [x_values_CMYK x_aux]; y_values_CMYK = [y_values_CMYK y_aux];
-    
+
     %%%%%% Blend-it in RGB
     sColor_rgb = sColor; tColor_rgb = tColor;
     sColor_rgb = applycform(sColor_rgb, cformXYZ_RGB); tColor_rgb = applycform(tColor_rgb, cformXYZ_RGB);
@@ -701,7 +840,7 @@ for i = 1 : height(onlineResults)                                  %draw every p
     x_aux  = rColor(1)/(rColor(1) + rColor(2) + rColor(3)); y_aux = rColor(2)/(rColor(1) + rColor(2) + rColor(3));
     distance_RGB = [distance_RGB; round(pdist([[x_aux y_aux]; [x_pre_models(4) y_pre_models(4)]]), 2)];
     x_values_RGB = [x_values_RGB x_aux]; y_values_RGB = [y_values_RGB y_aux];
-    
+
     %%%%%% Blend-it in CIE-Lab
     sColor_lab = sColor; tColor_lab = tColor;
     sColor_lab = applycform(sColor_lab, cformXYZ_Lab); tColor_lab = applycform(tColor_lab, cformXYZ_Lab);
@@ -720,7 +859,8 @@ for i = 1 : height(onlineResults)                                  %draw every p
 end
 hold off;
 
-saveas(gcf, fullfile(path, 'online_regularUsers'), 'png'); 
+saveas(gcf, fullfile(path, 'online_regularUsers'), 'png'); close;
+onlineResults(rowsToEliminate, :) = []; rowsToEliminate = [];
 
 % Centroids of Color Models
 centroid_HSV    = [centroid_HSV  ; [round(mean(x_values_HSV),2) round(mean(y_values_HSV),2)]];
@@ -738,8 +878,17 @@ distance_centroid_Lab = [distance_centroid_Lab ; round(pdist([mean(x_values_Lab)
 diffs_table = table(distance_expectedC1C2, distance_HSV, distance_LCh, distance_CMYK, distance_RGB, distance_Lab);
 diffs_pairs = table(distance_pair1,distance_pair2,distance_pair3,distance_pair4,distance_pair5,distance_pair6,distance_pair7,distance_pair8,distance_pair9,distance_pair10,distance_pair11,distance_pair12,distance_pair13);
 diffs_table = [diffs_table diffs_pairs];
+if size(C1_name, 1) == 1
+    colors_names = cell(1,2);
+    colors_names(1,1) = cellstr(C1_name);
+    colors_names(1,2) = cellstr(C2_name);
+    colors_names = cell2table(colors_names);
+else
+    colors_names = table(C1_name, C2_name);
+end
 
-onlineResults = [onlineResults diffs_table];
+C1_name = []; C2_name = [];
+onlineResults = [onlineResults colors_names diffs_table];
 
 % Plot Results for each Color Model
 figure('NumberTitle','off');
@@ -749,9 +898,9 @@ xlabel('X Value');
 ylabel('Y Value');
 hold on;
 scatter(x_pre_models(1), y_pre_models(1), 50, 'black', 'Filled');          % Draw expected response for this model
-scatter(x_values_HSV, y_values_HSV, 50, 'white');                          % Draw responses mixed in HSV   
+scatter(x_values_HSV, y_values_HSV, 50, 'white');                          % Draw responses mixed in HSV
 hold off;
-saveas(gcf, fullfile(path, 'online_HSVresponses'), 'png');
+saveas(gcf, fullfile(path, 'online_HSVresponses'), 'png'); close;
 
 figure('NumberTitle','off');
 cieplot();
@@ -760,9 +909,9 @@ xlabel('X Value');
 ylabel('Y Value');
 hold on;
 scatter(x_pre_models(2), y_pre_models(2), 50, 'black', 'Filled');          % Draw expected response for this model
-scatter(x_values_LCh, y_values_LCh, 50, 'white');                          % Draw responses mixed in LCh   
+scatter(x_values_LCh, y_values_LCh, 50, 'white');                          % Draw responses mixed in LCh
 hold off;
-saveas(gcf, fullfile(path, 'online_LChresponses'), 'png');
+saveas(gcf, fullfile(path, 'online_LChresponses'), 'png'); close;
 
 figure('NumberTitle','off');
 cieplot();
@@ -771,9 +920,9 @@ xlabel('X Value');
 ylabel('Y Value');
 hold on;
 scatter(x_pre_models(3), y_pre_models(3), 50, 'black', 'Filled');          % Draw expected response for this model
-scatter(x_values_CMYK, y_values_CMYK, 50, 'white');                          % Draw responses mixed in CMYK   
+scatter(x_values_CMYK, y_values_CMYK, 50, 'white');                          % Draw responses mixed in CMYK
 hold off;
-saveas(gcf, fullfile(path, 'online_CMYKresponses'), 'png');
+saveas(gcf, fullfile(path, 'online_CMYKresponses'), 'png'); close;
 
 figure('NumberTitle','off');
 cieplot();
@@ -782,9 +931,9 @@ xlabel('X Value');
 ylabel('Y Value');
 hold on;
 scatter(x_pre_models(4), y_pre_models(4), 50, 'black', 'Filled');          % Draw expected response for this model
-scatter(x_values_RGB, y_values_RGB, 50, 'white');                          % Draw responses mixed in RGB   
+scatter(x_values_RGB, y_values_RGB, 50, 'white');                          % Draw responses mixed in RGB
 hold off;
-saveas(gcf, fullfile(path, 'online_RGBresponses'), 'png');
+saveas(gcf, fullfile(path, 'online_RGBresponses'), 'png'); close;
 
 figure('NumberTitle','off');
 cieplot();
@@ -793,12 +942,12 @@ xlabel('X Value');
 ylabel('Y Value');
 hold on;
 scatter(x_pre_models(5), y_pre_models(5), 50, 'black', 'Filled');          % Draw expected response for this model
-scatter(x_values_Lab, y_values_Lab, 50, 'white');                          % Draw responses mixed in Lab   
+scatter(x_values_Lab, y_values_Lab, 50, 'white');                          % Draw responses mixed in Lab
 hold off;
-saveas(gcf, fullfile(path, 'online_Labresponses'), 'png');
+saveas(gcf, fullfile(path, 'online_Labresponses'), 'png'); close;
 
 % Clean all the tables!
-x_values_HSV = []; y_values_HSV = []; x_values_LCh = []; y_values_LCh = []; x_values_CMYK = []; y_values_CMYK = []; x_values_RGB = []; y_values_RGB = []; x_values_Lab = []; y_values_Lab = [];  
+x_values_HSV = []; y_values_HSV = []; x_values_LCh = []; y_values_LCh = []; x_values_CMYK = []; y_values_CMYK = []; x_values_RGB = []; y_values_RGB = []; x_values_Lab = []; y_values_Lab = [];
 distance_HSV = []; distance_LCh = []; distance_CMYK = []; distance_RGB = []; distance_Lab = [];
 distance_expectedC1C2 = [];
 distance_pair1 = []; distance_pair2 = []; distance_pair3 = []; distance_pair4 = []; distance_pair5 = []; distance_pair6 = []; distance_pair7 = []; distance_pair8 = []; distance_pair9 = []; distance_pair10 = []; distance_pair11 = []; distance_pair12 = []; distance_pair13 = [];
@@ -819,36 +968,79 @@ scatter(x_pre_expectedColors(3), y_pre_expectedColors(3), 60, 'black');         
 for i = 1 : height(onlineResults_dalt)
 %First Color
     sColor = str2num(cell2mat(onlineResults_dalt.second_color(i)));
-    valuesSColor = [valuesSColor sColor];                   
-    sColor = sColor/360;                                    
-    sColor = [sColor 1 .5];                                 
-    sColor = hsv2rgb(sColor);                               
-    sColor = rgb2xyz(sColor);                               
-    x_aux = sColor(1)/(sColor(1) + sColor(2) + sColor(3));  
-    y_aux = sColor(2)/(sColor(1) + sColor(2) + sColor(3));  
-    x_values = [x_values x_aux];                            
+    valuesSColor = [valuesSColor sColor];
+    sColor = sColor/360;
+    sColor = [sColor 1 .5];
+    sColor = hsv2rgb(sColor);
+    sColor = rgb2xyz(sColor);
+    x_aux = sColor(1)/(sColor(1) + sColor(2) + sColor(3));
+    y_aux = sColor(2)/(sColor(1) + sColor(2) + sColor(3));
+    x_values = [x_values x_aux];
     y_values = [y_values y_aux];
-    
+
     %Second Color
     tColor = str2num(cell2mat(onlineResults_dalt.third_color(i)));
-    valuesTColor = [valuesTColor tColor];                   
-    tColor = tColor/360;                                    
-    tColor = [tColor 1 .5];                                 
-    tColor = hsv2rgb(tColor);                               
-    tColor = rgb2xyz(tColor);                               
-    x_aux = tColor(1)/(tColor(1) + tColor(2) + tColor(3));  
-    y_aux = tColor(2)/(tColor(1) + tColor(2) + tColor(3));  
-    x_values = [x_values x_aux];                            
+    valuesTColor = [valuesTColor tColor];
+    tColor = tColor/360;
+    tColor = [tColor 1 .5];
+    tColor = hsv2rgb(tColor);
+    tColor = rgb2xyz(tColor);
+    x_aux = tColor(1)/(tColor(1) + tColor(2) + tColor(3));
+    y_aux = tColor(2)/(tColor(1) + tColor(2) + tColor(3));
+    x_values = [x_values x_aux];
     y_values = [y_values y_aux];
-    
-    scatter(x_values, y_values, 50, 'white');                 
-    plot(x_values, y_values, 'Color', 'black');             
-    x_values = [];                                          
+
+    %% Categorize Colors - Bins
+    for j = 1 : length(colorBins)
+        valuesofx = round(colorBins(j).XData, 1);
+        valuesofy = round(colorBins(j).YData, 1);
+        if foundC1 == 0 && ismember(round(x_values(1), 1), valuesofx) && ismember(round(y_values(1),1), valuesofy)
+            color_C1 = colorBins(j).Tag;
+            foundC1 = 1;
+        end
+        if foundC2 == 0 && ismember(round(x_values(2), 1), valuesofx) && ismember(round(y_values(2),1), valuesofy)
+            color_C2 = colorBins(j).Tag;
+            foundC2 = 1;
+        end
+    end
+
+    if foundC1 == 0 && foundC2 == 0
+        C1_name = [C1_name ; 'NA       '];
+        C2_name = [C2_name ; 'NA       '];
+    else if foundC1 == 1 && foundC2 == 0
+            C1_name = [C1_name ; color_C1];
+            C2_name = [C2_name ; 'NA       '];
+        else if foundC1 == 0 && foundC2 == 1
+                C1_name = [C1_name ; 'NA       '];
+                C2_name = [C2_name ; color_C2];
+            else
+                C1_name = [C1_name ; color_C1];
+                C2_name = [C2_name ; color_C2];
+            end
+        end
+    end
+    foundC1 = 0; foundC2 = 0;
+
+    scatter(x_values, y_values, 50, 'white');
+    plot(x_values, y_values, 'Color', 'black');
+    x_values = [];
     y_values = [];
 end
 hold off;
 
-saveas(gcf, fullfile(path, 'online_daltonicUsers'), 'png'); 
+saveas(gcf, fullfile(path, 'online_daltonicUsers'), 'png'); close;
+
+if size(C1_name, 1) == 1
+    colors_names = cell(1,2);
+    colors_names(1,1) = cellstr(C1_name);
+    colors_names(1,2) = cellstr(C2_name);
+    colors_names = cell2table(colors_names);
+else
+    colors_names = table(C1_name, C2_name);
+end
+
+C1_name = []; C2_name = [];
+onlineResults_dalt = [onlineResults_dalt colors_names];
 
 %% Online Results - Uncalibrated Users
 
@@ -876,7 +1068,7 @@ for i = 1 : height(onlineResults_uncal)                                  %draw e
     y_aux = sColor(2)/(sColor(1) + sColor(2) + sColor(3));  %x = Y / (X + Y + Z)
     x_values = [x_values x_aux];                                    %store coordinates X and Y
     y_values = [y_values y_aux];
-    
+
     %Second Color
     tColor = str2num(cell2mat(onlineResults_uncal.third_color(i)));
     valuesTColor = [valuesTColor tColor];                   %store integers values of answers
@@ -889,57 +1081,87 @@ for i = 1 : height(onlineResults_uncal)                                  %draw e
     y_aux = tColor(2)/(tColor(1) + tColor(2) + tColor(3));  %x = Y / (X + Y + Z)
     x_values = [x_values x_aux];                                    %store coordinates X and Y
     y_values = [y_values y_aux];
-    
+
     %% Categorize Colors - Bins
-    
+    for j = 1 : length(colorBins)
+        valuesofx = round(colorBins(j).XData, 1);
+        valuesofy = round(colorBins(j).YData, 1);
+        if foundC1 == 0 && ismember(round(x_values(1), 1), valuesofx) && ismember(round(y_values(1),1), valuesofy)
+            color_C1 = colorBins(j).Tag;
+            foundC1 = 1;
+        end
+        if foundC2 == 0 && ismember(round(x_values(2), 1), valuesofx) && ismember(round(y_values(2),1), valuesofy)
+            color_C2 = colorBins(j).Tag;
+            foundC2 = 1;
+        end
+    end
+
+    if foundC1 == 0 && foundC2 == 0
+        C1_name = [C1_name ; 'NA       '];
+        C2_name = [C2_name ; 'NA       '];
+    else if foundC1 == 1 && foundC2 == 0
+            C1_name = [C1_name ; color_C1];
+            C2_name = [C2_name ; 'NA       '];
+        else if foundC1 == 0 && foundC2 == 1
+                C1_name = [C1_name ; 'NA       '];
+                C2_name = [C2_name ; color_C2];
+            else
+                C1_name = [C1_name ; color_C1];
+                C2_name = [C2_name ; color_C2];
+            end
+        end
+    end
+    foundC1 = 0; foundC2 = 0;
+
+
     %% Difference between C1/C2 and expected colors C1/C2
     diff_c1_expected = round(pdist([[x_values(1) y_values(1)] ; [x_pre_expectedColors(2) y_pre_expectedColors(2)]]), 2);  % [given -C1- C2]
     diff_c2_expected = round(pdist([[x_values(2) y_values(2)] ; [x_pre_expectedColors(3) y_pre_expectedColors(3)]]), 2);  % [given C1 -C2-]
     distance_expectedC1C2 = [distance_expectedC1C2 ; diff_c1_expected + diff_c2_expected];
-    
+
     %% Difference between C1/C2 and other pairs which generate the same color       %% -- CHANGE HERE (ADD MORE PAIRS IF NEEDED)
     diff_c1_pair1c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair1(1) y_pair1(1)]]), 2);   diff_c2_pair1c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair1(2) y_pair1(2)]]), 2);
     distance_pair1 = [distance_pair1 ; diff_c1_pair1c1 + diff_c2_pair1c2];
-    
+
     diff_c1_pair2c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair2(1) y_pair2(1)]]), 2);   diff_c2_pair2c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair2(2) y_pair2(2)]]), 2);
     distance_pair2 = [distance_pair2 ; diff_c1_pair2c1 + diff_c2_pair2c2];
-    
+
     diff_c1_pair3c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair3(1) y_pair3(1)]]), 2);   diff_c2_pair3c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair3(2) y_pair3(2)]]), 2);
     distance_pair3 = [distance_pair3 ; diff_c1_pair3c1 + diff_c2_pair3c2];
-    
+
     diff_c1_pair4c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair4(1) y_pair4(1)]]), 2);   diff_c2_pair4c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair4(2) y_pair4(2)]]), 2);
     distance_pair4 = [distance_pair4 ; diff_c1_pair4c1 + diff_c2_pair4c2];
-    
+
     diff_c1_pair5c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair5(1) y_pair5(1)]]), 2);   diff_c2_pair5c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair5(2) y_pair5(2)]]), 2);
     distance_pair5 = [distance_pair5 ; diff_c1_pair5c1 + diff_c2_pair5c2];
-    
+
     diff_c1_pair6c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair6(1) y_pair6(1)]]), 2);   diff_c2_pair6c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair6(2) y_pair6(2)]]), 2);
     distance_pair6 = [distance_pair6 ; diff_c1_pair6c1 + diff_c2_pair6c2];
-    
+
     diff_c1_pair7c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair7(1) y_pair7(1)]]), 2);   diff_c2_pair7c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair7(2) y_pair7(2)]]), 2);
     distance_pair7 = [distance_pair7 ; diff_c1_pair7c1 + diff_c2_pair7c2];
-    
+
     diff_c1_pair8c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair8(1) y_pair8(1)]]), 2);   diff_c2_pair8c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair8(2) y_pair8(2)]]), 2);
     distance_pair8 = [distance_pair8 ; diff_c1_pair8c1 + diff_c2_pair8c2];
-    
+
     diff_c1_pair9c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair9(1) y_pair9(1)]]), 2);   diff_c2_pair9c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair9(2) y_pair9(2)]]), 2);
     distance_pair9 = [distance_pair9 ; diff_c1_pair9c1 + diff_c2_pair9c2];
-    
+
     diff_c1_pair10c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair10(1) y_pair10(1)]]), 2);   diff_c2_pair10c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair10(2) y_pair10(2)]]), 2);
     distance_pair10 = [distance_pair10 ; diff_c1_pair10c1 + diff_c2_pair10c2];
-    
+
     diff_c1_pair11c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair11(1) y_pair11(1)]]), 2);   diff_c2_pair11c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair11(2) y_pair11(2)]]), 2);
     distance_pair11 = [distance_pair11 ; diff_c1_pair11c1 + diff_c2_pair11c2];
-    
+
     diff_c1_pair12c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair12(1) y_pair12(1)]]), 2);   diff_c2_pair12c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair12(2) y_pair12(2)]]), 2);
-    distance_pair12 = [distance_pair12 ; diff_c1_pair12c1 + diff_c2_pair12c2];    
-    
+    distance_pair12 = [distance_pair12 ; diff_c1_pair12c1 + diff_c2_pair12c2];
+
     diff_c1_pair13c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair13(1) y_pair13(1)]]), 2);   diff_c2_pair13c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair13(2) y_pair13(2)]]), 2);
     distance_pair13 = [distance_pair13 ; diff_c1_pair13c1 + diff_c2_pair13c2];
-    
+
     %% Difference between C1/C2 blended onto Color Models against pre-calc values
     %%%%%% Blend-it in HSV
-    sColor_hsv = [(hsv_C1(1)*360) hsv_C1(2) hsv_C1(3)]; tColor_hsv = [(hsv_C2(1)*360) hsv_C2(2) hsv_C2(3)];     
+    sColor_hsv = [(hsv_C1(1)*360) hsv_C1(2) hsv_C1(3)]; tColor_hsv = [(hsv_C2(1)*360) hsv_C2(2) hsv_C2(3)];
     diff_angles = abs(sColor_hsv(1) - tColor_hsv(1));
     if diff_angles > 180
         angle_small = (360 - diff_angles);  % smallest angle
@@ -953,11 +1175,11 @@ for i = 1 : height(onlineResults_uncal)                                  %draw e
     else
         angle = min([sColor_hsv(1) tColor_hsv(1)]) + (diff_angles / 2);
     end
-    rColor = rgb2xyz(hsv2rgb(([(angle/360) sColor_hsv(2) sColor_hsv(3)])));                                  % hsv -> rgb -> xyz -> compare 
+    rColor = rgb2xyz(hsv2rgb(([(angle/360) sColor_hsv(2) sColor_hsv(3)])));                                  % hsv -> rgb -> xyz -> compare
     x_aux  = rColor(1)/(rColor(1) + rColor(2) + rColor(3)); y_aux = rColor(2)/(rColor(1) + rColor(2) + rColor(3));
     distance_HSV = [distance_HSV; round(pdist([[x_aux y_aux]; [x_pre_models(1) y_pre_models(1)]]),2)];
     x_values_HSV = [x_values_HSV x_aux]; y_values_HSV = [y_values_HSV y_aux];
-    
+
     %%%%%% Blend-it in CIE-LCh (XYZ -> Lab -> LCh)
     sColor_lch = sColor; tColor_lch = tColor;
     sColor_lch = applycform(applycform(sColor_lch, cformXYZ_Lab), cformLab_LCh); tColor_lch = applycform(applycform(tColor_lch, cformXYZ_Lab), cformLab_LCh);
@@ -981,7 +1203,7 @@ for i = 1 : height(onlineResults_uncal)                                  %draw e
     x_aux  = rColor(1)/(rColor(1) + rColor(2) + rColor(3)); y_aux = rColor(2)/(rColor(1) + rColor(2) + rColor(3));
     distance_LCh = [distance_LCh; round(pdist([[x_aux y_aux]; [x_pre_models(2) y_pre_models(2)]]), 2)];
     x_values_LCh = [x_values_LCh x_aux]; y_values_LCh = [y_values_LCh y_aux];
-    
+
     %%%%%% Blend-it in CMYK
     sColor_cmyk = sColor; tColor_cmyk = tColor;
     sColor_cmyk = applycform(applycform(sColor_cmyk, cformXYZ_RGB), cformRGB_CMYK); tColor_cmyk = applycform(applycform(tColor_cmyk, cformXYZ_RGB), cformRGB_CMYK);
@@ -993,7 +1215,7 @@ for i = 1 : height(onlineResults_uncal)                                  %draw e
     x_aux  = rColor(1)/(rColor(1) + rColor(2) + rColor(3)); y_aux = rColor(2)/(rColor(1) + rColor(2) + rColor(3));
     distance_CMYK = [distance_CMYK; round(pdist([[x_aux y_aux]; [x_pre_models(3) y_pre_models(3)]]), 2)];
     x_values_CMYK = [x_values_CMYK x_aux]; y_values_CMYK = [y_values_CMYK y_aux];
-    
+
     %%%%%% Blend-it in RGB
     sColor_rgb = sColor; tColor_rgb = tColor;
     sColor_rgb = applycform(sColor_rgb, cformXYZ_RGB); tColor_rgb = applycform(tColor_rgb, cformXYZ_RGB);
@@ -1004,7 +1226,7 @@ for i = 1 : height(onlineResults_uncal)                                  %draw e
     x_aux  = rColor(1)/(rColor(1) + rColor(2) + rColor(3)); y_aux = rColor(2)/(rColor(1) + rColor(2) + rColor(3));
     distance_RGB = [distance_RGB; round(pdist([[x_aux y_aux]; [x_pre_models(4) y_pre_models(4)]]), 2)];
     x_values_RGB = [x_values_RGB x_aux]; y_values_RGB = [y_values_RGB y_aux];
-    
+
     %%%%%% Blend-it in CIE-Lab
     sColor_lab = sColor; tColor_lab = tColor;
     sColor_lab = applycform(sColor_lab, cformXYZ_Lab); tColor_lab = applycform(tColor_lab, cformXYZ_Lab);
@@ -1023,7 +1245,7 @@ for i = 1 : height(onlineResults_uncal)                                  %draw e
 end
 hold off;
 
-saveas(gcf, fullfile(path, 'online_uncalibratedUsers'), 'png'); 
+saveas(gcf, fullfile(path, 'online_uncalibratedUsers'), 'png'); close;
 
 % Centroids of Color Models
 centroid_HSV    = [centroid_HSV  ; [round(mean(x_values_HSV),2) round(mean(y_values_HSV),2)]];
@@ -1041,13 +1263,23 @@ distance_centroid_Lab = [distance_centroid_Lab ; round(pdist([mean(x_values_Lab)
 diffs_table = table(distance_expectedC1C2, distance_HSV, distance_LCh, distance_CMYK, distance_RGB, distance_Lab);
 diffs_pairs = table(distance_pair1,distance_pair2,distance_pair3,distance_pair4,distance_pair5,distance_pair6,distance_pair7,distance_pair8,distance_pair9,distance_pair10,distance_pair11,distance_pair12,distance_pair13);
 diffs_table = [diffs_table diffs_pairs];
+if size(C1_name, 1) == 1
+    colors_names = cell(1,2);
+    colors_names(1,1) = cellstr(C1_name);
+    colors_names(1,2) = cellstr(C2_name);
+    colors_names = cell2table(colors_names);
+else
+    colors_names = table(C1_name, C2_name);
+end
 
-onlineResults_uncal = [onlineResults_uncal diffs_table];
+C1_name = []; C2_name = [];
+onlineResults_uncal = [onlineResults_uncal colors_names diffs_table];
 
 % Clean all the tables!
-x_values_HSV = []; y_values_HSV = []; x_values_LCh = []; y_values_LCh = []; x_values_CMYK = []; y_values_CMYK = []; x_values_RGB = []; y_values_RGB = []; x_values_Lab = []; y_values_Lab = [];  
+x_values_HSV = []; y_values_HSV = []; x_values_LCh = []; y_values_LCh = []; x_values_CMYK = []; y_values_CMYK = []; x_values_RGB = []; y_values_RGB = []; x_values_Lab = []; y_values_Lab = [];
 distance_HSV = []; distance_LCh = []; distance_CMYK = []; distance_RGB = []; distance_Lab = [];
 distance_expectedC1C2 = [];
+distance_pair1 = []; distance_pair2 = []; distance_pair3 = []; distance_pair4 = []; distance_pair5 = []; distance_pair6 = []; distance_pair7 = []; distance_pair8 = []; distance_pair9 = []; distance_pair10 = []; distance_pair11 = []; distance_pair12 = []; distance_pair13 = [];
 
 %% Demographic Analysis - AGE <= 20
 
@@ -1064,85 +1296,115 @@ scatter(x_pre_expectedColors(3), y_pre_expectedColors(3), 60, 'black');         
 
 
 % Draw every pair of responses.
-for i = 1 : height(demoResultsAge_20)                                  
+for i = 1 : height(demoResultsAge_20)
     %% First Color - C1
-    sColor = str2num(cell2mat(demoResultsAge_20.second_color(i)));      
-    valuesSColor = [valuesSColor sColor];                               
-    sColor = sColor/360;                                                
-    sColor = [sColor 1 1];                                             
+    sColor = str2num(cell2mat(demoResultsAge_20.second_color(i)));
+    valuesSColor = [valuesSColor sColor];
+    sColor = sColor/360;
+    sColor = [sColor 1 1];
     hsv_C1 = sColor;
-    sColor = hsv2rgb(sColor);                                           
+    sColor = hsv2rgb(sColor);
     rgb_C1 = round([sColor(1)*255 sColor(2)*255 sColor(3)*255]);
-    sColor = rgb2xyz(sColor);                                           
-    x_aux = sColor(1)/(sColor(1) + sColor(2) + sColor(3));              
-    y_aux = sColor(2)/(sColor(1) + sColor(2) + sColor(3));              
-    x_values = [x_values x_aux];                                        
+    sColor = rgb2xyz(sColor);
+    x_aux = sColor(1)/(sColor(1) + sColor(2) + sColor(3));
+    y_aux = sColor(2)/(sColor(1) + sColor(2) + sColor(3));
+    x_values = [x_values x_aux];
     y_values = [y_values y_aux];
-    
+
     %% Second Color - C2
     tColor = str2num(cell2mat(demoResultsAge_20.third_color(i)));
-    valuesTColor = [valuesTColor tColor];                               
-    tColor = tColor/360;                                                
-    tColor = [tColor 1 1];                                             
+    valuesTColor = [valuesTColor tColor];
+    tColor = tColor/360;
+    tColor = [tColor 1 1];
     hsv_C2 = tColor;
-    tColor = hsv2rgb(tColor);                                           
+    tColor = hsv2rgb(tColor);
     rgb_C2 = round([tColor(1)*255 tColor(2)*255 tColor(3)*255]);
-    tColor = rgb2xyz(tColor);                                           
-    x_aux = tColor(1)/(tColor(1) + tColor(2) + tColor(3));              
-    y_aux = tColor(2)/(tColor(1) + tColor(2) + tColor(3));              
-    x_values = [x_values x_aux];                                        
+    tColor = rgb2xyz(tColor);
+    x_aux = tColor(1)/(tColor(1) + tColor(2) + tColor(3));
+    y_aux = tColor(2)/(tColor(1) + tColor(2) + tColor(3));
+    x_values = [x_values x_aux];
     y_values = [y_values y_aux];
-    
+
     %% Categorize Colors - Bins
-    
+    for j = 1 : length(colorBins)
+        valuesofx = round(colorBins(j).XData, 1);
+        valuesofy = round(colorBins(j).YData, 1);
+        if foundC1 == 0 && ismember(round(x_values(1), 1), valuesofx) && ismember(round(y_values(1),1), valuesofy)
+            color_C1 = colorBins(j).Tag;
+            foundC1 = 1;
+        end
+        if foundC2 == 0 && ismember(round(x_values(2), 1), valuesofx) && ismember(round(y_values(2),1), valuesofy)
+            color_C2 = colorBins(j).Tag;
+            foundC2 = 1;
+        end
+    end
+
+    if foundC1 == 0 && foundC2 == 0
+        C1_name = [C1_name ; 'NA       '];
+        C2_name = [C2_name ; 'NA       '];
+    else if foundC1 == 1 && foundC2 == 0
+            C1_name = [C1_name ; color_C1];
+            C2_name = [C2_name ; 'NA       '];
+        else if foundC1 == 0 && foundC2 == 1
+                C1_name = [C1_name ; 'NA       '];
+                C2_name = [C2_name ; color_C2];
+            else
+                C1_name = [C1_name ; color_C1];
+                C2_name = [C2_name ; color_C2];
+            end
+        end
+    end
+    foundC1 = 0; foundC2 = 0;
+
+
     %% Difference between C1/C2 and expected colors C1/C2
     diff_c1_expected = round(pdist([[x_values(1) y_values(1)] ; [x_pre_expectedColors(2) y_pre_expectedColors(2)]]), 2);  % [given -C1- C2]
     diff_c2_expected = round(pdist([[x_values(2) y_values(2)] ; [x_pre_expectedColors(3) y_pre_expectedColors(3)]]), 2);  % [given C1 -C2-]
     distance_expectedC1C2 = [distance_expectedC1C2 ; diff_c1_expected + diff_c2_expected];
-    
+
     %% Difference between C1/C2 and other pairs which generate the same color       %% -- CHANGE HERE (ADD MORE PAIRS IF NEEDED)
     diff_c1_pair1c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair1(1) y_pair1(1)]]), 2);   diff_c2_pair1c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair1(2) y_pair1(2)]]), 2);
     distance_pair1 = [distance_pair1 ; diff_c1_pair1c1 + diff_c2_pair1c2];
-    
+
     diff_c1_pair2c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair2(1) y_pair2(1)]]), 2);   diff_c2_pair2c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair2(2) y_pair2(2)]]), 2);
     distance_pair2 = [distance_pair2 ; diff_c1_pair2c1 + diff_c2_pair2c2];
-    
+
     diff_c1_pair3c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair3(1) y_pair3(1)]]), 2);   diff_c2_pair3c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair3(2) y_pair3(2)]]), 2);
     distance_pair3 = [distance_pair3 ; diff_c1_pair3c1 + diff_c2_pair3c2];
-    
+
     diff_c1_pair4c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair4(1) y_pair4(1)]]), 2);   diff_c2_pair4c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair4(2) y_pair4(2)]]), 2);
     distance_pair4 = [distance_pair4 ; diff_c1_pair4c1 + diff_c2_pair4c2];
-    
+
     diff_c1_pair5c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair5(1) y_pair5(1)]]), 2);   diff_c2_pair5c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair5(2) y_pair5(2)]]), 2);
     distance_pair5 = [distance_pair5 ; diff_c1_pair5c1 + diff_c2_pair5c2];
-    
+
     diff_c1_pair6c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair6(1) y_pair6(1)]]), 2);   diff_c2_pair6c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair6(2) y_pair6(2)]]), 2);
     distance_pair6 = [distance_pair6 ; diff_c1_pair6c1 + diff_c2_pair6c2];
-    
+
     diff_c1_pair7c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair7(1) y_pair7(1)]]), 2);   diff_c2_pair7c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair7(2) y_pair7(2)]]), 2);
     distance_pair7 = [distance_pair7 ; diff_c1_pair7c1 + diff_c2_pair7c2];
-    
+
     diff_c1_pair8c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair8(1) y_pair8(1)]]), 2);   diff_c2_pair8c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair8(2) y_pair8(2)]]), 2);
     distance_pair8 = [distance_pair8 ; diff_c1_pair8c1 + diff_c2_pair8c2];
-    
+
     diff_c1_pair9c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair9(1) y_pair9(1)]]), 2);   diff_c2_pair9c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair9(2) y_pair9(2)]]), 2);
     distance_pair9 = [distance_pair9 ; diff_c1_pair9c1 + diff_c2_pair9c2];
-    
+
     diff_c1_pair10c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair10(1) y_pair10(1)]]), 2);   diff_c2_pair10c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair10(2) y_pair10(2)]]), 2);
     distance_pair10 = [distance_pair10 ; diff_c1_pair10c1 + diff_c2_pair10c2];
-    
+
     diff_c1_pair11c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair11(1) y_pair11(1)]]), 2);   diff_c2_pair11c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair11(2) y_pair11(2)]]), 2);
     distance_pair11 = [distance_pair11 ; diff_c1_pair11c1 + diff_c2_pair11c2];
-    
+
     diff_c1_pair12c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair12(1) y_pair12(1)]]), 2);   diff_c2_pair12c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair12(2) y_pair12(2)]]), 2);
-    distance_pair12 = [distance_pair12 ; diff_c1_pair12c1 + diff_c2_pair12c2];    
-    
+    distance_pair12 = [distance_pair12 ; diff_c1_pair12c1 + diff_c2_pair12c2];
+
     diff_c1_pair13c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair13(1) y_pair13(1)]]), 2);   diff_c2_pair13c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair13(2) y_pair13(2)]]), 2);
     distance_pair13 = [distance_pair13 ; diff_c1_pair13c1 + diff_c2_pair13c2];
-    
+
     %% Difference between C1/C2 blended onto Color Models against pre-calc values
     %%%%%% Blend-it in HSV
-    sColor_hsv = [(hsv_C1(1)*360) hsv_C1(2) hsv_C1(3)]; tColor_hsv = [(hsv_C2(1)*360) hsv_C2(2) hsv_C2(3)];     
+    sColor_hsv = [(hsv_C1(1)*360) hsv_C1(2) hsv_C1(3)]; tColor_hsv = [(hsv_C2(1)*360) hsv_C2(2) hsv_C2(3)];
     diff_angles = abs(sColor_hsv(1) - tColor_hsv(1));
     if diff_angles > 180
         angle_small = (360 - diff_angles);  % smallest angle
@@ -1156,11 +1418,11 @@ for i = 1 : height(demoResultsAge_20)
     else
         angle = min([sColor_hsv(1) tColor_hsv(1)]) + (diff_angles / 2);
     end
-    rColor = rgb2xyz(hsv2rgb(([angle/360 sColor_hsv(2) sColor_hsv(3)])));                                  % hsv -> rgb -> xyz -> compare 
+    rColor = rgb2xyz(hsv2rgb(([angle/360 sColor_hsv(2) sColor_hsv(3)])));                                  % hsv -> rgb -> xyz -> compare
     x_aux  = rColor(1)/(rColor(1) + rColor(2) + rColor(3)); y_aux = rColor(2)/(rColor(1) + rColor(2) + rColor(3));
     distance_HSV = [distance_HSV; round(pdist([[x_aux y_aux]; [x_pre_models(1) y_pre_models(1)]]),2)];
     x_values_HSV = [x_values_HSV x_aux]; y_values_HSV = [y_values_HSV y_aux];
-    
+
     %%%%%% Blend-it in CIE-LCh (XYZ -> Lab -> LCh)
     sColor_lch = sColor; tColor_lch = tColor;
     sColor_lch = applycform(applycform(sColor_lch, cformXYZ_Lab), cformLab_LCh); tColor_lch = applycform(applycform(tColor_lch, cformXYZ_Lab), cformLab_LCh);
@@ -1184,7 +1446,7 @@ for i = 1 : height(demoResultsAge_20)
     x_aux  = rColor(1)/(rColor(1) + rColor(2) + rColor(3)); y_aux = rColor(2)/(rColor(1) + rColor(2) + rColor(3));
     distance_LCh = [distance_LCh; round(pdist([[x_aux y_aux]; [x_pre_models(2) y_pre_models(2)]]), 2)];
     x_values_LCh = [x_values_LCh x_aux]; y_values_LCh = [y_values_LCh y_aux];
-    
+
     %%%%%% Blend-it in CMYK
     sColor_cmyk = sColor; tColor_cmyk = tColor;
     sColor_cmyk = applycform(applycform(sColor_cmyk, cformXYZ_RGB), cformRGB_CMYK); tColor_cmyk = applycform(applycform(tColor_cmyk, cformXYZ_RGB), cformRGB_CMYK);
@@ -1196,7 +1458,7 @@ for i = 1 : height(demoResultsAge_20)
     x_aux  = rColor(1)/(rColor(1) + rColor(2) + rColor(3)); y_aux = rColor(2)/(rColor(1) + rColor(2) + rColor(3));
     distance_CMYK = [distance_CMYK; round(pdist([[x_aux y_aux]; [x_pre_models(3) y_pre_models(3)]]), 2)];
     x_values_CMYK = [x_values_CMYK x_aux]; y_values_CMYK = [y_values_CMYK y_aux];
-    
+
     %%%%%% Blend-it in RGB
     sColor_rgb = sColor; tColor_rgb = tColor;
     sColor_rgb = applycform(sColor_rgb, cformXYZ_RGB); tColor_rgb = applycform(tColor_rgb, cformXYZ_RGB);
@@ -1207,7 +1469,7 @@ for i = 1 : height(demoResultsAge_20)
     x_aux  = rColor(1)/(rColor(1) + rColor(2) + rColor(3)); y_aux = rColor(2)/(rColor(1) + rColor(2) + rColor(3));
     distance_RGB = [distance_RGB; round(pdist([[x_aux y_aux]; [x_pre_models(4) y_pre_models(4)]]), 2)];
     x_values_RGB = [x_values_RGB x_aux]; y_values_RGB = [y_values_RGB y_aux];
-    
+
     %%%%%% Blend-it in CIE-Lab
     sColor_lab = sColor; tColor_lab = tColor;
     sColor_lab = applycform(sColor_lab, cformXYZ_Lab); tColor_lab = applycform(tColor_lab, cformXYZ_Lab);
@@ -1226,7 +1488,7 @@ for i = 1 : height(demoResultsAge_20)
 end
 hold off;
 
-saveas(gcf, fullfile(path, 'demographic_ageLess20'), 'png');
+saveas(gcf, fullfile(path, 'demographic_ageLess20'), 'png'); close;
 
 % Centroids of Color Models
 centroid_HSV    = [centroid_HSV  ; [round(mean(x_values_HSV),2) round(mean(y_values_HSV),2)]];
@@ -1243,8 +1505,19 @@ distance_centroid_Lab = [distance_centroid_Lab ; round(pdist([mean(x_values_Lab)
 
 % Catenate all Tables               -- CHANGE HERE
 diffs_table = table(distance_expectedC1C2, distance_HSV, distance_LCh, distance_CMYK, distance_RGB, distance_Lab);
+diffs_pairs = table(distance_pair1,distance_pair2,distance_pair3,distance_pair4,distance_pair5,distance_pair6,distance_pair7,distance_pair8,distance_pair9,distance_pair10,distance_pair11,distance_pair12,distance_pair13);
+diffs_table = [diffs_table diffs_pairs];
+if size(C1_name, 1) == 1
+    colors_names = cell(1,2);
+    colors_names(1,1) = cellstr(C1_name);
+    colors_names(1,2) = cellstr(C2_name);
+    colors_names = cell2table(colors_names);
+else
+    colors_names = table(C1_name, C2_name);
+end
 
-demoResultsAge_20 = [demoResultsAge_20 diffs_table];
+C1_name = []; C2_name = [];
+demoResultsAge_20 = [demoResultsAge_20 colors_names diffs_table];
 
 % Plot Results for each Color Model
 figure('NumberTitle','off');
@@ -1254,9 +1527,9 @@ xlabel('X Value');
 ylabel('Y Value');
 hold on;
 scatter(x_pre_models(1), y_pre_models(1), 50, 'black', 'Filled');          % Draw expected response for this model
-scatter(x_values_HSV, y_values_HSV, 50, 'white');                          % Draw responses mixed in HSV   
+scatter(x_values_HSV, y_values_HSV, 50, 'white');                          % Draw responses mixed in HSV
 hold off;
-saveas(gcf, fullfile(path, 'demographic_ageLess20_HSVresponses'), 'png');
+saveas(gcf, fullfile(path, 'demographic_ageLess20_HSVresponses'), 'png'); close;
 
 figure('NumberTitle','off');
 cieplot();
@@ -1265,9 +1538,9 @@ xlabel('X Value');
 ylabel('Y Value');
 hold on;
 scatter(x_pre_models(2), y_pre_models(2), 50, 'black', 'Filled');          % Draw expected response for this model
-scatter(x_values_LCh, y_values_LCh, 50, 'white');                          % Draw responses mixed in LCh   
+scatter(x_values_LCh, y_values_LCh, 50, 'white');                          % Draw responses mixed in LCh
 hold off;
-saveas(gcf, fullfile(path, 'demographic_ageLess20_LChresponses'), 'png');
+saveas(gcf, fullfile(path, 'demographic_ageLess20_LChresponses'), 'png'); close;
 
 figure('NumberTitle','off');
 cieplot();
@@ -1276,9 +1549,9 @@ xlabel('X Value');
 ylabel('Y Value');
 hold on;
 scatter(x_pre_models(3), y_pre_models(3), 50, 'black', 'Filled');          % Draw expected response for this model
-scatter(x_values_CMYK, y_values_CMYK, 50, 'white');                          % Draw responses mixed in CMYK   
+scatter(x_values_CMYK, y_values_CMYK, 50, 'white');                          % Draw responses mixed in CMYK
 hold off;
-saveas(gcf, fullfile(path, 'demographic_ageLess20_CMYKresponses'), 'png');
+saveas(gcf, fullfile(path, 'demographic_ageLess20_CMYKresponses'), 'png'); close;
 
 figure('NumberTitle','off');
 cieplot();
@@ -1287,9 +1560,9 @@ xlabel('X Value');
 ylabel('Y Value');
 hold on;
 scatter(x_pre_models(4), y_pre_models(4), 50, 'black', 'Filled');          % Draw expected response for this model
-scatter(x_values_RGB, y_values_RGB, 50, 'white');                          % Draw responses mixed in RGB   
+scatter(x_values_RGB, y_values_RGB, 50, 'white');                          % Draw responses mixed in RGB
 hold off;
-saveas(gcf, fullfile(path, 'demographic_ageLess20_RGBresponses'), 'png');
+saveas(gcf, fullfile(path, 'demographic_ageLess20_RGBresponses'), 'png'); close;
 
 figure('NumberTitle','off');
 cieplot();
@@ -1298,14 +1571,15 @@ xlabel('X Value');
 ylabel('Y Value');
 hold on;
 scatter(x_pre_models(5), y_pre_models(5), 50, 'black', 'Filled');          % Draw expected response for this model
-scatter(x_values_Lab, y_values_Lab, 50, 'white');                          % Draw responses mixed in Lab   
+scatter(x_values_Lab, y_values_Lab, 50, 'white');                          % Draw responses mixed in Lab
 hold off;
-saveas(gcf, fullfile(path, 'demographic_ageLess20_Labresponses'), 'png');
+saveas(gcf, fullfile(path, 'demographic_ageLess20_Labresponses'), 'png'); close;
 
 % Clean all the tables!
-x_values_HSV = []; y_values_HSV = []; x_values_LCh = []; y_values_LCh = []; x_values_CMYK = []; y_values_CMYK = []; x_values_RGB = []; y_values_RGB = []; x_values_Lab = []; y_values_Lab = [];  
+x_values_HSV = []; y_values_HSV = []; x_values_LCh = []; y_values_LCh = []; x_values_CMYK = []; y_values_CMYK = []; x_values_RGB = []; y_values_RGB = []; x_values_Lab = []; y_values_Lab = [];
 distance_HSV = []; distance_LCh = []; distance_CMYK = []; distance_RGB = []; distance_Lab = [];
 distance_expectedC1C2 = [];
+distance_pair1 = []; distance_pair2 = []; distance_pair3 = []; distance_pair4 = []; distance_pair5 = []; distance_pair6 = []; distance_pair7 = []; distance_pair8 = []; distance_pair9 = []; distance_pair10 = []; distance_pair11 = []; distance_pair12 = []; distance_pair13 = [];
 
 %% Demographic Analysis - AGE 20 - 29
 
@@ -1322,85 +1596,115 @@ scatter(x_pre_expectedColors(3), y_pre_expectedColors(3), 60, 'black');         
 
 
 % Draw every pair of responses.
-for i = 1 : height(demoResultsAge_20_29)                                  
+for i = 1 : height(demoResultsAge_20_29)
     %% First Color - C1
-    sColor = str2num(cell2mat(demoResultsAge_20_29.second_color(i)));      
-    valuesSColor = [valuesSColor sColor];                               
-    sColor = sColor/360;                                                
-    sColor = [sColor 1 1];                                             
+    sColor = str2num(cell2mat(demoResultsAge_20_29.second_color(i)));
+    valuesSColor = [valuesSColor sColor];
+    sColor = sColor/360;
+    sColor = [sColor 1 1];
     hsv_C1 = sColor;
-    sColor = hsv2rgb(sColor);                                           
+    sColor = hsv2rgb(sColor);
     rgb_C1 = round([sColor(1)*255 sColor(2)*255 sColor(3)*255]);
-    sColor = rgb2xyz(sColor);                                           
-    x_aux = sColor(1)/(sColor(1) + sColor(2) + sColor(3));              
-    y_aux = sColor(2)/(sColor(1) + sColor(2) + sColor(3));              
-    x_values = [x_values x_aux];                                        
+    sColor = rgb2xyz(sColor);
+    x_aux = sColor(1)/(sColor(1) + sColor(2) + sColor(3));
+    y_aux = sColor(2)/(sColor(1) + sColor(2) + sColor(3));
+    x_values = [x_values x_aux];
     y_values = [y_values y_aux];
-    
+
     %% Second Color - C2
     tColor = str2num(cell2mat(demoResultsAge_20_29.third_color(i)));
-    valuesTColor = [valuesTColor tColor];                               
-    tColor = tColor/360;                                                
-    tColor = [tColor 1 1];                                             
+    valuesTColor = [valuesTColor tColor];
+    tColor = tColor/360;
+    tColor = [tColor 1 1];
     hsv_C2 = tColor;
-    tColor = hsv2rgb(tColor);                                           
+    tColor = hsv2rgb(tColor);
     rgb_C2 = round([tColor(1)*255 tColor(2)*255 tColor(3)*255]);
-    tColor = rgb2xyz(tColor);                                           
-    x_aux = tColor(1)/(tColor(1) + tColor(2) + tColor(3));              
-    y_aux = tColor(2)/(tColor(1) + tColor(2) + tColor(3));              
-    x_values = [x_values x_aux];                                        
+    tColor = rgb2xyz(tColor);
+    x_aux = tColor(1)/(tColor(1) + tColor(2) + tColor(3));
+    y_aux = tColor(2)/(tColor(1) + tColor(2) + tColor(3));
+    x_values = [x_values x_aux];
     y_values = [y_values y_aux];
-    
+
     %% Categorize Colors - Bins
-    
+    for j = 1 : length(colorBins)
+        valuesofx = round(colorBins(j).XData, 1);
+        valuesofy = round(colorBins(j).YData, 1);
+        if foundC1 == 0 && ismember(round(x_values(1), 1), valuesofx) && ismember(round(y_values(1),1), valuesofy)
+            color_C1 = colorBins(j).Tag;
+            foundC1 = 1;
+        end
+        if foundC2 == 0 && ismember(round(x_values(2), 1), valuesofx) && ismember(round(y_values(2),1), valuesofy)
+            color_C2 = colorBins(j).Tag;
+            foundC2 = 1;
+        end
+    end
+
+    if foundC1 == 0 && foundC2 == 0
+        C1_name = [C1_name ; 'NA       '];
+        C2_name = [C2_name ; 'NA       '];
+    else if foundC1 == 1 && foundC2 == 0
+            C1_name = [C1_name ; color_C1];
+            C2_name = [C2_name ; 'NA       '];
+        else if foundC1 == 0 && foundC2 == 1
+                C1_name = [C1_name ; 'NA       '];
+                C2_name = [C2_name ; color_C2];
+            else
+                C1_name = [C1_name ; color_C1];
+                C2_name = [C2_name ; color_C2];
+            end
+        end
+    end
+    foundC1 = 0; foundC2 = 0;
+
+
     %% Difference between C1/C2 and expected colors C1/C2
     diff_c1_expected = round(pdist([[x_values(1) y_values(1)] ; [x_pre_expectedColors(2) y_pre_expectedColors(2)]]), 2);  % [given -C1- C2]
     diff_c2_expected = round(pdist([[x_values(2) y_values(2)] ; [x_pre_expectedColors(3) y_pre_expectedColors(3)]]), 2);  % [given C1 -C2-]
     distance_expectedC1C2 = [distance_expectedC1C2 ; diff_c1_expected + diff_c2_expected];
-    
+
     %% Difference between C1/C2 and other pairs which generate the same color       %% -- CHANGE HERE (ADD MORE PAIRS IF NEEDED)
     diff_c1_pair1c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair1(1) y_pair1(1)]]), 2);   diff_c2_pair1c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair1(2) y_pair1(2)]]), 2);
     distance_pair1 = [distance_pair1 ; diff_c1_pair1c1 + diff_c2_pair1c2];
-    
+
     diff_c1_pair2c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair2(1) y_pair2(1)]]), 2);   diff_c2_pair2c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair2(2) y_pair2(2)]]), 2);
     distance_pair2 = [distance_pair2 ; diff_c1_pair2c1 + diff_c2_pair2c2];
-    
+
     diff_c1_pair3c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair3(1) y_pair3(1)]]), 2);   diff_c2_pair3c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair3(2) y_pair3(2)]]), 2);
     distance_pair3 = [distance_pair3 ; diff_c1_pair3c1 + diff_c2_pair3c2];
-    
+
     diff_c1_pair4c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair4(1) y_pair4(1)]]), 2);   diff_c2_pair4c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair4(2) y_pair4(2)]]), 2);
     distance_pair4 = [distance_pair4 ; diff_c1_pair4c1 + diff_c2_pair4c2];
-    
+
     diff_c1_pair5c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair5(1) y_pair5(1)]]), 2);   diff_c2_pair5c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair5(2) y_pair5(2)]]), 2);
     distance_pair5 = [distance_pair5 ; diff_c1_pair5c1 + diff_c2_pair5c2];
-    
+
     diff_c1_pair6c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair6(1) y_pair6(1)]]), 2);   diff_c2_pair6c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair6(2) y_pair6(2)]]), 2);
     distance_pair6 = [distance_pair6 ; diff_c1_pair6c1 + diff_c2_pair6c2];
-    
+
     diff_c1_pair7c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair7(1) y_pair7(1)]]), 2);   diff_c2_pair7c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair7(2) y_pair7(2)]]), 2);
     distance_pair7 = [distance_pair7 ; diff_c1_pair7c1 + diff_c2_pair7c2];
-    
+
     diff_c1_pair8c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair8(1) y_pair8(1)]]), 2);   diff_c2_pair8c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair8(2) y_pair8(2)]]), 2);
     distance_pair8 = [distance_pair8 ; diff_c1_pair8c1 + diff_c2_pair8c2];
-    
+
     diff_c1_pair9c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair9(1) y_pair9(1)]]), 2);   diff_c2_pair9c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair9(2) y_pair9(2)]]), 2);
     distance_pair9 = [distance_pair9 ; diff_c1_pair9c1 + diff_c2_pair9c2];
-    
+
     diff_c1_pair10c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair10(1) y_pair10(1)]]), 2);   diff_c2_pair10c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair10(2) y_pair10(2)]]), 2);
     distance_pair10 = [distance_pair10 ; diff_c1_pair10c1 + diff_c2_pair10c2];
-    
+
     diff_c1_pair11c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair11(1) y_pair11(1)]]), 2);   diff_c2_pair11c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair11(2) y_pair11(2)]]), 2);
     distance_pair11 = [distance_pair11 ; diff_c1_pair11c1 + diff_c2_pair11c2];
-    
+
     diff_c1_pair12c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair12(1) y_pair12(1)]]), 2);   diff_c2_pair12c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair12(2) y_pair12(2)]]), 2);
-    distance_pair12 = [distance_pair12 ; diff_c1_pair12c1 + diff_c2_pair12c2];    
-    
+    distance_pair12 = [distance_pair12 ; diff_c1_pair12c1 + diff_c2_pair12c2];
+
     diff_c1_pair13c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair13(1) y_pair13(1)]]), 2);   diff_c2_pair13c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair13(2) y_pair13(2)]]), 2);
     distance_pair13 = [distance_pair13 ; diff_c1_pair13c1 + diff_c2_pair13c2];
-    
+
     %% Difference between C1/C2 blended onto Color Models against pre-calc values
     %%%%%% Blend-it in HSV
-    sColor_hsv = [(hsv_C1(1)*360) hsv_C1(2) hsv_C1(3)]; tColor_hsv = [(hsv_C2(1)*360) hsv_C2(2) hsv_C2(3)];     
+    sColor_hsv = [(hsv_C1(1)*360) hsv_C1(2) hsv_C1(3)]; tColor_hsv = [(hsv_C2(1)*360) hsv_C2(2) hsv_C2(3)];
     diff_angles = abs(sColor_hsv(1) - tColor_hsv(1));
     if diff_angles > 180
         angle_small = (360 - diff_angles);  % smallest angle
@@ -1414,11 +1718,11 @@ for i = 1 : height(demoResultsAge_20_29)
     else
         angle = min([sColor_hsv(1) tColor_hsv(1)]) + (diff_angles / 2);
     end
-    rColor = rgb2xyz(hsv2rgb(([angle/360 sColor_hsv(2) sColor_hsv(3)])));                                  % hsv -> rgb -> xyz -> compare 
+    rColor = rgb2xyz(hsv2rgb(([angle/360 sColor_hsv(2) sColor_hsv(3)])));                                  % hsv -> rgb -> xyz -> compare
     x_aux  = rColor(1)/(rColor(1) + rColor(2) + rColor(3)); y_aux = rColor(2)/(rColor(1) + rColor(2) + rColor(3));
     distance_HSV = [distance_HSV; round(pdist([[x_aux y_aux]; [x_pre_models(1) y_pre_models(1)]]),2)];
     x_values_HSV = [x_values_HSV x_aux]; y_values_HSV = [y_values_HSV y_aux];
-    
+
     %%%%%% Blend-it in CIE-LCh (XYZ -> Lab -> LCh)
     sColor_lch = sColor; tColor_lch = tColor;
     sColor_lch = applycform(applycform(sColor_lch, cformXYZ_Lab), cformLab_LCh); tColor_lch = applycform(applycform(tColor_lch, cformXYZ_Lab), cformLab_LCh);
@@ -1442,7 +1746,7 @@ for i = 1 : height(demoResultsAge_20_29)
     x_aux  = rColor(1)/(rColor(1) + rColor(2) + rColor(3)); y_aux = rColor(2)/(rColor(1) + rColor(2) + rColor(3));
     distance_LCh = [distance_LCh; round(pdist([[x_aux y_aux]; [x_pre_models(2) y_pre_models(2)]]), 2)];
     x_values_LCh = [x_values_LCh x_aux]; y_values_LCh = [y_values_LCh y_aux];
-    
+
     %%%%%% Blend-it in CMYK
     sColor_cmyk = sColor; tColor_cmyk = tColor;
     sColor_cmyk = applycform(applycform(sColor_cmyk, cformXYZ_RGB), cformRGB_CMYK); tColor_cmyk = applycform(applycform(tColor_cmyk, cformXYZ_RGB), cformRGB_CMYK);
@@ -1454,7 +1758,7 @@ for i = 1 : height(demoResultsAge_20_29)
     x_aux  = rColor(1)/(rColor(1) + rColor(2) + rColor(3)); y_aux = rColor(2)/(rColor(1) + rColor(2) + rColor(3));
     distance_CMYK = [distance_CMYK; round(pdist([[x_aux y_aux]; [x_pre_models(3) y_pre_models(3)]]), 2)];
     x_values_CMYK = [x_values_CMYK x_aux]; y_values_CMYK = [y_values_CMYK y_aux];
-    
+
     %%%%%% Blend-it in RGB
     sColor_rgb = sColor; tColor_rgb = tColor;
     sColor_rgb = applycform(sColor_rgb, cformXYZ_RGB); tColor_rgb = applycform(tColor_rgb, cformXYZ_RGB);
@@ -1465,7 +1769,7 @@ for i = 1 : height(demoResultsAge_20_29)
     x_aux  = rColor(1)/(rColor(1) + rColor(2) + rColor(3)); y_aux = rColor(2)/(rColor(1) + rColor(2) + rColor(3));
     distance_RGB = [distance_RGB; round(pdist([[x_aux y_aux]; [x_pre_models(4) y_pre_models(4)]]), 2)];
     x_values_RGB = [x_values_RGB x_aux]; y_values_RGB = [y_values_RGB y_aux];
-    
+
     %%%%%% Blend-it in CIE-Lab
     sColor_lab = sColor; tColor_lab = tColor;
     sColor_lab = applycform(sColor_lab, cformXYZ_Lab); tColor_lab = applycform(tColor_lab, cformXYZ_Lab);
@@ -1484,7 +1788,7 @@ for i = 1 : height(demoResultsAge_20_29)
 end
 hold off;
 
-saveas(gcf, fullfile(path, 'demographic_age20_29'), 'png');
+saveas(gcf, fullfile(path, 'demographic_age20_29'), 'png'); close;
 
 % Centroids of Color Models
 centroid_HSV    = [centroid_HSV  ; [round(mean(x_values_HSV),2) round(mean(y_values_HSV),2)]];
@@ -1501,8 +1805,19 @@ distance_centroid_Lab = [distance_centroid_Lab ; round(pdist([mean(x_values_Lab)
 
 % Catenate all Tables               -- CHANGE HERE
 diffs_table = table(distance_expectedC1C2, distance_HSV, distance_LCh, distance_CMYK, distance_RGB, distance_Lab);
+diffs_pairs = table(distance_pair1,distance_pair2,distance_pair3,distance_pair4,distance_pair5,distance_pair6,distance_pair7,distance_pair8,distance_pair9,distance_pair10,distance_pair11,distance_pair12,distance_pair13);
+diffs_table = [diffs_table diffs_pairs];
+if size(C1_name, 1) == 1
+    colors_names = cell(1,2);
+    colors_names(1,1) = cellstr(C1_name);
+    colors_names(1,2) = cellstr(C2_name);
+    colors_names = cell2table(colors_names);
+else
+    colors_names = table(C1_name, C2_name);
+end
 
-demoResultsAge_20_29 = [demoResultsAge_20_29 diffs_table];
+C1_name = []; C2_name = [];
+demoResultsAge_20_29 = [demoResultsAge_20_29 colors_names diffs_table];
 
 % Plot Results for each Color Model
 figure('NumberTitle','off');
@@ -1512,9 +1827,9 @@ xlabel('X Value');
 ylabel('Y Value');
 hold on;
 scatter(x_pre_models(1), y_pre_models(1), 50, 'black', 'Filled');          % Draw expected response for this model
-scatter(x_values_HSV, y_values_HSV, 50, 'white');                          % Draw responses mixed in HSV   
+scatter(x_values_HSV, y_values_HSV, 50, 'white');                          % Draw responses mixed in HSV
 hold off;
-saveas(gcf, fullfile(path, 'demographic_age20_29_HSVresponses'), 'png');
+saveas(gcf, fullfile(path, 'demographic_age20_29_HSVresponses'), 'png'); close;
 
 figure('NumberTitle','off');
 cieplot();
@@ -1523,9 +1838,9 @@ xlabel('X Value');
 ylabel('Y Value');
 hold on;
 scatter(x_pre_models(2), y_pre_models(2), 50, 'black', 'Filled');          % Draw expected response for this model
-scatter(x_values_LCh, y_values_LCh, 50, 'white');                          % Draw responses mixed in LCh   
+scatter(x_values_LCh, y_values_LCh, 50, 'white');                          % Draw responses mixed in LCh
 hold off;
-saveas(gcf, fullfile(path, 'demographic_age20_29_LChresponses'), 'png');
+saveas(gcf, fullfile(path, 'demographic_age20_29_LChresponses'), 'png'); close;
 
 figure('NumberTitle','off');
 cieplot();
@@ -1534,9 +1849,9 @@ xlabel('X Value');
 ylabel('Y Value');
 hold on;
 scatter(x_pre_models(3), y_pre_models(3), 50, 'black', 'Filled');          % Draw expected response for this model
-scatter(x_values_CMYK, y_values_CMYK, 50, 'white');                          % Draw responses mixed in CMYK   
+scatter(x_values_CMYK, y_values_CMYK, 50, 'white');                          % Draw responses mixed in CMYK
 hold off;
-saveas(gcf, fullfile(path, 'demographic_age20_29_CMYKresponses'), 'png');
+saveas(gcf, fullfile(path, 'demographic_age20_29_CMYKresponses'), 'png'); close;
 
 figure('NumberTitle','off');
 cieplot();
@@ -1545,9 +1860,9 @@ xlabel('X Value');
 ylabel('Y Value');
 hold on;
 scatter(x_pre_models(4), y_pre_models(4), 50, 'black', 'Filled');          % Draw expected response for this model
-scatter(x_values_RGB, y_values_RGB, 50, 'white');                          % Draw responses mixed in RGB   
+scatter(x_values_RGB, y_values_RGB, 50, 'white');                          % Draw responses mixed in RGB
 hold off;
-saveas(gcf, fullfile(path, 'demographic_age20_29_RGBresponses'), 'png');
+saveas(gcf, fullfile(path, 'demographic_age20_29_RGBresponses'), 'png'); close;
 
 figure('NumberTitle','off');
 cieplot();
@@ -1556,14 +1871,15 @@ xlabel('X Value');
 ylabel('Y Value');
 hold on;
 scatter(x_pre_models(5), y_pre_models(5), 50, 'black', 'Filled');          % Draw expected response for this model
-scatter(x_values_Lab, y_values_Lab, 50, 'white');                          % Draw responses mixed in Lab   
+scatter(x_values_Lab, y_values_Lab, 50, 'white');                          % Draw responses mixed in Lab
 hold off;
-saveas(gcf, fullfile(path, 'demographic_age20_29_Labresponses'), 'png');
+saveas(gcf, fullfile(path, 'demographic_age20_29_Labresponses'), 'png'); close;
 
 % Clean all the tables!
-x_values_HSV = []; y_values_HSV = []; x_values_LCh = []; y_values_LCh = []; x_values_CMYK = []; y_values_CMYK = []; x_values_RGB = []; y_values_RGB = []; x_values_Lab = []; y_values_Lab = [];  
+x_values_HSV = []; y_values_HSV = []; x_values_LCh = []; y_values_LCh = []; x_values_CMYK = []; y_values_CMYK = []; x_values_RGB = []; y_values_RGB = []; x_values_Lab = []; y_values_Lab = [];
 distance_HSV = []; distance_LCh = []; distance_CMYK = []; distance_RGB = []; distance_Lab = [];
 distance_expectedC1C2 = [];
+distance_pair1 = []; distance_pair2 = []; distance_pair3 = []; distance_pair4 = []; distance_pair5 = []; distance_pair6 = []; distance_pair7 = []; distance_pair8 = []; distance_pair9 = []; distance_pair10 = []; distance_pair11 = []; distance_pair12 = []; distance_pair13 = [];
 
 %% Demographic Analysis - AGE 30 - 39
 
@@ -1580,85 +1896,115 @@ scatter(x_pre_expectedColors(3), y_pre_expectedColors(3), 60, 'black');         
 
 
 % Draw every pair of responses.
-for i = 1 : height(demoResultsAge_30_39)                                  
+for i = 1 : height(demoResultsAge_30_39)
     %% First Color - C1
-    sColor = str2num(cell2mat(demoResultsAge_30_39.second_color(i)));      
-    valuesSColor = [valuesSColor sColor];                               
-    sColor = sColor/360;                                                
-    sColor = [sColor 1 1];                                             
+    sColor = str2num(cell2mat(demoResultsAge_30_39.second_color(i)));
+    valuesSColor = [valuesSColor sColor];
+    sColor = sColor/360;
+    sColor = [sColor 1 1];
     hsv_C1 = sColor;
-    sColor = hsv2rgb(sColor);                                           
+    sColor = hsv2rgb(sColor);
     rgb_C1 = round([sColor(1)*255 sColor(2)*255 sColor(3)*255]);
-    sColor = rgb2xyz(sColor);                                           
-    x_aux = sColor(1)/(sColor(1) + sColor(2) + sColor(3));              
-    y_aux = sColor(2)/(sColor(1) + sColor(2) + sColor(3));              
-    x_values = [x_values x_aux];                                        
+    sColor = rgb2xyz(sColor);
+    x_aux = sColor(1)/(sColor(1) + sColor(2) + sColor(3));
+    y_aux = sColor(2)/(sColor(1) + sColor(2) + sColor(3));
+    x_values = [x_values x_aux];
     y_values = [y_values y_aux];
-    
+
     %% Second Color - C2
     tColor = str2num(cell2mat(demoResultsAge_30_39.third_color(i)));
-    valuesTColor = [valuesTColor tColor];                               
-    tColor = tColor/360;                                                
-    tColor = [tColor 1 1];                                             
+    valuesTColor = [valuesTColor tColor];
+    tColor = tColor/360;
+    tColor = [tColor 1 1];
     hsv_C2 = tColor;
-    tColor = hsv2rgb(tColor);                                           
+    tColor = hsv2rgb(tColor);
     rgb_C2 = round([tColor(1)*255 tColor(2)*255 tColor(3)*255]);
-    tColor = rgb2xyz(tColor);                                           
-    x_aux = tColor(1)/(tColor(1) + tColor(2) + tColor(3));              
-    y_aux = tColor(2)/(tColor(1) + tColor(2) + tColor(3));              
-    x_values = [x_values x_aux];                                        
+    tColor = rgb2xyz(tColor);
+    x_aux = tColor(1)/(tColor(1) + tColor(2) + tColor(3));
+    y_aux = tColor(2)/(tColor(1) + tColor(2) + tColor(3));
+    x_values = [x_values x_aux];
     y_values = [y_values y_aux];
-    
+
     %% Categorize Colors - Bins
-    
+    for j = 1 : length(colorBins)
+        valuesofx = round(colorBins(j).XData, 1);
+        valuesofy = round(colorBins(j).YData, 1);
+        if foundC1 == 0 && ismember(round(x_values(1), 1), valuesofx) && ismember(round(y_values(1),1), valuesofy)
+            color_C1 = colorBins(j).Tag;
+            foundC1 = 1;
+        end
+        if foundC2 == 0 && ismember(round(x_values(2), 1), valuesofx) && ismember(round(y_values(2),1), valuesofy)
+            color_C2 = colorBins(j).Tag;
+            foundC2 = 1;
+        end
+    end
+
+    if foundC1 == 0 && foundC2 == 0
+        C1_name = [C1_name ; 'NA       '];
+        C2_name = [C2_name ; 'NA       '];
+    else if foundC1 == 1 && foundC2 == 0
+            C1_name = [C1_name ; color_C1];
+            C2_name = [C2_name ; 'NA       '];
+        else if foundC1 == 0 && foundC2 == 1
+                C1_name = [C1_name ; 'NA       '];
+                C2_name = [C2_name ; color_C2];
+            else
+                C1_name = [C1_name ; color_C1];
+                C2_name = [C2_name ; color_C2];
+            end
+        end
+    end
+    foundC1 = 0; foundC2 = 0;
+
+
     %% Difference between C1/C2 and expected colors C1/C2
     diff_c1_expected = round(pdist([[x_values(1) y_values(1)] ; [x_pre_expectedColors(2) y_pre_expectedColors(2)]]), 2);  % [given -C1- C2]
     diff_c2_expected = round(pdist([[x_values(2) y_values(2)] ; [x_pre_expectedColors(3) y_pre_expectedColors(3)]]), 2);  % [given C1 -C2-]
     distance_expectedC1C2 = [distance_expectedC1C2 ; diff_c1_expected + diff_c2_expected];
-    
+
     %% Difference between C1/C2 and other pairs which generate the same color       %% -- CHANGE HERE (ADD MORE PAIRS IF NEEDED)
     diff_c1_pair1c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair1(1) y_pair1(1)]]), 2);   diff_c2_pair1c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair1(2) y_pair1(2)]]), 2);
     distance_pair1 = [distance_pair1 ; diff_c1_pair1c1 + diff_c2_pair1c2];
-    
+
     diff_c1_pair2c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair2(1) y_pair2(1)]]), 2);   diff_c2_pair2c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair2(2) y_pair2(2)]]), 2);
     distance_pair2 = [distance_pair2 ; diff_c1_pair2c1 + diff_c2_pair2c2];
-    
+
     diff_c1_pair3c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair3(1) y_pair3(1)]]), 2);   diff_c2_pair3c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair3(2) y_pair3(2)]]), 2);
     distance_pair3 = [distance_pair3 ; diff_c1_pair3c1 + diff_c2_pair3c2];
-    
+
     diff_c1_pair4c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair4(1) y_pair4(1)]]), 2);   diff_c2_pair4c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair4(2) y_pair4(2)]]), 2);
     distance_pair4 = [distance_pair4 ; diff_c1_pair4c1 + diff_c2_pair4c2];
-    
+
     diff_c1_pair5c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair5(1) y_pair5(1)]]), 2);   diff_c2_pair5c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair5(2) y_pair5(2)]]), 2);
     distance_pair5 = [distance_pair5 ; diff_c1_pair5c1 + diff_c2_pair5c2];
-    
+
     diff_c1_pair6c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair6(1) y_pair6(1)]]), 2);   diff_c2_pair6c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair6(2) y_pair6(2)]]), 2);
     distance_pair6 = [distance_pair6 ; diff_c1_pair6c1 + diff_c2_pair6c2];
-    
+
     diff_c1_pair7c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair7(1) y_pair7(1)]]), 2);   diff_c2_pair7c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair7(2) y_pair7(2)]]), 2);
     distance_pair7 = [distance_pair7 ; diff_c1_pair7c1 + diff_c2_pair7c2];
-    
+
     diff_c1_pair8c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair8(1) y_pair8(1)]]), 2);   diff_c2_pair8c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair8(2) y_pair8(2)]]), 2);
     distance_pair8 = [distance_pair8 ; diff_c1_pair8c1 + diff_c2_pair8c2];
-    
+
     diff_c1_pair9c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair9(1) y_pair9(1)]]), 2);   diff_c2_pair9c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair9(2) y_pair9(2)]]), 2);
     distance_pair9 = [distance_pair9 ; diff_c1_pair9c1 + diff_c2_pair9c2];
-    
+
     diff_c1_pair10c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair10(1) y_pair10(1)]]), 2);   diff_c2_pair10c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair10(2) y_pair10(2)]]), 2);
     distance_pair10 = [distance_pair10 ; diff_c1_pair10c1 + diff_c2_pair10c2];
-    
+
     diff_c1_pair11c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair11(1) y_pair11(1)]]), 2);   diff_c2_pair11c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair11(2) y_pair11(2)]]), 2);
     distance_pair11 = [distance_pair11 ; diff_c1_pair11c1 + diff_c2_pair11c2];
-    
+
     diff_c1_pair12c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair12(1) y_pair12(1)]]), 2);   diff_c2_pair12c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair12(2) y_pair12(2)]]), 2);
-    distance_pair12 = [distance_pair12 ; diff_c1_pair12c1 + diff_c2_pair12c2];    
-    
+    distance_pair12 = [distance_pair12 ; diff_c1_pair12c1 + diff_c2_pair12c2];
+
     diff_c1_pair13c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair13(1) y_pair13(1)]]), 2);   diff_c2_pair13c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair13(2) y_pair13(2)]]), 2);
     distance_pair13 = [distance_pair13 ; diff_c1_pair13c1 + diff_c2_pair13c2];
-    
+
     %% Difference between C1/C2 blended onto Color Models against pre-calc values
     %%%%%% Blend-it in HSV
-    sColor_hsv = [(hsv_C1(1)*360) hsv_C1(2) hsv_C1(3)]; tColor_hsv = [(hsv_C2(1)*360) hsv_C2(2) hsv_C2(3)];     
+    sColor_hsv = [(hsv_C1(1)*360) hsv_C1(2) hsv_C1(3)]; tColor_hsv = [(hsv_C2(1)*360) hsv_C2(2) hsv_C2(3)];
     diff_angles = abs(sColor_hsv(1) - tColor_hsv(1));
     if diff_angles > 180
         angle_small = (360 - diff_angles);  % smallest angle
@@ -1672,11 +2018,11 @@ for i = 1 : height(demoResultsAge_30_39)
     else
         angle = min([sColor_hsv(1) tColor_hsv(1)]) + (diff_angles / 2);
     end
-    rColor = rgb2xyz(hsv2rgb(([angle/360 sColor_hsv(2) sColor_hsv(3)])));                                  % hsv -> rgb -> xyz -> compare 
+    rColor = rgb2xyz(hsv2rgb(([angle/360 sColor_hsv(2) sColor_hsv(3)])));                                  % hsv -> rgb -> xyz -> compare
     x_aux  = rColor(1)/(rColor(1) + rColor(2) + rColor(3)); y_aux = rColor(2)/(rColor(1) + rColor(2) + rColor(3));
     distance_HSV = [distance_HSV; round(pdist([[x_aux y_aux]; [x_pre_models(1) y_pre_models(1)]]),2)];
     x_values_HSV = [x_values_HSV x_aux]; y_values_HSV = [y_values_HSV y_aux];
-    
+
     %%%%%% Blend-it in CIE-LCh (XYZ -> Lab -> LCh)
     sColor_lch = sColor; tColor_lch = tColor;
     sColor_lch = applycform(applycform(sColor_lch, cformXYZ_Lab), cformLab_LCh); tColor_lch = applycform(applycform(tColor_lch, cformXYZ_Lab), cformLab_LCh);
@@ -1700,7 +2046,7 @@ for i = 1 : height(demoResultsAge_30_39)
     x_aux  = rColor(1)/(rColor(1) + rColor(2) + rColor(3)); y_aux = rColor(2)/(rColor(1) + rColor(2) + rColor(3));
     distance_LCh = [distance_LCh; round(pdist([[x_aux y_aux]; [x_pre_models(2) y_pre_models(2)]]), 2)];
     x_values_LCh = [x_values_LCh x_aux]; y_values_LCh = [y_values_LCh y_aux];
-    
+
     %%%%%% Blend-it in CMYK
     sColor_cmyk = sColor; tColor_cmyk = tColor;
     sColor_cmyk = applycform(applycform(sColor_cmyk, cformXYZ_RGB), cformRGB_CMYK); tColor_cmyk = applycform(applycform(tColor_cmyk, cformXYZ_RGB), cformRGB_CMYK);
@@ -1712,7 +2058,7 @@ for i = 1 : height(demoResultsAge_30_39)
     x_aux  = rColor(1)/(rColor(1) + rColor(2) + rColor(3)); y_aux = rColor(2)/(rColor(1) + rColor(2) + rColor(3));
     distance_CMYK = [distance_CMYK; round(pdist([[x_aux y_aux]; [x_pre_models(3) y_pre_models(3)]]), 2)];
     x_values_CMYK = [x_values_CMYK x_aux]; y_values_CMYK = [y_values_CMYK y_aux];
-    
+
     %%%%%% Blend-it in RGB
     sColor_rgb = sColor; tColor_rgb = tColor;
     sColor_rgb = applycform(sColor_rgb, cformXYZ_RGB); tColor_rgb = applycform(tColor_rgb, cformXYZ_RGB);
@@ -1723,7 +2069,7 @@ for i = 1 : height(demoResultsAge_30_39)
     x_aux  = rColor(1)/(rColor(1) + rColor(2) + rColor(3)); y_aux = rColor(2)/(rColor(1) + rColor(2) + rColor(3));
     distance_RGB = [distance_RGB; round(pdist([[x_aux y_aux]; [x_pre_models(4) y_pre_models(4)]]), 2)];
     x_values_RGB = [x_values_RGB x_aux]; y_values_RGB = [y_values_RGB y_aux];
-    
+
     %%%%%% Blend-it in CIE-Lab
     sColor_lab = sColor; tColor_lab = tColor;
     sColor_lab = applycform(sColor_lab, cformXYZ_Lab); tColor_lab = applycform(tColor_lab, cformXYZ_Lab);
@@ -1742,7 +2088,7 @@ for i = 1 : height(demoResultsAge_30_39)
 end
 hold off;
 
-saveas(gcf, fullfile(path, 'demographic_age30_39'), 'png');
+saveas(gcf, fullfile(path, 'demographic_age30_39'), 'png'); close;
 
 % Centroids of Color Models
 centroid_HSV    = [centroid_HSV  ; [round(mean(x_values_HSV),2) round(mean(y_values_HSV),2)]];
@@ -1759,8 +2105,19 @@ distance_centroid_Lab = [distance_centroid_Lab ; round(pdist([mean(x_values_Lab)
 
 % Catenate all Tables               -- CHANGE HERE
 diffs_table = table(distance_expectedC1C2, distance_HSV, distance_LCh, distance_CMYK, distance_RGB, distance_Lab);
+diffs_pairs = table(distance_pair1,distance_pair2,distance_pair3,distance_pair4,distance_pair5,distance_pair6,distance_pair7,distance_pair8,distance_pair9,distance_pair10,distance_pair11,distance_pair12,distance_pair13);
+diffs_table = [diffs_table diffs_pairs];
+if size(C1_name, 1) == 1
+    colors_names = cell(1,2);
+    colors_names(1,1) = cellstr(C1_name);
+    colors_names(1,2) = cellstr(C2_name);
+    colors_names = cell2table(colors_names);
+else
+    colors_names = table(C1_name, C2_name);
+end
 
-demoResultsAge_30_39 = [demoResultsAge_30_39 diffs_table];
+C1_name = []; C2_name = [];
+demoResultsAge_30_39 = [demoResultsAge_30_39 colors_names diffs_table];
 
 % Plot Results for each Color Model
 figure('NumberTitle','off');
@@ -1770,9 +2127,9 @@ xlabel('X Value');
 ylabel('Y Value');
 hold on;
 scatter(x_pre_models(1), y_pre_models(1), 50, 'black', 'Filled');          % Draw expected response for this model
-scatter(x_values_HSV, y_values_HSV, 50, 'white');                          % Draw responses mixed in HSV   
+scatter(x_values_HSV, y_values_HSV, 50, 'white');                          % Draw responses mixed in HSV
 hold off;
-saveas(gcf, fullfile(path, 'demographic_age30_39_HSVresponses'), 'png');
+saveas(gcf, fullfile(path, 'demographic_age30_39_HSVresponses'), 'png'); close;
 
 figure('NumberTitle','off');
 cieplot();
@@ -1781,9 +2138,9 @@ xlabel('X Value');
 ylabel('Y Value');
 hold on;
 scatter(x_pre_models(2), y_pre_models(2), 50, 'black', 'Filled');          % Draw expected response for this model
-scatter(x_values_LCh, y_values_LCh, 50, 'white');                          % Draw responses mixed in LCh   
+scatter(x_values_LCh, y_values_LCh, 50, 'white');                          % Draw responses mixed in LCh
 hold off;
-saveas(gcf, fullfile(path, 'demographic_age30_39_LChresponses'), 'png');
+saveas(gcf, fullfile(path, 'demographic_age30_39_LChresponses'), 'png'); close;
 
 figure('NumberTitle','off');
 cieplot();
@@ -1792,9 +2149,9 @@ xlabel('X Value');
 ylabel('Y Value');
 hold on;
 scatter(x_pre_models(3), y_pre_models(3), 50, 'black', 'Filled');          % Draw expected response for this model
-scatter(x_values_CMYK, y_values_CMYK, 50, 'white');                          % Draw responses mixed in CMYK   
+scatter(x_values_CMYK, y_values_CMYK, 50, 'white');                          % Draw responses mixed in CMYK
 hold off;
-saveas(gcf, fullfile(path, 'demographic_age30_39_CMYKresponses'), 'png');
+saveas(gcf, fullfile(path, 'demographic_age30_39_CMYKresponses'), 'png'); close;
 
 figure('NumberTitle','off');
 cieplot();
@@ -1803,9 +2160,9 @@ xlabel('X Value');
 ylabel('Y Value');
 hold on;
 scatter(x_pre_models(4), y_pre_models(4), 50, 'black', 'Filled');          % Draw expected response for this model
-scatter(x_values_RGB, y_values_RGB, 50, 'white');                          % Draw responses mixed in RGB   
+scatter(x_values_RGB, y_values_RGB, 50, 'white');                          % Draw responses mixed in RGB
 hold off;
-saveas(gcf, fullfile(path, 'demographic_age30_39_RGBresponses'), 'png');
+saveas(gcf, fullfile(path, 'demographic_age30_39_RGBresponses'), 'png'); close;
 
 figure('NumberTitle','off');
 cieplot();
@@ -1814,14 +2171,15 @@ xlabel('X Value');
 ylabel('Y Value');
 hold on;
 scatter(x_pre_models(5), y_pre_models(5), 50, 'black', 'Filled');          % Draw expected response for this model
-scatter(x_values_Lab, y_values_Lab, 50, 'white');                          % Draw responses mixed in Lab   
+scatter(x_values_Lab, y_values_Lab, 50, 'white');                          % Draw responses mixed in Lab
 hold off;
-saveas(gcf, fullfile(path, 'demographic_age30_39_Labresponses'), 'png');
+saveas(gcf, fullfile(path, 'demographic_age30_39_Labresponses'), 'png'); close;
 
 % Clean all the tables!
-x_values_HSV = []; y_values_HSV = []; x_values_LCh = []; y_values_LCh = []; x_values_CMYK = []; y_values_CMYK = []; x_values_RGB = []; y_values_RGB = []; x_values_Lab = []; y_values_Lab = [];  
+x_values_HSV = []; y_values_HSV = []; x_values_LCh = []; y_values_LCh = []; x_values_CMYK = []; y_values_CMYK = []; x_values_RGB = []; y_values_RGB = []; x_values_Lab = []; y_values_Lab = [];
 distance_HSV = []; distance_LCh = []; distance_CMYK = []; distance_RGB = []; distance_Lab = [];
 distance_expectedC1C2 = [];
+distance_pair1 = []; distance_pair2 = []; distance_pair3 = []; distance_pair4 = []; distance_pair5 = []; distance_pair6 = []; distance_pair7 = []; distance_pair8 = []; distance_pair9 = []; distance_pair10 = []; distance_pair11 = []; distance_pair12 = []; distance_pair13 = [];
 
 %% Demographic Analysis - AGE 40 - 49
 
@@ -1838,85 +2196,115 @@ scatter(x_pre_expectedColors(3), y_pre_expectedColors(3), 60, 'black');         
 
 
 % Draw every pair of responses.
-for i = 1 : height(demoResultsAge_40_49)                                  
+for i = 1 : height(demoResultsAge_40_49)
     %% First Color - C1
-    sColor = str2num(cell2mat(demoResultsAge_40_49.second_color(i)));      
-    valuesSColor = [valuesSColor sColor];                               
-    sColor = sColor/360;                                                
-    sColor = [sColor 1 1];                                             
+    sColor = str2num(cell2mat(demoResultsAge_40_49.second_color(i)));
+    valuesSColor = [valuesSColor sColor];
+    sColor = sColor/360;
+    sColor = [sColor 1 1];
     hsv_C1 = sColor;
-    sColor = hsv2rgb(sColor);                                           
+    sColor = hsv2rgb(sColor);
     rgb_C1 = round([sColor(1)*255 sColor(2)*255 sColor(3)*255]);
-    sColor = rgb2xyz(sColor);                                           
-    x_aux = sColor(1)/(sColor(1) + sColor(2) + sColor(3));              
-    y_aux = sColor(2)/(sColor(1) + sColor(2) + sColor(3));              
-    x_values = [x_values x_aux];                                        
+    sColor = rgb2xyz(sColor);
+    x_aux = sColor(1)/(sColor(1) + sColor(2) + sColor(3));
+    y_aux = sColor(2)/(sColor(1) + sColor(2) + sColor(3));
+    x_values = [x_values x_aux];
     y_values = [y_values y_aux];
-    
+
     %% Second Color - C2
     tColor = str2num(cell2mat(demoResultsAge_40_49.third_color(i)));
-    valuesTColor = [valuesTColor tColor];                               
-    tColor = tColor/360;                                                
-    tColor = [tColor 1 1];                                             
+    valuesTColor = [valuesTColor tColor];
+    tColor = tColor/360;
+    tColor = [tColor 1 1];
     hsv_C2 = tColor;
-    tColor = hsv2rgb(tColor);                                           
+    tColor = hsv2rgb(tColor);
     rgb_C2 = round([tColor(1)*255 tColor(2)*255 tColor(3)*255]);
-    tColor = rgb2xyz(tColor);                                           
-    x_aux = tColor(1)/(tColor(1) + tColor(2) + tColor(3));              
-    y_aux = tColor(2)/(tColor(1) + tColor(2) + tColor(3));              
-    x_values = [x_values x_aux];                                        
+    tColor = rgb2xyz(tColor);
+    x_aux = tColor(1)/(tColor(1) + tColor(2) + tColor(3));
+    y_aux = tColor(2)/(tColor(1) + tColor(2) + tColor(3));
+    x_values = [x_values x_aux];
     y_values = [y_values y_aux];
-    
+
     %% Categorize Colors - Bins
-    
+    for j = 1 : length(colorBins)
+        valuesofx = round(colorBins(j).XData, 1);
+        valuesofy = round(colorBins(j).YData, 1);
+        if foundC1 == 0 && ismember(round(x_values(1), 1), valuesofx) && ismember(round(y_values(1),1), valuesofy)
+            color_C1 = colorBins(j).Tag;
+            foundC1 = 1;
+        end
+        if foundC2 == 0 && ismember(round(x_values(2), 1), valuesofx) && ismember(round(y_values(2),1), valuesofy)
+            color_C2 = colorBins(j).Tag;
+            foundC2 = 1;
+        end
+    end
+
+    if foundC1 == 0 && foundC2 == 0
+        C1_name = [C1_name ; 'NA       '];
+        C2_name = [C2_name ; 'NA       '];
+    else if foundC1 == 1 && foundC2 == 0
+            C1_name = [C1_name ; color_C1];
+            C2_name = [C2_name ; 'NA       '];
+        else if foundC1 == 0 && foundC2 == 1
+                C1_name = [C1_name ; 'NA       '];
+                C2_name = [C2_name ; color_C2];
+            else
+                C1_name = [C1_name ; color_C1];
+                C2_name = [C2_name ; color_C2];
+            end
+        end
+    end
+    foundC1 = 0; foundC2 = 0;
+
+
     %% Difference between C1/C2 and expected colors C1/C2
     diff_c1_expected = round(pdist([[x_values(1) y_values(1)] ; [x_pre_expectedColors(2) y_pre_expectedColors(2)]]), 2);  % [given -C1- C2]
     diff_c2_expected = round(pdist([[x_values(2) y_values(2)] ; [x_pre_expectedColors(3) y_pre_expectedColors(3)]]), 2);  % [given C1 -C2-]
     distance_expectedC1C2 = [distance_expectedC1C2 ; diff_c1_expected + diff_c2_expected];
-    
+
     %% Difference between C1/C2 and other pairs which generate the same color       %% -- CHANGE HERE (ADD MORE PAIRS IF NEEDED)
     diff_c1_pair1c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair1(1) y_pair1(1)]]), 2);   diff_c2_pair1c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair1(2) y_pair1(2)]]), 2);
     distance_pair1 = [distance_pair1 ; diff_c1_pair1c1 + diff_c2_pair1c2];
-    
+
     diff_c1_pair2c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair2(1) y_pair2(1)]]), 2);   diff_c2_pair2c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair2(2) y_pair2(2)]]), 2);
     distance_pair2 = [distance_pair2 ; diff_c1_pair2c1 + diff_c2_pair2c2];
-    
+
     diff_c1_pair3c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair3(1) y_pair3(1)]]), 2);   diff_c2_pair3c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair3(2) y_pair3(2)]]), 2);
     distance_pair3 = [distance_pair3 ; diff_c1_pair3c1 + diff_c2_pair3c2];
-    
+
     diff_c1_pair4c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair4(1) y_pair4(1)]]), 2);   diff_c2_pair4c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair4(2) y_pair4(2)]]), 2);
     distance_pair4 = [distance_pair4 ; diff_c1_pair4c1 + diff_c2_pair4c2];
-    
+
     diff_c1_pair5c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair5(1) y_pair5(1)]]), 2);   diff_c2_pair5c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair5(2) y_pair5(2)]]), 2);
     distance_pair5 = [distance_pair5 ; diff_c1_pair5c1 + diff_c2_pair5c2];
-    
+
     diff_c1_pair6c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair6(1) y_pair6(1)]]), 2);   diff_c2_pair6c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair6(2) y_pair6(2)]]), 2);
     distance_pair6 = [distance_pair6 ; diff_c1_pair6c1 + diff_c2_pair6c2];
-    
+
     diff_c1_pair7c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair7(1) y_pair7(1)]]), 2);   diff_c2_pair7c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair7(2) y_pair7(2)]]), 2);
     distance_pair7 = [distance_pair7 ; diff_c1_pair7c1 + diff_c2_pair7c2];
-    
+
     diff_c1_pair8c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair8(1) y_pair8(1)]]), 2);   diff_c2_pair8c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair8(2) y_pair8(2)]]), 2);
     distance_pair8 = [distance_pair8 ; diff_c1_pair8c1 + diff_c2_pair8c2];
-    
+
     diff_c1_pair9c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair9(1) y_pair9(1)]]), 2);   diff_c2_pair9c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair9(2) y_pair9(2)]]), 2);
     distance_pair9 = [distance_pair9 ; diff_c1_pair9c1 + diff_c2_pair9c2];
-    
+
     diff_c1_pair10c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair10(1) y_pair10(1)]]), 2);   diff_c2_pair10c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair10(2) y_pair10(2)]]), 2);
     distance_pair10 = [distance_pair10 ; diff_c1_pair10c1 + diff_c2_pair10c2];
-    
+
     diff_c1_pair11c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair11(1) y_pair11(1)]]), 2);   diff_c2_pair11c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair11(2) y_pair11(2)]]), 2);
     distance_pair11 = [distance_pair11 ; diff_c1_pair11c1 + diff_c2_pair11c2];
-    
+
     diff_c1_pair12c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair12(1) y_pair12(1)]]), 2);   diff_c2_pair12c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair12(2) y_pair12(2)]]), 2);
-    distance_pair12 = [distance_pair12 ; diff_c1_pair12c1 + diff_c2_pair12c2];    
-    
+    distance_pair12 = [distance_pair12 ; diff_c1_pair12c1 + diff_c2_pair12c2];
+
     diff_c1_pair13c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair13(1) y_pair13(1)]]), 2);   diff_c2_pair13c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair13(2) y_pair13(2)]]), 2);
     distance_pair13 = [distance_pair13 ; diff_c1_pair13c1 + diff_c2_pair13c2];
-    
+
     %% Difference between C1/C2 blended onto Color Models against pre-calc values
     %%%%%% Blend-it in HSV
-    sColor_hsv = [(hsv_C1(1)*360) hsv_C1(2) hsv_C1(3)]; tColor_hsv = [(hsv_C2(1)*360) hsv_C2(2) hsv_C2(3)];     
+    sColor_hsv = [(hsv_C1(1)*360) hsv_C1(2) hsv_C1(3)]; tColor_hsv = [(hsv_C2(1)*360) hsv_C2(2) hsv_C2(3)];
     diff_angles = abs(sColor_hsv(1) - tColor_hsv(1));
     if diff_angles > 180
         angle_small = (360 - diff_angles);  % smallest angle
@@ -1930,11 +2318,11 @@ for i = 1 : height(demoResultsAge_40_49)
     else
         angle = min([sColor_hsv(1) tColor_hsv(1)]) + (diff_angles / 2);
     end
-    rColor = rgb2xyz(hsv2rgb(([angle/360 sColor_hsv(2) sColor_hsv(3)])));                                  % hsv -> rgb -> xyz -> compare 
+    rColor = rgb2xyz(hsv2rgb(([angle/360 sColor_hsv(2) sColor_hsv(3)])));                                  % hsv -> rgb -> xyz -> compare
     x_aux  = rColor(1)/(rColor(1) + rColor(2) + rColor(3)); y_aux = rColor(2)/(rColor(1) + rColor(2) + rColor(3));
     distance_HSV = [distance_HSV; round(pdist([[x_aux y_aux]; [x_pre_models(1) y_pre_models(1)]]),2)];
     x_values_HSV = [x_values_HSV x_aux]; y_values_HSV = [y_values_HSV y_aux];
-    
+
     %%%%%% Blend-it in CIE-LCh (XYZ -> Lab -> LCh)
     sColor_lch = sColor; tColor_lch = tColor;
     sColor_lch = applycform(applycform(sColor_lch, cformXYZ_Lab), cformLab_LCh); tColor_lch = applycform(applycform(tColor_lch, cformXYZ_Lab), cformLab_LCh);
@@ -1958,7 +2346,7 @@ for i = 1 : height(demoResultsAge_40_49)
     x_aux  = rColor(1)/(rColor(1) + rColor(2) + rColor(3)); y_aux = rColor(2)/(rColor(1) + rColor(2) + rColor(3));
     distance_LCh = [distance_LCh; round(pdist([[x_aux y_aux]; [x_pre_models(2) y_pre_models(2)]]), 2)];
     x_values_LCh = [x_values_LCh x_aux]; y_values_LCh = [y_values_LCh y_aux];
-    
+
     %%%%%% Blend-it in CMYK
     sColor_cmyk = sColor; tColor_cmyk = tColor;
     sColor_cmyk = applycform(applycform(sColor_cmyk, cformXYZ_RGB), cformRGB_CMYK); tColor_cmyk = applycform(applycform(tColor_cmyk, cformXYZ_RGB), cformRGB_CMYK);
@@ -1970,7 +2358,7 @@ for i = 1 : height(demoResultsAge_40_49)
     x_aux  = rColor(1)/(rColor(1) + rColor(2) + rColor(3)); y_aux = rColor(2)/(rColor(1) + rColor(2) + rColor(3));
     distance_CMYK = [distance_CMYK; round(pdist([[x_aux y_aux]; [x_pre_models(3) y_pre_models(3)]]), 2)];
     x_values_CMYK = [x_values_CMYK x_aux]; y_values_CMYK = [y_values_CMYK y_aux];
-    
+
     %%%%%% Blend-it in RGB
     sColor_rgb = sColor; tColor_rgb = tColor;
     sColor_rgb = applycform(sColor_rgb, cformXYZ_RGB); tColor_rgb = applycform(tColor_rgb, cformXYZ_RGB);
@@ -1981,7 +2369,7 @@ for i = 1 : height(demoResultsAge_40_49)
     x_aux  = rColor(1)/(rColor(1) + rColor(2) + rColor(3)); y_aux = rColor(2)/(rColor(1) + rColor(2) + rColor(3));
     distance_RGB = [distance_RGB; round(pdist([[x_aux y_aux]; [x_pre_models(4) y_pre_models(4)]]), 2)];
     x_values_RGB = [x_values_RGB x_aux]; y_values_RGB = [y_values_RGB y_aux];
-    
+
     %%%%%% Blend-it in CIE-Lab
     sColor_lab = sColor; tColor_lab = tColor;
     sColor_lab = applycform(sColor_lab, cformXYZ_Lab); tColor_lab = applycform(tColor_lab, cformXYZ_Lab);
@@ -2000,7 +2388,7 @@ for i = 1 : height(demoResultsAge_40_49)
 end
 hold off;
 
-saveas(gcf, fullfile(path, 'demographic_age40_49'), 'png');
+saveas(gcf, fullfile(path, 'demographic_age40_49'), 'png'); close;
 
 % Centroids of Color Models
 centroid_HSV    = [centroid_HSV  ; [round(mean(x_values_HSV),2) round(mean(y_values_HSV),2)]];
@@ -2017,8 +2405,19 @@ distance_centroid_Lab = [distance_centroid_Lab ; round(pdist([mean(x_values_Lab)
 
 % Catenate all Tables               -- CHANGE HERE
 diffs_table = table(distance_expectedC1C2, distance_HSV, distance_LCh, distance_CMYK, distance_RGB, distance_Lab);
+diffs_pairs = table(distance_pair1,distance_pair2,distance_pair3,distance_pair4,distance_pair5,distance_pair6,distance_pair7,distance_pair8,distance_pair9,distance_pair10,distance_pair11,distance_pair12,distance_pair13);
+diffs_table = [diffs_table diffs_pairs];
+if size(C1_name, 1) == 1
+    colors_names = cell(1,2);
+    colors_names(1,1) = cellstr(C1_name);
+    colors_names(1,2) = cellstr(C2_name);
+    colors_names = cell2table(colors_names);
+else
+    colors_names = table(C1_name, C2_name);
+end
 
-demoResultsAge_40_49 = [demoResultsAge_40_49 diffs_table];
+C1_name = []; C2_name = [];
+demoResultsAge_40_49 = [demoResultsAge_40_49 colors_names diffs_table];
 
 % Plot Results for each Color Model
 figure('NumberTitle','off');
@@ -2028,9 +2427,9 @@ xlabel('X Value');
 ylabel('Y Value');
 hold on;
 scatter(x_pre_models(1), y_pre_models(1), 50, 'black', 'Filled');          % Draw expected response for this model
-scatter(x_values_HSV, y_values_HSV, 50, 'white');                          % Draw responses mixed in HSV   
+scatter(x_values_HSV, y_values_HSV, 50, 'white');                          % Draw responses mixed in HSV
 hold off;
-saveas(gcf, fullfile(path, 'demographic_age40_49_HSVresponses'), 'png');
+saveas(gcf, fullfile(path, 'demographic_age40_49_HSVresponses'), 'png'); close;
 
 figure('NumberTitle','off');
 cieplot();
@@ -2039,9 +2438,9 @@ xlabel('X Value');
 ylabel('Y Value');
 hold on;
 scatter(x_pre_models(2), y_pre_models(2), 50, 'black', 'Filled');          % Draw expected response for this model
-scatter(x_values_LCh, y_values_LCh, 50, 'white');                          % Draw responses mixed in LCh   
+scatter(x_values_LCh, y_values_LCh, 50, 'white');                          % Draw responses mixed in LCh
 hold off;
-saveas(gcf, fullfile(path, 'demographic_age40_49_LChresponses'), 'png');
+saveas(gcf, fullfile(path, 'demographic_age40_49_LChresponses'), 'png'); close;
 
 figure('NumberTitle','off');
 cieplot();
@@ -2050,9 +2449,9 @@ xlabel('X Value');
 ylabel('Y Value');
 hold on;
 scatter(x_pre_models(3), y_pre_models(3), 50, 'black', 'Filled');          % Draw expected response for this model
-scatter(x_values_CMYK, y_values_CMYK, 50, 'white');                          % Draw responses mixed in CMYK   
+scatter(x_values_CMYK, y_values_CMYK, 50, 'white');                          % Draw responses mixed in CMYK
 hold off;
-saveas(gcf, fullfile(path, 'demographic_age40_49_CMYKresponses'), 'png');
+saveas(gcf, fullfile(path, 'demographic_age40_49_CMYKresponses'), 'png'); close;
 
 figure('NumberTitle','off');
 cieplot();
@@ -2061,9 +2460,9 @@ xlabel('X Value');
 ylabel('Y Value');
 hold on;
 scatter(x_pre_models(4), y_pre_models(4), 50, 'black', 'Filled');          % Draw expected response for this model
-scatter(x_values_RGB, y_values_RGB, 50, 'white');                          % Draw responses mixed in RGB   
+scatter(x_values_RGB, y_values_RGB, 50, 'white');                          % Draw responses mixed in RGB
 hold off;
-saveas(gcf, fullfile(path, 'demographic_age40_49_RGBresponses'), 'png');
+saveas(gcf, fullfile(path, 'demographic_age40_49_RGBresponses'), 'png'); close;
 
 figure('NumberTitle','off');
 cieplot();
@@ -2072,14 +2471,15 @@ xlabel('X Value');
 ylabel('Y Value');
 hold on;
 scatter(x_pre_models(5), y_pre_models(5), 50, 'black', 'Filled');          % Draw expected response for this model
-scatter(x_values_Lab, y_values_Lab, 50, 'white');                          % Draw responses mixed in Lab   
+scatter(x_values_Lab, y_values_Lab, 50, 'white');                          % Draw responses mixed in Lab
 hold off;
-saveas(gcf, fullfile(path, 'demographic_age40_49_Labresponses'), 'png');
+saveas(gcf, fullfile(path, 'demographic_age40_49_Labresponses'), 'png'); close;
 
 % Clean all the tables!
-x_values_HSV = []; y_values_HSV = []; x_values_LCh = []; y_values_LCh = []; x_values_CMYK = []; y_values_CMYK = []; x_values_RGB = []; y_values_RGB = []; x_values_Lab = []; y_values_Lab = [];  
+x_values_HSV = []; y_values_HSV = []; x_values_LCh = []; y_values_LCh = []; x_values_CMYK = []; y_values_CMYK = []; x_values_RGB = []; y_values_RGB = []; x_values_Lab = []; y_values_Lab = [];
 distance_HSV = []; distance_LCh = []; distance_CMYK = []; distance_RGB = []; distance_Lab = [];
 distance_expectedC1C2 = [];
+distance_pair1 = []; distance_pair2 = []; distance_pair3 = []; distance_pair4 = []; distance_pair5 = []; distance_pair6 = []; distance_pair7 = []; distance_pair8 = []; distance_pair9 = []; distance_pair10 = []; distance_pair11 = []; distance_pair12 = []; distance_pair13 = [];
 
 %% Demographic Analysis - AGE 50 - 59
 
@@ -2096,85 +2496,115 @@ scatter(x_pre_expectedColors(3), y_pre_expectedColors(3), 60, 'black');         
 
 
 % Draw every pair of responses.
-for i = 1 : height(demoResultsAge_50_59)                                  
+for i = 1 : height(demoResultsAge_50_59)
     %% First Color - C1
-    sColor = str2num(cell2mat(demoResultsAge_50_59.second_color(i)));      
-    valuesSColor = [valuesSColor sColor];                               
-    sColor = sColor/360;                                                
-    sColor = [sColor 1 1];                                             
+    sColor = str2num(cell2mat(demoResultsAge_50_59.second_color(i)));
+    valuesSColor = [valuesSColor sColor];
+    sColor = sColor/360;
+    sColor = [sColor 1 1];
     hsv_C1 = sColor;
-    sColor = hsv2rgb(sColor);                                           
+    sColor = hsv2rgb(sColor);
     rgb_C1 = round([sColor(1)*255 sColor(2)*255 sColor(3)*255]);
-    sColor = rgb2xyz(sColor);                                           
-    x_aux = sColor(1)/(sColor(1) + sColor(2) + sColor(3));              
-    y_aux = sColor(2)/(sColor(1) + sColor(2) + sColor(3));              
-    x_values = [x_values x_aux];                                        
+    sColor = rgb2xyz(sColor);
+    x_aux = sColor(1)/(sColor(1) + sColor(2) + sColor(3));
+    y_aux = sColor(2)/(sColor(1) + sColor(2) + sColor(3));
+    x_values = [x_values x_aux];
     y_values = [y_values y_aux];
-    
+
     %% Second Color - C2
     tColor = str2num(cell2mat(demoResultsAge_50_59.third_color(i)));
-    valuesTColor = [valuesTColor tColor];                               
-    tColor = tColor/360;                                                
-    tColor = [tColor 1 1];                                             
+    valuesTColor = [valuesTColor tColor];
+    tColor = tColor/360;
+    tColor = [tColor 1 1];
     hsv_C2 = tColor;
-    tColor = hsv2rgb(tColor);                                           
+    tColor = hsv2rgb(tColor);
     rgb_C2 = round([tColor(1)*255 tColor(2)*255 tColor(3)*255]);
-    tColor = rgb2xyz(tColor);                                           
-    x_aux = tColor(1)/(tColor(1) + tColor(2) + tColor(3));              
-    y_aux = tColor(2)/(tColor(1) + tColor(2) + tColor(3));              
-    x_values = [x_values x_aux];                                        
+    tColor = rgb2xyz(tColor);
+    x_aux = tColor(1)/(tColor(1) + tColor(2) + tColor(3));
+    y_aux = tColor(2)/(tColor(1) + tColor(2) + tColor(3));
+    x_values = [x_values x_aux];
     y_values = [y_values y_aux];
-    
+
     %% Categorize Colors - Bins
-    
+    for j = 1 : length(colorBins)
+        valuesofx = round(colorBins(j).XData, 1);
+        valuesofy = round(colorBins(j).YData, 1);
+        if foundC1 == 0 && ismember(round(x_values(1), 1), valuesofx) && ismember(round(y_values(1),1), valuesofy)
+            color_C1 = colorBins(j).Tag;
+            foundC1 = 1;
+        end
+        if foundC2 == 0 && ismember(round(x_values(2), 1), valuesofx) && ismember(round(y_values(2),1), valuesofy)
+            color_C2 = colorBins(j).Tag;
+            foundC2 = 1;
+        end
+    end
+
+    if foundC1 == 0 && foundC2 == 0
+        C1_name = [C1_name ; 'NA       '];
+        C2_name = [C2_name ; 'NA       '];
+    else if foundC1 == 1 && foundC2 == 0
+            C1_name = [C1_name ; color_C1];
+            C2_name = [C2_name ; 'NA       '];
+        else if foundC1 == 0 && foundC2 == 1
+                C1_name = [C1_name ; 'NA       '];
+                C2_name = [C2_name ; color_C2];
+            else
+                C1_name = [C1_name ; color_C1];
+                C2_name = [C2_name ; color_C2];
+            end
+        end
+    end
+    foundC1 = 0; foundC2 = 0;
+
+
     %% Difference between C1/C2 and expected colors C1/C2
     diff_c1_expected = round(pdist([[x_values(1) y_values(1)] ; [x_pre_expectedColors(2) y_pre_expectedColors(2)]]), 2);  % [given -C1- C2]
     diff_c2_expected = round(pdist([[x_values(2) y_values(2)] ; [x_pre_expectedColors(3) y_pre_expectedColors(3)]]), 2);  % [given C1 -C2-]
     distance_expectedC1C2 = [distance_expectedC1C2 ; diff_c1_expected + diff_c2_expected];
-    
+
     %% Difference between C1/C2 and other pairs which generate the same color       %% -- CHANGE HERE (ADD MORE PAIRS IF NEEDED)
     diff_c1_pair1c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair1(1) y_pair1(1)]]), 2);   diff_c2_pair1c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair1(2) y_pair1(2)]]), 2);
     distance_pair1 = [distance_pair1 ; diff_c1_pair1c1 + diff_c2_pair1c2];
-    
+
     diff_c1_pair2c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair2(1) y_pair2(1)]]), 2);   diff_c2_pair2c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair2(2) y_pair2(2)]]), 2);
     distance_pair2 = [distance_pair2 ; diff_c1_pair2c1 + diff_c2_pair2c2];
-    
+
     diff_c1_pair3c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair3(1) y_pair3(1)]]), 2);   diff_c2_pair3c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair3(2) y_pair3(2)]]), 2);
     distance_pair3 = [distance_pair3 ; diff_c1_pair3c1 + diff_c2_pair3c2];
-    
+
     diff_c1_pair4c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair4(1) y_pair4(1)]]), 2);   diff_c2_pair4c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair4(2) y_pair4(2)]]), 2);
     distance_pair4 = [distance_pair4 ; diff_c1_pair4c1 + diff_c2_pair4c2];
-    
+
     diff_c1_pair5c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair5(1) y_pair5(1)]]), 2);   diff_c2_pair5c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair5(2) y_pair5(2)]]), 2);
     distance_pair5 = [distance_pair5 ; diff_c1_pair5c1 + diff_c2_pair5c2];
-    
+
     diff_c1_pair6c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair6(1) y_pair6(1)]]), 2);   diff_c2_pair6c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair6(2) y_pair6(2)]]), 2);
     distance_pair6 = [distance_pair6 ; diff_c1_pair6c1 + diff_c2_pair6c2];
-    
+
     diff_c1_pair7c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair7(1) y_pair7(1)]]), 2);   diff_c2_pair7c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair7(2) y_pair7(2)]]), 2);
     distance_pair7 = [distance_pair7 ; diff_c1_pair7c1 + diff_c2_pair7c2];
-    
+
     diff_c1_pair8c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair8(1) y_pair8(1)]]), 2);   diff_c2_pair8c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair8(2) y_pair8(2)]]), 2);
     distance_pair8 = [distance_pair8 ; diff_c1_pair8c1 + diff_c2_pair8c2];
-    
+
     diff_c1_pair9c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair9(1) y_pair9(1)]]), 2);   diff_c2_pair9c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair9(2) y_pair9(2)]]), 2);
     distance_pair9 = [distance_pair9 ; diff_c1_pair9c1 + diff_c2_pair9c2];
-    
+
     diff_c1_pair10c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair10(1) y_pair10(1)]]), 2);   diff_c2_pair10c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair10(2) y_pair10(2)]]), 2);
     distance_pair10 = [distance_pair10 ; diff_c1_pair10c1 + diff_c2_pair10c2];
-    
+
     diff_c1_pair11c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair11(1) y_pair11(1)]]), 2);   diff_c2_pair11c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair11(2) y_pair11(2)]]), 2);
     distance_pair11 = [distance_pair11 ; diff_c1_pair11c1 + diff_c2_pair11c2];
-    
+
     diff_c1_pair12c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair12(1) y_pair12(1)]]), 2);   diff_c2_pair12c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair12(2) y_pair12(2)]]), 2);
-    distance_pair12 = [distance_pair12 ; diff_c1_pair12c1 + diff_c2_pair12c2];    
-    
+    distance_pair12 = [distance_pair12 ; diff_c1_pair12c1 + diff_c2_pair12c2];
+
     diff_c1_pair13c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair13(1) y_pair13(1)]]), 2);   diff_c2_pair13c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair13(2) y_pair13(2)]]), 2);
     distance_pair13 = [distance_pair13 ; diff_c1_pair13c1 + diff_c2_pair13c2];
-    
+
     %% Difference between C1/C2 blended onto Color Models against pre-calc values
     %%%%%% Blend-it in HSV
-    sColor_hsv = [(hsv_C1(1)*360) hsv_C1(2) hsv_C1(3)]; tColor_hsv = [(hsv_C2(1)*360) hsv_C2(2) hsv_C2(3)];     
+    sColor_hsv = [(hsv_C1(1)*360) hsv_C1(2) hsv_C1(3)]; tColor_hsv = [(hsv_C2(1)*360) hsv_C2(2) hsv_C2(3)];
     diff_angles = abs(sColor_hsv(1) - tColor_hsv(1));
     if diff_angles > 180
         angle_small = (360 - diff_angles);  % smallest angle
@@ -2188,11 +2618,11 @@ for i = 1 : height(demoResultsAge_50_59)
     else
         angle = min([sColor_hsv(1) tColor_hsv(1)]) + (diff_angles / 2);
     end
-    rColor = rgb2xyz(hsv2rgb(([angle/360 sColor_hsv(2) sColor_hsv(3)])));                                  % hsv -> rgb -> xyz -> compare 
+    rColor = rgb2xyz(hsv2rgb(([angle/360 sColor_hsv(2) sColor_hsv(3)])));                                  % hsv -> rgb -> xyz -> compare
     x_aux  = rColor(1)/(rColor(1) + rColor(2) + rColor(3)); y_aux = rColor(2)/(rColor(1) + rColor(2) + rColor(3));
     distance_HSV = [distance_HSV; round(pdist([[x_aux y_aux]; [x_pre_models(1) y_pre_models(1)]]),2)];
     x_values_HSV = [x_values_HSV x_aux]; y_values_HSV = [y_values_HSV y_aux];
-    
+
     %%%%%% Blend-it in CIE-LCh (XYZ -> Lab -> LCh)
     sColor_lch = sColor; tColor_lch = tColor;
     sColor_lch = applycform(applycform(sColor_lch, cformXYZ_Lab), cformLab_LCh); tColor_lch = applycform(applycform(tColor_lch, cformXYZ_Lab), cformLab_LCh);
@@ -2216,7 +2646,7 @@ for i = 1 : height(demoResultsAge_50_59)
     x_aux  = rColor(1)/(rColor(1) + rColor(2) + rColor(3)); y_aux = rColor(2)/(rColor(1) + rColor(2) + rColor(3));
     distance_LCh = [distance_LCh; round(pdist([[x_aux y_aux]; [x_pre_models(2) y_pre_models(2)]]), 2)];
     x_values_LCh = [x_values_LCh x_aux]; y_values_LCh = [y_values_LCh y_aux];
-    
+
     %%%%%% Blend-it in CMYK
     sColor_cmyk = sColor; tColor_cmyk = tColor;
     sColor_cmyk = applycform(applycform(sColor_cmyk, cformXYZ_RGB), cformRGB_CMYK); tColor_cmyk = applycform(applycform(tColor_cmyk, cformXYZ_RGB), cformRGB_CMYK);
@@ -2228,7 +2658,7 @@ for i = 1 : height(demoResultsAge_50_59)
     x_aux  = rColor(1)/(rColor(1) + rColor(2) + rColor(3)); y_aux = rColor(2)/(rColor(1) + rColor(2) + rColor(3));
     distance_CMYK = [distance_CMYK; round(pdist([[x_aux y_aux]; [x_pre_models(3) y_pre_models(3)]]), 2)];
     x_values_CMYK = [x_values_CMYK x_aux]; y_values_CMYK = [y_values_CMYK y_aux];
-    
+
     %%%%%% Blend-it in RGB
     sColor_rgb = sColor; tColor_rgb = tColor;
     sColor_rgb = applycform(sColor_rgb, cformXYZ_RGB); tColor_rgb = applycform(tColor_rgb, cformXYZ_RGB);
@@ -2239,7 +2669,7 @@ for i = 1 : height(demoResultsAge_50_59)
     x_aux  = rColor(1)/(rColor(1) + rColor(2) + rColor(3)); y_aux = rColor(2)/(rColor(1) + rColor(2) + rColor(3));
     distance_RGB = [distance_RGB; round(pdist([[x_aux y_aux]; [x_pre_models(4) y_pre_models(4)]]), 2)];
     x_values_RGB = [x_values_RGB x_aux]; y_values_RGB = [y_values_RGB y_aux];
-    
+
     %%%%%% Blend-it in CIE-Lab
     sColor_lab = sColor; tColor_lab = tColor;
     sColor_lab = applycform(sColor_lab, cformXYZ_Lab); tColor_lab = applycform(tColor_lab, cformXYZ_Lab);
@@ -2258,7 +2688,7 @@ for i = 1 : height(demoResultsAge_50_59)
 end
 hold off;
 
-saveas(gcf, fullfile(path, 'demographic_age50_59'), 'png');
+saveas(gcf, fullfile(path, 'demographic_age50_59'), 'png'); close;
 
 % Centroids of Color Models
 centroid_HSV    = [centroid_HSV  ; [round(mean(x_values_HSV),2) round(mean(y_values_HSV),2)]];
@@ -2275,8 +2705,19 @@ distance_centroid_Lab = [distance_centroid_Lab ; round(pdist([mean(x_values_Lab)
 
 % Catenate all Tables               -- CHANGE HERE
 diffs_table = table(distance_expectedC1C2, distance_HSV, distance_LCh, distance_CMYK, distance_RGB, distance_Lab);
+diffs_pairs = table(distance_pair1,distance_pair2,distance_pair3,distance_pair4,distance_pair5,distance_pair6,distance_pair7,distance_pair8,distance_pair9,distance_pair10,distance_pair11,distance_pair12,distance_pair13);
+diffs_table = [diffs_table diffs_pairs];
+if size(C1_name, 1) == 1
+    colors_names = cell(1,2);
+    colors_names(1,1) = cellstr(C1_name);
+    colors_names(1,2) = cellstr(C2_name);
+    colors_names = cell2table(colors_names);
+else
+    colors_names = table(C1_name, C2_name);
+end
 
-demoResultsAge_50_59 = [demoResultsAge_50_59 diffs_table];
+C1_name = []; C2_name = [];
+demoResultsAge_50_59 = [demoResultsAge_50_59 colors_names diffs_table];
 
 % Plot Results for each Color Model
 figure('NumberTitle','off');
@@ -2286,9 +2727,9 @@ xlabel('X Value');
 ylabel('Y Value');
 hold on;
 scatter(x_pre_models(1), y_pre_models(1), 50, 'black', 'Filled');          % Draw expected response for this model
-scatter(x_values_HSV, y_values_HSV, 50, 'white');                          % Draw responses mixed in HSV   
+scatter(x_values_HSV, y_values_HSV, 50, 'white');                          % Draw responses mixed in HSV
 hold off;
-saveas(gcf, fullfile(path, 'demographic_age50_59_HSVresponses'), 'png');
+saveas(gcf, fullfile(path, 'demographic_age50_59_HSVresponses'), 'png'); close;
 
 figure('NumberTitle','off');
 cieplot();
@@ -2297,9 +2738,9 @@ xlabel('X Value');
 ylabel('Y Value');
 hold on;
 scatter(x_pre_models(2), y_pre_models(2), 50, 'black', 'Filled');          % Draw expected response for this model
-scatter(x_values_LCh, y_values_LCh, 50, 'white');                          % Draw responses mixed in LCh   
+scatter(x_values_LCh, y_values_LCh, 50, 'white');                          % Draw responses mixed in LCh
 hold off;
-saveas(gcf, fullfile(path, 'demographic_age50_59_LChresponses'), 'png');
+saveas(gcf, fullfile(path, 'demographic_age50_59_LChresponses'), 'png'); close;
 
 figure('NumberTitle','off');
 cieplot();
@@ -2308,9 +2749,9 @@ xlabel('X Value');
 ylabel('Y Value');
 hold on;
 scatter(x_pre_models(3), y_pre_models(3), 50, 'black', 'Filled');          % Draw expected response for this model
-scatter(x_values_CMYK, y_values_CMYK, 50, 'white');                          % Draw responses mixed in CMYK   
+scatter(x_values_CMYK, y_values_CMYK, 50, 'white');                          % Draw responses mixed in CMYK
 hold off;
-saveas(gcf, fullfile(path, 'demographic_age50_59_CMYKresponses'), 'png');
+saveas(gcf, fullfile(path, 'demographic_age50_59_CMYKresponses'), 'png'); close;
 
 figure('NumberTitle','off');
 cieplot();
@@ -2319,9 +2760,9 @@ xlabel('X Value');
 ylabel('Y Value');
 hold on;
 scatter(x_pre_models(4), y_pre_models(4), 50, 'black', 'Filled');          % Draw expected response for this model
-scatter(x_values_RGB, y_values_RGB, 50, 'white');                          % Draw responses mixed in RGB   
+scatter(x_values_RGB, y_values_RGB, 50, 'white');                          % Draw responses mixed in RGB
 hold off;
-saveas(gcf, fullfile(path, 'demographic_age50_59_RGBresponses'), 'png');
+saveas(gcf, fullfile(path, 'demographic_age50_59_RGBresponses'), 'png'); close;
 
 figure('NumberTitle','off');
 cieplot();
@@ -2330,14 +2771,15 @@ xlabel('X Value');
 ylabel('Y Value');
 hold on;
 scatter(x_pre_models(5), y_pre_models(5), 50, 'black', 'Filled');          % Draw expected response for this model
-scatter(x_values_Lab, y_values_Lab, 50, 'white');                          % Draw responses mixed in Lab   
+scatter(x_values_Lab, y_values_Lab, 50, 'white');                          % Draw responses mixed in Lab
 hold off;
-saveas(gcf, fullfile(path, 'demographic_age50_59_Labresponses'), 'png');
+saveas(gcf, fullfile(path, 'demographic_age50_59_Labresponses'), 'png'); close;
 
 % Clean all the tables!
-x_values_HSV = []; y_values_HSV = []; x_values_LCh = []; y_values_LCh = []; x_values_CMYK = []; y_values_CMYK = []; x_values_RGB = []; y_values_RGB = []; x_values_Lab = []; y_values_Lab = [];  
+x_values_HSV = []; y_values_HSV = []; x_values_LCh = []; y_values_LCh = []; x_values_CMYK = []; y_values_CMYK = []; x_values_RGB = []; y_values_RGB = []; x_values_Lab = []; y_values_Lab = [];
 distance_HSV = []; distance_LCh = []; distance_CMYK = []; distance_RGB = []; distance_Lab = [];
 distance_expectedC1C2 = [];
+distance_pair1 = []; distance_pair2 = []; distance_pair3 = []; distance_pair4 = []; distance_pair5 = []; distance_pair6 = []; distance_pair7 = []; distance_pair8 = []; distance_pair9 = []; distance_pair10 = []; distance_pair11 = []; distance_pair12 = []; distance_pair13 = [];
 
 %% Demographic Analysis - AGE >= 60
 
@@ -2354,85 +2796,115 @@ scatter(x_pre_expectedColors(3), y_pre_expectedColors(3), 60, 'black');         
 
 
 % Draw every pair of responses.
-for i = 1 : height(demoResultsAge_60)                                  
+for i = 1 : height(demoResultsAge_60)
     %% First Color - C1
-    sColor = str2num(cell2mat(demoResultsAge_60.second_color(i)));      
-    valuesSColor = [valuesSColor sColor];                               
-    sColor = sColor/360;                                                
-    sColor = [sColor 1 1];                                             
+    sColor = str2num(cell2mat(demoResultsAge_60.second_color(i)));
+    valuesSColor = [valuesSColor sColor];
+    sColor = sColor/360;
+    sColor = [sColor 1 1];
     hsv_C1 = sColor;
-    sColor = hsv2rgb(sColor);                                           
+    sColor = hsv2rgb(sColor);
     rgb_C1 = round([sColor(1)*255 sColor(2)*255 sColor(3)*255]);
-    sColor = rgb2xyz(sColor);                                           
-    x_aux = sColor(1)/(sColor(1) + sColor(2) + sColor(3));              
-    y_aux = sColor(2)/(sColor(1) + sColor(2) + sColor(3));              
-    x_values = [x_values x_aux];                                        
+    sColor = rgb2xyz(sColor);
+    x_aux = sColor(1)/(sColor(1) + sColor(2) + sColor(3));
+    y_aux = sColor(2)/(sColor(1) + sColor(2) + sColor(3));
+    x_values = [x_values x_aux];
     y_values = [y_values y_aux];
-    
+
     %% Second Color - C2
     tColor = str2num(cell2mat(demoResultsAge_60.third_color(i)));
-    valuesTColor = [valuesTColor tColor];                               
-    tColor = tColor/360;                                                
-    tColor = [tColor 1 1];                                             
+    valuesTColor = [valuesTColor tColor];
+    tColor = tColor/360;
+    tColor = [tColor 1 1];
     hsv_C2 = tColor;
-    tColor = hsv2rgb(tColor);                                           
+    tColor = hsv2rgb(tColor);
     rgb_C2 = round([tColor(1)*255 tColor(2)*255 tColor(3)*255]);
-    tColor = rgb2xyz(tColor);                                           
-    x_aux = tColor(1)/(tColor(1) + tColor(2) + tColor(3));              
-    y_aux = tColor(2)/(tColor(1) + tColor(2) + tColor(3));              
-    x_values = [x_values x_aux];                                        
+    tColor = rgb2xyz(tColor);
+    x_aux = tColor(1)/(tColor(1) + tColor(2) + tColor(3));
+    y_aux = tColor(2)/(tColor(1) + tColor(2) + tColor(3));
+    x_values = [x_values x_aux];
     y_values = [y_values y_aux];
-    
+
     %% Categorize Colors - Bins
-    
+    for j = 1 : length(colorBins)
+        valuesofx = round(colorBins(j).XData, 1);
+        valuesofy = round(colorBins(j).YData, 1);
+        if foundC1 == 0 && ismember(round(x_values(1), 1), valuesofx) && ismember(round(y_values(1),1), valuesofy)
+            color_C1 = colorBins(j).Tag;
+            foundC1 = 1;
+        end
+        if foundC2 == 0 && ismember(round(x_values(2), 1), valuesofx) && ismember(round(y_values(2),1), valuesofy)
+            color_C2 = colorBins(j).Tag;
+            foundC2 = 1;
+        end
+    end
+
+    if foundC1 == 0 && foundC2 == 0
+        C1_name = [C1_name ; 'NA       '];
+        C2_name = [C2_name ; 'NA       '];
+    else if foundC1 == 1 && foundC2 == 0
+            C1_name = [C1_name ; color_C1];
+            C2_name = [C2_name ; 'NA       '];
+        else if foundC1 == 0 && foundC2 == 1
+                C1_name = [C1_name ; 'NA       '];
+                C2_name = [C2_name ; color_C2];
+            else
+                C1_name = [C1_name ; color_C1];
+                C2_name = [C2_name ; color_C2];
+            end
+        end
+    end
+    foundC1 = 0; foundC2 = 0;
+
+
     %% Difference between C1/C2 and expected colors C1/C2
     diff_c1_expected = round(pdist([[x_values(1) y_values(1)] ; [x_pre_expectedColors(2) y_pre_expectedColors(2)]]), 2);  % [given -C1- C2]
     diff_c2_expected = round(pdist([[x_values(2) y_values(2)] ; [x_pre_expectedColors(3) y_pre_expectedColors(3)]]), 2);  % [given C1 -C2-]
     distance_expectedC1C2 = [distance_expectedC1C2 ; diff_c1_expected + diff_c2_expected];
-    
+
     %% Difference between C1/C2 and other pairs which generate the same color       %% -- CHANGE HERE (ADD MORE PAIRS IF NEEDED)
     diff_c1_pair1c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair1(1) y_pair1(1)]]), 2);   diff_c2_pair1c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair1(2) y_pair1(2)]]), 2);
     distance_pair1 = [distance_pair1 ; diff_c1_pair1c1 + diff_c2_pair1c2];
-    
+
     diff_c1_pair2c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair2(1) y_pair2(1)]]), 2);   diff_c2_pair2c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair2(2) y_pair2(2)]]), 2);
     distance_pair2 = [distance_pair2 ; diff_c1_pair2c1 + diff_c2_pair2c2];
-    
+
     diff_c1_pair3c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair3(1) y_pair3(1)]]), 2);   diff_c2_pair3c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair3(2) y_pair3(2)]]), 2);
     distance_pair3 = [distance_pair3 ; diff_c1_pair3c1 + diff_c2_pair3c2];
-    
+
     diff_c1_pair4c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair4(1) y_pair4(1)]]), 2);   diff_c2_pair4c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair4(2) y_pair4(2)]]), 2);
     distance_pair4 = [distance_pair4 ; diff_c1_pair4c1 + diff_c2_pair4c2];
-    
+
     diff_c1_pair5c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair5(1) y_pair5(1)]]), 2);   diff_c2_pair5c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair5(2) y_pair5(2)]]), 2);
     distance_pair5 = [distance_pair5 ; diff_c1_pair5c1 + diff_c2_pair5c2];
-    
+
     diff_c1_pair6c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair6(1) y_pair6(1)]]), 2);   diff_c2_pair6c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair6(2) y_pair6(2)]]), 2);
     distance_pair6 = [distance_pair6 ; diff_c1_pair6c1 + diff_c2_pair6c2];
-    
+
     diff_c1_pair7c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair7(1) y_pair7(1)]]), 2);   diff_c2_pair7c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair7(2) y_pair7(2)]]), 2);
     distance_pair7 = [distance_pair7 ; diff_c1_pair7c1 + diff_c2_pair7c2];
-    
+
     diff_c1_pair8c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair8(1) y_pair8(1)]]), 2);   diff_c2_pair8c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair8(2) y_pair8(2)]]), 2);
     distance_pair8 = [distance_pair8 ; diff_c1_pair8c1 + diff_c2_pair8c2];
-    
+
     diff_c1_pair9c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair9(1) y_pair9(1)]]), 2);   diff_c2_pair9c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair9(2) y_pair9(2)]]), 2);
     distance_pair9 = [distance_pair9 ; diff_c1_pair9c1 + diff_c2_pair9c2];
-    
+
     diff_c1_pair10c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair10(1) y_pair10(1)]]), 2);   diff_c2_pair10c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair10(2) y_pair10(2)]]), 2);
     distance_pair10 = [distance_pair10 ; diff_c1_pair10c1 + diff_c2_pair10c2];
-    
+
     diff_c1_pair11c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair11(1) y_pair11(1)]]), 2);   diff_c2_pair11c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair11(2) y_pair11(2)]]), 2);
     distance_pair11 = [distance_pair11 ; diff_c1_pair11c1 + diff_c2_pair11c2];
-    
+
     diff_c1_pair12c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair12(1) y_pair12(1)]]), 2);   diff_c2_pair12c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair12(2) y_pair12(2)]]), 2);
-    distance_pair12 = [distance_pair12 ; diff_c1_pair12c1 + diff_c2_pair12c2];    
-    
+    distance_pair12 = [distance_pair12 ; diff_c1_pair12c1 + diff_c2_pair12c2];
+
     diff_c1_pair13c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair13(1) y_pair13(1)]]), 2);   diff_c2_pair13c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair13(2) y_pair13(2)]]), 2);
     distance_pair13 = [distance_pair13 ; diff_c1_pair13c1 + diff_c2_pair13c2];
-    
+
     %% Difference between C1/C2 blended onto Color Models against pre-calc values
     %%%%%% Blend-it in HSV
-    sColor_hsv = [(hsv_C1(1)*360) hsv_C1(2) hsv_C1(3)]; tColor_hsv = [(hsv_C2(1)*360) hsv_C2(2) hsv_C2(3)];     
+    sColor_hsv = [(hsv_C1(1)*360) hsv_C1(2) hsv_C1(3)]; tColor_hsv = [(hsv_C2(1)*360) hsv_C2(2) hsv_C2(3)];
     diff_angles = abs(sColor_hsv(1) - tColor_hsv(1));
     if diff_angles > 180
         angle_small = (360 - diff_angles);  % smallest angle
@@ -2446,11 +2918,11 @@ for i = 1 : height(demoResultsAge_60)
     else
         angle = min([sColor_hsv(1) tColor_hsv(1)]) + (diff_angles / 2);
     end
-    rColor = rgb2xyz(hsv2rgb(([angle/360 sColor_hsv(2) sColor_hsv(3)])));                                  % hsv -> rgb -> xyz -> compare 
+    rColor = rgb2xyz(hsv2rgb(([angle/360 sColor_hsv(2) sColor_hsv(3)])));                                  % hsv -> rgb -> xyz -> compare
     x_aux  = rColor(1)/(rColor(1) + rColor(2) + rColor(3)); y_aux = rColor(2)/(rColor(1) + rColor(2) + rColor(3));
     distance_HSV = [distance_HSV; round(pdist([[x_aux y_aux]; [x_pre_models(1) y_pre_models(1)]]),2)];
     x_values_HSV = [x_values_HSV x_aux]; y_values_HSV = [y_values_HSV y_aux];
-    
+
     %%%%%% Blend-it in CIE-LCh (XYZ -> Lab -> LCh)
     sColor_lch = sColor; tColor_lch = tColor;
     sColor_lch = applycform(applycform(sColor_lch, cformXYZ_Lab), cformLab_LCh); tColor_lch = applycform(applycform(tColor_lch, cformXYZ_Lab), cformLab_LCh);
@@ -2474,7 +2946,7 @@ for i = 1 : height(demoResultsAge_60)
     x_aux  = rColor(1)/(rColor(1) + rColor(2) + rColor(3)); y_aux = rColor(2)/(rColor(1) + rColor(2) + rColor(3));
     distance_LCh = [distance_LCh; round(pdist([[x_aux y_aux]; [x_pre_models(2) y_pre_models(2)]]), 2)];
     x_values_LCh = [x_values_LCh x_aux]; y_values_LCh = [y_values_LCh y_aux];
-    
+
     %%%%%% Blend-it in CMYK
     sColor_cmyk = sColor; tColor_cmyk = tColor;
     sColor_cmyk = applycform(applycform(sColor_cmyk, cformXYZ_RGB), cformRGB_CMYK); tColor_cmyk = applycform(applycform(tColor_cmyk, cformXYZ_RGB), cformRGB_CMYK);
@@ -2486,7 +2958,7 @@ for i = 1 : height(demoResultsAge_60)
     x_aux  = rColor(1)/(rColor(1) + rColor(2) + rColor(3)); y_aux = rColor(2)/(rColor(1) + rColor(2) + rColor(3));
     distance_CMYK = [distance_CMYK; round(pdist([[x_aux y_aux]; [x_pre_models(3) y_pre_models(3)]]), 2)];
     x_values_CMYK = [x_values_CMYK x_aux]; y_values_CMYK = [y_values_CMYK y_aux];
-    
+
     %%%%%% Blend-it in RGB
     sColor_rgb = sColor; tColor_rgb = tColor;
     sColor_rgb = applycform(sColor_rgb, cformXYZ_RGB); tColor_rgb = applycform(tColor_rgb, cformXYZ_RGB);
@@ -2497,7 +2969,7 @@ for i = 1 : height(demoResultsAge_60)
     x_aux  = rColor(1)/(rColor(1) + rColor(2) + rColor(3)); y_aux = rColor(2)/(rColor(1) + rColor(2) + rColor(3));
     distance_RGB = [distance_RGB; round(pdist([[x_aux y_aux]; [x_pre_models(4) y_pre_models(4)]]), 2)];
     x_values_RGB = [x_values_RGB x_aux]; y_values_RGB = [y_values_RGB y_aux];
-    
+
     %%%%%% Blend-it in CIE-Lab
     sColor_lab = sColor; tColor_lab = tColor;
     sColor_lab = applycform(sColor_lab, cformXYZ_Lab); tColor_lab = applycform(tColor_lab, cformXYZ_Lab);
@@ -2516,7 +2988,7 @@ for i = 1 : height(demoResultsAge_60)
 end
 hold off;
 
-saveas(gcf, fullfile(path, 'demographic_age60'), 'png');
+saveas(gcf, fullfile(path, 'demographic_age60'), 'png'); close;
 
 % Centroids of Color Models
 centroid_HSV    = [centroid_HSV  ; [round(mean(x_values_HSV),2) round(mean(y_values_HSV),2)]];
@@ -2533,8 +3005,19 @@ distance_centroid_Lab = [distance_centroid_Lab ; round(pdist([mean(x_values_Lab)
 
 % Catenate all Tables               -- CHANGE HERE
 diffs_table = table(distance_expectedC1C2, distance_HSV, distance_LCh, distance_CMYK, distance_RGB, distance_Lab);
+diffs_pairs = table(distance_pair1,distance_pair2,distance_pair3,distance_pair4,distance_pair5,distance_pair6,distance_pair7,distance_pair8,distance_pair9,distance_pair10,distance_pair11,distance_pair12,distance_pair13);
+diffs_table = [diffs_table diffs_pairs];
+if size(C1_name, 1) == 1
+    colors_names = cell(1,2);
+    colors_names(1,1) = cellstr(C1_name);
+    colors_names(1,2) = cellstr(C2_name);
+    colors_names = cell2table(colors_names);
+else
+    colors_names = table(C1_name, C2_name);
+end
 
-demoResultsAge_60 = [demoResultsAge_60 diffs_table];
+C1_name = []; C2_name = [];
+demoResultsAge_60 = [demoResultsAge_60 colors_names diffs_table];
 
 % Plot Results for each Color Model
 figure('NumberTitle','off');
@@ -2544,9 +3027,9 @@ xlabel('X Value');
 ylabel('Y Value');
 hold on;
 scatter(x_pre_models(1), y_pre_models(1), 50, 'black', 'Filled');          % Draw expected response for this model
-scatter(x_values_HSV, y_values_HSV, 50, 'white');                          % Draw responses mixed in HSV   
+scatter(x_values_HSV, y_values_HSV, 50, 'white');                          % Draw responses mixed in HSV
 hold off;
-saveas(gcf, fullfile(path, 'demographic_age60_HSVresponses'), 'png');
+saveas(gcf, fullfile(path, 'demographic_age60_HSVresponses'), 'png'); close;
 
 figure('NumberTitle','off');
 cieplot();
@@ -2555,9 +3038,9 @@ xlabel('X Value');
 ylabel('Y Value');
 hold on;
 scatter(x_pre_models(2), y_pre_models(2), 50, 'black', 'Filled');          % Draw expected response for this model
-scatter(x_values_LCh, y_values_LCh, 50, 'white');                          % Draw responses mixed in LCh   
+scatter(x_values_LCh, y_values_LCh, 50, 'white');                          % Draw responses mixed in LCh
 hold off;
-saveas(gcf, fullfile(path, 'demographic_age60_LChresponses'), 'png');
+saveas(gcf, fullfile(path, 'demographic_age60_LChresponses'), 'png'); close;
 
 figure('NumberTitle','off');
 cieplot();
@@ -2566,9 +3049,9 @@ xlabel('X Value');
 ylabel('Y Value');
 hold on;
 scatter(x_pre_models(3), y_pre_models(3), 50, 'black', 'Filled');          % Draw expected response for this model
-scatter(x_values_CMYK, y_values_CMYK, 50, 'white');                          % Draw responses mixed in CMYK   
+scatter(x_values_CMYK, y_values_CMYK, 50, 'white');                          % Draw responses mixed in CMYK
 hold off;
-saveas(gcf, fullfile(path, 'demographic_age60_CMYKresponses'), 'png');
+saveas(gcf, fullfile(path, 'demographic_age60_CMYKresponses'), 'png'); close;
 
 figure('NumberTitle','off');
 cieplot();
@@ -2577,9 +3060,9 @@ xlabel('X Value');
 ylabel('Y Value');
 hold on;
 scatter(x_pre_models(4), y_pre_models(4), 50, 'black', 'Filled');          % Draw expected response for this model
-scatter(x_values_RGB, y_values_RGB, 50, 'white');                          % Draw responses mixed in RGB   
+scatter(x_values_RGB, y_values_RGB, 50, 'white');                          % Draw responses mixed in RGB
 hold off;
-saveas(gcf, fullfile(path, 'demographic_age60_RGBresponses'), 'png');
+saveas(gcf, fullfile(path, 'demographic_age60_RGBresponses'), 'png'); close;
 
 figure('NumberTitle','off');
 cieplot();
@@ -2588,14 +3071,15 @@ xlabel('X Value');
 ylabel('Y Value');
 hold on;
 scatter(x_pre_models(5), y_pre_models(5), 50, 'black', 'Filled');          % Draw expected response for this model
-scatter(x_values_Lab, y_values_Lab, 50, 'white');                          % Draw responses mixed in Lab   
+scatter(x_values_Lab, y_values_Lab, 50, 'white');                          % Draw responses mixed in Lab
 hold off;
-saveas(gcf, fullfile(path, 'demographic_age60_Labresponses'), 'png');
+saveas(gcf, fullfile(path, 'demographic_age60_Labresponses'), 'png'); close;
 
 % Clean all the tables!
-x_values_HSV = []; y_values_HSV = []; x_values_LCh = []; y_values_LCh = []; x_values_CMYK = []; y_values_CMYK = []; x_values_RGB = []; y_values_RGB = []; x_values_Lab = []; y_values_Lab = [];  
+x_values_HSV = []; y_values_HSV = []; x_values_LCh = []; y_values_LCh = []; x_values_CMYK = []; y_values_CMYK = []; x_values_RGB = []; y_values_RGB = []; x_values_Lab = []; y_values_Lab = [];
 distance_HSV = []; distance_LCh = []; distance_CMYK = []; distance_RGB = []; distance_Lab = [];
 distance_expectedC1C2 = [];
+distance_pair1 = []; distance_pair2 = []; distance_pair3 = []; distance_pair4 = []; distance_pair5 = []; distance_pair6 = []; distance_pair7 = []; distance_pair8 = []; distance_pair9 = []; distance_pair10 = []; distance_pair11 = []; distance_pair12 = []; distance_pair13 = [];
 
 %% Demographic Analysis - GENDER Female
 
@@ -2612,85 +3096,115 @@ scatter(x_pre_expectedColors(3), y_pre_expectedColors(3), 60, 'black');         
 
 
 % Draw every pair of responses.
-for i = 1 : height(demoResultsGender_Female)                                  
+for i = 1 : height(demoResultsGender_Female)
     %% First Color - C1
-    sColor = str2num(cell2mat(demoResultsGender_Female.second_color(i)));      
-    valuesSColor = [valuesSColor sColor];                               
-    sColor = sColor/360;                                                
-    sColor = [sColor 1 1];                                             
+    sColor = str2num(cell2mat(demoResultsGender_Female.second_color(i)));
+    valuesSColor = [valuesSColor sColor];
+    sColor = sColor/360;
+    sColor = [sColor 1 1];
     hsv_C1 = sColor;
-    sColor = hsv2rgb(sColor);                                           
+    sColor = hsv2rgb(sColor);
     rgb_C1 = round([sColor(1)*255 sColor(2)*255 sColor(3)*255]);
-    sColor = rgb2xyz(sColor);                                           
-    x_aux = sColor(1)/(sColor(1) + sColor(2) + sColor(3));              
-    y_aux = sColor(2)/(sColor(1) + sColor(2) + sColor(3));              
-    x_values = [x_values x_aux];                                        
+    sColor = rgb2xyz(sColor);
+    x_aux = sColor(1)/(sColor(1) + sColor(2) + sColor(3));
+    y_aux = sColor(2)/(sColor(1) + sColor(2) + sColor(3));
+    x_values = [x_values x_aux];
     y_values = [y_values y_aux];
-    
+
     %% Second Color - C2
     tColor = str2num(cell2mat(demoResultsGender_Female.third_color(i)));
-    valuesTColor = [valuesTColor tColor];                               
-    tColor = tColor/360;                                                
-    tColor = [tColor 1 1];                                             
+    valuesTColor = [valuesTColor tColor];
+    tColor = tColor/360;
+    tColor = [tColor 1 1];
     hsv_C2 = tColor;
-    tColor = hsv2rgb(tColor);                                           
+    tColor = hsv2rgb(tColor);
     rgb_C2 = round([tColor(1)*255 tColor(2)*255 tColor(3)*255]);
-    tColor = rgb2xyz(tColor);                                           
-    x_aux = tColor(1)/(tColor(1) + tColor(2) + tColor(3));              
-    y_aux = tColor(2)/(tColor(1) + tColor(2) + tColor(3));              
-    x_values = [x_values x_aux];                                        
+    tColor = rgb2xyz(tColor);
+    x_aux = tColor(1)/(tColor(1) + tColor(2) + tColor(3));
+    y_aux = tColor(2)/(tColor(1) + tColor(2) + tColor(3));
+    x_values = [x_values x_aux];
     y_values = [y_values y_aux];
-    
+
     %% Categorize Colors - Bins
-    
+    for j = 1 : length(colorBins)
+        valuesofx = round(colorBins(j).XData, 1);
+        valuesofy = round(colorBins(j).YData, 1);
+        if foundC1 == 0 && ismember(round(x_values(1), 1), valuesofx) && ismember(round(y_values(1),1), valuesofy)
+            color_C1 = colorBins(j).Tag;
+            foundC1 = 1;
+        end
+        if foundC2 == 0 && ismember(round(x_values(2), 1), valuesofx) && ismember(round(y_values(2),1), valuesofy)
+            color_C2 = colorBins(j).Tag;
+            foundC2 = 1;
+        end
+    end
+
+    if foundC1 == 0 && foundC2 == 0
+        C1_name = [C1_name ; 'NA       '];
+        C2_name = [C2_name ; 'NA       '];
+    else if foundC1 == 1 && foundC2 == 0
+            C1_name = [C1_name ; color_C1];
+            C2_name = [C2_name ; 'NA       '];
+        else if foundC1 == 0 && foundC2 == 1
+                C1_name = [C1_name ; 'NA       '];
+                C2_name = [C2_name ; color_C2];
+            else
+                C1_name = [C1_name ; color_C1];
+                C2_name = [C2_name ; color_C2];
+            end
+        end
+    end
+    foundC1 = 0; foundC2 = 0;
+
+
     %% Difference between C1/C2 and expected colors C1/C2
     diff_c1_expected = round(pdist([[x_values(1) y_values(1)] ; [x_pre_expectedColors(2) y_pre_expectedColors(2)]]), 2);  % [given -C1- C2]
     diff_c2_expected = round(pdist([[x_values(2) y_values(2)] ; [x_pre_expectedColors(3) y_pre_expectedColors(3)]]), 2);  % [given C1 -C2-]
     distance_expectedC1C2 = [distance_expectedC1C2 ; diff_c1_expected + diff_c2_expected];
-    
+
     %% Difference between C1/C2 and other pairs which generate the same color       %% -- CHANGE HERE (ADD MORE PAIRS IF NEEDED)
     diff_c1_pair1c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair1(1) y_pair1(1)]]), 2);   diff_c2_pair1c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair1(2) y_pair1(2)]]), 2);
     distance_pair1 = [distance_pair1 ; diff_c1_pair1c1 + diff_c2_pair1c2];
-    
+
     diff_c1_pair2c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair2(1) y_pair2(1)]]), 2);   diff_c2_pair2c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair2(2) y_pair2(2)]]), 2);
     distance_pair2 = [distance_pair2 ; diff_c1_pair2c1 + diff_c2_pair2c2];
-    
+
     diff_c1_pair3c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair3(1) y_pair3(1)]]), 2);   diff_c2_pair3c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair3(2) y_pair3(2)]]), 2);
     distance_pair3 = [distance_pair3 ; diff_c1_pair3c1 + diff_c2_pair3c2];
-    
+
     diff_c1_pair4c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair4(1) y_pair4(1)]]), 2);   diff_c2_pair4c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair4(2) y_pair4(2)]]), 2);
     distance_pair4 = [distance_pair4 ; diff_c1_pair4c1 + diff_c2_pair4c2];
-    
+
     diff_c1_pair5c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair5(1) y_pair5(1)]]), 2);   diff_c2_pair5c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair5(2) y_pair5(2)]]), 2);
     distance_pair5 = [distance_pair5 ; diff_c1_pair5c1 + diff_c2_pair5c2];
-    
+
     diff_c1_pair6c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair6(1) y_pair6(1)]]), 2);   diff_c2_pair6c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair6(2) y_pair6(2)]]), 2);
     distance_pair6 = [distance_pair6 ; diff_c1_pair6c1 + diff_c2_pair6c2];
-    
+
     diff_c1_pair7c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair7(1) y_pair7(1)]]), 2);   diff_c2_pair7c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair7(2) y_pair7(2)]]), 2);
     distance_pair7 = [distance_pair7 ; diff_c1_pair7c1 + diff_c2_pair7c2];
-    
+
     diff_c1_pair8c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair8(1) y_pair8(1)]]), 2);   diff_c2_pair8c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair8(2) y_pair8(2)]]), 2);
     distance_pair8 = [distance_pair8 ; diff_c1_pair8c1 + diff_c2_pair8c2];
-    
+
     diff_c1_pair9c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair9(1) y_pair9(1)]]), 2);   diff_c2_pair9c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair9(2) y_pair9(2)]]), 2);
     distance_pair9 = [distance_pair9 ; diff_c1_pair9c1 + diff_c2_pair9c2];
-    
+
     diff_c1_pair10c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair10(1) y_pair10(1)]]), 2);   diff_c2_pair10c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair10(2) y_pair10(2)]]), 2);
     distance_pair10 = [distance_pair10 ; diff_c1_pair10c1 + diff_c2_pair10c2];
-    
+
     diff_c1_pair11c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair11(1) y_pair11(1)]]), 2);   diff_c2_pair11c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair11(2) y_pair11(2)]]), 2);
     distance_pair11 = [distance_pair11 ; diff_c1_pair11c1 + diff_c2_pair11c2];
-    
+
     diff_c1_pair12c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair12(1) y_pair12(1)]]), 2);   diff_c2_pair12c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair12(2) y_pair12(2)]]), 2);
-    distance_pair12 = [distance_pair12 ; diff_c1_pair12c1 + diff_c2_pair12c2];    
-    
+    distance_pair12 = [distance_pair12 ; diff_c1_pair12c1 + diff_c2_pair12c2];
+
     diff_c1_pair13c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair13(1) y_pair13(1)]]), 2);   diff_c2_pair13c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair13(2) y_pair13(2)]]), 2);
     distance_pair13 = [distance_pair13 ; diff_c1_pair13c1 + diff_c2_pair13c2];
-    
+
     %% Difference between C1/C2 blended onto Color Models against pre-calc values
     %%%%%% Blend-it in HSV
-    sColor_hsv = [(hsv_C1(1)*360) hsv_C1(2) hsv_C1(3)]; tColor_hsv = [(hsv_C2(1)*360) hsv_C2(2) hsv_C2(3)];     
+    sColor_hsv = [(hsv_C1(1)*360) hsv_C1(2) hsv_C1(3)]; tColor_hsv = [(hsv_C2(1)*360) hsv_C2(2) hsv_C2(3)];
     diff_angles = abs(sColor_hsv(1) - tColor_hsv(1));
     if diff_angles > 180
         angle_small = (360 - diff_angles);  % smallest angle
@@ -2704,11 +3218,11 @@ for i = 1 : height(demoResultsGender_Female)
     else
         angle = min([sColor_hsv(1) tColor_hsv(1)]) + (diff_angles / 2);
     end
-    rColor = rgb2xyz(hsv2rgb(([angle/360 sColor_hsv(2) sColor_hsv(3)])));                                  % hsv -> rgb -> xyz -> compare 
+    rColor = rgb2xyz(hsv2rgb(([angle/360 sColor_hsv(2) sColor_hsv(3)])));                                  % hsv -> rgb -> xyz -> compare
     x_aux  = rColor(1)/(rColor(1) + rColor(2) + rColor(3)); y_aux = rColor(2)/(rColor(1) + rColor(2) + rColor(3));
     distance_HSV = [distance_HSV; round(pdist([[x_aux y_aux]; [x_pre_models(1) y_pre_models(1)]]),2)];
     x_values_HSV = [x_values_HSV x_aux]; y_values_HSV = [y_values_HSV y_aux];
-    
+
     %%%%%% Blend-it in CIE-LCh (XYZ -> Lab -> LCh)
     sColor_lch = sColor; tColor_lch = tColor;
     sColor_lch = applycform(applycform(sColor_lch, cformXYZ_Lab), cformLab_LCh); tColor_lch = applycform(applycform(tColor_lch, cformXYZ_Lab), cformLab_LCh);
@@ -2732,7 +3246,7 @@ for i = 1 : height(demoResultsGender_Female)
     x_aux  = rColor(1)/(rColor(1) + rColor(2) + rColor(3)); y_aux = rColor(2)/(rColor(1) + rColor(2) + rColor(3));
     distance_LCh = [distance_LCh; round(pdist([[x_aux y_aux]; [x_pre_models(2) y_pre_models(2)]]), 2)];
     x_values_LCh = [x_values_LCh x_aux]; y_values_LCh = [y_values_LCh y_aux];
-    
+
     %%%%%% Blend-it in CMYK
     sColor_cmyk = sColor; tColor_cmyk = tColor;
     sColor_cmyk = applycform(applycform(sColor_cmyk, cformXYZ_RGB), cformRGB_CMYK); tColor_cmyk = applycform(applycform(tColor_cmyk, cformXYZ_RGB), cformRGB_CMYK);
@@ -2744,7 +3258,7 @@ for i = 1 : height(demoResultsGender_Female)
     x_aux  = rColor(1)/(rColor(1) + rColor(2) + rColor(3)); y_aux = rColor(2)/(rColor(1) + rColor(2) + rColor(3));
     distance_CMYK = [distance_CMYK; round(pdist([[x_aux y_aux]; [x_pre_models(3) y_pre_models(3)]]), 2)];
     x_values_CMYK = [x_values_CMYK x_aux]; y_values_CMYK = [y_values_CMYK y_aux];
-    
+
     %%%%%% Blend-it in RGB
     sColor_rgb = sColor; tColor_rgb = tColor;
     sColor_rgb = applycform(sColor_rgb, cformXYZ_RGB); tColor_rgb = applycform(tColor_rgb, cformXYZ_RGB);
@@ -2755,7 +3269,7 @@ for i = 1 : height(demoResultsGender_Female)
     x_aux  = rColor(1)/(rColor(1) + rColor(2) + rColor(3)); y_aux = rColor(2)/(rColor(1) + rColor(2) + rColor(3));
     distance_RGB = [distance_RGB; round(pdist([[x_aux y_aux]; [x_pre_models(4) y_pre_models(4)]]), 2)];
     x_values_RGB = [x_values_RGB x_aux]; y_values_RGB = [y_values_RGB y_aux];
-    
+
     %%%%%% Blend-it in CIE-Lab
     sColor_lab = sColor; tColor_lab = tColor;
     sColor_lab = applycform(sColor_lab, cformXYZ_Lab); tColor_lab = applycform(tColor_lab, cformXYZ_Lab);
@@ -2774,7 +3288,7 @@ for i = 1 : height(demoResultsGender_Female)
 end
 hold off;
 
-saveas(gcf, fullfile(path, 'demographic_genderFemale'), 'png');
+saveas(gcf, fullfile(path, 'demographic_genderFemale'), 'png'); close;
 
 % Centroids of Color Models
 centroid_HSV    = [centroid_HSV  ; [round(mean(x_values_HSV),2) round(mean(y_values_HSV),2)]];
@@ -2791,8 +3305,19 @@ distance_centroid_Lab = [distance_centroid_Lab ; round(pdist([mean(x_values_Lab)
 
 % Catenate all Tables               -- CHANGE HERE
 diffs_table = table(distance_expectedC1C2, distance_HSV, distance_LCh, distance_CMYK, distance_RGB, distance_Lab);
+diffs_pairs = table(distance_pair1,distance_pair2,distance_pair3,distance_pair4,distance_pair5,distance_pair6,distance_pair7,distance_pair8,distance_pair9,distance_pair10,distance_pair11,distance_pair12,distance_pair13);
+diffs_table = [diffs_table diffs_pairs];
+if size(C1_name, 1) == 1
+    colors_names = cell(1,2);
+    colors_names(1,1) = cellstr(C1_name);
+    colors_names(1,2) = cellstr(C2_name);
+    colors_names = cell2table(colors_names);
+else
+    colors_names = table(C1_name, C2_name);
+end
 
-demoResultsGender_Female = [demoResultsGender_Female diffs_table];
+C1_name = []; C2_name = [];
+demoResultsGender_Female = [demoResultsGender_Female colors_names diffs_table];
 
 % Plot Results for each Color Model
 figure('NumberTitle','off');
@@ -2802,9 +3327,9 @@ xlabel('X Value');
 ylabel('Y Value');
 hold on;
 scatter(x_pre_models(1), y_pre_models(1), 50, 'black', 'Filled');          % Draw expected response for this model
-scatter(x_values_HSV, y_values_HSV, 50, 'white');                          % Draw responses mixed in HSV   
+scatter(x_values_HSV, y_values_HSV, 50, 'white');                          % Draw responses mixed in HSV
 hold off;
-saveas(gcf, fullfile(path, 'demographic_genderFemale_HSVresponses'), 'png');
+saveas(gcf, fullfile(path, 'demographic_genderFemale_HSVresponses'), 'png'); close;
 
 figure('NumberTitle','off');
 cieplot();
@@ -2813,9 +3338,9 @@ xlabel('X Value');
 ylabel('Y Value');
 hold on;
 scatter(x_pre_models(2), y_pre_models(2), 50, 'black', 'Filled');          % Draw expected response for this model
-scatter(x_values_LCh, y_values_LCh, 50, 'white');                          % Draw responses mixed in LCh   
+scatter(x_values_LCh, y_values_LCh, 50, 'white');                          % Draw responses mixed in LCh
 hold off;
-saveas(gcf, fullfile(path, 'demographic_genderFemale_LChresponses'), 'png');
+saveas(gcf, fullfile(path, 'demographic_genderFemale_LChresponses'), 'png'); close;
 
 figure('NumberTitle','off');
 cieplot();
@@ -2824,9 +3349,9 @@ xlabel('X Value');
 ylabel('Y Value');
 hold on;
 scatter(x_pre_models(3), y_pre_models(3), 50, 'black', 'Filled');          % Draw expected response for this model
-scatter(x_values_CMYK, y_values_CMYK, 50, 'white');                          % Draw responses mixed in CMYK   
+scatter(x_values_CMYK, y_values_CMYK, 50, 'white');                          % Draw responses mixed in CMYK
 hold off;
-saveas(gcf, fullfile(path, 'demographic_genderFemale_CMYKresponses'), 'png');
+saveas(gcf, fullfile(path, 'demographic_genderFemale_CMYKresponses'), 'png'); close;
 
 figure('NumberTitle','off');
 cieplot();
@@ -2835,9 +3360,9 @@ xlabel('X Value');
 ylabel('Y Value');
 hold on;
 scatter(x_pre_models(4), y_pre_models(4), 50, 'black', 'Filled');          % Draw expected response for this model
-scatter(x_values_RGB, y_values_RGB, 50, 'white');                          % Draw responses mixed in RGB   
+scatter(x_values_RGB, y_values_RGB, 50, 'white');                          % Draw responses mixed in RGB
 hold off;
-saveas(gcf, fullfile(path, 'demographic_genderFemale_RGBresponses'), 'png');
+saveas(gcf, fullfile(path, 'demographic_genderFemale_RGBresponses'), 'png'); close;
 
 figure('NumberTitle','off');
 cieplot();
@@ -2846,14 +3371,15 @@ xlabel('X Value');
 ylabel('Y Value');
 hold on;
 scatter(x_pre_models(5), y_pre_models(5), 50, 'black', 'Filled');          % Draw expected response for this model
-scatter(x_values_Lab, y_values_Lab, 50, 'white');                          % Draw responses mixed in Lab   
+scatter(x_values_Lab, y_values_Lab, 50, 'white');                          % Draw responses mixed in Lab
 hold off;
-saveas(gcf, fullfile(path, 'demographic_genderFemale_Labresponses'), 'png');
+saveas(gcf, fullfile(path, 'demographic_genderFemale_Labresponses'), 'png'); close;
 
 % Clean all the tables!
-x_values_HSV = []; y_values_HSV = []; x_values_LCh = []; y_values_LCh = []; x_values_CMYK = []; y_values_CMYK = []; x_values_RGB = []; y_values_RGB = []; x_values_Lab = []; y_values_Lab = [];  
+x_values_HSV = []; y_values_HSV = []; x_values_LCh = []; y_values_LCh = []; x_values_CMYK = []; y_values_CMYK = []; x_values_RGB = []; y_values_RGB = []; x_values_Lab = []; y_values_Lab = [];
 distance_HSV = []; distance_LCh = []; distance_CMYK = []; distance_RGB = []; distance_Lab = [];
 distance_expectedC1C2 = [];
+distance_pair1 = []; distance_pair2 = []; distance_pair3 = []; distance_pair4 = []; distance_pair5 = []; distance_pair6 = []; distance_pair7 = []; distance_pair8 = []; distance_pair9 = []; distance_pair10 = []; distance_pair11 = []; distance_pair12 = []; distance_pair13 = [];
 
 %% Demographic Analysis - GENDER Male
 
@@ -2870,85 +3396,115 @@ scatter(x_pre_expectedColors(3), y_pre_expectedColors(3), 60, 'black');         
 
 
 % Draw every pair of responses.
-for i = 1 : height(demoResultsGender_Male)                                  
+for i = 1 : height(demoResultsGender_Male)
     %% First Color - C1
-    sColor = str2num(cell2mat(demoResultsGender_Male.second_color(i)));      
-    valuesSColor = [valuesSColor sColor];                               
-    sColor = sColor/360;                                                
-    sColor = [sColor 1 1];                                             
+    sColor = str2num(cell2mat(demoResultsGender_Male.second_color(i)));
+    valuesSColor = [valuesSColor sColor];
+    sColor = sColor/360;
+    sColor = [sColor 1 1];
     hsv_C1 = sColor;
-    sColor = hsv2rgb(sColor);                                           
+    sColor = hsv2rgb(sColor);
     rgb_C1 = round([sColor(1)*255 sColor(2)*255 sColor(3)*255]);
-    sColor = rgb2xyz(sColor);                                           
-    x_aux = sColor(1)/(sColor(1) + sColor(2) + sColor(3));              
-    y_aux = sColor(2)/(sColor(1) + sColor(2) + sColor(3));              
-    x_values = [x_values x_aux];                                        
+    sColor = rgb2xyz(sColor);
+    x_aux = sColor(1)/(sColor(1) + sColor(2) + sColor(3));
+    y_aux = sColor(2)/(sColor(1) + sColor(2) + sColor(3));
+    x_values = [x_values x_aux];
     y_values = [y_values y_aux];
-    
+
     %% Second Color - C2
     tColor = str2num(cell2mat(demoResultsGender_Male.third_color(i)));
-    valuesTColor = [valuesTColor tColor];                               
-    tColor = tColor/360;                                                
-    tColor = [tColor 1 1];                                             
+    valuesTColor = [valuesTColor tColor];
+    tColor = tColor/360;
+    tColor = [tColor 1 1];
     hsv_C2 = tColor;
-    tColor = hsv2rgb(tColor);                                           
+    tColor = hsv2rgb(tColor);
     rgb_C2 = round([tColor(1)*255 tColor(2)*255 tColor(3)*255]);
-    tColor = rgb2xyz(tColor);                                           
-    x_aux = tColor(1)/(tColor(1) + tColor(2) + tColor(3));              
-    y_aux = tColor(2)/(tColor(1) + tColor(2) + tColor(3));              
-    x_values = [x_values x_aux];                                        
+    tColor = rgb2xyz(tColor);
+    x_aux = tColor(1)/(tColor(1) + tColor(2) + tColor(3));
+    y_aux = tColor(2)/(tColor(1) + tColor(2) + tColor(3));
+    x_values = [x_values x_aux];
     y_values = [y_values y_aux];
-    
+
     %% Categorize Colors - Bins
-    
+    for j = 1 : length(colorBins)
+        valuesofx = round(colorBins(j).XData, 1);
+        valuesofy = round(colorBins(j).YData, 1);
+        if foundC1 == 0 && ismember(round(x_values(1), 1), valuesofx) && ismember(round(y_values(1),1), valuesofy)
+            color_C1 = colorBins(j).Tag;
+            foundC1 = 1;
+        end
+        if foundC2 == 0 && ismember(round(x_values(2), 1), valuesofx) && ismember(round(y_values(2),1), valuesofy)
+            color_C2 = colorBins(j).Tag;
+            foundC2 = 1;
+        end
+    end
+
+    if foundC1 == 0 && foundC2 == 0
+        C1_name = [C1_name ; 'NA       '];
+        C2_name = [C2_name ; 'NA       '];
+    else if foundC1 == 1 && foundC2 == 0
+            C1_name = [C1_name ; color_C1];
+            C2_name = [C2_name ; 'NA       '];
+        else if foundC1 == 0 && foundC2 == 1
+                C1_name = [C1_name ; 'NA       '];
+                C2_name = [C2_name ; color_C2];
+            else
+                C1_name = [C1_name ; color_C1];
+                C2_name = [C2_name ; color_C2];
+            end
+        end
+    end
+    foundC1 = 0; foundC2 = 0;
+
+
     %% Difference between C1/C2 and expected colors C1/C2
     diff_c1_expected = round(pdist([[x_values(1) y_values(1)] ; [x_pre_expectedColors(2) y_pre_expectedColors(2)]]), 2);  % [given -C1- C2]
     diff_c2_expected = round(pdist([[x_values(2) y_values(2)] ; [x_pre_expectedColors(3) y_pre_expectedColors(3)]]), 2);  % [given C1 -C2-]
     distance_expectedC1C2 = [distance_expectedC1C2 ; diff_c1_expected + diff_c2_expected];
-    
+
     %% Difference between C1/C2 and other pairs which generate the same color       %% -- CHANGE HERE (ADD MORE PAIRS IF NEEDED)
     diff_c1_pair1c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair1(1) y_pair1(1)]]), 2);   diff_c2_pair1c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair1(2) y_pair1(2)]]), 2);
     distance_pair1 = [distance_pair1 ; diff_c1_pair1c1 + diff_c2_pair1c2];
-    
+
     diff_c1_pair2c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair2(1) y_pair2(1)]]), 2);   diff_c2_pair2c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair2(2) y_pair2(2)]]), 2);
     distance_pair2 = [distance_pair2 ; diff_c1_pair2c1 + diff_c2_pair2c2];
-    
+
     diff_c1_pair3c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair3(1) y_pair3(1)]]), 2);   diff_c2_pair3c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair3(2) y_pair3(2)]]), 2);
     distance_pair3 = [distance_pair3 ; diff_c1_pair3c1 + diff_c2_pair3c2];
-    
+
     diff_c1_pair4c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair4(1) y_pair4(1)]]), 2);   diff_c2_pair4c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair4(2) y_pair4(2)]]), 2);
     distance_pair4 = [distance_pair4 ; diff_c1_pair4c1 + diff_c2_pair4c2];
-    
+
     diff_c1_pair5c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair5(1) y_pair5(1)]]), 2);   diff_c2_pair5c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair5(2) y_pair5(2)]]), 2);
     distance_pair5 = [distance_pair5 ; diff_c1_pair5c1 + diff_c2_pair5c2];
-    
+
     diff_c1_pair6c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair6(1) y_pair6(1)]]), 2);   diff_c2_pair6c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair6(2) y_pair6(2)]]), 2);
     distance_pair6 = [distance_pair6 ; diff_c1_pair6c1 + diff_c2_pair6c2];
-    
+
     diff_c1_pair7c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair7(1) y_pair7(1)]]), 2);   diff_c2_pair7c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair7(2) y_pair7(2)]]), 2);
     distance_pair7 = [distance_pair7 ; diff_c1_pair7c1 + diff_c2_pair7c2];
-    
+
     diff_c1_pair8c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair8(1) y_pair8(1)]]), 2);   diff_c2_pair8c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair8(2) y_pair8(2)]]), 2);
     distance_pair8 = [distance_pair8 ; diff_c1_pair8c1 + diff_c2_pair8c2];
-    
+
     diff_c1_pair9c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair9(1) y_pair9(1)]]), 2);   diff_c2_pair9c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair9(2) y_pair9(2)]]), 2);
     distance_pair9 = [distance_pair9 ; diff_c1_pair9c1 + diff_c2_pair9c2];
-    
+
     diff_c1_pair10c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair10(1) y_pair10(1)]]), 2);   diff_c2_pair10c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair10(2) y_pair10(2)]]), 2);
     distance_pair10 = [distance_pair10 ; diff_c1_pair10c1 + diff_c2_pair10c2];
-    
+
     diff_c1_pair11c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair11(1) y_pair11(1)]]), 2);   diff_c2_pair11c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair11(2) y_pair11(2)]]), 2);
     distance_pair11 = [distance_pair11 ; diff_c1_pair11c1 + diff_c2_pair11c2];
-    
+
     diff_c1_pair12c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair12(1) y_pair12(1)]]), 2);   diff_c2_pair12c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair12(2) y_pair12(2)]]), 2);
-    distance_pair12 = [distance_pair12 ; diff_c1_pair12c1 + diff_c2_pair12c2];    
-    
+    distance_pair12 = [distance_pair12 ; diff_c1_pair12c1 + diff_c2_pair12c2];
+
     diff_c1_pair13c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair13(1) y_pair13(1)]]), 2);   diff_c2_pair13c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair13(2) y_pair13(2)]]), 2);
     distance_pair13 = [distance_pair13 ; diff_c1_pair13c1 + diff_c2_pair13c2];
-    
+
     %% Difference between C1/C2 blended onto Color Models against pre-calc values
     %%%%%% Blend-it in HSV
-    sColor_hsv = [(hsv_C1(1)*360) hsv_C1(2) hsv_C1(3)]; tColor_hsv = [(hsv_C2(1)*360) hsv_C2(2) hsv_C2(3)];     
+    sColor_hsv = [(hsv_C1(1)*360) hsv_C1(2) hsv_C1(3)]; tColor_hsv = [(hsv_C2(1)*360) hsv_C2(2) hsv_C2(3)];
     diff_angles = abs(sColor_hsv(1) - tColor_hsv(1));
     if diff_angles > 180
         angle_small = (360 - diff_angles);  % smallest angle
@@ -2962,11 +3518,11 @@ for i = 1 : height(demoResultsGender_Male)
     else
         angle = min([sColor_hsv(1) tColor_hsv(1)]) + (diff_angles / 2);
     end
-    rColor = rgb2xyz(hsv2rgb(([angle/360 sColor_hsv(2) sColor_hsv(3)])));                                  % hsv -> rgb -> xyz -> compare 
+    rColor = rgb2xyz(hsv2rgb(([angle/360 sColor_hsv(2) sColor_hsv(3)])));                                  % hsv -> rgb -> xyz -> compare
     x_aux  = rColor(1)/(rColor(1) + rColor(2) + rColor(3)); y_aux = rColor(2)/(rColor(1) + rColor(2) + rColor(3));
     distance_HSV = [distance_HSV; round(pdist([[x_aux y_aux]; [x_pre_models(1) y_pre_models(1)]]),2)];
     x_values_HSV = [x_values_HSV x_aux]; y_values_HSV = [y_values_HSV y_aux];
-    
+
     %%%%%% Blend-it in CIE-LCh (XYZ -> Lab -> LCh)
     sColor_lch = sColor; tColor_lch = tColor;
     sColor_lch = applycform(applycform(sColor_lch, cformXYZ_Lab), cformLab_LCh); tColor_lch = applycform(applycform(tColor_lch, cformXYZ_Lab), cformLab_LCh);
@@ -2990,7 +3546,7 @@ for i = 1 : height(demoResultsGender_Male)
     x_aux  = rColor(1)/(rColor(1) + rColor(2) + rColor(3)); y_aux = rColor(2)/(rColor(1) + rColor(2) + rColor(3));
     distance_LCh = [distance_LCh; round(pdist([[x_aux y_aux]; [x_pre_models(2) y_pre_models(2)]]), 2)];
     x_values_LCh = [x_values_LCh x_aux]; y_values_LCh = [y_values_LCh y_aux];
-    
+
     %%%%%% Blend-it in CMYK
     sColor_cmyk = sColor; tColor_cmyk = tColor;
     sColor_cmyk = applycform(applycform(sColor_cmyk, cformXYZ_RGB), cformRGB_CMYK); tColor_cmyk = applycform(applycform(tColor_cmyk, cformXYZ_RGB), cformRGB_CMYK);
@@ -3002,7 +3558,7 @@ for i = 1 : height(demoResultsGender_Male)
     x_aux  = rColor(1)/(rColor(1) + rColor(2) + rColor(3)); y_aux = rColor(2)/(rColor(1) + rColor(2) + rColor(3));
     distance_CMYK = [distance_CMYK; round(pdist([[x_aux y_aux]; [x_pre_models(3) y_pre_models(3)]]), 2)];
     x_values_CMYK = [x_values_CMYK x_aux]; y_values_CMYK = [y_values_CMYK y_aux];
-    
+
     %%%%%% Blend-it in RGB
     sColor_rgb = sColor; tColor_rgb = tColor;
     sColor_rgb = applycform(sColor_rgb, cformXYZ_RGB); tColor_rgb = applycform(tColor_rgb, cformXYZ_RGB);
@@ -3013,7 +3569,7 @@ for i = 1 : height(demoResultsGender_Male)
     x_aux  = rColor(1)/(rColor(1) + rColor(2) + rColor(3)); y_aux = rColor(2)/(rColor(1) + rColor(2) + rColor(3));
     distance_RGB = [distance_RGB; round(pdist([[x_aux y_aux]; [x_pre_models(4) y_pre_models(4)]]), 2)];
     x_values_RGB = [x_values_RGB x_aux]; y_values_RGB = [y_values_RGB y_aux];
-    
+
     %%%%%% Blend-it in CIE-Lab
     sColor_lab = sColor; tColor_lab = tColor;
     sColor_lab = applycform(sColor_lab, cformXYZ_Lab); tColor_lab = applycform(tColor_lab, cformXYZ_Lab);
@@ -3032,7 +3588,7 @@ for i = 1 : height(demoResultsGender_Male)
 end
 hold off;
 
-saveas(gcf, fullfile(path, 'demographic_genderMale'), 'png');
+saveas(gcf, fullfile(path, 'demographic_genderMale'), 'png'); close;
 
 % Centroids of Color Models
 centroid_HSV    = [centroid_HSV  ; [round(mean(x_values_HSV),2) round(mean(y_values_HSV),2)]];
@@ -3049,8 +3605,19 @@ distance_centroid_Lab = [distance_centroid_Lab ; round(pdist([mean(x_values_Lab)
 
 % Catenate all Tables               -- CHANGE HERE
 diffs_table = table(distance_expectedC1C2, distance_HSV, distance_LCh, distance_CMYK, distance_RGB, distance_Lab);
+diffs_pairs = table(distance_pair1,distance_pair2,distance_pair3,distance_pair4,distance_pair5,distance_pair6,distance_pair7,distance_pair8,distance_pair9,distance_pair10,distance_pair11,distance_pair12,distance_pair13);
+diffs_table = [diffs_table diffs_pairs];
+if size(C1_name, 1) == 1
+    colors_names = cell(1,2);
+    colors_names(1,1) = cellstr(C1_name);
+    colors_names(1,2) = cellstr(C2_name);
+    colors_names = cell2table(colors_names);
+else
+    colors_names = table(C1_name, C2_name);
+end
 
-demoResultsGender_Male = [demoResultsGender_Male diffs_table];
+C1_name = []; C2_name = [];
+demoResultsGender_Male = [demoResultsGender_Male colors_names diffs_table];
 
 % Plot Results for each Color Model
 figure('NumberTitle','off');
@@ -3060,9 +3627,9 @@ xlabel('X Value');
 ylabel('Y Value');
 hold on;
 scatter(x_pre_models(1), y_pre_models(1), 50, 'black', 'Filled');          % Draw expected response for this model
-scatter(x_values_HSV, y_values_HSV, 50, 'white');                          % Draw responses mixed in HSV   
+scatter(x_values_HSV, y_values_HSV, 50, 'white');                          % Draw responses mixed in HSV
 hold off;
-saveas(gcf, fullfile(path, 'demographic_genderMale_HSVresponses'), 'png');
+saveas(gcf, fullfile(path, 'demographic_genderMale_HSVresponses'), 'png'); close;
 
 figure('NumberTitle','off');
 cieplot();
@@ -3071,9 +3638,9 @@ xlabel('X Value');
 ylabel('Y Value');
 hold on;
 scatter(x_pre_models(2), y_pre_models(2), 50, 'black', 'Filled');          % Draw expected response for this model
-scatter(x_values_LCh, y_values_LCh, 50, 'white');                          % Draw responses mixed in LCh   
+scatter(x_values_LCh, y_values_LCh, 50, 'white');                          % Draw responses mixed in LCh
 hold off;
-saveas(gcf, fullfile(path, 'demographic_genderMale_LChresponses'), 'png');
+saveas(gcf, fullfile(path, 'demographic_genderMale_LChresponses'), 'png'); close;
 
 figure('NumberTitle','off');
 cieplot();
@@ -3082,9 +3649,9 @@ xlabel('X Value');
 ylabel('Y Value');
 hold on;
 scatter(x_pre_models(3), y_pre_models(3), 50, 'black', 'Filled');          % Draw expected response for this model
-scatter(x_values_CMYK, y_values_CMYK, 50, 'white');                          % Draw responses mixed in CMYK   
+scatter(x_values_CMYK, y_values_CMYK, 50, 'white');                          % Draw responses mixed in CMYK
 hold off;
-saveas(gcf, fullfile(path, 'demographic_genderMale_CMYKresponses'), 'png');
+saveas(gcf, fullfile(path, 'demographic_genderMale_CMYKresponses'), 'png'); close;
 
 figure('NumberTitle','off');
 cieplot();
@@ -3093,9 +3660,9 @@ xlabel('X Value');
 ylabel('Y Value');
 hold on;
 scatter(x_pre_models(4), y_pre_models(4), 50, 'black', 'Filled');          % Draw expected response for this model
-scatter(x_values_RGB, y_values_RGB, 50, 'white');                          % Draw responses mixed in RGB   
+scatter(x_values_RGB, y_values_RGB, 50, 'white');                          % Draw responses mixed in RGB
 hold off;
-saveas(gcf, fullfile(path, 'demographic_genderMale_RGBresponses'), 'png');
+saveas(gcf, fullfile(path, 'demographic_genderMale_RGBresponses'), 'png'); close;
 
 figure('NumberTitle','off');
 cieplot();
@@ -3104,14 +3671,15 @@ xlabel('X Value');
 ylabel('Y Value');
 hold on;
 scatter(x_pre_models(5), y_pre_models(5), 50, 'black', 'Filled');          % Draw expected response for this model
-scatter(x_values_Lab, y_values_Lab, 50, 'white');                          % Draw responses mixed in Lab   
+scatter(x_values_Lab, y_values_Lab, 50, 'white');                          % Draw responses mixed in Lab
 hold off;
-saveas(gcf, fullfile(path, 'demographic_genderMale_Labresponses'), 'png');
+saveas(gcf, fullfile(path, 'demographic_genderMale_Labresponses'), 'png'); close;
 
 % Clean all the tables!
-x_values_HSV = []; y_values_HSV = []; x_values_LCh = []; y_values_LCh = []; x_values_CMYK = []; y_values_CMYK = []; x_values_RGB = []; y_values_RGB = []; x_values_Lab = []; y_values_Lab = [];  
+x_values_HSV = []; y_values_HSV = []; x_values_LCh = []; y_values_LCh = []; x_values_CMYK = []; y_values_CMYK = []; x_values_RGB = []; y_values_RGB = []; x_values_Lab = []; y_values_Lab = [];
 distance_HSV = []; distance_LCh = []; distance_CMYK = []; distance_RGB = []; distance_Lab = [];
 distance_expectedC1C2 = [];
+distance_pair1 = []; distance_pair2 = []; distance_pair3 = []; distance_pair4 = []; distance_pair5 = []; distance_pair6 = []; distance_pair7 = []; distance_pair8 = []; distance_pair9 = []; distance_pair10 = []; distance_pair11 = []; distance_pair12 = []; distance_pair13 = [];
 
 %% Demographic Analysis - GENDER Other
 
@@ -3128,85 +3696,115 @@ scatter(x_pre_expectedColors(3), y_pre_expectedColors(3), 60, 'black');         
 
 
 % Draw every pair of responses.
-for i = 1 : height(demoResultsGender_Other)                                  
+for i = 1 : height(demoResultsGender_Other)
     %% First Color - C1
-    sColor = str2num(cell2mat(demoResultsGender_Other.second_color(i)));      
-    valuesSColor = [valuesSColor sColor];                               
-    sColor = sColor/360;                                                
-    sColor = [sColor 1 1];                                             
+    sColor = str2num(cell2mat(demoResultsGender_Other.second_color(i)));
+    valuesSColor = [valuesSColor sColor];
+    sColor = sColor/360;
+    sColor = [sColor 1 1];
     hsv_C1 = sColor;
-    sColor = hsv2rgb(sColor);                                           
+    sColor = hsv2rgb(sColor);
     rgb_C1 = round([sColor(1)*255 sColor(2)*255 sColor(3)*255]);
-    sColor = rgb2xyz(sColor);                                           
-    x_aux = sColor(1)/(sColor(1) + sColor(2) + sColor(3));              
-    y_aux = sColor(2)/(sColor(1) + sColor(2) + sColor(3));              
-    x_values = [x_values x_aux];                                        
+    sColor = rgb2xyz(sColor);
+    x_aux = sColor(1)/(sColor(1) + sColor(2) + sColor(3));
+    y_aux = sColor(2)/(sColor(1) + sColor(2) + sColor(3));
+    x_values = [x_values x_aux];
     y_values = [y_values y_aux];
-    
+
     %% Second Color - C2
     tColor = str2num(cell2mat(demoResultsGender_Other.third_color(i)));
-    valuesTColor = [valuesTColor tColor];                               
-    tColor = tColor/360;                                                
-    tColor = [tColor 1 1];                                             
+    valuesTColor = [valuesTColor tColor];
+    tColor = tColor/360;
+    tColor = [tColor 1 1];
     hsv_C2 = tColor;
-    tColor = hsv2rgb(tColor);                                           
+    tColor = hsv2rgb(tColor);
     rgb_C2 = round([tColor(1)*255 tColor(2)*255 tColor(3)*255]);
-    tColor = rgb2xyz(tColor);                                           
-    x_aux = tColor(1)/(tColor(1) + tColor(2) + tColor(3));              
-    y_aux = tColor(2)/(tColor(1) + tColor(2) + tColor(3));              
-    x_values = [x_values x_aux];                                        
+    tColor = rgb2xyz(tColor);
+    x_aux = tColor(1)/(tColor(1) + tColor(2) + tColor(3));
+    y_aux = tColor(2)/(tColor(1) + tColor(2) + tColor(3));
+    x_values = [x_values x_aux];
     y_values = [y_values y_aux];
-    
+
     %% Categorize Colors - Bins
-    
+    for j = 1 : length(colorBins)
+        valuesofx = round(colorBins(j).XData, 1);
+        valuesofy = round(colorBins(j).YData, 1);
+        if foundC1 == 0 && ismember(round(x_values(1), 1), valuesofx) && ismember(round(y_values(1),1), valuesofy)
+            color_C1 = colorBins(j).Tag;
+            foundC1 = 1;
+        end
+        if foundC2 == 0 && ismember(round(x_values(2), 1), valuesofx) && ismember(round(y_values(2),1), valuesofy)
+            color_C2 = colorBins(j).Tag;
+            foundC2 = 1;
+        end
+    end
+
+    if foundC1 == 0 && foundC2 == 0
+        C1_name = [C1_name ; 'NA       '];
+        C2_name = [C2_name ; 'NA       '];
+    else if foundC1 == 1 && foundC2 == 0
+            C1_name = [C1_name ; color_C1];
+            C2_name = [C2_name ; 'NA       '];
+        else if foundC1 == 0 && foundC2 == 1
+                C1_name = [C1_name ; 'NA       '];
+                C2_name = [C2_name ; color_C2];
+            else
+                C1_name = [C1_name ; color_C1];
+                C2_name = [C2_name ; color_C2];
+            end
+        end
+    end
+    foundC1 = 0; foundC2 = 0;
+
+
     %% Difference between C1/C2 and expected colors C1/C2
     diff_c1_expected = round(pdist([[x_values(1) y_values(1)] ; [x_pre_expectedColors(2) y_pre_expectedColors(2)]]), 2);  % [given -C1- C2]
     diff_c2_expected = round(pdist([[x_values(2) y_values(2)] ; [x_pre_expectedColors(3) y_pre_expectedColors(3)]]), 2);  % [given C1 -C2-]
     distance_expectedC1C2 = [distance_expectedC1C2 ; diff_c1_expected + diff_c2_expected];
-    
+
     %% Difference between C1/C2 and other pairs which generate the same color       %% -- CHANGE HERE (ADD MORE PAIRS IF NEEDED)
     diff_c1_pair1c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair1(1) y_pair1(1)]]), 2);   diff_c2_pair1c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair1(2) y_pair1(2)]]), 2);
     distance_pair1 = [distance_pair1 ; diff_c1_pair1c1 + diff_c2_pair1c2];
-    
+
     diff_c1_pair2c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair2(1) y_pair2(1)]]), 2);   diff_c2_pair2c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair2(2) y_pair2(2)]]), 2);
     distance_pair2 = [distance_pair2 ; diff_c1_pair2c1 + diff_c2_pair2c2];
-    
+
     diff_c1_pair3c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair3(1) y_pair3(1)]]), 2);   diff_c2_pair3c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair3(2) y_pair3(2)]]), 2);
     distance_pair3 = [distance_pair3 ; diff_c1_pair3c1 + diff_c2_pair3c2];
-    
+
     diff_c1_pair4c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair4(1) y_pair4(1)]]), 2);   diff_c2_pair4c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair4(2) y_pair4(2)]]), 2);
     distance_pair4 = [distance_pair4 ; diff_c1_pair4c1 + diff_c2_pair4c2];
-    
+
     diff_c1_pair5c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair5(1) y_pair5(1)]]), 2);   diff_c2_pair5c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair5(2) y_pair5(2)]]), 2);
     distance_pair5 = [distance_pair5 ; diff_c1_pair5c1 + diff_c2_pair5c2];
-    
+
     diff_c1_pair6c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair6(1) y_pair6(1)]]), 2);   diff_c2_pair6c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair6(2) y_pair6(2)]]), 2);
     distance_pair6 = [distance_pair6 ; diff_c1_pair6c1 + diff_c2_pair6c2];
-    
+
     diff_c1_pair7c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair7(1) y_pair7(1)]]), 2);   diff_c2_pair7c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair7(2) y_pair7(2)]]), 2);
     distance_pair7 = [distance_pair7 ; diff_c1_pair7c1 + diff_c2_pair7c2];
-    
+
     diff_c1_pair8c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair8(1) y_pair8(1)]]), 2);   diff_c2_pair8c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair8(2) y_pair8(2)]]), 2);
     distance_pair8 = [distance_pair8 ; diff_c1_pair8c1 + diff_c2_pair8c2];
-    
+
     diff_c1_pair9c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair9(1) y_pair9(1)]]), 2);   diff_c2_pair9c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair9(2) y_pair9(2)]]), 2);
     distance_pair9 = [distance_pair9 ; diff_c1_pair9c1 + diff_c2_pair9c2];
-    
+
     diff_c1_pair10c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair10(1) y_pair10(1)]]), 2);   diff_c2_pair10c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair10(2) y_pair10(2)]]), 2);
     distance_pair10 = [distance_pair10 ; diff_c1_pair10c1 + diff_c2_pair10c2];
-    
+
     diff_c1_pair11c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair11(1) y_pair11(1)]]), 2);   diff_c2_pair11c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair11(2) y_pair11(2)]]), 2);
     distance_pair11 = [distance_pair11 ; diff_c1_pair11c1 + diff_c2_pair11c2];
-    
+
     diff_c1_pair12c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair12(1) y_pair12(1)]]), 2);   diff_c2_pair12c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair12(2) y_pair12(2)]]), 2);
-    distance_pair12 = [distance_pair12 ; diff_c1_pair12c1 + diff_c2_pair12c2];    
-    
+    distance_pair12 = [distance_pair12 ; diff_c1_pair12c1 + diff_c2_pair12c2];
+
     diff_c1_pair13c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair13(1) y_pair13(1)]]), 2);   diff_c2_pair13c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair13(2) y_pair13(2)]]), 2);
     distance_pair13 = [distance_pair13 ; diff_c1_pair13c1 + diff_c2_pair13c2];
-    
+
     %% Difference between C1/C2 blended onto Color Models against pre-calc values
     %%%%%% Blend-it in HSV
-    sColor_hsv = [(hsv_C1(1)*360) hsv_C1(2) hsv_C1(3)]; tColor_hsv = [(hsv_C2(1)*360) hsv_C2(2) hsv_C2(3)];     
+    sColor_hsv = [(hsv_C1(1)*360) hsv_C1(2) hsv_C1(3)]; tColor_hsv = [(hsv_C2(1)*360) hsv_C2(2) hsv_C2(3)];
     diff_angles = abs(sColor_hsv(1) - tColor_hsv(1));
     if diff_angles > 180
         angle_small = (360 - diff_angles);  % smallest angle
@@ -3220,11 +3818,11 @@ for i = 1 : height(demoResultsGender_Other)
     else
         angle = min([sColor_hsv(1) tColor_hsv(1)]) + (diff_angles / 2);
     end
-    rColor = rgb2xyz(hsv2rgb(([angle/360 sColor_hsv(2) sColor_hsv(3)])));                                  % hsv -> rgb -> xyz -> compare 
+    rColor = rgb2xyz(hsv2rgb(([angle/360 sColor_hsv(2) sColor_hsv(3)])));                                  % hsv -> rgb -> xyz -> compare
     x_aux  = rColor(1)/(rColor(1) + rColor(2) + rColor(3)); y_aux = rColor(2)/(rColor(1) + rColor(2) + rColor(3));
     distance_HSV = [distance_HSV; round(pdist([[x_aux y_aux]; [x_pre_models(1) y_pre_models(1)]]),2)];
     x_values_HSV = [x_values_HSV x_aux]; y_values_HSV = [y_values_HSV y_aux];
-    
+
     %%%%%% Blend-it in CIE-LCh (XYZ -> Lab -> LCh)
     sColor_lch = sColor; tColor_lch = tColor;
     sColor_lch = applycform(applycform(sColor_lch, cformXYZ_Lab), cformLab_LCh); tColor_lch = applycform(applycform(tColor_lch, cformXYZ_Lab), cformLab_LCh);
@@ -3248,7 +3846,7 @@ for i = 1 : height(demoResultsGender_Other)
     x_aux  = rColor(1)/(rColor(1) + rColor(2) + rColor(3)); y_aux = rColor(2)/(rColor(1) + rColor(2) + rColor(3));
     distance_LCh = [distance_LCh; round(pdist([[x_aux y_aux]; [x_pre_models(2) y_pre_models(2)]]), 2)];
     x_values_LCh = [x_values_LCh x_aux]; y_values_LCh = [y_values_LCh y_aux];
-    
+
     %%%%%% Blend-it in CMYK
     sColor_cmyk = sColor; tColor_cmyk = tColor;
     sColor_cmyk = applycform(applycform(sColor_cmyk, cformXYZ_RGB), cformRGB_CMYK); tColor_cmyk = applycform(applycform(tColor_cmyk, cformXYZ_RGB), cformRGB_CMYK);
@@ -3260,7 +3858,7 @@ for i = 1 : height(demoResultsGender_Other)
     x_aux  = rColor(1)/(rColor(1) + rColor(2) + rColor(3)); y_aux = rColor(2)/(rColor(1) + rColor(2) + rColor(3));
     distance_CMYK = [distance_CMYK; round(pdist([[x_aux y_aux]; [x_pre_models(3) y_pre_models(3)]]), 2)];
     x_values_CMYK = [x_values_CMYK x_aux]; y_values_CMYK = [y_values_CMYK y_aux];
-    
+
     %%%%%% Blend-it in RGB
     sColor_rgb = sColor; tColor_rgb = tColor;
     sColor_rgb = applycform(sColor_rgb, cformXYZ_RGB); tColor_rgb = applycform(tColor_rgb, cformXYZ_RGB);
@@ -3271,7 +3869,7 @@ for i = 1 : height(demoResultsGender_Other)
     x_aux  = rColor(1)/(rColor(1) + rColor(2) + rColor(3)); y_aux = rColor(2)/(rColor(1) + rColor(2) + rColor(3));
     distance_RGB = [distance_RGB; round(pdist([[x_aux y_aux]; [x_pre_models(4) y_pre_models(4)]]), 2)];
     x_values_RGB = [x_values_RGB x_aux]; y_values_RGB = [y_values_RGB y_aux];
-    
+
     %%%%%% Blend-it in CIE-Lab
     sColor_lab = sColor; tColor_lab = tColor;
     sColor_lab = applycform(sColor_lab, cformXYZ_Lab); tColor_lab = applycform(tColor_lab, cformXYZ_Lab);
@@ -3290,7 +3888,7 @@ for i = 1 : height(demoResultsGender_Other)
 end
 hold off;
 
-saveas(gcf, fullfile(path, 'demographic_genderOther'), 'png');
+saveas(gcf, fullfile(path, 'demographic_genderOther'), 'png'); close;
 
 % Centroids of Color Models
 centroid_HSV    = [centroid_HSV  ; [round(mean(x_values_HSV),2) round(mean(y_values_HSV),2)]];
@@ -3307,8 +3905,19 @@ distance_centroid_Lab = [distance_centroid_Lab ; round(pdist([mean(x_values_Lab)
 
 % Catenate all Tables               -- CHANGE HERE
 diffs_table = table(distance_expectedC1C2, distance_HSV, distance_LCh, distance_CMYK, distance_RGB, distance_Lab);
+diffs_pairs = table(distance_pair1,distance_pair2,distance_pair3,distance_pair4,distance_pair5,distance_pair6,distance_pair7,distance_pair8,distance_pair9,distance_pair10,distance_pair11,distance_pair12,distance_pair13);
+diffs_table = [diffs_table diffs_pairs];
+if size(C1_name, 1) == 1
+    colors_names = cell(1,2);
+    colors_names(1,1) = cellstr(C1_name);
+    colors_names(1,2) = cellstr(C2_name);
+    colors_names = cell2table(colors_names);
+else
+    colors_names = table(C1_name, C2_name);
+end
 
-demoResultsGender_Other = [demoResultsGender_Other diffs_table];
+C1_name = []; C2_name = [];
+demoResultsGender_Other = [demoResultsGender_Other colors_names diffs_table];
 
 % Plot Results for each Color Model
 figure('NumberTitle','off');
@@ -3318,9 +3927,9 @@ xlabel('X Value');
 ylabel('Y Value');
 hold on;
 scatter(x_pre_models(1), y_pre_models(1), 50, 'black', 'Filled');          % Draw expected response for this model
-scatter(x_values_HSV, y_values_HSV, 50, 'white');                          % Draw responses mixed in HSV   
+scatter(x_values_HSV, y_values_HSV, 50, 'white');                          % Draw responses mixed in HSV
 hold off;
-saveas(gcf, fullfile(path, 'demographic_genderOther_HSVresponses'), 'png');
+saveas(gcf, fullfile(path, 'demographic_genderOther_HSVresponses'), 'png'); close;
 
 figure('NumberTitle','off');
 cieplot();
@@ -3329,9 +3938,9 @@ xlabel('X Value');
 ylabel('Y Value');
 hold on;
 scatter(x_pre_models(2), y_pre_models(2), 50, 'black', 'Filled');          % Draw expected response for this model
-scatter(x_values_LCh, y_values_LCh, 50, 'white');                          % Draw responses mixed in LCh   
+scatter(x_values_LCh, y_values_LCh, 50, 'white');                          % Draw responses mixed in LCh
 hold off;
-saveas(gcf, fullfile(path, 'demographic_genderOther_LChresponses'), 'png');
+saveas(gcf, fullfile(path, 'demographic_genderOther_LChresponses'), 'png'); close;
 
 figure('NumberTitle','off');
 cieplot();
@@ -3340,9 +3949,9 @@ xlabel('X Value');
 ylabel('Y Value');
 hold on;
 scatter(x_pre_models(3), y_pre_models(3), 50, 'black', 'Filled');          % Draw expected response for this model
-scatter(x_values_CMYK, y_values_CMYK, 50, 'white');                          % Draw responses mixed in CMYK   
+scatter(x_values_CMYK, y_values_CMYK, 50, 'white');                          % Draw responses mixed in CMYK
 hold off;
-saveas(gcf, fullfile(path, 'demographic_genderOther_CMYKresponses'), 'png');
+saveas(gcf, fullfile(path, 'demographic_genderOther_CMYKresponses'), 'png'); close;
 
 figure('NumberTitle','off');
 cieplot();
@@ -3351,9 +3960,9 @@ xlabel('X Value');
 ylabel('Y Value');
 hold on;
 scatter(x_pre_models(4), y_pre_models(4), 50, 'black', 'Filled');          % Draw expected response for this model
-scatter(x_values_RGB, y_values_RGB, 50, 'white');                          % Draw responses mixed in RGB   
+scatter(x_values_RGB, y_values_RGB, 50, 'white');                          % Draw responses mixed in RGB
 hold off;
-saveas(gcf, fullfile(path, 'demographic_genderOther_RGBresponses'), 'png');
+saveas(gcf, fullfile(path, 'demographic_genderOther_RGBresponses'), 'png'); close;
 
 figure('NumberTitle','off');
 cieplot();
@@ -3362,14 +3971,81 @@ xlabel('X Value');
 ylabel('Y Value');
 hold on;
 scatter(x_pre_models(5), y_pre_models(5), 50, 'black', 'Filled');          % Draw expected response for this model
-scatter(x_values_Lab, y_values_Lab, 50, 'white');                          % Draw responses mixed in Lab   
+scatter(x_values_Lab, y_values_Lab, 50, 'white');                          % Draw responses mixed in Lab
 hold off;
-saveas(gcf, fullfile(path, 'demographic_genderOther_Labresponses'), 'png');
+saveas(gcf, fullfile(path, 'demographic_genderOther_Labresponses'), 'png'); close;
 
 % Clean all the tables!
-x_values_HSV = []; y_values_HSV = []; x_values_LCh = []; y_values_LCh = []; x_values_CMYK = []; y_values_CMYK = []; x_values_RGB = []; y_values_RGB = []; x_values_Lab = []; y_values_Lab = [];  
+x_values_HSV = []; y_values_HSV = []; x_values_LCh = []; y_values_LCh = []; x_values_CMYK = []; y_values_CMYK = []; x_values_RGB = []; y_values_RGB = []; x_values_Lab = []; y_values_Lab = [];
 distance_HSV = []; distance_LCh = []; distance_CMYK = []; distance_RGB = []; distance_Lab = [];
 distance_expectedC1C2 = [];
+distance_pair1 = []; distance_pair2 = []; distance_pair3 = []; distance_pair4 = []; distance_pair5 = []; distance_pair6 = []; distance_pair7 = []; distance_pair8 = []; distance_pair9 = []; distance_pair10 = []; distance_pair11 = []; distance_pair12 = []; distance_pair13 = [];
+
+%% White Answers Analysis
+figure('NumberTitle','off');
+cieplot();
+title('Question 17: Response-Pairs with one White Component', 'FontSize', 13);              %% -- CHANGE HERE
+xlabel('X Value');
+ylabel('Y Value');
+hold on;
+
+scatter(x_pre_expectedColors(1), y_pre_expectedColors(1), 60, 'black', 'Filled');                     % draw GIVEN COLOR
+scatter(x_pre_expectedColors(2), y_pre_expectedColors(2), 60, 'black');                               % draw EXPECTED COLOR
+scatter(x_pre_expectedColors(3), y_pre_expectedColors(3), 60, 'black');                               % draw EXPECTED COLOR
+
+for i = 1 : height(whiteAnswers)
+    %% Identify which color is missing
+    sColor = str2num(cell2mat(whiteAnswers.second_color(i)));
+    tColor = str2num(cell2mat(whiteAnswers.third_color(i)));
+    if sColor == 0
+        otherColor = tColor;
+    else otherColor = sColor;
+    end
+
+    %% Color given
+    otherColor = otherColor/360;
+    otherColor = [otherColor 1 1];
+    otherColor = hsv2rgb(otherColor);
+    otherColor = rgb2xyz(otherColor);
+    x_aux = otherColor(1)/(otherColor(1) + otherColor(2) + otherColor(3));
+    y_aux = otherColor(2)/(otherColor(1) + otherColor(2) + otherColor(3));
+    x_values = [x_values x_aux];
+    y_values = [y_values y_aux];
+
+    %% Categorize Colors - Bins
+    for j = 1 : length(colorBins)
+        valuesofx = round(colorBins(j).XData, 1);
+        valuesofy = round(colorBins(j).YData, 1);
+        if foundC1 == 0 && ismember(round(x_values(1), 1), valuesofx) && ismember(round(y_values(1),1), valuesofy)
+            color_C1 = colorBins(j).Tag;
+            foundC1 = 1;
+        end
+    end
+
+    if foundC1 == 0
+        C1_name = [C1_name ; 'NA       '];
+    else
+        C1_name = [C1_name ; color_C1];
+    end
+
+    foundC1 = 0;
+
+    %% Distance to Given Color
+    diff_c0_expected = round(pdist([[x_values(1) y_values(1)] ; [x_pre_expectedColors(1) y_pre_expectedColors(1)]]), 2);
+    distance_givenColor = [distance_givenColor ; diff_c0_expected];
+
+    %% Draw Points
+    scatter(x_values, y_values, 50, 'white');
+    x_values = []; y_values = [];
+end
+hold off;
+
+saveas(gcf, fullfile(path, 'white_answers'), 'png'); close;
+
+colors_names = table(C1_name);
+whiteAnswers = [whiteAnswers table(distance_givenColor) colors_names];
+distance_givenColor = [];
+C1_name = [];
 
 %% Save Tables
 
@@ -3384,6 +4060,7 @@ writetable(laboratoryResults, '/Users/PauloGarcia/Documents/MATLAB/Results/First
 writetable(laboratoryResults_dalt, '/Users/PauloGarcia/Documents/MATLAB/Results/First Study/Question 17/q17_lab_dalt.csv');   % Laboratory Daltonic Users Results Digested
 
 writetable(centroidsTable, '/Users/PauloGarcia/Documents/MATLAB/Results/First Study/Question 17/q17_centroids.csv', 'WriteRowNames', true);   % Centroids of all users' responses.
+writetable(whiteAnswers,  '/Users/PauloGarcia/Documents/MATLAB/Results/First Study/Question 17/q17_whiteAnswers.csv', 'WriteRowNames', true)
 
 writetable(demoResultsAge_20, '/Users/PauloGarcia/Documents/MATLAB/Results/First Study/Question 17/q17_age_20.csv', 'WriteRowNames', true);
 writetable(demoResultsAge_20_29, '/Users/PauloGarcia/Documents/MATLAB/Results/First Study/Question 17/q17_age_20_29.csv', 'WriteRowNames', true);

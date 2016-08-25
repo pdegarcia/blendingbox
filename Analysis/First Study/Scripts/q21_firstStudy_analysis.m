@@ -1,15 +1,15 @@
 %% Question 21 - twoColorsObj: Red + Cyan = Green || Purple (HSV)
-% Explanation: 
+% Explanation:
 % This file is divided onto some main sections: processing the Laboratory
 % Results (both Regular and Daltonic Users) and Online Results
 %
 % This File draws CIE diagrams and digestes the results to new CSV tables.
 %
 % #1 Step: Comparing the given answer C3 with the expected one.
-% #2 Step: Compare C3 against pre-calculated results for each model,  
+% #2 Step: Compare C3 against pre-calculated results for each model,
 % HSV, CIE LCh, CMYK, RGB and CIE Lab.
 
-close all;
+% close all;
 
 path       = '/Users/PauloGarcia/Documents/MATLAB/Results/First Study/Question 21';    % -- CHANGE HERE
 profileICC_src = 'DEI-1';
@@ -28,6 +28,12 @@ distance_CMYK = [];
 distance_RGB = [];
 distance_expectedC3_green = [];
 distance_expectedC3_purple = [];
+
+distance_givenColor = [];
+whiteAnswers = [];
+rowsToEliminate = [];
+C3_name = [];
+foundC3 = 0;
 
 profileICC      = iccread(profileICC_src);
 cformICC        = makecform('mattrc', profileICC, 'Direction', 'forward');
@@ -76,15 +82,14 @@ tableDEM_genF       = readtable(demographic_genderFemale, 'Delimiter', ',');
 tableDEM_genM       = readtable(demographic_genderMale, 'Delimiter', ',');
 tableDEM_genO       = readtable(demographic_genderOther, 'Delimiter', ',');
 
-
 %% Tables
 
 % Laboratory Tables -- CHANGE HERE
-laboratoryResults = tableR_lab(tableR_lab.id_question == 21,:); laboratoryResults = sortrows(laboratoryResults, 'id'); laboratoryResults.id_question = []; laboratoryResults.page_time = []; laboratoryResults.resets = []; 
+laboratoryResults = tableR_lab(tableR_lab.id_question == 21,:); laboratoryResults = sortrows(laboratoryResults, 'id'); laboratoryResults.id_question = []; laboratoryResults.page_time = []; laboratoryResults.resets = [];
 laboratoryResults_dalt = tableDR_lab(tableDR_lab.id_question == 21,:); laboratoryResults_dalt = sortrows(laboratoryResults_dalt, 'id'); laboratoryResults_dalt.id_question = []; laboratoryResults_dalt.page_time = []; laboratoryResults_dalt.resets = [];
 
 % Online Tables     -- CHANGE HERE
-onlineResults = tableR_online(tableR_online.id_question == 21,:); onlineResults = sortrows(onlineResults, 'id'); onlineResults.id_question = []; onlineResults.page_time = []; onlineResults.resets = []; 
+onlineResults = tableR_online(tableR_online.id_question == 21,:); onlineResults = sortrows(onlineResults, 'id'); onlineResults.id_question = []; onlineResults.page_time = []; onlineResults.resets = [];
 onlineResults_dalt = tableDR_online(tableDR_online.id_question == 21,:); onlineResults_dalt = sortrows(onlineResults_dalt, 'id'); onlineResults_dalt.id_question = []; onlineResults_dalt.page_time = []; onlineResults_dalt.resets = [];
 onlineResults_uncal = tableUR_online(tableUR_online.id_question == 21,:); onlineResults_uncal = sortrows(onlineResults_uncal, 'id'); onlineResults_uncal.id_question = []; onlineResults_uncal.page_time = []; onlineResults_uncal.resets = [];
 
@@ -108,14 +113,14 @@ expected_C3_1    = hsvTable{10,{'H','S','V'}}; expected_C3_1 = applycform((expec
 expected_C3_2    = hsvTable{11,{'H','S','V'}}; expected_C3_2 = applycform((expected_C3_2/255), cformRGB_XYZ);             % Position - 'R+C (P)'
 
 % Results of this combination in each Color Model (Pair: 'R-G', Position 7) -- CHANGE HERE
-pre_HSV_1  =  hsvTable{10,{'H','S','V'}};  pre_HSV_1  =  applycform((pre_HSV_1/255), cformRGB_XYZ); 
-pre_HSV_2  =  hsvTable{11,{'H','S','V'}};  pre_HSV_2  =  applycform((pre_HSV_2/255), cformRGB_XYZ); 
-pre_LCh  =  lchTable{10,{'L','C','h'}};  pre_LCh  =  applycform((pre_LCh/255), cformRGB_XYZ);                  
+pre_HSV_1  =  hsvTable{10,{'H','S','V'}};  pre_HSV_1  =  applycform((pre_HSV_1/255), cformRGB_XYZ);
+pre_HSV_2  =  hsvTable{11,{'H','S','V'}};  pre_HSV_2  =  applycform((pre_HSV_2/255), cformRGB_XYZ);
+pre_LCh  =  lchTable{10,{'L','C','h'}};  pre_LCh  =  applycform((pre_LCh/255), cformRGB_XYZ);
 pre_CMYK =  cmykTable{10,{'C','M','Y'}}; pre_CMYK =  applycform((pre_CMYK/255), cformRGB_XYZ);
 pre_RGB  =  rgbTable{10,{'R','G','B'}};  pre_RGB  =  applycform((pre_RGB/255), cformRGB_XYZ);
 pre_Lab  =  labTable{10,{'L','a','b'}};  pre_Lab  =  applycform((pre_Lab/255), cformRGB_XYZ);
 
-% Coordinates XYY for Expected Colors (for CIE Chromaticity Diagram) 
+% Coordinates XYY for Expected Colors (for CIE Chromaticity Diagram)
 x_pre_expectedColors = [given_color_C1(1)/(given_color_C1(1) + given_color_C1(2) + given_color_C1(3)) given_color_C2(1)/(given_color_C2(1) + given_color_C2(2) + given_color_C2(3)) expected_C3_1(1)/(expected_C3_1(1) + expected_C3_1(2) + expected_C3_1(3)) expected_C3_2(1)/(expected_C3_2(1) + expected_C3_2(2) + expected_C3_2(3))];
 y_pre_expectedColors = [given_color_C1(2)/(given_color_C1(1) + given_color_C1(2) + given_color_C1(3)) given_color_C2(2)/(given_color_C2(1) + given_color_C2(2) + given_color_C2(3)) expected_C3_1(2)/(expected_C3_1(1) + expected_C3_1(2) + expected_C3_1(3)) expected_C3_2(2)/(expected_C3_2(1) + expected_C3_2(2) + expected_C3_2(3))];
 
@@ -151,37 +156,62 @@ scatter(x_pre_models(6), y_pre_models(6), 50, 'diamond', 'black', 'Filled');
 text(x_pre_models(6) - 0.02, y_pre_models(6) + 0.02, 'Lab');
 
 % Draw every pair of responses.
-for i = 1 : height(laboratoryResults)                                     
+for i = 1 : height(laboratoryResults)
+    %% Check if any Component is white or empty Answer
+    tColor = str2num(cell2mat(laboratoryResults.third_color(i)));
+
+    if tColor == 0
+        whiteAnswers = [whiteAnswers ; laboratoryResults(i,:)];
+        rowsToEliminate = [rowsToEliminate i];
+        continue
+    end
+
     %% Third Color - C3
     tColor = cell2mat(laboratoryResults.third_color(i));       % #RRGGBB
     r = (hex2dec(strcat(tColor(2), tColor(3)))/255);                    % RR
-    g = (hex2dec(strcat(tColor(4), tColor(5)))/255);                    % GG    
+    g = (hex2dec(strcat(tColor(4), tColor(5)))/255);                    % GG
     b = (hex2dec(strcat(tColor(6), tColor(7)))/255);                    % BB
-    tColor = applycform([r g b], cformICC);                         
-    x_aux = tColor(1)/(tColor(1) + tColor(2) + tColor(3)); 
-    y_aux = tColor(2)/(tColor(1) + tColor(2) + tColor(3)); 
+    tColor = applycform([r g b], cformICC);
+    x_aux = tColor(1)/(tColor(1) + tColor(2) + tColor(3));
+    y_aux = tColor(2)/(tColor(1) + tColor(2) + tColor(3));
     x_values = [x_values x_aux];                                        % store coordinates X and Y
     y_values = [y_values y_aux];
-    
+
     %% Categorize Colors - Bins
-    
+    for j = 1 : length(colorBins)
+        valuesofx = round(colorBins(j).XData, 1);
+        valuesofy = round(colorBins(j).YData, 1);
+        if foundC3 == 0 && ismember(round(x_values(1), 1), valuesofx) && ismember(round(y_values(1),1), valuesofy)
+            color_C3 = colorBins(j).Tag;
+            foundC3 = 1;
+        end
+    end
+
+    if foundC3 == 0
+        C3_name = [C3_name ; 'NA       '];
+    else
+        C3_name = [C3_name ; color_C3];
+    end
+
+    foundC3 = 0;
+
     %% Difference between C3 and expected colors C3
     distance_expectedC3_green = [distance_expectedC3_green ; round(pdist([[x_values(1) y_values(1)] ; [x_pre_expectedColors(3) y_pre_expectedColors(3)]]), 2)];  % [given given -C3-]
     distance_expectedC3_purple = [distance_expectedC3_purple ; round(pdist([[x_values(1) y_values(1)] ; [x_pre_expectedColors(4) y_pre_expectedColors(4)]]), 2)];  % [given given -C3-]
-       
+
     %% Difference between C3 against pre-calc values
     %%%%%% Compare-it in HSV
     distance_HSV = [distance_HSV; round(pdist([[x_values y_values]; [x_pre_models(1) y_pre_models(1)]]),2)];
-    
+
     %%%%%% Compare-it in CIE-LCh
     distance_LCh = [distance_LCh; round(pdist([[x_values y_values]; [x_pre_models(2) y_pre_models(2)]]), 2)];
-    
+
     %%%%%% Compare-it in CMYK
     distance_CMYK = [distance_CMYK; round(pdist([[x_values y_values]; [x_pre_models(3) y_pre_models(3)]]), 2)];
-    
+
     %%%%%% Compare-it in RGB
     distance_RGB = [distance_RGB; round(pdist([[x_values y_values]; [x_pre_models(4) y_pre_models(4)]]), 2)];
-    
+
     %%%%%% Blend-it in CIE-Lab
     distance_Lab = [distance_Lab; round(pdist([[x_values y_values]; [x_pre_models(5) y_pre_models(5)]]), 2)];
 
@@ -192,11 +222,21 @@ for i = 1 : height(laboratoryResults)
 end
 hold off;
 
-saveas(gcf, fullfile(path, 'lab_regularUsers'), 'png');
+saveas(gcf, fullfile(path, 'lab_regularUsers'), 'png'); close;
+laboratoryResults(rowsToEliminate, :) = []; rowsToEliminate = [];
 
 % Catenate all Tables               -- CHANGE HERE
 diffs_table = table(distance_expectedC3_green, distance_expectedC3_purple, distance_HSV, distance_LCh, distance_CMYK, distance_RGB, distance_Lab);
-laboratoryResults = [laboratoryResults diffs_table];
+if size(C3_name, 1) == 1
+    colors_names = cell(1,1);
+    colors_names(1,1) = cellstr(C3_name);
+    colors_names = cell2table(colors_names);
+else
+    colors_names = table(C3_name);
+end
+
+C3_name = [];
+laboratoryResults = [laboratoryResults colors_names diffs_table];
 
 % Clean all the tables!
 distance_HSV = []; distance_LCh = []; distance_CMYK = []; distance_RGB = []; distance_Lab = [];
@@ -233,14 +273,32 @@ for i = 1 : height(laboratoryResults_dalt)
     %% Third Color - C3
     tColor = cell2mat(laboratoryResults_dalt.third_color(i));       % #RRGGBB
     r = (hex2dec(strcat(tColor(2), tColor(3)))/255);                    % RR
-    g = (hex2dec(strcat(tColor(4), tColor(5)))/255);                    % GG    
+    g = (hex2dec(strcat(tColor(4), tColor(5)))/255);                    % GG
     b = (hex2dec(strcat(tColor(6), tColor(7)))/255);                    % BB
-    tColor = applycform([r g b], cformICC);                         
-    x_aux = tColor(1)/(tColor(1) + tColor(2) + tColor(3)); 
-    y_aux = tColor(2)/(tColor(1) + tColor(2) + tColor(3)); 
+    tColor = applycform([r g b], cformICC);
+    x_aux = tColor(1)/(tColor(1) + tColor(2) + tColor(3));
+    y_aux = tColor(2)/(tColor(1) + tColor(2) + tColor(3));
     x_values = [x_values x_aux];                                        % store coordinates X and Y
     y_values = [y_values y_aux];
-    
+
+    %% Categorize Colors - Bins
+    for j = 1 : length(colorBins)
+        valuesofx = round(colorBins(j).XData, 1);
+        valuesofy = round(colorBins(j).YData, 1);
+        if foundC3 == 0 && ismember(round(x_values(1), 1), valuesofx) && ismember(round(y_values(1),1), valuesofy)
+            color_C3 = colorBins(j).Tag;
+            foundC3 = 1;
+        end
+    end
+
+    if foundC3 == 0
+        C3_name = [C3_name ; 'NA       '];
+    else
+        C3_name = [C3_name ; color_C3];
+    end
+
+    foundC3 = 0;
+
     scatter(x_values, y_values, 50, 'white');                         %draw two responses
     plot(x_values, y_values, 'Color', 'black');                     %draw relations between answers
     x_values = [];                                              %clean the arrays
@@ -248,7 +306,17 @@ for i = 1 : height(laboratoryResults_dalt)
 end
 hold off;
 
-saveas(gcf, fullfile(path, 'lab_daltonicUsers'), 'png'); 
+saveas(gcf, fullfile(path, 'lab_daltonicUsers'), 'png'); close;
+if size(C3_name, 1) == 1
+    colors_names = cell(1,1);
+    colors_names(1,1) = cellstr(C3_name);
+    colors_names = cell2table(colors_names);
+else
+    colors_names = table(C3_name);
+end
+
+C3_name = [];
+laboratoryResults_dalt = [laboratoryResults_dalt colors_names];
 
 %% Online Results - Regular Users
 
@@ -278,36 +346,61 @@ scatter(x_pre_models(6), y_pre_models(6), 50, 'diamond', 'black', 'Filled');
 text(x_pre_models(6) - 0.02, y_pre_models(6) + 0.02, 'Lab');
 
 for i = 1 : height(onlineResults)                                  %draw every pair of responses.
+    %% Check if any Component is white or empty Answer
+    tColor = str2num(cell2mat(onlineResults.third_color(i)));
+
+    if tColor == 0
+        whiteAnswers = [whiteAnswers ; onlineResults(i,:)];
+        rowsToEliminate = [rowsToEliminate i];
+        continue
+    end
+
     %% Third Color - C3
     tColor = cell2mat(onlineResults.third_color(i));       % #RRGGBB
     r = (hex2dec(strcat(tColor(2), tColor(3)))/255);                    % RR
-    g = (hex2dec(strcat(tColor(4), tColor(5)))/255);                    % GG    
+    g = (hex2dec(strcat(tColor(4), tColor(5)))/255);                    % GG
     b = (hex2dec(strcat(tColor(6), tColor(7)))/255);                    % BB
-    tColor = applycform([r g b], cformICC);                         
-    x_aux = tColor(1)/(tColor(1) + tColor(2) + tColor(3)); 
-    y_aux = tColor(2)/(tColor(1) + tColor(2) + tColor(3)); 
+    tColor = applycform([r g b], cformICC);
+    x_aux = tColor(1)/(tColor(1) + tColor(2) + tColor(3));
+    y_aux = tColor(2)/(tColor(1) + tColor(2) + tColor(3));
     x_values = [x_values x_aux];                                        % store coordinates X and Y
     y_values = [y_values y_aux];
-    
+
     %% Categorize Colors - Bins
-    
+    for j = 1 : length(colorBins)
+        valuesofx = round(colorBins(j).XData, 1);
+        valuesofy = round(colorBins(j).YData, 1);
+        if foundC3 == 0 && ismember(round(x_values(1), 1), valuesofx) && ismember(round(y_values(1),1), valuesofy)
+            color_C3 = colorBins(j).Tag;
+            foundC3 = 1;
+        end
+    end
+
+    if foundC3 == 0
+        C3_name = [C3_name ; 'NA       '];
+    else
+        C3_name = [C3_name ; color_C3];
+    end
+
+    foundC3 = 0;
+
     %% Difference between C3 and expected colors C3
     distance_expectedC3_green = [distance_expectedC3_green ; round(pdist([[x_values(1) y_values(1)] ; [x_pre_expectedColors(3) y_pre_expectedColors(3)]]), 2)];  % [given given -C3-]
     distance_expectedC3_purple = [distance_expectedC3_purple ; round(pdist([[x_values(1) y_values(1)] ; [x_pre_expectedColors(4) y_pre_expectedColors(4)]]), 2)];  % [given given -C3-]
-        
+
     %% Difference between C1/C2 blended onto Color Models against pre-calc values
     %%%%%% Compare-it in HSV
     distance_HSV = [distance_HSV; round(pdist([[x_values y_values]; [x_pre_models(1) y_pre_models(1)]]),2)];
-    
+
     %%%%%% Compare-it in CIE-LCh
     distance_LCh = [distance_LCh; round(pdist([[x_values y_values]; [x_pre_models(2) y_pre_models(2)]]), 2)];
-    
+
     %%%%%% Compare-it in CMYK
     distance_CMYK = [distance_CMYK; round(pdist([[x_values y_values]; [x_pre_models(3) y_pre_models(3)]]), 2)];
-    
+
     %%%%%% Compare-it in RGB
     distance_RGB = [distance_RGB; round(pdist([[x_values y_values]; [x_pre_models(4) y_pre_models(4)]]), 2)];
-    
+
     %%%%%% Blend-it in CIE-Lab
     distance_Lab = [distance_Lab; round(pdist([[x_values y_values]; [x_pre_models(5) y_pre_models(5)]]), 2)];
 
@@ -318,10 +411,20 @@ for i = 1 : height(onlineResults)                                  %draw every p
 end
 hold off;
 
-saveas(gcf, fullfile(path, 'online_regularUsers'), 'png'); 
+saveas(gcf, fullfile(path, 'online_regularUsers'), 'png'); close;
+onlineResults(rowsToEliminate, :) = []; rowsToEliminate = [];
 
 diffs_table = table(distance_expectedC3_green, distance_expectedC3_purple, distance_HSV, distance_LCh, distance_CMYK, distance_RGB, distance_Lab);
-onlineResults = [onlineResults diffs_table];
+if size(C3_name, 1) == 1
+    colors_names = cell(1,1);
+    colors_names(1,1) = cellstr(C3_name);
+    colors_names = cell2table(colors_names);
+else
+    colors_names = table(C3_name);
+end
+
+C3_name = [];
+onlineResults = [onlineResults colors_names diffs_table];
 
 % Clean all the tables!
 distance_HSV = []; distance_LCh = []; distance_CMYK = []; distance_RGB = []; distance_Lab = [];
@@ -358,14 +461,32 @@ for i = 1 : height(onlineResults_dalt)
 %% Third Color - C3
     tColor = cell2mat(onlineResults_dalt.third_color(i));       % #RRGGBB
     r = (hex2dec(strcat(tColor(2), tColor(3)))/255);                    % RR
-    g = (hex2dec(strcat(tColor(4), tColor(5)))/255);                    % GG    
+    g = (hex2dec(strcat(tColor(4), tColor(5)))/255);                    % GG
     b = (hex2dec(strcat(tColor(6), tColor(7)))/255);                    % BB
-    tColor = applycform([r g b], cformICC);                         
-    x_aux = tColor(1)/(tColor(1) + tColor(2) + tColor(3)); 
-    y_aux = tColor(2)/(tColor(1) + tColor(2) + tColor(3)); 
+    tColor = applycform([r g b], cformICC);
+    x_aux = tColor(1)/(tColor(1) + tColor(2) + tColor(3));
+    y_aux = tColor(2)/(tColor(1) + tColor(2) + tColor(3));
     x_values = [x_values x_aux];                                        % store coordinates X and Y
     y_values = [y_values y_aux];
-    
+
+    %% Categorize Colors - Bins
+    for j = 1 : length(colorBins)
+        valuesofx = round(colorBins(j).XData, 1);
+        valuesofy = round(colorBins(j).YData, 1);
+        if foundC3 == 0 && ismember(round(x_values(1), 1), valuesofx) && ismember(round(y_values(1),1), valuesofy)
+            color_C3 = colorBins(j).Tag;
+            foundC3 = 1;
+        end
+    end
+
+    if foundC3 == 0
+        C3_name = [C3_name ; 'NA       '];
+    else
+        C3_name = [C3_name ; color_C3];
+    end
+
+    foundC3 = 0;
+
     scatter(x_values, y_values, 50, 'white');                         %draw two responses
     plot(x_values, y_values, 'Color', 'black');                     %draw relations between answers
     x_values = [];                                              %clean the arrays
@@ -373,7 +494,18 @@ for i = 1 : height(onlineResults_dalt)
 end
 hold off;
 
-saveas(gcf, fullfile(path, 'online_daltonicUsers'), 'png'); 
+saveas(gcf, fullfile(path, 'online_daltonicUsers'), 'png'); close;
+
+if size(C3_name, 1) == 1
+    colors_names = cell(1,1);
+    colors_names(1,1) = cellstr(C3_name);
+    colors_names = cell2table(colors_names);
+else
+    colors_names = table(C3_name);
+end
+
+C3_name = [];
+onlineResults_dalt = [onlineResults_dalt colors_names];
 
 %% Online Results - Uncalibrated Users
 
@@ -406,33 +538,49 @@ for i = 1 : height(onlineResults_uncal)                                  %draw e
     %% Third Color - C3
     tColor = cell2mat(onlineResults_uncal.third_color(i));       % #RRGGBB
     r = (hex2dec(strcat(tColor(2), tColor(3)))/255);                    % RR
-    g = (hex2dec(strcat(tColor(4), tColor(5)))/255);                    % GG    
+    g = (hex2dec(strcat(tColor(4), tColor(5)))/255);                    % GG
     b = (hex2dec(strcat(tColor(6), tColor(7)))/255);                    % BB
-    tColor = applycform([r g b], cformICC);                         
-    x_aux = tColor(1)/(tColor(1) + tColor(2) + tColor(3)); 
-    y_aux = tColor(2)/(tColor(1) + tColor(2) + tColor(3)); 
+    tColor = applycform([r g b], cformICC);
+    x_aux = tColor(1)/(tColor(1) + tColor(2) + tColor(3));
+    y_aux = tColor(2)/(tColor(1) + tColor(2) + tColor(3));
     x_values = [x_values x_aux];                                        % store coordinates X and Y
     y_values = [y_values y_aux];
-    
+
     %% Categorize Colors - Bins
-    
+    for j = 1 : length(colorBins)
+        valuesofx = round(colorBins(j).XData, 1);
+        valuesofy = round(colorBins(j).YData, 1);
+        if foundC3 == 0 && ismember(round(x_values(1), 1), valuesofx) && ismember(round(y_values(1),1), valuesofy)
+            color_C3 = colorBins(j).Tag;
+            foundC3 = 1;
+        end
+    end
+
+    if foundC3 == 0
+        C3_name = [C3_name ; 'NA       '];
+    else
+        C3_name = [C3_name ; color_C3];
+    end
+
+    foundC3 = 0;
+
     %% Difference between C3 and expected colors C3
     distance_expectedC3_green = [distance_expectedC3_green ; round(pdist([[x_values(1) y_values(1)] ; [x_pre_expectedColors(3) y_pre_expectedColors(3)]]), 2)];  % [given given -C3-]
     distance_expectedC3_purple = [distance_expectedC3_purple ; round(pdist([[x_values(1) y_values(1)] ; [x_pre_expectedColors(4) y_pre_expectedColors(4)]]), 2)];  % [given given -C3-]
-        
+
     %% Difference between C3  against pre-calc values
     %%%%%% Compare-it in HSV
     distance_HSV = [distance_HSV; round(pdist([[x_values y_values]; [x_pre_models(1) y_pre_models(1)]]),2)];
-    
+
     %%%%%% Compare-it in CIE-LCh
     distance_LCh = [distance_LCh; round(pdist([[x_values y_values]; [x_pre_models(2) y_pre_models(2)]]), 2)];
-    
+
     %%%%%% Compare-it in CMYK
     distance_CMYK = [distance_CMYK; round(pdist([[x_values y_values]; [x_pre_models(3) y_pre_models(3)]]), 2)];
-    
+
     %%%%%% Compare-it in RGB
     distance_RGB = [distance_RGB; round(pdist([[x_values y_values]; [x_pre_models(4) y_pre_models(4)]]), 2)];
-    
+
     %%%%%% Blend-it in CIE-Lab
     distance_Lab = [distance_Lab; round(pdist([[x_values y_values]; [x_pre_models(5) y_pre_models(5)]]), 2)];
 
@@ -443,10 +591,19 @@ for i = 1 : height(onlineResults_uncal)                                  %draw e
 end
 hold off;
 
-saveas(gcf, fullfile(path, 'online_uncalibratedUsers'), 'png'); 
+saveas(gcf, fullfile(path, 'online_uncalibratedUsers'), 'png'); close;
 
 diffs_table = table(distance_expectedC3_green, distance_expectedC3_purple, distance_HSV, distance_LCh, distance_CMYK, distance_RGB, distance_Lab);
-onlineResults_uncal = [onlineResults_uncal diffs_table];
+if size(C3_name, 1) == 1
+    colors_names = cell(1,1);
+    colors_names(1,1) = cellstr(C3_name);
+    colors_names = cell2table(colors_names);
+else
+    colors_names = table(C3_name);
+end
+
+C3_name = [];
+onlineResults_uncal = [onlineResults_uncal colors_names diffs_table];
 
 % Clean all the tables!
 distance_HSV = []; distance_LCh = []; distance_CMYK = []; distance_RGB = []; distance_Lab = [];
@@ -483,33 +640,49 @@ for i = 1 : height(demoResultsAge_20)                                  %draw eve
     %% Third Color - C3
     tColor = cell2mat(demoResultsAge_20.third_color(i));       % #RRGGBB
     r = (hex2dec(strcat(tColor(2), tColor(3)))/255);                    % RR
-    g = (hex2dec(strcat(tColor(4), tColor(5)))/255);                    % GG    
+    g = (hex2dec(strcat(tColor(4), tColor(5)))/255);                    % GG
     b = (hex2dec(strcat(tColor(6), tColor(7)))/255);                    % BB
-    tColor = applycform([r g b], cformICC);                         
-    x_aux = tColor(1)/(tColor(1) + tColor(2) + tColor(3)); 
-    y_aux = tColor(2)/(tColor(1) + tColor(2) + tColor(3)); 
+    tColor = applycform([r g b], cformICC);
+    x_aux = tColor(1)/(tColor(1) + tColor(2) + tColor(3));
+    y_aux = tColor(2)/(tColor(1) + tColor(2) + tColor(3));
     x_values = [x_values x_aux];                                        % store coordinates X and Y
     y_values = [y_values y_aux];
-    
+
     %% Categorize Colors - Bins
-    
+    for j = 1 : length(colorBins)
+        valuesofx = round(colorBins(j).XData, 1);
+        valuesofy = round(colorBins(j).YData, 1);
+        if foundC3 == 0 && ismember(round(x_values(1), 1), valuesofx) && ismember(round(y_values(1),1), valuesofy)
+            color_C3 = colorBins(j).Tag;
+            foundC3 = 1;
+        end
+    end
+
+    if foundC3 == 0
+        C3_name = [C3_name ; 'NA       '];
+    else
+        C3_name = [C3_name ; color_C3];
+    end
+
+    foundC3 = 0;
+
     %% Difference between C3 and expected colors C3
     distance_expectedC3_green = [distance_expectedC3_green ; round(pdist([[x_values(1) y_values(1)] ; [x_pre_expectedColors(3) y_pre_expectedColors(3)]]), 2)];  % [given given -C3-]
     distance_expectedC3_purple = [distance_expectedC3_purple ; round(pdist([[x_values(1) y_values(1)] ; [x_pre_expectedColors(4) y_pre_expectedColors(4)]]), 2)];  % [given given -C3-]
-        
+
     %% Difference between C1/C2 blended onto Color Models against pre-calc values
     %%%%%% Compare-it in HSV
     distance_HSV = [distance_HSV; round(pdist([[x_values y_values]; [x_pre_models(1) y_pre_models(1)]]),2)];
-    
+
     %%%%%% Compare-it in CIE-LCh
     distance_LCh = [distance_LCh; round(pdist([[x_values y_values]; [x_pre_models(2) y_pre_models(2)]]), 2)];
-    
+
     %%%%%% Compare-it in CMYK
     distance_CMYK = [distance_CMYK; round(pdist([[x_values y_values]; [x_pre_models(3) y_pre_models(3)]]), 2)];
-    
+
     %%%%%% Compare-it in RGB
     distance_RGB = [distance_RGB; round(pdist([[x_values y_values]; [x_pre_models(4) y_pre_models(4)]]), 2)];
-    
+
     %%%%%% Blend-it in CIE-Lab
     distance_Lab = [distance_Lab; round(pdist([[x_values y_values]; [x_pre_models(5) y_pre_models(5)]]), 2)];
 
@@ -520,10 +693,19 @@ for i = 1 : height(demoResultsAge_20)                                  %draw eve
 end
 hold off;
 
-saveas(gcf, fullfile(path, 'demographic_age20'), 'png'); 
+saveas(gcf, fullfile(path, 'demographic_age20'), 'png'); close;
 
 diffs_table = table(distance_expectedC3_green, distance_expectedC3_purple, distance_HSV, distance_LCh, distance_CMYK, distance_RGB, distance_Lab);
-demoResultsAge_20 = [demoResultsAge_20 diffs_table];
+if size(C3_name, 1) == 1
+    colors_names = cell(1,1);
+    colors_names(1,1) = cellstr(C3_name);
+    colors_names = cell2table(colors_names);
+else
+    colors_names = table(C3_name);
+end
+
+C3_name = [];
+demoResultsAge_20 = [demoResultsAge_20 colors_names diffs_table];
 
 % Clean all the tables!
 distance_HSV = []; distance_LCh = []; distance_CMYK = []; distance_RGB = []; distance_Lab = [];
@@ -560,33 +742,49 @@ for i = 1 : height(demoResultsAge_20_29)                                  %draw 
     %% Third Color - C3
     tColor = cell2mat(demoResultsAge_20_29.third_color(i));       % #RRGGBB
     r = (hex2dec(strcat(tColor(2), tColor(3)))/255);                    % RR
-    g = (hex2dec(strcat(tColor(4), tColor(5)))/255);                    % GG    
+    g = (hex2dec(strcat(tColor(4), tColor(5)))/255);                    % GG
     b = (hex2dec(strcat(tColor(6), tColor(7)))/255);                    % BB
-    tColor = applycform([r g b], cformICC);                         
-    x_aux = tColor(1)/(tColor(1) + tColor(2) + tColor(3)); 
-    y_aux = tColor(2)/(tColor(1) + tColor(2) + tColor(3)); 
+    tColor = applycform([r g b], cformICC);
+    x_aux = tColor(1)/(tColor(1) + tColor(2) + tColor(3));
+    y_aux = tColor(2)/(tColor(1) + tColor(2) + tColor(3));
     x_values = [x_values x_aux];                                        % store coordinates X and Y
     y_values = [y_values y_aux];
-    
+
     %% Categorize Colors - Bins
-    
+    for j = 1 : length(colorBins)
+        valuesofx = round(colorBins(j).XData, 1);
+        valuesofy = round(colorBins(j).YData, 1);
+        if foundC3 == 0 && ismember(round(x_values(1), 1), valuesofx) && ismember(round(y_values(1),1), valuesofy)
+            color_C3 = colorBins(j).Tag;
+            foundC3 = 1;
+        end
+    end
+
+    if foundC3 == 0
+        C3_name = [C3_name ; 'NA       '];
+    else
+        C3_name = [C3_name ; color_C3];
+    end
+
+    foundC3 = 0;
+
     %% Difference between C3 and expected colors C3
     distance_expectedC3_green = [distance_expectedC3_green ; round(pdist([[x_values(1) y_values(1)] ; [x_pre_expectedColors(3) y_pre_expectedColors(3)]]), 2)];  % [given given -C3-]
     distance_expectedC3_purple = [distance_expectedC3_purple ; round(pdist([[x_values(1) y_values(1)] ; [x_pre_expectedColors(4) y_pre_expectedColors(4)]]), 2)];  % [given given -C3-]
-        
+
     %% Difference between C1/C2 blended onto Color Models against pre-calc values
     %%%%%% Compare-it in HSV
     distance_HSV = [distance_HSV; round(pdist([[x_values y_values]; [x_pre_models(1) y_pre_models(1)]]),2)];
-    
+
     %%%%%% Compare-it in CIE-LCh
     distance_LCh = [distance_LCh; round(pdist([[x_values y_values]; [x_pre_models(2) y_pre_models(2)]]), 2)];
-    
+
     %%%%%% Compare-it in CMYK
     distance_CMYK = [distance_CMYK; round(pdist([[x_values y_values]; [x_pre_models(3) y_pre_models(3)]]), 2)];
-    
+
     %%%%%% Compare-it in RGB
     distance_RGB = [distance_RGB; round(pdist([[x_values y_values]; [x_pre_models(4) y_pre_models(4)]]), 2)];
-    
+
     %%%%%% Blend-it in CIE-Lab
     distance_Lab = [distance_Lab; round(pdist([[x_values y_values]; [x_pre_models(5) y_pre_models(5)]]), 2)];
 
@@ -597,10 +795,19 @@ for i = 1 : height(demoResultsAge_20_29)                                  %draw 
 end
 hold off;
 
-saveas(gcf, fullfile(path, 'demographic_age20_29'), 'png'); 
+saveas(gcf, fullfile(path, 'demographic_age20_29'), 'png'); close;
 
 diffs_table = table(distance_expectedC3_green, distance_expectedC3_purple, distance_HSV, distance_LCh, distance_CMYK, distance_RGB, distance_Lab);
-demoResultsAge_20_29 = [demoResultsAge_20_29 diffs_table];
+if size(C3_name, 1) == 1
+    colors_names = cell(1,1);
+    colors_names(1,1) = cellstr(C3_name);
+    colors_names = cell2table(colors_names);
+else
+    colors_names = table(C3_name);
+end
+
+C3_name = [];
+demoResultsAge_20_29 = [demoResultsAge_20_29 colors_names diffs_table];
 
 % Clean all the tables!
 distance_HSV = []; distance_LCh = []; distance_CMYK = []; distance_RGB = []; distance_Lab = [];
@@ -637,33 +844,49 @@ for i = 1 : height(demoResultsAge_30_39)                                  %draw 
     %% Third Color - C3
     tColor = cell2mat(demoResultsAge_30_39.third_color(i));       % #RRGGBB
     r = (hex2dec(strcat(tColor(2), tColor(3)))/255);                    % RR
-    g = (hex2dec(strcat(tColor(4), tColor(5)))/255);                    % GG    
+    g = (hex2dec(strcat(tColor(4), tColor(5)))/255);                    % GG
     b = (hex2dec(strcat(tColor(6), tColor(7)))/255);                    % BB
-    tColor = applycform([r g b], cformICC);                         
-    x_aux = tColor(1)/(tColor(1) + tColor(2) + tColor(3)); 
-    y_aux = tColor(2)/(tColor(1) + tColor(2) + tColor(3)); 
+    tColor = applycform([r g b], cformICC);
+    x_aux = tColor(1)/(tColor(1) + tColor(2) + tColor(3));
+    y_aux = tColor(2)/(tColor(1) + tColor(2) + tColor(3));
     x_values = [x_values x_aux];                                        % store coordinates X and Y
     y_values = [y_values y_aux];
-    
+
     %% Categorize Colors - Bins
-    
+    for j = 1 : length(colorBins)
+        valuesofx = round(colorBins(j).XData, 1);
+        valuesofy = round(colorBins(j).YData, 1);
+        if foundC3 == 0 && ismember(round(x_values(1), 1), valuesofx) && ismember(round(y_values(1),1), valuesofy)
+            color_C3 = colorBins(j).Tag;
+            foundC3 = 1;
+        end
+    end
+
+    if foundC3 == 0
+        C3_name = [C3_name ; 'NA       '];
+    else
+        C3_name = [C3_name ; color_C3];
+    end
+
+    foundC3 = 0;
+
     %% Difference between C3 and expected colors C3
     distance_expectedC3_green = [distance_expectedC3_green ; round(pdist([[x_values(1) y_values(1)] ; [x_pre_expectedColors(3) y_pre_expectedColors(3)]]), 2)];  % [given given -C3-]
     distance_expectedC3_purple = [distance_expectedC3_purple ; round(pdist([[x_values(1) y_values(1)] ; [x_pre_expectedColors(4) y_pre_expectedColors(4)]]), 2)];  % [given given -C3-]
-        
+
     %% Difference between C1/C2 blended onto Color Models against pre-calc values
     %%%%%% Compare-it in HSV
     distance_HSV = [distance_HSV; round(pdist([[x_values y_values]; [x_pre_models(1) y_pre_models(1)]]),2)];
-    
+
     %%%%%% Compare-it in CIE-LCh
     distance_LCh = [distance_LCh; round(pdist([[x_values y_values]; [x_pre_models(2) y_pre_models(2)]]), 2)];
-    
+
     %%%%%% Compare-it in CMYK
     distance_CMYK = [distance_CMYK; round(pdist([[x_values y_values]; [x_pre_models(3) y_pre_models(3)]]), 2)];
-    
+
     %%%%%% Compare-it in RGB
     distance_RGB = [distance_RGB; round(pdist([[x_values y_values]; [x_pre_models(4) y_pre_models(4)]]), 2)];
-    
+
     %%%%%% Blend-it in CIE-Lab
     distance_Lab = [distance_Lab; round(pdist([[x_values y_values]; [x_pre_models(5) y_pre_models(5)]]), 2)];
 
@@ -674,10 +897,19 @@ for i = 1 : height(demoResultsAge_30_39)                                  %draw 
 end
 hold off;
 
-saveas(gcf, fullfile(path, 'demographic_age30_39'), 'png'); 
+saveas(gcf, fullfile(path, 'demographic_age30_39'), 'png'); close;
 
 diffs_table = table(distance_expectedC3_green, distance_expectedC3_purple, distance_HSV, distance_LCh, distance_CMYK, distance_RGB, distance_Lab);
-demoResultsAge_30_39 = [demoResultsAge_30_39 diffs_table];
+if size(C3_name, 1) == 1
+    colors_names = cell(1,1);
+    colors_names(1,1) = cellstr(C3_name);
+    colors_names = cell2table(colors_names);
+else
+    colors_names = table(C3_name);
+end
+
+C3_name = [];
+demoResultsAge_30_39 = [demoResultsAge_30_39 colors_names diffs_table];
 
 % Clean all the tables!
 distance_HSV = []; distance_LCh = []; distance_CMYK = []; distance_RGB = []; distance_Lab = [];
@@ -714,33 +946,49 @@ for i = 1 : height(demoResultsAge_40_49)                                  %draw 
     %% Third Color - C3
     tColor = cell2mat(demoResultsAge_40_49.third_color(i));       % #RRGGBB
     r = (hex2dec(strcat(tColor(2), tColor(3)))/255);                    % RR
-    g = (hex2dec(strcat(tColor(4), tColor(5)))/255);                    % GG    
+    g = (hex2dec(strcat(tColor(4), tColor(5)))/255);                    % GG
     b = (hex2dec(strcat(tColor(6), tColor(7)))/255);                    % BB
-    tColor = applycform([r g b], cformICC);                         
-    x_aux = tColor(1)/(tColor(1) + tColor(2) + tColor(3)); 
-    y_aux = tColor(2)/(tColor(1) + tColor(2) + tColor(3)); 
+    tColor = applycform([r g b], cformICC);
+    x_aux = tColor(1)/(tColor(1) + tColor(2) + tColor(3));
+    y_aux = tColor(2)/(tColor(1) + tColor(2) + tColor(3));
     x_values = [x_values x_aux];                                        % store coordinates X and Y
     y_values = [y_values y_aux];
-    
+
     %% Categorize Colors - Bins
-    
+    for j = 1 : length(colorBins)
+        valuesofx = round(colorBins(j).XData, 1);
+        valuesofy = round(colorBins(j).YData, 1);
+        if foundC3 == 0 && ismember(round(x_values(1), 1), valuesofx) && ismember(round(y_values(1),1), valuesofy)
+            color_C3 = colorBins(j).Tag;
+            foundC3 = 1;
+        end
+    end
+
+    if foundC3 == 0
+        C3_name = [C3_name ; 'NA       '];
+    else
+        C3_name = [C3_name ; color_C3];
+    end
+
+    foundC3 = 0;
+
     %% Difference between C3 and expected colors C3
     distance_expectedC3_green = [distance_expectedC3_green ; round(pdist([[x_values(1) y_values(1)] ; [x_pre_expectedColors(3) y_pre_expectedColors(3)]]), 2)];  % [given given -C3-]
     distance_expectedC3_purple = [distance_expectedC3_purple ; round(pdist([[x_values(1) y_values(1)] ; [x_pre_expectedColors(4) y_pre_expectedColors(4)]]), 2)];  % [given given -C3-]
-        
+
     %% Difference between C1/C2 blended onto Color Models against pre-calc values
     %%%%%% Compare-it in HSV
     distance_HSV = [distance_HSV; round(pdist([[x_values y_values]; [x_pre_models(1) y_pre_models(1)]]),2)];
-    
+
     %%%%%% Compare-it in CIE-LCh
     distance_LCh = [distance_LCh; round(pdist([[x_values y_values]; [x_pre_models(2) y_pre_models(2)]]), 2)];
-    
+
     %%%%%% Compare-it in CMYK
     distance_CMYK = [distance_CMYK; round(pdist([[x_values y_values]; [x_pre_models(3) y_pre_models(3)]]), 2)];
-    
+
     %%%%%% Compare-it in RGB
     distance_RGB = [distance_RGB; round(pdist([[x_values y_values]; [x_pre_models(4) y_pre_models(4)]]), 2)];
-    
+
     %%%%%% Blend-it in CIE-Lab
     distance_Lab = [distance_Lab; round(pdist([[x_values y_values]; [x_pre_models(5) y_pre_models(5)]]), 2)];
 
@@ -751,10 +999,19 @@ for i = 1 : height(demoResultsAge_40_49)                                  %draw 
 end
 hold off;
 
-saveas(gcf, fullfile(path, 'demographic_age40_49'), 'png'); 
+saveas(gcf, fullfile(path, 'demographic_age40_49'), 'png'); close;
 
 diffs_table = table(distance_expectedC3_green, distance_expectedC3_purple, distance_HSV, distance_LCh, distance_CMYK, distance_RGB, distance_Lab);
-demoResultsAge_40_49 = [demoResultsAge_40_49 diffs_table];
+if size(C3_name, 1) == 1
+    colors_names = cell(1,1);
+    colors_names(1,1) = cellstr(C3_name);
+    colors_names = cell2table(colors_names);
+else
+    colors_names = table(C3_name);
+end
+
+C3_name = [];
+demoResultsAge_40_49 = [demoResultsAge_40_49 colors_names diffs_table];
 
 % Clean all the tables!
 distance_HSV = []; distance_LCh = []; distance_CMYK = []; distance_RGB = []; distance_Lab = [];
@@ -791,33 +1048,49 @@ for i = 1 : height(demoResultsAge_50_59)                                  %draw 
     %% Third Color - C3
     tColor = cell2mat(demoResultsAge_50_59.third_color(i));       % #RRGGBB
     r = (hex2dec(strcat(tColor(2), tColor(3)))/255);                    % RR
-    g = (hex2dec(strcat(tColor(4), tColor(5)))/255);                    % GG    
+    g = (hex2dec(strcat(tColor(4), tColor(5)))/255);                    % GG
     b = (hex2dec(strcat(tColor(6), tColor(7)))/255);                    % BB
-    tColor = applycform([r g b], cformICC);                         
-    x_aux = tColor(1)/(tColor(1) + tColor(2) + tColor(3)); 
-    y_aux = tColor(2)/(tColor(1) + tColor(2) + tColor(3)); 
+    tColor = applycform([r g b], cformICC);
+    x_aux = tColor(1)/(tColor(1) + tColor(2) + tColor(3));
+    y_aux = tColor(2)/(tColor(1) + tColor(2) + tColor(3));
     x_values = [x_values x_aux];                                        % store coordinates X and Y
     y_values = [y_values y_aux];
-    
+
     %% Categorize Colors - Bins
-    
+    for j = 1 : length(colorBins)
+        valuesofx = round(colorBins(j).XData, 1);
+        valuesofy = round(colorBins(j).YData, 1);
+        if foundC3 == 0 && ismember(round(x_values(1), 1), valuesofx) && ismember(round(y_values(1),1), valuesofy)
+            color_C3 = colorBins(j).Tag;
+            foundC3 = 1;
+        end
+    end
+
+    if foundC3 == 0
+        C3_name = [C3_name ; 'NA       '];
+    else
+        C3_name = [C3_name ; color_C3];
+    end
+
+    foundC3 = 0;
+
     %% Difference between C3 and expected colors C3
     distance_expectedC3_green = [distance_expectedC3_green ; round(pdist([[x_values(1) y_values(1)] ; [x_pre_expectedColors(3) y_pre_expectedColors(3)]]), 2)];  % [given given -C3-]
     distance_expectedC3_purple = [distance_expectedC3_purple ; round(pdist([[x_values(1) y_values(1)] ; [x_pre_expectedColors(4) y_pre_expectedColors(4)]]), 2)];  % [given given -C3-]
-        
+
     %% Difference between C1/C2 blended onto Color Models against pre-calc values
     %%%%%% Compare-it in HSV
     distance_HSV = [distance_HSV; round(pdist([[x_values y_values]; [x_pre_models(1) y_pre_models(1)]]),2)];
-    
+
     %%%%%% Compare-it in CIE-LCh
     distance_LCh = [distance_LCh; round(pdist([[x_values y_values]; [x_pre_models(2) y_pre_models(2)]]), 2)];
-    
+
     %%%%%% Compare-it in CMYK
     distance_CMYK = [distance_CMYK; round(pdist([[x_values y_values]; [x_pre_models(3) y_pre_models(3)]]), 2)];
-    
+
     %%%%%% Compare-it in RGB
     distance_RGB = [distance_RGB; round(pdist([[x_values y_values]; [x_pre_models(4) y_pre_models(4)]]), 2)];
-    
+
     %%%%%% Blend-it in CIE-Lab
     distance_Lab = [distance_Lab; round(pdist([[x_values y_values]; [x_pre_models(5) y_pre_models(5)]]), 2)];
 
@@ -828,10 +1101,19 @@ for i = 1 : height(demoResultsAge_50_59)                                  %draw 
 end
 hold off;
 
-saveas(gcf, fullfile(path, 'demographic_age50_59'), 'png'); 
+saveas(gcf, fullfile(path, 'demographic_age50_59'), 'png'); close;
 
 diffs_table = table(distance_expectedC3_green, distance_expectedC3_purple, distance_HSV, distance_LCh, distance_CMYK, distance_RGB, distance_Lab);
-demoResultsAge_50_59 = [demoResultsAge_50_59 diffs_table];
+if size(C3_name, 1) == 1
+    colors_names = cell(1,1);
+    colors_names(1,1) = cellstr(C3_name);
+    colors_names = cell2table(colors_names);
+else
+    colors_names = table(C3_name);
+end
+
+C3_name = [];
+demoResultsAge_50_59 = [demoResultsAge_50_59 colors_names diffs_table];
 
 % Clean all the tables!
 distance_HSV = []; distance_LCh = []; distance_CMYK = []; distance_RGB = []; distance_Lab = [];
@@ -868,33 +1150,49 @@ for i = 1 : height(demoResultsAge_60)                                  %draw eve
     %% Third Color - C3
     tColor = cell2mat(demoResultsAge_60.third_color(i));       % #RRGGBB
     r = (hex2dec(strcat(tColor(2), tColor(3)))/255);                    % RR
-    g = (hex2dec(strcat(tColor(4), tColor(5)))/255);                    % GG    
+    g = (hex2dec(strcat(tColor(4), tColor(5)))/255);                    % GG
     b = (hex2dec(strcat(tColor(6), tColor(7)))/255);                    % BB
-    tColor = applycform([r g b], cformICC);                         
-    x_aux = tColor(1)/(tColor(1) + tColor(2) + tColor(3)); 
-    y_aux = tColor(2)/(tColor(1) + tColor(2) + tColor(3)); 
+    tColor = applycform([r g b], cformICC);
+    x_aux = tColor(1)/(tColor(1) + tColor(2) + tColor(3));
+    y_aux = tColor(2)/(tColor(1) + tColor(2) + tColor(3));
     x_values = [x_values x_aux];                                        % store coordinates X and Y
     y_values = [y_values y_aux];
-    
+
     %% Categorize Colors - Bins
-    
+    for j = 1 : length(colorBins)
+        valuesofx = round(colorBins(j).XData, 1);
+        valuesofy = round(colorBins(j).YData, 1);
+        if foundC3 == 0 && ismember(round(x_values(1), 1), valuesofx) && ismember(round(y_values(1),1), valuesofy)
+            color_C3 = colorBins(j).Tag;
+            foundC3 = 1;
+        end
+    end
+
+    if foundC3 == 0
+        C3_name = [C3_name ; 'NA       '];
+    else
+        C3_name = [C3_name ; color_C3];
+    end
+
+    foundC3 = 0;
+
     %% Difference between C3 and expected colors C3
     distance_expectedC3_green = [distance_expectedC3_green ; round(pdist([[x_values(1) y_values(1)] ; [x_pre_expectedColors(3) y_pre_expectedColors(3)]]), 2)];  % [given given -C3-]
     distance_expectedC3_purple = [distance_expectedC3_purple ; round(pdist([[x_values(1) y_values(1)] ; [x_pre_expectedColors(4) y_pre_expectedColors(4)]]), 2)];  % [given given -C3-]
-        
+
     %% Difference between C1/C2 blended onto Color Models against pre-calc values
     %%%%%% Compare-it in HSV
     distance_HSV = [distance_HSV; round(pdist([[x_values y_values]; [x_pre_models(1) y_pre_models(1)]]),2)];
-    
+
     %%%%%% Compare-it in CIE-LCh
     distance_LCh = [distance_LCh; round(pdist([[x_values y_values]; [x_pre_models(2) y_pre_models(2)]]), 2)];
-    
+
     %%%%%% Compare-it in CMYK
     distance_CMYK = [distance_CMYK; round(pdist([[x_values y_values]; [x_pre_models(3) y_pre_models(3)]]), 2)];
-    
+
     %%%%%% Compare-it in RGB
     distance_RGB = [distance_RGB; round(pdist([[x_values y_values]; [x_pre_models(4) y_pre_models(4)]]), 2)];
-    
+
     %%%%%% Blend-it in CIE-Lab
     distance_Lab = [distance_Lab; round(pdist([[x_values y_values]; [x_pre_models(5) y_pre_models(5)]]), 2)];
 
@@ -905,10 +1203,19 @@ for i = 1 : height(demoResultsAge_60)                                  %draw eve
 end
 hold off;
 
-saveas(gcf, fullfile(path, 'demographic_age60'), 'png'); 
+saveas(gcf, fullfile(path, 'demographic_age60'), 'png'); close;
 
 diffs_table = table(distance_expectedC3_green, distance_expectedC3_purple, distance_HSV, distance_LCh, distance_CMYK, distance_RGB, distance_Lab);
-demoResultsAge_60 = [demoResultsAge_60 diffs_table];
+if size(C3_name, 1) == 1
+    colors_names = cell(1,1);
+    colors_names(1,1) = cellstr(C3_name);
+    colors_names = cell2table(colors_names);
+else
+    colors_names = table(C3_name);
+end
+
+C3_name = [];
+demoResultsAge_60 = [demoResultsAge_60 colors_names diffs_table];
 
 % Clean all the tables!
 distance_HSV = []; distance_LCh = []; distance_CMYK = []; distance_RGB = []; distance_Lab = [];
@@ -945,33 +1252,49 @@ for i = 1 : height(demoResultsGender_Female)                                  %d
     %% Third Color - C3
     tColor = cell2mat(demoResultsGender_Female.third_color(i));       % #RRGGBB
     r = (hex2dec(strcat(tColor(2), tColor(3)))/255);                    % RR
-    g = (hex2dec(strcat(tColor(4), tColor(5)))/255);                    % GG    
+    g = (hex2dec(strcat(tColor(4), tColor(5)))/255);                    % GG
     b = (hex2dec(strcat(tColor(6), tColor(7)))/255);                    % BB
-    tColor = applycform([r g b], cformICC);                         
-    x_aux = tColor(1)/(tColor(1) + tColor(2) + tColor(3)); 
-    y_aux = tColor(2)/(tColor(1) + tColor(2) + tColor(3)); 
+    tColor = applycform([r g b], cformICC);
+    x_aux = tColor(1)/(tColor(1) + tColor(2) + tColor(3));
+    y_aux = tColor(2)/(tColor(1) + tColor(2) + tColor(3));
     x_values = [x_values x_aux];                                        % store coordinates X and Y
     y_values = [y_values y_aux];
-    
+
     %% Categorize Colors - Bins
-    
+    for j = 1 : length(colorBins)
+        valuesofx = round(colorBins(j).XData, 1);
+        valuesofy = round(colorBins(j).YData, 1);
+        if foundC3 == 0 && ismember(round(x_values(1), 1), valuesofx) && ismember(round(y_values(1),1), valuesofy)
+            color_C3 = colorBins(j).Tag;
+            foundC3 = 1;
+        end
+    end
+
+    if foundC3 == 0
+        C3_name = [C3_name ; 'NA       '];
+    else
+        C3_name = [C3_name ; color_C3];
+    end
+
+    foundC3 = 0;
+
     %% Difference between C3 and expected colors C3
     distance_expectedC3_green = [distance_expectedC3_green ; round(pdist([[x_values(1) y_values(1)] ; [x_pre_expectedColors(3) y_pre_expectedColors(3)]]), 2)];  % [given given -C3-]
     distance_expectedC3_purple = [distance_expectedC3_purple ; round(pdist([[x_values(1) y_values(1)] ; [x_pre_expectedColors(4) y_pre_expectedColors(4)]]), 2)];  % [given given -C3-]
-        
+
     %% Difference between C1/C2 blended onto Color Models against pre-calc values
     %%%%%% Compare-it in HSV
     distance_HSV = [distance_HSV; round(pdist([[x_values y_values]; [x_pre_models(1) y_pre_models(1)]]),2)];
-    
+
     %%%%%% Compare-it in CIE-LCh
     distance_LCh = [distance_LCh; round(pdist([[x_values y_values]; [x_pre_models(2) y_pre_models(2)]]), 2)];
-    
+
     %%%%%% Compare-it in CMYK
     distance_CMYK = [distance_CMYK; round(pdist([[x_values y_values]; [x_pre_models(3) y_pre_models(3)]]), 2)];
-    
+
     %%%%%% Compare-it in RGB
     distance_RGB = [distance_RGB; round(pdist([[x_values y_values]; [x_pre_models(4) y_pre_models(4)]]), 2)];
-    
+
     %%%%%% Blend-it in CIE-Lab
     distance_Lab = [distance_Lab; round(pdist([[x_values y_values]; [x_pre_models(5) y_pre_models(5)]]), 2)];
 
@@ -982,10 +1305,19 @@ for i = 1 : height(demoResultsGender_Female)                                  %d
 end
 hold off;
 
-saveas(gcf, fullfile(path, 'demographic_genderFemale'), 'png'); 
+saveas(gcf, fullfile(path, 'demographic_genderFemale'), 'png'); close;
 
 diffs_table = table(distance_expectedC3_green, distance_expectedC3_purple, distance_HSV, distance_LCh, distance_CMYK, distance_RGB, distance_Lab);
-demoResultsGender_Female = [demoResultsGender_Female diffs_table];
+if size(C3_name, 1) == 1
+    colors_names = cell(1,1);
+    colors_names(1,1) = cellstr(C3_name);
+    colors_names = cell2table(colors_names);
+else
+    colors_names = table(C3_name);
+end
+
+C3_name = [];
+demoResultsGender_Female = [demoResultsGender_Female colors_names diffs_table];
 
 % Clean all the tables!
 distance_HSV = []; distance_LCh = []; distance_CMYK = []; distance_RGB = []; distance_Lab = [];
@@ -1022,33 +1354,49 @@ for i = 1 : height(demoResultsGender_Male)                                  %dra
     %% Third Color - C3
     tColor = cell2mat(demoResultsGender_Male.third_color(i));       % #RRGGBB
     r = (hex2dec(strcat(tColor(2), tColor(3)))/255);                    % RR
-    g = (hex2dec(strcat(tColor(4), tColor(5)))/255);                    % GG    
+    g = (hex2dec(strcat(tColor(4), tColor(5)))/255);                    % GG
     b = (hex2dec(strcat(tColor(6), tColor(7)))/255);                    % BB
-    tColor = applycform([r g b], cformICC);                         
-    x_aux = tColor(1)/(tColor(1) + tColor(2) + tColor(3)); 
-    y_aux = tColor(2)/(tColor(1) + tColor(2) + tColor(3)); 
+    tColor = applycform([r g b], cformICC);
+    x_aux = tColor(1)/(tColor(1) + tColor(2) + tColor(3));
+    y_aux = tColor(2)/(tColor(1) + tColor(2) + tColor(3));
     x_values = [x_values x_aux];                                        % store coordinates X and Y
     y_values = [y_values y_aux];
-    
+
     %% Categorize Colors - Bins
-    
+    for j = 1 : length(colorBins)
+        valuesofx = round(colorBins(j).XData, 1);
+        valuesofy = round(colorBins(j).YData, 1);
+        if foundC3 == 0 && ismember(round(x_values(1), 1), valuesofx) && ismember(round(y_values(1),1), valuesofy)
+            color_C3 = colorBins(j).Tag;
+            foundC3 = 1;
+        end
+    end
+
+    if foundC3 == 0
+        C3_name = [C3_name ; 'NA       '];
+    else
+        C3_name = [C3_name ; color_C3];
+    end
+
+    foundC3 = 0;
+
     %% Difference between C3 and expected colors C3
     distance_expectedC3_green = [distance_expectedC3_green ; round(pdist([[x_values(1) y_values(1)] ; [x_pre_expectedColors(3) y_pre_expectedColors(3)]]), 2)];  % [given given -C3-]
     distance_expectedC3_purple = [distance_expectedC3_purple ; round(pdist([[x_values(1) y_values(1)] ; [x_pre_expectedColors(4) y_pre_expectedColors(4)]]), 2)];  % [given given -C3-]
-        
+
     %% Difference between C1/C2 blended onto Color Models against pre-calc values
     %%%%%% Compare-it in HSV
     distance_HSV = [distance_HSV; round(pdist([[x_values y_values]; [x_pre_models(1) y_pre_models(1)]]),2)];
-    
+
     %%%%%% Compare-it in CIE-LCh
     distance_LCh = [distance_LCh; round(pdist([[x_values y_values]; [x_pre_models(2) y_pre_models(2)]]), 2)];
-    
+
     %%%%%% Compare-it in CMYK
     distance_CMYK = [distance_CMYK; round(pdist([[x_values y_values]; [x_pre_models(3) y_pre_models(3)]]), 2)];
-    
+
     %%%%%% Compare-it in RGB
     distance_RGB = [distance_RGB; round(pdist([[x_values y_values]; [x_pre_models(4) y_pre_models(4)]]), 2)];
-    
+
     %%%%%% Blend-it in CIE-Lab
     distance_Lab = [distance_Lab; round(pdist([[x_values y_values]; [x_pre_models(5) y_pre_models(5)]]), 2)];
 
@@ -1059,10 +1407,19 @@ for i = 1 : height(demoResultsGender_Male)                                  %dra
 end
 hold off;
 
-saveas(gcf, fullfile(path, 'demographic_genderMale'), 'png'); 
+saveas(gcf, fullfile(path, 'demographic_genderMale'), 'png'); close;
 
 diffs_table = table(distance_expectedC3_green, distance_expectedC3_purple, distance_HSV, distance_LCh, distance_CMYK, distance_RGB, distance_Lab);
-demoResultsGender_Male = [demoResultsGender_Male diffs_table];
+if size(C3_name, 1) == 1
+    colors_names = cell(1,1);
+    colors_names(1,1) = cellstr(C3_name);
+    colors_names = cell2table(colors_names);
+else
+    colors_names = table(C3_name);
+end
+
+C3_name = [];
+demoResultsGender_Male = [demoResultsGender_Male colors_names diffs_table];
 
 % Clean all the tables!
 distance_HSV = []; distance_LCh = []; distance_CMYK = []; distance_RGB = []; distance_Lab = [];
@@ -1099,33 +1456,49 @@ for i = 1 : height(demoResultsGender_Other)                                  %dr
     %% Third Color - C3
     tColor = cell2mat(demoResultsGender_Other.third_color(i));       % #RRGGBB
     r = (hex2dec(strcat(tColor(2), tColor(3)))/255);                    % RR
-    g = (hex2dec(strcat(tColor(4), tColor(5)))/255);                    % GG    
+    g = (hex2dec(strcat(tColor(4), tColor(5)))/255);                    % GG
     b = (hex2dec(strcat(tColor(6), tColor(7)))/255);                    % BB
-    tColor = applycform([r g b], cformICC);                         
-    x_aux = tColor(1)/(tColor(1) + tColor(2) + tColor(3)); 
-    y_aux = tColor(2)/(tColor(1) + tColor(2) + tColor(3)); 
+    tColor = applycform([r g b], cformICC);
+    x_aux = tColor(1)/(tColor(1) + tColor(2) + tColor(3));
+    y_aux = tColor(2)/(tColor(1) + tColor(2) + tColor(3));
     x_values = [x_values x_aux];                                        % store coordinates X and Y
     y_values = [y_values y_aux];
-    
+
     %% Categorize Colors - Bins
-    
+    for j = 1 : length(colorBins)
+        valuesofx = round(colorBins(j).XData, 1);
+        valuesofy = round(colorBins(j).YData, 1);
+        if foundC3 == 0 && ismember(round(x_values(1), 1), valuesofx) && ismember(round(y_values(1),1), valuesofy)
+            color_C3 = colorBins(j).Tag;
+            foundC3 = 1;
+        end
+    end
+
+    if foundC3 == 0
+        C3_name = [C3_name ; 'NA       '];
+    else
+        C3_name = [C3_name ; color_C3];
+    end
+
+    foundC3 = 0;
+
     %% Difference between C3 and expected colors C3
     distance_expectedC3_green = [distance_expectedC3_green ; round(pdist([[x_values(1) y_values(1)] ; [x_pre_expectedColors(3) y_pre_expectedColors(3)]]), 2)];  % [given given -C3-]
     distance_expectedC3_purple = [distance_expectedC3_purple ; round(pdist([[x_values(1) y_values(1)] ; [x_pre_expectedColors(4) y_pre_expectedColors(4)]]), 2)];  % [given given -C3-]
-        
+
     %% Difference between C1/C2 blended onto Color Models against pre-calc values
     %%%%%% Compare-it in HSV
     distance_HSV = [distance_HSV; round(pdist([[x_values y_values]; [x_pre_models(1) y_pre_models(1)]]),2)];
-    
+
     %%%%%% Compare-it in CIE-LCh
     distance_LCh = [distance_LCh; round(pdist([[x_values y_values]; [x_pre_models(2) y_pre_models(2)]]), 2)];
-    
+
     %%%%%% Compare-it in CMYK
     distance_CMYK = [distance_CMYK; round(pdist([[x_values y_values]; [x_pre_models(3) y_pre_models(3)]]), 2)];
-    
+
     %%%%%% Compare-it in RGB
     distance_RGB = [distance_RGB; round(pdist([[x_values y_values]; [x_pre_models(4) y_pre_models(4)]]), 2)];
-    
+
     %%%%%% Blend-it in CIE-Lab
     distance_Lab = [distance_Lab; round(pdist([[x_values y_values]; [x_pre_models(5) y_pre_models(5)]]), 2)];
 
@@ -1136,10 +1509,19 @@ for i = 1 : height(demoResultsGender_Other)                                  %dr
 end
 hold off;
 
-saveas(gcf, fullfile(path, 'demographic_genderOther'), 'png'); 
+saveas(gcf, fullfile(path, 'demographic_genderOther'), 'png'); close;
 
 diffs_table = table(distance_expectedC3_green, distance_expectedC3_purple, distance_HSV, distance_LCh, distance_CMYK, distance_RGB, distance_Lab);
-demoResultsGender_Other = [demoResultsGender_Other diffs_table];
+if size(C3_name, 1) == 1
+    colors_names = cell(1,1);
+    colors_names(1,1) = cellstr(C3_name);
+    colors_names = cell2table(colors_names);
+else
+    colors_names = table(C3_name);
+end
+
+C3_name = [];
+demoResultsGender_Other = [demoResultsGender_Other colors_names diffs_table];
 
 % Clean all the tables!
 distance_HSV = []; distance_LCh = []; distance_CMYK = []; distance_RGB = []; distance_Lab = [];
@@ -1153,6 +1535,10 @@ writetable(onlineResults_uncal, '/Users/PauloGarcia/Documents/MATLAB/Results/Fir
 
 writetable(laboratoryResults, '/Users/PauloGarcia/Documents/MATLAB/Results/First Study/Question 21/q21_lab_regular.csv');     % Laboratory Regular Users Results Digested
 writetable(laboratoryResults_dalt, '/Users/PauloGarcia/Documents/MATLAB/Results/First Study/Question 21/q21_lab_dalt.csv');   % Laboratory Daltonic Users Results Digested
+
+if isempty(whiteAnswers) ~= 1
+    writetable(whiteAnswers,  '/Users/PauloGarcia/Documents/MATLAB/Results/First Study/Question 21/q21_whiteAnswers.csv')
+end
 
 writetable(demoResultsAge_20, '/Users/PauloGarcia/Documents/MATLAB/Results/First Study/Question 21/q21_age_20.csv', 'WriteRowNames', true);
 writetable(demoResultsAge_20_29, '/Users/PauloGarcia/Documents/MATLAB/Results/First Study/Question 21/q21_age_20_29.csv', 'WriteRowNames', true);

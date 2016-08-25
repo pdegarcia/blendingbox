@@ -10,7 +10,7 @@
 % #3 Step: Blend C1 and C2 in HSV, CIE LCh, CMYK, RGB and CIE Lab Color Models,
 % comparing the result against pre-calculated results for each model.
 
-close all;
+% close all;
 
 centroid_HSV = [];
 distance_centroid_HSV = [];
@@ -64,6 +64,13 @@ pair2_C1 = []; pair2_C2 = [];
 pair3_C1 = []; pair3_C2 = [];
 pair4_C1 = []; pair4_C2 = [];
 % END
+
+distance_givenColor = [];
+whiteAnswers = [];
+rowsToEliminate = [];
+C1_name = [];
+C2_name = [];
+foundC1 = 0; foundC2 = 0;
 
 cformRGB_XYZ    = makecform('srgb2xyz');
 cformLab_LCh    = makecform('lab2lch');
@@ -196,10 +203,18 @@ scatter(x_pre_expectedColors(1), y_pre_expectedColors(1), 60, 'black', 'Filled')
 scatter(x_pre_expectedColors(2), y_pre_expectedColors(2), 60, 'black');                               % draw EXPECTED COLOR
 scatter(x_pre_expectedColors(3), y_pre_expectedColors(3), 60, 'black');                               % draw EXPECTED COLOR
 
-
-
 % Draw every pair of responses.
 for i = 1 : height(laboratoryResults)
+    %% Check if any Component is white or empty Answer
+    sColor = str2num(cell2mat(laboratoryResults.second_color(i)));
+    tColor = str2num(cell2mat(laboratoryResults.third_color(i)));
+
+    if sColor == 0 || tColor == 0
+        whiteAnswers = [whiteAnswers ; laboratoryResults(i,:)];
+        rowsToEliminate = [rowsToEliminate i];
+        continue
+    end
+
     %% First Color - C1
     sColor = str2num(cell2mat(laboratoryResults.second_color(i)));      % cell2mat serve para converter cell para matriz de uint
     valuesSColor = [valuesSColor sColor];                               % store integers values of answers
@@ -229,6 +244,36 @@ for i = 1 : height(laboratoryResults)
     y_values = [y_values y_aux];
 
     %% Categorize Colors - Bins
+    for j = 1 : length(colorBins)
+        valuesofx = round(colorBins(j).XData, 1);
+        valuesofy = round(colorBins(j).YData, 1);
+        if foundC1 == 0 && ismember(round(x_values(1), 1), valuesofx) && ismember(round(y_values(1),1), valuesofy)
+            color_C1 = colorBins(j).Tag;
+            foundC1 = 1;
+        end
+        if foundC2 == 0 && ismember(round(x_values(2), 1), valuesofx) && ismember(round(y_values(2),1), valuesofy)
+            color_C2 = colorBins(j).Tag;
+            foundC2 = 1;
+        end
+    end
+
+    if foundC1 == 0 && foundC2 == 0
+        C1_name = [C1_name ; 'NA       '];
+        C2_name = [C2_name ; 'NA       '];
+    else if foundC1 == 1 && foundC2 == 0
+            C1_name = [C1_name ; color_C1];
+            C2_name = [C2_name ; 'NA       '];
+        else if foundC1 == 0 && foundC2 == 1
+                C1_name = [C1_name ; 'NA       '];
+                C2_name = [C2_name ; color_C2];
+            else
+                C1_name = [C1_name ; color_C1];
+                C2_name = [C2_name ; color_C2];
+            end
+        end
+    end
+    foundC1 = 0; foundC2 = 0;
+
 
     %% Difference between C1/C2 and expected colors C1/C2
     diff_c1_expected = round(pdist([[x_values(1) y_values(1)] ; [x_pre_expectedColors(2) y_pre_expectedColors(2)]]), 2);  % [given -C1- C2]
@@ -334,7 +379,8 @@ for i = 1 : height(laboratoryResults)
 end
 hold off;
 
-saveas(gcf, fullfile(path, 'lab_regularUsers'), 'png');
+saveas(gcf, fullfile(path, 'lab_regularUsers'), 'png'); close;
+laboratoryResults(rowsToEliminate, :) = []; rowsToEliminate = [];
 
 % Centroids of Color Models
 centroid_HSV    = [centroid_HSV  ; [round(mean(x_values_HSV),2) round(mean(y_values_HSV),2)]];
@@ -354,7 +400,18 @@ diffs_table = table(distance_expectedC1C2, distance_HSV, distance_LCh, distance_
 diffs_pairs = table(distance_pair1,distance_pair2,distance_pair3,distance_pair4);
 diffs_table = [diffs_table diffs_pairs];
 
-laboratoryResults = [laboratoryResults diffs_table];
+if size(C1_name, 1) == 1
+    colors_names = cell(1,2);
+    colors_names(1,1) = cellstr(C1_name);
+    colors_names(1,2) = cellstr(C2_name);
+    colors_names = cell2table(colors_names);
+else
+    colors_names = table(C1_name, C2_name);
+end
+
+C1_name = []; C2_name = [];
+
+laboratoryResults = [laboratoryResults colors_names diffs_table];
 
 % Plot Results for each Color Model
 figure('NumberTitle','off');
@@ -366,7 +423,7 @@ hold on;
 scatter(x_pre_models(1), y_pre_models(1), 50, 'black', 'Filled');          % Draw expected response for this model
 scatter(x_values_HSV, y_values_HSV, 50, 'white');                          % Draw responses mixed in HSV
 hold off;
-saveas(gcf, fullfile(path, 'lab_HSVresponses'), 'png');
+saveas(gcf, fullfile(path, 'lab_HSVresponses'), 'png'); close;
 
 figure('NumberTitle','off');
 cieplot();
@@ -377,7 +434,7 @@ hold on;
 scatter(x_pre_models(2), y_pre_models(2), 50, 'black', 'Filled');          % Draw expected response for this model
 scatter(x_values_LCh, y_values_LCh, 50, 'white');                          % Draw responses mixed in LCh
 hold off;
-saveas(gcf, fullfile(path, 'lab_LChresponses'), 'png');
+saveas(gcf, fullfile(path, 'lab_LChresponses'), 'png'); close;
 
 figure('NumberTitle','off');
 cieplot();
@@ -388,7 +445,7 @@ hold on;
 scatter(x_pre_models(3), y_pre_models(3), 50, 'black', 'Filled');          % Draw expected response for this model
 scatter(x_values_CMYK, y_values_CMYK, 50, 'white');                          % Draw responses mixed in CMYK
 hold off;
-saveas(gcf, fullfile(path, 'lab_CMYKresponses'), 'png');
+saveas(gcf, fullfile(path, 'lab_CMYKresponses'), 'png'); close;
 
 figure('NumberTitle','off');
 cieplot();
@@ -399,7 +456,7 @@ hold on;
 scatter(x_pre_models(4), y_pre_models(4), 50, 'black', 'Filled');          % Draw expected response for this model
 scatter(x_values_RGB, y_values_RGB, 50, 'white');                          % Draw responses mixed in RGB
 hold off;
-saveas(gcf, fullfile(path, 'lab_RGBresponses'), 'png');
+saveas(gcf, fullfile(path, 'lab_RGBresponses'), 'png'); close;
 
 figure('NumberTitle','off');
 cieplot();
@@ -410,7 +467,7 @@ hold on;
 scatter(x_pre_models(5), y_pre_models(5), 50, 'black', 'Filled');          % Draw expected response for this model
 scatter(x_values_Lab, y_values_Lab, 50, 'white');                          % Draw responses mixed in Lab
 hold off;
-saveas(gcf, fullfile(path, 'lab_Labresponses'), 'png');
+saveas(gcf, fullfile(path, 'lab_Labresponses'), 'png'); close;
 
 % Clean all the tables! -- CHANGE HERE
 x_values_HSV = []; y_values_HSV = []; x_values_LCh = []; y_values_LCh = []; x_values_CMYK = []; y_values_CMYK = []; x_values_RGB = []; y_values_RGB = []; x_values_Lab = []; y_values_Lab = [];
@@ -456,6 +513,37 @@ for i = 1 : height(laboratoryResults_dalt)
     x_values = [x_values x_aux];
     y_values = [y_values y_aux];
 
+    %% Categorize Colors - Bins
+    for j = 1 : length(colorBins)
+        valuesofx = round(colorBins(j).XData, 1);
+        valuesofy = round(colorBins(j).YData, 1);
+        if foundC1 == 0 && ismember(round(x_values(1), 1), valuesofx) && ismember(round(y_values(1),1), valuesofy)
+            color_C1 = colorBins(j).Tag;
+            foundC1 = 1;
+        end
+        if foundC2 == 0 && ismember(round(x_values(2), 1), valuesofx) && ismember(round(y_values(2),1), valuesofy)
+            color_C2 = colorBins(j).Tag;
+            foundC2 = 1;
+        end
+    end
+
+    if foundC1 == 0 && foundC2 == 0
+        C1_name = [C1_name ; 'NA       '];
+        C2_name = [C2_name ; 'NA       '];
+    else if foundC1 == 1 && foundC2 == 0
+            C1_name = [C1_name ; color_C1];
+            C2_name = [C2_name ; 'NA       '];
+        else if foundC1 == 0 && foundC2 == 1
+                C1_name = [C1_name ; 'NA       '];
+                C2_name = [C2_name ; color_C2];
+            else
+                C1_name = [C1_name ; color_C1];
+                C2_name = [C2_name ; color_C2];
+            end
+        end
+    end
+    foundC1 = 0; foundC2 = 0;
+
     scatter(x_values, y_values, 50, 'white');
     plot(x_values, y_values, 'Color', 'black');
     x_values = [];
@@ -463,7 +551,20 @@ for i = 1 : height(laboratoryResults_dalt)
 end
 hold off;
 
-saveas(gcf, fullfile(path, 'lab_daltonicUsers'), 'png');
+saveas(gcf, fullfile(path, 'lab_daltonicUsers'), 'png'); close;
+
+
+if size(C1_name, 1) == 1
+    colors_names = cell(1,2);
+    colors_names(1,1) = cellstr(C1_name);
+    colors_names(1,2) = cellstr(C2_name);
+    colors_names = cell2table(colors_names);
+else
+    colors_names = table(C1_name, C2_name);
+end
+
+C1_name = []; C2_name = [];
+laboratoryResults_dalt = [laboratoryResults_dalt colors_names];
 
 %% Online Results - Regular Users
 
@@ -479,7 +580,17 @@ scatter(x_pre_expectedColors(2), y_pre_expectedColors(2), 60, 'black');         
 scatter(x_pre_expectedColors(3), y_pre_expectedColors(3), 60, 'black');                   %draw EXPECTED COLOR
 
 for i = 1 : height(onlineResults)                                  %draw every pair of responses.
-    %First Color
+    %% Check if any Component is white or empty Answer
+    sColor = str2num(cell2mat(onlineResults.second_color(i)));
+    tColor = str2num(cell2mat(onlineResults.third_color(i)));
+
+    if sColor == 0 || tColor == 0
+        whiteAnswers = [whiteAnswers ; onlineResults(i,:)];
+        rowsToEliminate = [rowsToEliminate i];
+        continue
+    end
+
+    %% First Color
     sColor = str2num(cell2mat(onlineResults.second_color(i)));     %cell2mat serve para converter cell para matriz de uint
     valuesSColor = [valuesSColor sColor];                   %store integers values of answers
     sColor = sColor/360;                                    %scale value to [0,1] instead of [0, 360]
@@ -506,6 +617,36 @@ for i = 1 : height(onlineResults)                                  %draw every p
     y_values = [y_values y_aux];
 
     %% Categorize Colors - Bins
+    for j = 1 : length(colorBins)
+        valuesofx = round(colorBins(j).XData, 1);
+        valuesofy = round(colorBins(j).YData, 1);
+        if foundC1 == 0 && ismember(round(x_values(1), 1), valuesofx) && ismember(round(y_values(1),1), valuesofy)
+            color_C1 = colorBins(j).Tag;
+            foundC1 = 1;
+        end
+        if foundC2 == 0 && ismember(round(x_values(2), 1), valuesofx) && ismember(round(y_values(2),1), valuesofy)
+            color_C2 = colorBins(j).Tag;
+            foundC2 = 1;
+        end
+    end
+
+    if foundC1 == 0 && foundC2 == 0
+        C1_name = [C1_name ; 'NA       '];
+        C2_name = [C2_name ; 'NA       '];
+    else if foundC1 == 1 && foundC2 == 0
+            C1_name = [C1_name ; color_C1];
+            C2_name = [C2_name ; 'NA       '];
+        else if foundC1 == 0 && foundC2 == 1
+                C1_name = [C1_name ; 'NA       '];
+                C2_name = [C2_name ; color_C2];
+            else
+                C1_name = [C1_name ; color_C1];
+                C2_name = [C2_name ; color_C2];
+            end
+        end
+    end
+    foundC1 = 0; foundC2 = 0;
+
 
     %% Difference between C1/C2 and expected colors C1/C2
     diff_c1_expected = round(pdist([[x_values(1) y_values(1)] ; [x_pre_expectedColors(2) y_pre_expectedColors(2)]]), 2);  % [given -C1- C2]
@@ -611,7 +752,8 @@ for i = 1 : height(onlineResults)                                  %draw every p
 end
 hold off;
 
-saveas(gcf, fullfile(path, 'online_regularUsers'), 'png');
+saveas(gcf, fullfile(path, 'online_regularUsers'), 'png'); close;
+onlineResults(rowsToEliminate, :) = []; rowsToEliminate = [];
 
 % Centroids of Color Models
 centroid_HSV    = [centroid_HSV  ; [round(mean(x_values_HSV),2) round(mean(y_values_HSV),2)]];
@@ -630,7 +772,18 @@ diffs_table = table(distance_expectedC1C2, distance_HSV, distance_LCh, distance_
 diffs_pairs = table(distance_pair1,distance_pair2,distance_pair3,distance_pair4);
 diffs_table = [diffs_table diffs_pairs];
 
-onlineResults = [onlineResults diffs_table];
+if size(C1_name, 1) == 1
+    colors_names = cell(1,2);
+    colors_names(1,1) = cellstr(C1_name);
+    colors_names(1,2) = cellstr(C2_name);
+    colors_names = cell2table(colors_names);
+else
+    colors_names = table(C1_name, C2_name);
+end
+
+C1_name = []; C2_name = [];
+
+onlineResults = [onlineResults colors_names diffs_table];
 
 % Plot Results for each Color Model
 figure('NumberTitle','off');
@@ -642,7 +795,7 @@ hold on;
 scatter(x_pre_models(1), y_pre_models(1), 50, 'black', 'Filled');          % Draw expected response for this model
 scatter(x_values_HSV, y_values_HSV, 50, 'white');                          % Draw responses mixed in HSV
 hold off;
-saveas(gcf, fullfile(path, 'online_HSVresponses'), 'png');
+saveas(gcf, fullfile(path, 'online_HSVresponses'), 'png'); close;
 
 figure('NumberTitle','off');
 cieplot();
@@ -653,7 +806,7 @@ hold on;
 scatter(x_pre_models(2), y_pre_models(2), 50, 'black', 'Filled');          % Draw expected response for this model
 scatter(x_values_LCh, y_values_LCh, 50, 'white');                          % Draw responses mixed in LCh
 hold off;
-saveas(gcf, fullfile(path, 'online_LChresponses'), 'png');
+saveas(gcf, fullfile(path, 'online_LChresponses'), 'png'); close;
 
 figure('NumberTitle','off');
 cieplot();
@@ -664,7 +817,7 @@ hold on;
 scatter(x_pre_models(3), y_pre_models(3), 50, 'black', 'Filled');          % Draw expected response for this model
 scatter(x_values_CMYK, y_values_CMYK, 50, 'white');                          % Draw responses mixed in CMYK
 hold off;
-saveas(gcf, fullfile(path, 'online_CMYKresponses'), 'png');
+saveas(gcf, fullfile(path, 'online_CMYKresponses'), 'png'); close;
 
 figure('NumberTitle','off');
 cieplot();
@@ -675,7 +828,7 @@ hold on;
 scatter(x_pre_models(4), y_pre_models(4), 50, 'black', 'Filled');          % Draw expected response for this model
 scatter(x_values_RGB, y_values_RGB, 50, 'white');                          % Draw responses mixed in RGB
 hold off;
-saveas(gcf, fullfile(path, 'online_RGBresponses'), 'png');
+saveas(gcf, fullfile(path, 'online_RGBresponses'), 'png'); close;
 
 figure('NumberTitle','off');
 cieplot();
@@ -686,7 +839,7 @@ hold on;
 scatter(x_pre_models(5), y_pre_models(5), 50, 'black', 'Filled');          % Draw expected response for this model
 scatter(x_values_Lab, y_values_Lab, 50, 'white');                          % Draw responses mixed in Lab
 hold off;
-saveas(gcf, fullfile(path, 'online_Labresponses'), 'png');
+saveas(gcf, fullfile(path, 'online_Labresponses'), 'png'); close;
 
 % Clean all the tables! -- CHANGE HERE
 x_values_HSV = []; y_values_HSV = []; x_values_LCh = []; y_values_LCh = []; x_values_CMYK = []; y_values_CMYK = []; x_values_RGB = []; y_values_RGB = []; x_values_Lab = []; y_values_Lab = [];
@@ -732,6 +885,37 @@ for i = 1 : height(onlineResults_dalt)
     x_values = [x_values x_aux];
     y_values = [y_values y_aux];
 
+    %% Categorize Colors - Bins
+    for j = 1 : length(colorBins)
+        valuesofx = round(colorBins(j).XData, 1);
+        valuesofy = round(colorBins(j).YData, 1);
+        if foundC1 == 0 && ismember(round(x_values(1), 1), valuesofx) && ismember(round(y_values(1),1), valuesofy)
+            color_C1 = colorBins(j).Tag;
+            foundC1 = 1;
+        end
+        if foundC2 == 0 && ismember(round(x_values(2), 1), valuesofx) && ismember(round(y_values(2),1), valuesofy)
+            color_C2 = colorBins(j).Tag;
+            foundC2 = 1;
+        end
+    end
+
+    if foundC1 == 0 && foundC2 == 0
+        C1_name = [C1_name ; 'NA       '];
+        C2_name = [C2_name ; 'NA       '];
+    else if foundC1 == 1 && foundC2 == 0
+            C1_name = [C1_name ; color_C1];
+            C2_name = [C2_name ; 'NA       '];
+        else if foundC1 == 0 && foundC2 == 1
+                C1_name = [C1_name ; 'NA       '];
+                C2_name = [C2_name ; color_C2];
+            else
+                C1_name = [C1_name ; color_C1];
+                C2_name = [C2_name ; color_C2];
+            end
+        end
+    end
+    foundC1 = 0; foundC2 = 0;
+
     scatter(x_values, y_values, 50, 'white');
     plot(x_values, y_values, 'Color', 'black');
     x_values = [];
@@ -739,7 +923,19 @@ for i = 1 : height(onlineResults_dalt)
 end
 hold off;
 
-saveas(gcf, fullfile(path, 'online_daltonicUsers'), 'png');
+saveas(gcf, fullfile(path, 'online_daltonicUsers'), 'png'); close;
+
+if size(C1_name, 1) == 1
+    colors_names = cell(1,2);
+    colors_names(1,1) = cellstr(C1_name);
+    colors_names(1,2) = cellstr(C2_name);
+    colors_names = cell2table(colors_names);
+else
+    colors_names = table(C1_name, C2_name);
+end
+
+C1_name = []; C2_name = [];
+onlineResults_dalt = [onlineResults_dalt colors_names];
 
 %% Online Results - Uncalibrated Users
 
@@ -782,6 +978,36 @@ for i = 1 : height(onlineResults_uncal)                                  %draw e
     y_values = [y_values y_aux];
 
     %% Categorize Colors - Bins
+    for j = 1 : length(colorBins)
+        valuesofx = round(colorBins(j).XData, 1);
+        valuesofy = round(colorBins(j).YData, 1);
+        if foundC1 == 0 && ismember(round(x_values(1), 1), valuesofx) && ismember(round(y_values(1),1), valuesofy)
+            color_C1 = colorBins(j).Tag;
+            foundC1 = 1;
+        end
+        if foundC2 == 0 && ismember(round(x_values(2), 1), valuesofx) && ismember(round(y_values(2),1), valuesofy)
+            color_C2 = colorBins(j).Tag;
+            foundC2 = 1;
+        end
+    end
+
+    if foundC1 == 0 && foundC2 == 0
+        C1_name = [C1_name ; 'NA       '];
+        C2_name = [C2_name ; 'NA       '];
+    else if foundC1 == 1 && foundC2 == 0
+            C1_name = [C1_name ; color_C1];
+            C2_name = [C2_name ; 'NA       '];
+        else if foundC1 == 0 && foundC2 == 1
+                C1_name = [C1_name ; 'NA       '];
+                C2_name = [C2_name ; color_C2];
+            else
+                C1_name = [C1_name ; color_C1];
+                C2_name = [C2_name ; color_C2];
+            end
+        end
+    end
+    foundC1 = 0; foundC2 = 0;
+
 
     %% Difference between C1/C2 and expected colors C1/C2
     diff_c1_expected = round(pdist([[x_values(1) y_values(1)] ; [x_pre_expectedColors(2) y_pre_expectedColors(2)]]), 2);  % [given -C1- C2]
@@ -887,7 +1113,7 @@ for i = 1 : height(onlineResults_uncal)                                  %draw e
 end
 hold off;
 
-saveas(gcf, fullfile(path, 'online_uncalibratedUsers'), 'png');
+saveas(gcf, fullfile(path, 'online_uncalibratedUsers'), 'png'); close;
 
 % Centroids of Color Models
 centroid_HSV    = [centroid_HSV  ; [round(mean(x_values_HSV),2) round(mean(y_values_HSV),2)]];
@@ -906,12 +1132,24 @@ diffs_table = table(distance_expectedC1C2, distance_HSV, distance_LCh, distance_
 diffs_pairs = table(distance_pair1,distance_pair2,distance_pair3,distance_pair4);
 diffs_table = [diffs_table diffs_pairs];
 
-onlineResults_uncal = [onlineResults_uncal diffs_table];
+if size(C1_name, 1) == 1
+    colors_names = cell(1,2);
+    colors_names(1,1) = cellstr(C1_name);
+    colors_names(1,2) = cellstr(C2_name);
+    colors_names = cell2table(colors_names);
+else
+    colors_names = table(C1_name, C2_name);
+end
+
+C1_name = []; C2_name = [];
+
+onlineResults_uncal = [onlineResults_uncal colors_names diffs_table];
 
 % Clean all the tables!
-x_values_HSV = []; y_values_HSV = []; x_values_LCh = []; y_values_LCh = []; x_values_CMYK = []; y_values_CMYK = []; x_values_RGB = []; y_values_RGB = []; x_values_Lab = []; y_values_Lab = [];  
+x_values_HSV = []; y_values_HSV = []; x_values_LCh = []; y_values_LCh = []; x_values_CMYK = []; y_values_CMYK = []; x_values_RGB = []; y_values_RGB = []; x_values_Lab = []; y_values_Lab = [];
 distance_HSV = []; distance_LCh = []; distance_CMYK = []; distance_RGB = []; distance_Lab = [];
 distance_expectedC1C2 = [];
+distance_pair1 = []; distance_pair2 = []; distance_pair3 = []; distance_pair4 = [];
 
 %% Demographic Analysis - AGE <= 20
 
@@ -928,42 +1166,72 @@ scatter(x_pre_expectedColors(3), y_pre_expectedColors(3), 60, 'black');         
 
 
 % Draw every pair of responses.
-for i = 1 : height(demoResultsAge_20)                                  
+for i = 1 : height(demoResultsAge_20)
     %% First Color - C1
-    sColor = str2num(cell2mat(demoResultsAge_20.second_color(i)));      
-    valuesSColor = [valuesSColor sColor];                               
-    sColor = sColor/360;                                                
-    sColor = [sColor 1 1];                                             
+    sColor = str2num(cell2mat(demoResultsAge_20.second_color(i)));
+    valuesSColor = [valuesSColor sColor];
+    sColor = sColor/360;
+    sColor = [sColor 1 1];
     hsv_C1 = sColor;
-    sColor = hsv2rgb(sColor);                                           
+    sColor = hsv2rgb(sColor);
     rgb_C1 = round([sColor(1)*255 sColor(2)*255 sColor(3)*255]);
-    sColor = rgb2xyz(sColor);                                           
-    x_aux = sColor(1)/(sColor(1) + sColor(2) + sColor(3));              
-    y_aux = sColor(2)/(sColor(1) + sColor(2) + sColor(3));              
-    x_values = [x_values x_aux];                                        
+    sColor = rgb2xyz(sColor);
+    x_aux = sColor(1)/(sColor(1) + sColor(2) + sColor(3));
+    y_aux = sColor(2)/(sColor(1) + sColor(2) + sColor(3));
+    x_values = [x_values x_aux];
     y_values = [y_values y_aux];
-    
+
     %% Second Color - C2
     tColor = str2num(cell2mat(demoResultsAge_20.third_color(i)));
-    valuesTColor = [valuesTColor tColor];                               
-    tColor = tColor/360;                                                
-    tColor = [tColor 1 1];                                             
+    valuesTColor = [valuesTColor tColor];
+    tColor = tColor/360;
+    tColor = [tColor 1 1];
     hsv_C2 = tColor;
-    tColor = hsv2rgb(tColor);                                           
+    tColor = hsv2rgb(tColor);
     rgb_C2 = round([tColor(1)*255 tColor(2)*255 tColor(3)*255]);
-    tColor = rgb2xyz(tColor);                                           
-    x_aux = tColor(1)/(tColor(1) + tColor(2) + tColor(3));              
-    y_aux = tColor(2)/(tColor(1) + tColor(2) + tColor(3));              
-    x_values = [x_values x_aux];                                        
+    tColor = rgb2xyz(tColor);
+    x_aux = tColor(1)/(tColor(1) + tColor(2) + tColor(3));
+    y_aux = tColor(2)/(tColor(1) + tColor(2) + tColor(3));
+    x_values = [x_values x_aux];
     y_values = [y_values y_aux];
-    
+
     %% Categorize Colors - Bins
-    
+    for j = 1 : length(colorBins)
+        valuesofx = round(colorBins(j).XData, 1);
+        valuesofy = round(colorBins(j).YData, 1);
+        if foundC1 == 0 && ismember(round(x_values(1), 1), valuesofx) && ismember(round(y_values(1),1), valuesofy)
+            color_C1 = colorBins(j).Tag;
+            foundC1 = 1;
+        end
+        if foundC2 == 0 && ismember(round(x_values(2), 1), valuesofx) && ismember(round(y_values(2),1), valuesofy)
+            color_C2 = colorBins(j).Tag;
+            foundC2 = 1;
+        end
+    end
+
+    if foundC1 == 0 && foundC2 == 0
+        C1_name = [C1_name ; 'NA       '];
+        C2_name = [C2_name ; 'NA       '];
+    else if foundC1 == 1 && foundC2 == 0
+            C1_name = [C1_name ; color_C1];
+            C2_name = [C2_name ; 'NA       '];
+        else if foundC1 == 0 && foundC2 == 1
+                C1_name = [C1_name ; 'NA       '];
+                C2_name = [C2_name ; color_C2];
+            else
+                C1_name = [C1_name ; color_C1];
+                C2_name = [C2_name ; color_C2];
+            end
+        end
+    end
+    foundC1 = 0; foundC2 = 0;
+
+
     %% Difference between C1/C2 and expected colors C1/C2
     diff_c1_expected = round(pdist([[x_values(1) y_values(1)] ; [x_pre_expectedColors(2) y_pre_expectedColors(2)]]), 2);  % [given -C1- C2]
     diff_c2_expected = round(pdist([[x_values(2) y_values(2)] ; [x_pre_expectedColors(3) y_pre_expectedColors(3)]]), 2);  % [given C1 -C2-]
     distance_expectedC1C2 = [distance_expectedC1C2 ; diff_c1_expected + diff_c2_expected];
-    
+
     %% Difference between C1/C2 and other pairs which generate the same color       %% -- CHANGE HERE (ADD MORE PAIRS IF NEEDED)
     diff_c1_pair1c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair1(1) y_pair1(1)]]), 2);   diff_c2_pair1c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair1(2) y_pair1(2)]]), 2);
     distance_pair1 = [distance_pair1 ; diff_c1_pair1c1 + diff_c2_pair1c2];
@@ -979,7 +1247,7 @@ for i = 1 : height(demoResultsAge_20)
 
     %% Difference between C1/C2 blended onto Color Models against pre-calc values
     %%%%%% Blend-it in HSV
-    sColor_hsv = [(hsv_C1(1)*360) hsv_C1(2) hsv_C1(3)]; tColor_hsv = [(hsv_C2(1)*360) hsv_C2(2) hsv_C2(3)];     
+    sColor_hsv = [(hsv_C1(1)*360) hsv_C1(2) hsv_C1(3)]; tColor_hsv = [(hsv_C2(1)*360) hsv_C2(2) hsv_C2(3)];
     diff_angles = abs(sColor_hsv(1) - tColor_hsv(1));
     if diff_angles > 180
         angle_small = (360 - diff_angles);  % smallest angle
@@ -993,11 +1261,11 @@ for i = 1 : height(demoResultsAge_20)
     else
         angle = min([sColor_hsv(1) tColor_hsv(1)]) + (diff_angles / 2);
     end
-    rColor = rgb2xyz(hsv2rgb(([angle/360 sColor_hsv(2) sColor_hsv(3)])));                                  % hsv -> rgb -> xyz -> compare 
+    rColor = rgb2xyz(hsv2rgb(([angle/360 sColor_hsv(2) sColor_hsv(3)])));                                  % hsv -> rgb -> xyz -> compare
     x_aux  = rColor(1)/(rColor(1) + rColor(2) + rColor(3)); y_aux = rColor(2)/(rColor(1) + rColor(2) + rColor(3));
     distance_HSV = [distance_HSV; round(pdist([[x_aux y_aux]; [x_pre_models(1) y_pre_models(1)]]),2)];
     x_values_HSV = [x_values_HSV x_aux]; y_values_HSV = [y_values_HSV y_aux];
-    
+
     %%%%%% Blend-it in CIE-LCh (XYZ -> Lab -> LCh)
     sColor_lch = sColor; tColor_lch = tColor;
     sColor_lch = applycform(applycform(sColor_lch, cformXYZ_Lab), cformLab_LCh); tColor_lch = applycform(applycform(tColor_lch, cformXYZ_Lab), cformLab_LCh);
@@ -1021,7 +1289,7 @@ for i = 1 : height(demoResultsAge_20)
     x_aux  = rColor(1)/(rColor(1) + rColor(2) + rColor(3)); y_aux = rColor(2)/(rColor(1) + rColor(2) + rColor(3));
     distance_LCh = [distance_LCh; round(pdist([[x_aux y_aux]; [x_pre_models(2) y_pre_models(2)]]), 2)];
     x_values_LCh = [x_values_LCh x_aux]; y_values_LCh = [y_values_LCh y_aux];
-    
+
     %%%%%% Blend-it in CMYK
     sColor_cmyk = sColor; tColor_cmyk = tColor;
     sColor_cmyk = applycform(applycform(sColor_cmyk, cformXYZ_RGB), cformRGB_CMYK); tColor_cmyk = applycform(applycform(tColor_cmyk, cformXYZ_RGB), cformRGB_CMYK);
@@ -1033,7 +1301,7 @@ for i = 1 : height(demoResultsAge_20)
     x_aux  = rColor(1)/(rColor(1) + rColor(2) + rColor(3)); y_aux = rColor(2)/(rColor(1) + rColor(2) + rColor(3));
     distance_CMYK = [distance_CMYK; round(pdist([[x_aux y_aux]; [x_pre_models(3) y_pre_models(3)]]), 2)];
     x_values_CMYK = [x_values_CMYK x_aux]; y_values_CMYK = [y_values_CMYK y_aux];
-    
+
     %%%%%% Blend-it in RGB
     sColor_rgb = sColor; tColor_rgb = tColor;
     sColor_rgb = applycform(sColor_rgb, cformXYZ_RGB); tColor_rgb = applycform(tColor_rgb, cformXYZ_RGB);
@@ -1044,7 +1312,7 @@ for i = 1 : height(demoResultsAge_20)
     x_aux  = rColor(1)/(rColor(1) + rColor(2) + rColor(3)); y_aux = rColor(2)/(rColor(1) + rColor(2) + rColor(3));
     distance_RGB = [distance_RGB; round(pdist([[x_aux y_aux]; [x_pre_models(4) y_pre_models(4)]]), 2)];
     x_values_RGB = [x_values_RGB x_aux]; y_values_RGB = [y_values_RGB y_aux];
-    
+
     %%%%%% Blend-it in CIE-Lab
     sColor_lab = sColor; tColor_lab = tColor;
     sColor_lab = applycform(sColor_lab, cformXYZ_Lab); tColor_lab = applycform(tColor_lab, cformXYZ_Lab);
@@ -1063,7 +1331,7 @@ for i = 1 : height(demoResultsAge_20)
 end
 hold off;
 
-saveas(gcf, fullfile(path, 'demographic_ageLess20'), 'png');
+saveas(gcf, fullfile(path, 'demographic_ageLess20'), 'png'); close;
 
 % Centroids of Color Models
 centroid_HSV    = [centroid_HSV  ; [round(mean(x_values_HSV),2) round(mean(y_values_HSV),2)]];
@@ -1080,8 +1348,21 @@ distance_centroid_Lab = [distance_centroid_Lab ; round(pdist([mean(x_values_Lab)
 
 % Catenate all Tables               -- CHANGE HERE
 diffs_table = table(distance_expectedC1C2, distance_HSV, distance_LCh, distance_CMYK, distance_RGB, distance_Lab);
+diffs_pairs = table(distance_pair1,distance_pair2,distance_pair3,distance_pair4);
+diffs_table = [diffs_table diffs_pairs];
 
-demoResultsAge_20 = [demoResultsAge_20 diffs_table];
+if size(C1_name, 1) == 1
+    colors_names = cell(1,2);
+    colors_names(1,1) = cellstr(C1_name);
+    colors_names(1,2) = cellstr(C2_name);
+    colors_names = cell2table(colors_names);
+else
+    colors_names = table(C1_name, C2_name);
+end
+
+C1_name = []; C2_name = [];
+
+demoResultsAge_20 = [demoResultsAge_20 colors_names diffs_table];
 
 % Plot Results for each Color Model
 figure('NumberTitle','off');
@@ -1091,9 +1372,9 @@ xlabel('X Value');
 ylabel('Y Value');
 hold on;
 scatter(x_pre_models(1), y_pre_models(1), 50, 'black', 'Filled');          % Draw expected response for this model
-scatter(x_values_HSV, y_values_HSV, 50, 'white');                          % Draw responses mixed in HSV   
+scatter(x_values_HSV, y_values_HSV, 50, 'white');                          % Draw responses mixed in HSV
 hold off;
-saveas(gcf, fullfile(path, 'demographic_ageLess20_HSVresponses'), 'png');
+saveas(gcf, fullfile(path, 'demographic_ageLess20_HSVresponses'), 'png'); close;
 
 figure('NumberTitle','off');
 cieplot();
@@ -1102,9 +1383,9 @@ xlabel('X Value');
 ylabel('Y Value');
 hold on;
 scatter(x_pre_models(2), y_pre_models(2), 50, 'black', 'Filled');          % Draw expected response for this model
-scatter(x_values_LCh, y_values_LCh, 50, 'white');                          % Draw responses mixed in LCh   
+scatter(x_values_LCh, y_values_LCh, 50, 'white');                          % Draw responses mixed in LCh
 hold off;
-saveas(gcf, fullfile(path, 'demographic_ageLess20_LChresponses'), 'png');
+saveas(gcf, fullfile(path, 'demographic_ageLess20_LChresponses'), 'png'); close;
 
 figure('NumberTitle','off');
 cieplot();
@@ -1113,9 +1394,9 @@ xlabel('X Value');
 ylabel('Y Value');
 hold on;
 scatter(x_pre_models(3), y_pre_models(3), 50, 'black', 'Filled');          % Draw expected response for this model
-scatter(x_values_CMYK, y_values_CMYK, 50, 'white');                          % Draw responses mixed in CMYK   
+scatter(x_values_CMYK, y_values_CMYK, 50, 'white');                          % Draw responses mixed in CMYK
 hold off;
-saveas(gcf, fullfile(path, 'demographic_ageLess20_CMYKresponses'), 'png');
+saveas(gcf, fullfile(path, 'demographic_ageLess20_CMYKresponses'), 'png'); close;
 
 figure('NumberTitle','off');
 cieplot();
@@ -1124,9 +1405,9 @@ xlabel('X Value');
 ylabel('Y Value');
 hold on;
 scatter(x_pre_models(4), y_pre_models(4), 50, 'black', 'Filled');          % Draw expected response for this model
-scatter(x_values_RGB, y_values_RGB, 50, 'white');                          % Draw responses mixed in RGB   
+scatter(x_values_RGB, y_values_RGB, 50, 'white');                          % Draw responses mixed in RGB
 hold off;
-saveas(gcf, fullfile(path, 'demographic_ageLess20_RGBresponses'), 'png');
+saveas(gcf, fullfile(path, 'demographic_ageLess20_RGBresponses'), 'png'); close;
 
 figure('NumberTitle','off');
 cieplot();
@@ -1135,14 +1416,15 @@ xlabel('X Value');
 ylabel('Y Value');
 hold on;
 scatter(x_pre_models(5), y_pre_models(5), 50, 'black', 'Filled');          % Draw expected response for this model
-scatter(x_values_Lab, y_values_Lab, 50, 'white');                          % Draw responses mixed in Lab   
+scatter(x_values_Lab, y_values_Lab, 50, 'white');                          % Draw responses mixed in Lab
 hold off;
-saveas(gcf, fullfile(path, 'demographic_ageLess20_Labresponses'), 'png');
+saveas(gcf, fullfile(path, 'demographic_ageLess20_Labresponses'), 'png'); close;
 
 % Clean all the tables!
-x_values_HSV = []; y_values_HSV = []; x_values_LCh = []; y_values_LCh = []; x_values_CMYK = []; y_values_CMYK = []; x_values_RGB = []; y_values_RGB = []; x_values_Lab = []; y_values_Lab = [];  
+x_values_HSV = []; y_values_HSV = []; x_values_LCh = []; y_values_LCh = []; x_values_CMYK = []; y_values_CMYK = []; x_values_RGB = []; y_values_RGB = []; x_values_Lab = []; y_values_Lab = [];
 distance_HSV = []; distance_LCh = []; distance_CMYK = []; distance_RGB = []; distance_Lab = [];
 distance_expectedC1C2 = [];
+distance_pair1 = []; distance_pair2 = []; distance_pair3 = []; distance_pair4 = [];
 
 %% Demographic Analysis - AGE 20 - 29
 
@@ -1159,42 +1441,72 @@ scatter(x_pre_expectedColors(3), y_pre_expectedColors(3), 60, 'black');         
 
 
 % Draw every pair of responses.
-for i = 1 : height(demoResultsAge_20_29)                                  
+for i = 1 : height(demoResultsAge_20_29)
     %% First Color - C1
-    sColor = str2num(cell2mat(demoResultsAge_20_29.second_color(i)));      
-    valuesSColor = [valuesSColor sColor];                               
-    sColor = sColor/360;                                                
-    sColor = [sColor 1 1];                                             
+    sColor = str2num(cell2mat(demoResultsAge_20_29.second_color(i)));
+    valuesSColor = [valuesSColor sColor];
+    sColor = sColor/360;
+    sColor = [sColor 1 1];
     hsv_C1 = sColor;
-    sColor = hsv2rgb(sColor);                                           
+    sColor = hsv2rgb(sColor);
     rgb_C1 = round([sColor(1)*255 sColor(2)*255 sColor(3)*255]);
-    sColor = rgb2xyz(sColor);                                           
-    x_aux = sColor(1)/(sColor(1) + sColor(2) + sColor(3));              
-    y_aux = sColor(2)/(sColor(1) + sColor(2) + sColor(3));              
-    x_values = [x_values x_aux];                                        
+    sColor = rgb2xyz(sColor);
+    x_aux = sColor(1)/(sColor(1) + sColor(2) + sColor(3));
+    y_aux = sColor(2)/(sColor(1) + sColor(2) + sColor(3));
+    x_values = [x_values x_aux];
     y_values = [y_values y_aux];
-    
+
     %% Second Color - C2
     tColor = str2num(cell2mat(demoResultsAge_20_29.third_color(i)));
-    valuesTColor = [valuesTColor tColor];                               
-    tColor = tColor/360;                                                
-    tColor = [tColor 1 1];                                             
+    valuesTColor = [valuesTColor tColor];
+    tColor = tColor/360;
+    tColor = [tColor 1 1];
     hsv_C2 = tColor;
-    tColor = hsv2rgb(tColor);                                           
+    tColor = hsv2rgb(tColor);
     rgb_C2 = round([tColor(1)*255 tColor(2)*255 tColor(3)*255]);
-    tColor = rgb2xyz(tColor);                                           
-    x_aux = tColor(1)/(tColor(1) + tColor(2) + tColor(3));              
-    y_aux = tColor(2)/(tColor(1) + tColor(2) + tColor(3));              
-    x_values = [x_values x_aux];                                        
+    tColor = rgb2xyz(tColor);
+    x_aux = tColor(1)/(tColor(1) + tColor(2) + tColor(3));
+    y_aux = tColor(2)/(tColor(1) + tColor(2) + tColor(3));
+    x_values = [x_values x_aux];
     y_values = [y_values y_aux];
-    
+
     %% Categorize Colors - Bins
-    
+    for j = 1 : length(colorBins)
+        valuesofx = round(colorBins(j).XData, 1);
+        valuesofy = round(colorBins(j).YData, 1);
+        if foundC1 == 0 && ismember(round(x_values(1), 1), valuesofx) && ismember(round(y_values(1),1), valuesofy)
+            color_C1 = colorBins(j).Tag;
+            foundC1 = 1;
+        end
+        if foundC2 == 0 && ismember(round(x_values(2), 1), valuesofx) && ismember(round(y_values(2),1), valuesofy)
+            color_C2 = colorBins(j).Tag;
+            foundC2 = 1;
+        end
+    end
+
+    if foundC1 == 0 && foundC2 == 0
+        C1_name = [C1_name ; 'NA       '];
+        C2_name = [C2_name ; 'NA       '];
+    else if foundC1 == 1 && foundC2 == 0
+            C1_name = [C1_name ; color_C1];
+            C2_name = [C2_name ; 'NA       '];
+        else if foundC1 == 0 && foundC2 == 1
+                C1_name = [C1_name ; 'NA       '];
+                C2_name = [C2_name ; color_C2];
+            else
+                C1_name = [C1_name ; color_C1];
+                C2_name = [C2_name ; color_C2];
+            end
+        end
+    end
+    foundC1 = 0; foundC2 = 0;
+
+
     %% Difference between C1/C2 and expected colors C1/C2
     diff_c1_expected = round(pdist([[x_values(1) y_values(1)] ; [x_pre_expectedColors(2) y_pre_expectedColors(2)]]), 2);  % [given -C1- C2]
     diff_c2_expected = round(pdist([[x_values(2) y_values(2)] ; [x_pre_expectedColors(3) y_pre_expectedColors(3)]]), 2);  % [given C1 -C2-]
     distance_expectedC1C2 = [distance_expectedC1C2 ; diff_c1_expected + diff_c2_expected];
-    
+
     %% Difference between C1/C2 and other pairs which generate the same color       %% -- CHANGE HERE (ADD MORE PAIRS IF NEEDED)
     diff_c1_pair1c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair1(1) y_pair1(1)]]), 2);   diff_c2_pair1c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair1(2) y_pair1(2)]]), 2);
     distance_pair1 = [distance_pair1 ; diff_c1_pair1c1 + diff_c2_pair1c2];
@@ -1207,10 +1519,10 @@ for i = 1 : height(demoResultsAge_20_29)
 
     diff_c1_pair4c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair4(1) y_pair4(1)]]), 2);   diff_c2_pair4c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair4(2) y_pair4(2)]]), 2);
     distance_pair4 = [distance_pair4 ; diff_c1_pair4c1 + diff_c2_pair4c2];
-    
+
     %% Difference between C1/C2 blended onto Color Models against pre-calc values
     %%%%%% Blend-it in HSV
-    sColor_hsv = [(hsv_C1(1)*360) hsv_C1(2) hsv_C1(3)]; tColor_hsv = [(hsv_C2(1)*360) hsv_C2(2) hsv_C2(3)];     
+    sColor_hsv = [(hsv_C1(1)*360) hsv_C1(2) hsv_C1(3)]; tColor_hsv = [(hsv_C2(1)*360) hsv_C2(2) hsv_C2(3)];
     diff_angles = abs(sColor_hsv(1) - tColor_hsv(1));
     if diff_angles > 180
         angle_small = (360 - diff_angles);  % smallest angle
@@ -1224,11 +1536,11 @@ for i = 1 : height(demoResultsAge_20_29)
     else
         angle = min([sColor_hsv(1) tColor_hsv(1)]) + (diff_angles / 2);
     end
-    rColor = rgb2xyz(hsv2rgb(([angle/360 sColor_hsv(2) sColor_hsv(3)])));                                  % hsv -> rgb -> xyz -> compare 
+    rColor = rgb2xyz(hsv2rgb(([angle/360 sColor_hsv(2) sColor_hsv(3)])));                                  % hsv -> rgb -> xyz -> compare
     x_aux  = rColor(1)/(rColor(1) + rColor(2) + rColor(3)); y_aux = rColor(2)/(rColor(1) + rColor(2) + rColor(3));
     distance_HSV = [distance_HSV; round(pdist([[x_aux y_aux]; [x_pre_models(1) y_pre_models(1)]]),2)];
     x_values_HSV = [x_values_HSV x_aux]; y_values_HSV = [y_values_HSV y_aux];
-    
+
     %%%%%% Blend-it in CIE-LCh (XYZ -> Lab -> LCh)
     sColor_lch = sColor; tColor_lch = tColor;
     sColor_lch = applycform(applycform(sColor_lch, cformXYZ_Lab), cformLab_LCh); tColor_lch = applycform(applycform(tColor_lch, cformXYZ_Lab), cformLab_LCh);
@@ -1252,7 +1564,7 @@ for i = 1 : height(demoResultsAge_20_29)
     x_aux  = rColor(1)/(rColor(1) + rColor(2) + rColor(3)); y_aux = rColor(2)/(rColor(1) + rColor(2) + rColor(3));
     distance_LCh = [distance_LCh; round(pdist([[x_aux y_aux]; [x_pre_models(2) y_pre_models(2)]]), 2)];
     x_values_LCh = [x_values_LCh x_aux]; y_values_LCh = [y_values_LCh y_aux];
-    
+
     %%%%%% Blend-it in CMYK
     sColor_cmyk = sColor; tColor_cmyk = tColor;
     sColor_cmyk = applycform(applycform(sColor_cmyk, cformXYZ_RGB), cformRGB_CMYK); tColor_cmyk = applycform(applycform(tColor_cmyk, cformXYZ_RGB), cformRGB_CMYK);
@@ -1264,7 +1576,7 @@ for i = 1 : height(demoResultsAge_20_29)
     x_aux  = rColor(1)/(rColor(1) + rColor(2) + rColor(3)); y_aux = rColor(2)/(rColor(1) + rColor(2) + rColor(3));
     distance_CMYK = [distance_CMYK; round(pdist([[x_aux y_aux]; [x_pre_models(3) y_pre_models(3)]]), 2)];
     x_values_CMYK = [x_values_CMYK x_aux]; y_values_CMYK = [y_values_CMYK y_aux];
-    
+
     %%%%%% Blend-it in RGB
     sColor_rgb = sColor; tColor_rgb = tColor;
     sColor_rgb = applycform(sColor_rgb, cformXYZ_RGB); tColor_rgb = applycform(tColor_rgb, cformXYZ_RGB);
@@ -1275,7 +1587,7 @@ for i = 1 : height(demoResultsAge_20_29)
     x_aux  = rColor(1)/(rColor(1) + rColor(2) + rColor(3)); y_aux = rColor(2)/(rColor(1) + rColor(2) + rColor(3));
     distance_RGB = [distance_RGB; round(pdist([[x_aux y_aux]; [x_pre_models(4) y_pre_models(4)]]), 2)];
     x_values_RGB = [x_values_RGB x_aux]; y_values_RGB = [y_values_RGB y_aux];
-    
+
     %%%%%% Blend-it in CIE-Lab
     sColor_lab = sColor; tColor_lab = tColor;
     sColor_lab = applycform(sColor_lab, cformXYZ_Lab); tColor_lab = applycform(tColor_lab, cformXYZ_Lab);
@@ -1294,7 +1606,7 @@ for i = 1 : height(demoResultsAge_20_29)
 end
 hold off;
 
-saveas(gcf, fullfile(path, 'demographic_age20_29'), 'png');
+saveas(gcf, fullfile(path, 'demographic_age20_29'), 'png'); close;
 
 % Centroids of Color Models
 centroid_HSV    = [centroid_HSV  ; [round(mean(x_values_HSV),2) round(mean(y_values_HSV),2)]];
@@ -1311,8 +1623,21 @@ distance_centroid_Lab = [distance_centroid_Lab ; round(pdist([mean(x_values_Lab)
 
 % Catenate all Tables               -- CHANGE HERE
 diffs_table = table(distance_expectedC1C2, distance_HSV, distance_LCh, distance_CMYK, distance_RGB, distance_Lab);
+diffs_pairs = table(distance_pair1,distance_pair2,distance_pair3,distance_pair4);
+diffs_table = [diffs_table diffs_pairs];
 
-demoResultsAge_20_29 = [demoResultsAge_20_29 diffs_table];
+if size(C1_name, 1) == 1
+    colors_names = cell(1,2);
+    colors_names(1,1) = cellstr(C1_name);
+    colors_names(1,2) = cellstr(C2_name);
+    colors_names = cell2table(colors_names);
+else
+    colors_names = table(C1_name, C2_name);
+end
+
+C1_name = []; C2_name = [];
+
+demoResultsAge_20_29 = [demoResultsAge_20_29 colors_names diffs_table];
 
 % Plot Results for each Color Model
 figure('NumberTitle','off');
@@ -1322,9 +1647,9 @@ xlabel('X Value');
 ylabel('Y Value');
 hold on;
 scatter(x_pre_models(1), y_pre_models(1), 50, 'black', 'Filled');          % Draw expected response for this model
-scatter(x_values_HSV, y_values_HSV, 50, 'white');                          % Draw responses mixed in HSV   
+scatter(x_values_HSV, y_values_HSV, 50, 'white');                          % Draw responses mixed in HSV
 hold off;
-saveas(gcf, fullfile(path, 'demographic_age20_29_HSVresponses'), 'png');
+saveas(gcf, fullfile(path, 'demographic_age20_29_HSVresponses'), 'png'); close;
 
 figure('NumberTitle','off');
 cieplot();
@@ -1333,9 +1658,9 @@ xlabel('X Value');
 ylabel('Y Value');
 hold on;
 scatter(x_pre_models(2), y_pre_models(2), 50, 'black', 'Filled');          % Draw expected response for this model
-scatter(x_values_LCh, y_values_LCh, 50, 'white');                          % Draw responses mixed in LCh   
+scatter(x_values_LCh, y_values_LCh, 50, 'white');                          % Draw responses mixed in LCh
 hold off;
-saveas(gcf, fullfile(path, 'demographic_age20_29_LChresponses'), 'png');
+saveas(gcf, fullfile(path, 'demographic_age20_29_LChresponses'), 'png'); close;
 
 figure('NumberTitle','off');
 cieplot();
@@ -1344,9 +1669,9 @@ xlabel('X Value');
 ylabel('Y Value');
 hold on;
 scatter(x_pre_models(3), y_pre_models(3), 50, 'black', 'Filled');          % Draw expected response for this model
-scatter(x_values_CMYK, y_values_CMYK, 50, 'white');                          % Draw responses mixed in CMYK   
+scatter(x_values_CMYK, y_values_CMYK, 50, 'white');                          % Draw responses mixed in CMYK
 hold off;
-saveas(gcf, fullfile(path, 'demographic_age20_29_CMYKresponses'), 'png');
+saveas(gcf, fullfile(path, 'demographic_age20_29_CMYKresponses'), 'png'); close;
 
 figure('NumberTitle','off');
 cieplot();
@@ -1355,9 +1680,9 @@ xlabel('X Value');
 ylabel('Y Value');
 hold on;
 scatter(x_pre_models(4), y_pre_models(4), 50, 'black', 'Filled');          % Draw expected response for this model
-scatter(x_values_RGB, y_values_RGB, 50, 'white');                          % Draw responses mixed in RGB   
+scatter(x_values_RGB, y_values_RGB, 50, 'white');                          % Draw responses mixed in RGB
 hold off;
-saveas(gcf, fullfile(path, 'demographic_age20_29_RGBresponses'), 'png');
+saveas(gcf, fullfile(path, 'demographic_age20_29_RGBresponses'), 'png'); close;
 
 figure('NumberTitle','off');
 cieplot();
@@ -1366,14 +1691,15 @@ xlabel('X Value');
 ylabel('Y Value');
 hold on;
 scatter(x_pre_models(5), y_pre_models(5), 50, 'black', 'Filled');          % Draw expected response for this model
-scatter(x_values_Lab, y_values_Lab, 50, 'white');                          % Draw responses mixed in Lab   
+scatter(x_values_Lab, y_values_Lab, 50, 'white');                          % Draw responses mixed in Lab
 hold off;
-saveas(gcf, fullfile(path, 'demographic_age20_29_Labresponses'), 'png');
+saveas(gcf, fullfile(path, 'demographic_age20_29_Labresponses'), 'png'); close;
 
 % Clean all the tables!
-x_values_HSV = []; y_values_HSV = []; x_values_LCh = []; y_values_LCh = []; x_values_CMYK = []; y_values_CMYK = []; x_values_RGB = []; y_values_RGB = []; x_values_Lab = []; y_values_Lab = [];  
+x_values_HSV = []; y_values_HSV = []; x_values_LCh = []; y_values_LCh = []; x_values_CMYK = []; y_values_CMYK = []; x_values_RGB = []; y_values_RGB = []; x_values_Lab = []; y_values_Lab = [];
 distance_HSV = []; distance_LCh = []; distance_CMYK = []; distance_RGB = []; distance_Lab = [];
 distance_expectedC1C2 = [];
+distance_pair1 = []; distance_pair2 = []; distance_pair3 = []; distance_pair4 = [];
 
 %% Demographic Analysis - AGE 30 - 39
 
@@ -1390,37 +1716,67 @@ scatter(x_pre_expectedColors(3), y_pre_expectedColors(3), 60, 'black');         
 
 
 % Draw every pair of responses.
-for i = 1 : height(demoResultsAge_30_39)                                  
+for i = 1 : height(demoResultsAge_30_39)
     %% First Color - C1
-    sColor = str2num(cell2mat(demoResultsAge_30_39.second_color(i)));      
-    valuesSColor = [valuesSColor sColor];                               
-    sColor = sColor/360;                                                
-    sColor = [sColor 1 1];                                             
+    sColor = str2num(cell2mat(demoResultsAge_30_39.second_color(i)));
+    valuesSColor = [valuesSColor sColor];
+    sColor = sColor/360;
+    sColor = [sColor 1 1];
     hsv_C1 = sColor;
-    sColor = hsv2rgb(sColor);                                           
+    sColor = hsv2rgb(sColor);
     rgb_C1 = round([sColor(1)*255 sColor(2)*255 sColor(3)*255]);
-    sColor = rgb2xyz(sColor);                                           
-    x_aux = sColor(1)/(sColor(1) + sColor(2) + sColor(3));              
-    y_aux = sColor(2)/(sColor(1) + sColor(2) + sColor(3));              
-    x_values = [x_values x_aux];                                        
+    sColor = rgb2xyz(sColor);
+    x_aux = sColor(1)/(sColor(1) + sColor(2) + sColor(3));
+    y_aux = sColor(2)/(sColor(1) + sColor(2) + sColor(3));
+    x_values = [x_values x_aux];
     y_values = [y_values y_aux];
-    
+
     %% Second Color - C2
     tColor = str2num(cell2mat(demoResultsAge_30_39.third_color(i)));
-    valuesTColor = [valuesTColor tColor];                               
-    tColor = tColor/360;                                                
-    tColor = [tColor 1 1];                                             
+    valuesTColor = [valuesTColor tColor];
+    tColor = tColor/360;
+    tColor = [tColor 1 1];
     hsv_C2 = tColor;
-    tColor = hsv2rgb(tColor);                                           
+    tColor = hsv2rgb(tColor);
     rgb_C2 = round([tColor(1)*255 tColor(2)*255 tColor(3)*255]);
-    tColor = rgb2xyz(tColor);                                           
-    x_aux = tColor(1)/(tColor(1) + tColor(2) + tColor(3));              
-    y_aux = tColor(2)/(tColor(1) + tColor(2) + tColor(3));              
-    x_values = [x_values x_aux];                                        
+    tColor = rgb2xyz(tColor);
+    x_aux = tColor(1)/(tColor(1) + tColor(2) + tColor(3));
+    y_aux = tColor(2)/(tColor(1) + tColor(2) + tColor(3));
+    x_values = [x_values x_aux];
     y_values = [y_values y_aux];
-    
+
     %% Categorize Colors - Bins
-    
+    for j = 1 : length(colorBins)
+        valuesofx = round(colorBins(j).XData, 1);
+        valuesofy = round(colorBins(j).YData, 1);
+        if foundC1 == 0 && ismember(round(x_values(1), 1), valuesofx) && ismember(round(y_values(1),1), valuesofy)
+            color_C1 = colorBins(j).Tag;
+            foundC1 = 1;
+        end
+        if foundC2 == 0 && ismember(round(x_values(2), 1), valuesofx) && ismember(round(y_values(2),1), valuesofy)
+            color_C2 = colorBins(j).Tag;
+            foundC2 = 1;
+        end
+    end
+
+    if foundC1 == 0 && foundC2 == 0
+        C1_name = [C1_name ; 'NA       '];
+        C2_name = [C2_name ; 'NA       '];
+    else if foundC1 == 1 && foundC2 == 0
+            C1_name = [C1_name ; color_C1];
+            C2_name = [C2_name ; 'NA       '];
+        else if foundC1 == 0 && foundC2 == 1
+                C1_name = [C1_name ; 'NA       '];
+                C2_name = [C2_name ; color_C2];
+            else
+                C1_name = [C1_name ; color_C1];
+                C2_name = [C2_name ; color_C2];
+            end
+        end
+    end
+    foundC1 = 0; foundC2 = 0;
+
+
     %% Difference between C1/C2 and expected colors C1/C2
     diff_c1_expected = round(pdist([[x_values(1) y_values(1)] ; [x_pre_expectedColors(2) y_pre_expectedColors(2)]]), 2);  % [given -C1- C2]
     diff_c2_expected = round(pdist([[x_values(2) y_values(2)] ; [x_pre_expectedColors(3) y_pre_expectedColors(3)]]), 2);  % [given C1 -C2-]
@@ -1438,10 +1794,10 @@ for i = 1 : height(demoResultsAge_30_39)
 
     diff_c1_pair4c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair4(1) y_pair4(1)]]), 2);   diff_c2_pair4c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair4(2) y_pair4(2)]]), 2);
     distance_pair4 = [distance_pair4 ; diff_c1_pair4c1 + diff_c2_pair4c2];
-    
+
     %% Difference between C1/C2 blended onto Color Models against pre-calc values
     %%%%%% Blend-it in HSV
-    sColor_hsv = [(hsv_C1(1)*360) hsv_C1(2) hsv_C1(3)]; tColor_hsv = [(hsv_C2(1)*360) hsv_C2(2) hsv_C2(3)];     
+    sColor_hsv = [(hsv_C1(1)*360) hsv_C1(2) hsv_C1(3)]; tColor_hsv = [(hsv_C2(1)*360) hsv_C2(2) hsv_C2(3)];
     diff_angles = abs(sColor_hsv(1) - tColor_hsv(1));
     if diff_angles > 180
         angle_small = (360 - diff_angles);  % smallest angle
@@ -1455,11 +1811,11 @@ for i = 1 : height(demoResultsAge_30_39)
     else
         angle = min([sColor_hsv(1) tColor_hsv(1)]) + (diff_angles / 2);
     end
-    rColor = rgb2xyz(hsv2rgb(([angle/360 sColor_hsv(2) sColor_hsv(3)])));                                  % hsv -> rgb -> xyz -> compare 
+    rColor = rgb2xyz(hsv2rgb(([angle/360 sColor_hsv(2) sColor_hsv(3)])));                                  % hsv -> rgb -> xyz -> compare
     x_aux  = rColor(1)/(rColor(1) + rColor(2) + rColor(3)); y_aux = rColor(2)/(rColor(1) + rColor(2) + rColor(3));
     distance_HSV = [distance_HSV; round(pdist([[x_aux y_aux]; [x_pre_models(1) y_pre_models(1)]]),2)];
     x_values_HSV = [x_values_HSV x_aux]; y_values_HSV = [y_values_HSV y_aux];
-    
+
     %%%%%% Blend-it in CIE-LCh (XYZ -> Lab -> LCh)
     sColor_lch = sColor; tColor_lch = tColor;
     sColor_lch = applycform(applycform(sColor_lch, cformXYZ_Lab), cformLab_LCh); tColor_lch = applycform(applycform(tColor_lch, cformXYZ_Lab), cformLab_LCh);
@@ -1483,7 +1839,7 @@ for i = 1 : height(demoResultsAge_30_39)
     x_aux  = rColor(1)/(rColor(1) + rColor(2) + rColor(3)); y_aux = rColor(2)/(rColor(1) + rColor(2) + rColor(3));
     distance_LCh = [distance_LCh; round(pdist([[x_aux y_aux]; [x_pre_models(2) y_pre_models(2)]]), 2)];
     x_values_LCh = [x_values_LCh x_aux]; y_values_LCh = [y_values_LCh y_aux];
-    
+
     %%%%%% Blend-it in CMYK
     sColor_cmyk = sColor; tColor_cmyk = tColor;
     sColor_cmyk = applycform(applycform(sColor_cmyk, cformXYZ_RGB), cformRGB_CMYK); tColor_cmyk = applycform(applycform(tColor_cmyk, cformXYZ_RGB), cformRGB_CMYK);
@@ -1495,7 +1851,7 @@ for i = 1 : height(demoResultsAge_30_39)
     x_aux  = rColor(1)/(rColor(1) + rColor(2) + rColor(3)); y_aux = rColor(2)/(rColor(1) + rColor(2) + rColor(3));
     distance_CMYK = [distance_CMYK; round(pdist([[x_aux y_aux]; [x_pre_models(3) y_pre_models(3)]]), 2)];
     x_values_CMYK = [x_values_CMYK x_aux]; y_values_CMYK = [y_values_CMYK y_aux];
-    
+
     %%%%%% Blend-it in RGB
     sColor_rgb = sColor; tColor_rgb = tColor;
     sColor_rgb = applycform(sColor_rgb, cformXYZ_RGB); tColor_rgb = applycform(tColor_rgb, cformXYZ_RGB);
@@ -1506,7 +1862,7 @@ for i = 1 : height(demoResultsAge_30_39)
     x_aux  = rColor(1)/(rColor(1) + rColor(2) + rColor(3)); y_aux = rColor(2)/(rColor(1) + rColor(2) + rColor(3));
     distance_RGB = [distance_RGB; round(pdist([[x_aux y_aux]; [x_pre_models(4) y_pre_models(4)]]), 2)];
     x_values_RGB = [x_values_RGB x_aux]; y_values_RGB = [y_values_RGB y_aux];
-    
+
     %%%%%% Blend-it in CIE-Lab
     sColor_lab = sColor; tColor_lab = tColor;
     sColor_lab = applycform(sColor_lab, cformXYZ_Lab); tColor_lab = applycform(tColor_lab, cformXYZ_Lab);
@@ -1525,7 +1881,7 @@ for i = 1 : height(demoResultsAge_30_39)
 end
 hold off;
 
-saveas(gcf, fullfile(path, 'demographic_age30_39'), 'png');
+saveas(gcf, fullfile(path, 'demographic_age30_39'), 'png'); close;
 
 % Centroids of Color Models
 centroid_HSV    = [centroid_HSV  ; [round(mean(x_values_HSV),2) round(mean(y_values_HSV),2)]];
@@ -1542,8 +1898,21 @@ distance_centroid_Lab = [distance_centroid_Lab ; round(pdist([mean(x_values_Lab)
 
 % Catenate all Tables               -- CHANGE HERE
 diffs_table = table(distance_expectedC1C2, distance_HSV, distance_LCh, distance_CMYK, distance_RGB, distance_Lab);
+diffs_pairs = table(distance_pair1,distance_pair2,distance_pair3,distance_pair4);
+diffs_table = [diffs_table diffs_pairs];
 
-demoResultsAge_30_39 = [demoResultsAge_30_39 diffs_table];
+if size(C1_name, 1) == 1
+    colors_names = cell(1,2);
+    colors_names(1,1) = cellstr(C1_name);
+    colors_names(1,2) = cellstr(C2_name);
+    colors_names = cell2table(colors_names);
+else
+    colors_names = table(C1_name, C2_name);
+end
+
+C1_name = []; C2_name = [];
+
+demoResultsAge_30_39 = [demoResultsAge_30_39 colors_names diffs_table];
 
 % Plot Results for each Color Model
 figure('NumberTitle','off');
@@ -1553,9 +1922,9 @@ xlabel('X Value');
 ylabel('Y Value');
 hold on;
 scatter(x_pre_models(1), y_pre_models(1), 50, 'black', 'Filled');          % Draw expected response for this model
-scatter(x_values_HSV, y_values_HSV, 50, 'white');                          % Draw responses mixed in HSV   
+scatter(x_values_HSV, y_values_HSV, 50, 'white');                          % Draw responses mixed in HSV
 hold off;
-saveas(gcf, fullfile(path, 'demographic_age30_39_HSVresponses'), 'png');
+saveas(gcf, fullfile(path, 'demographic_age30_39_HSVresponses'), 'png'); close;
 
 figure('NumberTitle','off');
 cieplot();
@@ -1564,9 +1933,9 @@ xlabel('X Value');
 ylabel('Y Value');
 hold on;
 scatter(x_pre_models(2), y_pre_models(2), 50, 'black', 'Filled');          % Draw expected response for this model
-scatter(x_values_LCh, y_values_LCh, 50, 'white');                          % Draw responses mixed in LCh   
+scatter(x_values_LCh, y_values_LCh, 50, 'white');                          % Draw responses mixed in LCh
 hold off;
-saveas(gcf, fullfile(path, 'demographic_age30_39_LChresponses'), 'png');
+saveas(gcf, fullfile(path, 'demographic_age30_39_LChresponses'), 'png'); close;
 
 figure('NumberTitle','off');
 cieplot();
@@ -1575,9 +1944,9 @@ xlabel('X Value');
 ylabel('Y Value');
 hold on;
 scatter(x_pre_models(3), y_pre_models(3), 50, 'black', 'Filled');          % Draw expected response for this model
-scatter(x_values_CMYK, y_values_CMYK, 50, 'white');                          % Draw responses mixed in CMYK   
+scatter(x_values_CMYK, y_values_CMYK, 50, 'white');                          % Draw responses mixed in CMYK
 hold off;
-saveas(gcf, fullfile(path, 'demographic_age30_39_CMYKresponses'), 'png');
+saveas(gcf, fullfile(path, 'demographic_age30_39_CMYKresponses'), 'png'); close;
 
 figure('NumberTitle','off');
 cieplot();
@@ -1586,9 +1955,9 @@ xlabel('X Value');
 ylabel('Y Value');
 hold on;
 scatter(x_pre_models(4), y_pre_models(4), 50, 'black', 'Filled');          % Draw expected response for this model
-scatter(x_values_RGB, y_values_RGB, 50, 'white');                          % Draw responses mixed in RGB   
+scatter(x_values_RGB, y_values_RGB, 50, 'white');                          % Draw responses mixed in RGB
 hold off;
-saveas(gcf, fullfile(path, 'demographic_age30_39_RGBresponses'), 'png');
+saveas(gcf, fullfile(path, 'demographic_age30_39_RGBresponses'), 'png'); close;
 
 figure('NumberTitle','off');
 cieplot();
@@ -1597,14 +1966,15 @@ xlabel('X Value');
 ylabel('Y Value');
 hold on;
 scatter(x_pre_models(5), y_pre_models(5), 50, 'black', 'Filled');          % Draw expected response for this model
-scatter(x_values_Lab, y_values_Lab, 50, 'white');                          % Draw responses mixed in Lab   
+scatter(x_values_Lab, y_values_Lab, 50, 'white');                          % Draw responses mixed in Lab
 hold off;
-saveas(gcf, fullfile(path, 'demographic_age30_39_Labresponses'), 'png');
+saveas(gcf, fullfile(path, 'demographic_age30_39_Labresponses'), 'png'); close;
 
 % Clean all the tables!
-x_values_HSV = []; y_values_HSV = []; x_values_LCh = []; y_values_LCh = []; x_values_CMYK = []; y_values_CMYK = []; x_values_RGB = []; y_values_RGB = []; x_values_Lab = []; y_values_Lab = [];  
+x_values_HSV = []; y_values_HSV = []; x_values_LCh = []; y_values_LCh = []; x_values_CMYK = []; y_values_CMYK = []; x_values_RGB = []; y_values_RGB = []; x_values_Lab = []; y_values_Lab = [];
 distance_HSV = []; distance_LCh = []; distance_CMYK = []; distance_RGB = []; distance_Lab = [];
 distance_expectedC1C2 = [];
+distance_pair1 = []; distance_pair2 = []; distance_pair3 = []; distance_pair4 = [];
 
 %% Demographic Analysis - AGE 40 - 49
 
@@ -1621,37 +1991,67 @@ scatter(x_pre_expectedColors(3), y_pre_expectedColors(3), 60, 'black');         
 
 
 % Draw every pair of responses.
-for i = 1 : height(demoResultsAge_40_49)                                  
+for i = 1 : height(demoResultsAge_40_49)
     %% First Color - C1
-    sColor = str2num(cell2mat(demoResultsAge_40_49.second_color(i)));      
-    valuesSColor = [valuesSColor sColor];                               
-    sColor = sColor/360;                                                
-    sColor = [sColor 1 1];                                             
+    sColor = str2num(cell2mat(demoResultsAge_40_49.second_color(i)));
+    valuesSColor = [valuesSColor sColor];
+    sColor = sColor/360;
+    sColor = [sColor 1 1];
     hsv_C1 = sColor;
-    sColor = hsv2rgb(sColor);                                           
+    sColor = hsv2rgb(sColor);
     rgb_C1 = round([sColor(1)*255 sColor(2)*255 sColor(3)*255]);
-    sColor = rgb2xyz(sColor);                                           
-    x_aux = sColor(1)/(sColor(1) + sColor(2) + sColor(3));              
-    y_aux = sColor(2)/(sColor(1) + sColor(2) + sColor(3));              
-    x_values = [x_values x_aux];                                        
+    sColor = rgb2xyz(sColor);
+    x_aux = sColor(1)/(sColor(1) + sColor(2) + sColor(3));
+    y_aux = sColor(2)/(sColor(1) + sColor(2) + sColor(3));
+    x_values = [x_values x_aux];
     y_values = [y_values y_aux];
-    
+
     %% Second Color - C2
     tColor = str2num(cell2mat(demoResultsAge_40_49.third_color(i)));
-    valuesTColor = [valuesTColor tColor];                               
-    tColor = tColor/360;                                                
-    tColor = [tColor 1 1];                                             
+    valuesTColor = [valuesTColor tColor];
+    tColor = tColor/360;
+    tColor = [tColor 1 1];
     hsv_C2 = tColor;
-    tColor = hsv2rgb(tColor);                                           
+    tColor = hsv2rgb(tColor);
     rgb_C2 = round([tColor(1)*255 tColor(2)*255 tColor(3)*255]);
-    tColor = rgb2xyz(tColor);                                           
-    x_aux = tColor(1)/(tColor(1) + tColor(2) + tColor(3));              
-    y_aux = tColor(2)/(tColor(1) + tColor(2) + tColor(3));              
-    x_values = [x_values x_aux];                                        
+    tColor = rgb2xyz(tColor);
+    x_aux = tColor(1)/(tColor(1) + tColor(2) + tColor(3));
+    y_aux = tColor(2)/(tColor(1) + tColor(2) + tColor(3));
+    x_values = [x_values x_aux];
     y_values = [y_values y_aux];
-    
+
     %% Categorize Colors - Bins
-    
+    for j = 1 : length(colorBins)
+        valuesofx = round(colorBins(j).XData, 1);
+        valuesofy = round(colorBins(j).YData, 1);
+        if foundC1 == 0 && ismember(round(x_values(1), 1), valuesofx) && ismember(round(y_values(1),1), valuesofy)
+            color_C1 = colorBins(j).Tag;
+            foundC1 = 1;
+        end
+        if foundC2 == 0 && ismember(round(x_values(2), 1), valuesofx) && ismember(round(y_values(2),1), valuesofy)
+            color_C2 = colorBins(j).Tag;
+            foundC2 = 1;
+        end
+    end
+
+    if foundC1 == 0 && foundC2 == 0
+        C1_name = [C1_name ; 'NA       '];
+        C2_name = [C2_name ; 'NA       '];
+    else if foundC1 == 1 && foundC2 == 0
+            C1_name = [C1_name ; color_C1];
+            C2_name = [C2_name ; 'NA       '];
+        else if foundC1 == 0 && foundC2 == 1
+                C1_name = [C1_name ; 'NA       '];
+                C2_name = [C2_name ; color_C2];
+            else
+                C1_name = [C1_name ; color_C1];
+                C2_name = [C2_name ; color_C2];
+            end
+        end
+    end
+    foundC1 = 0; foundC2 = 0;
+
+
     %% Difference between C1/C2 and expected colors C1/C2
     diff_c1_expected = round(pdist([[x_values(1) y_values(1)] ; [x_pre_expectedColors(2) y_pre_expectedColors(2)]]), 2);  % [given -C1- C2]
     diff_c2_expected = round(pdist([[x_values(2) y_values(2)] ; [x_pre_expectedColors(3) y_pre_expectedColors(3)]]), 2);  % [given C1 -C2-]
@@ -1669,10 +2069,10 @@ for i = 1 : height(demoResultsAge_40_49)
 
     diff_c1_pair4c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair4(1) y_pair4(1)]]), 2);   diff_c2_pair4c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair4(2) y_pair4(2)]]), 2);
     distance_pair4 = [distance_pair4 ; diff_c1_pair4c1 + diff_c2_pair4c2];
-    
+
     %% Difference between C1/C2 blended onto Color Models against pre-calc values
     %%%%%% Blend-it in HSV
-    sColor_hsv = [(hsv_C1(1)*360) hsv_C1(2) hsv_C1(3)]; tColor_hsv = [(hsv_C2(1)*360) hsv_C2(2) hsv_C2(3)];     
+    sColor_hsv = [(hsv_C1(1)*360) hsv_C1(2) hsv_C1(3)]; tColor_hsv = [(hsv_C2(1)*360) hsv_C2(2) hsv_C2(3)];
     diff_angles = abs(sColor_hsv(1) - tColor_hsv(1));
     if diff_angles > 180
         angle_small = (360 - diff_angles);  % smallest angle
@@ -1686,11 +2086,11 @@ for i = 1 : height(demoResultsAge_40_49)
     else
         angle = min([sColor_hsv(1) tColor_hsv(1)]) + (diff_angles / 2);
     end
-    rColor = rgb2xyz(hsv2rgb(([angle/360 sColor_hsv(2) sColor_hsv(3)])));                                  % hsv -> rgb -> xyz -> compare 
+    rColor = rgb2xyz(hsv2rgb(([angle/360 sColor_hsv(2) sColor_hsv(3)])));                                  % hsv -> rgb -> xyz -> compare
     x_aux  = rColor(1)/(rColor(1) + rColor(2) + rColor(3)); y_aux = rColor(2)/(rColor(1) + rColor(2) + rColor(3));
     distance_HSV = [distance_HSV; round(pdist([[x_aux y_aux]; [x_pre_models(1) y_pre_models(1)]]),2)];
     x_values_HSV = [x_values_HSV x_aux]; y_values_HSV = [y_values_HSV y_aux];
-    
+
     %%%%%% Blend-it in CIE-LCh (XYZ -> Lab -> LCh)
     sColor_lch = sColor; tColor_lch = tColor;
     sColor_lch = applycform(applycform(sColor_lch, cformXYZ_Lab), cformLab_LCh); tColor_lch = applycform(applycform(tColor_lch, cformXYZ_Lab), cformLab_LCh);
@@ -1714,7 +2114,7 @@ for i = 1 : height(demoResultsAge_40_49)
     x_aux  = rColor(1)/(rColor(1) + rColor(2) + rColor(3)); y_aux = rColor(2)/(rColor(1) + rColor(2) + rColor(3));
     distance_LCh = [distance_LCh; round(pdist([[x_aux y_aux]; [x_pre_models(2) y_pre_models(2)]]), 2)];
     x_values_LCh = [x_values_LCh x_aux]; y_values_LCh = [y_values_LCh y_aux];
-    
+
     %%%%%% Blend-it in CMYK
     sColor_cmyk = sColor; tColor_cmyk = tColor;
     sColor_cmyk = applycform(applycform(sColor_cmyk, cformXYZ_RGB), cformRGB_CMYK); tColor_cmyk = applycform(applycform(tColor_cmyk, cformXYZ_RGB), cformRGB_CMYK);
@@ -1726,7 +2126,7 @@ for i = 1 : height(demoResultsAge_40_49)
     x_aux  = rColor(1)/(rColor(1) + rColor(2) + rColor(3)); y_aux = rColor(2)/(rColor(1) + rColor(2) + rColor(3));
     distance_CMYK = [distance_CMYK; round(pdist([[x_aux y_aux]; [x_pre_models(3) y_pre_models(3)]]), 2)];
     x_values_CMYK = [x_values_CMYK x_aux]; y_values_CMYK = [y_values_CMYK y_aux];
-    
+
     %%%%%% Blend-it in RGB
     sColor_rgb = sColor; tColor_rgb = tColor;
     sColor_rgb = applycform(sColor_rgb, cformXYZ_RGB); tColor_rgb = applycform(tColor_rgb, cformXYZ_RGB);
@@ -1737,7 +2137,7 @@ for i = 1 : height(demoResultsAge_40_49)
     x_aux  = rColor(1)/(rColor(1) + rColor(2) + rColor(3)); y_aux = rColor(2)/(rColor(1) + rColor(2) + rColor(3));
     distance_RGB = [distance_RGB; round(pdist([[x_aux y_aux]; [x_pre_models(4) y_pre_models(4)]]), 2)];
     x_values_RGB = [x_values_RGB x_aux]; y_values_RGB = [y_values_RGB y_aux];
-    
+
     %%%%%% Blend-it in CIE-Lab
     sColor_lab = sColor; tColor_lab = tColor;
     sColor_lab = applycform(sColor_lab, cformXYZ_Lab); tColor_lab = applycform(tColor_lab, cformXYZ_Lab);
@@ -1756,7 +2156,7 @@ for i = 1 : height(demoResultsAge_40_49)
 end
 hold off;
 
-saveas(gcf, fullfile(path, 'demographic_age40_49'), 'png');
+saveas(gcf, fullfile(path, 'demographic_age40_49'), 'png'); close;
 
 % Centroids of Color Models
 centroid_HSV    = [centroid_HSV  ; [round(mean(x_values_HSV),2) round(mean(y_values_HSV),2)]];
@@ -1773,8 +2173,21 @@ distance_centroid_Lab = [distance_centroid_Lab ; round(pdist([mean(x_values_Lab)
 
 % Catenate all Tables               -- CHANGE HERE
 diffs_table = table(distance_expectedC1C2, distance_HSV, distance_LCh, distance_CMYK, distance_RGB, distance_Lab);
+diffs_pairs = table(distance_pair1,distance_pair2,distance_pair3,distance_pair4);
+diffs_table = [diffs_table diffs_pairs];
 
-demoResultsAge_40_49 = [demoResultsAge_40_49 diffs_table];
+if size(C1_name, 1) == 1
+    colors_names = cell(1,2);
+    colors_names(1,1) = cellstr(C1_name);
+    colors_names(1,2) = cellstr(C2_name);
+    colors_names = cell2table(colors_names);
+else
+    colors_names = table(C1_name, C2_name);
+end
+
+C1_name = []; C2_name = [];
+
+demoResultsAge_40_49 = [demoResultsAge_40_49 colors_names diffs_table];
 
 % Plot Results for each Color Model
 figure('NumberTitle','off');
@@ -1784,9 +2197,9 @@ xlabel('X Value');
 ylabel('Y Value');
 hold on;
 scatter(x_pre_models(1), y_pre_models(1), 50, 'black', 'Filled');          % Draw expected response for this model
-scatter(x_values_HSV, y_values_HSV, 50, 'white');                          % Draw responses mixed in HSV   
+scatter(x_values_HSV, y_values_HSV, 50, 'white');                          % Draw responses mixed in HSV
 hold off;
-saveas(gcf, fullfile(path, 'demographic_age40_49_HSVresponses'), 'png');
+saveas(gcf, fullfile(path, 'demographic_age40_49_HSVresponses'), 'png'); close;
 
 figure('NumberTitle','off');
 cieplot();
@@ -1795,9 +2208,9 @@ xlabel('X Value');
 ylabel('Y Value');
 hold on;
 scatter(x_pre_models(2), y_pre_models(2), 50, 'black', 'Filled');          % Draw expected response for this model
-scatter(x_values_LCh, y_values_LCh, 50, 'white');                          % Draw responses mixed in LCh   
+scatter(x_values_LCh, y_values_LCh, 50, 'white');                          % Draw responses mixed in LCh
 hold off;
-saveas(gcf, fullfile(path, 'demographic_age40_49_LChresponses'), 'png');
+saveas(gcf, fullfile(path, 'demographic_age40_49_LChresponses'), 'png'); close;
 
 figure('NumberTitle','off');
 cieplot();
@@ -1806,9 +2219,9 @@ xlabel('X Value');
 ylabel('Y Value');
 hold on;
 scatter(x_pre_models(3), y_pre_models(3), 50, 'black', 'Filled');          % Draw expected response for this model
-scatter(x_values_CMYK, y_values_CMYK, 50, 'white');                          % Draw responses mixed in CMYK   
+scatter(x_values_CMYK, y_values_CMYK, 50, 'white');                          % Draw responses mixed in CMYK
 hold off;
-saveas(gcf, fullfile(path, 'demographic_age40_49_CMYKresponses'), 'png');
+saveas(gcf, fullfile(path, 'demographic_age40_49_CMYKresponses'), 'png'); close;
 
 figure('NumberTitle','off');
 cieplot();
@@ -1817,9 +2230,9 @@ xlabel('X Value');
 ylabel('Y Value');
 hold on;
 scatter(x_pre_models(4), y_pre_models(4), 50, 'black', 'Filled');          % Draw expected response for this model
-scatter(x_values_RGB, y_values_RGB, 50, 'white');                          % Draw responses mixed in RGB   
+scatter(x_values_RGB, y_values_RGB, 50, 'white');                          % Draw responses mixed in RGB
 hold off;
-saveas(gcf, fullfile(path, 'demographic_age40_49_RGBresponses'), 'png');
+saveas(gcf, fullfile(path, 'demographic_age40_49_RGBresponses'), 'png'); close;
 
 figure('NumberTitle','off');
 cieplot();
@@ -1828,14 +2241,15 @@ xlabel('X Value');
 ylabel('Y Value');
 hold on;
 scatter(x_pre_models(5), y_pre_models(5), 50, 'black', 'Filled');          % Draw expected response for this model
-scatter(x_values_Lab, y_values_Lab, 50, 'white');                          % Draw responses mixed in Lab   
+scatter(x_values_Lab, y_values_Lab, 50, 'white');                          % Draw responses mixed in Lab
 hold off;
-saveas(gcf, fullfile(path, 'demographic_age40_49_Labresponses'), 'png');
+saveas(gcf, fullfile(path, 'demographic_age40_49_Labresponses'), 'png'); close;
 
 % Clean all the tables!
-x_values_HSV = []; y_values_HSV = []; x_values_LCh = []; y_values_LCh = []; x_values_CMYK = []; y_values_CMYK = []; x_values_RGB = []; y_values_RGB = []; x_values_Lab = []; y_values_Lab = [];  
+x_values_HSV = []; y_values_HSV = []; x_values_LCh = []; y_values_LCh = []; x_values_CMYK = []; y_values_CMYK = []; x_values_RGB = []; y_values_RGB = []; x_values_Lab = []; y_values_Lab = [];
 distance_HSV = []; distance_LCh = []; distance_CMYK = []; distance_RGB = []; distance_Lab = [];
 distance_expectedC1C2 = [];
+distance_pair1 = []; distance_pair2 = []; distance_pair3 = []; distance_pair4 = [];
 
 %% Demographic Analysis - AGE 50 - 59
 
@@ -1852,37 +2266,67 @@ scatter(x_pre_expectedColors(3), y_pre_expectedColors(3), 60, 'black');         
 
 
 % Draw every pair of responses.
-for i = 1 : height(demoResultsAge_50_59)                                  
+for i = 1 : height(demoResultsAge_50_59)
     %% First Color - C1
-    sColor = str2num(cell2mat(demoResultsAge_50_59.second_color(i)));      
-    valuesSColor = [valuesSColor sColor];                               
-    sColor = sColor/360;                                                
-    sColor = [sColor 1 1];                                             
+    sColor = str2num(cell2mat(demoResultsAge_50_59.second_color(i)));
+    valuesSColor = [valuesSColor sColor];
+    sColor = sColor/360;
+    sColor = [sColor 1 1];
     hsv_C1 = sColor;
-    sColor = hsv2rgb(sColor);                                           
+    sColor = hsv2rgb(sColor);
     rgb_C1 = round([sColor(1)*255 sColor(2)*255 sColor(3)*255]);
-    sColor = rgb2xyz(sColor);                                           
-    x_aux = sColor(1)/(sColor(1) + sColor(2) + sColor(3));              
-    y_aux = sColor(2)/(sColor(1) + sColor(2) + sColor(3));              
-    x_values = [x_values x_aux];                                        
+    sColor = rgb2xyz(sColor);
+    x_aux = sColor(1)/(sColor(1) + sColor(2) + sColor(3));
+    y_aux = sColor(2)/(sColor(1) + sColor(2) + sColor(3));
+    x_values = [x_values x_aux];
     y_values = [y_values y_aux];
-    
+
     %% Second Color - C2
     tColor = str2num(cell2mat(demoResultsAge_50_59.third_color(i)));
-    valuesTColor = [valuesTColor tColor];                               
-    tColor = tColor/360;                                                
-    tColor = [tColor 1 1];                                             
+    valuesTColor = [valuesTColor tColor];
+    tColor = tColor/360;
+    tColor = [tColor 1 1];
     hsv_C2 = tColor;
-    tColor = hsv2rgb(tColor);                                           
+    tColor = hsv2rgb(tColor);
     rgb_C2 = round([tColor(1)*255 tColor(2)*255 tColor(3)*255]);
-    tColor = rgb2xyz(tColor);                                           
-    x_aux = tColor(1)/(tColor(1) + tColor(2) + tColor(3));              
-    y_aux = tColor(2)/(tColor(1) + tColor(2) + tColor(3));              
-    x_values = [x_values x_aux];                                        
+    tColor = rgb2xyz(tColor);
+    x_aux = tColor(1)/(tColor(1) + tColor(2) + tColor(3));
+    y_aux = tColor(2)/(tColor(1) + tColor(2) + tColor(3));
+    x_values = [x_values x_aux];
     y_values = [y_values y_aux];
-    
+
     %% Categorize Colors - Bins
-    
+    for j = 1 : length(colorBins)
+        valuesofx = round(colorBins(j).XData, 1);
+        valuesofy = round(colorBins(j).YData, 1);
+        if foundC1 == 0 && ismember(round(x_values(1), 1), valuesofx) && ismember(round(y_values(1),1), valuesofy)
+            color_C1 = colorBins(j).Tag;
+            foundC1 = 1;
+        end
+        if foundC2 == 0 && ismember(round(x_values(2), 1), valuesofx) && ismember(round(y_values(2),1), valuesofy)
+            color_C2 = colorBins(j).Tag;
+            foundC2 = 1;
+        end
+    end
+
+    if foundC1 == 0 && foundC2 == 0
+        C1_name = [C1_name ; 'NA       '];
+        C2_name = [C2_name ; 'NA       '];
+    else if foundC1 == 1 && foundC2 == 0
+            C1_name = [C1_name ; color_C1];
+            C2_name = [C2_name ; 'NA       '];
+        else if foundC1 == 0 && foundC2 == 1
+                C1_name = [C1_name ; 'NA       '];
+                C2_name = [C2_name ; color_C2];
+            else
+                C1_name = [C1_name ; color_C1];
+                C2_name = [C2_name ; color_C2];
+            end
+        end
+    end
+    foundC1 = 0; foundC2 = 0;
+
+
     %% Difference between C1/C2 and expected colors C1/C2
     diff_c1_expected = round(pdist([[x_values(1) y_values(1)] ; [x_pre_expectedColors(2) y_pre_expectedColors(2)]]), 2);  % [given -C1- C2]
     diff_c2_expected = round(pdist([[x_values(2) y_values(2)] ; [x_pre_expectedColors(3) y_pre_expectedColors(3)]]), 2);  % [given C1 -C2-]
@@ -1900,10 +2344,10 @@ for i = 1 : height(demoResultsAge_50_59)
 
     diff_c1_pair4c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair4(1) y_pair4(1)]]), 2);   diff_c2_pair4c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair4(2) y_pair4(2)]]), 2);
     distance_pair4 = [distance_pair4 ; diff_c1_pair4c1 + diff_c2_pair4c2];
-    
+
     %% Difference between C1/C2 blended onto Color Models against pre-calc values
     %%%%%% Blend-it in HSV
-    sColor_hsv = [(hsv_C1(1)*360) hsv_C1(2) hsv_C1(3)]; tColor_hsv = [(hsv_C2(1)*360) hsv_C2(2) hsv_C2(3)];     
+    sColor_hsv = [(hsv_C1(1)*360) hsv_C1(2) hsv_C1(3)]; tColor_hsv = [(hsv_C2(1)*360) hsv_C2(2) hsv_C2(3)];
     diff_angles = abs(sColor_hsv(1) - tColor_hsv(1));
     if diff_angles > 180
         angle_small = (360 - diff_angles);  % smallest angle
@@ -1917,11 +2361,11 @@ for i = 1 : height(demoResultsAge_50_59)
     else
         angle = min([sColor_hsv(1) tColor_hsv(1)]) + (diff_angles / 2);
     end
-    rColor = rgb2xyz(hsv2rgb(([angle/360 sColor_hsv(2) sColor_hsv(3)])));                                  % hsv -> rgb -> xyz -> compare 
+    rColor = rgb2xyz(hsv2rgb(([angle/360 sColor_hsv(2) sColor_hsv(3)])));                                  % hsv -> rgb -> xyz -> compare
     x_aux  = rColor(1)/(rColor(1) + rColor(2) + rColor(3)); y_aux = rColor(2)/(rColor(1) + rColor(2) + rColor(3));
     distance_HSV = [distance_HSV; round(pdist([[x_aux y_aux]; [x_pre_models(1) y_pre_models(1)]]),2)];
     x_values_HSV = [x_values_HSV x_aux]; y_values_HSV = [y_values_HSV y_aux];
-    
+
     %%%%%% Blend-it in CIE-LCh (XYZ -> Lab -> LCh)
     sColor_lch = sColor; tColor_lch = tColor;
     sColor_lch = applycform(applycform(sColor_lch, cformXYZ_Lab), cformLab_LCh); tColor_lch = applycform(applycform(tColor_lch, cformXYZ_Lab), cformLab_LCh);
@@ -1945,7 +2389,7 @@ for i = 1 : height(demoResultsAge_50_59)
     x_aux  = rColor(1)/(rColor(1) + rColor(2) + rColor(3)); y_aux = rColor(2)/(rColor(1) + rColor(2) + rColor(3));
     distance_LCh = [distance_LCh; round(pdist([[x_aux y_aux]; [x_pre_models(2) y_pre_models(2)]]), 2)];
     x_values_LCh = [x_values_LCh x_aux]; y_values_LCh = [y_values_LCh y_aux];
-    
+
     %%%%%% Blend-it in CMYK
     sColor_cmyk = sColor; tColor_cmyk = tColor;
     sColor_cmyk = applycform(applycform(sColor_cmyk, cformXYZ_RGB), cformRGB_CMYK); tColor_cmyk = applycform(applycform(tColor_cmyk, cformXYZ_RGB), cformRGB_CMYK);
@@ -1957,7 +2401,7 @@ for i = 1 : height(demoResultsAge_50_59)
     x_aux  = rColor(1)/(rColor(1) + rColor(2) + rColor(3)); y_aux = rColor(2)/(rColor(1) + rColor(2) + rColor(3));
     distance_CMYK = [distance_CMYK; round(pdist([[x_aux y_aux]; [x_pre_models(3) y_pre_models(3)]]), 2)];
     x_values_CMYK = [x_values_CMYK x_aux]; y_values_CMYK = [y_values_CMYK y_aux];
-    
+
     %%%%%% Blend-it in RGB
     sColor_rgb = sColor; tColor_rgb = tColor;
     sColor_rgb = applycform(sColor_rgb, cformXYZ_RGB); tColor_rgb = applycform(tColor_rgb, cformXYZ_RGB);
@@ -1968,7 +2412,7 @@ for i = 1 : height(demoResultsAge_50_59)
     x_aux  = rColor(1)/(rColor(1) + rColor(2) + rColor(3)); y_aux = rColor(2)/(rColor(1) + rColor(2) + rColor(3));
     distance_RGB = [distance_RGB; round(pdist([[x_aux y_aux]; [x_pre_models(4) y_pre_models(4)]]), 2)];
     x_values_RGB = [x_values_RGB x_aux]; y_values_RGB = [y_values_RGB y_aux];
-    
+
     %%%%%% Blend-it in CIE-Lab
     sColor_lab = sColor; tColor_lab = tColor;
     sColor_lab = applycform(sColor_lab, cformXYZ_Lab); tColor_lab = applycform(tColor_lab, cformXYZ_Lab);
@@ -1987,7 +2431,7 @@ for i = 1 : height(demoResultsAge_50_59)
 end
 hold off;
 
-saveas(gcf, fullfile(path, 'demographic_age50_59'), 'png');
+saveas(gcf, fullfile(path, 'demographic_age50_59'), 'png'); close;
 
 % Centroids of Color Models
 centroid_HSV    = [centroid_HSV  ; [round(mean(x_values_HSV),2) round(mean(y_values_HSV),2)]];
@@ -2004,8 +2448,21 @@ distance_centroid_Lab = [distance_centroid_Lab ; round(pdist([mean(x_values_Lab)
 
 % Catenate all Tables               -- CHANGE HERE
 diffs_table = table(distance_expectedC1C2, distance_HSV, distance_LCh, distance_CMYK, distance_RGB, distance_Lab);
+diffs_pairs = table(distance_pair1,distance_pair2,distance_pair3,distance_pair4);
+diffs_table = [diffs_table diffs_pairs];
 
-demoResultsAge_50_59 = [demoResultsAge_50_59 diffs_table];
+if size(C1_name, 1) == 1
+    colors_names = cell(1,2);
+    colors_names(1,1) = cellstr(C1_name);
+    colors_names(1,2) = cellstr(C2_name);
+    colors_names = cell2table(colors_names);
+else
+    colors_names = table(C1_name, C2_name);
+end
+
+C1_name = []; C2_name = [];
+
+demoResultsAge_50_59 = [demoResultsAge_50_59 colors_names diffs_table];
 
 % Plot Results for each Color Model
 figure('NumberTitle','off');
@@ -2015,9 +2472,9 @@ xlabel('X Value');
 ylabel('Y Value');
 hold on;
 scatter(x_pre_models(1), y_pre_models(1), 50, 'black', 'Filled');          % Draw expected response for this model
-scatter(x_values_HSV, y_values_HSV, 50, 'white');                          % Draw responses mixed in HSV   
+scatter(x_values_HSV, y_values_HSV, 50, 'white');                          % Draw responses mixed in HSV
 hold off;
-saveas(gcf, fullfile(path, 'demographic_age50_59_HSVresponses'), 'png');
+saveas(gcf, fullfile(path, 'demographic_age50_59_HSVresponses'), 'png'); close;
 
 figure('NumberTitle','off');
 cieplot();
@@ -2026,9 +2483,9 @@ xlabel('X Value');
 ylabel('Y Value');
 hold on;
 scatter(x_pre_models(2), y_pre_models(2), 50, 'black', 'Filled');          % Draw expected response for this model
-scatter(x_values_LCh, y_values_LCh, 50, 'white');                          % Draw responses mixed in LCh   
+scatter(x_values_LCh, y_values_LCh, 50, 'white');                          % Draw responses mixed in LCh
 hold off;
-saveas(gcf, fullfile(path, 'demographic_age50_59_LChresponses'), 'png');
+saveas(gcf, fullfile(path, 'demographic_age50_59_LChresponses'), 'png'); close;
 
 figure('NumberTitle','off');
 cieplot();
@@ -2037,9 +2494,9 @@ xlabel('X Value');
 ylabel('Y Value');
 hold on;
 scatter(x_pre_models(3), y_pre_models(3), 50, 'black', 'Filled');          % Draw expected response for this model
-scatter(x_values_CMYK, y_values_CMYK, 50, 'white');                          % Draw responses mixed in CMYK   
+scatter(x_values_CMYK, y_values_CMYK, 50, 'white');                          % Draw responses mixed in CMYK
 hold off;
-saveas(gcf, fullfile(path, 'demographic_age50_59_CMYKresponses'), 'png');
+saveas(gcf, fullfile(path, 'demographic_age50_59_CMYKresponses'), 'png'); close;
 
 figure('NumberTitle','off');
 cieplot();
@@ -2048,9 +2505,9 @@ xlabel('X Value');
 ylabel('Y Value');
 hold on;
 scatter(x_pre_models(4), y_pre_models(4), 50, 'black', 'Filled');          % Draw expected response for this model
-scatter(x_values_RGB, y_values_RGB, 50, 'white');                          % Draw responses mixed in RGB   
+scatter(x_values_RGB, y_values_RGB, 50, 'white');                          % Draw responses mixed in RGB
 hold off;
-saveas(gcf, fullfile(path, 'demographic_age50_59_RGBresponses'), 'png');
+saveas(gcf, fullfile(path, 'demographic_age50_59_RGBresponses'), 'png'); close;
 
 figure('NumberTitle','off');
 cieplot();
@@ -2059,14 +2516,15 @@ xlabel('X Value');
 ylabel('Y Value');
 hold on;
 scatter(x_pre_models(5), y_pre_models(5), 50, 'black', 'Filled');          % Draw expected response for this model
-scatter(x_values_Lab, y_values_Lab, 50, 'white');                          % Draw responses mixed in Lab   
+scatter(x_values_Lab, y_values_Lab, 50, 'white');                          % Draw responses mixed in Lab
 hold off;
-saveas(gcf, fullfile(path, 'demographic_age50_59_Labresponses'), 'png');
+saveas(gcf, fullfile(path, 'demographic_age50_59_Labresponses'), 'png'); close;
 
 % Clean all the tables!
-x_values_HSV = []; y_values_HSV = []; x_values_LCh = []; y_values_LCh = []; x_values_CMYK = []; y_values_CMYK = []; x_values_RGB = []; y_values_RGB = []; x_values_Lab = []; y_values_Lab = [];  
+x_values_HSV = []; y_values_HSV = []; x_values_LCh = []; y_values_LCh = []; x_values_CMYK = []; y_values_CMYK = []; x_values_RGB = []; y_values_RGB = []; x_values_Lab = []; y_values_Lab = [];
 distance_HSV = []; distance_LCh = []; distance_CMYK = []; distance_RGB = []; distance_Lab = [];
 distance_expectedC1C2 = [];
+distance_pair1 = []; distance_pair2 = []; distance_pair3 = []; distance_pair4 = [];
 
 %% Demographic Analysis - AGE >= 60
 
@@ -2083,37 +2541,67 @@ scatter(x_pre_expectedColors(3), y_pre_expectedColors(3), 60, 'black');         
 
 
 % Draw every pair of responses.
-for i = 1 : height(demoResultsAge_60)                                  
+for i = 1 : height(demoResultsAge_60)
     %% First Color - C1
-    sColor = str2num(cell2mat(demoResultsAge_60.second_color(i)));      
-    valuesSColor = [valuesSColor sColor];                               
-    sColor = sColor/360;                                                
-    sColor = [sColor 1 1];                                             
+    sColor = str2num(cell2mat(demoResultsAge_60.second_color(i)));
+    valuesSColor = [valuesSColor sColor];
+    sColor = sColor/360;
+    sColor = [sColor 1 1];
     hsv_C1 = sColor;
-    sColor = hsv2rgb(sColor);                                           
+    sColor = hsv2rgb(sColor);
     rgb_C1 = round([sColor(1)*255 sColor(2)*255 sColor(3)*255]);
-    sColor = rgb2xyz(sColor);                                           
-    x_aux = sColor(1)/(sColor(1) + sColor(2) + sColor(3));              
-    y_aux = sColor(2)/(sColor(1) + sColor(2) + sColor(3));              
-    x_values = [x_values x_aux];                                        
+    sColor = rgb2xyz(sColor);
+    x_aux = sColor(1)/(sColor(1) + sColor(2) + sColor(3));
+    y_aux = sColor(2)/(sColor(1) + sColor(2) + sColor(3));
+    x_values = [x_values x_aux];
     y_values = [y_values y_aux];
-    
+
     %% Second Color - C2
     tColor = str2num(cell2mat(demoResultsAge_60.third_color(i)));
-    valuesTColor = [valuesTColor tColor];                               
-    tColor = tColor/360;                                                
-    tColor = [tColor 1 1];                                             
+    valuesTColor = [valuesTColor tColor];
+    tColor = tColor/360;
+    tColor = [tColor 1 1];
     hsv_C2 = tColor;
-    tColor = hsv2rgb(tColor);                                           
+    tColor = hsv2rgb(tColor);
     rgb_C2 = round([tColor(1)*255 tColor(2)*255 tColor(3)*255]);
-    tColor = rgb2xyz(tColor);                                           
-    x_aux = tColor(1)/(tColor(1) + tColor(2) + tColor(3));              
-    y_aux = tColor(2)/(tColor(1) + tColor(2) + tColor(3));              
-    x_values = [x_values x_aux];                                        
+    tColor = rgb2xyz(tColor);
+    x_aux = tColor(1)/(tColor(1) + tColor(2) + tColor(3));
+    y_aux = tColor(2)/(tColor(1) + tColor(2) + tColor(3));
+    x_values = [x_values x_aux];
     y_values = [y_values y_aux];
-    
+
     %% Categorize Colors - Bins
-    
+    for j = 1 : length(colorBins)
+        valuesofx = round(colorBins(j).XData, 1);
+        valuesofy = round(colorBins(j).YData, 1);
+        if foundC1 == 0 && ismember(round(x_values(1), 1), valuesofx) && ismember(round(y_values(1),1), valuesofy)
+            color_C1 = colorBins(j).Tag;
+            foundC1 = 1;
+        end
+        if foundC2 == 0 && ismember(round(x_values(2), 1), valuesofx) && ismember(round(y_values(2),1), valuesofy)
+            color_C2 = colorBins(j).Tag;
+            foundC2 = 1;
+        end
+    end
+
+    if foundC1 == 0 && foundC2 == 0
+        C1_name = [C1_name ; 'NA       '];
+        C2_name = [C2_name ; 'NA       '];
+    else if foundC1 == 1 && foundC2 == 0
+            C1_name = [C1_name ; color_C1];
+            C2_name = [C2_name ; 'NA       '];
+        else if foundC1 == 0 && foundC2 == 1
+                C1_name = [C1_name ; 'NA       '];
+                C2_name = [C2_name ; color_C2];
+            else
+                C1_name = [C1_name ; color_C1];
+                C2_name = [C2_name ; color_C2];
+            end
+        end
+    end
+    foundC1 = 0; foundC2 = 0;
+
+
     %% Difference between C1/C2 and expected colors C1/C2
     diff_c1_expected = round(pdist([[x_values(1) y_values(1)] ; [x_pre_expectedColors(2) y_pre_expectedColors(2)]]), 2);  % [given -C1- C2]
     diff_c2_expected = round(pdist([[x_values(2) y_values(2)] ; [x_pre_expectedColors(3) y_pre_expectedColors(3)]]), 2);  % [given C1 -C2-]
@@ -2131,10 +2619,10 @@ for i = 1 : height(demoResultsAge_60)
 
     diff_c1_pair4c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair4(1) y_pair4(1)]]), 2);   diff_c2_pair4c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair4(2) y_pair4(2)]]), 2);
     distance_pair4 = [distance_pair4 ; diff_c1_pair4c1 + diff_c2_pair4c2];
-    
+
     %% Difference between C1/C2 blended onto Color Models against pre-calc values
     %%%%%% Blend-it in HSV
-    sColor_hsv = [(hsv_C1(1)*360) hsv_C1(2) hsv_C1(3)]; tColor_hsv = [(hsv_C2(1)*360) hsv_C2(2) hsv_C2(3)];     
+    sColor_hsv = [(hsv_C1(1)*360) hsv_C1(2) hsv_C1(3)]; tColor_hsv = [(hsv_C2(1)*360) hsv_C2(2) hsv_C2(3)];
     diff_angles = abs(sColor_hsv(1) - tColor_hsv(1));
     if diff_angles > 180
         angle_small = (360 - diff_angles);  % smallest angle
@@ -2148,11 +2636,11 @@ for i = 1 : height(demoResultsAge_60)
     else
         angle = min([sColor_hsv(1) tColor_hsv(1)]) + (diff_angles / 2);
     end
-    rColor = rgb2xyz(hsv2rgb(([angle/360 sColor_hsv(2) sColor_hsv(3)])));                                  % hsv -> rgb -> xyz -> compare 
+    rColor = rgb2xyz(hsv2rgb(([angle/360 sColor_hsv(2) sColor_hsv(3)])));                                  % hsv -> rgb -> xyz -> compare
     x_aux  = rColor(1)/(rColor(1) + rColor(2) + rColor(3)); y_aux = rColor(2)/(rColor(1) + rColor(2) + rColor(3));
     distance_HSV = [distance_HSV; round(pdist([[x_aux y_aux]; [x_pre_models(1) y_pre_models(1)]]),2)];
     x_values_HSV = [x_values_HSV x_aux]; y_values_HSV = [y_values_HSV y_aux];
-    
+
     %%%%%% Blend-it in CIE-LCh (XYZ -> Lab -> LCh)
     sColor_lch = sColor; tColor_lch = tColor;
     sColor_lch = applycform(applycform(sColor_lch, cformXYZ_Lab), cformLab_LCh); tColor_lch = applycform(applycform(tColor_lch, cformXYZ_Lab), cformLab_LCh);
@@ -2176,7 +2664,7 @@ for i = 1 : height(demoResultsAge_60)
     x_aux  = rColor(1)/(rColor(1) + rColor(2) + rColor(3)); y_aux = rColor(2)/(rColor(1) + rColor(2) + rColor(3));
     distance_LCh = [distance_LCh; round(pdist([[x_aux y_aux]; [x_pre_models(2) y_pre_models(2)]]), 2)];
     x_values_LCh = [x_values_LCh x_aux]; y_values_LCh = [y_values_LCh y_aux];
-    
+
     %%%%%% Blend-it in CMYK
     sColor_cmyk = sColor; tColor_cmyk = tColor;
     sColor_cmyk = applycform(applycform(sColor_cmyk, cformXYZ_RGB), cformRGB_CMYK); tColor_cmyk = applycform(applycform(tColor_cmyk, cformXYZ_RGB), cformRGB_CMYK);
@@ -2188,7 +2676,7 @@ for i = 1 : height(demoResultsAge_60)
     x_aux  = rColor(1)/(rColor(1) + rColor(2) + rColor(3)); y_aux = rColor(2)/(rColor(1) + rColor(2) + rColor(3));
     distance_CMYK = [distance_CMYK; round(pdist([[x_aux y_aux]; [x_pre_models(3) y_pre_models(3)]]), 2)];
     x_values_CMYK = [x_values_CMYK x_aux]; y_values_CMYK = [y_values_CMYK y_aux];
-    
+
     %%%%%% Blend-it in RGB
     sColor_rgb = sColor; tColor_rgb = tColor;
     sColor_rgb = applycform(sColor_rgb, cformXYZ_RGB); tColor_rgb = applycform(tColor_rgb, cformXYZ_RGB);
@@ -2199,7 +2687,7 @@ for i = 1 : height(demoResultsAge_60)
     x_aux  = rColor(1)/(rColor(1) + rColor(2) + rColor(3)); y_aux = rColor(2)/(rColor(1) + rColor(2) + rColor(3));
     distance_RGB = [distance_RGB; round(pdist([[x_aux y_aux]; [x_pre_models(4) y_pre_models(4)]]), 2)];
     x_values_RGB = [x_values_RGB x_aux]; y_values_RGB = [y_values_RGB y_aux];
-    
+
     %%%%%% Blend-it in CIE-Lab
     sColor_lab = sColor; tColor_lab = tColor;
     sColor_lab = applycform(sColor_lab, cformXYZ_Lab); tColor_lab = applycform(tColor_lab, cformXYZ_Lab);
@@ -2218,7 +2706,7 @@ for i = 1 : height(demoResultsAge_60)
 end
 hold off;
 
-saveas(gcf, fullfile(path, 'demographic_age60'), 'png');
+saveas(gcf, fullfile(path, 'demographic_age60'), 'png'); close;
 
 % Centroids of Color Models
 centroid_HSV    = [centroid_HSV  ; [round(mean(x_values_HSV),2) round(mean(y_values_HSV),2)]];
@@ -2235,8 +2723,21 @@ distance_centroid_Lab = [distance_centroid_Lab ; round(pdist([mean(x_values_Lab)
 
 % Catenate all Tables               -- CHANGE HERE
 diffs_table = table(distance_expectedC1C2, distance_HSV, distance_LCh, distance_CMYK, distance_RGB, distance_Lab);
+diffs_pairs = table(distance_pair1,distance_pair2,distance_pair3,distance_pair4);
+diffs_table = [diffs_table diffs_pairs];
 
-demoResultsAge_60 = [demoResultsAge_60 diffs_table];
+if size(C1_name, 1) == 1
+    colors_names = cell(1,2);
+    colors_names(1,1) = cellstr(C1_name);
+    colors_names(1,2) = cellstr(C2_name);
+    colors_names = cell2table(colors_names);
+else
+    colors_names = table(C1_name, C2_name);
+end
+
+C1_name = []; C2_name = [];
+
+demoResultsAge_60 = [demoResultsAge_60 colors_names diffs_table];
 
 % Plot Results for each Color Model
 figure('NumberTitle','off');
@@ -2246,9 +2747,9 @@ xlabel('X Value');
 ylabel('Y Value');
 hold on;
 scatter(x_pre_models(1), y_pre_models(1), 50, 'black', 'Filled');          % Draw expected response for this model
-scatter(x_values_HSV, y_values_HSV, 50, 'white');                          % Draw responses mixed in HSV   
+scatter(x_values_HSV, y_values_HSV, 50, 'white');                          % Draw responses mixed in HSV
 hold off;
-saveas(gcf, fullfile(path, 'demographic_age60_HSVresponses'), 'png');
+saveas(gcf, fullfile(path, 'demographic_age60_HSVresponses'), 'png'); close;
 
 figure('NumberTitle','off');
 cieplot();
@@ -2257,9 +2758,9 @@ xlabel('X Value');
 ylabel('Y Value');
 hold on;
 scatter(x_pre_models(2), y_pre_models(2), 50, 'black', 'Filled');          % Draw expected response for this model
-scatter(x_values_LCh, y_values_LCh, 50, 'white');                          % Draw responses mixed in LCh   
+scatter(x_values_LCh, y_values_LCh, 50, 'white');                          % Draw responses mixed in LCh
 hold off;
-saveas(gcf, fullfile(path, 'demographic_age60_LChresponses'), 'png');
+saveas(gcf, fullfile(path, 'demographic_age60_LChresponses'), 'png'); close;
 
 figure('NumberTitle','off');
 cieplot();
@@ -2268,9 +2769,9 @@ xlabel('X Value');
 ylabel('Y Value');
 hold on;
 scatter(x_pre_models(3), y_pre_models(3), 50, 'black', 'Filled');          % Draw expected response for this model
-scatter(x_values_CMYK, y_values_CMYK, 50, 'white');                          % Draw responses mixed in CMYK   
+scatter(x_values_CMYK, y_values_CMYK, 50, 'white');                          % Draw responses mixed in CMYK
 hold off;
-saveas(gcf, fullfile(path, 'demographic_age60_CMYKresponses'), 'png');
+saveas(gcf, fullfile(path, 'demographic_age60_CMYKresponses'), 'png'); close;
 
 figure('NumberTitle','off');
 cieplot();
@@ -2279,9 +2780,9 @@ xlabel('X Value');
 ylabel('Y Value');
 hold on;
 scatter(x_pre_models(4), y_pre_models(4), 50, 'black', 'Filled');          % Draw expected response for this model
-scatter(x_values_RGB, y_values_RGB, 50, 'white');                          % Draw responses mixed in RGB   
+scatter(x_values_RGB, y_values_RGB, 50, 'white');                          % Draw responses mixed in RGB
 hold off;
-saveas(gcf, fullfile(path, 'demographic_age60_RGBresponses'), 'png');
+saveas(gcf, fullfile(path, 'demographic_age60_RGBresponses'), 'png'); close;
 
 figure('NumberTitle','off');
 cieplot();
@@ -2290,14 +2791,15 @@ xlabel('X Value');
 ylabel('Y Value');
 hold on;
 scatter(x_pre_models(5), y_pre_models(5), 50, 'black', 'Filled');          % Draw expected response for this model
-scatter(x_values_Lab, y_values_Lab, 50, 'white');                          % Draw responses mixed in Lab   
+scatter(x_values_Lab, y_values_Lab, 50, 'white');                          % Draw responses mixed in Lab
 hold off;
-saveas(gcf, fullfile(path, 'demographic_age60_Labresponses'), 'png');
+saveas(gcf, fullfile(path, 'demographic_age60_Labresponses'), 'png'); close;
 
 % Clean all the tables!
-x_values_HSV = []; y_values_HSV = []; x_values_LCh = []; y_values_LCh = []; x_values_CMYK = []; y_values_CMYK = []; x_values_RGB = []; y_values_RGB = []; x_values_Lab = []; y_values_Lab = [];  
+x_values_HSV = []; y_values_HSV = []; x_values_LCh = []; y_values_LCh = []; x_values_CMYK = []; y_values_CMYK = []; x_values_RGB = []; y_values_RGB = []; x_values_Lab = []; y_values_Lab = [];
 distance_HSV = []; distance_LCh = []; distance_CMYK = []; distance_RGB = []; distance_Lab = [];
 distance_expectedC1C2 = [];
+distance_pair1 = []; distance_pair2 = []; distance_pair3 = []; distance_pair4 = [];
 
 %% Demographic Analysis - GENDER Female
 
@@ -2314,42 +2816,72 @@ scatter(x_pre_expectedColors(3), y_pre_expectedColors(3), 60, 'black');         
 
 
 % Draw every pair of responses.
-for i = 1 : height(demoResultsGender_Female)                                  
+for i = 1 : height(demoResultsGender_Female)
     %% First Color - C1
-    sColor = str2num(cell2mat(demoResultsGender_Female.second_color(i)));      
-    valuesSColor = [valuesSColor sColor];                               
-    sColor = sColor/360;                                                
-    sColor = [sColor 1 1];                                             
+    sColor = str2num(cell2mat(demoResultsGender_Female.second_color(i)));
+    valuesSColor = [valuesSColor sColor];
+    sColor = sColor/360;
+    sColor = [sColor 1 1];
     hsv_C1 = sColor;
-    sColor = hsv2rgb(sColor);                                           
+    sColor = hsv2rgb(sColor);
     rgb_C1 = round([sColor(1)*255 sColor(2)*255 sColor(3)*255]);
-    sColor = rgb2xyz(sColor);                                           
-    x_aux = sColor(1)/(sColor(1) + sColor(2) + sColor(3));              
-    y_aux = sColor(2)/(sColor(1) + sColor(2) + sColor(3));              
-    x_values = [x_values x_aux];                                        
+    sColor = rgb2xyz(sColor);
+    x_aux = sColor(1)/(sColor(1) + sColor(2) + sColor(3));
+    y_aux = sColor(2)/(sColor(1) + sColor(2) + sColor(3));
+    x_values = [x_values x_aux];
     y_values = [y_values y_aux];
-    
+
     %% Second Color - C2
     tColor = str2num(cell2mat(demoResultsGender_Female.third_color(i)));
-    valuesTColor = [valuesTColor tColor];                               
-    tColor = tColor/360;                                                
-    tColor = [tColor 1 1];                                             
+    valuesTColor = [valuesTColor tColor];
+    tColor = tColor/360;
+    tColor = [tColor 1 1];
     hsv_C2 = tColor;
-    tColor = hsv2rgb(tColor);                                           
+    tColor = hsv2rgb(tColor);
     rgb_C2 = round([tColor(1)*255 tColor(2)*255 tColor(3)*255]);
-    tColor = rgb2xyz(tColor);                                           
-    x_aux = tColor(1)/(tColor(1) + tColor(2) + tColor(3));              
-    y_aux = tColor(2)/(tColor(1) + tColor(2) + tColor(3));              
-    x_values = [x_values x_aux];                                        
+    tColor = rgb2xyz(tColor);
+    x_aux = tColor(1)/(tColor(1) + tColor(2) + tColor(3));
+    y_aux = tColor(2)/(tColor(1) + tColor(2) + tColor(3));
+    x_values = [x_values x_aux];
     y_values = [y_values y_aux];
-    
+
     %% Categorize Colors - Bins
-    
+    for j = 1 : length(colorBins)
+        valuesofx = round(colorBins(j).XData, 1);
+        valuesofy = round(colorBins(j).YData, 1);
+        if foundC1 == 0 && ismember(round(x_values(1), 1), valuesofx) && ismember(round(y_values(1),1), valuesofy)
+            color_C1 = colorBins(j).Tag;
+            foundC1 = 1;
+        end
+        if foundC2 == 0 && ismember(round(x_values(2), 1), valuesofx) && ismember(round(y_values(2),1), valuesofy)
+            color_C2 = colorBins(j).Tag;
+            foundC2 = 1;
+        end
+    end
+
+    if foundC1 == 0 && foundC2 == 0
+        C1_name = [C1_name ; 'NA       '];
+        C2_name = [C2_name ; 'NA       '];
+    else if foundC1 == 1 && foundC2 == 0
+            C1_name = [C1_name ; color_C1];
+            C2_name = [C2_name ; 'NA       '];
+        else if foundC1 == 0 && foundC2 == 1
+                C1_name = [C1_name ; 'NA       '];
+                C2_name = [C2_name ; color_C2];
+            else
+                C1_name = [C1_name ; color_C1];
+                C2_name = [C2_name ; color_C2];
+            end
+        end
+    end
+    foundC1 = 0; foundC2 = 0;
+
+
     %% Difference between C1/C2 and expected colors C1/C2
     diff_c1_expected = round(pdist([[x_values(1) y_values(1)] ; [x_pre_expectedColors(2) y_pre_expectedColors(2)]]), 2);  % [given -C1- C2]
     diff_c2_expected = round(pdist([[x_values(2) y_values(2)] ; [x_pre_expectedColors(3) y_pre_expectedColors(3)]]), 2);  % [given C1 -C2-]
     distance_expectedC1C2 = [distance_expectedC1C2 ; diff_c1_expected + diff_c2_expected];
-  
+
     %% Difference between C1/C2 and other pairs which generate the same color       %% -- CHANGE HERE (ADD MORE PAIRS IF NEEDED)
     diff_c1_pair1c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair1(1) y_pair1(1)]]), 2);   diff_c2_pair1c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair1(2) y_pair1(2)]]), 2);
     distance_pair1 = [distance_pair1 ; diff_c1_pair1c1 + diff_c2_pair1c2];
@@ -2362,10 +2894,10 @@ for i = 1 : height(demoResultsGender_Female)
 
     diff_c1_pair4c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair4(1) y_pair4(1)]]), 2);   diff_c2_pair4c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair4(2) y_pair4(2)]]), 2);
     distance_pair4 = [distance_pair4 ; diff_c1_pair4c1 + diff_c2_pair4c2];
-    
+
     %% Difference between C1/C2 blended onto Color Models against pre-calc values
     %%%%%% Blend-it in HSV
-    sColor_hsv = [(hsv_C1(1)*360) hsv_C1(2) hsv_C1(3)]; tColor_hsv = [(hsv_C2(1)*360) hsv_C2(2) hsv_C2(3)];     
+    sColor_hsv = [(hsv_C1(1)*360) hsv_C1(2) hsv_C1(3)]; tColor_hsv = [(hsv_C2(1)*360) hsv_C2(2) hsv_C2(3)];
     diff_angles = abs(sColor_hsv(1) - tColor_hsv(1));
     if diff_angles > 180
         angle_small = (360 - diff_angles);  % smallest angle
@@ -2379,11 +2911,11 @@ for i = 1 : height(demoResultsGender_Female)
     else
         angle = min([sColor_hsv(1) tColor_hsv(1)]) + (diff_angles / 2);
     end
-    rColor = rgb2xyz(hsv2rgb(([angle/360 sColor_hsv(2) sColor_hsv(3)])));                                  % hsv -> rgb -> xyz -> compare 
+    rColor = rgb2xyz(hsv2rgb(([angle/360 sColor_hsv(2) sColor_hsv(3)])));                                  % hsv -> rgb -> xyz -> compare
     x_aux  = rColor(1)/(rColor(1) + rColor(2) + rColor(3)); y_aux = rColor(2)/(rColor(1) + rColor(2) + rColor(3));
     distance_HSV = [distance_HSV; round(pdist([[x_aux y_aux]; [x_pre_models(1) y_pre_models(1)]]),2)];
     x_values_HSV = [x_values_HSV x_aux]; y_values_HSV = [y_values_HSV y_aux];
-    
+
     %%%%%% Blend-it in CIE-LCh (XYZ -> Lab -> LCh)
     sColor_lch = sColor; tColor_lch = tColor;
     sColor_lch = applycform(applycform(sColor_lch, cformXYZ_Lab), cformLab_LCh); tColor_lch = applycform(applycform(tColor_lch, cformXYZ_Lab), cformLab_LCh);
@@ -2407,7 +2939,7 @@ for i = 1 : height(demoResultsGender_Female)
     x_aux  = rColor(1)/(rColor(1) + rColor(2) + rColor(3)); y_aux = rColor(2)/(rColor(1) + rColor(2) + rColor(3));
     distance_LCh = [distance_LCh; round(pdist([[x_aux y_aux]; [x_pre_models(2) y_pre_models(2)]]), 2)];
     x_values_LCh = [x_values_LCh x_aux]; y_values_LCh = [y_values_LCh y_aux];
-    
+
     %%%%%% Blend-it in CMYK
     sColor_cmyk = sColor; tColor_cmyk = tColor;
     sColor_cmyk = applycform(applycform(sColor_cmyk, cformXYZ_RGB), cformRGB_CMYK); tColor_cmyk = applycform(applycform(tColor_cmyk, cformXYZ_RGB), cformRGB_CMYK);
@@ -2419,7 +2951,7 @@ for i = 1 : height(demoResultsGender_Female)
     x_aux  = rColor(1)/(rColor(1) + rColor(2) + rColor(3)); y_aux = rColor(2)/(rColor(1) + rColor(2) + rColor(3));
     distance_CMYK = [distance_CMYK; round(pdist([[x_aux y_aux]; [x_pre_models(3) y_pre_models(3)]]), 2)];
     x_values_CMYK = [x_values_CMYK x_aux]; y_values_CMYK = [y_values_CMYK y_aux];
-    
+
     %%%%%% Blend-it in RGB
     sColor_rgb = sColor; tColor_rgb = tColor;
     sColor_rgb = applycform(sColor_rgb, cformXYZ_RGB); tColor_rgb = applycform(tColor_rgb, cformXYZ_RGB);
@@ -2430,7 +2962,7 @@ for i = 1 : height(demoResultsGender_Female)
     x_aux  = rColor(1)/(rColor(1) + rColor(2) + rColor(3)); y_aux = rColor(2)/(rColor(1) + rColor(2) + rColor(3));
     distance_RGB = [distance_RGB; round(pdist([[x_aux y_aux]; [x_pre_models(4) y_pre_models(4)]]), 2)];
     x_values_RGB = [x_values_RGB x_aux]; y_values_RGB = [y_values_RGB y_aux];
-    
+
     %%%%%% Blend-it in CIE-Lab
     sColor_lab = sColor; tColor_lab = tColor;
     sColor_lab = applycform(sColor_lab, cformXYZ_Lab); tColor_lab = applycform(tColor_lab, cformXYZ_Lab);
@@ -2449,7 +2981,7 @@ for i = 1 : height(demoResultsGender_Female)
 end
 hold off;
 
-saveas(gcf, fullfile(path, 'demographic_genderFemale'), 'png');
+saveas(gcf, fullfile(path, 'demographic_genderFemale'), 'png'); close;
 
 % Centroids of Color Models
 centroid_HSV    = [centroid_HSV  ; [round(mean(x_values_HSV),2) round(mean(y_values_HSV),2)]];
@@ -2466,8 +2998,21 @@ distance_centroid_Lab = [distance_centroid_Lab ; round(pdist([mean(x_values_Lab)
 
 % Catenate all Tables               -- CHANGE HERE
 diffs_table = table(distance_expectedC1C2, distance_HSV, distance_LCh, distance_CMYK, distance_RGB, distance_Lab);
+diffs_pairs = table(distance_pair1,distance_pair2,distance_pair3,distance_pair4);
+diffs_table = [diffs_table diffs_pairs];
 
-demoResultsGender_Female = [demoResultsGender_Female diffs_table];
+if size(C1_name, 1) == 1
+    colors_names = cell(1,2);
+    colors_names(1,1) = cellstr(C1_name);
+    colors_names(1,2) = cellstr(C2_name);
+    colors_names = cell2table(colors_names);
+else
+    colors_names = table(C1_name, C2_name);
+end
+
+C1_name = []; C2_name = [];
+
+demoResultsGender_Female = [demoResultsGender_Female colors_names diffs_table];
 
 % Plot Results for each Color Model
 figure('NumberTitle','off');
@@ -2477,9 +3022,9 @@ xlabel('X Value');
 ylabel('Y Value');
 hold on;
 scatter(x_pre_models(1), y_pre_models(1), 50, 'black', 'Filled');          % Draw expected response for this model
-scatter(x_values_HSV, y_values_HSV, 50, 'white');                          % Draw responses mixed in HSV   
+scatter(x_values_HSV, y_values_HSV, 50, 'white');                          % Draw responses mixed in HSV
 hold off;
-saveas(gcf, fullfile(path, 'demographic_genderFemale_HSVresponses'), 'png');
+saveas(gcf, fullfile(path, 'demographic_genderFemale_HSVresponses'), 'png'); close;
 
 figure('NumberTitle','off');
 cieplot();
@@ -2488,9 +3033,9 @@ xlabel('X Value');
 ylabel('Y Value');
 hold on;
 scatter(x_pre_models(2), y_pre_models(2), 50, 'black', 'Filled');          % Draw expected response for this model
-scatter(x_values_LCh, y_values_LCh, 50, 'white');                          % Draw responses mixed in LCh   
+scatter(x_values_LCh, y_values_LCh, 50, 'white');                          % Draw responses mixed in LCh
 hold off;
-saveas(gcf, fullfile(path, 'demographic_genderFemale_LChresponses'), 'png');
+saveas(gcf, fullfile(path, 'demographic_genderFemale_LChresponses'), 'png'); close;
 
 figure('NumberTitle','off');
 cieplot();
@@ -2499,9 +3044,9 @@ xlabel('X Value');
 ylabel('Y Value');
 hold on;
 scatter(x_pre_models(3), y_pre_models(3), 50, 'black', 'Filled');          % Draw expected response for this model
-scatter(x_values_CMYK, y_values_CMYK, 50, 'white');                          % Draw responses mixed in CMYK   
+scatter(x_values_CMYK, y_values_CMYK, 50, 'white');                          % Draw responses mixed in CMYK
 hold off;
-saveas(gcf, fullfile(path, 'demographic_genderFemale_CMYKresponses'), 'png');
+saveas(gcf, fullfile(path, 'demographic_genderFemale_CMYKresponses'), 'png'); close;
 
 figure('NumberTitle','off');
 cieplot();
@@ -2510,9 +3055,9 @@ xlabel('X Value');
 ylabel('Y Value');
 hold on;
 scatter(x_pre_models(4), y_pre_models(4), 50, 'black', 'Filled');          % Draw expected response for this model
-scatter(x_values_RGB, y_values_RGB, 50, 'white');                          % Draw responses mixed in RGB   
+scatter(x_values_RGB, y_values_RGB, 50, 'white');                          % Draw responses mixed in RGB
 hold off;
-saveas(gcf, fullfile(path, 'demographic_genderFemale_RGBresponses'), 'png');
+saveas(gcf, fullfile(path, 'demographic_genderFemale_RGBresponses'), 'png'); close;
 
 figure('NumberTitle','off');
 cieplot();
@@ -2521,14 +3066,15 @@ xlabel('X Value');
 ylabel('Y Value');
 hold on;
 scatter(x_pre_models(5), y_pre_models(5), 50, 'black', 'Filled');          % Draw expected response for this model
-scatter(x_values_Lab, y_values_Lab, 50, 'white');                          % Draw responses mixed in Lab   
+scatter(x_values_Lab, y_values_Lab, 50, 'white');                          % Draw responses mixed in Lab
 hold off;
-saveas(gcf, fullfile(path, 'demographic_genderFemale_Labresponses'), 'png');
+saveas(gcf, fullfile(path, 'demographic_genderFemale_Labresponses'), 'png'); close;
 
 % Clean all the tables!
-x_values_HSV = []; y_values_HSV = []; x_values_LCh = []; y_values_LCh = []; x_values_CMYK = []; y_values_CMYK = []; x_values_RGB = []; y_values_RGB = []; x_values_Lab = []; y_values_Lab = [];  
+x_values_HSV = []; y_values_HSV = []; x_values_LCh = []; y_values_LCh = []; x_values_CMYK = []; y_values_CMYK = []; x_values_RGB = []; y_values_RGB = []; x_values_Lab = []; y_values_Lab = [];
 distance_HSV = []; distance_LCh = []; distance_CMYK = []; distance_RGB = []; distance_Lab = [];
 distance_expectedC1C2 = [];
+distance_pair1 = []; distance_pair2 = []; distance_pair3 = []; distance_pair4 = [];
 
 %% Demographic Analysis - GENDER Male
 
@@ -2545,42 +3091,72 @@ scatter(x_pre_expectedColors(3), y_pre_expectedColors(3), 60, 'black');         
 
 
 % Draw every pair of responses.
-for i = 1 : height(demoResultsGender_Male)                                  
+for i = 1 : height(demoResultsGender_Male)
     %% First Color - C1
-    sColor = str2num(cell2mat(demoResultsGender_Male.second_color(i)));      
-    valuesSColor = [valuesSColor sColor];                               
-    sColor = sColor/360;                                                
-    sColor = [sColor 1 1];                                             
+    sColor = str2num(cell2mat(demoResultsGender_Male.second_color(i)));
+    valuesSColor = [valuesSColor sColor];
+    sColor = sColor/360;
+    sColor = [sColor 1 1];
     hsv_C1 = sColor;
-    sColor = hsv2rgb(sColor);                                           
+    sColor = hsv2rgb(sColor);
     rgb_C1 = round([sColor(1)*255 sColor(2)*255 sColor(3)*255]);
-    sColor = rgb2xyz(sColor);                                           
-    x_aux = sColor(1)/(sColor(1) + sColor(2) + sColor(3));              
-    y_aux = sColor(2)/(sColor(1) + sColor(2) + sColor(3));              
-    x_values = [x_values x_aux];                                        
+    sColor = rgb2xyz(sColor);
+    x_aux = sColor(1)/(sColor(1) + sColor(2) + sColor(3));
+    y_aux = sColor(2)/(sColor(1) + sColor(2) + sColor(3));
+    x_values = [x_values x_aux];
     y_values = [y_values y_aux];
-    
+
     %% Second Color - C2
     tColor = str2num(cell2mat(demoResultsGender_Male.third_color(i)));
-    valuesTColor = [valuesTColor tColor];                               
-    tColor = tColor/360;                                                
-    tColor = [tColor 1 1];                                             
+    valuesTColor = [valuesTColor tColor];
+    tColor = tColor/360;
+    tColor = [tColor 1 1];
     hsv_C2 = tColor;
-    tColor = hsv2rgb(tColor);                                           
+    tColor = hsv2rgb(tColor);
     rgb_C2 = round([tColor(1)*255 tColor(2)*255 tColor(3)*255]);
-    tColor = rgb2xyz(tColor);                                           
-    x_aux = tColor(1)/(tColor(1) + tColor(2) + tColor(3));              
-    y_aux = tColor(2)/(tColor(1) + tColor(2) + tColor(3));              
-    x_values = [x_values x_aux];                                        
+    tColor = rgb2xyz(tColor);
+    x_aux = tColor(1)/(tColor(1) + tColor(2) + tColor(3));
+    y_aux = tColor(2)/(tColor(1) + tColor(2) + tColor(3));
+    x_values = [x_values x_aux];
     y_values = [y_values y_aux];
-    
+
     %% Categorize Colors - Bins
-    
+    for j = 1 : length(colorBins)
+        valuesofx = round(colorBins(j).XData, 1);
+        valuesofy = round(colorBins(j).YData, 1);
+        if foundC1 == 0 && ismember(round(x_values(1), 1), valuesofx) && ismember(round(y_values(1),1), valuesofy)
+            color_C1 = colorBins(j).Tag;
+            foundC1 = 1;
+        end
+        if foundC2 == 0 && ismember(round(x_values(2), 1), valuesofx) && ismember(round(y_values(2),1), valuesofy)
+            color_C2 = colorBins(j).Tag;
+            foundC2 = 1;
+        end
+    end
+
+    if foundC1 == 0 && foundC2 == 0
+        C1_name = [C1_name ; 'NA       '];
+        C2_name = [C2_name ; 'NA       '];
+    else if foundC1 == 1 && foundC2 == 0
+            C1_name = [C1_name ; color_C1];
+            C2_name = [C2_name ; 'NA       '];
+        else if foundC1 == 0 && foundC2 == 1
+                C1_name = [C1_name ; 'NA       '];
+                C2_name = [C2_name ; color_C2];
+            else
+                C1_name = [C1_name ; color_C1];
+                C2_name = [C2_name ; color_C2];
+            end
+        end
+    end
+    foundC1 = 0; foundC2 = 0;
+
+
     %% Difference between C1/C2 and expected colors C1/C2
     diff_c1_expected = round(pdist([[x_values(1) y_values(1)] ; [x_pre_expectedColors(2) y_pre_expectedColors(2)]]), 2);  % [given -C1- C2]
     diff_c2_expected = round(pdist([[x_values(2) y_values(2)] ; [x_pre_expectedColors(3) y_pre_expectedColors(3)]]), 2);  % [given C1 -C2-]
     distance_expectedC1C2 = [distance_expectedC1C2 ; diff_c1_expected + diff_c2_expected];
-    
+
     %% Difference between C1/C2 and other pairs which generate the same color       %% -- CHANGE HERE (ADD MORE PAIRS IF NEEDED)
     diff_c1_pair1c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair1(1) y_pair1(1)]]), 2);   diff_c2_pair1c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair1(2) y_pair1(2)]]), 2);
     distance_pair1 = [distance_pair1 ; diff_c1_pair1c1 + diff_c2_pair1c2];
@@ -2593,10 +3169,10 @@ for i = 1 : height(demoResultsGender_Male)
 
     diff_c1_pair4c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair4(1) y_pair4(1)]]), 2);   diff_c2_pair4c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair4(2) y_pair4(2)]]), 2);
     distance_pair4 = [distance_pair4 ; diff_c1_pair4c1 + diff_c2_pair4c2];
-    
+
     %% Difference between C1/C2 blended onto Color Models against pre-calc values
     %%%%%% Blend-it in HSV
-    sColor_hsv = [(hsv_C1(1)*360) hsv_C1(2) hsv_C1(3)]; tColor_hsv = [(hsv_C2(1)*360) hsv_C2(2) hsv_C2(3)];     
+    sColor_hsv = [(hsv_C1(1)*360) hsv_C1(2) hsv_C1(3)]; tColor_hsv = [(hsv_C2(1)*360) hsv_C2(2) hsv_C2(3)];
     diff_angles = abs(sColor_hsv(1) - tColor_hsv(1));
     if diff_angles > 180
         angle_small = (360 - diff_angles);  % smallest angle
@@ -2610,11 +3186,11 @@ for i = 1 : height(demoResultsGender_Male)
     else
         angle = min([sColor_hsv(1) tColor_hsv(1)]) + (diff_angles / 2);
     end
-    rColor = rgb2xyz(hsv2rgb(([angle/360 sColor_hsv(2) sColor_hsv(3)])));                                  % hsv -> rgb -> xyz -> compare 
+    rColor = rgb2xyz(hsv2rgb(([angle/360 sColor_hsv(2) sColor_hsv(3)])));                                  % hsv -> rgb -> xyz -> compare
     x_aux  = rColor(1)/(rColor(1) + rColor(2) + rColor(3)); y_aux = rColor(2)/(rColor(1) + rColor(2) + rColor(3));
     distance_HSV = [distance_HSV; round(pdist([[x_aux y_aux]; [x_pre_models(1) y_pre_models(1)]]),2)];
     x_values_HSV = [x_values_HSV x_aux]; y_values_HSV = [y_values_HSV y_aux];
-    
+
     %%%%%% Blend-it in CIE-LCh (XYZ -> Lab -> LCh)
     sColor_lch = sColor; tColor_lch = tColor;
     sColor_lch = applycform(applycform(sColor_lch, cformXYZ_Lab), cformLab_LCh); tColor_lch = applycform(applycform(tColor_lch, cformXYZ_Lab), cformLab_LCh);
@@ -2638,7 +3214,7 @@ for i = 1 : height(demoResultsGender_Male)
     x_aux  = rColor(1)/(rColor(1) + rColor(2) + rColor(3)); y_aux = rColor(2)/(rColor(1) + rColor(2) + rColor(3));
     distance_LCh = [distance_LCh; round(pdist([[x_aux y_aux]; [x_pre_models(2) y_pre_models(2)]]), 2)];
     x_values_LCh = [x_values_LCh x_aux]; y_values_LCh = [y_values_LCh y_aux];
-    
+
     %%%%%% Blend-it in CMYK
     sColor_cmyk = sColor; tColor_cmyk = tColor;
     sColor_cmyk = applycform(applycform(sColor_cmyk, cformXYZ_RGB), cformRGB_CMYK); tColor_cmyk = applycform(applycform(tColor_cmyk, cformXYZ_RGB), cformRGB_CMYK);
@@ -2650,7 +3226,7 @@ for i = 1 : height(demoResultsGender_Male)
     x_aux  = rColor(1)/(rColor(1) + rColor(2) + rColor(3)); y_aux = rColor(2)/(rColor(1) + rColor(2) + rColor(3));
     distance_CMYK = [distance_CMYK; round(pdist([[x_aux y_aux]; [x_pre_models(3) y_pre_models(3)]]), 2)];
     x_values_CMYK = [x_values_CMYK x_aux]; y_values_CMYK = [y_values_CMYK y_aux];
-    
+
     %%%%%% Blend-it in RGB
     sColor_rgb = sColor; tColor_rgb = tColor;
     sColor_rgb = applycform(sColor_rgb, cformXYZ_RGB); tColor_rgb = applycform(tColor_rgb, cformXYZ_RGB);
@@ -2661,7 +3237,7 @@ for i = 1 : height(demoResultsGender_Male)
     x_aux  = rColor(1)/(rColor(1) + rColor(2) + rColor(3)); y_aux = rColor(2)/(rColor(1) + rColor(2) + rColor(3));
     distance_RGB = [distance_RGB; round(pdist([[x_aux y_aux]; [x_pre_models(4) y_pre_models(4)]]), 2)];
     x_values_RGB = [x_values_RGB x_aux]; y_values_RGB = [y_values_RGB y_aux];
-    
+
     %%%%%% Blend-it in CIE-Lab
     sColor_lab = sColor; tColor_lab = tColor;
     sColor_lab = applycform(sColor_lab, cformXYZ_Lab); tColor_lab = applycform(tColor_lab, cformXYZ_Lab);
@@ -2680,7 +3256,7 @@ for i = 1 : height(demoResultsGender_Male)
 end
 hold off;
 
-saveas(gcf, fullfile(path, 'demographic_genderMale'), 'png');
+saveas(gcf, fullfile(path, 'demographic_genderMale'), 'png'); close;
 
 % Centroids of Color Models
 centroid_HSV    = [centroid_HSV  ; [round(mean(x_values_HSV),2) round(mean(y_values_HSV),2)]];
@@ -2697,8 +3273,21 @@ distance_centroid_Lab = [distance_centroid_Lab ; round(pdist([mean(x_values_Lab)
 
 % Catenate all Tables               -- CHANGE HERE
 diffs_table = table(distance_expectedC1C2, distance_HSV, distance_LCh, distance_CMYK, distance_RGB, distance_Lab);
+diffs_pairs = table(distance_pair1,distance_pair2,distance_pair3,distance_pair4);
+diffs_table = [diffs_table diffs_pairs];
 
-demoResultsGender_Male = [demoResultsGender_Male diffs_table];
+if size(C1_name, 1) == 1
+    colors_names = cell(1,2);
+    colors_names(1,1) = cellstr(C1_name);
+    colors_names(1,2) = cellstr(C2_name);
+    colors_names = cell2table(colors_names);
+else
+    colors_names = table(C1_name, C2_name);
+end
+
+C1_name = []; C2_name = [];
+
+demoResultsGender_Male = [demoResultsGender_Male colors_names diffs_table];
 
 % Plot Results for each Color Model
 figure('NumberTitle','off');
@@ -2708,9 +3297,9 @@ xlabel('X Value');
 ylabel('Y Value');
 hold on;
 scatter(x_pre_models(1), y_pre_models(1), 50, 'black', 'Filled');          % Draw expected response for this model
-scatter(x_values_HSV, y_values_HSV, 50, 'white');                          % Draw responses mixed in HSV   
+scatter(x_values_HSV, y_values_HSV, 50, 'white');                          % Draw responses mixed in HSV
 hold off;
-saveas(gcf, fullfile(path, 'demographic_genderMale_HSVresponses'), 'png');
+saveas(gcf, fullfile(path, 'demographic_genderMale_HSVresponses'), 'png'); close;
 
 figure('NumberTitle','off');
 cieplot();
@@ -2719,9 +3308,9 @@ xlabel('X Value');
 ylabel('Y Value');
 hold on;
 scatter(x_pre_models(2), y_pre_models(2), 50, 'black', 'Filled');          % Draw expected response for this model
-scatter(x_values_LCh, y_values_LCh, 50, 'white');                          % Draw responses mixed in LCh   
+scatter(x_values_LCh, y_values_LCh, 50, 'white');                          % Draw responses mixed in LCh
 hold off;
-saveas(gcf, fullfile(path, 'demographic_genderMale_LChresponses'), 'png');
+saveas(gcf, fullfile(path, 'demographic_genderMale_LChresponses'), 'png'); close;
 
 figure('NumberTitle','off');
 cieplot();
@@ -2730,9 +3319,9 @@ xlabel('X Value');
 ylabel('Y Value');
 hold on;
 scatter(x_pre_models(3), y_pre_models(3), 50, 'black', 'Filled');          % Draw expected response for this model
-scatter(x_values_CMYK, y_values_CMYK, 50, 'white');                          % Draw responses mixed in CMYK   
+scatter(x_values_CMYK, y_values_CMYK, 50, 'white');                          % Draw responses mixed in CMYK
 hold off;
-saveas(gcf, fullfile(path, 'demographic_genderMale_CMYKresponses'), 'png');
+saveas(gcf, fullfile(path, 'demographic_genderMale_CMYKresponses'), 'png'); close;
 
 figure('NumberTitle','off');
 cieplot();
@@ -2741,9 +3330,9 @@ xlabel('X Value');
 ylabel('Y Value');
 hold on;
 scatter(x_pre_models(4), y_pre_models(4), 50, 'black', 'Filled');          % Draw expected response for this model
-scatter(x_values_RGB, y_values_RGB, 50, 'white');                          % Draw responses mixed in RGB   
+scatter(x_values_RGB, y_values_RGB, 50, 'white');                          % Draw responses mixed in RGB
 hold off;
-saveas(gcf, fullfile(path, 'demographic_genderMale_RGBresponses'), 'png');
+saveas(gcf, fullfile(path, 'demographic_genderMale_RGBresponses'), 'png'); close;
 
 figure('NumberTitle','off');
 cieplot();
@@ -2752,14 +3341,15 @@ xlabel('X Value');
 ylabel('Y Value');
 hold on;
 scatter(x_pre_models(5), y_pre_models(5), 50, 'black', 'Filled');          % Draw expected response for this model
-scatter(x_values_Lab, y_values_Lab, 50, 'white');                          % Draw responses mixed in Lab   
+scatter(x_values_Lab, y_values_Lab, 50, 'white');                          % Draw responses mixed in Lab
 hold off;
-saveas(gcf, fullfile(path, 'demographic_genderMale_Labresponses'), 'png');
+saveas(gcf, fullfile(path, 'demographic_genderMale_Labresponses'), 'png'); close;
 
 % Clean all the tables!
-x_values_HSV = []; y_values_HSV = []; x_values_LCh = []; y_values_LCh = []; x_values_CMYK = []; y_values_CMYK = []; x_values_RGB = []; y_values_RGB = []; x_values_Lab = []; y_values_Lab = [];  
+x_values_HSV = []; y_values_HSV = []; x_values_LCh = []; y_values_LCh = []; x_values_CMYK = []; y_values_CMYK = []; x_values_RGB = []; y_values_RGB = []; x_values_Lab = []; y_values_Lab = [];
 distance_HSV = []; distance_LCh = []; distance_CMYK = []; distance_RGB = []; distance_Lab = [];
 distance_expectedC1C2 = [];
+distance_pair1 = []; distance_pair2 = []; distance_pair3 = []; distance_pair4 = [];
 
 %% Demographic Analysis - GENDER Other
 
@@ -2776,42 +3366,72 @@ scatter(x_pre_expectedColors(3), y_pre_expectedColors(3), 60, 'black');         
 
 
 % Draw every pair of responses.
-for i = 1 : height(demoResultsGender_Other)                                  
+for i = 1 : height(demoResultsGender_Other)
     %% First Color - C1
-    sColor = str2num(cell2mat(demoResultsGender_Other.second_color(i)));      
-    valuesSColor = [valuesSColor sColor];                               
-    sColor = sColor/360;                                                
-    sColor = [sColor 1 1];                                             
+    sColor = str2num(cell2mat(demoResultsGender_Other.second_color(i)));
+    valuesSColor = [valuesSColor sColor];
+    sColor = sColor/360;
+    sColor = [sColor 1 1];
     hsv_C1 = sColor;
-    sColor = hsv2rgb(sColor);                                           
+    sColor = hsv2rgb(sColor);
     rgb_C1 = round([sColor(1)*255 sColor(2)*255 sColor(3)*255]);
-    sColor = rgb2xyz(sColor);                                           
-    x_aux = sColor(1)/(sColor(1) + sColor(2) + sColor(3));              
-    y_aux = sColor(2)/(sColor(1) + sColor(2) + sColor(3));              
-    x_values = [x_values x_aux];                                        
+    sColor = rgb2xyz(sColor);
+    x_aux = sColor(1)/(sColor(1) + sColor(2) + sColor(3));
+    y_aux = sColor(2)/(sColor(1) + sColor(2) + sColor(3));
+    x_values = [x_values x_aux];
     y_values = [y_values y_aux];
-    
+
     %% Second Color - C2
     tColor = str2num(cell2mat(demoResultsGender_Other.third_color(i)));
-    valuesTColor = [valuesTColor tColor];                               
-    tColor = tColor/360;                                                
-    tColor = [tColor 1 1];                                             
+    valuesTColor = [valuesTColor tColor];
+    tColor = tColor/360;
+    tColor = [tColor 1 1];
     hsv_C2 = tColor;
-    tColor = hsv2rgb(tColor);                                           
+    tColor = hsv2rgb(tColor);
     rgb_C2 = round([tColor(1)*255 tColor(2)*255 tColor(3)*255]);
-    tColor = rgb2xyz(tColor);                                           
-    x_aux = tColor(1)/(tColor(1) + tColor(2) + tColor(3));              
-    y_aux = tColor(2)/(tColor(1) + tColor(2) + tColor(3));              
-    x_values = [x_values x_aux];                                        
+    tColor = rgb2xyz(tColor);
+    x_aux = tColor(1)/(tColor(1) + tColor(2) + tColor(3));
+    y_aux = tColor(2)/(tColor(1) + tColor(2) + tColor(3));
+    x_values = [x_values x_aux];
     y_values = [y_values y_aux];
-    
+
     %% Categorize Colors - Bins
-    
+    for j = 1 : length(colorBins)
+        valuesofx = round(colorBins(j).XData, 1);
+        valuesofy = round(colorBins(j).YData, 1);
+        if foundC1 == 0 && ismember(round(x_values(1), 1), valuesofx) && ismember(round(y_values(1),1), valuesofy)
+            color_C1 = colorBins(j).Tag;
+            foundC1 = 1;
+        end
+        if foundC2 == 0 && ismember(round(x_values(2), 1), valuesofx) && ismember(round(y_values(2),1), valuesofy)
+            color_C2 = colorBins(j).Tag;
+            foundC2 = 1;
+        end
+    end
+
+    if foundC1 == 0 && foundC2 == 0
+        C1_name = [C1_name ; 'NA       '];
+        C2_name = [C2_name ; 'NA       '];
+    else if foundC1 == 1 && foundC2 == 0
+            C1_name = [C1_name ; color_C1];
+            C2_name = [C2_name ; 'NA       '];
+        else if foundC1 == 0 && foundC2 == 1
+                C1_name = [C1_name ; 'NA       '];
+                C2_name = [C2_name ; color_C2];
+            else
+                C1_name = [C1_name ; color_C1];
+                C2_name = [C2_name ; color_C2];
+            end
+        end
+    end
+    foundC1 = 0; foundC2 = 0;
+
+
     %% Difference between C1/C2 and expected colors C1/C2
     diff_c1_expected = round(pdist([[x_values(1) y_values(1)] ; [x_pre_expectedColors(2) y_pre_expectedColors(2)]]), 2);  % [given -C1- C2]
     diff_c2_expected = round(pdist([[x_values(2) y_values(2)] ; [x_pre_expectedColors(3) y_pre_expectedColors(3)]]), 2);  % [given C1 -C2-]
     distance_expectedC1C2 = [distance_expectedC1C2 ; diff_c1_expected + diff_c2_expected];
-    
+
     %% Difference between C1/C2 and other pairs which generate the same color       %% -- CHANGE HERE (ADD MORE PAIRS IF NEEDED)
     diff_c1_pair1c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair1(1) y_pair1(1)]]), 2);   diff_c2_pair1c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair1(2) y_pair1(2)]]), 2);
     distance_pair1 = [distance_pair1 ; diff_c1_pair1c1 + diff_c2_pair1c2];
@@ -2824,10 +3444,10 @@ for i = 1 : height(demoResultsGender_Other)
 
     diff_c1_pair4c1 = round(pdist([[x_values(1) y_values(1)] ; [x_pair4(1) y_pair4(1)]]), 2);   diff_c2_pair4c2 = round(pdist([[x_values(2) y_values(2)] ; [x_pair4(2) y_pair4(2)]]), 2);
     distance_pair4 = [distance_pair4 ; diff_c1_pair4c1 + diff_c2_pair4c2];
-    
+
     %% Difference between C1/C2 blended onto Color Models against pre-calc values
     %%%%%% Blend-it in HSV
-    sColor_hsv = [(hsv_C1(1)*360) hsv_C1(2) hsv_C1(3)]; tColor_hsv = [(hsv_C2(1)*360) hsv_C2(2) hsv_C2(3)];     
+    sColor_hsv = [(hsv_C1(1)*360) hsv_C1(2) hsv_C1(3)]; tColor_hsv = [(hsv_C2(1)*360) hsv_C2(2) hsv_C2(3)];
     diff_angles = abs(sColor_hsv(1) - tColor_hsv(1));
     if diff_angles > 180
         angle_small = (360 - diff_angles);  % smallest angle
@@ -2841,11 +3461,11 @@ for i = 1 : height(demoResultsGender_Other)
     else
         angle = min([sColor_hsv(1) tColor_hsv(1)]) + (diff_angles / 2);
     end
-    rColor = rgb2xyz(hsv2rgb(([angle/360 sColor_hsv(2) sColor_hsv(3)])));                                  % hsv -> rgb -> xyz -> compare 
+    rColor = rgb2xyz(hsv2rgb(([angle/360 sColor_hsv(2) sColor_hsv(3)])));                                  % hsv -> rgb -> xyz -> compare
     x_aux  = rColor(1)/(rColor(1) + rColor(2) + rColor(3)); y_aux = rColor(2)/(rColor(1) + rColor(2) + rColor(3));
     distance_HSV = [distance_HSV; round(pdist([[x_aux y_aux]; [x_pre_models(1) y_pre_models(1)]]),2)];
     x_values_HSV = [x_values_HSV x_aux]; y_values_HSV = [y_values_HSV y_aux];
-    
+
     %%%%%% Blend-it in CIE-LCh (XYZ -> Lab -> LCh)
     sColor_lch = sColor; tColor_lch = tColor;
     sColor_lch = applycform(applycform(sColor_lch, cformXYZ_Lab), cformLab_LCh); tColor_lch = applycform(applycform(tColor_lch, cformXYZ_Lab), cformLab_LCh);
@@ -2869,7 +3489,7 @@ for i = 1 : height(demoResultsGender_Other)
     x_aux  = rColor(1)/(rColor(1) + rColor(2) + rColor(3)); y_aux = rColor(2)/(rColor(1) + rColor(2) + rColor(3));
     distance_LCh = [distance_LCh; round(pdist([[x_aux y_aux]; [x_pre_models(2) y_pre_models(2)]]), 2)];
     x_values_LCh = [x_values_LCh x_aux]; y_values_LCh = [y_values_LCh y_aux];
-    
+
     %%%%%% Blend-it in CMYK
     sColor_cmyk = sColor; tColor_cmyk = tColor;
     sColor_cmyk = applycform(applycform(sColor_cmyk, cformXYZ_RGB), cformRGB_CMYK); tColor_cmyk = applycform(applycform(tColor_cmyk, cformXYZ_RGB), cformRGB_CMYK);
@@ -2881,7 +3501,7 @@ for i = 1 : height(demoResultsGender_Other)
     x_aux  = rColor(1)/(rColor(1) + rColor(2) + rColor(3)); y_aux = rColor(2)/(rColor(1) + rColor(2) + rColor(3));
     distance_CMYK = [distance_CMYK; round(pdist([[x_aux y_aux]; [x_pre_models(3) y_pre_models(3)]]), 2)];
     x_values_CMYK = [x_values_CMYK x_aux]; y_values_CMYK = [y_values_CMYK y_aux];
-    
+
     %%%%%% Blend-it in RGB
     sColor_rgb = sColor; tColor_rgb = tColor;
     sColor_rgb = applycform(sColor_rgb, cformXYZ_RGB); tColor_rgb = applycform(tColor_rgb, cformXYZ_RGB);
@@ -2892,7 +3512,7 @@ for i = 1 : height(demoResultsGender_Other)
     x_aux  = rColor(1)/(rColor(1) + rColor(2) + rColor(3)); y_aux = rColor(2)/(rColor(1) + rColor(2) + rColor(3));
     distance_RGB = [distance_RGB; round(pdist([[x_aux y_aux]; [x_pre_models(4) y_pre_models(4)]]), 2)];
     x_values_RGB = [x_values_RGB x_aux]; y_values_RGB = [y_values_RGB y_aux];
-    
+
     %%%%%% Blend-it in CIE-Lab
     sColor_lab = sColor; tColor_lab = tColor;
     sColor_lab = applycform(sColor_lab, cformXYZ_Lab); tColor_lab = applycform(tColor_lab, cformXYZ_Lab);
@@ -2911,7 +3531,7 @@ for i = 1 : height(demoResultsGender_Other)
 end
 hold off;
 
-saveas(gcf, fullfile(path, 'demographic_genderOther'), 'png');
+saveas(gcf, fullfile(path, 'demographic_genderOther'), 'png'); close;
 
 % Centroids of Color Models
 centroid_HSV    = [centroid_HSV  ; [round(mean(x_values_HSV),2) round(mean(y_values_HSV),2)]];
@@ -2928,8 +3548,21 @@ distance_centroid_Lab = [distance_centroid_Lab ; round(pdist([mean(x_values_Lab)
 
 % Catenate all Tables               -- CHANGE HERE
 diffs_table = table(distance_expectedC1C2, distance_HSV, distance_LCh, distance_CMYK, distance_RGB, distance_Lab);
+diffs_pairs = table(distance_pair1,distance_pair2,distance_pair3,distance_pair4);
+diffs_table = [diffs_table diffs_pairs];
 
-demoResultsGender_Other = [demoResultsGender_Other diffs_table];
+if size(C1_name, 1) == 1
+    colors_names = cell(1,2);
+    colors_names(1,1) = cellstr(C1_name);
+    colors_names(1,2) = cellstr(C2_name);
+    colors_names = cell2table(colors_names);
+else
+    colors_names = table(C1_name, C2_name);
+end
+
+C1_name = []; C2_name = [];
+
+demoResultsGender_Other = [demoResultsGender_Other colors_names diffs_table];
 
 % Plot Results for each Color Model
 figure('NumberTitle','off');
@@ -2939,9 +3572,9 @@ xlabel('X Value');
 ylabel('Y Value');
 hold on;
 scatter(x_pre_models(1), y_pre_models(1), 50, 'black', 'Filled');          % Draw expected response for this model
-scatter(x_values_HSV, y_values_HSV, 50, 'white');                          % Draw responses mixed in HSV   
+scatter(x_values_HSV, y_values_HSV, 50, 'white');                          % Draw responses mixed in HSV
 hold off;
-saveas(gcf, fullfile(path, 'demographic_genderOther_HSVresponses'), 'png');
+saveas(gcf, fullfile(path, 'demographic_genderOther_HSVresponses'), 'png'); close;
 
 figure('NumberTitle','off');
 cieplot();
@@ -2950,9 +3583,9 @@ xlabel('X Value');
 ylabel('Y Value');
 hold on;
 scatter(x_pre_models(2), y_pre_models(2), 50, 'black', 'Filled');          % Draw expected response for this model
-scatter(x_values_LCh, y_values_LCh, 50, 'white');                          % Draw responses mixed in LCh   
+scatter(x_values_LCh, y_values_LCh, 50, 'white');                          % Draw responses mixed in LCh
 hold off;
-saveas(gcf, fullfile(path, 'demographic_genderOther_LChresponses'), 'png');
+saveas(gcf, fullfile(path, 'demographic_genderOther_LChresponses'), 'png'); close;
 
 figure('NumberTitle','off');
 cieplot();
@@ -2961,9 +3594,9 @@ xlabel('X Value');
 ylabel('Y Value');
 hold on;
 scatter(x_pre_models(3), y_pre_models(3), 50, 'black', 'Filled');          % Draw expected response for this model
-scatter(x_values_CMYK, y_values_CMYK, 50, 'white');                          % Draw responses mixed in CMYK   
+scatter(x_values_CMYK, y_values_CMYK, 50, 'white');                          % Draw responses mixed in CMYK
 hold off;
-saveas(gcf, fullfile(path, 'demographic_genderOther_CMYKresponses'), 'png');
+saveas(gcf, fullfile(path, 'demographic_genderOther_CMYKresponses'), 'png'); close;
 
 figure('NumberTitle','off');
 cieplot();
@@ -2972,9 +3605,9 @@ xlabel('X Value');
 ylabel('Y Value');
 hold on;
 scatter(x_pre_models(4), y_pre_models(4), 50, 'black', 'Filled');          % Draw expected response for this model
-scatter(x_values_RGB, y_values_RGB, 50, 'white');                          % Draw responses mixed in RGB   
+scatter(x_values_RGB, y_values_RGB, 50, 'white');                          % Draw responses mixed in RGB
 hold off;
-saveas(gcf, fullfile(path, 'demographic_genderOther_RGBresponses'), 'png');
+saveas(gcf, fullfile(path, 'demographic_genderOther_RGBresponses'), 'png'); close;
 
 figure('NumberTitle','off');
 cieplot();
@@ -2983,14 +3616,81 @@ xlabel('X Value');
 ylabel('Y Value');
 hold on;
 scatter(x_pre_models(5), y_pre_models(5), 50, 'black', 'Filled');          % Draw expected response for this model
-scatter(x_values_Lab, y_values_Lab, 50, 'white');                          % Draw responses mixed in Lab   
+scatter(x_values_Lab, y_values_Lab, 50, 'white');                          % Draw responses mixed in Lab
 hold off;
-saveas(gcf, fullfile(path, 'demographic_genderOther_Labresponses'), 'png');
+saveas(gcf, fullfile(path, 'demographic_genderOther_Labresponses'), 'png'); close;
 
 % Clean all the tables!
-x_values_HSV = []; y_values_HSV = []; x_values_LCh = []; y_values_LCh = []; x_values_CMYK = []; y_values_CMYK = []; x_values_RGB = []; y_values_RGB = []; x_values_Lab = []; y_values_Lab = [];  
+x_values_HSV = []; y_values_HSV = []; x_values_LCh = []; y_values_LCh = []; x_values_CMYK = []; y_values_CMYK = []; x_values_RGB = []; y_values_RGB = []; x_values_Lab = []; y_values_Lab = [];
 distance_HSV = []; distance_LCh = []; distance_CMYK = []; distance_RGB = []; distance_Lab = [];
 distance_expectedC1C2 = [];
+distance_pair1 = []; distance_pair2 = []; distance_pair3 = []; distance_pair4 = [];
+
+%% White Answers Analysis
+figure('NumberTitle','off');
+cieplot();
+title('Question 5: Response-Pairs with one White Component', 'FontSize', 13);              %% -- CHANGE HERE
+xlabel('X Value');
+ylabel('Y Value');
+hold on;
+
+scatter(x_pre_expectedColors(1), y_pre_expectedColors(1), 60, 'black', 'Filled');                     % draw GIVEN COLOR
+scatter(x_pre_expectedColors(2), y_pre_expectedColors(2), 60, 'black');                               % draw EXPECTED COLOR
+scatter(x_pre_expectedColors(3), y_pre_expectedColors(3), 60, 'black');                               % draw EXPECTED COLOR
+
+for i = 1 : height(whiteAnswers)
+    %% Identify which color is missing
+    sColor = str2num(cell2mat(whiteAnswers.second_color(i)));
+    tColor = str2num(cell2mat(whiteAnswers.third_color(i)));
+    if sColor == 0
+        otherColor = tColor;
+    else otherColor = sColor;
+    end
+
+    %% Color given
+    otherColor = otherColor/360;
+    otherColor = [otherColor 1 1];
+    otherColor = hsv2rgb(otherColor);
+    otherColor = rgb2xyz(otherColor);
+    x_aux = otherColor(1)/(otherColor(1) + otherColor(2) + otherColor(3));
+    y_aux = otherColor(2)/(otherColor(1) + otherColor(2) + otherColor(3));
+    x_values = [x_values x_aux];
+    y_values = [y_values y_aux];
+
+    %% Categorize Colors - Bins
+    for j = 1 : length(colorBins)
+        valuesofx = round(colorBins(j).XData, 1);
+        valuesofy = round(colorBins(j).YData, 1);
+        if foundC1 == 0 && ismember(round(x_values(1), 1), valuesofx) && ismember(round(y_values(1),1), valuesofy)
+            color_C1 = colorBins(j).Tag;
+            foundC1 = 1;
+        end
+    end
+
+    if foundC1 == 0
+        C1_name = [C1_name ; 'NA       '];
+    else
+        C1_name = [C1_name ; color_C1];
+    end
+
+    foundC1 = 0;
+
+    %% Distance to Given Color
+    diff_c0_expected = round(pdist([[x_values(1) y_values(1)] ; [x_pre_expectedColors(1) y_pre_expectedColors(1)]]), 2);
+    distance_givenColor = [distance_givenColor ; diff_c0_expected];
+
+    %% Draw Points
+    scatter(x_values, y_values, 50, 'white');
+    x_values = []; y_values = [];
+end
+hold off;
+
+saveas(gcf, fullfile(path, 'white_answers'), 'png'); close;
+
+colors_names = table(C1_name);
+whiteAnswers = [whiteAnswers table(distance_givenColor) colors_names];
+distance_givenColor = [];
+C1_name = [];
 
 %% Save Tables
 
@@ -3005,6 +3705,7 @@ writetable(laboratoryResults, '/Users/PauloGarcia/Documents/MATLAB/Results/First
 writetable(laboratoryResults_dalt, '/Users/PauloGarcia/Documents/MATLAB/Results/First Study/Question 5/q5_lab_dalt.csv');   % Laboratory Daltonic Users Results Digested
 
 writetable(centroidsTable, '/Users/PauloGarcia/Documents/MATLAB/Results/First Study/Question 5/q5_centroids.csv', 'WriteRowNames', true);   % Centroids of all users' responses.
+writetable(whiteAnswers,  '/Users/PauloGarcia/Documents/MATLAB/Results/First Study/Question 5/q5_whiteAnswers.csv', 'WriteRowNames', true)
 
 writetable(demoResultsAge_20, '/Users/PauloGarcia/Documents/MATLAB/Results/First Study/Question 5/q5_age_20.csv', 'WriteRowNames', true);
 writetable(demoResultsAge_20_29, '/Users/PauloGarcia/Documents/MATLAB/Results/First Study/Question 5/q5_age_20_29.csv', 'WriteRowNames', true);

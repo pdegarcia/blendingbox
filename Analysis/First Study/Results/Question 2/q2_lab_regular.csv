@@ -1,29 +1,16 @@
-id,typeOfQuestion,first_color,second_color,third_color,clicks,rating,distance_expectedC1C2,distance_HSV,distance_LCh,distance_CMYK,distance_RGB,distance_Lab
-5710ee9e58646,objTwoColors,#FF00FF,222,0,514,4,1.08,0.08,0.08,0.04,0.03,0.05
-5711231e370f2,objTwoColors,#FF00FF,0,302,584,3,0.2,0.17,0.05,0.06,0.17,0.04
-571151812791a,objTwoColors,#FF00FF,5,230,58,3,0.02,0.05,0.11,0.04,0.03,0.05
-5713a02a13044,objTwoColors,#FF00FF,0,271,321,3,0.05,0.05,0.1,0.01,0.09,0.02
-572767049ccfa,objTwoColors,#FF00FF,8,128,185,1,0.55,0.35,0.01,0.14,0.33,0.25
-572c85675a5ef,objTwoColors,#FF00FF,216,344,323,5,1.02,0.13,0.04,0.06,0.07,0.1
-5739ff85289b2,objTwoColors,#FF00FF,305,196,10,1,0.52,0.23,0.01,0.15,0.14,0.2
-573a059da0efd,objTwoColors,#FF00FF,0,0,0,1,0.55,0.33,0.13,0.15,0.31,0.2
-573c70dabcfe0,objTwoColors,#FF00FF,179,73,134,3,0.93,0.43,0.08,0.18,0.31,0.27
-573c783748e8b,objTwoColors,#FF00FF,271,0,613,3,1.05,0.05,0.1,0.01,0.09,0.02
-573e4022949b1,objTwoColors,#FF00FF,0,299,109,5,0.18,0.16,0.05,0.06,0.17,0.03
-573e47c26cb8e,objTwoColors,#FF00FF,210,325,160,2,0.85,0.18,0.01,0.11,0.12,0.17
-573e4d0eb795b,objTwoColors,#FF00FF,307,0,75,4,0.88,0.19,0.04,0.06,0.17,0.06
-573edae85268b,objTwoColors,#FF00FF,11,273,166,4,0.08,0.1,0.09,0.02,0.1,0.02
-5740a8b59d448,objTwoColors,#FF00FF,286,0,225,5,0.98,0.11,0.07,0.03,0.14,0.01
-5740ad339507d,objTwoColors,#FF00FF,10,54,67,3,0.53,0.3,0.03,0.14,0.29,0.2
-5740b0f8e9734,objTwoColors,#FF00FF,300,0,514,5,0.91,0.17,0.05,0.06,0.17,0.04
-5740b686127bb,objTwoColors,#FF00FF,321,204,264,3,0.36,0.2,0.01,0.12,0.12,0.17
-5740bda9be3dc,objTwoColors,#FF00FF,321,316,675,5,0.51,0.07,0.02,0.03,0.06,0.05
-5740e3f36a945,objTwoColors,#FF00FF,301,0,320,2,0.91,0.17,0.05,0.06,0.17,0.04
-574859b8f3379,objTwoColors,#FF00FF,280,332,1022,3,0.87,0.01,0.06,0.05,0.01,0.11
-5756ab1701ba0,objTwoColors,#FF00FF,2,322,85,5,0.33,0.26,0.02,0.09,0.23,0.11
-5756ae6897296,objTwoColors,#FF00FF,231,280,344,4,0.64,0.22,0.16,0.21,0.2,0.31
-5756b2d9bd658,objTwoColors,#FF00FF,293,0,557,2,0.95,0.14,0.06,0.04,0.15,0.02
-5757fd2703090,objTwoColors,#FF00FF,300,0,232,2,0.91,0.17,0.05,0.06,0.17,0.04
-5757ffca0b4b1,objTwoColors,#FF00FF,302,0,107,3,0.9,0.17,0.05,0.06,0.17,0.04
-57581518c2c07,objTwoColors,#FF00FF,46,353,142,4,0.76,0.31,0.03,0.13,0.28,0.18
-57582b17cd76a,objTwoColors,#FF00FF,19,189,90,1,0.28,0.42,0.05,0.12,0.2,0.15
+id,typeOfQuestion,first_color,second_color,third_color,clicks,rating,C1_name,C2_name,distance_expectedC1C2,distance_HSV,distance_LCh,distance_CMYK,distance_RGB,distance_Lab
+571151812791a,objTwoColors,#FF00FF,5,230,58,3,Red      ,Blue     ,0.02,0.05,0.11,0.04,0.03,0.05
+572767049ccfa,objTwoColors,#FF00FF,8,128,185,1,Red      ,Green    ,0.55,0.35,0.01,0.14,0.33,0.25
+572c85675a5ef,objTwoColors,#FF00FF,216,344,323,5,Blue     ,Red      ,1.02,0.13,0.04,0.06,0.07,0.1
+5739ff85289b2,objTwoColors,#FF00FF,305,196,10,1,Pink     ,Purple   ,0.52,0.23,0.01,0.15,0.14,0.2
+573c70dabcfe0,objTwoColors,#FF00FF,179,73,134,3,Blue     ,Green    ,0.93,0.43,0.08,0.18,0.31,0.27
+573e47c26cb8e,objTwoColors,#FF00FF,210,325,160,2,Purple   ,Magenta  ,0.85,0.18,0.01,0.11,0.12,0.17
+573edae85268b,objTwoColors,#FF00FF,11,273,166,4,Red      ,Blue     ,0.08,0.1,0.09,0.02,0.1,0.02
+5740ad339507d,objTwoColors,#FF00FF,10,54,67,3,Red      ,Green    ,0.53,0.3,0.03,0.14,0.29,0.2
+5740b686127bb,objTwoColors,#FF00FF,321,204,264,3,Pink     ,Purple   ,0.36,0.2,0.01,0.12,0.12,0.17
+5740bda9be3dc,objTwoColors,#FF00FF,321,316,675,5,Pink     ,Pink     ,0.51,0.07,0.02,0.03,0.06,0.05
+574859b8f3379,objTwoColors,#FF00FF,280,332,1022,3,Blue     ,Magenta  ,0.87,0.01,0.06,0.05,0.01,0.11
+5756ab1701ba0,objTwoColors,#FF00FF,2,322,85,5,Red      ,Pink     ,0.33,0.26,0.02,0.09,0.23,0.11
+5756ae6897296,objTwoColors,#FF00FF,231,280,344,4,Blue     ,Blue     ,0.64,0.22,0.16,0.21,0.2,0.31
+57581518c2c07,objTwoColors,#FF00FF,46,353,142,4,Yellow   ,Red      ,0.76,0.31,0.03,0.13,0.28,0.18
+57582b17cd76a,objTwoColors,#FF00FF,19,189,90,1,Red      ,Blue     ,0.28,0.42,0.05,0.12,0.2,0.15

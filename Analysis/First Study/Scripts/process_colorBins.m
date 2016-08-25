@@ -50,6 +50,7 @@ x_skyblue = [];     y_skyblue = [];
 x_teal = [];        y_teal = [];
 x_yellow = [];      y_yellow = [];
 
+path = '/Users/PauloGarcia/Documents/MATLAB/Results/First Study/';
 
 %% Existing Color Bins
 
@@ -426,6 +427,8 @@ area_darkteal = fill(x_darkteal(area_darkteal),     y_darkteal(area_darkteal),  
 area_lightblue = fill(x_lightblue(area_lightblue),   y_lightblue(area_lightblue),    [0.68 0.85 0.9],    'FaceAlpha', 0.4); area_lightblue.Tag = 'LI-Blue  ';  
 area_limegreen = fill(x_limegreen(area_limegreen),   y_limegreen(area_limegreen),    [0.2 0.80 0.2],     'FaceAlpha', 0.4); area_limegreen.Tag = 'LI-Green '; 
 
+saveas(gcf, fullfile(path, 'ColorBins_convexHull'), 'png');
+
 %% Drawing the Color Bins (Points)
 
 figure('NumberTitle','off');
@@ -434,31 +437,6 @@ title('XKCD Color Bins - Points', 'FontSize', 13);
 xlabel('X Value');
 ylabel('Y Value');
 hold on;
-
-% FALTA LIME GREEN AQUI
-% area_blue = plot(x_blue, y_blue, 'Color', [0 0 1]);                         area_blue.Tag = 'Blue'; 
-% area_brown = plot(x_brown, y_brown, 'Color', [0.65 0.16 0.16]);             area_brown.Tag = 'Brown'; 
-% area_darkbrown = plot(x_darkbrown, y_darkbrown, 'Color', [0.32 0.08 0.08]); area_darkbrown.Tag = 'Dark-Brown'; 
-% area_cyan = plot(x_cyan, y_cyan, 'cyan');                                   area_cyan.Tag = 'Cyan'; 
-% area_darkblue = plot(x_darkblue, y_darkblue, 'Color', [0 0 0.55]);          area_darkblue.Tag = 'Dark-Blue'; 
-% area_darkgreen = plot(x_darkgreen, y_darkgreen, 'Color', [0 0.39 0]);       area_darkgreen.Tag = 'Dark-Green'; 
-% area_darkpurple = plot(x_darkpurple, y_darkpurple, 'Color', [0.29 0 0.51]); area_darkpurple.Tag = 'Dark-Purple'; 
-% area_darkteal = plot(x_darkteal, y_darkteal, 'Color', [0 0.25 0.25]);       area_darkteal.Tag = 'Dark-Teal'; 
-% area_gold = plot(x_gold, y_gold, 'Color', [1 0.84 0]);                      area_gold.Tag = 'Gold'; 
-% area_green = plot(x_green, y_green, 'Color', [0 0.5 0]);                    area_green.Tag = 'Green'; 
-% area_lightblue = plot(x_lightblue, y_lightblue, 'Color', [0.2 0.80 0.2]);   area_lightblue.Tag = 'Light-Blue';  
-% area_magenta = plot(x_magenta, y_magenta, 'Color', [1 0 1]);                area_magenta.Tag = 'Magenta'; 
-% area_maroon = plot(x_maroon, y_maroon, 'Color', [0.5 0 0]);                 area_maroon.Tag = 'Maroon'; 
-% area_mustard = plot(x_mustard, y_mustard, 'Color', [0.96 0.82 0.3]);        area_mustard.Tag = 'Mustard'; 
-% area_navyblue = plot(x_navyblue, y_navyblue, 'Color', [0 0 0.5]);           area_navyblue.Tag = 'Navy-Blue'; 
-% area_olive = plot(x_olive, y_olive, 'Color', [0.5 0.5 0]);                  area_olive.Tag = 'Olive'; 
-% area_orange = plot(x_orange, y_orange, 'Color', [1 0.65 0]);                area_orange.Tag = 'Orange'; 
-% area_pink = plot(x_pink, y_pink, 'Color', [1 0.75 0.8]);                    area_pink.Tag = 'Pink'; 
-% area_purple = plot(x_purple, y_purple, 'Color', [0.5 0 0.5]);               area_purple.Tag = 'Purple'; 
-% area_red = plot(x_red, y_red, 'Color', [1 0 0]);                            area_red.Tag = 'Red'; 
-% area_skyblue = plot(x_skyblue, y_skyblue, 'Color', [0.53 0.81 0.92]);       area_skyblue.Tag = 'Sky-Blue'; 
-% area_teal = plot(x_teal, y_teal, 'Color', [0 0.5 0.5]);                     area_teal.Tag = 'Teal'; 
-% area_yellow = plot(x_yellow, y_yellow, 'Color', [1 1 0]);                   area_yellow.Tag = 'Yellow'; 
 
 plot(x_blue, y_blue, 'Color', [0 0 1]);
 plot(x_brown, y_brown, 'Color', [0.65 0.16 0.16]);
@@ -470,7 +448,8 @@ plot(x_darkpurple, y_darkpurple, 'Color', [0.29 0 0.51]);
 plot(x_darkteal, y_darkteal, 'Color', [0 0.25 0.25]);     
 plot(x_gold, y_gold, 'Color', [1 0.84 0]);                
 plot(x_green, y_green, 'Color', [0 0.5 0]);               
-plot(x_lightblue, y_lightblue, 'Color', [0.2 0.80 0.2]);  
+plot(x_lightblue, y_lightblue, 'Color', [0.68 0.85 0.9]); 
+plot(x_limegreen, y_limegreen, 'Color', [0.2 0.80 0.2]); 
 plot(x_magenta, y_magenta, 'Color', [1 0 1]);             
 plot(x_maroon, y_maroon, 'Color', [0.5 0 0]);             
 plot(x_mustard, y_mustard, 'Color', [0.96 0.82 0.3]);     
@@ -484,6 +463,8 @@ plot(x_skyblue, y_skyblue, 'Color', [0.53 0.81 0.92]);
 plot(x_teal, y_teal, 'Color', [0 0.5 0.5]);               
 plot(x_yellow, y_yellow, 'Color', [1 1 0]);               
 
-colorBins = [area_blue area_brown area_darkbrown area_cyan area_darkblue area_darkgreen area_darkpurple area_darkteal area_gold area_green area_limegreen area_lightblue area_magenta area_maroon area_mustard area_navyblue area_olive area_orange area_pink area_purple area_red area_skyblue area_teal area_yellow];
+colorBins = [area_red area_green area_blue area_cyan area_magenta area_yellow area_orange area_pink area_purple area_gold area_brown area_skyblue area_teal area_maroon area_mustard area_navyblue area_olive area_darkblue area_darkgreen area_darkpurple area_darkbrown area_darkteal area_lightblue area_limegreen];
+
+saveas(gcf, fullfile(path, 'ColorBins_Points'), 'png');
 
 disp('Finished Script without errors.');

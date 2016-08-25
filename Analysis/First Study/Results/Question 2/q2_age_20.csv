@@ -1,19 +1,19 @@
-id,age,gender,num_answers,in_person,typeOfQuestion,first_color,second_color,third_color,clicks,rating,distance_expectedC1C2,distance_HSV,distance_LCh,distance_CMYK,distance_RGB,distance_Lab
-57112ebc85ba1,18,Female,32,no,objTwoColors,#FF00FF,10,225,128,5,0.04,0.05,0.09,0.04,0.04,0.05
-5711348e42f02,19,Female,32,no,objTwoColors,#FF00FF,7,218,276,4,0.06,0.07,0.06,0.05,0.06,0.06
-57113d4d93c81,18,Female,32,no,objTwoColors,#FF00FF,292,0,82,4,0.95,0.13,0.06,0.04,0.15,0.02
-5711703bd85fc,18,Female,32,no,objTwoColors,#FF00FF,224,331,211,3,0.94,0.15,0.07,0.09,0.11,0.16
-57121540dbb98,18,Male,7,no,objTwoColors,#FF00FF,300,300,301,5,0.55,0.04,0.24,0.05,0.01,0.17
-5712787a337a9,18,Female,7,no,objTwoColors,#FF00FF,0,0,0,1,0.55,0.33,0.13,0.15,0.31,0.2
-5712a254e00f7,18,Female,18,no,objTwoColors,#FF00FF,0,325,78,3,0.35,0.26,0.02,0.09,0.24,0.12
-572a7874c1e2e,19,Male,6,no,objTwoColors,#FF00FF,0,301,472,5,0.19,0.17,0.05,0.06,0.17,0.04
-5734e397122ce,19,Male,6,no,objTwoColors,#FF00FF,300,300,2351,5,0.55,0.04,0.24,0.05,0.01,0.17
-5736048bb110b,19,Male,32,no,objTwoColors,#FF00FF,299,300,296,5,0.56,0.04,0.07,0.05,0.01,0.17
-573634984323e,19,Male,32,no,objTwoColors,#FF00FF,303,310,247,4,0.59,0,0.05,0.04,0,0.13
-57366c199283c,19,Male,32,no,objTwoColors,#FF00FF,0,300,76,5,0.19,0.17,0.05,0.06,0.17,0.04
-57427cf6bad0c,19,Female,32,no,objTwoColors,#FF00FF,285,0,99,2,0.99,0.11,0.08,0.03,0.13,0.01
-574511e99b6d9,19,Female,32,no,objTwoColors,#FF00FF,13,188,133,2,0.26,0.42,0.05,0.11,0.19,0.14
-5745350dc1e22,19,Female,31,no,objTwoColors,#FF00FF,326,213,81,3,0.26,0.18,0.02,0.1,0.12,0.17
-5745c1c07cc0c,18,Other,31,no,objTwoColors,#FF00FF,322,196,120,4,0.4,0.21,0.04,0.13,0.11,0.16
-5745f6f039dc9,15,Male,33,no,objTwoColors,#FF00FF,352,0,701,1,0.57,0.32,0.03,0.14,0.31,0.19
-5745f6f039dc9,15,Male,33,no,objTwoColors,#FF00FF,0,0,0,3,0.55,0.33,0.13,0.15,0.31,0.2
+id,age,gender,num_answers,in_person,typeOfQuestion,first_color,second_color,third_color,clicks,rating,C1_name,C2_name,distance_expectedC1C2,distance_HSV,distance_LCh,distance_CMYK,distance_RGB,distance_Lab
+57112ebc85ba1,18,Female,32,no,objTwoColors,#FF00FF,10,225,128,5,Red      ,Blue     ,0.04,0.05,0.09,0.04,0.04,0.05
+5711348e42f02,19,Female,32,no,objTwoColors,#FF00FF,7,218,276,4,Red      ,Blue     ,0.06,0.07,0.06,0.05,0.06,0.06
+57113d4d93c81,18,Female,32,no,objTwoColors,#FF00FF,292,0,82,4,Blue     ,Red      ,0.95,0.13,0.06,0.04,0.15,0.02
+5711703bd85fc,18,Female,32,no,objTwoColors,#FF00FF,224,331,211,3,Blue     ,Magenta  ,0.94,0.15,0.07,0.09,0.11,0.16
+57121540dbb98,18,Male,7,no,objTwoColors,#FF00FF,300,300,301,5,Pink     ,Pink     ,0.55,0.04,0.24,0.05,0.01,0.17
+5712787a337a9,18,Female,7,no,objTwoColors,#FF00FF,0,0,0,1,Red      ,Red      ,0.55,0.33,0.13,0.15,0.31,0.2
+5712a254e00f7,18,Female,18,no,objTwoColors,#FF00FF,0,325,78,3,Red      ,Magenta  ,0.35,0.26,0.02,0.09,0.24,0.12
+572a7874c1e2e,19,Male,6,no,objTwoColors,#FF00FF,0,301,472,5,Red      ,Pink     ,0.19,0.17,0.05,0.06,0.17,0.04
+5734e397122ce,19,Male,6,no,objTwoColors,#FF00FF,300,300,2351,5,Pink     ,Pink     ,0.55,0.04,0.24,0.05,0.01,0.17
+5736048bb110b,19,Male,32,no,objTwoColors,#FF00FF,299,300,296,5,Pink     ,Pink     ,0.56,0.04,0.07,0.05,0.01,0.17
+573634984323e,19,Male,32,no,objTwoColors,#FF00FF,303,310,247,4,Pink     ,Pink     ,0.59,0,0.05,0.04,0,0.13
+57366c199283c,19,Male,32,no,objTwoColors,#FF00FF,0,300,76,5,Red      ,Pink     ,0.19,0.17,0.05,0.06,0.17,0.04
+57427cf6bad0c,19,Female,32,no,objTwoColors,#FF00FF,285,0,99,2,Blue     ,Red      ,0.99,0.11,0.08,0.03,0.13,0.01
+574511e99b6d9,19,Female,32,no,objTwoColors,#FF00FF,13,188,133,2,Red      ,Blue     ,0.26,0.42,0.05,0.11,0.19,0.14
+5745350dc1e22,19,Female,31,no,objTwoColors,#FF00FF,326,213,81,3,Magenta  ,Blue     ,0.26,0.18,0.02,0.1,0.12,0.17
+5745c1c07cc0c,18,Other,31,no,objTwoColors,#FF00FF,322,196,120,4,Pink     ,Purple   ,0.4,0.21,0.04,0.13,0.11,0.16
+5745f6f039dc9,15,Male,33,no,objTwoColors,#FF00FF,352,0,701,1,Red      ,Red      ,0.57,0.32,0.03,0.14,0.31,0.19
+5745f6f039dc9,15,Male,33,no,objTwoColors,#FF00FF,0,0,0,3,Red      ,Red      ,0.55,0.33,0.13,0.15,0.31,0.2
