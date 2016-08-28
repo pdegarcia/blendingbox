@@ -1,4 +1,4 @@
-id,typeOfQuestion,first_color,second_color,third_color,clicks,rating,distance_expectedC3,distance_HSV,distance_LCh,distance_CMYK,distance_RGB,distance_Lab
-57113a5534205,twoColorsObj,#00FFFF,#FF00FF,#c9b2a2,320,2,0.37,0.37,0.16,0.11,0.21,0.11
-571289ef76e18,twoColorsObj,#00FFFF,#FF00FF,#008080,495,4,0.33,0.33,0.09,0.09,0.17,0.1
-57149713464b1,twoColorsObj,#00FFFF,#FF00FF,#FFFFFF,0,1,0.35,0.35,0.14,0.09,0.19,0.09
+id,typeOfQuestion,first_color,second_color,third_color,clicks,rating,C3_name,distance_expectedC3,distance_HSV,distance_LCh,distance_CMYK,distance_RGB,distance_Lab
+57113a5534205,twoColorsObj,#00FFFF,#FF00FF,#c9b2a2,320,2,Green    ,0.37,0.37,0.16,0.11,0.21,0.11
+571289ef76e18,twoColorsObj,#00FFFF,#FF00FF,#008080,495,4,Green    ,0.33,0.33,0.09,0.09,0.17,0.1
+57149713464b1,twoColorsObj,#00FFFF,#FF00FF,#FFFFFF,0,1,Green    ,0.35,0.35,0.14,0.09,0.19,0.09

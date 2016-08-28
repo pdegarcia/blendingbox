@@ -1,19 +1,19 @@
-id,age,gender,num_answers,in_person,typeOfQuestion,first_color,second_color,third_color,clicks,rating,distance_expectedC3,distance_HSV,distance_LCh,distance_CMYK,distance_RGB,distance_Lab
-57112ce735a14,19,Male,6,no,twoColorsObj,#00FF00,#0000FF,#00FFFF,420,3,0.04,0.04,0.12,0.06,0.04,0.04
-57112ebc85ba1,18,Female,32,no,twoColorsObj,#00FF00,#0000FF,#91c01d,160,2,0.18,0.18,0.27,0.22,0.18,0.17
-5711348e42f02,19,Female,32,no,twoColorsObj,#00FF00,#0000FF,#46ff9c,121,4,0.11,0.11,0.2,0.15,0.11,0.11
-57113ce1334e0,19,Female,12,no,twoColorsObj,#00FF00,#0000FF,#808000,479,2,0.19,0.19,0.27,0.22,0.19,0.16
-57113d4d93c81,18,Female,32,no,twoColorsObj,#00FF00,#0000FF,#7f00ff,29,4,0.16,0.16,0.07,0.12,0.16,0.15
-5711703bd85fc,18,Female,32,no,twoColorsObj,#00FF00,#0000FF,#5792ff,1,5,0.09,0.09,0.03,0.06,0.09,0.08
-57127cb3ab1fe,1,Male,12,no,twoColorsObj,#00FF00,#0000FF,#008080,1478,2,0.04,0.04,0.12,0.06,0.04,0.04
-5712a254e00f7,18,Female,18,no,twoColorsObj,#00FF00,#0000FF,#91c01d,219,3,0.18,0.18,0.27,0.22,0.18,0.17
-5734d89183dab,19,Female,29,no,twoColorsObj,#00FF00,#0000FF,#008080,85,4,0.04,0.04,0.12,0.06,0.04,0.04
-5736048bb110b,19,Male,32,no,twoColorsObj,#00FF00,#0000FF,#FFFF00,321,5,0.19,0.19,0.27,0.22,0.19,0.16
-573634984323e,19,Male,32,no,twoColorsObj,#00FF00,#0000FF,#46ff9c,91,4,0.11,0.11,0.2,0.15,0.11,0.11
-57366c199283c,19,Male,32,no,twoColorsObj,#00FF00,#0000FF,#B000FF,76,1,0.15,0.15,0.07,0.11,0.15,0.12
-57427cf6bad0c,19,Female,32,no,twoColorsObj,#00FF00,#0000FF,#00ffb7,243,3,0.08,0.08,0.18,0.12,0.08,0.09
-574511e99b6d9,19,Female,32,no,twoColorsObj,#00FF00,#0000FF,#008080,507,4,0.04,0.04,0.12,0.06,0.04,0.04
-5745350dc1e22,19,Female,31,no,twoColorsObj,#00FF00,#0000FF,#91c01d,706,3,0.18,0.18,0.27,0.22,0.18,0.17
-5745c1c07cc0c,18,Other,31,no,twoColorsObj,#00FF00,#0000FF,#00FF80,211,3,0.13,0.13,0.23,0.17,0.13,0.14
-5745f6f039dc9,15,Male,33,no,twoColorsObj,#00FF00,#0000FF,#FFFFFF,0,4,0.1,0.1,0.15,0.11,0.1,0.04
-5749c6a70055f,17,Male,1,no,twoColorsObj,#00FF00,#0000FF,#FFFFFF,0,1,0.1,0.1,0.15,0.11,0.1,0.04
+id,age,gender,num_answers,in_person,typeOfQuestion,first_color,second_color,third_color,clicks,rating,C3_name,distance_expectedC3,distance_HSV,distance_LCh,distance_CMYK,distance_RGB,distance_Lab
+57112ce735a14,19,Male,6,no,twoColorsObj,#00FF00,#0000FF,#00FFFF,420,3,Green    ,0.04,0.04,0.12,0.06,0.04,0.04
+57112ebc85ba1,18,Female,32,no,twoColorsObj,#00FF00,#0000FF,#91c01d,160,2,Green    ,0.18,0.18,0.27,0.22,0.18,0.17
+5711348e42f02,19,Female,32,no,twoColorsObj,#00FF00,#0000FF,#46ff9c,121,4,Green    ,0.11,0.11,0.2,0.15,0.11,0.11
+57113ce1334e0,19,Female,12,no,twoColorsObj,#00FF00,#0000FF,#808000,479,2,Green    ,0.19,0.19,0.27,0.22,0.19,0.16
+57113d4d93c81,18,Female,32,no,twoColorsObj,#00FF00,#0000FF,#7f00ff,29,4,Purple   ,0.16,0.16,0.07,0.12,0.16,0.15
+5711703bd85fc,18,Female,32,no,twoColorsObj,#00FF00,#0000FF,#5792ff,1,5,Blue     ,0.09,0.09,0.03,0.06,0.09,0.08
+57127cb3ab1fe,1,Male,12,no,twoColorsObj,#00FF00,#0000FF,#008080,1478,2,Green    ,0.04,0.04,0.12,0.06,0.04,0.04
+5712a254e00f7,18,Female,18,no,twoColorsObj,#00FF00,#0000FF,#91c01d,219,3,Green    ,0.18,0.18,0.27,0.22,0.18,0.17
+5734d89183dab,19,Female,29,no,twoColorsObj,#00FF00,#0000FF,#008080,85,4,Green    ,0.04,0.04,0.12,0.06,0.04,0.04
+5736048bb110b,19,Male,32,no,twoColorsObj,#00FF00,#0000FF,#FFFF00,321,5,Green    ,0.19,0.19,0.27,0.22,0.19,0.16
+573634984323e,19,Male,32,no,twoColorsObj,#00FF00,#0000FF,#46ff9c,91,4,Green    ,0.11,0.11,0.2,0.15,0.11,0.11
+57366c199283c,19,Male,32,no,twoColorsObj,#00FF00,#0000FF,#B000FF,76,1,Pink     ,0.15,0.15,0.07,0.11,0.15,0.12
+57427cf6bad0c,19,Female,32,no,twoColorsObj,#00FF00,#0000FF,#00ffb7,243,3,Green    ,0.08,0.08,0.18,0.12,0.08,0.09
+574511e99b6d9,19,Female,32,no,twoColorsObj,#00FF00,#0000FF,#008080,507,4,Green    ,0.04,0.04,0.12,0.06,0.04,0.04
+5745350dc1e22,19,Female,31,no,twoColorsObj,#00FF00,#0000FF,#91c01d,706,3,Green    ,0.18,0.18,0.27,0.22,0.18,0.17
+5745c1c07cc0c,18,Other,31,no,twoColorsObj,#00FF00,#0000FF,#00FF80,211,3,Green    ,0.13,0.13,0.23,0.17,0.13,0.14
+5745f6f039dc9,15,Male,33,no,twoColorsObj,#00FF00,#0000FF,#FFFFFF,0,4,Green    ,0.1,0.1,0.15,0.11,0.1,0.04
+5749c6a70055f,17,Male,1,no,twoColorsObj,#00FF00,#0000FF,#FFFFFF,0,1,Green    ,0.1,0.1,0.15,0.11,0.1,0.04

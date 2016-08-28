@@ -1,4 +1,4 @@
-id,typeOfQuestion,first_color,second_color,third_color,clicks,rating,distance_expectedC1C2,distance_HSV,distance_LCh,distance_CMYK,distance_RGB,distance_Lab,distance_pair1,distance_pair2,distance_pair3,distance_pair4,distance_pair5
-57113a5534205,objTwoColors,#FF8000,4,55,102,5,0.74,0,0.14,0.14,0.2,0.15,0.02,0.03,0.03,0.02,0.03
-571289ef76e18,objTwoColors,#FF8000,56,350,128,4,0.45,0.04,0.14,0.13,0.19,0.14,0.54,0.54,0.5,0.53,0.54
-57149713464b1,objTwoColors,#FF8000,0,0,0,1,0.74,0.12,0.09,0.24,0.3,0.27,0.28,0.29,0.26,0.27,0.29
+id,typeOfQuestion,first_color,second_color,third_color,clicks,rating,C1_name,C2_name,distance_expectedC1C2,distance_HSV,distance_LCh,distance_CMYK,distance_RGB,distance_Lab,distance_pair1,distance_pair2,distance_pair3,distance_pair4,distance_pair5
+57113a5534205,objTwoColors,#FF8000,4,55,102,5,Red      ,Green    ,0.74,0,0.09,0.14,0.2,0.15,0.02,0.03,0.03,0.02,0.03
+571289ef76e18,objTwoColors,#FF8000,56,350,128,4,Green    ,Red      ,0.45,0.04,0.08,0.13,0.19,0.14,0.54,0.54,0.5,0.53,0.54
+57149713464b1,objTwoColors,#FF8000,0,0,0,1,Red      ,Red      ,0.74,0.12,0.09,0.24,0.3,0.27,0.28,0.29,0.26,0.27,0.29

@@ -1,0 +1,13 @@
+id,age,gender,num_answers,in_person,typeOfQuestion,first_color,second_color,third_color,clicks,rating,C1_name,C2_name,distance_expectedC1C2,distance_HSV,distance_LCh,distance_CMYK,distance_RGB,distance_Lab,distance_pair1,distance_pair2,distance_pair3,distance_pair4,distance_pair5,distance_pair6,distance_pair7,distance_pair8
+57112ebc85ba1,18,Female,32,no,objTwoColors,#80FF00,187,57,142,5,Blue     ,Green    ,0.32,0.05,0.3,0.11,0.11,0.14,0.09,0.1,0.05,0.09,0.1,0.24,0.65,0.65
+5711348e42f02,19,Female,32,no,objTwoColors,#80FF00,234,65,219,4,Blue     ,Green    ,0.57,0.09,0.42,0.18,0.25,0.26,0.34,0.35,0.26,0.36,0.35,0.02,0.78,0.77
+57113d4d93c81,18,Female,32,no,objTwoColors,#80FF00,132,0,129,5,Green    ,Red      ,0.3,0.08,0.18,0.12,0.1,0.11,0.5,0.5,0.58,0.48,0.5,0.81,0.82,0.82
+5711703bd85fc,18,Female,32,no,objTwoColors,#80FF00,249,65,442,5,Blue     ,Green    ,0.57,0.36,0.42,0.18,0.26,0.27,0.34,0.35,0.26,0.36,0.35,0.02,0.77,0.77
+5736048bb110b,19,Male,32,no,objTwoColors,#80FF00,98,115,131,5,Green    ,Green    ,0.15,0.04,0.19,0.08,0.04,0.07,0.38,0.39,0.52,0.4,0.39,0.69,0.65,0.66
+573634984323e,19,Male,32,no,objTwoColors,#80FF00,57,114,247,4,Green    ,Green    ,0.29,0.01,0.2,0.04,0.01,0.01,0.37,0.38,0.5,0.39,0.38,0.66,0.51,0.52
+57366c199283c,19,Male,32,no,objTwoColors,#80FF00,48,184,92,3,Yellow   ,Blue     ,0.46,0.04,0.21,0.1,0.12,0.15,0.52,0.52,0.62,0.53,0.52,0.79,0.3,0.3
+57427cf6bad0c,19,Female,32,no,objTwoColors,#80FF00,173,56,198,3,Blue     ,Green    ,0.24,0.04,0.31,0.1,0.1,0.11,0.02,0.03,0.12,0.02,0.03,0.32,0.63,0.63
+574511e99b6d9,19,Female,32,no,objTwoColors,#80FF00,59,190,144,4,Green    ,Blue     ,0.44,0.04,0.2,0.12,0.12,0.15,0.53,0.54,0.64,0.54,0.54,0.82,0.38,0.38
+5745350dc1e22,19,Female,31,no,objTwoColors,#80FF00,181,57,178,4,Blue     ,Green    ,0.29,0.05,0.3,0.1,0.1,0.13,0.06,0.06,0.08,0.06,0.06,0.28,0.64,0.64
+5745c1c07cc0c,18,Other,31,no,objTwoColors,#80FF00,113,50,305,4,Green    ,Yellow   ,0.06,0.03,0.19,0.04,0.01,0.02,0.28,0.28,0.35,0.27,0.28,0.59,0.66,0.67
+5745f6f039dc9,15,Male,33,no,objTwoColors,#80FF00,0,0,0,4,Red      ,Red      ,0.69,0.39,0.32,0.29,0.37,0.35,0.67,0.67,0.68,0.65,0.67,0.83,0.39,0.4

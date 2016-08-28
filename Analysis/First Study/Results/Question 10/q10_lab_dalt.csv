@@ -1,2 +1,2 @@
-id,typeOfQuestion,first_color,second_color,third_color,clicks,rating
-573ec4275ba17,objTwoColors,#0080FF,198,222,81,3
+id,typeOfQuestion,first_color,second_color,third_color,clicks,rating,colors_names1,colors_names2
+573ec4275ba17,objTwoColors,#0080FF,198,222,81,3,Purple,Blue
