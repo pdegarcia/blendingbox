@@ -1,11 +1,11 @@
 id,age,gender,num_answers,in_person,typeOfQuestion,first_color,second_color,third_color,clicks,rating,C1_name,C2_name,distance_expectedC1C2,distance_HSV,distance_LCh,distance_CMYK,distance_RGB,distance_Lab
-57110028bc74b,48,Female,32,no,objTwoColors,#0000FF,0,190,118,5,Red      ,Blue     ,0.57,0.07,0.36,0.13,0.15,0.12
+57110028bc74b,48,Female,32,no,objTwoColors,#0000FF,0,190,118,5,Red      ,Blue     ,0.57,0.07,0.33,0.13,0.15,0.12
 57112d8509632,45,Female,32,no,objTwoColors,#0000FF,226,235,156,5,Blue     ,Blue     ,0.53,0.01,0.2,0.11,0.15,0.25
-571154184c9bd,47,Female,32,no,objTwoColors,#0000FF,228,0,13,1,Blue     ,Red      ,0.64,0.16,0.21,0.13,0.1,0.12
-571183866d73f,48,Female,32,no,objTwoColors,#0000FF,57,129,199,4,Green    ,Green    ,0.64,0.54,0.29,0.22,0.37,0.28
-5713b10383207,40,Male,32,no,objTwoColors,#0000FF,115,59,548,4,Green    ,Green    ,0.58,0.53,0.33,0.22,0.38,0.28
+571154184c9bd,47,Female,32,no,objTwoColors,#0000FF,228,0,13,1,Blue     ,Red      ,0.64,0.16,0.1,0.13,0.1,0.12
+571183866d73f,48,Female,32,no,objTwoColors,#0000FF,57,129,199,4,Green    ,Green    ,0.64,0.54,0.1,0.22,0.37,0.28
+5713b10383207,40,Male,32,no,objTwoColors,#0000FF,115,59,548,4,Green    ,Green    ,0.58,0.53,0.03,0.22,0.38,0.28
 573664e1a4a96,49,Male,18,no,objTwoColors,#0000FF,175,265,92,2,Blue     ,Blue     ,0.21,0.04,0.05,0.04,0.04,0.11
-573c70dabcfe0,49,Male,32,yes,objTwoColors,#6C00FF,111,63,335,3,Green    ,Green    ,0.58,0.53,0.33,0.21,0.38,0.29
-5740ad339507d,40,Male,32,yes,objTwoColors,#6C00FF,3,204,61,4,Red      ,Purple   ,0.56,0.11,0.35,0.13,0.11,0.1
-5740e3f36a945,49,Female,32,yes,objTwoColors,#6C00FF,240,307,251,2,Blue     ,Pink     ,0.32,0.06,0.23,0.05,0.1,0.17
-5776cc574bf84,45,Female,21,no,objTwoColors,#0000FF,236,231,850,4,Blue     ,Blue     ,0.55,0,0.23,0.11,0.15,0.26
+573c70dabcfe0,49,Male,32,yes,objTwoColors,#6C00FF,111,63,335,3,Green    ,Green    ,0.58,0.53,0.03,0.21,0.38,0.29
+5740ad339507d,40,Male,32,yes,objTwoColors,#6C00FF,3,204,61,4,Red      ,Purple   ,0.56,0.11,0.33,0.13,0.11,0.1
+5740e3f36a945,49,Female,32,yes,objTwoColors,#6C00FF,240,307,251,2,Blue     ,Pink     ,0.32,0.06,0.32,0.05,0.1,0.17
+5776cc574bf84,45,Female,21,no,objTwoColors,#0000FF,236,231,850,4,Blue     ,Blue     ,0.55,0,0.27,0.11,0.15,0.26
