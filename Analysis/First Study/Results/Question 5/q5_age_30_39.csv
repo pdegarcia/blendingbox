@@ -1,16 +1,16 @@
 id,age,gender,num_answers,in_person,typeOfQuestion,first_color,second_color,third_color,clicks,rating,C1_name,C2_name,distance_expectedC1C2,distance_HSV,distance_LCh,distance_CMYK,distance_RGB,distance_Lab,distance_pair1,distance_pair2,distance_pair3,distance_pair4
-5710d28fec2d1,30,Male,32,no,objTwoColors,#FF0080,0,293,141,1,Red      ,Blue     ,0.07,0.03,0.17,0.07,0.04,0.04,0.94,0.91,0.72,0.71
-5711106ab212a,33,Male,32,no,objTwoColors,#FF0080,8,0,509,4,Red      ,Red      ,0.34,0.16,0.08,0.04,0.12,0.13,0.83,0.79,0.6,0.59
-5711148c11035,35,Male,22,no,objTwoColors,#FF0080,319,57,128,3,Pink     ,Green    ,0.58,0.16,0.09,0.16,0.09,0.12,0.31,0.27,0.09,0.08
-57112e1a2bbbb,32,Male,16,no,objTwoColors,#FF0080,16,227,374,2,Red      ,Blue     ,0.26,0.2,0.18,0.16,0.21,0.12,1.04,1.01,0.81,0.81
-571153ca15566,32,Male,32,no,objTwoColors,#FF0080,182,310,333,2,Blue     ,Pink     ,0.44,0.4,0.28,0.25,0.3,0.24,0.59,0.57,0.53,0.53
-571252e6d2e70,31,Female,32,no,objTwoColors,#FF0080,8,0,25,5,Red      ,Red      ,0.34,0.16,0.08,0.04,0.12,0.13,0.83,0.79,0.6,0.59
-57153eb9b4bed,35,Female,31,no,objTwoColors,#FF0080,0,341,94,5,Red      ,Red      ,0.25,0.14,0.1,0.02,0.09,0.1,0.81,0.77,0.59,0.57
-57190633f233f,30,Male,32,no,objTwoColors,#FF0080,4,178,110,3,Red      ,Blue     ,0.21,0.36,0.13,0.18,0.23,0.17,0.8,0.77,0.57,0.57
-573607add000c,38,Male,5,no,objTwoColors,#FF0080,8,308,309,3,Red      ,Pink     ,0.01,0.06,0.16,0.06,0.02,0.01,0.88,0.85,0.65,0.65
-573a059da0efd,31,Female,32,yes,objTwoColors,#FF007A,8,0,323,1,Red      ,Red      ,0.34,0.16,0.08,0.04,0.12,0.13,0.83,0.79,0.6,0.59
-573c783748e8b,37,Female,32,yes,objTwoColors,#FF007A,351,73,244,3,Red      ,Green    ,0.38,0.17,0.07,0.15,0.15,0.18,0.58,0.55,0.36,0.36
-5740a8b59d448,31,Female,32,yes,objTwoColors,#FF007A,7,0,22,5,Red      ,Red      ,0.34,0.16,0.08,0.04,0.12,0.13,0.83,0.79,0.6,0.59
-5740b686127bb,32,Male,32,yes,objTwoColors,#FF007A,334,298,372,3,Magenta  ,Blue     ,0.18,0.11,0.09,0.11,0.12,0.13,0.79,0.76,0.57,0.57
-5745b5cbe3caa,34,Female,32,no,objTwoColors,#FF0080,213,300,536,2,Blue     ,Pink     ,0.55,0.38,0.16,0.25,0.35,0.3,0.43,0.43,0.55,0.57
-574859b8f3379,30,Male,32,yes,objTwoColors,#FF007A,352,196,190,3,Red      ,Purple   ,0.19,0.33,0.14,0.19,0.22,0.14,0.89,0.86,0.66,0.66
+5710d28fec2d1,30,Male,32,no,objTwoColors,#FF0080,0,293,141,1,Red,Blue,0.07,0.03,0.17,0.07,0.04,0.04,0.94,0.91,0.72,0.71
+5711106ab212a,33,Male,32,no,objTwoColors,#FF0080,8,0,509,4,Red,Red,0.34,0.16,0.08,0.04,0.12,0.13,0.83,0.79,0.6,0.59
+5711148c11035,35,Male,22,no,objTwoColors,#FF0080,319,57,128,3,Pink,Green,0.58,0.16,0.09,0.16,0.09,0.12,0.31,0.27,0.09,0.08
+57112e1a2bbbb,32,Male,16,no,objTwoColors,#FF0080,16,227,374,2,Red,Blue,0.26,0.2,0.18,0.16,0.21,0.12,1.04,1.01,0.81,0.81
+571153ca15566,32,Male,32,no,objTwoColors,#FF0080,182,310,333,2,Blue,Pink,0.44,0.4,0.28,0.25,0.3,0.24,0.59,0.57,0.53,0.53
+571252e6d2e70,31,Female,32,no,objTwoColors,#FF0080,8,0,25,5,Red,Red,0.34,0.16,0.08,0.04,0.12,0.13,0.83,0.79,0.6,0.59
+57153eb9b4bed,35,Female,31,no,objTwoColors,#FF0080,0,341,94,5,Red,Red,0.25,0.14,0.1,0.02,0.09,0.1,0.81,0.77,0.59,0.57
+57190633f233f,30,Male,32,no,objTwoColors,#FF0080,4,178,110,3,Red,Blue,0.21,0.36,0.13,0.18,0.23,0.17,0.8,0.77,0.57,0.57
+573607add000c,38,Male,5,no,objTwoColors,#FF0080,8,308,309,3,Red,Pink,0.01,0.06,0.16,0.06,0.02,0.01,0.88,0.85,0.65,0.65
+573a059da0efd,31,Female,32,yes,objTwoColors,#FF007A,8,0,323,1,Red,Red,0.34,0.16,0.08,0.04,0.12,0.13,0.83,0.79,0.6,0.59
+573c783748e8b,37,Female,32,yes,objTwoColors,#FF007A,351,73,244,3,Red,Green,0.38,0.17,0.07,0.15,0.15,0.18,0.58,0.55,0.36,0.36
+5740a8b59d448,31,Female,32,yes,objTwoColors,#FF007A,7,0,22,5,Red,Red,0.34,0.16,0.08,0.04,0.12,0.13,0.83,0.79,0.6,0.59
+5740b686127bb,32,Male,32,yes,objTwoColors,#FF007A,334,298,372,3,Magenta,Blue,0.18,0.11,0.09,0.11,0.12,0.13,0.79,0.76,0.57,0.57
+5745b5cbe3caa,34,Female,32,no,objTwoColors,#FF0080,213,300,536,2,Blue,Pink,0.55,0.38,0.16,0.25,0.35,0.3,0.43,0.43,0.55,0.57
+574859b8f3379,30,Male,32,yes,objTwoColors,#FF007A,352,196,190,3,Red,Purple,0.19,0.33,0.14,0.19,0.22,0.14,0.89,0.86,0.66,0.66
