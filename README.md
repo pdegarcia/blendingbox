@@ -10,8 +10,6 @@ In this repository, it will be available some interesting stuff which you may wa
  
 ## User Studies
 - First Study **CONCLUDED** (ongoing evaluation)
-- Second Study **PLANNING**
-- Third Study
  
 ## Tech Currently Being Used
 
@@ -22,7 +20,9 @@ In this repository, it will be available some interesting stuff which you may wa
 - jQuery
 - Bootstrap
 - PHP
-
+- Matlab  (for the entire Data Digest and cleaning)
+- SPSS    (for Statistical Analysis)
+- LaTeX   (for Master Thesis Document's Writting)
 
 ## Resources
 
@@ -38,9 +38,14 @@ In this repository, it will be available some interesting stuff which you may wa
 
 - See **Issues List**.
 - Analyze Results provided by the First Study.
-- Sketch Second User Study.
-- Analyze Results provided by the Second Study.
 - Write Master Thesis.
+
+## To generate the Dissertation and Extended-Abstract document in the PDF format, execute the following commands:
+
+```
+sh toPDF.sh;
+sh clean.sh;
+```
 
 **Let's have some fun coloring around!**
 
