@@ -2,4 +2,4 @@ id,age,gender,num_answers,in_person,typeOfQuestion,first_color,second_color,thir
 57112b9e10661,64,Female,34,no,objTwoColors,#8000FF,160,59,303,2,Green    ,Green    ,0.73,0.51,0.25,0.22,0.42,0.36,0.44,0.41,0.41
 571165992a5c1,67,Female,32,no,objTwoColors,#8000FF,234,303,283,3,Blue     ,Pink     ,0.02,0.02,0.44,0.06,0,0.05,0.42,0.35,0.35
 5740b0f8e9734,62,Male,33,yes,objTwoColors,#B100FF,279,0,123,5,Blue     ,Red      ,0.42,0.24,0.05,0.12,0.28,0.2,0.3,0.57,0.57
-5740bda9be3dc,83,Female,32,yes,objTwoColors,#B100FF,335,216,249,5,Magenta  ,Blue     ,0.62,0.01,0.35,0.05,0.07,0.08,0.69,0.5,0.5
+5740bda9be3dc,83,Female,32,yes,objTwoColors,#B100FF,335,216,249,5,Red      ,Blue     ,0.62,0.01,0.35,0.05,0.07,0.08,0.69,0.5,0.5

@@ -1,14 +1,14 @@
 id,age,gender,num_answers,in_person,typeOfQuestion,first_color,second_color,third_color,clicks,rating,C3_name,distance_expectedC3,distance_HSV,distance_LCh,distance_CMYK,distance_RGB,distance_Lab
-5710d28fec2d1,30,Male,32,no,twoColorsObj,#0000FF,#00FFFF,#008080,324,1,Green    ,0.21,0.21,0.14,0.16,0.21,0.15
-5711106ab212a,33,Male,32,no,twoColorsObj,#0000FF,#00FFFF,#008080,74,3,Green    ,0.21,0.21,0.14,0.16,0.21,0.15
-57112e1a2bbbb,32,Male,16,no,twoColorsObj,#0000FF,#00FFFF,#8080FF,581,0,Blue     ,0.11,0.11,0.05,0.07,0.11,0.05
-571153ca15566,32,Male,32,no,twoColorsObj,#0000FF,#00FFFF,#0080FF,66,4,Blue     ,0.08,0.08,0.02,0.04,0.08,0.04
-571252e6d2e70,31,Female,32,no,twoColorsObj,#0000FF,#00FFFF,#5792ff,309,4,Blue     ,0.11,0.11,0.05,0.07,0.11,0.06
+5710d28fec2d1,30,Male,32,no,twoColorsObj,#0000FF,#00FFFF,#008080,324,1,NA       ,0.21,0.21,0.14,0.16,0.21,0.15
+5711106ab212a,33,Male,32,no,twoColorsObj,#0000FF,#00FFFF,#008080,74,3,NA       ,0.21,0.21,0.14,0.16,0.21,0.15
+57112e1a2bbbb,32,Male,16,no,twoColorsObj,#0000FF,#00FFFF,#8080FF,581,0,NA       ,0.11,0.11,0.05,0.07,0.11,0.05
+571153ca15566,32,Male,32,no,twoColorsObj,#0000FF,#00FFFF,#0080FF,66,4,Sky-Blue ,0.08,0.08,0.02,0.04,0.08,0.04
+571252e6d2e70,31,Female,32,no,twoColorsObj,#0000FF,#00FFFF,#5792ff,309,4,Sky-Blue ,0.11,0.11,0.05,0.07,0.11,0.06
 57153eb9b4bed,35,Female,31,no,twoColorsObj,#0000FF,#00FFFF,#00caff,199,5,Blue     ,0.16,0.16,0.09,0.12,0.16,0.11
-57190633f233f,30,Male,32,no,twoColorsObj,#0000FF,#00FFFF,#00acff,154,4,Blue     ,0.13,0.13,0.06,0.08,0.13,0.08
-573a059da0efd,31,Female,32,yes,twoColorsObj,#0000FF,#00FFFF,#00A4FF,39,3,Blue     ,0.12,0.12,0.05,0.08,0.12,0.07
-573c783748e8b,37,Female,32,yes,twoColorsObj,#0000FF,#00FFFF,#00A4FF,23,3,Blue     ,0.12,0.12,0.05,0.08,0.12,0.07
-5740a8b59d448,31,Female,32,yes,twoColorsObj,#0000FF,#00FFFF,#006C84,705,4,Blue     ,0.16,0.16,0.1,0.12,0.16,0.11
-5740b686127bb,32,Male,32,yes,twoColorsObj,#0000FF,#00FFFF,#0087FF,18,4,Blue     ,0.09,0.09,0.02,0.04,0.09,0.04
-5745b5cbe3caa,34,Female,32,no,twoColorsObj,#0000FF,#00FFFF,#6effa3,1364,4,Green    ,0.29,0.29,0.22,0.25,0.29,0.23
-574859b8f3379,30,Male,32,yes,twoColorsObj,#0000FF,#00FFFF,#008DF8,344,3,Blue     ,0.1,0.1,0.03,0.06,0.1,0.05
+57190633f233f,30,Male,32,no,twoColorsObj,#0000FF,#00FFFF,#00acff,154,4,Cyan     ,0.13,0.13,0.06,0.08,0.13,0.08
+573a059da0efd,31,Female,32,yes,twoColorsObj,#0000FF,#00FFFF,#00A4FF,39,3,Cyan     ,0.12,0.12,0.05,0.08,0.12,0.07
+573c783748e8b,37,Female,32,yes,twoColorsObj,#0000FF,#00FFFF,#00A4FF,23,3,Cyan     ,0.12,0.12,0.05,0.08,0.12,0.07
+5740a8b59d448,31,Female,32,yes,twoColorsObj,#0000FF,#00FFFF,#006C84,705,4,Cyan     ,0.16,0.16,0.1,0.12,0.16,0.11
+5740b686127bb,32,Male,32,yes,twoColorsObj,#0000FF,#00FFFF,#0087FF,18,4,Sky-Blue ,0.09,0.09,0.02,0.04,0.09,0.04
+5745b5cbe3caa,34,Female,32,no,twoColorsObj,#0000FF,#00FFFF,#6effa3,1364,4,NA       ,0.29,0.29,0.22,0.25,0.29,0.23
+574859b8f3379,30,Male,32,yes,twoColorsObj,#0000FF,#00FFFF,#008DF8,344,3,Sky-Blue ,0.1,0.1,0.03,0.06,0.1,0.05

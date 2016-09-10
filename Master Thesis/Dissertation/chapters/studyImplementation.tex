@@ -1,22 +1,47 @@
 %!TEX root = ../dissertation.tex
 
-\chapter{Study Implementation}
-\label{chapter:implementation}
+\chapter{Research Design}
+\label{chapter:design}
 
 \section{Objectives}
 \label{sec:impl_objectives}
-Remember the objectives only. \\
+Remember the objectives. \\
 
 \section{Designing the Solution}
 \label{sec:impl_designingsolution}
 Design the implementation, talk about the process ever since wireframing, through the mapping of concepts between
 what we want and how we implemented, in order to achieve what we want. Include screenshots from the implementation. \\
 
-Important detail: color conversion between Excel and adapted colors with ICC profile, Spyder and all. ColorConverter.m.
-
+Important detail: color conversion between Excel and adapted colors with ICC profile, Spyder and all. ColorConverter.m. \\
+%
+Dividir secção em partes do estudo, introduzindo com Research Proposal para motivar decisões. Referir todos os detalhes de implementação.
+Justificar completamente todas as decisões que foram tomadas (número de placas, informações pedidas, métricas colhidas, tudo.)
+%
+Falar de folha de calculo do excel com todas as cores, que depois for migrada para matlab
+e convertida de acordo com perfil de calibração.
+%
+\subsection{User Profiling Phase}
+\label{subsec:design_profiling}
+%
+\subsection{Testing Calibration Phase}
+\label{subsec:design_calibration}
+%
+\subsection{Testing Color Vision Deficiencies Phase}
+\label{subsec:design_ishihara}
+%
+\subsection{Core Test Phase}
+\label{subsec:design_core}
+%
+Incluir tabela com todas as cores, igual a folha de auxilio. Referir que Ciano, por erro, não esta a ser testado no formato objTwoColors. \\
+Referir aqui que dados estão a ser guardados do utilizador, e como estão a ser guardados, (objTwoColors e twoColorsObj), etc.
+Referir aqui também que slider contemplava cores standard da folha de calculo para ambiente online,
+mas para ambiente laboratorio cores eram antes processadas no Matlab. Slider não tinha cores ordenadas para que utilizador não utilizasse
+algum modelo mental e aprendesse previamente a misturar. Cores foram misturadas sem qualque critério (referir ordem pela qual apareciam).
+%
 \section{Evaluation Criteria}
 \label{sec:impl_evaluationcriteria}
-Ishihara plates and more, whatever we consider relevant. \\
+Ishihara plates and more, whatever we consider relevant. Falar também de como a calibração era considerada válida ou não. Erros
+que poderiam ser gerados pelo field number html5, que com scrolls podia dar valores errados. \\
 
 \section{Divulgation}
 \label{sec:impl_divulgation}

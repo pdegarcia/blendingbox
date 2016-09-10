@@ -1,6 +1,6 @@
 %!TEX root = ../dissertation.tex
 
-\chapter{Study Results}
+\chapter{Research Results}
 \label{chapter:results}
 
 \section{Protocol}
@@ -9,30 +9,67 @@
 \section{Data Cleaning}
 \label{sec:results_datacleaning}
 
+\section{Data Processing}
+\label{sec:results_digest}
+%
+Como foram tratados os dados, no Matlab? Como foram preparados para a análise?
+Que processamento for feito aos dados? \\
+Incluir a mesma tabela que em \ref{subsec:design_core}, com cores, mas com numero de respostas online, lab, e demo.
+%
+\subsection{Data Preparation}
+\label{subsec:results_preparation}
+%
+Conversão de respostas com perfil icc novamente, mistura das respostas de acordo com modelos de cor, etc.
+Detalhar.
+%
+\subsection{Color Bins Comparation}
+\label{subsec:results_preparation}
+%
+De onde apareceram os Bins, como eles são em bruto, incluir esquema do XKCD. Que tratamento foi dado, os problemas
+com o desenho dos mesmos e a comparação contra os pontos (em vez da área, que seria o ideal). O que esperavamos
+(áreas bem definidas, poligonos bem delineados que daria para desenhar o convexhull), as colisões entre áreas (valores
+comuns entre alguns Color Bins) e falar do facto de como se podia, alternativamente, encontrar o nome das cores (diagrama
+que já existe desde 1974 - ver ref - mas que não existe um svg ou codigo de todos os pontos, pelo que ainda havia essa curva
+de implementação). Poder-se-ia atribuir um nome à cor pela temperatura da mesma, mas não existia uma tabela credível de valores
+a utilizar.
+%
 \section{User Profile}
 \label{sec:results_userprofile}
 
-\section{Metrics Used}
-\label{sec:results_metrics}
-
 \section{Results}
 \label{sec:results_results}
-
+%
+Interpretação de valores. Começar por valores de laboratório. Online serve para corroborar. \par
+Incluir tantas tabelas quantas necessárias em cada secção, adaptadas a cada secção e não standardizadas.
+%
 \subsection{Color Mixtures}
 \label{subsec:results_colormixtures}
-
+%
+Fazer também mistura mais fácil, comparando os ratings das questões e ver qual a mistura que apresenta melhores resultados. \\
+Comparar misturas que originam a mesma cor, com base em primárias diferentes e perceber se utilizadores conseguem detectar várias
+misturas para uma mesma cor.
+%
 \subsection{Color Models}
 \label{subsec:results_colormodels}
-
+%
+\subsection{Color Naming}
+\label{subsec:results_namingcolors}
+%
+Cores mais comuns em algumas perguntas; existe alguma ordem caracteristica quando utilizador especifica uma mistura?
+%
 \subsection{Demographic Groups}
 \label{subsec:results_demographic}
-
-\subsection{Calibration Resiliency}
-\label{subsec:results_calibration}
 
 \section{Discussion}
 \label{sec:results_discussion}
 
+\subsection{Calibration Resiliency}
+\label{subsec:results_calibration}
+%
+Como verificamos ainda alguns users com calibração imprópria para teste, considerámos que poderia ser uma fonte de resultados
+interessantes. Como tal, criámos um dataset para os mesmos e comparámos com os resultados dos utilizadores calibrados. Os resultados
+são os que se seguem... \par
+%
 \subsection{Creation of Color Scales}
 \label{subsec:results_discussion_colorscales}
 
@@ -41,3 +78,6 @@
 
 \subsection{Consequences for InfoVis}
 \label{subsec:results_discussion_infovis}
+%
+Resumo dos resultados todos e regras que se podem levar deste trabalho para a área de InfoVis em geral.
+%

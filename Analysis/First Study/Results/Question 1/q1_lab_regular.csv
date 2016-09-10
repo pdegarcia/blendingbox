@@ -1,20 +1,20 @@
 id,typeOfQuestion,first_color,second_color,third_color,clicks,rating,C1_name,C2_name,distance_expectedC1C2,distance_HSV,distance_LCh,distance_CMYK,distance_RGB,distance_Lab
-5710ee9e58646,objTwoColors,#FFFF00,5,124,159,3,Red,Green,0.03,0.02,0.14,0.03,0.03,0.01
-571151812791a,objTwoColors,#FFFF00,229,113,243,4,Blue,Green,0.57,0.22,0.33,0.21,0.24,0.25
-5713a02a13044,objTwoColors,#FFFF00,1,52,85,4,Red,Green,0.16,0.18,0.14,0.07,0.15,0.1
-572767049ccfa,objTwoColors,#FFFF00,179,58,124,3,Blue,Green,0.55,0.15,0.19,0.09,0.13,0.13
-572c85675a5ef,objTwoColors,#FFFF00,346,101,1209,3,Red,Green,0.04,0.07,0.16,0.05,0.05,0.03
-5739ff85289b2,objTwoColors,#FFFF00,50,196,6,2,Yellow,Purple,0.61,0.15,0.18,0.1,0.14,0.16
-573a059da0efd,objTwoColors,#FFFF00,199,49,84,5,Purple,Yellow,0.64,0.15,0.17,0.1,0.15,0.16
-573c783748e8b,objTwoColors,#FFFF00,55,57,77,3,Green,Green,0.4,0.01,0.2,0.03,0.01,0.03
-573e47c26cb8e,objTwoColors,#FFFF00,52,156,108,2,Green,Green,0.38,0.14,0.18,0.05,0.11,0.1
-573e4d0eb795b,objTwoColors,#FFFF00,239,121,157,4,Blue,Green,0.58,0.26,0.37,0.21,0.28,0.26
-573edae85268b,objTwoColors,#FFFF00,58,97,245,5,Green,Green,0.27,0.07,0.21,0.06,0.1,0.1
-5740a8b59d448,objTwoColors,#FFFF00,152,57,912,2,Green,Green,0.54,0.14,0.28,0.06,0.11,0.11
-5740b686127bb,objTwoColors,#FFFF00,51,65,829,2,Green,Green,0.35,0.01,0.18,0.03,0.01,0.03
-5740bda9be3dc,objTwoColors,#FFFF00,74,88,325,5,Green,Green,0.36,0.08,0.26,0.08,0.1,0.12
-574859b8f3379,objTwoColors,#FFFF00,1,124,245,4,Red,Green,0.02,0.01,0.14,0.03,0.03,0.01
-5756ab1701ba0,objTwoColors,#FFFF00,188,140,190,5,Blue,Green,0.47,0.19,0.18,0.17,0.18,0.21
-5756ae6897296,objTwoColors,#FFFF00,1,25,25,5,Red,Red,0.32,0.25,0.14,0.16,0.23,0.19
-5756b2d9bd658,objTwoColors,#FFFF00,59,95,228,5,Green,Green,0.29,0.07,0.21,0.06,0.09,0.1
-57581518c2c07,objTwoColors,#FFFF00,178,162,86,2,Blue,Green,0.58,0.22,0.22,0.17,0.21,0.24
+5710ee9e58646,objTwoColors,#FFFF00,5,124,159,3,Red      ,Green    ,0.03,0.02,0.14,0.03,0.03,0.01
+571151812791a,objTwoColors,#FFFF00,229,113,243,4,Blue     ,Green    ,0.57,0.22,0.33,0.21,0.24,0.25
+5713a02a13044,objTwoColors,#FFFF00,1,52,85,4,Red      ,Green    ,0.16,0.18,0.14,0.07,0.15,0.1
+572767049ccfa,objTwoColors,#FFFF00,179,58,124,3,Blue     ,Green    ,0.55,0.15,0.19,0.09,0.13,0.13
+572c85675a5ef,objTwoColors,#FFFF00,346,101,1209,3,Red      ,Green    ,0.04,0.07,0.16,0.05,0.05,0.03
+5739ff85289b2,objTwoColors,#FFFF00,50,196,6,2,Green    ,LI-Blue  ,0.61,0.15,0.18,0.1,0.14,0.16
+573a059da0efd,objTwoColors,#FFFF00,199,49,84,5,Navy-Blue,Green    ,0.64,0.15,0.17,0.1,0.15,0.16
+573c783748e8b,objTwoColors,#FFFF00,55,57,77,3,Green    ,Green    ,0.4,0.01,0.2,0.03,0.01,0.03
+573e47c26cb8e,objTwoColors,#FFFF00,52,156,108,2,Green    ,Cyan     ,0.38,0.14,0.18,0.05,0.11,0.1
+573e4d0eb795b,objTwoColors,#FFFF00,239,121,157,4,Blue     ,Green    ,0.58,0.26,0.37,0.21,0.28,0.26
+573edae85268b,objTwoColors,#FFFF00,58,97,245,5,Green    ,Green    ,0.27,0.07,0.21,0.06,0.1,0.1
+5740a8b59d448,objTwoColors,#FFFF00,152,57,912,2,Teal     ,Green    ,0.54,0.14,0.28,0.06,0.11,0.11
+5740b686127bb,objTwoColors,#FFFF00,51,65,829,2,Green    ,Yellow   ,0.35,0.01,0.18,0.03,0.01,0.03
+5740bda9be3dc,objTwoColors,#FFFF00,74,88,325,5,Yellow   ,Green    ,0.36,0.08,0.26,0.08,0.1,0.12
+574859b8f3379,objTwoColors,#FFFF00,1,124,245,4,Red      ,Green    ,0.02,0.01,0.14,0.03,0.03,0.01
+5756ab1701ba0,objTwoColors,#FFFF00,188,140,190,5,Cyan     ,Green    ,0.47,0.19,0.18,0.17,0.18,0.21
+5756ae6897296,objTwoColors,#FFFF00,1,25,25,5,Red      ,Orange   ,0.32,0.25,0.14,0.16,0.23,0.19
+5756b2d9bd658,objTwoColors,#FFFF00,59,95,228,5,Green    ,Green    ,0.29,0.07,0.21,0.06,0.09,0.1
+57581518c2c07,objTwoColors,#FFFF00,178,162,86,2,Blue     ,Green    ,0.58,0.22,0.22,0.17,0.21,0.24

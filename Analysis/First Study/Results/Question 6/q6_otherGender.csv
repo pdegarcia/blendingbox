@@ -1,2 +1,2 @@
 id,age,gender,num_answers,in_person,typeOfQuestion,first_color,second_color,third_color,clicks,rating,colors_names1,colors_names2,distance_expectedC1C2,distance_HSV,distance_LCh,distance_CMYK,distance_RGB,distance_Lab,distance_pair1,distance_pair2
-5745c1c07cc0c,18,Other,31,no,objTwoColors,#FF8000,4,46,33,4,Red,Yellow,0.25,0.14,0.16,0.1,0.13,0.12,0.58,0.55
+5745c1c07cc0c,18,Other,31,no,objTwoColors,#FF8000,4,46,33,4,Red,Green,0.06,0.03,0.08,0.02,0.02,0.04,0.72,0.72

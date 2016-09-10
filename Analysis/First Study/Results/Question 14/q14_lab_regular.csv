@@ -1,7 +1,7 @@
 id,typeOfQuestion,first_color,second_color,third_color,clicks,rating,C1_name,C2_name,distance_expectedC1C2,distance_HSV,distance_LCh,distance_CMYK,distance_RGB,distance_Lab,distance_pair1,distance_pair2,distance_pair3
 5710ee9e58646,objTwoColors,#8000FF,326,223,389,4,Magenta  ,Blue     ,0.57,0,0.34,0.03,0.04,0.03,0.65,0.48,0.47
 571151812791a,objTwoColors,#8000FF,14,222,133,3,Red      ,Blue     ,0.75,0.11,0.36,0.1,0.17,0.16,0.8,0.59,0.58
-5713a02a13044,objTwoColors,#8000FF,290,248,427,2,Blue     ,Blue     ,0.37,0.02,0.24,0.09,0.03,0.08,0.56,0.48,0.48
+5713a02a13044,objTwoColors,#8000FF,290,248,427,2,Navy-Blue,Blue     ,0.37,0.02,0.24,0.09,0.03,0.08,0.56,0.48,0.48
 572767049ccfa,objTwoColors,#8000FF,329,349,355,4,Magenta  ,Red      ,0.68,0.4,0.25,0.18,0.39,0.31,0.4,0.56,0.56
 572c85675a5ef,objTwoColors,#8000FF,271,270,263,5,Blue     ,Blue     ,0.23,0.02,0.4,0.11,0.01,0.1,0.53,0.47,0.47
 5739ff85289b2,objTwoColors,#8000FF,308,319,11,2,Pink     ,Pink     ,0.31,0.2,0.24,0.08,0.19,0.12,0.27,0.29,0.29
@@ -12,12 +12,12 @@ id,typeOfQuestion,first_color,second_color,third_color,clicks,rating,C1_name,C2_
 5740a8b59d448,objTwoColors,#8000FF,9,227,93,4,Red      ,Blue     ,0.77,0.11,0.37,0.09,0.15,0.16,0.82,0.61,0.6
 5740ad339507d,objTwoColors,#8000FF,5,218,89,3,Red      ,Blue     ,0.75,0.08,0.37,0.1,0.16,0.17,0.8,0.6,0.59
 5740b686127bb,objTwoColors,#8000FF,213,308,142,4,Blue     ,Pink     ,0.07,0.05,0.2,0.06,0.02,0.04,0.31,0.25,0.25
-5740bda9be3dc,objTwoColors,#8000FF,335,216,249,5,Magenta  ,Blue     ,0.62,0.01,0.35,0.05,0.07,0.08,0.69,0.5,0.5
+5740bda9be3dc,objTwoColors,#8000FF,335,216,249,5,Red      ,Blue     ,0.62,0.01,0.35,0.05,0.07,0.08,0.69,0.5,0.5
 574859b8f3379,objTwoColors,#8000FF,244,305,348,3,Blue     ,Pink     ,0.02,0,0.47,0.06,0,0.05,0.41,0.34,0.34
 5756ab1701ba0,objTwoColors,#8000FF,300,236,705,4,Pink     ,Blue     ,0.42,0.02,0.26,0.06,0,0.06,0.56,0.46,0.46
-5756ae6897296,objTwoColors,#8000FF,5,322,737,4,Red      ,Pink     ,0.65,0.43,0.36,0.19,0.39,0.31,0.5,0.48,0.47
+5756ae6897296,objTwoColors,#8000FF,5,322,737,4,Red      ,Magenta  ,0.65,0.43,0.36,0.19,0.39,0.31,0.5,0.48,0.47
 5756b2d9bd658,objTwoColors,#8000FF,311,211,189,4,Pink     ,Blue     ,0.43,0.05,0.29,0.06,0.03,0.04,0.54,0.41,0.41
 5757fd2703090,objTwoColors,#8000FF,225,305,148,3,Blue     ,Pink     ,0.03,0.03,0.36,0.06,0.01,0.04,0.39,0.32,0.32
 5757ffca0b4b1,objTwoColors,#8000FF,214,350,226,3,Blue     ,Red      ,0.37,0.03,0.17,0.09,0.13,0.15,0.26,0.54,0.54
-57581518c2c07,objTwoColors,#8000FF,212,23,77,4,Blue     ,Red      ,0.38,0.11,0.18,0.12,0.23,0.18,0.27,0.53,0.53
+57581518c2c07,objTwoColors,#8000FF,212,23,77,4,Blue     ,Orange   ,0.38,0.11,0.18,0.12,0.23,0.18,0.27,0.53,0.53
 57582b17cd76a,objTwoColors,#8000FF,219,353,230,3,Blue     ,Red      ,0.35,0.05,0.13,0.1,0.13,0.15,0.29,0.57,0.57
