@@ -2,13 +2,76 @@
 
 \chapter{Research Results}
 \label{chapter:results}
-
+%
+In this section, we are going to dive into the results obtained from the user study described on chapter number \ref{chapter:design}.
+On the first section, we will clearly explain the test protocol which was followed by the users in the laboratory environment to correctly
+execute the study; this section will be followed, not only by the description of how the gathered data was treated and cleaned
+(Section \ref{sec:results_datacleaning}), but also the transformation of this data using \emph{Matlab} processing tools, in order to prepare
+it for the statistical scrutiny (Section \ref{sec:results_digest}). Hereafter, conclusions will be drawn from the study at section
+\ref{sec:results_results}, when trying to find answers to the questions/objectives raised before. \par
+%
+The final section of this chapter will be dedicated to summarize the results and infer important conclusions, implications and guidelines which
+could be relevant for the InfoVis field of research.
+%
 \section{Protocol}
 \label{sec:results_protocol}
-
+%
+The existence of a test protocol, when performing a User Study is mandatory: without it, the test may not follow a strictly previously defined
+standard. As written before, this user study was conducted two-pronged: in a laboratory environment and \emph{via} online dissemination channels. \par
+%
+The users were given always the same briefing when they arrived at the user study test site: it was explained the motivation behind the master
+thesis, the goals which were expected for this phase of the study and what was expected for them to execute. The most important information which
+was told was that \ul{"there was no pre-defined correct and wrong answers to each question, this test was designed to test the general
+color mixing capabilities of the majority of the users"}. Besides this information, the user study was self-contained, in the sense that
+every other relevant information and instruction was in the interface, adapted for each test phase, so it was not given any physical artifacts
+describing instructions. The instructions were available on two languages, depending on the choice of the user: Portuguese and English. \par
+%
+Before each session of the laboratory environment test-run, a Datacolor Spyder 5 Elite Color Calibrator was USB-connected to the computer and, using
+the software which is shipped along with it, the computer LCD display was fully calibrated (the software offers the option of recalibrating,
+the option of checking the calibration and also, the option of fully calibrating the display) by testing the pixel emission when emmiting a particular
+set of colors. The display was everytime fully calibrated, since the software manisfested an erratic bahaviour when using the other functions:
+the screen colors were presented in a very warmer/colder color profile tha it was before. \par
+%
+The tests were conducted at, most of the repetitions, in \gls{RNL} at \gls{IST}, and fewers times in other locations with similar conditions:
+this is due to constraints in finding users, so the test site needed to have a (limited) mobility feature. However, the conditions remained
+the same concerning the illumination, the position of the user and the computer used: a Macbook Air 13' (Mid-2013) was prepared undeneath
+a fixed incadescent light-source (but slightly deviated from it, to minimize light reflections on screen), the user would sit in front
+of the laptop, in an almost silent environment. Ideal conditions of this test would be such that the user could be sitting alone in a completely
+silent room, his head would be always at the same distance from the screen, resting in a head-rest and the LCD display's inclination would be perfectly
+adjusted to the user's eyes. \par
+%
+On the online environment, as easily predictable, cannot be completly controlled. For the sake of calibration, it was asked the user
+to perform a set of six calibration easy steps before starting the test, so the online user's screen would be,
+somehow, in a standardized calibration fashion. The calibration steps which were asked are:
+%
+\begin{enumerate}
+  \item If possible, adjust your room lights for a comfortable usage of your device.
+  \item Avoid reflections on your screen, by diverting the screen from direct sources of light. This step is important,
+  since light reflections can affect visualization of images.
+  \item To adjust the \textbf{Black Point} of your screen, define the \ul{Contrast} and \ul{Brightness} of your screen to their maximum.
+  \item After Step 3, gradually reduce \textbf{Brightness} value of your screen, in order to correctly distinguish the squares of each image below [calibration squares images].
+  \item If possible, define the \textbf{Color Temperature} of your screen to 6500 Kelvin Degrees.
+  \item You are now ready to answer the following questions!
+\end{enumerate} \par
+%
+The ideal conditions of this test would be such that we could control and maniupulate the color calibration of online user's LCD display, using a software
+piece which would acquire important informations from the screen configuration, \emph{e.g.} resolution, white-point, black-point, brightness, among others,
+digest the values and present the questions from the Core Phase in a completely controled and calibrated window. Further investigation could focus in
+developing this system. \par
+%
+The users were asked to fill in a profiling questionnaire (as seeen of section \ref{subsec:design_profiling}), as well as to respond to calibration form
+(Section \ref{subsec:design_calibration}). A validated simplified 6-plate Ishihara color blindness test \cite{Alwis1992} is, then performed
+(Section \ref{subsec:design_ishihara}), before proceeding onto the 32 questions test-phase, in which the user is asked to slide one(two) circular
+object(s) placed on top of a bar, to indicate a(the) color(s) which he thought were the correct mixture answers. In the end, the user could leave
+feedback, by sending a message which would be stored in a Relational Database. \par
+%
+The instructions which were presented in each page can be consulted in Appendix \ref{appendix:protocol}. \par
+%
 \section{Data Cleaning}
 \label{sec:results_datacleaning}
-
+%
+Referir problema que foi detectado entre Chrome e Safari, cores de calibração.
+%
 \section{Data Processing}
 \label{sec:results_digest}
 %
@@ -33,14 +96,14 @@ que já existe desde 1974 - ver ref - mas que não existe um svg ou codigo de to
 de implementação). Poder-se-ia atribuir um nome à cor pela temperatura da mesma, mas não existia uma tabela credível de valores
 a utilizar.
 %
-\section{User Profile}
-\label{sec:results_userprofile}
-
 \section{Results}
 \label{sec:results_results}
 %
 Interpretação de valores. Começar por valores de laboratório. Online serve para corroborar. \par
 Incluir tantas tabelas quantas necessárias em cada secção, adaptadas a cada secção e não standardizadas.
+%
+\subsection{User Profile}
+\label{subsec:results_userprofile}
 %
 \subsection{Color Mixtures}
 \label{subsec:results_colormixtures}
