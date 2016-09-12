@@ -19,6 +19,8 @@ could be relevant for the InfoVis field of research.
 The existence of a test protocol, when performing a User Study is mandatory: without it, the test may not follow a strictly previously defined
 standard. As written before, this user study was conducted two-pronged: in a laboratory environment and \emph{via} online dissemination channels. \par
 %
+\subsection{Laboratory Environment}
+%
 The users were given always the same briefing when they arrived at the user study test site: it was explained the motivation behind the master
 thesis, the goals which were expected for this phase of the study and what was expected for them to execute. The most important information which
 was told was that \ul{"there was no pre-defined correct and wrong answers to each question, this test was designed to test the general
@@ -40,7 +42,9 @@ of the laptop, in an almost silent environment. Ideal conditions of this test wo
 silent room, his head would be always at the same distance from the screen, resting in a head-rest and the LCD display's inclination would be perfectly
 adjusted to the user's eyes. \par
 %
-On the online environment, as easily predictable, cannot be completly controlled. For the sake of calibration, it was asked the user
+\subsection{Online Environment}
+%
+Performing the study online, as easily predictable, develops some characteristics which cannot be completly controlled. For the sake of calibration, it was asked the user
 to perform a set of six calibration easy steps before starting the test, so the online user's screen would be,
 somehow, in a standardized calibration fashion. The calibration steps which were asked are:
 %
@@ -70,7 +74,108 @@ The instructions which were presented in each page can be consulted in Appendix 
 \section{Data Cleaning}
 \label{sec:results_datacleaning}
 %
+The data presented and used in this dissertation document was gathered along roughly two months, from 15th of April until 8th of June. As said before,
+it was collected both with online and laboratory users, which was therefore stored in a Relational Database as previously explained in section
+\ref{sec:impl_designingsolution}. \par
+%
+In the end of the study, \gls{CSV} files were exported from each table using a PostgreSQL for mac OS called
+\emph{Postico}\footnote{Postico - a modern PostgreSQL client for the Mac, Available at: \url{eggerapps.at/postico/}. Last accessed on
+September 11th, 2016.}, which originated five files containing raw data to be cleaned and processed. The files were as follows:
+%
+\begin{itemize}
+  \item \emph{raw\_data\_user\_profile.csv} - Data aggregated from "Profiling", "Calibration" and "Color Vision Deficiencies" Tables;
+  \item \emph{raw\_data\_first\_profiling.csv} - Data from "Profiling" Table;
+  \item \emph{raw\_data\_first\_calibration.csv} - Data from "Calibration" Table;
+  \item \emph{raw\_data\_first\_ishihara.csv} - Data from "Color Vision Deficiencies" Table;
+  \item \emph{raw\_data\_first\_results.csv} - Data from "Results" Table;
+\end{itemize} \par
+%
+\begin{table}[htbp]
+  \resizebox{\textwidth}{!} {
+  \begin{tabular} {|c|c|c|c|c|c|c|c|c|c|}
+    \hline
+    User ID & Type & First Color & Second Color & Third Color & Drags & Time & Rating & Resets & Question ID \\ \hline
+    5710cca334d60 & objTwoColors & \#0080FF & hsl(58.69565217391305,1,0.50) & hsl(98.15217391304348,1,0.50) & 992 & 117 & 4 & 2 & 10 \\ \hline
+    5745c1c07cc0c & objTwoColors & \#8000FF & hsl(300,1,0.50) & hsl(324.13043478260875,1,0.50) & 645 & 55 & 2 & 1 & 14 \\ \hline
+    5745350dc1e22 & objTwoColors & \#0080FF & hsl(226.30434782608697,1,0.50) & NONE & 115 & 11 & 5 & 1 & 10 \\ \hline
+    57451c3b38192 & objTwoColors & \#00FF80 & NONE & hsl(150,1,0.50) & 462 & 39 & 5 & 1 & 15 \\ \hline
+    574511e99b6d9 & objTwoColors & \#0080FF & hsl(15.652173913043478,1,0.50) & hsl(316.30434782608694,1,0.50) & 442 & 40, & 1 & 1 & 10 \\ \hline
+    57427cf6bad0c & twoColorsObj & \#00FFFF & \#FFFF00 & \#46FF9C & 6 & 14 & 3 & 1 & 32 \\ \hline
+    5740bda9be3dc & objTwoColors & \#FF7200 & hsl(9.130434782608695,1,0.50) & hsl(50.21739130434783,1,0.50) & 45 & 22 & 5 & 1 & 11 \\ \hline
+    573c783748e8b & twoColorsObj & \#00FFFF & \#CBFF00 & \#00FF6B & 44 & 25 & 3 & 1 & 32 \\ \hline
+    \hline
+  \end{tabular}}
+  \caption[Excerpt of Raw "Results" Table]{Excerpt of Results Table, with raw data.}
+  \label{table:csv_resultsraw}
+\end{table} \par
+%
+The refined tables were then divided into new and more specific ones so that we could detail our results analysis according to the goals defined before;
+the "Results" table was refined into \ul{Laboratory Results}, \ul{Online Results} and demographic results: concerning the age, we divided it
+on \ul{Users aged below 20 Years Results}, \ul{Users aged between 20 and 29 Years Results}, \ul{Users aged between 30 and 39 Years Results},
+\ul{Users aged between 40 and 49 Years Results}, \ul{Users aged between 50 and 59 Years Results} and \ul{Users aged above 60 Years Results}.
+Respecting the division of genders, we created the categories \ul{Female Users Results}, \ul{Male Users Results} and \ul{Other Gender Users Results}.
+An excerpt of raw data contained in "Results" table can be found in table \ref{table:csv_resultsraw}; this allows us to support the explanation of the
+following steps of the cleaning phase. \par
+%
+Dividing the results among smaller \gls{CSV} files was the first step of the cleaning phase: the next checklist represents the detailed path which
+was followed to fulfill the data cleaning.
+%
+\begin{itemize}
+  \item \textbf{Remove "hsl(..., 1, 0.50)"} - It was needed to remove the extra information stored in columns \emph{First Color, Second Color}
+   and \emph{Third Color}, since this is redundant because it never varies from entry to entry of the table (remember Section \ref{sec:impl_objectives}).
+   These values are the \emph{Saturation} (S) and \emph{Value} (V), primitives of the HSV Color Model used.
+  \item \textbf{Format Values} - This step was performed just after the previous one. The value which remains to be formatted is simply the \emph{Hue} (H),
+  which is equal to a very precise position on the coded color slider on the interface; the value was composed of 14 decimal numbers, giving us much more
+  precision than what is, in fact, needed considering that the hue is measured in terms of integer numbers. The number was rounded up to its closest
+  integer number, then. Besides that, there was still one value to be adjusted which was the missing response: \emph{NONE} neeeded to be
+  replaced by 0, to simplify the processing of null answers.
+  \item \textbf{Sort Entries} - In order to favour the iteration when processing the data, each line of the "Results" Table was
+  sorted according, firstly to the \emph{Question ID}, and after by \emph{User ID}.
+  \item \textbf{Normalize Laboratory Data} - As previously said, to perform the Laboratory Study we used a Spyder Color Calibrator to manage the color
+  representation independently of the environmental conditions of light. Since the Color Profile file generated by the calibrator was used to adapt colors
+  to be presented to the user, those same colors had to be trackbacked to the original color, for the sake of normalization of values. This is
+  specially useful when comparing the results from this environment to the "Online" Results, helping in data processing later.
+  \item \textbf{Verify Duplicated Entries} - This step was performed only to ensure that the entries would not have any matching copy. As expected,
+  there were not found any copies.
+  \item \textbf{Normalize Profiling Info} - Regarding the "Profiling" data, there was some which was written in Portuguese and other in English, depending on
+  the language to perform the study chosen by the user. To avoid misleading profiling categories, all of the academic degrees were normalized to its corresponding
+  name both in English and Portuguese. Also, the raw language values contained some specification of English dialects (\emph{e.g.} en\_US, en\_UK) and other languages,
+  which was more information than we actually needed; these values were normalized to correspond only to its native and original language (like English, solely).
+  \item \textbf{Sanitizing Users} - The tables contained many entries from users that performed the study with incorrect calibration and from users which
+  gave unexpected values on the color deficiencies test phase; the entries which corresponded to a user that failed all 6 values on the later pahse, would be
+  deleted, leaving no trace of its participation. Concerning the bad calibration values, it "opened a window" to investigate the resilience of results when the
+  calibration was not what it was expected - this will covered in sub-section \ref{subsec:results_calibration}. To end up the cleaning phase,
+  it was decided to treat the color deficient users independently: we separated their values from the regular users to perform a qualitative evaluation.
+\end{itemize} \par
+%
+An example of clean data can be found in table \ref{table:csv_resultsclean}. The next step of data handling is processing it to prepare metrics, establish comparations
+to pre-calculated answers and depict results in a CIE Chromaticity Diagram. More tables can be found in Appendix \ref{appendix:tables}, specifically Section
+\ref{appendix:sec_results}. \par
+%
+\begin{table}[htbp]
+  \resizebox{\textwidth}{!} {
+  \begin{tabular} {|c|c|c|c|c|c|c|c|c|c|}
+    \hline
+    User ID & Type & First Color & Second Color & Third Color & Drags & Time & Rating & Resets & Question ID \\ \hline
+    5713a02a13044 & objTwoColors & \#00FF00 & 0 & 137 & 459 & 56 & 2 & 0 & 17 \\ \hline
+    573e4d0eb795b & objTwoColors & \#00FF00 & 235 & 59 & 121 & 28 & 4 & 0 & 17 \\ \hline
+    573edae85268b & objTwoColors & \#00FF00 & 242 & 57 & 224 & 20 & 5 & 0 & 17 \\ \hline
+    5740ad339507d & objTwoColors & \#00FF00 & 228 & 67 & 205 & 14 & 3 & 0 & 17 \\ \hline
+    573c70dabcfe0 & objTwoColors & \#00FF00 & 55 & 221 & 192 & 14 & 2 & 0 & 17 \\ \hline
+    57582b17cd76a & twoColorsObj & \#FF0000 & \#00FF00 & \#AF0049 & 724 & 65 & 2 & 0 & 18 \\ \hline
+    573c783748e8b & twoColorsObj & \#FF0000 & \#00FF00 & \#BFBE00 & 656 & 47 & 3 & 0 & 18 \\ \hline
+    573e4022949b1 & twoColorsObj & \#FF0000 & \#00FF00 & \#B000FF & 334 & 23 & 2 & 0 & 18 \\ \hline
+    571151812791a & twoColorsObj & \#FF0000 & \#00FF00 & \#C9B2A2 & 110 & 39 & 2 & 0 & 18 \\ \hline
+    \hline
+  \end{tabular}}
+  \caption[Excerpt of Clean "Results" Table]{Excerpt of Results Table, with clean data.}
+  \label{table:csv_resultsclean}
+\end{table}
+%
+\subsection{Problems Found}
+\label{subsec:results_cleaningproblems}
 Referir problema que foi detectado entre Chrome e Safari, cores de calibração.
+Porque é que se perderam tantos users online
 %
 \section{Data Processing}
 \label{sec:results_digest}
@@ -78,6 +183,7 @@ Referir problema que foi detectado entre Chrome e Safari, cores de calibração.
 Como foram tratados os dados, no Matlab? Como foram preparados para a análise?
 Que processamento for feito aos dados? \\
 Incluir a mesma tabela que em \ref{subsec:design_core}, com cores, mas com numero de respostas online, lab, e demo.
+Separação de csv's globais em partes demograficas.
 %
 \subsection{Data Preparation}
 \label{subsec:results_preparation}
