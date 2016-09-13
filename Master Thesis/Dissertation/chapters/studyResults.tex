@@ -74,14 +74,25 @@ The instructions which were presented in each page can be consulted in Appendix 
 \section{Data Cleaning}
 \label{sec:results_datacleaning}
 %
-Quantas respostas foram dadas? Quantos users? Que \% de utilizadores chegou e não preencheu? Porque é que isso aconteceu? Referir mais percentagens ao longo
-da secção: a percentagem de users com respostas erradas no ishihara, na calibração, etc. \par 
+Throughout the user study, we collected a \textbf{total amount of four-hundred and seventy-nine (479) users} which interacted with our study and fulfilled,
+at least, until the Color Vision Deficiencies Test Phase. However, only \textbf{two-hundred and sixty-one (261) users went on to the core phase of the study},
+representing \textbf{54.48\%} of the total amount, giving at least one answer on the set of 32 questions, loosing the other two hundred and eighteen
+(218) users which did not leave any answer, defining the remaining percentage \textbf{45.52\%}. This large drop of users could be due to errors
+reported by the users, apparently the inability to submit answers when using the "Submit" button after rating the question; there were also some complaints
+when users tried to perform the study in some mobile devices (namely, the \emph{iPhone\textsuperscript{\textregistered} 6}), whereon the color slider was
+not able to be dragged and change the color value at the user will. \par
+%
+Concerning the percentage of users which showed up at the \textbf{laboratory trials, there were twenty-nine (29) users who performed the entire study}.
+On the other hand, there were \textbf{two-hundred and thirty-two (232) users which carried out the study online}. There was also a small sample of color vision
+deficient users which we will analyze in a qualitative manner; this set of users contains only one (1) user from the Laboratory Environment - \textbf{3.44\%} of
+the sample size - and two (2) online users - \textbf{less than 1\%}. Lastly, we detected a small percentage of \textbf{six (6) users (2.59\%) which did not
+presented a correct calibration of its LCD display}, evaluation based on the criteria referred before.
 %
 The data presented and used in this dissertation document was gathered along roughly two months, from 15th of April until 8th of June. As said before,
 it was collected both with online and laboratory users, which was therefore stored in a Relational Database as previously explained in section
 \ref{sec:impl_designingsolution}. \par
 %
-In the end of the study, \gls{CSV} files were exported from each table using a PostgreSQL for mac OS called
+In the end of the study, \gls{CSV} files were exported from each table using a PostgreSQL for macOS called
 \emph{Postico}\footnote{Postico - a modern PostgreSQL client for the Mac, Available at: \url{eggerapps.at/postico/}. Last accessed on
 September 11th, 2016.}, which originated five files containing raw data to be cleaned and processed. The files were as follows:
 %
@@ -105,7 +116,7 @@ September 11th, 2016.}, which originated five files containing raw data to be cl
     574511e99b6d9 & objTwoColors & \#0080FF & hsl(15.652173913043478,1,0.50) & hsl(316.30434782608694,1,0.50) & 442 & 40, & 1 & 1 & 10 \\ \hline
     57427cf6bad0c & twoColorsObj & \#00FFFF & \#FFFF00 & \#46FF9C & 6 & 14 & 3 & 1 & 32 \\ \hline
     5740bda9be3dc & objTwoColors & \#FF7200 & hsl(9.130434782608695,1,0.50) & hsl(50.21739130434783,1,0.50) & 45 & 22 & 5 & 1 & 11 \\ \hline
-    573c783748e8b & twoColorsObj & \#00FFFF & \#CBFF00 & \#00FF6B & 44 & 25 & 3 & 1 & 32 \\ \hline
+    573c783748e8b & twoColorsObj & \#00FFFF & \#CBFF00 & \#00FF6B & 44 & 25 & 3 & 1 & 32 \\
     \hline
   \end{tabular}}
   \caption[Excerpt of Raw "Results" Table]{Excerpt of Results Table, with raw data.}
@@ -145,7 +156,7 @@ was followed to fulfill the data cleaning.
   name both in English and Portuguese. Also, the raw language values contained some specification of English dialects (\emph{e.g.} en\_US, en\_UK) and other languages,
   which was more information than we actually needed; these values were normalized to correspond only to its native and original language (like English, solely).
   \item \textbf{Sanitizing Users} - The tables contained many entries from users that performed the study with incorrect calibration and from users which
-  gave unexpected values on the color deficiencies test phase; the entries which corresponded to a user that failed all 6 values on the later pahse, would be
+  gave unexpected values on the color deficiencies test phase; the entries which corresponded to a user that failed all 6 values on the later phase, would be
   deleted, leaving no trace of its participation. Concerning the bad calibration values, it "opened a window" to investigate the resilience of results when the
   calibration was not what it was expected - this will covered in sub-section \ref{subsec:results_calibration}. To end up the cleaning phase,
   it was decided to treat the color deficient users independently: we separated their values from the regular users to perform a qualitative evaluation.
@@ -168,31 +179,60 @@ to pre-calculated answers and depict results in a CIE Chromaticity Diagram. More
     57582b17cd76a & twoColorsObj & \#FF0000 & \#00FF00 & \#AF0049 & 724 & 65 & 2 & 0 & 18 \\ \hline
     573c783748e8b & twoColorsObj & \#FF0000 & \#00FF00 & \#BFBE00 & 656 & 47 & 3 & 0 & 18 \\ \hline
     573e4022949b1 & twoColorsObj & \#FF0000 & \#00FF00 & \#B000FF & 334 & 23 & 2 & 0 & 18 \\ \hline
-    571151812791a & twoColorsObj & \#FF0000 & \#00FF00 & \#C9B2A2 & 110 & 39 & 2 & 0 & 18 \\ \hline
+    571151812791a & twoColorsObj & \#FF0000 & \#00FF00 & \#C9B2A2 & 110 & 39 & 2 & 0 & 18 \\
     \hline
   \end{tabular}}
   \caption[Excerpt of Clean "Results" Table]{Excerpt of Results Table, with clean data.}
   \label{table:csv_resultsclean}
 \end{table}
 %
-\subsection{Problems Found}
-\label{subsec:results_cleaningproblems}
-Referir problema que foi detectado entre Chrome e Safari, cores de calibração.
-Porque é que se perderam tantos users online
-%
 \section{Data Processing}
 \label{sec:results_digest}
 %
-Como foram tratados os dados, no Matlab? Como foram preparados para a análise?
-Que processamento for feito aos dados? \\
-Incluir a mesma tabela que em \ref{subsec:design_core}, com cores, mas com numero de respostas online, lab, e demo.
-Separação de csv's globais em partes demograficas.
+Processing the data was an important part of the process, since it was important to prepare the raw data collected and compute additional metrics which could be further
+analyzed to answer the raised questions. To perform this processing, we decided to implement a set of scripts in \emph{Matlab} which could gauge the dataset of each question,
+demographic group and subset of users (non-calibrated and color vision deficients). \par
+%
+With this data processing, we intend to verify each answer-pair given by a certain user and compare the pairs with each other. It was important to separate the results by question
+ID, compare each questions' results with other questions that could conceive the same results, blend the values to check which color model answers are closer to (either HSV, RGB,
+CMYK, CIE-L*a*b* or CIE-L*C*h*) and also, give meaning to each value, attributing a name to each color. All these parameters and computations are describred in the next two
+sub-sections.
+%
+\begin{lstlisting}[frame=single]
+  % Pseudo-codigo generico;
+  % Estrutura do ficheiro;
+\end{lstlisting}
 %
 \subsection{Data Preparation}
 \label{subsec:results_preparation}
 %
+Given the fact that questions had some differences between each other, there would have to be a cautious analysis; to achieve this, we developed a script for each question, each of
+file contains the particular set of characteristics ans specific comparisons and values of each question. An exemplary structure of these files can be found on pseudo-code box above.
+Each file is capable of computing, for each question, the following datasets:
+%
+\begin{itemize}
+  \item Laboratory Results (Regular Users);
+  \item Laboratory Results (Daltonic Users);
+  \item Online Results (Regular Users);
+  \item Online Results (Daltonic Users);
+  \item Online Results (Uncalibrated Users);
+  \item Demographic Groups: Users Aged Below 20 Years Results;
+  \item Demographic Groups: Users Aged Betweeen 20 and 29 Years Results;
+  \item Demographic Groups: Users Aged Betweeen 30 and 39 Years Results;
+  \item Demographic Groups: Users Aged Betweeen 40 and 49 Years Results;
+  \item Demographic Groups: Users Aged Betweeen 50 and 59 Years Results;
+  \item Demographic Groups: Users Aged Above 60 Years Results;
+  \item Demographic Groups: Female Users Results;
+  \item Demographic Groups: Male Users Results;
+  \item Demographic Groups: Other Gender Users Results;
+  \item Demographic Groups: White Answers (this computation is only available for Questions 1 to 17).
+\end{itemize} \par
+%
+Dizer o que cada bloco de codigo faz. Falar de diferenças para cada tipo de questão. \par
+%
 Conversão de respostas com perfil icc novamente, mistura das respostas de acordo com modelos de cor, etc.
 Detalhar.
+Incluir a mesma tabela que em \ref{subsec:design_core}, com cores, mas com numero de respostas online, lab, e demo.
 %
 \subsection{Color Bins Comparation}
 \label{subsec:results_preparation}
