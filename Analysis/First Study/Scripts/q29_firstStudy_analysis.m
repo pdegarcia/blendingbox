@@ -174,11 +174,13 @@ for i = 1 : height(laboratoryResults)
 
     %% Categorize Colors - Bins
     for j = 1 : length(colorBins)
-        valuesofx = round(colorBins(j).XData, 1);
-        valuesofy = round(colorBins(j).YData, 1);
-        if foundC3 == 0 && ismember(round(x_values(1), 1), valuesofx) && ismember(round(y_values(1),1), valuesofy)
-            color_C3 = colorBins(j).Tag;
-            foundC3 = 1;
+        valuesofx = colorBins(j).XData;
+        valuesofy = colorBins(j).YData;
+        for a = 1 : length(valuesofx)
+            if foundC3 == 0 && ((x_values(1) > (valuesofx(a) - 0.03) && x_values(1) < (valuesofx(a) + 0.03)) && (y_values(1) > (valuesofy(a) - 0.03) && y_values(1) < (valuesofy(a) + 0.03)))
+                color_C3 = colorBins(j).Tag;
+                foundC3 = 1;
+            end
         end
     end
 
@@ -274,11 +276,13 @@ for i = 1 : height(laboratoryResults_dalt)
 
     %% Categorize Colors - Bins
     for j = 1 : length(colorBins)
-        valuesofx = round(colorBins(j).XData, 1);
-        valuesofy = round(colorBins(j).YData, 1);
-        if foundC3 == 0 && ismember(round(x_values(1), 1), valuesofx) && ismember(round(y_values(1),1), valuesofy)
-            color_C3 = colorBins(j).Tag;
-            foundC3 = 1;
+        valuesofx = colorBins(j).XData;
+        valuesofy = colorBins(j).YData;
+        for a = 1 : length(valuesofx)
+            if foundC3 == 0 && ((x_values(1) > (valuesofx(a) - 0.03) && x_values(1) < (valuesofx(a) + 0.03)) && (y_values(1) > (valuesofy(a) - 0.03) && y_values(1) < (valuesofy(a) + 0.03)))
+                color_C3 = colorBins(j).Tag;
+                foundC3 = 1;
+            end
         end
     end
 
@@ -355,11 +359,13 @@ for i = 1 : height(onlineResults)                                  %draw every p
 
     %% Categorize Colors - Bins
     for j = 1 : length(colorBins)
-        valuesofx = round(colorBins(j).XData, 1);
-        valuesofy = round(colorBins(j).YData, 1);
-        if foundC3 == 0 && ismember(round(x_values(1), 1), valuesofx) && ismember(round(y_values(1),1), valuesofy)
-            color_C3 = colorBins(j).Tag;
-            foundC3 = 1;
+        valuesofx = colorBins(j).XData;
+        valuesofy = colorBins(j).YData;
+        for a = 1 : length(valuesofx)
+            if foundC3 == 0 && ((x_values(1) > (valuesofx(a) - 0.03) && x_values(1) < (valuesofx(a) + 0.03)) && (y_values(1) > (valuesofy(a) - 0.03) && y_values(1) < (valuesofy(a) + 0.03)))
+                color_C3 = colorBins(j).Tag;
+                foundC3 = 1;
+            end
         end
     end
 
@@ -454,11 +460,13 @@ for i = 1 : height(onlineResults_dalt)
 
     %% Categorize Colors - Bins
     for j = 1 : length(colorBins)
-        valuesofx = round(colorBins(j).XData, 1);
-        valuesofy = round(colorBins(j).YData, 1);
-        if foundC3 == 0 && ismember(round(x_values(1), 1), valuesofx) && ismember(round(y_values(1),1), valuesofy)
-            color_C3 = colorBins(j).Tag;
-            foundC3 = 1;
+        valuesofx = colorBins(j).XData;
+        valuesofy = colorBins(j).YData;
+        for a = 1 : length(valuesofx)
+            if foundC3 == 0 && ((x_values(1) > (valuesofx(a) - 0.03) && x_values(1) < (valuesofx(a) + 0.03)) && (y_values(1) > (valuesofy(a) - 0.03) && y_values(1) < (valuesofy(a) + 0.03)))
+                color_C3 = colorBins(j).Tag;
+                foundC3 = 1;
+            end
         end
     end
 
@@ -527,11 +535,13 @@ for i = 1 : height(onlineResults_uncal)                                  %draw e
 
     %% Categorize Colors - Bins
     for j = 1 : length(colorBins)
-        valuesofx = round(colorBins(j).XData, 1);
-        valuesofy = round(colorBins(j).YData, 1);
-        if foundC3 == 0 && ismember(round(x_values(1), 1), valuesofx) && ismember(round(y_values(1),1), valuesofy)
-            color_C3 = colorBins(j).Tag;
-            foundC3 = 1;
+        valuesofx = colorBins(j).XData;
+        valuesofy = colorBins(j).YData;
+        for a = 1 : length(valuesofx)
+            if foundC3 == 0 && ((x_values(1) > (valuesofx(a) - 0.03) && x_values(1) < (valuesofx(a) + 0.03)) && (y_values(1) > (valuesofy(a) - 0.03) && y_values(1) < (valuesofy(a) + 0.03)))
+                color_C3 = colorBins(j).Tag;
+                foundC3 = 1;
+            end
         end
     end
 
@@ -627,11 +637,13 @@ for i = 1 : height(demoResultsAge_20)
 
     %% Categorize Colors - Bins
     for j = 1 : length(colorBins)
-        valuesofx = round(colorBins(j).XData, 1);
-        valuesofy = round(colorBins(j).YData, 1);
-        if foundC3 == 0 && ismember(round(x_values(1), 1), valuesofx) && ismember(round(y_values(1),1), valuesofy)
-            color_C3 = colorBins(j).Tag;
-            foundC3 = 1;
+        valuesofx = colorBins(j).XData;
+        valuesofy = colorBins(j).YData;
+        for a = 1 : length(valuesofx)
+            if foundC3 == 0 && ((x_values(1) > (valuesofx(a) - 0.03) && x_values(1) < (valuesofx(a) + 0.03)) && (y_values(1) > (valuesofy(a) - 0.03) && y_values(1) < (valuesofy(a) + 0.03)))
+                color_C3 = colorBins(j).Tag;
+                foundC3 = 1;
+            end
         end
     end
 
@@ -728,11 +740,13 @@ for i = 1 : height(demoResultsAge_20_29)
 
     %% Categorize Colors - Bins
     for j = 1 : length(colorBins)
-        valuesofx = round(colorBins(j).XData, 1);
-        valuesofy = round(colorBins(j).YData, 1);
-        if foundC3 == 0 && ismember(round(x_values(1), 1), valuesofx) && ismember(round(y_values(1),1), valuesofy)
-            color_C3 = colorBins(j).Tag;
-            foundC3 = 1;
+        valuesofx = colorBins(j).XData;
+        valuesofy = colorBins(j).YData;
+        for a = 1 : length(valuesofx)
+            if foundC3 == 0 && ((x_values(1) > (valuesofx(a) - 0.03) && x_values(1) < (valuesofx(a) + 0.03)) && (y_values(1) > (valuesofy(a) - 0.03) && y_values(1) < (valuesofy(a) + 0.03)))
+                color_C3 = colorBins(j).Tag;
+                foundC3 = 1;
+            end
         end
     end
 
@@ -828,11 +842,13 @@ for i = 1 : height(demoResultsAge_30_39)
 
     %% Categorize Colors - Bins
     for j = 1 : length(colorBins)
-        valuesofx = round(colorBins(j).XData, 1);
-        valuesofy = round(colorBins(j).YData, 1);
-        if foundC3 == 0 && ismember(round(x_values(1), 1), valuesofx) && ismember(round(y_values(1),1), valuesofy)
-            color_C3 = colorBins(j).Tag;
-            foundC3 = 1;
+        valuesofx = colorBins(j).XData;
+        valuesofy = colorBins(j).YData;
+        for a = 1 : length(valuesofx)
+            if foundC3 == 0 && ((x_values(1) > (valuesofx(a) - 0.03) && x_values(1) < (valuesofx(a) + 0.03)) && (y_values(1) > (valuesofy(a) - 0.03) && y_values(1) < (valuesofy(a) + 0.03)))
+                color_C3 = colorBins(j).Tag;
+                foundC3 = 1;
+            end
         end
     end
 
@@ -928,11 +944,13 @@ for i = 1 : height(demoResultsAge_40_49)
 
     %% Categorize Colors - Bins
     for j = 1 : length(colorBins)
-        valuesofx = round(colorBins(j).XData, 1);
-        valuesofy = round(colorBins(j).YData, 1);
-        if foundC3 == 0 && ismember(round(x_values(1), 1), valuesofx) && ismember(round(y_values(1),1), valuesofy)
-            color_C3 = colorBins(j).Tag;
-            foundC3 = 1;
+        valuesofx = colorBins(j).XData;
+        valuesofy = colorBins(j).YData;
+        for a = 1 : length(valuesofx)
+            if foundC3 == 0 && ((x_values(1) > (valuesofx(a) - 0.03) && x_values(1) < (valuesofx(a) + 0.03)) && (y_values(1) > (valuesofy(a) - 0.03) && y_values(1) < (valuesofy(a) + 0.03)))
+                color_C3 = colorBins(j).Tag;
+                foundC3 = 1;
+            end
         end
     end
 
@@ -1028,11 +1046,13 @@ for i = 1 : height(demoResultsAge_50_59)
 
     %% Categorize Colors - Bins
     for j = 1 : length(colorBins)
-        valuesofx = round(colorBins(j).XData, 1);
-        valuesofy = round(colorBins(j).YData, 1);
-        if foundC3 == 0 && ismember(round(x_values(1), 1), valuesofx) && ismember(round(y_values(1),1), valuesofy)
-            color_C3 = colorBins(j).Tag;
-            foundC3 = 1;
+        valuesofx = colorBins(j).XData;
+        valuesofy = colorBins(j).YData;
+        for a = 1 : length(valuesofx)
+            if foundC3 == 0 && ((x_values(1) > (valuesofx(a) - 0.03) && x_values(1) < (valuesofx(a) + 0.03)) && (y_values(1) > (valuesofy(a) - 0.03) && y_values(1) < (valuesofy(a) + 0.03)))
+                color_C3 = colorBins(j).Tag;
+                foundC3 = 1;
+            end
         end
     end
 
@@ -1128,11 +1148,13 @@ for i = 1 : height(demoResultsAge_60)
 
     %% Categorize Colors - Bins
     for j = 1 : length(colorBins)
-        valuesofx = round(colorBins(j).XData, 1);
-        valuesofy = round(colorBins(j).YData, 1);
-        if foundC3 == 0 && ismember(round(x_values(1), 1), valuesofx) && ismember(round(y_values(1),1), valuesofy)
-            color_C3 = colorBins(j).Tag;
-            foundC3 = 1;
+        valuesofx = colorBins(j).XData;
+        valuesofy = colorBins(j).YData;
+        for a = 1 : length(valuesofx)
+            if foundC3 == 0 && ((x_values(1) > (valuesofx(a) - 0.03) && x_values(1) < (valuesofx(a) + 0.03)) && (y_values(1) > (valuesofy(a) - 0.03) && y_values(1) < (valuesofy(a) + 0.03)))
+                color_C3 = colorBins(j).Tag;
+                foundC3 = 1;
+            end
         end
     end
 
@@ -1228,11 +1250,13 @@ for i = 1 : height(demoResultsGender_Female)
 
     %% Categorize Colors - Bins
     for j = 1 : length(colorBins)
-        valuesofx = round(colorBins(j).XData, 1);
-        valuesofy = round(colorBins(j).YData, 1);
-        if foundC3 == 0 && ismember(round(x_values(1), 1), valuesofx) && ismember(round(y_values(1),1), valuesofy)
-            color_C3 = colorBins(j).Tag;
-            foundC3 = 1;
+        valuesofx = colorBins(j).XData;
+        valuesofy = colorBins(j).YData;
+        for a = 1 : length(valuesofx)
+            if foundC3 == 0 && ((x_values(1) > (valuesofx(a) - 0.03) && x_values(1) < (valuesofx(a) + 0.03)) && (y_values(1) > (valuesofy(a) - 0.03) && y_values(1) < (valuesofy(a) + 0.03)))
+                color_C3 = colorBins(j).Tag;
+                foundC3 = 1;
+            end
         end
     end
 
@@ -1328,11 +1352,13 @@ for i = 1 : height(demoResultsGender_Male)
 
     %% Categorize Colors - Bins
     for j = 1 : length(colorBins)
-        valuesofx = round(colorBins(j).XData, 1);
-        valuesofy = round(colorBins(j).YData, 1);
-        if foundC3 == 0 && ismember(round(x_values(1), 1), valuesofx) && ismember(round(y_values(1),1), valuesofy)
-            color_C3 = colorBins(j).Tag;
-            foundC3 = 1;
+        valuesofx = colorBins(j).XData;
+        valuesofy = colorBins(j).YData;
+        for a = 1 : length(valuesofx)
+            if foundC3 == 0 && ((x_values(1) > (valuesofx(a) - 0.03) && x_values(1) < (valuesofx(a) + 0.03)) && (y_values(1) > (valuesofy(a) - 0.03) && y_values(1) < (valuesofy(a) + 0.03)))
+                color_C3 = colorBins(j).Tag;
+                foundC3 = 1;
+            end
         end
     end
 
@@ -1428,11 +1454,13 @@ for i = 1 : height(demoResultsGender_Other)
 
     %% Categorize Colors - Bins
     for j = 1 : length(colorBins)
-        valuesofx = round(colorBins(j).XData, 1);
-        valuesofy = round(colorBins(j).YData, 1);
-        if foundC3 == 0 && ismember(round(x_values(1), 1), valuesofx) && ismember(round(y_values(1),1), valuesofy)
-            color_C3 = colorBins(j).Tag;
-            foundC3 = 1;
+        valuesofx = colorBins(j).XData;
+        valuesofy = colorBins(j).YData;
+        for a = 1 : length(valuesofx)
+            if foundC3 == 0 && ((x_values(1) > (valuesofx(a) - 0.03) && x_values(1) < (valuesofx(a) + 0.03)) && (y_values(1) > (valuesofy(a) - 0.03) && y_values(1) < (valuesofy(a) + 0.03)))
+                color_C3 = colorBins(j).Tag;
+                foundC3 = 1;
+            end
         end
     end
 

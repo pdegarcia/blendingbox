@@ -258,15 +258,17 @@ for i = 1 : height(laboratoryResults)
 
     %% Categorize Colors - Bins
     for j = 1 : length(colorBins)
-        valuesofx = round(colorBins(j).XData, 1);
-        valuesofy = round(colorBins(j).YData, 1);
-        if foundC1 == 0 && ismember(round(x_values(1), 1), valuesofx) && ismember(round(y_values(1),1), valuesofy)
-            color_C1 = colorBins(j).Tag;
-            foundC1 = 1;
-        end
-        if foundC2 == 0 && ismember(round(x_values(2), 1), valuesofx) && ismember(round(y_values(2),1), valuesofy)
-            color_C2 = colorBins(j).Tag;
-            foundC2 = 1;
+        valuesofx = colorBins(j).XData;
+        valuesofy = colorBins(j).YData;
+        for a = 1 : length(valuesofx)
+            if foundC1 == 0 && ((x_values(1) > (valuesofx(a) - 0.03) && x_values(1) < (valuesofx(a) + 0.03)) && (y_values(1) > (valuesofy(a) - 0.03) && y_values(1) < (valuesofy(a) + 0.03)))
+                color_C1 = colorBins(j).Tag;
+                foundC1 = 1;
+            end
+            if foundC2 == 0 && ((x_values(2) > (valuesofx(a) - 0.03) && x_values(2) < (valuesofx(a) + 0.03)) && (y_values(2) > (valuesofy(a) - 0.03) && y_values(2) < (valuesofy(a) + 0.03)))
+                color_C2 = colorBins(j).Tag;
+                foundC2 = 1;
+            end
         end
     end
 
@@ -335,7 +337,7 @@ for i = 1 : height(laboratoryResults)
 
     %%%%%% Blend-it in CIE-LCh (XYZ -> Lab -> LCh)
     sColor_lch = sColor; tColor_lch = tColor;
-    sColor_lch = applycform(sColor_lch, cformXYZ_Lab); sColor_lch = applycform(sColor_lch, cformLab_LCh);
+    sColor_lch = applycform(sColor_lch, cformXYZ_Lab); tColor_lch = applycform(tColor_lch, cformLab_LCh);
 
     l_aux = (abs(sColor_lch(1) - tColor_lch(1)) / 2) + min([sColor_lch(1) tColor_lch(1)]);  % diff between colors, and add half to the smallest
     c_aux = (abs(sColor_lch(2) - tColor_lch(2)) / 2) + min([sColor_lch(2) tColor_lch(2)]);
@@ -533,15 +535,17 @@ for i = 1 : height(laboratoryResults_dalt)
 
     %% Categorize Colors - Bins
     for j = 1 : length(colorBins)
-        valuesofx = round(colorBins(j).XData, 1);
-        valuesofy = round(colorBins(j).YData, 1);
-        if foundC1 == 0 && ismember(round(x_values(1), 1), valuesofx) && ismember(round(y_values(1),1), valuesofy)
-            color_C1 = colorBins(j).Tag;
-            foundC1 = 1;
-        end
-        if foundC2 == 0 && ismember(round(x_values(2), 1), valuesofx) && ismember(round(y_values(2),1), valuesofy)
-            color_C2 = colorBins(j).Tag;
-            foundC2 = 1;
+        valuesofx = colorBins(j).XData;
+        valuesofy = colorBins(j).YData;
+        for a = 1 : length(valuesofx)
+            if foundC1 == 0 && ((x_values(1) > (valuesofx(a) - 0.03) && x_values(1) < (valuesofx(a) + 0.03)) && (y_values(1) > (valuesofy(a) - 0.03) && y_values(1) < (valuesofy(a) + 0.03)))
+                color_C1 = colorBins(j).Tag;
+                foundC1 = 1;
+            end
+            if foundC2 == 0 && ((x_values(2) > (valuesofx(a) - 0.03) && x_values(2) < (valuesofx(a) + 0.03)) && (y_values(2) > (valuesofy(a) - 0.03) && y_values(2) < (valuesofy(a) + 0.03)))
+                color_C2 = colorBins(j).Tag;
+                foundC2 = 1;
+            end
         end
     end
 
@@ -635,15 +639,17 @@ for i = 1 : height(onlineResults)                                  %draw every p
 
     %% Categorize Colors - Bins
     for j = 1 : length(colorBins)
-        valuesofx = round(colorBins(j).XData, 1);
-        valuesofy = round(colorBins(j).YData, 1);
-        if foundC1 == 0 && ismember(round(x_values(1), 1), valuesofx) && ismember(round(y_values(1),1), valuesofy)
-            color_C1 = colorBins(j).Tag;
-            foundC1 = 1;
-        end
-        if foundC2 == 0 && ismember(round(x_values(2), 1), valuesofx) && ismember(round(y_values(2),1), valuesofy)
-            color_C2 = colorBins(j).Tag;
-            foundC2 = 1;
+        valuesofx = colorBins(j).XData;
+        valuesofy = colorBins(j).YData;
+        for a = 1 : length(valuesofx)
+            if foundC1 == 0 && ((x_values(1) > (valuesofx(a) - 0.03) && x_values(1) < (valuesofx(a) + 0.03)) && (y_values(1) > (valuesofy(a) - 0.03) && y_values(1) < (valuesofy(a) + 0.03)))
+                color_C1 = colorBins(j).Tag;
+                foundC1 = 1;
+            end
+            if foundC2 == 0 && ((x_values(2) > (valuesofx(a) - 0.03) && x_values(2) < (valuesofx(a) + 0.03)) && (y_values(2) > (valuesofy(a) - 0.03) && y_values(2) < (valuesofy(a) + 0.03)))
+                color_C2 = colorBins(j).Tag;
+                foundC2 = 1;
+            end
         end
     end
 
@@ -712,7 +718,7 @@ for i = 1 : height(onlineResults)                                  %draw every p
 
     %%%%%% Blend-it in CIE-LCh (XYZ -> Lab -> LCh)
     sColor_lch = sColor; tColor_lch = tColor;
-    sColor_lch = applycform(sColor_lch, cformXYZ_Lab); sColor_lch = applycform(sColor_lch, cformLab_LCh);
+    sColor_lch = applycform(sColor_lch, cformXYZ_Lab); tColor_lch = applycform(tColor_lch, cformLab_LCh);
 
     l_aux = (abs(sColor_lch(1) - tColor_lch(1)) / 2) + min([sColor_lch(1) tColor_lch(1)]);  % diff between colors, and add half to the smallest
     c_aux = (abs(sColor_lch(2) - tColor_lch(2)) / 2) + min([sColor_lch(2) tColor_lch(2)]);
@@ -909,15 +915,17 @@ for i = 1 : height(onlineResults_dalt)
 
     %% Categorize Colors - Bins
     for j = 1 : length(colorBins)
-        valuesofx = round(colorBins(j).XData, 1);
-        valuesofy = round(colorBins(j).YData, 1);
-        if foundC1 == 0 && ismember(round(x_values(1), 1), valuesofx) && ismember(round(y_values(1),1), valuesofy)
-            color_C1 = colorBins(j).Tag;
-            foundC1 = 1;
-        end
-        if foundC2 == 0 && ismember(round(x_values(2), 1), valuesofx) && ismember(round(y_values(2),1), valuesofy)
-            color_C2 = colorBins(j).Tag;
-            foundC2 = 1;
+        valuesofx = colorBins(j).XData;
+        valuesofy = colorBins(j).YData;
+        for a = 1 : length(valuesofx)
+            if foundC1 == 0 && ((x_values(1) > (valuesofx(a) - 0.03) && x_values(1) < (valuesofx(a) + 0.03)) && (y_values(1) > (valuesofy(a) - 0.03) && y_values(1) < (valuesofy(a) + 0.03)))
+                color_C1 = colorBins(j).Tag;
+                foundC1 = 1;
+            end
+            if foundC2 == 0 && ((x_values(2) > (valuesofx(a) - 0.03) && x_values(2) < (valuesofx(a) + 0.03)) && (y_values(2) > (valuesofy(a) - 0.03) && y_values(2) < (valuesofy(a) + 0.03)))
+                color_C2 = colorBins(j).Tag;
+                foundC2 = 1;
+            end
         end
     end
 
@@ -957,7 +965,7 @@ else
 end
 
 C1_name = []; C2_name = [];
-onlineResults_dalt = [onlineResults_dalt color_names];
+onlineResults_dalt = [onlineResults_dalt colors_names];
 
 %% Online Results - Uncalibrated Users
 
@@ -1001,15 +1009,17 @@ for i = 1 : height(onlineResults_uncal)                                  %draw e
 
     %% Categorize Colors - Bins
     for j = 1 : length(colorBins)
-        valuesofx = round(colorBins(j).XData, 1);
-        valuesofy = round(colorBins(j).YData, 1);
-        if foundC1 == 0 && ismember(round(x_values(1), 1), valuesofx) && ismember(round(y_values(1),1), valuesofy)
-            color_C1 = colorBins(j).Tag;
-            foundC1 = 1;
-        end
-        if foundC2 == 0 && ismember(round(x_values(2), 1), valuesofx) && ismember(round(y_values(2),1), valuesofy)
-            color_C2 = colorBins(j).Tag;
-            foundC2 = 1;
+        valuesofx = colorBins(j).XData;
+        valuesofy = colorBins(j).YData;
+        for a = 1 : length(valuesofx)
+            if foundC1 == 0 && ((x_values(1) > (valuesofx(a) - 0.03) && x_values(1) < (valuesofx(a) + 0.03)) && (y_values(1) > (valuesofy(a) - 0.03) && y_values(1) < (valuesofy(a) + 0.03)))
+                color_C1 = colorBins(j).Tag;
+                foundC1 = 1;
+            end
+            if foundC2 == 0 && ((x_values(2) > (valuesofx(a) - 0.03) && x_values(2) < (valuesofx(a) + 0.03)) && (y_values(2) > (valuesofy(a) - 0.03) && y_values(2) < (valuesofy(a) + 0.03)))
+                color_C2 = colorBins(j).Tag;
+                foundC2 = 1;
+            end
         end
     end
 
@@ -1078,7 +1088,7 @@ for i = 1 : height(onlineResults_uncal)                                  %draw e
 
     %%%%%% Blend-it in CIE-LCh (XYZ -> Lab -> LCh)
     sColor_lch = sColor; tColor_lch = tColor;
-    sColor_lch = applycform(sColor_lch, cformXYZ_Lab); sColor_lch = applycform(sColor_lch, cformLab_LCh);
+    sColor_lch = applycform(sColor_lch, cformXYZ_Lab); tColor_lch = applycform(tColor_lch, cformLab_LCh);
 
     l_aux = (abs(sColor_lch(1) - tColor_lch(1)) / 2) + min([sColor_lch(1) tColor_lch(1)]);  % diff between colors, and add half to the smallest
     c_aux = (abs(sColor_lch(2) - tColor_lch(2)) / 2) + min([sColor_lch(2) tColor_lch(2)]);
@@ -1225,15 +1235,17 @@ for i = 1 : height(demoResultsAge_20)
 
     %% Categorize Colors - Bins
     for j = 1 : length(colorBins)
-        valuesofx = round(colorBins(j).XData, 1);
-        valuesofy = round(colorBins(j).YData, 1);
-        if foundC1 == 0 && ismember(round(x_values(1), 1), valuesofx) && ismember(round(y_values(1),1), valuesofy)
-            color_C1 = colorBins(j).Tag;
-            foundC1 = 1;
-        end
-        if foundC2 == 0 && ismember(round(x_values(2), 1), valuesofx) && ismember(round(y_values(2),1), valuesofy)
-            color_C2 = colorBins(j).Tag;
-            foundC2 = 1;
+        valuesofx = colorBins(j).XData;
+        valuesofy = colorBins(j).YData;
+        for a = 1 : length(valuesofx)
+            if foundC1 == 0 && ((x_values(1) > (valuesofx(a) - 0.03) && x_values(1) < (valuesofx(a) + 0.03)) && (y_values(1) > (valuesofy(a) - 0.03) && y_values(1) < (valuesofy(a) + 0.03)))
+                color_C1 = colorBins(j).Tag;
+                foundC1 = 1;
+            end
+            if foundC2 == 0 && ((x_values(2) > (valuesofx(a) - 0.03) && x_values(2) < (valuesofx(a) + 0.03)) && (y_values(2) > (valuesofy(a) - 0.03) && y_values(2) < (valuesofy(a) + 0.03)))
+                color_C2 = colorBins(j).Tag;
+                foundC2 = 1;
+            end
         end
     end
 
@@ -1302,7 +1314,7 @@ for i = 1 : height(demoResultsAge_20)
 
     %%%%%% Blend-it in CIE-LCh (XYZ -> Lab -> LCh)
     sColor_lch = sColor; tColor_lch = tColor;
-    sColor_lch = applycform(sColor_lch, cformXYZ_Lab); sColor_lch = applycform(sColor_lch, cformLab_LCh);
+    sColor_lch = applycform(sColor_lch, cformXYZ_Lab); tColor_lch = applycform(tColor_lch, cformLab_LCh);
 
     l_aux = (abs(sColor_lch(1) - tColor_lch(1)) / 2) + min([sColor_lch(1) tColor_lch(1)]);  % diff between colors, and add half to the smallest
     c_aux = (abs(sColor_lch(2) - tColor_lch(2)) / 2) + min([sColor_lch(2) tColor_lch(2)]);
@@ -1504,15 +1516,17 @@ for i = 1 : height(demoResultsAge_20_29)
 
     %% Categorize Colors - Bins
     for j = 1 : length(colorBins)
-        valuesofx = round(colorBins(j).XData, 1);
-        valuesofy = round(colorBins(j).YData, 1);
-        if foundC1 == 0 && ismember(round(x_values(1), 1), valuesofx) && ismember(round(y_values(1),1), valuesofy)
-            color_C1 = colorBins(j).Tag;
-            foundC1 = 1;
-        end
-        if foundC2 == 0 && ismember(round(x_values(2), 1), valuesofx) && ismember(round(y_values(2),1), valuesofy)
-            color_C2 = colorBins(j).Tag;
-            foundC2 = 1;
+        valuesofx = colorBins(j).XData;
+        valuesofy = colorBins(j).YData;
+        for a = 1 : length(valuesofx)
+            if foundC1 == 0 && ((x_values(1) > (valuesofx(a) - 0.03) && x_values(1) < (valuesofx(a) + 0.03)) && (y_values(1) > (valuesofy(a) - 0.03) && y_values(1) < (valuesofy(a) + 0.03)))
+                color_C1 = colorBins(j).Tag;
+                foundC1 = 1;
+            end
+            if foundC2 == 0 && ((x_values(2) > (valuesofx(a) - 0.03) && x_values(2) < (valuesofx(a) + 0.03)) && (y_values(2) > (valuesofy(a) - 0.03) && y_values(2) < (valuesofy(a) + 0.03)))
+                color_C2 = colorBins(j).Tag;
+                foundC2 = 1;
+            end
         end
     end
 
@@ -1581,7 +1595,7 @@ for i = 1 : height(demoResultsAge_20_29)
 
     %%%%%% Blend-it in CIE-LCh (XYZ -> Lab -> LCh)
     sColor_lch = sColor; tColor_lch = tColor;
-    sColor_lch = applycform(sColor_lch, cformXYZ_Lab); sColor_lch = applycform(sColor_lch, cformLab_LCh);
+    sColor_lch = applycform(sColor_lch, cformXYZ_Lab); tColor_lch = applycform(tColor_lch, cformLab_LCh);
 
     l_aux = (abs(sColor_lch(1) - tColor_lch(1)) / 2) + min([sColor_lch(1) tColor_lch(1)]);  % diff between colors, and add half to the smallest
     c_aux = (abs(sColor_lch(2) - tColor_lch(2)) / 2) + min([sColor_lch(2) tColor_lch(2)]);
@@ -1783,15 +1797,17 @@ for i = 1 : height(demoResultsAge_30_39)
 
     %% Categorize Colors - Bins
     for j = 1 : length(colorBins)
-        valuesofx = round(colorBins(j).XData, 1);
-        valuesofy = round(colorBins(j).YData, 1);
-        if foundC1 == 0 && ismember(round(x_values(1), 1), valuesofx) && ismember(round(y_values(1),1), valuesofy)
-            color_C1 = colorBins(j).Tag;
-            foundC1 = 1;
-        end
-        if foundC2 == 0 && ismember(round(x_values(2), 1), valuesofx) && ismember(round(y_values(2),1), valuesofy)
-            color_C2 = colorBins(j).Tag;
-            foundC2 = 1;
+        valuesofx = colorBins(j).XData;
+        valuesofy = colorBins(j).YData;
+        for a = 1 : length(valuesofx)
+            if foundC1 == 0 && ((x_values(1) > (valuesofx(a) - 0.03) && x_values(1) < (valuesofx(a) + 0.03)) && (y_values(1) > (valuesofy(a) - 0.03) && y_values(1) < (valuesofy(a) + 0.03)))
+                color_C1 = colorBins(j).Tag;
+                foundC1 = 1;
+            end
+            if foundC2 == 0 && ((x_values(2) > (valuesofx(a) - 0.03) && x_values(2) < (valuesofx(a) + 0.03)) && (y_values(2) > (valuesofy(a) - 0.03) && y_values(2) < (valuesofy(a) + 0.03)))
+                color_C2 = colorBins(j).Tag;
+                foundC2 = 1;
+            end
         end
     end
 
@@ -1860,7 +1876,7 @@ for i = 1 : height(demoResultsAge_30_39)
 
     %%%%%% Blend-it in CIE-LCh (XYZ -> Lab -> LCh)
     sColor_lch = sColor; tColor_lch = tColor;
-    sColor_lch = applycform(sColor_lch, cformXYZ_Lab); sColor_lch = applycform(sColor_lch, cformLab_LCh);
+    sColor_lch = applycform(sColor_lch, cformXYZ_Lab); tColor_lch = applycform(tColor_lch, cformLab_LCh);
 
     l_aux = (abs(sColor_lch(1) - tColor_lch(1)) / 2) + min([sColor_lch(1) tColor_lch(1)]);  % diff between colors, and add half to the smallest
     c_aux = (abs(sColor_lch(2) - tColor_lch(2)) / 2) + min([sColor_lch(2) tColor_lch(2)]);
@@ -2062,15 +2078,17 @@ for i = 1 : height(demoResultsAge_40_49)
 
     %% Categorize Colors - Bins
     for j = 1 : length(colorBins)
-        valuesofx = round(colorBins(j).XData, 1);
-        valuesofy = round(colorBins(j).YData, 1);
-        if foundC1 == 0 && ismember(round(x_values(1), 1), valuesofx) && ismember(round(y_values(1),1), valuesofy)
-            color_C1 = colorBins(j).Tag;
-            foundC1 = 1;
-        end
-        if foundC2 == 0 && ismember(round(x_values(2), 1), valuesofx) && ismember(round(y_values(2),1), valuesofy)
-            color_C2 = colorBins(j).Tag;
-            foundC2 = 1;
+        valuesofx = colorBins(j).XData;
+        valuesofy = colorBins(j).YData;
+        for a = 1 : length(valuesofx)
+            if foundC1 == 0 && ((x_values(1) > (valuesofx(a) - 0.03) && x_values(1) < (valuesofx(a) + 0.03)) && (y_values(1) > (valuesofy(a) - 0.03) && y_values(1) < (valuesofy(a) + 0.03)))
+                color_C1 = colorBins(j).Tag;
+                foundC1 = 1;
+            end
+            if foundC2 == 0 && ((x_values(2) > (valuesofx(a) - 0.03) && x_values(2) < (valuesofx(a) + 0.03)) && (y_values(2) > (valuesofy(a) - 0.03) && y_values(2) < (valuesofy(a) + 0.03)))
+                color_C2 = colorBins(j).Tag;
+                foundC2 = 1;
+            end
         end
     end
 
@@ -2139,7 +2157,7 @@ for i = 1 : height(demoResultsAge_40_49)
 
     %%%%%% Blend-it in CIE-LCh (XYZ -> Lab -> LCh)
     sColor_lch = sColor; tColor_lch = tColor;
-    sColor_lch = applycform(sColor_lch, cformXYZ_Lab); sColor_lch = applycform(sColor_lch, cformLab_LCh);
+    sColor_lch = applycform(sColor_lch, cformXYZ_Lab); tColor_lch = applycform(tColor_lch, cformLab_LCh);
 
     l_aux = (abs(sColor_lch(1) - tColor_lch(1)) / 2) + min([sColor_lch(1) tColor_lch(1)]);  % diff between colors, and add half to the smallest
     c_aux = (abs(sColor_lch(2) - tColor_lch(2)) / 2) + min([sColor_lch(2) tColor_lch(2)]);
@@ -2341,15 +2359,17 @@ for i = 1 : height(demoResultsAge_50_59)
 
     %% Categorize Colors - Bins
     for j = 1 : length(colorBins)
-        valuesofx = round(colorBins(j).XData, 1);
-        valuesofy = round(colorBins(j).YData, 1);
-        if foundC1 == 0 && ismember(round(x_values(1), 1), valuesofx) && ismember(round(y_values(1),1), valuesofy)
-            color_C1 = colorBins(j).Tag;
-            foundC1 = 1;
-        end
-        if foundC2 == 0 && ismember(round(x_values(2), 1), valuesofx) && ismember(round(y_values(2),1), valuesofy)
-            color_C2 = colorBins(j).Tag;
-            foundC2 = 1;
+        valuesofx = colorBins(j).XData;
+        valuesofy = colorBins(j).YData;
+        for a = 1 : length(valuesofx)
+            if foundC1 == 0 && ((x_values(1) > (valuesofx(a) - 0.03) && x_values(1) < (valuesofx(a) + 0.03)) && (y_values(1) > (valuesofy(a) - 0.03) && y_values(1) < (valuesofy(a) + 0.03)))
+                color_C1 = colorBins(j).Tag;
+                foundC1 = 1;
+            end
+            if foundC2 == 0 && ((x_values(2) > (valuesofx(a) - 0.03) && x_values(2) < (valuesofx(a) + 0.03)) && (y_values(2) > (valuesofy(a) - 0.03) && y_values(2) < (valuesofy(a) + 0.03)))
+                color_C2 = colorBins(j).Tag;
+                foundC2 = 1;
+            end
         end
     end
 
@@ -2418,7 +2438,7 @@ for i = 1 : height(demoResultsAge_50_59)
 
     %%%%%% Blend-it in CIE-LCh (XYZ -> Lab -> LCh)
     sColor_lch = sColor; tColor_lch = tColor;
-    sColor_lch = applycform(sColor_lch, cformXYZ_Lab); sColor_lch = applycform(sColor_lch, cformLab_LCh);
+    sColor_lch = applycform(sColor_lch, cformXYZ_Lab); tColor_lch = applycform(tColor_lch, cformLab_LCh);
 
     l_aux = (abs(sColor_lch(1) - tColor_lch(1)) / 2) + min([sColor_lch(1) tColor_lch(1)]);  % diff between colors, and add half to the smallest
     c_aux = (abs(sColor_lch(2) - tColor_lch(2)) / 2) + min([sColor_lch(2) tColor_lch(2)]);
@@ -2620,15 +2640,17 @@ for i = 1 : height(demoResultsAge_60)
 
     %% Categorize Colors - Bins
     for j = 1 : length(colorBins)
-        valuesofx = round(colorBins(j).XData, 1);
-        valuesofy = round(colorBins(j).YData, 1);
-        if foundC1 == 0 && ismember(round(x_values(1), 1), valuesofx) && ismember(round(y_values(1),1), valuesofy)
-            color_C1 = colorBins(j).Tag;
-            foundC1 = 1;
-        end
-        if foundC2 == 0 && ismember(round(x_values(2), 1), valuesofx) && ismember(round(y_values(2),1), valuesofy)
-            color_C2 = colorBins(j).Tag;
-            foundC2 = 1;
+        valuesofx = colorBins(j).XData;
+        valuesofy = colorBins(j).YData;
+        for a = 1 : length(valuesofx)
+            if foundC1 == 0 && ((x_values(1) > (valuesofx(a) - 0.03) && x_values(1) < (valuesofx(a) + 0.03)) && (y_values(1) > (valuesofy(a) - 0.03) && y_values(1) < (valuesofy(a) + 0.03)))
+                color_C1 = colorBins(j).Tag;
+                foundC1 = 1;
+            end
+            if foundC2 == 0 && ((x_values(2) > (valuesofx(a) - 0.03) && x_values(2) < (valuesofx(a) + 0.03)) && (y_values(2) > (valuesofy(a) - 0.03) && y_values(2) < (valuesofy(a) + 0.03)))
+                color_C2 = colorBins(j).Tag;
+                foundC2 = 1;
+            end
         end
     end
 
@@ -2697,7 +2719,7 @@ for i = 1 : height(demoResultsAge_60)
 
     %%%%%% Blend-it in CIE-LCh (XYZ -> Lab -> LCh)
     sColor_lch = sColor; tColor_lch = tColor;
-    sColor_lch = applycform(sColor_lch, cformXYZ_Lab); sColor_lch = applycform(sColor_lch, cformLab_LCh);
+    sColor_lch = applycform(sColor_lch, cformXYZ_Lab); tColor_lch = applycform(tColor_lch, cformLab_LCh);
 
     l_aux = (abs(sColor_lch(1) - tColor_lch(1)) / 2) + min([sColor_lch(1) tColor_lch(1)]);  % diff between colors, and add half to the smallest
     c_aux = (abs(sColor_lch(2) - tColor_lch(2)) / 2) + min([sColor_lch(2) tColor_lch(2)]);
@@ -2899,15 +2921,17 @@ for i = 1 : height(demoResultsGender_Female)
 
     %% Categorize Colors - Bins
     for j = 1 : length(colorBins)
-        valuesofx = round(colorBins(j).XData, 1);
-        valuesofy = round(colorBins(j).YData, 1);
-        if foundC1 == 0 && ismember(round(x_values(1), 1), valuesofx) && ismember(round(y_values(1),1), valuesofy)
-            color_C1 = colorBins(j).Tag;
-            foundC1 = 1;
-        end
-        if foundC2 == 0 && ismember(round(x_values(2), 1), valuesofx) && ismember(round(y_values(2),1), valuesofy)
-            color_C2 = colorBins(j).Tag;
-            foundC2 = 1;
+        valuesofx = colorBins(j).XData;
+        valuesofy = colorBins(j).YData;
+        for a = 1 : length(valuesofx)
+            if foundC1 == 0 && ((x_values(1) > (valuesofx(a) - 0.03) && x_values(1) < (valuesofx(a) + 0.03)) && (y_values(1) > (valuesofy(a) - 0.03) && y_values(1) < (valuesofy(a) + 0.03)))
+                color_C1 = colorBins(j).Tag;
+                foundC1 = 1;
+            end
+            if foundC2 == 0 && ((x_values(2) > (valuesofx(a) - 0.03) && x_values(2) < (valuesofx(a) + 0.03)) && (y_values(2) > (valuesofy(a) - 0.03) && y_values(2) < (valuesofy(a) + 0.03)))
+                color_C2 = colorBins(j).Tag;
+                foundC2 = 1;
+            end
         end
     end
 
@@ -2976,7 +3000,7 @@ for i = 1 : height(demoResultsGender_Female)
 
     %%%%%% Blend-it in CIE-LCh (XYZ -> Lab -> LCh)
     sColor_lch = sColor; tColor_lch = tColor;
-    sColor_lch = applycform(sColor_lch, cformXYZ_Lab); sColor_lch = applycform(sColor_lch, cformLab_LCh);
+    sColor_lch = applycform(sColor_lch, cformXYZ_Lab); tColor_lch = applycform(tColor_lch, cformLab_LCh);
 
     l_aux = (abs(sColor_lch(1) - tColor_lch(1)) / 2) + min([sColor_lch(1) tColor_lch(1)]);  % diff between colors, and add half to the smallest
     c_aux = (abs(sColor_lch(2) - tColor_lch(2)) / 2) + min([sColor_lch(2) tColor_lch(2)]);
@@ -3178,15 +3202,17 @@ for i = 1 : height(demoResultsGender_Male)
 
     %% Categorize Colors - Bins
     for j = 1 : length(colorBins)
-        valuesofx = round(colorBins(j).XData, 1);
-        valuesofy = round(colorBins(j).YData, 1);
-        if foundC1 == 0 && ismember(round(x_values(1), 1), valuesofx) && ismember(round(y_values(1),1), valuesofy)
-            color_C1 = colorBins(j).Tag;
-            foundC1 = 1;
-        end
-        if foundC2 == 0 && ismember(round(x_values(2), 1), valuesofx) && ismember(round(y_values(2),1), valuesofy)
-            color_C2 = colorBins(j).Tag;
-            foundC2 = 1;
+        valuesofx = colorBins(j).XData;
+        valuesofy = colorBins(j).YData;
+        for a = 1 : length(valuesofx)
+            if foundC1 == 0 && ((x_values(1) > (valuesofx(a) - 0.03) && x_values(1) < (valuesofx(a) + 0.03)) && (y_values(1) > (valuesofy(a) - 0.03) && y_values(1) < (valuesofy(a) + 0.03)))
+                color_C1 = colorBins(j).Tag;
+                foundC1 = 1;
+            end
+            if foundC2 == 0 && ((x_values(2) > (valuesofx(a) - 0.03) && x_values(2) < (valuesofx(a) + 0.03)) && (y_values(2) > (valuesofy(a) - 0.03) && y_values(2) < (valuesofy(a) + 0.03)))
+                color_C2 = colorBins(j).Tag;
+                foundC2 = 1;
+            end
         end
     end
 
@@ -3255,7 +3281,7 @@ for i = 1 : height(demoResultsGender_Male)
 
     %%%%%% Blend-it in CIE-LCh (XYZ -> Lab -> LCh)
     sColor_lch = sColor; tColor_lch = tColor;
-    sColor_lch = applycform(sColor_lch, cformXYZ_Lab); sColor_lch = applycform(sColor_lch, cformLab_LCh);
+    sColor_lch = applycform(sColor_lch, cformXYZ_Lab); tColor_lch = applycform(tColor_lch, cformLab_LCh);
 
     l_aux = (abs(sColor_lch(1) - tColor_lch(1)) / 2) + min([sColor_lch(1) tColor_lch(1)]);  % diff between colors, and add half to the smallest
     c_aux = (abs(sColor_lch(2) - tColor_lch(2)) / 2) + min([sColor_lch(2) tColor_lch(2)]);
@@ -3457,15 +3483,17 @@ for i = 1 : height(demoResultsGender_Other)
 
     %% Categorize Colors - Bins
     for j = 1 : length(colorBins)
-        valuesofx = round(colorBins(j).XData, 1);
-        valuesofy = round(colorBins(j).YData, 1);
-        if foundC1 == 0 && ismember(round(x_values(1), 1), valuesofx) && ismember(round(y_values(1),1), valuesofy)
-            color_C1 = colorBins(j).Tag;
-            foundC1 = 1;
-        end
-        if foundC2 == 0 && ismember(round(x_values(2), 1), valuesofx) && ismember(round(y_values(2),1), valuesofy)
-            color_C2 = colorBins(j).Tag;
-            foundC2 = 1;
+        valuesofx = colorBins(j).XData;
+        valuesofy = colorBins(j).YData;
+        for a = 1 : length(valuesofx)
+            if foundC1 == 0 && ((x_values(1) > (valuesofx(a) - 0.03) && x_values(1) < (valuesofx(a) + 0.03)) && (y_values(1) > (valuesofy(a) - 0.03) && y_values(1) < (valuesofy(a) + 0.03)))
+                color_C1 = colorBins(j).Tag;
+                foundC1 = 1;
+            end
+            if foundC2 == 0 && ((x_values(2) > (valuesofx(a) - 0.03) && x_values(2) < (valuesofx(a) + 0.03)) && (y_values(2) > (valuesofy(a) - 0.03) && y_values(2) < (valuesofy(a) + 0.03)))
+                color_C2 = colorBins(j).Tag;
+                foundC2 = 1;
+            end
         end
     end
 
@@ -3534,7 +3562,7 @@ for i = 1 : height(demoResultsGender_Other)
 
     %%%%%% Blend-it in CIE-LCh (XYZ -> Lab -> LCh)
     sColor_lch = sColor; tColor_lch = tColor;
-    sColor_lch = applycform(sColor_lch, cformXYZ_Lab); sColor_lch = applycform(sColor_lch, cformLab_LCh);
+    sColor_lch = applycform(sColor_lch, cformXYZ_Lab); tColor_lch = applycform(tColor_lch, cformLab_LCh);
 
     l_aux = (abs(sColor_lch(1) - tColor_lch(1)) / 2) + min([sColor_lch(1) tColor_lch(1)]);  % diff between colors, and add half to the smallest
     c_aux = (abs(sColor_lch(2) - tColor_lch(2)) / 2) + min([sColor_lch(2) tColor_lch(2)]);
@@ -3723,11 +3751,13 @@ for i = 1 : height(whiteAnswers)
 
     %% Categorize Colors - Bins
     for j = 1 : length(colorBins)
-        valuesofx = round(colorBins(j).XData, 1);
-        valuesofy = round(colorBins(j).YData, 1);
-        if foundC1 == 0 && ismember(round(x_values(1), 1), valuesofx) && ismember(round(y_values(1),1), valuesofy)
-            color_C1 = colorBins(j).Tag;
-            foundC1 = 1;
+        valuesofx = colorBins(j).XData;
+        valuesofy = colorBins(j).YData;
+        for a = 1 : length(valuesofx)
+            if foundC1 == 0 && ((x_values(1) > (valuesofx(a) - 0.03) && x_values(1) < (valuesofx(a) + 0.03)) && (y_values(1) > (valuesofy(a) - 0.03) && y_values(1) < (valuesofy(a) + 0.03)))
+                color_C1 = colorBins(j).Tag;
+                foundC1 = 1;
+            end
         end
     end
 
