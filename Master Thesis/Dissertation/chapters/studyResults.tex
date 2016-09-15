@@ -196,20 +196,20 @@ demographic group and subset of users (non-calibrated and color vision deficient
 With this data processing, we intend to verify each answer-pair given by a certain user and compare the pairs with each other. It was important to separate the results by question
 ID, compare each questions' results with other questions that could conceive the same results, blend the values to check which color model answers are closer to (either \gls{HSV}, \gls{RGB},
 \gls{CMYK}, CIE-L*a*b* or CIE-L*C*h*) and also, give meaning to each value, attributing a name to each color. All these parameters and computations are describred in the next two
-sub-sections.
+sub-sections. \par
 %
-\begin{lstlisting}[frame=single,basicstyle=\small,label={lst:pseudo_file},]
-  % Pseudo-codigo generico;
-  % Estrutura do ficheiro;
-\end{lstlisting}
-\captionof{lstlisting}{Pseudo-code representing each Script organization.}
+%\begin{lstlisting}[frame=single,basicstyle=\small,label={lst:pseudo_file},]
+%  % Pseudo-codigo generico;
+%  % Estrutura do ficheiro;
+%\end{lstlisting}
+%\captionof{lstlisting}{Pseudo-code representing each Script organization.}
 %
 \subsection{Data Preparation}
 \label{subsec:results_preparation}
 %
 Given the fact that questions had some differences between each other, there would have to be a cautious analysis; to achieve this, we developed a script for each question, each of
 file contains the particular set of characteristics ans specific comparisons and values of each question. An exemplary structure of these files can be found on pseudo-code box above.
-Each question file is capable of computing the following datasets:
+Each question file is capable of computing the following datasets: \par
 %
 \begin{itemize}[noitemsep]
   \item Laboratory Results (Regular Users);
@@ -235,6 +235,14 @@ with non-daltonic users and calibrated users and it was no applied to any type o
 interesting, since we can understand if the users opted to leave one value as 0 to truly indicate a white color (to blend and create a lighter color), or simply because they
 didn't know what to blend. \par
 %
+\textbf{INCLUIR BLOCO DE PSEUDO CODIGO de cada ciclo}
+%
+%\begin{lstlisting}[frame=single,basicstyle=\small,label={lst:pseudo_file},]
+%  % Pseudo-codigo generico;
+%  % Estrutura do ficheiro;
+%\end{lstlisting}
+%\captionof{lstlisting}{Pseudo-code representing each Script organization.}
+%
 Since the colors obtained in the color slider indicate values for the HSV Color Model, it was mandatory to convert the color to a common color standard: for that reason,
 \ul{the values were converted from HSV to CIE-XYZ Color Model}. Thus, we can produce color blends in every studied color model (\gls{HSV}, \gls{RGB}, \gls{CMYK}, CIE-L*a*b* and
 CIE L*C*h*) and ensure that colors obey to the same common standard; also, this is specially important to produce Chromaticity Diagrams where colors are mapped according to a set
@@ -254,7 +262,7 @@ needed to calculate the angular interpolation of their primitives. \par
 An example of linear interpolation between primitives can be seen on Equation \ref{eq:rgb_mix}, in which we blend \gls{RGB} primitives. The listing \ref{lst:hue_angular} shows
 how the angular interpolation is being calculated with our \emph{Matlab} script.
 %
-\begin{lstlisting}[frame=single,basicstyle=\small,label={lst:hue_angular},]
+\begin{lstlisting} [frame=single,basicstyle=\small,label={lst:hue_angular},]
   diff_angles = abs(Hue_C1 - Hue_C2);
   if diff_angles > 180
       angle_small = (360 - diff_angles);
@@ -302,62 +310,124 @@ and they also produced a huge file comprised of 196 608 named \gls{RGB} triplets
 %
 Despite being not a research realized with a scientific purpose, we decided to use it since it has plenty of information available to compare our results to, and it was executed with a great amount of users
 which can verify it. As said, these represent \gls{RGB} triplets but, being our user results all in accordance with the CIE XYZ Color Model, we needed some cleaning and processing to match the data our
-responses. We \ul{converted the RGB to CIE XYZ values} and, then, \ul{divided all of the Color Bins in different tables}. \par
+responses. We \ul{converted the RGB to CIE XYZ values} and, then, \ul{divided all of the Color Bins in different tables}; there are 27 names atributted to colors, some have more triplets
+(\emph{e.g.} blue, green or purple), but some have a smaller set, which could mean greater agreement to assign names to colors. These bins of color are represent with their frequencies, in table
+\ref{table:colorbins}. \par
 %
-Referir quais os color Bins que existem, e quais não estão desenhados.
-os problemas com o desenho dos mesmos e a comparação contra os pontos (em vez da área, que seria o ideal). O que esperavamos
-(áreas bem definidas, poligonos bem delineados que daria para desenhar o convexhull), as colisões entre áreas (valores
-comuns entre alguns Color Bins) e falar do facto de como se podia, alternativamente, encontrar o nome das cores (diagrama
-que já existe desde 1974 - ver ref - mas que não existe um svg ou codigo de todos os pontos, pelo que ainda havia essa curva
-de implementação). Poder-se-ia atribuir um nome à cor pela temperatura da mesma, mas não existia uma tabela credível de valores
-a utilizar.
+\begin{table}[htbp]
+  \begin{center}
+    \begin{tabular} {| c | c || c | c |}
+      \hline
+      Color Bin   &   Frequency   &   Color Bin   &   Frequency \\ \hline \hline
+      Black       &   1782        &   Lime-Green  &   878 \\ \hline
+      Blue        &   37725       &   Magenta     &   990 \\ \hline
+      Brown       &   10499       &   Maroon      &   3283\\ \hline
+      Cyan        &   2625        &   Mustard     &   711 \\ \hline
+      Dark-Blue   &   2233        &   Navy-Blue   &   922 \\ \hline
+      Dark-Brown  &   30          &   Olive       &   1336 \\ \hline
+      Dark-Green  &   2927        &   Orange      &   9152 \\ \hline
+      Dark-Purple &   669         &   Pink        &   12627 \\ \hline
+      Dark-Red    &   2           &   Purple      &   25747 \\ \hline
+      Dark-Teal   &   163         &   Red         &   15474 \\ \hline
+      Gold        &   49          &   Sky-Blue    &   32 \\ \hline
+      Green       &   47858       &   Teal        &   9007 \\ \hline
+      Light-Blue  &   2078        &   Yellow      &   7808 \\ \hline
+      Light-Green &   1           &   \-          &   \- \\
+      \hline
+    \end{tabular}
+  \end{center}
+  \caption[XKCD Color Survey: Color Bins]{XKCD Color Survey: color bins.}
+  \label{table:colorbins}
+\end{table}
+%
+The idea was to compare our answers with each color bin, to create a mapping between our users' values and commonly-used names; in order to simplify and speed up the computation
+of the comparations, each color bin was drawn and the lowest polygon formed by the set of triplets of each bin was used to compare the values (instead of comparing each answer
+with every triplet). Moreover, when processing these sets of RGB triplets, we left 3 color bins out of the game: \emph{Black} since it has no expressivity in the Chromaticity Diagram,
+\emph{Dark-Red} and \emph{Light-Green} because they have very few triplets to be drawn. \par
+%
+However, we expected that when these color bins were drawn on a chromaticity diagram, they would create independent and more comprehensive shapes: we found that there are overlapping
+values for some color bins (Figure \ref{fig:colorbins_areas}), which ultimately complicates the analysis because there is more than one possible name for the same color. For example, \emph{Blue} and \emph{Dark-Blue}
+share 5 triplets: (0,0,76), (0,0,77), (0,0,78), (0,0,79) and (0,0,80); \emph{Green} and \emph{Dark-Green} share only 1 triplet, (0,57,0). No value was excluded from any color bin,
+instead we solve the problem by allowing the program to find only one of the names and look no more after finding it. \par
+%
+\begin{figure}
+  \centering
+  \begin{minipage}{0.54\textwidth}
+    \centering
+    \includegraphics[width=0.9\textwidth]{images/colorbins_areas.png}
+    \caption[XKCD Color Survey: Color Bins Minimum Areas]{XKCD Color Survey: Color Bins Minimum Areas.}
+    \label{fig:colorbins_areas}
+  \end{minipage}\hfill
+  \begin{minipage}{0.45\textwidth}
+    \centering
+    \includegraphics[width=0.87\textwidth]{images/cie_colors.png}
+    \caption[Approximate Color Regions on CIE 1931 Chromaticity Diagram]{Approximate Color Regions on CIE 1931 Chromaticity Diagram. \cite{Fortner1997}}
+    \label{fig:cie_colorregions}
+  \end{minipage}
+\end{figure}
+%
+Alternatively, we could have opted for another kind of color name detection, but its implementation would be out of the scope of this Master thesis and would take a much longer
+analysis than the one performed. For instance, one could have gone for identifying the colors by analyzing their values and processing the wavelength originated, comparing the resulting
+value with calculated areas, roughly defined by Brand Fortner \cite{Fortner1997} and represented on Figure \ref{fig:cie_colorregions}. This idea had one problem, which was the longevity
+of its solution (dated from 1997), and the inexistence of a ready-to-go implementation, completed with an svg with all areas defined, had added weight on the decision. \par
+%
+Another possible method to decode color into name would be to interpret color values and associate a color temperature, being the late one compared against a well defined table
+of values; the problem here was the non-existence of table of well defined values of color temperature. Further investigation is needed to ascertain the possibility of creating such
+table. \par
 %
 \subsection{Outputs Generated}
 \label{subsec:results_outputsgenerated}
 %
-Each script ends it execution when saving all the outputs contained in table \ref{table:outputs}: it generates a set of \gls{CSV} tables ready for being analyzed by
-SPSS Program, besides creating a great amount of diagrams to support the analysis. \par
+Each script ends its execution when saving all the outputs contained in table \ref{table:outputs}: it generates a set of \gls{CSV} tables ready for being analyzed by
+SPSS Program, besides creating a great amount of CIE chromaticity diagrams to support the analysis. As referred before, questions 18 to 32 do not generate any output about
+white answers. \par
 %
-%\begin{table}[htbp]
-%  \resizebox{\textwidth}{!} {
-%  \begin{tabular} {|c|c|}
-%    \hline
-%    Tables & Diagrams \\ \hline \hline
-%    age_20_results \\ \hline
-%    age_20_29_results \\ \hline
-%    age_30_39_results \\ \hline
-%    age_40_49_results \\ \hline
-%    age_50_59_results \\ \hline
-%    age_60_results \\ \hline
-%    gender_female_results \\ \hline
-%    gender_male_results \\ \hline
-%    gender_other_results \\ \hline
-%    lab_regular_results \\ \hline
-%    lab_daltonic_results \\ \hline
-%    online_regular_results \\ \hline
-%    online_daltonic_results \\ \hline
-%    online_uncalibrated_results\\ \hline
-%    white_answers \\
-%    \hline
-%  \end{tabular}}
-%  \caption[Excerpt of Clean "Results" Table]{Excerpt of Results Table, with clean data.}
-%  \label{table:outputs}
-%\end{table}
+\begin{table}[htbp]
+  \begin{center}
+    \begin{tabular} {| c || c |}
+      \hline
+      Tables                    & Diagrams \\ \cline{1-2} \cline{1-2}
+      age\_20\_results          & \multirow{3}{*}{\begin{tabular}[c]{@{}l@{}}For each Demographic Group:\\ - RGB, HSV and CMYK Responses \\ - CIE-L*C*h* and L*a*b* Responses \end{tabular}} \\ \cline{1-1}
+      age\_20\_29\_results      &                 \\ \cline{1-1}
+      age\_30\_39\_results      &                 \\ \cline{1-2}
+      age\_40\_49\_results      & \multirow{4}{*}{\begin{tabular}[c]{@{}l@{}}For Laboratory Results:\\ - Regular and Daltonic Responses \\ - RGB, HSV and CMYK Responses \\ - CIE-L*C*h* and L*a*b* Responses \end{tabular}} \\ \cline{1-1}
+      age\_50\_59\_results      &                 \\ \cline{1-1}
+      age\_60\_results          &                 \\ \cline{1-1}
+      gender\_female\_results   &                 \\ \cline{1-2}
+      gender\_male\_results     & \multirow{5}{*}{\begin{tabular}[c]{@{}l@{}}For Online Results:\\ - Regular and Daltonic Responses \\ - Uncalibrated Responses \\ - RGB, HSV and CMYK Responses \\ - CIE-L*C*h* and L*a*b* Responses \end{tabular}} \\ \cline{1-1}
+      gender\_other\_results    &                 \\ \cline{1-1}
+      lab\_regular\_results     &                 \\ \cline{1-1}
+      lab\_daltonic\_results    &                 \\ \cline{1-1}
+      online\_regular\_results  &                 \\ \cline{1-2}
+      online\_daltonic\_results & \multirow{3}{*}{\begin{tabular}[c]{@{}l@{}}For White Answers:\\ - White Responses \\ \end{tabular}} \\ \cline{1-1}
+      online\_uncalibrated\_results &           \\ \cline{1-1}
+      white\_answers            &               \\ \cline{1-2}
+    \end{tabular}
+  \end{center}
+  \caption[Generated Outputs of Data Processing Phase]{Generated Outputs of Data Processing Phase.}
+  \label{table:outputs}
+\end{table}
 %
-To conclude this section of the dissertation, we would like to summarize how the study is characterized: how many responses \emph{per} question, from which environment they
+To conclude this section of the dissertation, we would like to summarize how the study is characterized: how many responses were given \emph{per} question, from which environment they
 came and the user sample from each demographic group. This data is summarized in table \ref{table:summarize_results}, similar to the one presented in \ref{subsec:design_core}. \par
 %
-Incluir a mesma tabela que em , com cores, mas com numero de respostas online, lab, e demo.
+\textbf{INCLUIR TABELA COM CONTAGEM.}
 %
 %
 \section{Results}
 \label{sec:results_results}
 %
-Interpretação de valores. Começar por valores de laboratório. Online serve para corroborar. \par
-Incluir tantas tabelas quantas necessárias em cada secção, adaptadas a cada secção e não standardizadas.
+In the following section, we perform a statistical analysis of the processed data obtained from the user study. The main data to be analyzed is the one obtained in the
+laboratory environment, being the online data only the corroboration of the main data. We start by drawing a profile of users who responded the survey, characterizing them as the age,
+country of residence, academic degree, along with other characteristics; after, we begin mapping answers to the questions raised in the beginning of study, also referred in section
+\ref{sec:impl_objectives}, which comprises topics about \emph{Color Mixtures}, \emph{Color Models}, \emph{Color Naming} and consider differences between \emph{demographic groups}. \par
+%
+By the end, we are going to discuss the results of the analysis and consider eventual consequences for \gls{InfoVis} field of research. \par
 %
 \subsection{User Profile}
 \label{subsec:results_userprofile}
+%
+Idades, países, linguas, generos, ecrãs onde realizaram o estudo, grau académico
 %
 \subsection{Color Mixtures}
 \label{subsec:results_colormixtures}

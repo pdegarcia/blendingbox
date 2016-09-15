@@ -8,8 +8,25 @@
 Remember the objectives. \\
 Referir HSL com hue variante, e SL com parametros maximos. \\
 Estabelecer questões claras e perguntas que necessitam de resposta, para nos resultados serem mapeados com respostas. \\
-Tipo: Q1: ...
+Tipo: Q1: ... \par
+%
+\textbf{APROVEITAR...} \par
+%
+As previously referred, only a set of questions is answered in our research. The \textbf{goals for the User Study} are as follows:
+%
+\begin{itemize}
+	\item Study one way to present color which does not influence color perception.
+  \item Understand if there is any psychological organization of color, when detailing color mixtures' components.
+  \item If possible, obtain results to ascertain the cultural influence in color perception.
+  \item Study the influence of discrete and continuous color scales.
+\end{itemize}
+%
+Additionally, it is relevant to understand which color model stands as the best to mix colors which are, from a perceptual point of view, more similar to the users expectation. \par
 
+We have planned to develop this study in three different strands: in a \textbf{Laboratory Environment} (which will allow us to calibrate and perfectly control the entire study conditions), in an \textbf{Online Environment} (which will allow us to disseminate our study to a larger set of users, even without controlling the calibration of the testing environment) and, finally, using \textbf{Mechanical Turk Environment} (Amazon's worldwide crowdsourcing marketplace to perform Human Intelligence Tasks, which we would use in order to acquire a huge set of users, even though we can be dealing with speed-clicker users and letting go almost all environmental control). \par
+%
+To meet these study requirements, we drafted our study into three different phases: a \textbf{User Profiling Phase}, a \textbf{Calibration Phase}, a \textbf{Color Deficiency Test Phase} and finally, the \textbf{Core Phase}. In the following sections, we detail each of these sections. \par
+%
 \section{Designing the Solution}
 \label{sec:impl_designingsolution}
 Design the implementation, talk about the process ever since wireframing, through the mapping of concepts between
@@ -26,8 +43,38 @@ e convertida de acordo com perfil de calibração.
 \subsection{User Profiling Phase}
 \label{subsec:design_profiling}
 %
+\textbf{FALTA TEXTO AQUI...} \par
+%
+In this phase of the study, questions about the Age, Gender, Academic Degree, Nationality, Country of Residence and the Native Language of the user should be asked: these questions will help us conceiving user profiles with key indicators about cultural background and gender relation to results of each test. \par
+%
+\textbf{\underline{\emph{(... ACRESCENTAR AQUI MAIS INFOS RELEVANTES ...)}}} \par
+%
+When this phase is concluded, the user will be guided to another stage of the study, to perform the \textbf{Calibration Phase}, where he will be asked to analyze a set of images and answer a pair of questions. \par
+%
 \subsection{Testing Calibration Phase}
 \label{subsec:design_calibration}
+%
+Performing online tests - specially when trying to obtain precise values about color - carries obvious problems on how it is guaranteed the results which may appear are, in fact, compliant with certain patterns of
+quality, specially color and monitor calibration patterns. \par
+%
+To overcome this problem, the ideal solution is to develop a system capable of acquiring information about the user's monitor calibration, \emph{e.g.} Brightness, Contrast, RGB Color Balance, Gamma or Saturation, as a pre-step of the study and apply an appropriate calibration when rendering the study's main page. Since we have not found a way to tackle this solution so far, we developed another solution: to present, as pre-step, some calibration images in which the user will have to perform a set of small tasks, indicating us a set of answers; in the end of the test, we have to analyze the answers to verify if they are compliant with a certain pattern of calibration acceptability, determining if the answers of a certain user can be considered true and not misleading. \par
+%
+\begin{figure}[!ht]
+	\centering
+  \includegraphics[width=0.35\textwidth]{images/blacktest_example.png}
+  \caption[Black Squares Test]{Example of Black Squares Test.\protect\footnotemark{}}
+  \label{fig:blacktest_example}
+\end{figure}
+\footnotetext{"Black Level", Available at: \url{www.lagom.nl/lcd-test/black.php}. Last accessed on September 7th, 2016.}
+%
+We will present to the user a \textbf{pair of images}, consisting of a set of 10 squares each; in the first of them, we will test the black level of user's monitor, showing each square with a different shade of black, from brighter ones (Square 1) to darker ones (Square 10). The user is, then, asked to express which square is the last, most perceivable, darker square, and point out the word which follows it. The second image has the same job as the first one, except that this rules out the white-level of the monitor and the ten squares present different tones of white. An example of this sort of test is presented in Figure \ref{fig:blacktest_example}. The results of this phase are recorded for further analysis when the study finishes. \par
+%
+Regarding the laboratory environment, we are going to conduct the user tests in a LCD monitor, under a fixed light source; the monitor will be calibrated
+using a colorimeter which will consider the existing light in the environment and adjust the color of each pixel to a standard. The user will be focused on
+the task and no other user will be present in the room at the same time, excluding the study regulator; the user will have a fully detailed test protocol to
+follow.
+%
+\textbf{\underline{\emph{(... FALTA TEXTO AQUI ...)}}}
 %
 Referir limitação descoberta entre Chrome Safari
 %
