@@ -12,7 +12,9 @@ it for the statistical scrutiny (Section \ref{sec:results_digest}). Hereafter, c
 %
 The final section of this chapter will be dedicated to summarize the results and infer important conclusions, implications and guidelines which
 could be relevant for the InfoVis field of research.
-%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                PROTOCOL                                                                         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Protocol}
 \label{sec:results_protocol}
 %
@@ -71,20 +73,23 @@ feedback, by sending a message which would be stored in a Relational Database. \
 %
 The instructions which were presented in each page can be consulted in Appendix \ref{appendix:protocol}. \par
 %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                DATA CLEANING                                                                    %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Data Cleaning}
 \label{sec:results_datacleaning}
 %
-Throughout the user study, we collected a \textbf{total amount of four-hundred and seventy-nine (479) users} which interacted with our study and fulfilled,
-at least, until the Color Vision Deficiencies Test Phase. However, only \textbf{two-hundred and sixty-one (261) users went on to the core phase of the study},
-representing \textbf{54.48\%} of the total amount, giving at least one answer on the set of 32 questions, loosing the other two hundred and eighteen
-(218) users which did not leave any answer, defining the remaining percentage \textbf{45.52\%}. This large drop of users could be due to errors
+Throughout the user study, we collected a \textbf{total amount of four-hundred and seventy-nine (477) users} which interacted with our study and fulfilled,
+at least, until the Color Vision Deficiencies Test Phase. However, only \textbf{two-hundred and sixty-one (259) users went on to the core phase of the study},
+representing \textbf{54.29\%} of the total amount, giving at least one answer on the set of 32 questions, loosing the other two hundred and eighteen
+(218) users which did not leave any answer, defining the remaining percentage \textbf{45.71\%}. This large drop of users could be due to errors
 reported by the users, apparently the inability to submit answers when using the "Submit" button after rating the question; there were also some complaints
 when users tried to perform the study in some mobile devices (namely, the \emph{iPhone\textsuperscript{\textregistered} 6}), whereon the color slider was
 not able to be dragged and change the color value at the user will. \par
 %
-Concerning the percentage of users which showed up at the \textbf{laboratory trials, there were twenty-nine (29) users who performed the entire study}.
-On the other hand, there were \textbf{two-hundred and thirty-two (232) users which carried out the study online}. There was also a small sample of color vision
-deficient users which we will analyze in a qualitative manner; this set of users contains only one (1) user from the Laboratory Environment - \textbf{3.44\%} of
+Concerning the percentage of users which showed up at the \textbf{laboratory trials, there were twenty-nine (28) users who performed the entire study}.
+On the other hand, there were \textbf{two-hundred and thirty-two (231) users which carried out the study online}. There was also a small sample of color vision
+deficient users which we will analyze in a qualitative manner; this set of users contains only one (1) user from the Laboratory Environment - \textbf{3.57\%} of
 the sample size - and two (2) online users - \textbf{less than 1\%}. Lastly, we detected a small percentage of \textbf{six (6) users (2.59\%) which did not
 presented a correct calibration of its LCD display}, evaluation based on the criteria referred before.
 %
@@ -185,7 +190,9 @@ to pre-calculated answers and depict results in a CIE Chromaticity Diagram. More
   \caption[Excerpt of Clean "Results" Table]{Excerpt of Results Table, with clean data.}
   \label{table:csv_resultsclean}
 \end{table}
-%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                              DATA PROCESSING                                                                    %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Data Processing}
 \label{sec:results_digest}
 %
@@ -308,8 +315,9 @@ and they also produced a huge file comprised of 196 608 named \gls{RGB} triplets
   \label{fig:colornames_xkcd}
 \end{figure}
 %
-Despite being not a research realized with a scientific purpose, we decided to use it since it has plenty of information available to compare our results to, and it was executed with a great amount of users
-which can verify it. As said, these represent \gls{RGB} triplets but, being our user results all in accordance with the CIE XYZ Color Model, we needed some cleaning and processing to match the data our
+Despite the fact XKCD's Color Survey was not a research realized with a scientific purpose, we decided to use it since it has plenty of information available to compare our results to, and it was executed with a great amount of users
+which can verify it. We also found great compatibility between this survey and ours, since the values in the first were also presented in its maximum value of saturation (similar to our user study, in which we present colors in maximum hue).  \par
+As said, these represent \gls{RGB} triplets but, being our user results all in accordance with the CIE XYZ Color Model, we needed some cleaning and processing to match the data our
 responses. We \ul{converted the RGB to CIE XYZ values} and, then, \ul{divided all of the Color Bins in different tables}; there are 27 names atributted to colors, some have more triplets
 (\emph{e.g.} blue, green or purple), but some have a smaller set, which could mean greater agreement to assign names to colors. These bins of color are represent with their frequencies, in table
 \ref{table:colorbins}. \par
@@ -345,11 +353,6 @@ of the comparations, each color bin was drawn and the lowest polygon formed by t
 with every triplet). Moreover, when processing these sets of RGB triplets, we left 3 color bins out of the game: \emph{Black} since it has no expressivity in the Chromaticity Diagram,
 \emph{Dark-Red} and \emph{Light-Green} because they have very few triplets to be drawn. \par
 %
-However, we expected that when these color bins were drawn on a chromaticity diagram, they would create independent and more comprehensive shapes: we found that there are overlapping
-values for some color bins (Figure \ref{fig:colorbins_areas}), which ultimately complicates the analysis because there is more than one possible name for the same color. For example, \emph{Blue} and \emph{Dark-Blue}
-share 5 triplets: (0,0,76), (0,0,77), (0,0,78), (0,0,79) and (0,0,80); \emph{Green} and \emph{Dark-Green} share only 1 triplet, (0,57,0). No value was excluded from any color bin,
-instead we solve the problem by allowing the program to find only one of the names and look no more after finding it. \par
-%
 \begin{figure}
   \centering
   \begin{minipage}{0.54\textwidth}
@@ -365,6 +368,20 @@ instead we solve the problem by allowing the program to find only one of the nam
     \label{fig:cie_colorregions}
   \end{minipage}
 \end{figure}
+%
+However, we expected that when these color bins were drawn on a chromaticity diagram, they would create independent and more comprehensive shapes: we found that there are overlapping
+values for some color bins (Figure \ref{fig:colorbins_areas}), which ultimately complicates the analysis because there is more than one possible name for the same color. For example, \emph{Blue} and \emph{Dark-Blue}
+share 5 triplets: (0,0,76), (0,0,77), (0,0,78), (0,0,79) and (0,0,80); \emph{Green} and \emph{Dark-Green} share only 1 triplet, (0,57,0). No value was excluded from any color bin,
+instead we solve the problem by allowing the program to find only one of the names and look no more after finding it. Moreover, the shapes created by each color bin can be depicted as \textbf{lines}
+if they present contiguous values in the same edge of the triangle, or as \textbf{triangles} if the values are near the corner of the triangle and are distributed along two edges. The late situation is
+represented in Figure \ref{fig:colorbins_triangle}\par
+%
+\begin{figure}
+  \centering
+  \includegraphics[width=0.8\textwidth]{images/colorbins_transformation.png}
+  \caption[XKCD Color Survey: Color Bins Transformation]{XKCD Color Survey: Color Bins Transformation from line of points, to minimum polygon.}
+  \label{fig:colornames_xkcd}
+\end{figure} \par
 %
 Alternatively, we could have opted for another kind of color name detection, but its implementation would be out of the scope of this Master thesis and would take a much longer
 analysis than the one performed. For instance, one could have gone for identifying the colors by analyzing their values and processing the wavelength originated, comparing the resulting
@@ -407,13 +424,9 @@ white answers. \par
   \caption[Generated Outputs of Data Processing Phase]{Generated Outputs of Data Processing Phase.}
   \label{table:outputs}
 \end{table}
-%
-To conclude this section of the dissertation, we would like to summarize how the study is characterized: how many responses were given \emph{per} question, from which environment they
-came and the user sample from each demographic group. This data is summarized in table \ref{table:summarize_results}, similar to the one presented in \ref{subsec:design_core}. \par
-%
-\textbf{INCLUIR TABELA COM CONTAGEM.}
-%
-%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                   RESULTS                                                                       %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Results}
 \label{sec:results_results}
 %
@@ -422,12 +435,50 @@ laboratory environment, being the online data only the corroboration of the main
 country of residence, academic degree, along with other characteristics; after, we begin mapping answers to the questions raised in the beginning of study, also referred in section
 \ref{sec:impl_objectives}, which comprises topics about \emph{Color Mixtures}, \emph{Color Models}, \emph{Color Naming} and consider differences between \emph{demographic groups}. \par
 %
-By the end, we are going to discuss the results of the analysis and consider eventual consequences for \gls{InfoVis} field of research. \par
+By the end of this chapter, we are going to discuss the results of the analysis and consider eventual implications for \gls{InfoVis} field of research. The following table \ref{table:summarize_results}
+summarizes how the study is characterized: how many responses were given \emph{per} question, from which environment they came and the user sample from each demographic group. \par
+%
+\textbf{INCLUIR TABELA COM CONTAGEM.}
 %
 \subsection{User Profile}
 \label{subsec:results_userprofile}
 %
-Idades, países, linguas, generos, ecrãs onde realizaram o estudo, grau académico
+As previosuly said on section \ref{sec:results_datacleaning}, we gathered a total amount of 259 users with, at least, one valid answer: from the laboratory environment
+we collected 28 users, and 231 from the online strand. All of these users gave valid answers along the Profiling, Calibration and Color Deficiencies Tests Phases: the information collected
+in the Profiling page is the most important to compose a user profile. \par
+Recalling section \ref{subsec:design_profiling}, we stablished that the most important informations to collect were the \emph{age}, the \emph{gender}, \emph{academic degree},
+\emph{nationality} and \emph{country of residence}, as well as the \emph{native language} of each user. The table \ref{table:profiling_genderacademic} represents the frequencies of genders, ages and
+academic degrees. \par
+%
+\begin{table}[htbp]
+  \resizebox{\textwidth}{!} {
+    \begin{tabular}{| l || c || c | c | c | c | c | c || c | c | c || c | c | c | c | c | c |}
+      \hline
+      \multicolumn{1}{|c||}{\multirow{2}{*}{Environment}} & \multirow{2}{*}{Users} & \multicolumn{6}{c||}{Ages}                                                           & \multicolumn{3}{c||}{Gender} & \multicolumn{6}{c|}{Academic Degree}                          \\ \cline{3-17}
+      \multicolumn{1}{|c||}{}                             &                        & {[}0; 20{[} & {[}20; 29{]} & {[}30;39{]} & {[}40;49{]} & {[}50;59{]} & {[}60;100{]} & Female   & Male   & Other   & College & High-School & Bachelor & Master & Doctor & NoDegree \\ \hline
+      Laboratory                                         &                        &             &              &             &             &             &              &          &        &         &         &             &          &        &        &          \\ \hline
+      Online                                             &                        &             &              &             &             &             &              &          &        &         &         &             &          &        &        &          \\ \hline \hline
+      Total                                              & 259                    & 37          & 162          & 20          & 19          & 12          & 8            & 105      & 152    & 2       & 38      & 47          & 92       & 74     & 5      & 3        \\ \hline
+    \end{tabular}}
+  \caption[Results: Profiling Information (Gender and Academic)]{Results: Profiling Information (Gender and Academic)}
+  \label{table:profiling_genderacademic}
+\end{table}
+%
+\begin{table}[htbp]
+  \resizebox{\textwidth}{!} {
+  \begin{tabular}{| l || c || c | c | c | c | c | c || c | c | c | c | c | c || c | c | c |}
+    \hline
+    \multicolumn{1}{|c||}{\multirow{2}{*}{Environment}} & \multirow{2}{*}{Users} & \multicolumn{6}{c||}{Nacionality} & \multicolumn{6}{c||}{Country of Residence} & \multicolumn{3}{c|}{Languages} \\ \cline{3-17}
+    \multicolumn{1}{|c||}{}                             &                        & CA  & ES & PT & UK & US & Others & CA   & DE   & GB   & PT   & US  & Others  & PT      & EN      & Others     \\ \hline
+    Laboratory                                         &                        &     &    &    &    &    &        &      &      &      &      &     &         &         &         &            \\ \hline
+    Online                                             &                        &     &    &    &    &    &        &      &      &      &      &     &         &         &         &            \\ \hline \hline
+    Total                                              & 259                    & 5   & 3  & 215& 7  & 11 & 18     & 5    & 3    & 9    & 217  & 11  & 14      & 216     & 29      & 14         \\ \hline
+  \end{tabular}}
+  \caption[Results: Profiling Information (Nationalities, Countries of Residence and Languages)]{Results: Profiling Information (Nationalities, Countries of Residence and Languages)}
+  \label{table:profiling_nacionalities}
+\end{table}
+%
+
 %
 \subsection{Color Mixtures}
 \label{subsec:results_colormixtures}
@@ -442,14 +493,25 @@ misturas para uma mesma cor.
 \subsection{Color Naming}
 \label{subsec:results_namingcolors}
 %
-Cores mais comuns em algumas perguntas; existe alguma ordem caracteristica quando utilizador especifica uma mistura?
+Cores mais comuns em algumas perguntas; existe alguma ordem caracteristica quando utilizador especifica uma mistura? \\
+Comparar se, mais do que pelos valores anteriormente calculados, se users identificam "uma mistura de vermelho com azul" como dando um resultado
+magenta, ou mais afinado para uma dada cor.
 %
 \subsection{Demographic Groups}
 \label{subsec:results_demographic}
-
+%
+Fazer apenas comparação de faixas etárias entre si, e géneros entre si. \\
+Uma ánalise interesse seria comparar faxias etárias por género, mas seria necessária uma amostra bastante mais significativa para cada grupo.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                DISCUSSION                                                                       %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
 \section{Discussion}
 \label{sec:results_discussion}
-
+%
+Fazer apanhado dos resultados todos. \par
+%
 \subsection{Calibration Resiliency}
 \label{subsec:results_calibration}
 %
