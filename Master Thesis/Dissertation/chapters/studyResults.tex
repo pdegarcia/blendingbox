@@ -455,14 +455,20 @@ academic degrees. \par
     \begin{tabular}{| l || c || c | c | c | c | c | c || c | c | c || c | c | c | c | c | c |}
       \hline
       \multicolumn{1}{|c||}{\multirow{2}{*}{Environment}} & \multirow{2}{*}{Users} & \multicolumn{6}{c||}{Ages}                                                           & \multicolumn{3}{c||}{Gender} & \multicolumn{6}{c|}{Academic Degree}                          \\ \cline{3-17}
-      \multicolumn{1}{|c||}{}                             &                        & {[}0; 20{[} & {[}20; 29{]} & {[}30;39{]} & {[}40;49{]} & {[}50;59{]} & {[}60;100{]} & Female   & Male   & Other   & College & High-School & Bachelor & Master & Doctor & NoDegree \\ \hline
-      Laboratory                                         &                        &             &              &             &             &             &              &          &        &         &         &             &          &        &        &          \\ \hline
-      Online                                             &                        &             &              &             &             &             &              &          &        &         &         &             &          &        &        &          \\ \hline \hline
-      Total                                              & 259                    & 37          & 162          & 20          & 19          & 12          & 8            & 105      & 152    & 2       & 38      & 47          & 92       & 74     & 5      & 3        \\ \hline
+      \multicolumn{1}{|c||}{}                             &                        & {[}0; 20{[} & {[}20; 29{]} & {[}30;39{]} & {[}40;49{]} & {[}50;59{]} & {[}60;90{]} & Female   & Male   & Other   & College & High-School & Bachelor & Master & Doctor & NoDegree \\ \hline
+      Laboratory                                         & 28                     & 0           & 17           & 5           & 3           & 1           & 2            & 10       & 18     & 0        & 0       & 5           & 13       & 10     & 0      & 0        \\ \hline
+      Online                                             & 231                    & 38          & 145          & 15          & 16          & 11          & 6            & 95       & 134    & 2        & 38      & 42          & 79       & 64     & 5      & 3        \\ \hline \hline
+      Total                                              & 259                    & 38          & 162          & 20          & 19          & 12          & 8            & 105      & 152    & 2        & 38      & 47          & 92       & 74     & 5      & 3        \\ \hline
     \end{tabular}}
   \caption[Results: Profiling Information (Gender and Academic)]{Results: Profiling Information (Gender and Academic)}
   \label{table:profiling_genderacademic}
 \end{table}
+%
+As seen above, our user sample is composed by 259 (100\%) users, being \textbf{105 (40.5\%) Females}, \textbf{152 (58.7\%) Males} and a minority of \textbf{2 (0.8\%) Other gendered users}: this sample age can
+be characterized as being generally young ($\mu =$ 29.77, $\overline{X_{Age}} =$ 23, $\sigma =$ 40.30), surprinsigly having \textbf{8 users (3.09\%) aged above 60 years old} which could enhance some interesting
+differences between age groups. Generally, our users have hight academic qualifications, representing \textbf{66.02\% of all users (Bachelor, Master and Doctoral Degrees)}, being \textbf{38 (14.67\%) users
+qualified with College degree}, \textbf{47 (18.15\%) have a High-School degree} and only \textbf{3 (1.16\%) subjects do not presented any academic degree}. Between the laboratory and online environment, the distribution
+of users remains with the same proportions: more male users than females, mostly aged between 20 and 29 years old (60.71\%) and the majority having a superior academic degree (46.43\% BSc and 35.71\% MSc). \par
 %
 \begin{table}[htbp]
   \resizebox{\textwidth}{!} {
@@ -470,25 +476,37 @@ academic degrees. \par
     \hline
     \multicolumn{1}{|c||}{\multirow{2}{*}{Environment}} & \multirow{2}{*}{Users} & \multicolumn{6}{c||}{Nacionality} & \multicolumn{6}{c||}{Country of Residence} & \multicolumn{3}{c|}{Languages} \\ \cline{3-17}
     \multicolumn{1}{|c||}{}                             &                        & CA  & ES & PT & UK & US & Others & CA   & DE   & GB   & PT   & US  & Others  & PT      & EN      & Others     \\ \hline
-    Laboratory                                         &                        &     &    &    &    &    &        &      &      &      &      &     &         &         &         &            \\ \hline
-    Online                                             &                        &     &    &    &    &    &        &      &      &      &      &     &         &         &         &            \\ \hline \hline
+    Laboratory                                         & 28                     & 0   & 0  & 27 & 1  & 0  & 0      & 0    & 0    & 0    & 28   & 0   & 0       & 28      & 0       & 0          \\ \hline
+    Online                                             & 231                    & 5   & 3  & 188& 6  & 11 & 18     & 5    & 3    & 9    & 189  & 11  & 14      & 188     & 29      & 14         \\ \hline \hline
     Total                                              & 259                    & 5   & 3  & 215& 7  & 11 & 18     & 5    & 3    & 9    & 217  & 11  & 14      & 216     & 29      & 14         \\ \hline
   \end{tabular}}
   \caption[Results: Profiling Information (Nationalities, Countries of Residence and Languages)]{Results: Profiling Information (Nationalities, Countries of Residence and Languages)}
   \label{table:profiling_nacionalities}
 \end{table}
 %
-
+The table \ref{table:profiling_nacionalities} depicts nationalities, current countries of residence and native languages spoken by our users. From the 259 (100\%) participant users,
+\textbf{215 (83.01\%) of them have Portuguese nationality}, \textbf{217 (83.78\%) live in Portugal} currently and \textbf{216 (83.40\%) speak Portuguese}; the second most influent group of users are from english-speaking
+countries (United Kingdom, United States of America, and others). Other minor users which contributed to our survey came from Turkey, France, New Zealand, Sweden or even Antarctica (among others) -
+\textbf{these countries represent only 5.41\%}. An ideal distribution of users would be such that it included enough users from all continents, which would give us room to investigate better the cultural
+implications on the results; another interesting aspect would be to have the users of non-industrialized countries included in the sample, which was not accomplished in this study since an isolated vietnamese
+user (0.39\% of the user sample) contributed to the study.
+%
+\subsection{Color Models}
+\label{subsec:results_colormodels}
+%
+In this subsection, we analyze the results and give answers to color models' related questions, set on section \ref{sec:impl_objectives}. Along with the statistics we are going to present, we will map them against the those
+questions, clearly identifying them whenever they are answered. \par
+%
+Dentro das perguntas com maior sucesso, que outros modelos apresentam bons resultados?
 %
 \subsection{Color Mixtures}
 \label{subsec:results_colormixtures}
 %
+Regarding the color mixtures' related questions, we would like to make the following analysis. We asked at \ref{sec:impl_objectives} ... \par
+%
 Fazer também mistura mais fácil, comparando os ratings das questões e ver qual a mistura que apresenta melhores resultados. \\
 Comparar misturas que originam a mesma cor, com base em primárias diferentes e perceber se utilizadores conseguem detectar várias
 misturas para uma mesma cor.
-%
-\subsection{Color Models}
-\label{subsec:results_colormodels}
 %
 \subsection{Color Naming}
 \label{subsec:results_namingcolors}

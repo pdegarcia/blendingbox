@@ -1,0 +1,30 @@
+questions_v2:
+
+Q1: Qual o modelo de cor que, informalmente, os utilizadores utilizaram para indicar as respostas? - COLOR MODELS
+    __Analisar pergunta a pergunta as distâncias dos centróides das respostas em cada modelo, à ideal
+    __Analisar que perguntas tiveram distâncias menores, para cada modelo. Relacionar com as cores que eram dadas/esperadas, e analisar que modelos foram mais usados
+    __Analisar que perguntas tiveram distâncias maiores, para cada modelo. Relacionar com as cores que eram dadas/esperadas, e analisar que modelos foram mais usados
+    __Analisar as perguntas em pares: para cada pergunta do tipo "A = B + C", perceber se o seu equivalente "B + C = A" também gera resultados semelhantes
+    __Verificar se modelos com melhores resultados são aditivos ou subtrativos
+    __No caso de ser o modelo HSV com melhores resultados, verificar se as cores estão dispostas de forma oposta ou não
+    __Analisar se para as cores primárias R,G,B,C,M,Y, existem evidências de que os utilizadores conseguem criar as mesmas tendo por base de mistura outras cores primárias
+    __Analisar se existe discretização elevada dos valores das respostas
+
+Q2: Para cada pergunta, existe uma cor preferida para se iniciar a mistura? - COLOR MIXTURE
+    __Se sim, qual?
+    __Cor clara ou escura
+
+Q3: Quantos pares de resposta contemplavam apenas uma resposta? 
+    __De que forma foi usada a ausência de cor: para dissilver a cor e torná-la mais clara, ou para indicar ausência de conhecimento?
+
+Q4: Existem evidências de diferenças de resultados entre grupos demográficos?
+    __Em relação às faixas etárias definidas
+    __Em relação àos géneros definidos
+    __Em relação às nacionalidades obtidas na amostra
+
+Q5: Qual foi, no geral, a facilidade de mistura? Quais foram as perguntas que apresentaram maior e menor nível de facilidade?
+    __Analisar pergunta a pergunta
+    __Analisar para o estudo em geral
+
+Q6: Existem evidências de uma elevada dispersão na atribuição de nomes para uma dada resposta?
+    __Perceber se nomes em alto nivel, são coerentes com valores recolhidos para a dispersão na Q1.
