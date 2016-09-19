@@ -495,9 +495,62 @@ user (0.39\% of the user sample) contributed to the study.
 \label{subsec:results_colormodels}
 %
 In this subsection, we analyze the results and give answers to color models' related questions, set on section \ref{sec:impl_objectives}. Along with the statistics we are going to present, we will map them against the those
-questions, clearly identifying them whenever they are answered. \par
+questions, clearly identifying them whenever they are answered. We would like to emphasize that the important results are the ones collected in the laboratory environment: the online results will bridge and support the conclusions
+extracted from the laboratory conditions. \par
 %
-Dentro das perguntas com maior sucesso, que outros modelos apresentam bons resultados?
+\begin{table}[htbp]
+  \resizebox{\textwidth}{!} {
+  \begin{tabular}{| c | c | c | c | c | c || c | c | c | c | c | c |}
+    \hline
+    ID & HSV  & CIE-L*C*h* & CMYK & RGB  & CIE-L*a*b* & \multicolumn{1}{l|}{ID} & \multicolumn{1}{l|}{HSV}  & \multicolumn{1}{l|}{CIE-L*C*h} & \multicolumn{1}{l|}{CMYK} & \multicolumn{1}{l|}{RGB}  & CIE-L*a*b* \\ \hline \hline
+    1  & 0.06 & 0.17       & 0.06 & 0.08 & 0.09       & \multicolumn{1}{l|}{10} & \multicolumn{1}{l|}{0.23} & \multicolumn{1}{l|}{0.25}      & \multicolumn{1}{l|}{0.01} & \multicolumn{1}{l|}{0.03} & 0.05       \\ \hline
+    2  & 0.09 & 0.13       & 0.06 & 0.09 & 0.09       & \multicolumn{1}{l|}{11} & \multicolumn{1}{l|}{0.03} & \multicolumn{1}{l|}{0.13}      & \multicolumn{1}{l|}{0.13} & \multicolumn{1}{l|}{0.27} & 0.13       \\ \hline
+    3  & 0.04 & 0.22       & 0.04 & 0.06 & 0.07       & \multicolumn{1}{l|}{12} & \multicolumn{1}{l|}{0.05} & \multicolumn{1}{l|}{0.23}      & \multicolumn{1}{l|}{0.12} & \multicolumn{1}{l|}{0.14} & 0.16       \\ \hline
+    4  & 0.07 & 0.18       & 0.19 & 0.24 & 0.18       & \multicolumn{1}{l|}{13} & \multicolumn{1}{l|}{0.17} & \multicolumn{1}{l|}{0.14}      & \multicolumn{1}{l|}{0.18} & \multicolumn{1}{l|}{0.18} & 0.12       \\ \hline
+    5  & 0.09 & 0.22       & 0.12 & 0.1  & 0.1        & \multicolumn{1}{l|}{14} & \multicolumn{1}{l|}{0.1}  & \multicolumn{1}{l|}{0.27}      & \multicolumn{1}{l|}{0.06} & \multicolumn{1}{l|}{0.13} & 0.09       \\ \hline
+    6  & 0.05 & 0.1        & 0.05 & 0.07 & 0.04       & \multicolumn{1}{l|}{15} & \multicolumn{1}{l|}{0.06} & \multicolumn{1}{l|}{0.3}       & \multicolumn{1}{l|}{0.5}  & \multicolumn{1}{l|}{0.09} & 0.11       \\ \hline
+    7  & 0.15 & 0.18       & 0.05 & 0.03 & 0.04       & \multicolumn{1}{l|}{16} & \multicolumn{1}{l|}{0.1}  & \multicolumn{1}{l|}{0.2}       & \multicolumn{1}{l|}{0.07} & \multicolumn{1}{l|}{0.08} & 0.04       \\ \hline
+    8  & 0.08 & 0.15       & 0.03 & 0.02 & 0.05       & \multicolumn{1}{l|}{17} & \multicolumn{1}{l|}{0.05} & \multicolumn{1}{l|}{0.16}      & \multicolumn{1}{l|}{0.03} & \multicolumn{1}{l|}{0.08} & 0.07       \\ \hline
+    9  & 0.05 & 0.15       & 0.09 & 0.09 & 0.1        &                         &                           &                                &                           &                           &            \\ \hline
+  \end{tabular}}
+  \caption[Laboratory Results: Centroids of Results Mixed in each Color Model]{Laboratory Results: Centroids of Results Mixed in each Color Model, for each question.}
+  \label{table:colormodels_centroids}
+\end{table}
+%
+As referred before, each answer pair given from our users on questions 1 to 17 (type \emph{objTwoColors}) was blendend in 5 color models: HSV, CIE-L*C*h*, CMYK, RGB and CIE-L*a*b*. Then, the XY coordinates of each resulting
+mixture were mapped on a CIE Chromaticity Diagram, the centroids of each group of mixtures was calculated, and the distance from each centroid to the (ideal) pre-calculated answer was measured. The table \ref{table:colormodels_centroids}
+represents the distance measured associated to each color model, for every laboratory result. \par
+%
+Considering an alpha of 0.05 when running the \emph{Kolmogorov-Smirnov} and \emph{Shapiro-Wilk} Normality Tests, both CIE-L*C*h* ($sig_{ks} =$ 0.200, $sig_{sw} =$ 0.430) and CIE-L*a*b* ($sig_{ks} =$ 0.200, $sig_{sw} =$ 0.221) present a
+normal distribution. Analyzing the responses for each color model, the one which presented the lowest distances was the CMYK Color Model ($\tilde{x}_{CMYK} = $ 0.06), followed by HSV ($\tilde{x}_{HSV} = $ 0.07), RGB and CIE-L*a*b* with the
+same values ($\tilde{x}_{RGB} = $ 0.09 and $\mu_{Lab} = $ 0.09), being CIE-L*C*h the model which has the highest calculated distances ($\mu_{LCh} = $ 0.1812). However, the color model which has the highest variance of answers is the
+CMYK ($\sigma^2_{CMYK} = $ 0.013), opposed to the CIE-L*a*b* ($\sigma^2_{Lab} = $ 0.002): this may mean that, aside from having indicated closer mixtures to the desired one, users scattered more their answers when compared to the late color model. \par
+%
+Breaking down the results according to Color Models \emph{per} question, we obtain the following results: \par
+%
+\begin{itemize}
+  \item \textbf{HSV Color Model Blendings} - The questions which have shorter distances are (in this order) number 11 (\textbf{0.03}), 3 (\textbf{0.04}), 6, 9, and 17 (all with \textbf{0.05}) and, lastly, question 15 (\textbf{0.06}): the majority
+  of the cited questions presented a \ul{green color} and asked the user to indicate with colors did generate that particular shade. In the opposite strand, the questions with larger distances are (in this order) number 10 (\textbf{0.23}),
+  13 (\textbf{0.17}), 7 (\textbf{0.15}), 14 and 16 (both \textbf{0.1}), 2 and 5 (both \textbf{0.09}): interestingly, all these questions have colors in \ul{different shades of blue or purple}, which could relate to the lacking human capability
+  of accurately distinguish differentes tones of blue.
+  \item \textbf{CIE-L*C*h Color Model Blendings} - The questions which have best results are number 6 (\textbf{0.1}), 5 (\textbf{0.12}), 2 and 11 (\textbf{0.13}), 13 (\textbf{0.14}), 8 and 9 (\textbf{0.15}); contrary, question 15, question 14,
+  question 10, question 12 and question 3 have the lowest scores. Curiously, the best results from this color model are from questions which present \ul{red, pink and derived colors like orange}, while the weakest results came from a mix of
+  questions which present green shades and blue derived ones, similar to HSV.
+  \item \textbf{CMYK Color Model Blendings} - As we are about to express, the CMYK is one the color model which gathers the broadest type of results: while in some of the previous color models, the best and worst answers are concentrated on
+  specific ranges of colors, the results for this model are spread across the main primitives yellow, magenta and green, red, blue shades and purples. The shorter distances are on questions 1, 8, 17, 3, 6, 7, 1, and 2, while the longer are on questions 15, 4, 13, 11, 12 and 5.
+  \item \textbf{RGB Color Model Blendings} - Results from RGB centroids are quite similar to CMYK results, which is no surprise since they are relatively similar opposite models and explained on the theorical background of this document.
+  The shorter distances are on questions 8, 7, 10, 6, 3, 1, 16 and 17 while the longer are on questions 11, 4, 13, 11, 12 and 14.
+  \item \textbf{CIE L*a*b* Color Model Blendings} - This color model is the one, by far, which builds more consensus, since there are much more questions which present the smallest number of weak (longer) distances to the ideal answer pair.
+  The shorter distances questions are on questions 6, 7, 16 (all with \textbf{0.04}), 8 and 10 (both \textbf{0.05}), 3 (\textbf{0.07}), 1, 2 and 14 (all with \textbf{0.09}) and, finally, 5 and 9 (\textbf{0.1}); while the longer are on questions
+  4, 12, 11, 13 and 15.
+\end{itemize}
+%
+incluir diagramas! \\
+falar de questões que originaram mais frequentemente melhores resultados e piores, para extrair as cores dos mesmos. \par
+abordar questão de que modelos originaram melhores respostas, se são aditivos ou subtrativos. \\
+verificar adicionalmente para o modelo HSV, qual a disposição das cores no circulo de cores. \\
+fazer analise concreta das questões 1, 2, 7, 8 e 17, que são as primitivas. perceber se resultados são positivos para a geração de primitivas com base noutras. \\
+tentar fazer uma análise dos resultados, para perceber se há muita discretização. \\
 %
 \subsection{Color Mixtures}
 \label{subsec:results_colormixtures}
