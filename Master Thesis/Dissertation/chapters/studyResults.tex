@@ -1,6 +1,6 @@
 %!TEX root = ../dissertation.tex
 
-\chapter{Color Mixing Perception: Analyzing Results}
+\chapter{Analyzing Color Mixing Perception}
 \label{chapter:results}
 %
 In this section, we are going to dive into the results obtained from the user study described on chapter number \ref{chapter:design}.
@@ -291,8 +291,8 @@ blended in HSV are \textbf{compared to the expected color pairs of other questio
 than the one expected for that question. To end this comparisons, the centroids of each set of colors mixed in every color model are calculated, along with its distance to the expected
 pre-calculated answer. \par
 %
-This computation is applied to all questions from 1 to 17, type "objTwoColors" (one color given and two answers expected). However, there are some differences when processing
-data from questions 18 to 32, which are questions of type "twoColorsObj" (two colors given and one answer expected), which implies a much simpler analysis due to only have to
+This computation is applied to all questions from 1 to 17, when the resultant color is given and two answers expected. However, there are some differences when processing
+data from questions 18 to 32, which are questions where the two primitive colors are given and the resulting color is expected, which implies a much simpler analysis due to only have to
 process one answer: there are no white answers to process (the ones which exist are excluded) and no colors to mix with each other; it is only calculated the distance of the
 answered color, to the expected one. \par
 %
@@ -494,72 +494,359 @@ user (0.39\% of the user sample) contributed to the study.
 \subsection{Color Models}
 \label{subsec:results_colormodels}
 %
-In this subsection, we analyze the results and give answers to color models' related questions, set on section \ref{sec:impl_objectives}. Along with the statistics we are going to present, we will map them against the those
-questions, clearly identifying them whenever they are answered. We would like to emphasize that the important results are the ones collected in the laboratory environment: the online results will bridge and support the conclusions
-extracted from the laboratory conditions. \par
-%
 \begin{table}[htbp]
   \resizebox{\textwidth}{!} {
-  \begin{tabular}{| c | c | c | c | c | c || c | c | c | c | c | c |}
-    \hline
-    ID & HSV  & CIE-L*C*h* & CMYK & RGB  & CIE-L*a*b* & \multicolumn{1}{l|}{ID} & \multicolumn{1}{l|}{HSV}  & \multicolumn{1}{l|}{CIE-L*C*h} & \multicolumn{1}{l|}{CMYK} & \multicolumn{1}{l|}{RGB}  & CIE-L*a*b* \\ \hline \hline
-    1  & 0.06 & 0.17       & 0.06 & 0.08 & 0.09       & \multicolumn{1}{l|}{10} & \multicolumn{1}{l|}{0.23} & \multicolumn{1}{l|}{0.25}      & \multicolumn{1}{l|}{0.01} & \multicolumn{1}{l|}{0.03} & 0.05       \\ \hline
-    2  & 0.09 & 0.13       & 0.06 & 0.09 & 0.09       & \multicolumn{1}{l|}{11} & \multicolumn{1}{l|}{0.03} & \multicolumn{1}{l|}{0.13}      & \multicolumn{1}{l|}{0.13} & \multicolumn{1}{l|}{0.27} & 0.13       \\ \hline
-    3  & 0.04 & 0.22       & 0.04 & 0.06 & 0.07       & \multicolumn{1}{l|}{12} & \multicolumn{1}{l|}{0.05} & \multicolumn{1}{l|}{0.23}      & \multicolumn{1}{l|}{0.12} & \multicolumn{1}{l|}{0.14} & 0.16       \\ \hline
-    4  & 0.07 & 0.18       & 0.19 & 0.24 & 0.18       & \multicolumn{1}{l|}{13} & \multicolumn{1}{l|}{0.17} & \multicolumn{1}{l|}{0.14}      & \multicolumn{1}{l|}{0.18} & \multicolumn{1}{l|}{0.18} & 0.12       \\ \hline
-    5  & 0.09 & 0.22       & 0.12 & 0.1  & 0.1        & \multicolumn{1}{l|}{14} & \multicolumn{1}{l|}{0.1}  & \multicolumn{1}{l|}{0.27}      & \multicolumn{1}{l|}{0.06} & \multicolumn{1}{l|}{0.13} & 0.09       \\ \hline
-    6  & 0.05 & 0.1        & 0.05 & 0.07 & 0.04       & \multicolumn{1}{l|}{15} & \multicolumn{1}{l|}{0.06} & \multicolumn{1}{l|}{0.3}       & \multicolumn{1}{l|}{0.5}  & \multicolumn{1}{l|}{0.09} & 0.11       \\ \hline
-    7  & 0.15 & 0.18       & 0.05 & 0.03 & 0.04       & \multicolumn{1}{l|}{16} & \multicolumn{1}{l|}{0.1}  & \multicolumn{1}{l|}{0.2}       & \multicolumn{1}{l|}{0.07} & \multicolumn{1}{l|}{0.08} & 0.04       \\ \hline
-    8  & 0.08 & 0.15       & 0.03 & 0.02 & 0.05       & \multicolumn{1}{l|}{17} & \multicolumn{1}{l|}{0.05} & \multicolumn{1}{l|}{0.16}      & \multicolumn{1}{l|}{0.03} & \multicolumn{1}{l|}{0.08} & 0.07       \\ \hline
-    9  & 0.05 & 0.15       & 0.09 & 0.09 & 0.1        &                         &                           &                                &                           &                           &            \\ \hline
-  \end{tabular}}
-  \caption[Laboratory Results: Centroids of Results Mixed in each Color Model]{Laboratory Results: Centroids of Results Mixed in each Color Model, for each question.}
+  \begin{tabular}{@{}ccccccccc@{}}
+    \toprule
+    Question ID              & Given Color                                           & \multicolumn{2}{c}{Expected Colors}                         & HSV                                & CIE-L*C*h*                        & CMYK                               & RGB                                & CIE-L*a*b*                         \\ \midrule
+    \multicolumn{1}{|c|}{1}  & \multicolumn{1}{c|}{\cellcolor[HTML]{FFFF00}\#FFFF00} & \multicolumn{1}{c|}{Red}     & \multicolumn{1}{c||}{Green}   & \multicolumn{1}{c|}{0.06}          & \multicolumn{1}{c|}{0.17}         & \multicolumn{1}{c|}{0.06}          & \multicolumn{1}{c|}{0.08}          & \multicolumn{1}{c|}{0.09}          \\ \midrule
+    \multicolumn{1}{|c|}{2}  & \multicolumn{1}{c|}{\cellcolor[HTML]{FF00FF}\#FF00FF} & \multicolumn{1}{c|}{Red}     & \multicolumn{1}{c||}{Blue}    & \multicolumn{1}{c|}{0.09}          & \multicolumn{1}{c|}{0.13}         & \multicolumn{1}{c|}{0.06}          & \multicolumn{1}{c|}{0.09}          & \multicolumn{1}{c|}{0.09}          \\ \midrule
+    \multicolumn{1}{|c|}{3}  & \multicolumn{1}{c|}{\cellcolor[HTML]{80FF00}\#80FF00} & \multicolumn{1}{c|}{Red}     & \multicolumn{1}{c||}{Cyan}    & \multicolumn{1}{c|}{0.04}          & \multicolumn{1}{c|}{0.22}         & \multicolumn{1}{c|}{0.04}          & \multicolumn{1}{c|}{0.06}          & \multicolumn{1}{c|}{0.07}          \\ \midrule
+    \multicolumn{1}{|c|}{4}  & \multicolumn{1}{c|}{\cellcolor[HTML]{7F00FF}\#7F00FF} & \multicolumn{1}{c|}{Red}     & \multicolumn{1}{c||}{Cyan}    & \multicolumn{1}{c|}{0.07}          & \multicolumn{1}{c|}{0.18}         & \multicolumn{1}{c|}{0.19}          & \multicolumn{1}{c|}{0.24}          & \multicolumn{1}{c|}{0.18}          \\ \midrule
+    \multicolumn{1}{|c|}{5}  & \multicolumn{1}{c|}{\cellcolor[HTML]{FF0080}\#FF0080} & \multicolumn{1}{c|}{Red}     & \multicolumn{1}{c||}{Magenta} & \multicolumn{1}{c|}{0.09}          & \multicolumn{1}{c|}{0.12}         & \multicolumn{1}{c|}{0.12}          & \multicolumn{1}{c|}{0.1}           & \multicolumn{1}{c|}{0.1}           \\ \midrule
+    \multicolumn{1}{|c|}{6}  & \multicolumn{1}{c|}{\cellcolor[HTML]{FF8000}\#FF8000} & \multicolumn{1}{c|}{Red}     & \multicolumn{1}{c||}{Yellow}  & \multicolumn{1}{c|}{0.05}          & \multicolumn{1}{c|}{\textbf{0.1}} & \multicolumn{1}{c|}{0.05}          & \multicolumn{1}{c|}{0.07}          & \multicolumn{1}{c|}{\textbf{0.04}} \\ \midrule
+    \multicolumn{1}{|c|}{7}  & \multicolumn{1}{c|}{\cellcolor[HTML]{0000FF}\#0000FF} & \multicolumn{1}{c|}{Cyan}    & \multicolumn{1}{c||}{Magenta} & \multicolumn{1}{c|}{0.15}          & \multicolumn{1}{c|}{0.18}         & \multicolumn{1}{c|}{0.05}          & \multicolumn{1}{c|}{0.03}          & \multicolumn{1}{c|}{\textbf{0.04}} \\ \midrule
+    \multicolumn{1}{|c|}{8}  & \multicolumn{1}{c|}{\cellcolor[HTML]{FF0000}\#FF0000} & \multicolumn{1}{c|}{Magenta} & \multicolumn{1}{c||}{Yellow}  & \multicolumn{1}{c|}{0.08}          & \multicolumn{1}{c|}{0.15}         & \multicolumn{1}{c|}{0.03}          & \multicolumn{1}{c|}{\textbf{0.02}} & \multicolumn{1}{c|}{0.05}          \\ \midrule
+    \multicolumn{1}{|c|}{9}  & \multicolumn{1}{c|}{\cellcolor[HTML]{00FF80}\#00FF80} & \multicolumn{1}{c|}{Green}   & \multicolumn{1}{c||}{Cyan}    & \multicolumn{1}{c|}{0.05}          & \multicolumn{1}{c|}{0.15}         & \multicolumn{1}{c|}{0.09}          & \multicolumn{1}{c|}{0.09}          & \multicolumn{1}{c|}{0.1}           \\ \midrule
+    \multicolumn{1}{|c|}{10} & \multicolumn{1}{c|}{\cellcolor[HTML]{0080FF}\#0080FF} & \multicolumn{1}{c|}{Green}   & \multicolumn{1}{c||}{Magenta} & \multicolumn{1}{c|}{0.23}          & \multicolumn{1}{c|}{0.25}         & \multicolumn{1}{c|}{\textbf{0.01}} & \multicolumn{1}{c|}{0.03}          & \multicolumn{1}{c|}{0.05}          \\ \midrule
+    \multicolumn{1}{|c|}{11} & \multicolumn{1}{c|}{\cellcolor[HTML]{FF8000}\#FF8000} & \multicolumn{1}{c|}{Green}   & \multicolumn{1}{c||}{Magenta} & \multicolumn{1}{c|}{\textbf{0.03}} & \multicolumn{1}{c|}{0.13}         & \multicolumn{1}{c|}{0.13}          & \multicolumn{1}{c|}{0.27}          & \multicolumn{1}{c|}{0.13}          \\ \midrule
+    \multicolumn{1}{|c|}{12} & \multicolumn{1}{c|}{\cellcolor[HTML]{80FF00}\#80FF00} & \multicolumn{1}{c|}{Green}   & \multicolumn{1}{c||}{Yellow}  & \multicolumn{1}{c|}{0.05}          & \multicolumn{1}{c|}{0.23}         & \multicolumn{1}{c|}{0.12}          & \multicolumn{1}{c|}{0.14}          & \multicolumn{1}{c|}{0.16}          \\ \midrule
+    \multicolumn{1}{|c|}{13} & \multicolumn{1}{c|}{\cellcolor[HTML]{0080FF}\#0080FF} & \multicolumn{1}{c|}{Blue}    & \multicolumn{1}{c||}{Cyan}    & \multicolumn{1}{c|}{0.17}          & \multicolumn{1}{c|}{0.14}         & \multicolumn{1}{c|}{0.18}          & \multicolumn{1}{c|}{0.18}          & \multicolumn{1}{c|}{0.12}          \\ \midrule
+    \multicolumn{1}{|c|}{14} & \multicolumn{1}{c|}{\cellcolor[HTML]{8000FF}\#8000FF} & \multicolumn{1}{c|}{Blue}    & \multicolumn{1}{c||}{Magenta} & \multicolumn{1}{c|}{0.1}           & \multicolumn{1}{c|}{0.27}         & \multicolumn{1}{c|}{0.06}          & \multicolumn{1}{c|}{0.13}          & \multicolumn{1}{c|}{0.09}          \\ \midrule
+    \multicolumn{1}{|c|}{15} & \multicolumn{1}{c|}{\cellcolor[HTML]{00FF80}\#00FF80} & \multicolumn{1}{c|}{Blue}    & \multicolumn{1}{c||}{Yellow}  & \multicolumn{1}{c|}{0.06}          & \multicolumn{1}{c|}{0.3}          & \multicolumn{1}{c|}{0.5}           & \multicolumn{1}{c|}{0.09}          & \multicolumn{1}{c|}{0.11}          \\ \midrule
+    \multicolumn{1}{|c|}{16} & \multicolumn{1}{c|}{\cellcolor[HTML]{FF007F}\#FF007F} & \multicolumn{1}{c|}{Blue}    & \multicolumn{1}{c||}{Yellow}  & \multicolumn{1}{c|}{0.1}           & \multicolumn{1}{c|}{0.2}          & \multicolumn{1}{c|}{0.07}          & \multicolumn{1}{c|}{0.08}          & \multicolumn{1}{c|}{\textbf{0.04}} \\ \midrule
+    \multicolumn{1}{|c|}{17} & \multicolumn{1}{c|}{\cellcolor[HTML]{00FF00}\#00FF00} & \multicolumn{1}{c|}{Cyan}    & \multicolumn{1}{c||}{Yellow}  & \multicolumn{1}{c|}{0.05}          & \multicolumn{1}{c|}{0.16}         & \multicolumn{1}{c|}{0.03}          & \multicolumn{1}{c|}{0.08}          & \multicolumn{1}{c|}{0.07}          \\ \bottomrule
+    \end{tabular}}
+  \caption[Laboratory Results: Centroids of Results Mixed in each Color Model]{Laboratory Results: Centroids of Results Mixed in each Color Model, for each question, with the distance from itself to the ideal pre-calculated answer. In bold, the best result for each color model.}
   \label{table:colormodels_centroids}
 \end{table}
 %
-As referred before, each answer pair given from our users on questions 1 to 17 (type \emph{objTwoColors}) was blendend in 5 color models: HSV, CIE-L*C*h*, CMYK, RGB and CIE-L*a*b*. Then, the XY coordinates of each resulting
-mixture were mapped on a CIE Chromaticity Diagram, the centroids of each group of mixtures was calculated, and the distance from each centroid to the (ideal) pre-calculated answer was measured. The table \ref{table:colormodels_centroids}
-represents the distance measured associated to each color model, for every laboratory result. \par
+Along with the statistics we are going to present, in the end we are going to map them against the questions exposed before, clearly identifying them whenever they are answered. We would like to emphasize that the important
+results are the ones collected in the laboratory environment: the online results will bridge and support the conclusions extracted from the laboratory conditions. \par
 %
-Considering an alpha of 0.05 when running the \emph{Kolmogorov-Smirnov} and \emph{Shapiro-Wilk} Normality Tests, both CIE-L*C*h* ($sig_{ks} =$ 0.200, $sig_{sw} =$ 0.430) and CIE-L*a*b* ($sig_{ks} =$ 0.200, $sig_{sw} =$ 0.221) present a
-normal distribution. Analyzing the responses for each color model, the one which presented the lowest distances was the CMYK Color Model ($\tilde{x}_{CMYK} = $ 0.06), followed by HSV ($\tilde{x}_{HSV} = $ 0.07), RGB and CIE-L*a*b* with the
+\begin{table}[htbp]
+  \resizebox{\textwidth}{!} {
+  \begin{tabular}{@{}ccccccccccc@{}}
+    \toprule
+    \multirow{2}{*}{Statistic}                 & \multicolumn{5}{c}{Laboratory (Regular Users)}                                   & \multicolumn{5}{c}{Online (Regular Users)}     \\ \cmidrule(l){2-11}
+                                               & HSV             & LCh    & CMYK   & RGB    & \multicolumn{1}{c|}{Lab}            & HSV & LCh & CMYK & RGB & Lab                   \\ \midrule
+    \multicolumn{1}{|c|}{Type of Distribution} & Other           & Normal & Other  & Other  & \multicolumn{1}{c|}{Normal}         &     &     &      &     & \multicolumn{1}{c|}{} \\
+    \multicolumn{1}{|c|}{Mean ($\tilde{x}$)}   & \textbf{0.0865} & 0.1812 & 0.1053 & 0.1047 & \multicolumn{1}{c|}{0.09}           &     &     &      &     & \multicolumn{1}{c|}{} \\
+    \multicolumn{1}{|c|}{Median ($\mu$)}       & 0.07            & 0.17   & 0.06   & 0.09   & \multicolumn{1}{c|}{0.09}           &     &     &      &     & \multicolumn{1}{c|}{} \\
+    \multicolumn{1}{|c|}{Maximum}              & 0.23            & 0.3    & 0.5    & 0.27   & \multicolumn{1}{c|}{0.18}           &     &     &      &     & \multicolumn{1}{c|}{} \\
+    \multicolumn{1}{|c|}{Minimum}              & 0.03            & 0.1    & 0.01   & 0.02   & \multicolumn{1}{c|}{0.04}           &     &     &      &     & \multicolumn{1}{c|}{} \\
+    \multicolumn{1}{|c|}{Range}                & 0.2             & 0.2    & 0.49   & 0.25   & \multicolumn{1}{c|}{\textbf{0.14}}  &     &     &      &     & \multicolumn{1}{c|}{} \\
+    \multicolumn{1}{|c|}{Stand. Dev. ($\sigma$)}& 0.05267           & 0.05633  & 0.11402  & 0.06947  & \multicolumn{1}{c|}{\textbf{0.04153}} &     &     &      &     & \multicolumn{1}{c|}{} \\
+    \multicolumn{1}{|c|}{Variance ($\sigma^2$)}& 0.003           & 0.003  & 0.013  & 0.005  & \multicolumn{1}{c|}{\textbf{0.002}} &     &     &      &     & \multicolumn{1}{c|}{} \\ \bottomrule
+    \end{tabular}}
+  \caption[Laboratory Results: Condensed statistics for centroids of Results Mixed in each Color Model]{Laboratory Results: Condensed statistics for centroids of Results Mixed in each Color Model, for each question. In bold, the best result for each descriptive statistic.}
+  \label{table:colormodels_centroids_statistics}
+\end{table}
+%
+As referred before, each answer pair given from our users on questions 1 to 17 (one color given, two colors asked) was blendend in 5 color models: HSV, CIE-L*C*h*, CMYK, RGB and CIE-L*a*b*. Then, the XY coordinates of each resulting
+mixture were mapped on a CIE Chromaticity Diagram, the centroids of each group of mixtures was calculated, and the distance from each centroid to the (ideal) pre-calculated answer was measured. The table \ref{table:colormodels_centroids}
+represents the distance measured associated to each color model, for every laboratory result; the table which compannies \ref{table:colormodels_centroids} is table \ref{table:colormodels_centroids_statistics}, which
+contains the descriptive statistics for the variables of the first one. \par
+%
+Analyzing the centroids table for each color model, the one which presented the lowest distances was the CMYK Color Model ($\tilde{x}_{CMYK} = $ 0.06), followed by HSV ($\tilde{x}_{HSV} = $ 0.07), RGB and CIE-L*a*b* with the
 same values ($\tilde{x}_{RGB} = $ 0.09 and $\mu_{Lab} = $ 0.09), being CIE-L*C*h the model which has the highest calculated distances ($\mu_{LCh} = $ 0.1812). However, the color model which has the highest variance of answers is the
 CMYK ($\sigma^2_{CMYK} = $ 0.013), opposed to the CIE-L*a*b* ($\sigma^2_{Lab} = $ 0.002): this may mean that, aside from having indicated closer mixtures to the desired one, users scattered more their answers when compared to the late color model. \par
 %
-Breaking down the results according to Color Models \emph{per} question, we obtain the following results: \par
+\begin{table}[htbp]
+  \resizebox{\textwidth}{!} {
+  \begin{tabular}{@{}cccccccccccccccc@{}}
+    \toprule
+    \multirow{2}{*}{Question ID} & \multicolumn{3}{c}{HSV}                                                                                            & \multicolumn{3}{c}{CIE-L*C*h*}                                                                                     & \multicolumn{3}{c}{CMYK}                                                                                          & \multicolumn{3}{c}{RGB}                                                                                            & \multicolumn{3}{c}{CIE-L*a*b*}                                                                                    \\ \cmidrule(l){2-16}
+                                 & Mean ($\tilde{x}$)                   & Median ($\mu$)                      & \multicolumn{1}{c||}{Std-Dev ($\sigma$)}& Mean ($\tilde{x}$)                  & Median ($\mu$)                      & \multicolumn{1}{c||}{Std-Dev ($\sigma$)}   & Mean ($\tilde{x}$)               & Median ($\mu$)                     & \multicolumn{1}{c||}{Std-Dev ($\sigma$)} & Mean ($\tilde{x}$)                  & Median ($\mu$)                      & \multicolumn{1}{c|}{Std-Dev ($\sigma$)} & Mean ($\tilde{x}$)                 & Median ($\mu$)                     & \multicolumn{1}{c|}{Std-Dev ($\sigma$)}          \\ \midrule
+    \multicolumn{1}{|c|}{1}      & \multicolumn{1}{c|}{0.1258}          & \multicolumn{1}{c|}{0.14}           & \multicolumn{1}{c||}{\textbf{0.08275}} & \multicolumn{1}{c|}{0.2042}          & \multicolumn{1}{c|}{0.18}           & \multicolumn{1}{c||}{\textbf{0.0644}}  & \multicolumn{1}{c|}{0.0926}          & \multicolumn{1}{c|}{0.07}          & \multicolumn{1}{c||}{0.06118}          & \multicolumn{1}{c||}{0.1237}          & \multicolumn{1}{c|}{0.11}           & \multicolumn{1}{c|}{0.07925}          & \multicolumn{1}{c|}{0.1232}          & \multicolumn{1}{c|}{\textbf{0.11}} & \multicolumn{1}{c|}{0.0807}           \\ \midrule
+    \multicolumn{1}{|c|}{2}      & \multicolumn{1}{c|}{0.2173}          & \multicolumn{1}{c|}{0.22}           & \multicolumn{1}{c||}{0.13014}          & \multicolumn{1}{c|}{0.1573}          & \multicolumn{1}{c|}{0.16}           & \multicolumn{1}{c||}{0.09445}          & \multicolumn{1}{c|}{0.106}           & \multicolumn{1}{c|}{0.12}          & \multicolumn{1}{c||}{0.05642}          & \multicolumn{1}{c||}{0.166}           & \multicolumn{1}{c|}{0.14}           & \multicolumn{1}{c|}{0.10521}          & \multicolumn{1}{c|}{0.156}           & \multicolumn{1}{c|}{0.17}          & \multicolumn{1}{c|}{0.08399}          \\ \midrule
+    \multicolumn{1}{|c|}{3}      & \multicolumn{1}{c|}{0.0941}          & \multicolumn{1}{c|}{0.045}          & \multicolumn{1}{c||}{0.12308}          & \multicolumn{1}{c|}{0.23}            & \multicolumn{1}{c|}{0.215}          & \multicolumn{1}{c||}{\textbf{0.05855}} & \multicolumn{1}{c|}{0.0609}          & \multicolumn{1}{c|}{\textbf{0.05}} & \multicolumn{1}{c||}{0.03379}          & \multicolumn{1}{c||}{0.1114}          & \multicolumn{1}{c|}{\textbf{0.095}} & \multicolumn{1}{c|}{0.06034}          & \multicolumn{1}{c|}{0.1227}          & \multicolumn{1}{c|}{\textbf{0.11}} & \multicolumn{1}{c|}{\textbf{0.03918}} \\ \midrule
+    \multicolumn{1}{|c|}{4}      & \multicolumn{1}{c|}{0.1162}          & \multicolumn{1}{c|}{0.07}           & \multicolumn{1}{c||}{0.12975}          & \multicolumn{1}{c|}{0.209}           & \multicolumn{1}{c|}{0.18}           & \multicolumn{1}{c||}{0.11768}          & \multicolumn{1}{c|}{0.1971}          & \multicolumn{1}{c|}{0.21}          & \multicolumn{1}{c||}{0.07302}          & \multicolumn{1}{c||}{0.2595}          & \multicolumn{1}{c|}{0.28}           & \multicolumn{1}{c|}{0.08975}          & \multicolumn{1}{c|}{0.2005}          & \multicolumn{1}{c|}{0.22}          & \multicolumn{1}{c|}{0.09173}          \\ \midrule
+    \multicolumn{1}{|c|}{5}      & \multicolumn{1}{c|}{0.1683}          & \multicolumn{1}{c|}{0.15}           & \multicolumn{1}{c||}{0.10113}          & \multicolumn{1}{c|}{\textbf{0.15}}   & \multicolumn{1}{c|}{0.15}           & \multicolumn{1}{c||}{0.08}             & \multicolumn{1}{c|}{0.1322}          & \multicolumn{1}{c|}{0.14}          & \multicolumn{1}{c||}{0.06787}          & \multicolumn{1}{c||}{0.1389}          & \multicolumn{1}{c|}{0.12}           & \multicolumn{1}{c|}{0.09106}          & \multicolumn{1}{c|}{0.135}           & \multicolumn{1}{c|}{0.135}         & \multicolumn{1}{c|}{0.07579}          \\ \midrule
+    \multicolumn{1}{|c|}{6}      & \multicolumn{1}{c|}{\textbf{0.0741}} & \multicolumn{1}{c|}{\textbf{0.025}} & \multicolumn{1}{c||}{0.10418}          & \multicolumn{1}{c|}{\textbf{0.1332}} & \multicolumn{1}{c|}{\textbf{0.085}} & \multicolumn{1}{c||}{0.08671}          & \multicolumn{1}{c|}{\textbf{0.0577}} & \multicolumn{1}{c|}{\textbf{0.03}} & \multicolumn{1}{c||}{0.06164}          & \multicolumn{1}{c||}{\textbf{0.0777}} & \multicolumn{1}{c|}{\textbf{0.03}}  & \multicolumn{1}{c|}{0.0973}           & \multicolumn{1}{c|}{\textbf{0.0509}} & \multicolumn{1}{c|}{\textbf{0.01}} & \multicolumn{1}{c|}{0.07374}          \\ \midrule
+    \multicolumn{1}{|c|}{7}      & \multicolumn{1}{c|}{0.1577}          & \multicolumn{1}{c|}{0.06}           & \multicolumn{1}{c||}{0.20679}          & \multicolumn{1}{c|}{0.2323}          & \multicolumn{1}{c|}{0.27}           & \multicolumn{1}{c||}{0.10038}          & \multicolumn{1}{c|}{0.0986}          & \multicolumn{1}{c|}{\textbf{0.06}} & \multicolumn{1}{c||}{0.07523}          & \multicolumn{1}{c||}{0.1455}          & \multicolumn{1}{c|}{0.1}            & \multicolumn{1}{c|}{0.12835}          & \multicolumn{1}{c|}{0.1705}          & \multicolumn{1}{c|}{0.16}          & \multicolumn{1}{c|}{0.07925}          \\ \midrule
+    \multicolumn{1}{|c|}{8}      & \multicolumn{1}{c|}{0.0954}          & \multicolumn{1}{c|}{\textbf{0.01}}  & \multicolumn{1}{c||}{0.16302}          & \multicolumn{1}{c|}{0.17}            & \multicolumn{1}{c|}{0.17}           & \multicolumn{1}{c||}{0.12845}          & \multicolumn{1}{c|}{0.1008}          & \multicolumn{1}{c|}{0.09}          & \multicolumn{1}{c||}{0.4974}           & \multicolumn{1}{c||}{0.1292}          & \multicolumn{1}{c|}{0.12}           & \multicolumn{1}{c|}{0.08967}          & \multicolumn{1}{c|}{0.1292}          & \multicolumn{1}{c|}{0.14}          & \multicolumn{1}{c|}{0.08986}          \\ \midrule
+    \multicolumn{1}{|c|}{9}      & \multicolumn{1}{c|}{0.1258}          & \multicolumn{1}{c|}{0.1}            & \multicolumn{1}{c||}{0.0989}           & \multicolumn{1}{c|}{0.1642}          & \multicolumn{1}{c|}{\textbf{0.13}}  & \multicolumn{1}{c||}{0.07463}          & \multicolumn{1}{c|}{0.0911}          & \multicolumn{1}{c|}{0.09}          & \multicolumn{1}{c||}{0.04642}          & \multicolumn{1}{c||}{\textbf{0.1005}} & \multicolumn{1}{c|}{\textbf{0.08}}  & \multicolumn{1}{c|}{0.07524}          & \multicolumn{1}{c|}{\textbf{0.1142}} & \multicolumn{1}{c|}{\textbf{0.1}}  & \multicolumn{1}{c|}{0.06694}          \\ \midrule
+    \multicolumn{1}{|c|}{10}     & \multicolumn{1}{c|}{0.3}             & \multicolumn{1}{c|}{0.395}          & \multicolumn{1}{c||}{0.15792}          & \multicolumn{1}{c|}{0.2557}          & \multicolumn{1}{c|}{0.275}          & \multicolumn{1}{c||}{0.1164}           & \multicolumn{1}{c|}{0.1314}          & \multicolumn{1}{c|}{0.12}          & \multicolumn{1}{c||}{0.04769}          & \multicolumn{1}{c||}{0.2107}          & \multicolumn{1}{c|}{0.2}            & \multicolumn{1}{c|}{0.06403}          & \multicolumn{1}{c|}{0.2043}          & \multicolumn{1}{c|}{0.175}         & \multicolumn{1}{c|}{0.09581}          \\ \midrule
+    \multicolumn{1}{|c|}{11}     & \multicolumn{1}{c|}{\textbf{0.0587}} & \multicolumn{1}{c|}{0.03}           & \multicolumn{1}{c||}{\textbf{0.08828}} & \multicolumn{1}{c|}{\textbf{0.1374}} & \multicolumn{1}{c|}{\textbf{0.05}}  & \multicolumn{1}{c||}{0.11752}          & \multicolumn{1}{c|}{0.1304}          & \multicolumn{1}{c|}{0.14}          & \multicolumn{1}{c||}{\textbf{0.02852}} & \multicolumn{1}{c||}{0.1839}          & \multicolumn{1}{c|}{0.2}            & \multicolumn{1}{c|}{\textbf{0.03986}} & \multicolumn{1}{c|}{0.1443}          & \multicolumn{1}{c|}{0.15}          & \multicolumn{1}{c|}{\textbf{0.02727}} \\ \midrule
+    \multicolumn{1}{|c|}{12}     & \multicolumn{1}{c|}{0.1067}          & \multicolumn{1}{c|}{0.04}           & \multicolumn{1}{c||}{0.12639}          & \multicolumn{1}{c|}{0.2343}          & \multicolumn{1}{c|}{0.22}           & \multicolumn{1}{c||}{0.06638}          & \multicolumn{1}{c|}{0.1314}          & \multicolumn{1}{c|}{0.14}          & \multicolumn{1}{c||}{0.03966}          & \multicolumn{1}{c||}{0.151}           & \multicolumn{1}{c|}{0.14}           & \multicolumn{1}{c|}{0.07758}          & \multicolumn{1}{c|}{0.1743}          & \multicolumn{1}{c|}{0.18}          & \multicolumn{1}{c|}{0.07284}          \\ \midrule
+    \multicolumn{1}{|c|}{13}     & \multicolumn{1}{c|}{0.2713}          & \multicolumn{1}{c|}{0.325}          & \multicolumn{1}{c||}{0.15607}          & \multicolumn{1}{c|}{0.1663}          & \multicolumn{1}{c|}{0.14}           & \multicolumn{1}{c||}{0.09701}          & \multicolumn{1}{c|}{0.1875}          & \multicolumn{1}{c|}{0.215}         & \multicolumn{1}{c||}{0.13097}          & \multicolumn{1}{c||}{0.245}           & \multicolumn{1}{c|}{0.25}           & \multicolumn{1}{c|}{0.15795}          & \multicolumn{1}{c|}{0.2269}          & \multicolumn{1}{c|}{0.235}         & \multicolumn{1}{c|}{0.12224}          \\ \midrule
+    \multicolumn{1}{|c|}{14}     & \multicolumn{1}{c|}{0.1186}          & \multicolumn{1}{c|}{0.05}           & \multicolumn{1}{c||}{0.014423}         & \multicolumn{1}{c|}{0.2995}          & \multicolumn{1}{c|}{0.315}          & \multicolumn{1}{c||}{0.08936}          & \multicolumn{1}{c|}{0.0973}          & \multicolumn{1}{c|}{0.09}          & \multicolumn{1}{c||}{0.4901}           & \multicolumn{1}{c||}{0.1327}          & \multicolumn{1}{c|}{0.125}          & \multicolumn{1}{c|}{0.13406}          & \multicolumn{1}{c|}{0.1336}          & \multicolumn{1}{c|}{0.13}          & \multicolumn{1}{c|}{0.09444}          \\ \midrule
+    \multicolumn{1}{|c|}{15}     & \multicolumn{1}{c|}{0.09}            & \multicolumn{1}{c|}{0.095}          & \multicolumn{1}{c||}{\textbf{0.03559}} & \multicolumn{1}{c|}{0.3031}          & \multicolumn{1}{c|}{0.31}           & \multicolumn{1}{c||}{0.07872}          & \multicolumn{1}{c|}{\textbf{0.0625}} & \multicolumn{1}{c|}{0.065}         & \multicolumn{1}{c||}{\textbf{0.02696}} & \multicolumn{1}{c||}{0.11}            & \multicolumn{1}{c|}{0.11}           & \multicolumn{1}{c|}{\textbf{0.04705}} & \multicolumn{1}{c|}{0.1256}          & \multicolumn{1}{c|}{0.12}          & \multicolumn{1}{c|}{0.06229}          \\ \midrule
+    \multicolumn{1}{|c|}{16}     & \multicolumn{1}{c|}{0.2087}          & \multicolumn{1}{c|}{0.23}           & \multicolumn{1}{c||}{0.10378}          & \multicolumn{1}{c|}{0.2187}          & \multicolumn{1}{c|}{0.25}           & \multicolumn{1}{c||}{0.12171}          & \multicolumn{1}{c|}{0.1033}          & \multicolumn{1}{c|}{0.1}           & \multicolumn{1}{c||}{0.05108}          & \multicolumn{1}{c||}{0.1593}          & \multicolumn{1}{c|}{0.17}           & \multicolumn{1}{c|}{0.06829}          & \multicolumn{1}{c|}{0.124}           & \multicolumn{1}{c|}{\textbf{0.11}} & \multicolumn{1}{c|}{0.07872}          \\ \midrule
+    \multicolumn{1}{|c|}{17}     & \multicolumn{1}{c|}{\textbf{0.0683}} & \multicolumn{1}{c|}{\textbf{0.02}}  & \multicolumn{1}{c||}{0.10228}          & \multicolumn{1}{c|}{0.1626}          & \multicolumn{1}{c|}{0.14}           & \multicolumn{1}{c||}{\textbf{0.05902}} & \multicolumn{1}{c|}{\textbf{0.0452}} & \multicolumn{1}{c|}{\textbf{0.05}} & \multicolumn{1}{c||}{\textbf{0.0162}}  & \multicolumn{1}{c||}{\textbf{0.103}}  & \multicolumn{1}{c|}{\textbf{0.08}}  & \multicolumn{1}{c|}{\textbf{0.0574}}  & \multicolumn{1}{c|}{\textbf{0.113}}  & \multicolumn{1}{c|}{\textbf{0.11}} & \multicolumn{1}{c|}{\textbf{0.05112}} \\ \bottomrule
+    \end{tabular}}
+  \caption[Laboratory Results: Statistics for distances \emph{per} question, of Results Mixed in each Color Model]{Laboratory Results: Statistics for distances \emph{per} question, of Results Mixed in each Color Model, for each question. In bold, the three best results for each descriptive statistic.}
+  \label{table:colormodels_distances_questions_statistics}
+\end{table}
 %
-\begin{itemize}
-  \item \textbf{HSV Color Model Blendings} - The questions which have shorter distances are (in this order) number 11 (\textbf{0.03}), 3 (\textbf{0.04}), 6, 9, and 17 (all with \textbf{0.05}) and, lastly, question 15 (\textbf{0.06}): the majority
-  of the cited questions presented a \ul{green color} and asked the user to indicate with colors did generate that particular shade. In the opposite strand, the questions with larger distances are (in this order) number 10 (\textbf{0.23}),
-  13 (\textbf{0.17}), 7 (\textbf{0.15}), 14 and 16 (both \textbf{0.1}), 2 and 5 (both \textbf{0.09}): interestingly, all these questions have colors in \ul{different shades of blue or purple}, which could relate to the lacking human capability
-  of accurately distinguish differentes tones of blue.
-  \item \textbf{CIE-L*C*h Color Model Blendings} - The questions which have best results are number 6 (\textbf{0.1}), 5 (\textbf{0.12}), 2 and 11 (\textbf{0.13}), 13 (\textbf{0.14}), 8 and 9 (\textbf{0.15}); contrary, question 15, question 14,
-  question 10, question 12 and question 3 have the lowest scores. Curiously, the best results from this color model are from questions which present \ul{red, pink and derived colors like orange}, while the weakest results came from a mix of
-  questions which present green shades and blue derived ones, similar to HSV.
-  \item \textbf{CMYK Color Model Blendings} - As we are about to express, the CMYK is one the color model which gathers the broadest type of results: while in some of the previous color models, the best and worst answers are concentrated on
-  specific ranges of colors, the results for this model are spread across the main primitives yellow, magenta and green, red, blue shades and purples. The shorter distances are on questions 1, 8, 17, 3, 6, 7, 1, and 2, while the longer are on questions 15, 4, 13, 11, 12 and 5.
-  \item \textbf{RGB Color Model Blendings} - Results from RGB centroids are quite similar to CMYK results, which is no surprise since they are relatively similar opposite models and explained on the theorical background of this document.
-  The shorter distances are on questions 8, 7, 10, 6, 3, 1, 16 and 17 while the longer are on questions 11, 4, 13, 11, 12 and 14.
-  \item \textbf{CIE L*a*b* Color Model Blendings} - This color model is the one, by far, which builds more consensus, since there are much more questions which present the smallest number of weak (longer) distances to the ideal answer pair.
-  The shorter distances questions are on questions 6, 7, 16 (all with \textbf{0.04}), 8 and 10 (both \textbf{0.05}), 3 (\textbf{0.07}), 1, 2 and 14 (all with \textbf{0.09}) and, finally, 5 and 9 (\textbf{0.1}); while the longer are on questions
-  4, 12, 11, 13 and 15.
-\end{itemize}
+Breaking down the results according to Color Models \emph{per} question, we obtain the results described in the following sub-subsections. \par
 %
-incluir diagramas! \\
-falar de questões que originaram mais frequentemente melhores resultados e piores, para extrair as cores dos mesmos. \par
-abordar questão de que modelos originaram melhores respostas, se são aditivos ou subtrativos. \\
-verificar adicionalmente para o modelo HSV, qual a disposição das cores no circulo de cores. \\
-fazer analise concreta das questões 1, 2, 7, 8 e 17, que são as primitivas. perceber se resultados são positivos para a geração de primitivas com base noutras. \\
-tentar fazer uma análise dos resultados, para perceber se há muita discretização. \\
+\subsubsection{HSV Color Model Blendings}
+\label{subsubsec:hsvcolormodel}
+%
+The questions which have shorter distances are (in this order) number 11 (\textbf{0.03}), 3 (\textbf{0.04}), 6, 9, and 17 (all with \textbf{0.05}) and, lastly, question 15 (\textbf{0.06}); the means related to each question, which can be
+seen on table \ref{table:colormodels_distances_questions_statistics}, corroborate the cited distances. On the other hand, the questions with larger distances are (in this order) number 10 (\textbf{0.23}), 13 (\textbf{0.17}), 7 (\textbf{0.15}), 14 and 16 (both \textbf{0.1}), 2 and
+5 (both \textbf{0.09}) which are, again, corroborated by table \ref{table:colormodels_distances_questions_statistics}. There are some interesting cases related to this color model: there are some questions which present exactly the same color, but the aim to test if users can present
+two different types of blends; for example, Questions 6 and 11 show fairly similar values for this color model, since they both show an orange color, but it was intended for user to indicate diffent mixtures (as seen on table \ref{table:colormodels_centroids}, on Question 6 should be
+indicated Red and Yellow, and on Question 11 Green and Magenta). This indicates that our users answered quite the same way on both questions, but the distances from the given answers to the expected ones is substantially different ($\tilde{x}_{distance-6} = $ 0.1868 and
+$\sigma_{distance-11} = $ 0.2467, $\tilde{x}_{distance-11} = $ 0.6448 and $\sigma_{distance-11} = $ 0.1396), which means that \textbf{the most intuitive mixture for the users is mixing Red and Yellow to obtain Orange, and not the second case}. \par
+%
+As referred before, there are some color blends that, due to the fact that primitives of the mixture are precisely opposed (180º) in the HSV hue circle, the blending in HSV Model could produce two different outputs. This occurs if one mixes the colors obeying to a positive or negative
+rotation on the circle (as seeen on figure \ref{fig:hsvcircles_example}). There are in this study 3 pairs of colors which blend onto 2 possible colors: pair Red-Cyan (with possible outputs question 3 and 4), pair Green-Magenta (questions 10 and 11) and pair Blue-Yellow (questions 15
+and 16). By placing these questions, we intended to understand which side the user would tend to follow (or even if he follows one) when asked to indicate the blending-basis. Therefore, we can produce the following conclusions:
+%
+\begin{enumerate}
+  \item \ul{Red \& Cyan Blend} - Analyzing answers for questions 3 and 4, they produce fairly similar results: they are both a bit far from the expected colors ($\sigma_{distance-3} = $ 0.15736 and $\sigma_{distance-3} = $ .023434), although the mean, median and standard
+  deviation of distances to the HSV precalculated blending, for 3, have a slightly lower value than question 4. This could be also compared to question 12, which also produces \textbf{Lime-Green} like question 3, but even when compared, question 3 still has the best results.
+  This leads us to specifiy that, although the results are not great for this mixture, \textbf{people have a slight tendency to associate the blending of red and cyan to a result of lime-green, instead of shade of purple}, since the blendings have less dispersion for question 3
+  (Figure \ref{fig:labhsvregular_3}), than for question 4 (Figure \ref{fig:labhsvregular_4}).
+  %
+  \begin{figure}[htbp]
+    \centering
+    \begin{minipage}{0.48\textwidth}
+      \centering
+      \includegraphics[width=\textwidth]{images/3_lab_HSVresponses.png}
+      \caption[Laboratory Results: Answers for Question 3, from regular users, mixed in HSV Color Model.]{Laboratory Results: Answers for Question 3, from regular users, mixed in HSV Color Model.}
+      \label{fig:labhsvregular_3}
+    \end{minipage}\hfill
+    \begin{minipage}{0.48\textwidth}
+      \centering
+      \includegraphics[width=\textwidth]{images/4_lab_HSVresponses.png}
+      \caption[Laboratory Results: Answers for Question 4, from regular users, mixed in HSV Color Model.]{Laboratory Results: Answers for Question 4, from regular users, mixed in HSV Color Model.}
+      \label{fig:labhsvregular_4}
+    \end{minipage}
+  \end{figure}
+  %
+  \item \ul{Green \& Magenta Blend} - Similarly to the previous questions, the resuls were quite similar between each other concerning the distance to the expected colors: $\sigma_{distance-10} = $ 0.15173 and $\sigma_{distance-11} = $ .13957. We can conclude that users
+  \textbf{neither \emph{believe} that a shade of blue or orange are produced by Green and Magenta}. As seen before, question 10 produces one of the worst resuls of HSV Color Blendings (along with question 13); instead of believing in a Green-Magenta blending to produce
+  Orange, \textbf{the users tend to use again Red and Yellow} as on question 6, which explains the low HSV mean value for question 9, on table \ref{table:colormodels_distances_questions_statistics}. We can conclude that \textbf{the orange color is a strongly implemented color in mental
+  models of our users}. These differences can be seen on Figures \ref{fig:labhsvregular_10} and \ref{fig:labhsvregular_10}, which largely demonstrates the difference of results dispersion between the two questions, blended in HSV Color Model.
+  %
+  \begin{figure}[htbp]
+    \centering
+    \begin{minipage}{0.48\textwidth}
+      \centering
+      \includegraphics[width=\textwidth]{images/10_lab_HSVresponses.png}
+      \caption[Laboratory Results: Answers for Question 10, from regular users, mixed in HSV Color Model.]{Laboratory Results: Answers for Question 10, from regular users, mixed in HSV Color Model.}
+      \label{fig:labhsvregular_10}
+    \end{minipage}\hfill
+    \begin{minipage}{0.48\textwidth}
+      \centering
+      \includegraphics[width=\textwidth]{images/11_lab_HSVresponses.png}
+      \caption[Laboratory Results: Answers for Question 11, from regular users, mixed in HSV Color Model.]{Laboratory Results: Answers for Question 11, from regular users, mixed in HSV Color Model.}
+      \label{fig:labhsvregular_11}
+    \end{minipage}
+  \end{figure}
+  %
+  \item \ul{Blue \& Yellow Blend} - Evaluating the results obtained in these two questions (15 and 16), we obtain substantially different results for both. Analyzing results of question 15, we know that the distance to the expect pair of colors
+  does not present the lowest value ($\tilde{x}_{distance-15} = $ 0.6869, $\sigma_{distance-15} = $ 0.2787); however, when blending the result-pairs given on this question, it presents one of the closest distances ($\tilde{x}_{HSV-15} = $ 0.09),
+  while the users did not wander too much when answering ($\sigma_{HSV-15} = $ 0.03559). As it can be seen on Figure \ref{fig:labhsvregular_15}, the resulting blend in HSV Color Model tend to be close to the ideal HSV answer: despite being nearer
+  to the top corner of the HSV Model Triangle, \textbf{we can still consider the answers to be a tone of green color}. Regarding the results from question 16, they present themselves to be one of the worst for this color model: the distance to the
+  expected colors is $\sigma_{distance-16} = $ 0.22001 and the standard deviation for the distances of answers blended in HSV is $\sigma_{HSV-16} = $ 0.10378. Since the presented color had a strong value of red component, users tended their answers
+  to the red shade, while blending it with a purple or pink one, to indicate a mixture close to magenta. This indicates that \textbf{blending Blue and Yellow, in HSV Color Model, does not correspond to a red shade, but to a green one, according to
+  the users' expectations}.
+  %
+  \begin{figure}[htbp]
+    \centering
+    \begin{minipage}{0.48\textwidth}
+      \centering
+      \includegraphics[width=\textwidth]{images/15_lab_HSVresponses.png}
+      \caption[Laboratory Results: Answers for Question 15, from regular users, mixed in HSV Color Model.]{Laboratory Results: Answers for Question 15, from regular users, mixed in HSV Color Model.}
+      \label{fig:labhsvregular_15}
+    \end{minipage}\hfill
+    \begin{minipage}{0.48\textwidth}
+      \centering
+      \includegraphics[width=\textwidth]{images/16_lab_HSVresponses.png}
+      \caption[Laboratory Results: Answers for Question 16, from regular users, mixed in HSV Color Model.]{Laboratory Results: Answers for Question 16, from regular users, mixed in HSV Color Model.}
+      \label{fig:labhsvregular_16}
+    \end{minipage}
+  \end{figure}
+  %
+\end{enumerate}
+%
+Another interesting example is Question 10 and 13: they both present a shade of blue, which could be obtained by two strands, either Green and Magenta (Question 10) or Blue and Cyan (Question 13). Particularly, the late question had a fairly simple expected pair (two shades of blue)
+but the users demonstrated some dispersion when aswering the question: moreover, the statistics prove it, by having a rather high standard deviation ($\sigma_{HSV} = $ 0.15607) when compared to the standard deviation of the whole model ($\sigma_{HSV} = $ 0.05267). These results are, thus,
+consistent with the know fact [\textbf{COLOCAR REF}] that \textbf{human color perception is poorer in the blue region of the color spectrum, than in others}, \emph{e.g} the green zone, which produced the best results for this color model; these results are extensible to the purple region
+of the spectrum, which is contiguous to the blue one.
+%
+Table \ref{table:hsvresults} contains the cited colors and questions, ranked from best (shorter distances) to worst (longer distances) and aims to help the analysis.
+%
+\begin{table}[htbp]
+  \centering
+  \begin{tabular}{@{}lcccccc@{}}
+  \toprule
+      & \multicolumn{1}{l}{Best}                        & \multicolumn{1}{l}{}                            & \multicolumn{1}{l}{}                           & \multicolumn{1}{l}{}                            & \multicolumn{1}{l}{}                            & \multicolumn{1}{l}{Worst}                       \\ \midrule
+  \multicolumn{1}{l|}{Shorter Distances} & \multicolumn{1}{c||}{\cellcolor[HTML]{FF8000}11} & \multicolumn{1}{c||}{\cellcolor[HTML]{80FF00}3}  & \multicolumn{1}{c||}{\cellcolor[HTML]{FF8000}6} & \multicolumn{1}{c||}{\cellcolor[HTML]{00FF80}9}  & \multicolumn{1}{c||}{\cellcolor[HTML]{00FF00}17} & \multicolumn{1}{c|}{\cellcolor[HTML]{00FF80}15} \\ \midrule
+  \multicolumn{1}{l|}{Longer Distances}  & \multicolumn{1}{c||}{\cellcolor[HTML]{0080FF}10} & \multicolumn{1}{c||}{\cellcolor[HTML]{0080FF}13} & \multicolumn{1}{c||}{\cellcolor[HTML]{0000FF}7} & \multicolumn{1}{c||}{\cellcolor[HTML]{8000FF}14} & \multicolumn{1}{c||}{\cellcolor[HTML]{FF007F}16} & \multicolumn{1}{c|}{\cellcolor[HTML]{FF00FF}2}  \\ \bottomrule
+  \end{tabular}
+  \caption[Laboratory Results: HSV Centroids]{Laboratory Results: HSV Centroids, with questions ranked from best result to the worst.}
+  \label{table:hsvresults}
+\end{table}
+%
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.5\textwidth]{images/HSV_hue.png}
+  \caption[Example of HSV Hue Circle, with opposed hue values.]{Example of HSV Hue Circle, with opposed hue values. Depicted: Question 3 and 4 case, with resulting hues 270º and 90º.}
+  \label{fig:colornames_xkcd}
+\end{figure}
+%
+\subsubsection{CIE-L*C*h Color Model Blendings}
+\label{subsubsec:lchcolormodel}
+%
+From all the color models studied along with this survey, the CIE-L*C*h* model was the one which presented the lower results. The questions which have best results are number 6 (\textbf{0.1}), 5 (\textbf{0.12}), 2 and 11 (\textbf{0.13}), 13 (\textbf{0.14}), 8 and 9 (\textbf{0.15});
+the best reults, by themselves, are quite high when compared with the previous color model, presenting mean distances always above 0.1 (which, in this scale, reveals itself to be a high value). Contrary, question 15, question 14,
+question 10, question 12 and question 3 have the lowest scores. \par
+%
+\begin{figure}[htbp]
+  \centering
+  \begin{minipage}{0.3\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{images/1_lab_LChresponses.png}
+    \caption[Laboratory Results: Answers for Question 1, from regular users, mixed in CIE-L*C*h* Color Model.]{Laboratory Results: Answers for Question 1, from regular users, mixed in CIE-L*C*h* Color Model.}
+    \label{fig:lablchregular_1}
+  \end{minipage}\hfill
+  \begin{minipage}{0.3\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{images/3_lab_LChresponses.png}
+    \caption[Laboratory Results: Answers for Question 3, from regular users, mixed in CIE-L*C*h* Color Model.]{Laboratory Results: Answers for Question 3, from regular users, mixed in CIE-L*C*h* Color Model.}
+    \label{fig:lablchregular_3}
+  \end{minipage}\hfill
+  \begin{minipage}{0.3\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{images/17_lab_LChresponses.png}
+    \caption[Laboratory Results: Answers for Question 17, from regular users, mixed in CIE-L*C*h* Color Model.]{Laboratory Results: Answers for Question 17, from regular users, mixed in CIE-L*C*h* Color Model.}
+    \label{fig:lablchregular_17}
+  \end{minipage}
+\end{figure}
+%
+The questions which revealed the lowest standard deviations (meaning less osccilation of results) were questions 1 ($\sigma_{LCh-1} = $ 0.0644), 3 ($\sigma_{LCh-3} = $ 0.05855) and 17 ($\sigma_{LCh-17} = $ 0.05902); nonethless, \textbf{these questions' centroids are all too far from the ideal L*C*h* expected
+result}, as seen on Figures \ref{fig:lablchregular_1}, \ref{fig:lablchregular_3} and \ref{fig:lablchregular_17}. \par
+%
+The ones which \textbf{consistently mantained the statistics were question 6 and 11}, having the lowest scores for the mean ($\tilde{x}_{LCh-6} = $ 0.1332, $\tilde{x}_{LCh-11} = $ 0.1374) which correspond to blends very close to the objective one. However, this values do not beat the ones obtained by the HSV
+Color Model blends, since their distance is quite longer than the one previously obtained. \par
+%
+Curiously, the best results from this color model are from questions which present \ul{red, pink and derived colors like orange}, while the weakest results came from a mix of
+questions which present green shades and blue derived ones, similar to HSV. \textbf{For most of the colors presented, this color model should be handled to the user when mixing colors}, since there are other color
+models with better results than this.
+%
+The following table outlines the best and the worst answers, ranked in a similar fashion to the previous color model.
+%
+\begin{table}[htbp]
+  \centering
+  \begin{tabular}{@{}lcccccc@{}}
+  \toprule
+      & \multicolumn{1}{l}{Best}                        & \multicolumn{1}{l}{}                            & \multicolumn{1}{l}{}                           & \multicolumn{1}{l}{}                            & \multicolumn{1}{l}{}                            & \multicolumn{1}{l}{Worst}                       \\ \midrule
+  \multicolumn{1}{l|}{Shorter Distances} & \multicolumn{1}{c||}{\cellcolor[HTML]{FF8000}6} & \multicolumn{1}{c||}{\cellcolor[HTML]{FF0080}5}  & \multicolumn{1}{c||}{\cellcolor[HTML]{FF00FF}2} & \multicolumn{1}{c||}{\cellcolor[HTML]{00FF80}13}  & \multicolumn{1}{c||}{\cellcolor[HTML]{FF0000}8} & \multicolumn{1}{c|}{\cellcolor[HTML]{00FF80}9} \\ \midrule
+  \multicolumn{1}{l|}{Longer Distances}  & \multicolumn{1}{c||}{\cellcolor[HTML]{00FF80}15} & \multicolumn{1}{c||}{\cellcolor[HTML]{8000FF}14} & \multicolumn{1}{c||}{\cellcolor[HTML]{0080FF}10} & \multicolumn{1}{c||}{\cellcolor[HTML]{80FF00}12} & \multicolumn{1}{c||}{\cellcolor[HTML]{80FF00}3} & \multicolumn{1}{c|}{\cellcolor[HTML]{7F00FF}4}  \\ \bottomrule
+  \end{tabular}
+  \caption[Laboratory Results: CIE L*C*h* Centroids]{Laboratory Results: CIE L*C*h* Centroids, with questions ranked from best result to the worst.}
+  \label{table:centroids_lchresults}
+\end{table}
+%
+\subsubsection{CMYK Color Model Blendings}
+\label{subsubsec:cmykcolormodel}
+%
+As it was explained before in the theoretical background, this color model is mainly a subtractive one, meaning it will naturally darken the colors when they are blended. The questions with shorter distances are 10 (\textbf{0.01}), 8 and 17 (\textbf{0.03}), 3 (\textbf{0.04}), 6 and 7 (\textbf{0.05})
+and 1 and 2 (\textbf{0.06}), which represent a wide range of colors mixtures. The questions which yielded \textbf{better results are majorly related to primitives of the CMYK color model}: Cyan is envolved in 3 blends (questions 3, 7 and 17), Magenta is envolved in 3 blends also (questions 7, 8 and
+10), so as Yellow (6, 8 and 17). On the other hand, RGB Model is weakly represented besides Red appearing in 4 questions, with Green appearing in 2 and Blue only in one. This success could be related to the fact that \textbf{people tend to formulate mental models of color based on ink mixing in childhood}
+\cite{Gossett2004}, mostly associating it to \gls{RYB} and CMYK Color Models without even knowing it. \par
+%
+\begin{figure}[htbp]
+  \centering
+  \begin{minipage}{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{images/17_lab_CMYKresponses.png}
+    \caption[Laboratory Results: Answers for Question 17, from regular users, mixed in CMYK Color Model.]{Laboratory Results: Answers for Question 17, from regular users, mixed in CMYK Color Model.}
+    \label{fig:labcmykregular_17}
+  \end{minipage}\hfill
+  \begin{minipage}{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{images/5_lab_CMYKresponses.png}
+    \caption[Laboratory Results: Answers for Question 5, from regular users, mixed in CMYK Color Model.]{Laboratory Results: Answers for Question 5, from regular users, mixed in CMYK Color Model.}
+    \label{fig:labcmykregular_5}
+  \end{minipage}
+\end{figure}
+%
+The questions with longer distances are 15 (\textbf{0.5}), 4 (\textbf{0.24}), 13 (\textbf{0.18}), 11 (\textbf{0.13}) and 12 and 5 (\textbf{0.12}), which also represent a wide range of color mixtures. This results indicate that \textbf{CMYK is a highly compatible color model with the users expectations},
+as many questions contain user answers that are close to the expected pre-calculated CMYK responses. However, this color model is the one which had the most deviation in the distance ($\sigma_{CMYK} = $ 0.11402), therefore the most deviation among all answers: we conclude that \textbf{for increasing the
+accuracy of the results and maximize this model's results, the number of available colors should be limited mostly to primitive colors like Cyan, Magenta or Yellow}, near the most common mental model of color of our users.  \par
+%
+Figure \ref{fig:labcmykregular_17} represents the results of Question 17, which had closer distances to the pre-calculated CMYK blend, and Figure \ref{fig:labcmykregular_5} show the results for Question 5; this last question has more sparse results, resulting in a more distant
+centroid. The next table sums up all the questions addressed.
+%
+\begin{table}[htbp]
+  \centering
+  \begin{tabular}{@{}lcccccccc@{}}
+  \toprule
+      & \multicolumn{1}{l}{Best}                        & \multicolumn{1}{l}{}                            & \multicolumn{1}{l}{}                           & \multicolumn{1}{l}{}                            & \multicolumn{1}{l}{}                            & \multicolumn{1}{l}{}                            & \multicolumn{1}{l}{}                            & \multicolumn{1}{l}{Worst}                       \\ \midrule
+  \multicolumn{1}{l|}{Shorter Distances} & \multicolumn{1}{c||}{\cellcolor[HTML]{0080FF}10} & \multicolumn{1}{c||}{\cellcolor[HTML]{FF0000}8}  & \multicolumn{1}{c||}{\cellcolor[HTML]{00FF00}17} & \multicolumn{1}{c||}{\cellcolor[HTML]{80FF00}3}  & \multicolumn{1}{c||}{\cellcolor[HTML]{FF8000}6} & \multicolumn{1}{c||}{\cellcolor[HTML]{0000FF}7} & \multicolumn{1}{c||}{\cellcolor[HTML]{FFFF00}1} & \multicolumn{1}{c|}{\cellcolor[HTML]{FF00FF}2} \\ \midrule
+  \multicolumn{1}{l|}{Longer Distances}  & \multicolumn{1}{c||}{\cellcolor[HTML]{00FF80}15} & \multicolumn{1}{c||}{\cellcolor[HTML]{7F00FF}4} & \multicolumn{1}{c||}{\cellcolor[HTML]{0080FF}13} & \multicolumn{1}{c||}{\cellcolor[HTML]{FF8000}11} & \multicolumn{1}{c||}{\cellcolor[HTML]{80FF00}12} & \multicolumn{1}{c||}{\cellcolor[HTML]{FF0080}5} & & \\ \bottomrule
+  \end{tabular}
+  \caption[Laboratory Results: CMYK Centroids]{Laboratory Results: CMYK Centroids, with questions ranked from best result to the worst.}
+  \label{table:centroids_cmykresults}
+\end{table}
+%
+\subsubsection{RGB Color Model Blendings}
+\label{subsubsec:rgbcolormodel}
+%
+Results from RGB centroids are quite similar to CMYK results, which is no surprise since they are relatively similar opposite models and explained on the theorical background of this document.
+The shorter distances are on questions 8, 7, 10, 6, 3, 1, 16 and 17 while the longer are on questions 11, 4, 13, 11, 12 and 14. There is no significant pattern related to the kind of colors which generate best and worst results.
+%
+\begin{table}[htbp]
+  \centering
+  \begin{tabular}{@{}lcccccccc@{}}
+  \toprule
+      & \multicolumn{1}{l}{Best}                        & \multicolumn{1}{l}{}                            & \multicolumn{1}{l}{}                           & \multicolumn{1}{l}{}                            & \multicolumn{1}{l}{}                            & \multicolumn{1}{l}{}                            & \multicolumn{1}{l}{}                            & \multicolumn{1}{l}{Worst}                       \\ \midrule
+  \multicolumn{1}{l|}{Shorter Distances} & \multicolumn{1}{c||}{\cellcolor[HTML]{FF0000}8} & \multicolumn{1}{c||}{\cellcolor[HTML]{0000FF}7}  & \multicolumn{1}{c||}{\cellcolor[HTML]{0080FF}10} & \multicolumn{1}{c||}{\cellcolor[HTML]{FF8000}6}  & \multicolumn{1}{c||}{\cellcolor[HTML]{80FF00}3} & \multicolumn{1}{c||}{\cellcolor[HTML]{FFFF00}1} & \multicolumn{1}{c||}{\cellcolor[HTML]{FF007F}16} & \multicolumn{1}{c|}{\cellcolor[HTML]{00FF00}17} \\ \midrule
+  \multicolumn{1}{l|}{Longer Distances}  & \multicolumn{1}{c||}{\cellcolor[HTML]{FF8000}11} & \multicolumn{1}{c||}{\cellcolor[HTML]{7F00FF}4} & \multicolumn{1}{c||}{\cellcolor[HTML]{80FF00}3} & \multicolumn{1}{c||}{\cellcolor[HTML]{FF8000}11} & \multicolumn{1}{c||}{\cellcolor[HTML]{80FF00}12} & \multicolumn{1}{c||}{\cellcolor[HTML]{8000FF}14} & & \\ \bottomrule
+  \end{tabular}
+  \caption[Laboratory Results: RGB Centroids]{Laboratory Results: RGB Centroids, with questions ranked from best result to the worst.}
+  \label{table:centroids_rgbresults}
+\end{table}
+%
+\subsubsection{CIE-L*a*b* Color Model Blendings}
+\label{subsubsec:lchcolormodel}
+%
+This color model is the one, by far, which builds more consensus, since there are much more questions which present the smallest number of weak (longer) distances to the ideal answer pair.
+The shorter distances questions are on questions 6, 7, 16 (all with \textbf{0.04}), 8 and 10 (both \textbf{0.05}), 3 (\textbf{0.07}), 1, 2 and 14 (all with \textbf{0.09}) and, finally, 5 and 9 (\textbf{0.1}); while the longer are on questions
+4, 12, 11, 13 and 15.
+%
+\begin{table}[htbp]
+  \centering
+  \begin{tabular}{@{}lccccccccccc@{}}
+  \toprule
+      & \multicolumn{1}{l}{Best}                        & \multicolumn{1}{l}{}                            & \multicolumn{1}{l}{}                           & \multicolumn{1}{l}{}                            & \multicolumn{1}{l}{}                            & \multicolumn{1}{l}{}                            & \multicolumn{1}{l}{}                            & \multicolumn{1}{l}{}                            & \multicolumn{1}{l}{}                            & \multicolumn{1}{l}{}                                                   & \multicolumn{1}{l}{Worst}                             \\ \midrule
+  \multicolumn{1}{l|}{Shorter Distances} & \multicolumn{1}{c||}{\cellcolor[HTML]{FF8000}6} & \multicolumn{1}{c||}{\cellcolor[HTML]{0000FF}7}  & \multicolumn{1}{c||}{\cellcolor[HTML]{FF007F}16} & \multicolumn{1}{c||}{\cellcolor[HTML]{FF0000}8}  & \multicolumn{1}{c||}{\cellcolor[HTML]{0080FF}10} & \multicolumn{1}{c||}{\cellcolor[HTML]{80FF00}3} & \multicolumn{1}{c||}{\cellcolor[HTML]{FFFF00}1} & \multicolumn{1}{c||}{\cellcolor[HTML]{FF00FF}2} & \multicolumn{1}{c||}{\cellcolor[HTML]{8000FF}14} & \multicolumn{1}{c||}{\cellcolor[HTML]{FF0080}5} & \multicolumn{1}{c|}{\cellcolor[HTML]{00FF80}9}\\ \midrule
+  \multicolumn{1}{l|}{Longer Distances}  & \multicolumn{1}{c||}{\cellcolor[HTML]{7F00FF}4} & \multicolumn{1}{c||}{\cellcolor[HTML]{80FF00}12} & \multicolumn{1}{c||}{\cellcolor[HTML]{FF8000}11} & \multicolumn{1}{c||}{\cellcolor[HTML]{0080FF}13} & \multicolumn{1}{c|}{\cellcolor[HTML]{00FF80}15} & & & & & & \\ \bottomrule
+  \end{tabular}
+  \caption[Laboratory Results: CIE L*a*b* Centroids]{Laboratory Results: CIE L*a*b* Centroids, with questions ranked from best result to the worst.}
+  \label{table:centroids_labresults}
+\end{table}
+%
+
+corroborar com online \\
+comparar com tipo oposto de questão. \\
+fazer ANOVA \\
 %
 \subsection{Color Mixtures}
 \label{subsec:results_colormixtures}
 %
-Regarding the color mixtures' related questions, we would like to make the following analysis. We asked at \ref{sec:impl_objectives} ... \par
+Regarding the color mixtures' related questions, we would like to make the following analysis. We asked at Section \ref{sec:impl_objectives} ... \par
+Ver também se existe cor preferida para começar mistura.
+%
+\subsubsection{Primary Colors}
+\label{subsubsec:primarycolors}
+%
+fazer analise concreta das questões 1, 2, 7, 8 e 17, que são as primitivas. perceber se resultados são positivos para a geração de primitivas com base noutras. \\\\
+%
+Comparar misturas que originam a mesma cor, com base em primárias diferentes e perceber se utilizadores conseguem detectar várias
+misturas para uma mesma cor. \par
+%
+\subsubsection{Difficulty While Blending Colors}
+\label{subsubsec:difficulty_rating}
 %
 Fazer também mistura mais fácil, comparando os ratings das questões e ver qual a mistura que apresenta melhores resultados. \\
-Comparar misturas que originam a mesma cor, com base em primárias diferentes e perceber se utilizadores conseguem detectar várias
-misturas para uma mesma cor.
 %
 \subsection{Color Naming}
 \label{subsec:results_namingcolors}
@@ -568,11 +855,17 @@ Cores mais comuns em algumas perguntas; existe alguma ordem caracteristica quand
 Comparar se, mais do que pelos valores anteriormente calculados, se users identificam "uma mistura de vermelho com azul" como dando um resultado
 magenta, ou mais afinado para uma dada cor.
 %
-\subsection{Demographic Groups}
+\subsection{Demographic Results}
 \label{subsec:results_demographic}
 %
 Fazer apenas comparação de faixas etárias entre si, e géneros entre si. \\
 Uma ánalise interesse seria comparar faxias etárias por género, mas seria necessária uma amostra bastante mais significativa para cada grupo.
+%
+\subsubsection{Age Groups}
+\label{subsubsec:demo_age}
+%
+\subsubsection{Gender Groups}
+\label{subsubsec:demo_age}
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                DISCUSSION                                                                       %
@@ -582,6 +875,7 @@ Uma ánalise interesse seria comparar faxias etárias por género, mas seria nec
 \label{sec:results_discussion}
 %
 Fazer apanhado dos resultados todos. \par
+abordar questão de que modelos originaram melhores respostas, se são aditivos ou subtrativos. \\
 %
 \subsection{Calibration Resiliency}
 \label{subsec:results_calibration}
@@ -592,7 +886,9 @@ são os que se seguem... \par
 %
 \subsection{Creation of Color Scales}
 \label{subsec:results_discussion_colorscales}
-
+%
+Falar de respostas em branco. \par
+%
 \subsection{Color Organization}
 \label{subsec:results_discussion_colororganization}
 
