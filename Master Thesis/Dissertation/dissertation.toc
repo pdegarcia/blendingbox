@@ -35,33 +35,52 @@
 \contentsline {section}{\numberline {4.4}Results}{17}{section.4.4}
 \contentsline {subsection}{\numberline {4.4.1}User Profile}{18}{subsection.4.4.1}
 \contentsline {subsection}{\numberline {4.4.2}Color Models}{19}{subsection.4.4.2}
-\contentsline {subsubsection}{HSV Color Model Blendings}{20}{section*.20}
-\contentsline {subsubsection}{CIE-L*C*h Color Model Blendings}{24}{section*.26}
-\contentsline {subsubsection}{CMYK Color Model Blendings}{24}{section*.29}
-\contentsline {subsubsection}{RGB Color Model Blendings}{26}{section*.32}
-\contentsline {subsubsection}{CIE-L*a*b* Color Model Blendings}{27}{section*.34}
-\contentsline {subsection}{\numberline {4.4.3}Color Mixtures}{28}{subsection.4.4.3}
-\contentsline {subsubsection}{Primary Colors}{28}{section*.37}
-\contentsline {subsubsection}{Difficulty While Blending Colors}{28}{section*.38}
-\contentsline {subsection}{\numberline {4.4.4}Color Naming}{28}{subsection.4.4.4}
-\contentsline {subsection}{\numberline {4.4.5}Demographic Results}{28}{subsection.4.4.5}
-\contentsline {subsubsection}{Age Groups}{28}{section*.39}
-\contentsline {subsubsection}{Gender Groups}{28}{section*.40}
-\contentsline {section}{\numberline {4.5}Discussion}{28}{section.4.5}
-\contentsline {subsection}{\numberline {4.5.1}Calibration Resiliency}{29}{subsection.4.5.1}
-\contentsline {subsection}{\numberline {4.5.2}Creation of Color Scales}{29}{subsection.4.5.2}
-\contentsline {subsection}{\numberline {4.5.3}Color Organization}{29}{subsection.4.5.3}
-\contentsline {subsection}{\numberline {4.5.4}Consequences for InfoVis}{29}{subsection.4.5.4}
-\contentsline {chapter}{\numberline {5}Conclusion}{31}{chapter.5}
-\contentsline {section}{\numberline {5.1}Limitiations}{31}{section.5.1}
-\contentsline {section}{\numberline {5.2}Future Work}{31}{section.5.2}
-\contentsline {chapter}{Bibliography}{33}{section*.41}
-\contentsline {chapter}{\numberline {A}User Study Protocol}{35}{appendix.A}
-\contentsline {section}{\numberline {A.1}Motivation}{35}{section.A.1}
-\contentsline {section}{\numberline {A.2}User Profiling Phase}{35}{section.A.2}
-\contentsline {section}{\numberline {A.3}Testing Calibration Phase}{35}{section.A.3}
-\contentsline {section}{\numberline {A.4}Testing Color Vision Deficiences Phase}{36}{section.A.4}
-\contentsline {section}{\numberline {A.5}Core Test Phase}{36}{section.A.5}
-\contentsline {chapter}{\numberline {B}Chromaticity Diagrams}{37}{appendix.B}
-\contentsline {chapter}{\numberline {C}Tables}{39}{appendix.C}
-\contentsline {section}{\numberline {C.1}Results Tables}{39}{section.C.1}
+\contentsline {subsubsection}{Analyzing Questions}{19}{section*.11}
+\contentsline {paragraph}{\textul {Question One}}{19}{section*.12}
+\contentsline {paragraph}{\textul {Question 2}}{21}{section*.13}
+\contentsline {paragraph}{\textul {Question 3}}{21}{section*.14}
+\contentsline {paragraph}{\textul {Question 4}}{22}{section*.15}
+\contentsline {paragraph}{\textul {Question 5}}{22}{section*.16}
+\contentsline {paragraph}{\textul {Question 6}}{22}{section*.17}
+\contentsline {paragraph}{\textul {Question 7}}{22}{section*.18}
+\contentsline {paragraph}{\textul {Question 8}}{22}{section*.19}
+\contentsline {paragraph}{\textul {Question 9}}{22}{section*.20}
+\contentsline {paragraph}{\textul {Question 10}}{22}{section*.21}
+\contentsline {paragraph}{\textul {Question 11}}{22}{section*.22}
+\contentsline {paragraph}{\textul {Question 12}}{22}{section*.23}
+\contentsline {paragraph}{\textul {Question 13}}{22}{section*.24}
+\contentsline {paragraph}{\textul {Question 14}}{22}{section*.25}
+\contentsline {paragraph}{\textul {Question 15}}{22}{section*.26}
+\contentsline {paragraph}{\textul {Question 16}}{22}{section*.27}
+\contentsline {paragraph}{\textul {Question 17}}{22}{section*.28}
+\contentsline {subsubsection}{Analyzing Color Models}{23}{section*.29}
+\contentsline {paragraph}{\textul {HSV Color Model Blendings}}{23}{section*.30}
+\contentsline {paragraph}{\textul {CIE-L*C*h Color Model Blendings}}{27}{section*.35}
+\contentsline {paragraph}{\textul {CMYK Color Model Blendings}}{27}{section*.37}
+\contentsline {paragraph}{\textul {RGB Color Model Blendings}}{29}{section*.39}
+\contentsline {paragraph}{\textul {CIE-L*a*b* Color Model Blendings}}{29}{section*.40}
+\contentsline {subsection}{\numberline {4.4.3}Color Mixtures}{30}{subsection.4.4.3}
+\contentsline {subsubsection}{Primary Colors}{31}{section*.42}
+\contentsline {subsubsection}{Difficulty While Blending Colors}{31}{section*.43}
+\contentsline {subsection}{\numberline {4.4.4}Color Naming}{31}{subsection.4.4.4}
+\contentsline {subsection}{\numberline {4.4.5}Demographic Results}{31}{subsection.4.4.5}
+\contentsline {subsubsection}{Age Groups}{31}{section*.44}
+\contentsline {subsubsection}{Gender Groups}{31}{section*.45}
+\contentsline {section}{\numberline {4.5}Discussion}{31}{section.4.5}
+\contentsline {subsection}{\numberline {4.5.1}Calibration Resiliency}{31}{subsection.4.5.1}
+\contentsline {subsection}{\numberline {4.5.2}Creation of Color Scales}{31}{subsection.4.5.2}
+\contentsline {subsection}{\numberline {4.5.3}Color Organization}{32}{subsection.4.5.3}
+\contentsline {subsection}{\numberline {4.5.4}Implications for InfoVis}{32}{subsection.4.5.4}
+\contentsline {chapter}{\numberline {5}Conclusion}{33}{chapter.5}
+\contentsline {section}{\numberline {5.1}Limitiations}{33}{section.5.1}
+\contentsline {section}{\numberline {5.2}Future Work}{33}{section.5.2}
+\contentsline {chapter}{Bibliography}{35}{section*.46}
+\contentsline {chapter}{\numberline {A}User Study Protocol}{37}{appendix.A}
+\contentsline {section}{\numberline {A.1}Motivation}{37}{section.A.1}
+\contentsline {section}{\numberline {A.2}User Profiling Phase}{37}{section.A.2}
+\contentsline {section}{\numberline {A.3}Testing Calibration Phase}{37}{section.A.3}
+\contentsline {section}{\numberline {A.4}Testing Color Vision Deficiences Phase}{38}{section.A.4}
+\contentsline {section}{\numberline {A.5}Core Test Phase}{38}{section.A.5}
+\contentsline {chapter}{\numberline {B}Chromaticity Diagrams}{39}{appendix.B}
+\contentsline {chapter}{\numberline {C}Tables}{41}{appendix.C}
+\contentsline {section}{\numberline {C.1}Results Tables}{41}{section.C.1}

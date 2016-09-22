@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.9.6)  22 SEP 2016 01:47
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.9.6)  22 SEP 2016 23:47
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -951,17 +951,26 @@ Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
 LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 (Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
 ))
+(/usr/local/texlive/2016/texmf-dist/tex/latex/float/float.sty
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count162
+\float@exts=\toks45
+\float@box=\box38
+\@float@everytoks=\toks46
+\@floatcapt=\box39
+)
+\@float@every@table=\toks47
 \glswrite=\write3
 \glo@main@file=\write4
 \openout4 = `dissertation.glo'.
 
-Package glossaries Info: Writing glossary file dissertation.glo on input line 4
-9.
+Package glossaries Info: Writing glossary file dissertation.glo on input line 5
+2.
 \glo@acronym@file=\write5
 \openout5 = `dissertation.acn'.
 
-Package glossaries Info: Writing glossary file dissertation.acn on input line 4
-9.
+Package glossaries Info: Writing glossary file dissertation.acn on input line 5
+2.
 
 (./acronyms/acronyms.tex) (./dissertation.aux (./cover.aux)
 (./abstract/abstract-en.aux) (./abstract/abstract-pt.aux)
@@ -974,7 +983,7 @@ LaTeX Warning: Label `subsec:results_preparation' multiply defined.
 LaTeX Warning: Label `fig:colornames_xkcd' multiply defined.
 
 
-LaTeX Warning: Label `subsubsec:lchcolormodel' multiply defined.
+LaTeX Warning: Label `par:lchcolormodel' multiply defined.
 
 
 LaTeX Warning: Label `subsubsec:demo_age' multiply defined.
@@ -983,21 +992,21 @@ LaTeX Warning: Label `subsubsec:demo_age' multiply defined.
 (./appendix/diagrams.aux) (./appendix/tables.aux))
 \openout1 = `dissertation.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 77.
-LaTeX Font Info:    ... okay on input line 77.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 77.
-LaTeX Font Info:    ... okay on input line 77.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 77.
-LaTeX Font Info:    ... okay on input line 77.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 77.
-LaTeX Font Info:    ... okay on input line 77.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 77.
-LaTeX Font Info:    ... okay on input line 77.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 77.
-LaTeX Font Info:    ... okay on input line 77.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 77.
-LaTeX Font Info:    ... okay on input line 77.
-LaTeX Font Info:    Try loading font information for OT1+phv on input line 77.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 80.
+LaTeX Font Info:    ... okay on input line 80.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 80.
+LaTeX Font Info:    ... okay on input line 80.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 80.
+LaTeX Font Info:    ... okay on input line 80.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 80.
+LaTeX Font Info:    ... okay on input line 80.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 80.
+LaTeX Font Info:    ... okay on input line 80.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 80.
+LaTeX Font Info:    ... okay on input line 80.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 80.
+LaTeX Font Info:    ... okay on input line 80.
+LaTeX Font Info:    Try loading font information for OT1+phv on input line 80.
 
 (/usr/local/texlive/2016/texmf-dist/tex/latex/psnfss/ot1phv.fd
 File: ot1phv.fd 2001/06/04 scalable font definitions for OT1/phv.
@@ -1036,19 +1045,19 @@ File: ot1phv.fd 2001/06/04 scalable font definitions for OT1/phv.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-\AtBeginShipoutBox=\box38
-Package hyperref Info: Link coloring OFF on input line 77.
+\AtBeginShipoutBox=\box40
+Package hyperref Info: Link coloring OFF on input line 80.
 (/usr/local/texlive/2016/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
 
 (/usr/local/texlive/2016/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
-\c@section@level=\count162
+\c@section@level=\count163
 )
-LaTeX Info: Redefining \ref on input line 77.
-LaTeX Info: Redefining \pageref on input line 77.
-LaTeX Info: Redefining \nameref on input line 77.
+LaTeX Info: Redefining \ref on input line 80.
+LaTeX Info: Redefining \pageref on input line 80.
+LaTeX Info: Redefining \nameref on input line 80.
 
 (./dissertation.out) (./dissertation.out)
 \@outlinefile=\write6
@@ -1057,17 +1066,17 @@ LaTeX Info: Redefining \nameref on input line 77.
 
 (/usr/local/texlive/2016/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count163
+\scratchcounter=\count164
 \scratchdimen=\dimen174
-\scratchbox=\box39
-\nofMPsegments=\count164
-\nofMParguments=\count165
-\everyMPshowfont=\toks45
-\MPscratchCnt=\count166
+\scratchbox=\box41
+\nofMPsegments=\count165
+\nofMParguments=\count166
+\everyMPshowfont=\toks48
+\MPscratchCnt=\count167
 \MPscratchDim=\dimen175
-\MPnumerator=\count167
-\makeMPintoPDFobject=\count168
-\everyMPtoPDFconversion=\toks46
+\MPnumerator=\count168
+\makeMPintoPDFobject=\count169
+\everyMPtoPDFconversion=\toks49
 ) (/usr/local/texlive/2016/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
 
@@ -1091,8 +1100,9 @@ Package: lscape 2000/10/22 v3.01 Landscape Pages (DPC)
 )
 Package pdflscape Info: Auto-detected driver: pdftex on input line 81.
 )
-\c@lstlisting=\count169
+\c@lstlisting=\count170
 Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: float package is loaded.
 Package caption Info: End \AtBeginDocument code.
 
 (./variables.tex)
@@ -1110,7 +1120,7 @@ ed-to.pdf images/ist-logo.eps>
 (epstopdf)             \includegraphics on input line 10.
 Package epstopdf Info: Output file is already uptodate.
 
-<images/ist-logo-eps-converted-to.pdf, id=261, 500.87125pt x 193.72375pt>
+<images/ist-logo-eps-converted-to.pdf, id=249, 500.87125pt x 193.72375pt>
 File: images/ist-logo-eps-converted-to.pdf Graphic file (type pdf)
 
 <use images/ist-logo-eps-converted-to.pdf>
@@ -1137,7 +1147,7 @@ s/ist-logo-eps-converted-to.pdf>])pdfTeX warning (ext4): destination with the s
 ame identifier (name{page.}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.88 \NewPage
+l.91 \NewPage
               [2
 
 ] (./acknowledgments/acknowledgments.tex
@@ -1198,7 +1208,7 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
  [8]
 (./dissertation.lot
 LaTeX Font Info:    Font shape `OT1/phv/m/it' in size <10> not available
-(Font)              Font shape `OT1/phv/m/sl' tried instead on input line 16.
+(Font)              Font shape `OT1/phv/m/sl' tried instead on input line 20.
 )
 \tf@lot=\write8
 \openout8 = `dissertation.lot'.
@@ -1266,7 +1276,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 33--35
 
 
 
-] <images/blacktest_example.png, id=531, 993.7125pt x 770.88pt>
+] <images/blacktest_example.png, id=524, 993.7125pt x 770.88pt>
 File: images/blacktest_example.png Graphic file (type png)
 
 <use images/blacktest_example.png>
@@ -1307,21 +1317,21 @@ File: omlphv.fd
 LaTeX Font Info:    Font shape `OML/phv/m/n' in size <9> not available
 (Font)              Font shape `OML/cmm/m/it' tried instead on input line 274.
  [14]
-<images/satfaces_map.png, id=644, 1027.84pt x 1027.84pt>
+<images/satfaces_map.png, id=637, 1027.84pt x 1027.84pt>
 File: images/satfaces_map.png Graphic file (type png)
 
 <use images/satfaces_map.png>
 Package pdftex.def Info: images/satfaces_map.png used on input line 312.
 (pdftex.def)             Requested size: 227.62206pt x 227.61543pt.
  [15 <./images/satfaces_map.png>]
-<images/colorbins_areas.png, id=656, 578.16pt x 433.62pt>
+<images/colorbins_areas.png, id=649, 578.16pt x 433.62pt>
 File: images/colorbins_areas.png Graphic file (type png)
 
 <use images/colorbins_areas.png>
 Package pdftex.def Info: images/colorbins_areas.png used on input line 359.
 (pdftex.def)             Requested size: 221.24437pt x 165.92857pt.
 
-<images/cie_colors.png, id=657, 431.6125pt x 402.50375pt>
+<images/cie_colors.png, id=650, 431.6125pt x 402.50375pt>
 File: images/cie_colors.png Graphic file (type png)
 
 <use images/cie_colors.png>
@@ -1333,7 +1343,7 @@ LaTeX Warning: Reference `fig:colorbins_triangle' on page 16 undefined on input
  line 376.
 
 [16 <./images/colorbins_areas.png (PNG copy)> <./images/cie_colors.png>]
-<images/colorbins_transformation.png, id=668, 897.3525pt x 346.29375pt>
+<images/colorbins_transformation.png, id=661, 897.3525pt x 346.29375pt>
 File: images/colorbins_transformation.png Graphic file (type png)
 
 <use images/colorbins_transformation.png>
@@ -1346,189 +1356,184 @@ LaTeX Warning: Reference `table:summarize_results' on page 17 undefined on inpu
 t line 437.
 
 [17 <./images/colorbins_transformation.png>] [18] [19] [20]
-<images/HSV_hue.png, id=702, 537.00626pt x 443.6575pt>
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [21]
+[22] <images/HSV_hue.png, id=723, 537.00626pt x 443.6575pt>
 File: images/HSV_hue.png Graphic file (type png)
 
 <use images/HSV_hue.png>
-Package pdftex.def Info: images/HSV_hue.png used on input line 600.
+Package pdftex.def Info: images/HSV_hue.png used on input line 731.
 (pdftex.def)             Requested size: 227.62206pt x 188.05437pt.
-
-<images/3_lab_HSVresponses.png, id=706, 578.16pt x 433.62pt>
+ [23]
+<images/3_lab_HSVresponses.png, id=733, 578.16pt x 433.62pt>
 File: images/3_lab_HSVresponses.png Graphic file (type png)
 
 <use images/3_lab_HSVresponses.png>
-Package pdftex.def Info: images/3_lab_HSVresponses.png used on input line 619.
+Package pdftex.def Info: images/3_lab_HSVresponses.png used on input line 750.
 (pdftex.def)             Requested size: 218.51521pt x 163.88408pt.
 
-<images/4_lab_HSVresponses.png, id=707, 578.16pt x 433.62pt>
+<images/4_lab_HSVresponses.png, id=734, 578.16pt x 433.62pt>
 File: images/4_lab_HSVresponses.png Graphic file (type png)
 
 <use images/4_lab_HSVresponses.png>
-Package pdftex.def Info: images/4_lab_HSVresponses.png used on input line 625.
+Package pdftex.def Info: images/4_lab_HSVresponses.png used on input line 756.
 (pdftex.def)             Requested size: 218.51521pt x 163.88408pt.
- [21 <./images/HSV_hue.png>]
-<images/10_lab_HSVresponses.png, id=719, 578.16pt x 433.62pt>
+
+<images/10_lab_HSVresponses.png, id=738, 578.16pt x 433.62pt>
 File: images/10_lab_HSVresponses.png Graphic file (type png)
 
 <use images/10_lab_HSVresponses.png>
-Package pdftex.def Info: images/10_lab_HSVresponses.png used on input line 640.
+Package pdftex.def Info: images/10_lab_HSVresponses.png used on input line 771.
 
 (pdftex.def)             Requested size: 218.51521pt x 163.88408pt.
 
-<images/11_lab_HSVresponses.png, id=720, 578.16pt x 433.62pt>
+<images/11_lab_HSVresponses.png, id=739, 578.16pt x 433.62pt>
 File: images/11_lab_HSVresponses.png Graphic file (type png)
 
 <use images/11_lab_HSVresponses.png>
-Package pdftex.def Info: images/11_lab_HSVresponses.png used on input line 646.
+Package pdftex.def Info: images/11_lab_HSVresponses.png used on input line 777.
 
 (pdftex.def)             Requested size: 218.51521pt x 163.88408pt.
 
-<images/15_lab_HSVresponses.png, id=722, 578.16pt x 433.62pt>
+<images/15_lab_HSVresponses.png, id=741, 578.16pt x 433.62pt>
 File: images/15_lab_HSVresponses.png Graphic file (type png)
 
 <use images/15_lab_HSVresponses.png>
-Package pdftex.def Info: images/15_lab_HSVresponses.png used on input line 664.
+Package pdftex.def Info: images/15_lab_HSVresponses.png used on input line 795.
 
 (pdftex.def)             Requested size: 218.51521pt x 163.88408pt.
 
-<images/16_lab_HSVresponses.png, id=723, 578.16pt x 433.62pt>
+<images/16_lab_HSVresponses.png, id=742, 578.16pt x 433.62pt>
 File: images/16_lab_HSVresponses.png Graphic file (type png)
 
 <use images/16_lab_HSVresponses.png>
-Package pdftex.def Info: images/16_lab_HSVresponses.png used on input line 670.
+Package pdftex.def Info: images/16_lab_HSVresponses.png used on input line 801.
 
 (pdftex.def)             Requested size: 218.51521pt x 163.88408pt.
- [22 <./images/3_lab_HSVresponses.png (PNG copy)> <./images/4_lab_HSVresponses.
-png (PNG copy)> <./images/10_lab_HSVresponses.png (PNG copy)> <./images/11_lab_
-HSVresponses.png (PNG copy)>] [23 <./images/15_lab_HSVresponses.png (PNG copy)>
- <./images/16_lab_HSVresponses.png (PNG copy)>] <images/1_lab_LChresponses.png,
- id=735, 578.16pt x 433.62pt>
+ [24 <./images/HSV_hue.png>] [25 <./images/3_lab_HSVresponses.png (PNG copy)> <
+./images/4_lab_HSVresponses.png (PNG copy)> <./images/10_lab_HSVresponses.png (
+PNG copy)> <./images/11_lab_HSVresponses.png (PNG copy)>] [26 <./images/15_lab_
+HSVresponses.png (PNG copy)> <./images/16_lab_HSVresponses.png (PNG copy)>]
+<images/1_lab_LChresponses.png, id=760, 578.16pt x 433.62pt>
 File: images/1_lab_LChresponses.png Graphic file (type png)
 
 <use images/1_lab_LChresponses.png>
-Package pdftex.def Info: images/1_lab_LChresponses.png used on input line 708.
+Package pdftex.def Info: images/1_lab_LChresponses.png used on input line 839.
 (pdftex.def)             Requested size: 136.57462pt x 102.43002pt.
 
-<images/3_lab_LChresponses.png, id=736, 578.16pt x 433.62pt>
+<images/3_lab_LChresponses.png, id=761, 578.16pt x 433.62pt>
 File: images/3_lab_LChresponses.png Graphic file (type png)
 
 <use images/3_lab_LChresponses.png>
-Package pdftex.def Info: images/3_lab_LChresponses.png used on input line 714.
+Package pdftex.def Info: images/3_lab_LChresponses.png used on input line 845.
 (pdftex.def)             Requested size: 136.57462pt x 102.43002pt.
 
-<images/17_lab_LChresponses.png, id=737, 578.16pt x 433.62pt>
+<images/17_lab_LChresponses.png, id=762, 578.16pt x 433.62pt>
 File: images/17_lab_LChresponses.png Graphic file (type png)
 
 <use images/17_lab_LChresponses.png>
-Package pdftex.def Info: images/17_lab_LChresponses.png used on input line 720.
+Package pdftex.def Info: images/17_lab_LChresponses.png used on input line 851.
 
 (pdftex.def)             Requested size: 136.57462pt x 102.43002pt.
- [24 <./images/1_lab_LChresponses.png (PNG copy)> <./images/3_lab_LChresponses.
+ [27 <./images/1_lab_LChresponses.png (PNG copy)> <./images/3_lab_LChresponses.
 png (PNG copy)> <./images/17_lab_LChresponses.png (PNG copy)>]
-<images/17_lab_CMYKresponses.png, id=747, 578.16pt x 433.62pt>
+<images/17_lab_CMYKresponses.png, id=775, 578.16pt x 433.62pt>
 File: images/17_lab_CMYKresponses.png Graphic file (type png)
 
 <use images/17_lab_CMYKresponses.png>
-Package pdftex.def Info: images/17_lab_CMYKresponses.png used on input line 775
+Package pdftex.def Info: images/17_lab_CMYKresponses.png used on input line 906
 .
 (pdftex.def)             Requested size: 218.51521pt x 163.88408pt.
 
-<images/5_lab_CMYKresponses.png, id=748, 578.16pt x 433.62pt>
+<images/5_lab_CMYKresponses.png, id=776, 578.16pt x 433.62pt>
 File: images/5_lab_CMYKresponses.png Graphic file (type png)
 
 <use images/5_lab_CMYKresponses.png>
-Package pdftex.def Info: images/5_lab_CMYKresponses.png used on input line 781.
+Package pdftex.def Info: images/5_lab_CMYKresponses.png used on input line 912.
 
 (pdftex.def)             Requested size: 218.51521pt x 163.88408pt.
- [25 <./images/17_lab_CMYKresponses.png (PNG copy)> <./images/5_lab_CMYKrespons
+ [28 <./images/17_lab_CMYKresponses.png (PNG copy)> <./images/5_lab_CMYKrespons
 es.png (PNG copy)>]
 
-LaTeX Warning: Reference `fig:labregular_8' on page 26 undefined on input line 
-818.
+LaTeX Warning: Reference `fig:labregular_8' on page 29 undefined on input line 
+949.
 
 
-LaTeX Warning: Reference `fig:labrgbregular_8' on page 26 undefined on input li
-ne 818.
+LaTeX Warning: Reference `fig:labrgbregular_8' on page 29 undefined on input li
+ne 949.
 
-[26] <images/6_lab_Labresponses.png, id=760, 578.16pt x 433.62pt>
+[29] <images/6_lab_Labresponses.png, id=790, 578.16pt x 433.62pt>
 File: images/6_lab_Labresponses.png Graphic file (type png)
 
 <use images/6_lab_Labresponses.png>
-Package pdftex.def Info: images/6_lab_Labresponses.png used on input line 847.
+Package pdftex.def Info: images/6_lab_Labresponses.png used on input line 978.
 (pdftex.def)             Requested size: 218.51521pt x 163.88408pt.
 
-<images/13_lab_Labresponses.png, id=761, 578.16pt x 433.62pt>
+<images/13_lab_Labresponses.png, id=791, 578.16pt x 433.62pt>
 File: images/13_lab_Labresponses.png Graphic file (type png)
 
 <use images/13_lab_Labresponses.png>
-Package pdftex.def Info: images/13_lab_Labresponses.png used on input line 853.
+Package pdftex.def Info: images/13_lab_Labresponses.png used on input line 984.
 
 (pdftex.def)             Requested size: 218.51521pt x 163.88408pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 874--877
+Underfull \hbox (badness 10000) in paragraph at lines 1005--1008
 
  []
 
 
-Underfull \vbox (badness 1286) has occurred while \output is active []
-
- [27 <./images/6_lab_Labresponses.png (PNG copy)> <./images/13_lab_Labresponses
-.png (PNG copy)>]
-Underfull \hbox (badness 10000) in paragraph at lines 888--891
+Underfull \hbox (badness 10000) in paragraph at lines 1019--1022
 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 896--898
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 925--927
+[30 <./images/6_lab_Labresponses.png (PNG copy)> <./images/13_lab_Labresponses.
+png (PNG copy)>]
+Underfull \hbox (badness 10000) in paragraph at lines 1057--1059
 
  []
 
-[28]) [29]
+) [31] [32]
 \openout2 = `chapters/conclusion.aux'.
 
- (./chapters/conclusion.tex [30
-
-
-
-]
+ (./chapters/conclusion.tex
 Chapter 5.
-) [31]) [32
+) [33
 
 
-] (./dissertation.bbl) (./appendix/main.tex [33
+
+]) [34
+
+
+] (./dissertation.bbl) (./appendix/main.tex [35
 
 ]
 \openout2 = `appendix/protocol.aux'.
 
 
-(./appendix/protocol.tex [34
+(./appendix/protocol.tex [36
 
 
 ]
 Appendix A.
-[35]
+[37]
 Underfull \hbox (badness 10000) in paragraph at lines 45--52
 
  []
 
-) [36]
+) [38]
 \openout2 = `appendix/diagrams.aux'.
 
  (./appendix/diagrams.tex
 Appendix B.
-) [37
+) [39
 
 
 
 ]
 \openout2 = `appendix/tables.aux'.
 
- (./appendix/tables.tex [38
+ (./appendix/tables.tex [40
 
 
 
@@ -1539,18 +1544,18 @@ Underfull \hbox (badness 10000) in paragraph at lines 9--8
 
  []
 
-[39])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 137.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 137.
+[41])
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 140.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 140.
  (./dissertation.aux (./cover.aux) (./abstract/abstract-en.aux)
 (./abstract/abstract-pt.aux) (./chapters/Introduction.aux)
 (./chapters/background.aux) (./chapters/studyImplementation.aux)
 (./chapters/studyResults.aux) (./chapters/conclusion.aux)
 (./appendix/protocol.aux) (./appendix/diagrams.aux) (./appendix/tables.aux))
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 137.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 137.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 140.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 140.
 Package rerunfilecheck Info: File `dissertation.out' has not changed.
-(rerunfilecheck)             Checksum: BA8BF249055F1EC5FC9034701F1CEA43;4251.
+(rerunfilecheck)             Checksum: 4C89D7915301683F7D1AB87B4233D61B;3991.
 
 
 LaTeX Warning: There were undefined references.
@@ -1558,13 +1563,13 @@ LaTeX Warning: There were undefined references.
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 137.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 140.
  ) 
 Here is how much of TeX's memory you used:
- 17640 strings out of 493014
- 261933 string characters out of 6133352
- 486433 words of memory out of 5000000
- 20495 multiletter control sequences out of 15000+600000
+ 17719 strings out of 493014
+ 262905 string characters out of 6133352
+ 479270 words of memory out of 5000000
+ 20545 multiletter control sequences out of 15000+600000
  42108 words of font info for 80 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  53i,18n,92p,1946b,1913s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1586,10 +1591,10 @@ st/fonts/type1/public/amsfonts/cm/cmtt8.pfb></usr/local/texlive/2016/texmf-dist
 type1/urw/helvetic/uhvbo8a.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/
 urw/helvetic/uhvr8a.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/urw/hel
 vetic/uhvro8a.pfb>
-Output written on dissertation.pdf (55 pages, 3814910 bytes).
+Output written on dissertation.pdf (57 pages, 3823698 bytes).
 PDF statistics:
- 920 PDF objects out of 1000 (max. 8388607)
- 812 compressed objects within 9 object streams
- 195 named destinations out of 1000 (max. 500000)
- 613 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 952 PDF objects out of 1000 (max. 8388607)
+ 842 compressed objects within 9 object streams
+ 220 named destinations out of 1000 (max. 500000)
+ 589 words of extra memory for PDF output out of 10000 (max. 10000000)
 

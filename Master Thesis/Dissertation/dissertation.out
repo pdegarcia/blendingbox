@@ -32,33 +32,30 @@
 \BOOKMARK [1][-]{section.4.4}{Results}{chapter.4}% 32
 \BOOKMARK [2][-]{subsection.4.4.1}{User Profile}{section.4.4}% 33
 \BOOKMARK [2][-]{subsection.4.4.2}{Color Models}{section.4.4}% 34
-\BOOKMARK [3][-]{section*.20}{HSV Color Model Blendings}{subsection.4.4.2}% 35
-\BOOKMARK [3][-]{section*.26}{CIE-L*C*h Color Model Blendings}{subsection.4.4.2}% 36
-\BOOKMARK [3][-]{section*.29}{CMYK Color Model Blendings}{subsection.4.4.2}% 37
-\BOOKMARK [3][-]{section*.32}{RGB Color Model Blendings}{subsection.4.4.2}% 38
-\BOOKMARK [3][-]{section*.34}{CIE-L*a*b* Color Model Blendings}{subsection.4.4.2}% 39
-\BOOKMARK [2][-]{subsection.4.4.3}{Color Mixtures}{section.4.4}% 40
-\BOOKMARK [3][-]{section*.37}{Primary Colors}{subsection.4.4.3}% 41
-\BOOKMARK [3][-]{section*.38}{Difficulty While Blending Colors}{subsection.4.4.3}% 42
-\BOOKMARK [2][-]{subsection.4.4.4}{Color Naming}{section.4.4}% 43
-\BOOKMARK [2][-]{subsection.4.4.5}{Demographic Results}{section.4.4}% 44
-\BOOKMARK [3][-]{section*.39}{Age Groups}{subsection.4.4.5}% 45
-\BOOKMARK [3][-]{section*.40}{Gender Groups}{subsection.4.4.5}% 46
-\BOOKMARK [1][-]{section.4.5}{Discussion}{chapter.4}% 47
-\BOOKMARK [2][-]{subsection.4.5.1}{Calibration Resiliency}{section.4.5}% 48
-\BOOKMARK [2][-]{subsection.4.5.2}{Creation of Color Scales}{section.4.5}% 49
-\BOOKMARK [2][-]{subsection.4.5.3}{Color Organization}{section.4.5}% 50
-\BOOKMARK [2][-]{subsection.4.5.4}{Consequences for InfoVis}{section.4.5}% 51
-\BOOKMARK [0][-]{chapter.5}{Conclusion}{}% 52
-\BOOKMARK [1][-]{section.5.1}{Limitiations}{chapter.5}% 53
-\BOOKMARK [1][-]{section.5.2}{Future Work}{chapter.5}% 54
-\BOOKMARK [0][-]{section*.41}{Bibliography}{}% 55
-\BOOKMARK [0][-]{appendix.A}{User Study Protocol}{}% 56
-\BOOKMARK [1][-]{section.A.1}{Motivation}{appendix.A}% 57
-\BOOKMARK [1][-]{section.A.2}{User Profiling Phase}{appendix.A}% 58
-\BOOKMARK [1][-]{section.A.3}{Testing Calibration Phase}{appendix.A}% 59
-\BOOKMARK [1][-]{section.A.4}{Testing Color Vision Deficiences Phase}{appendix.A}% 60
-\BOOKMARK [1][-]{section.A.5}{Core Test Phase}{appendix.A}% 61
-\BOOKMARK [0][-]{appendix.B}{Chromaticity Diagrams}{}% 62
-\BOOKMARK [0][-]{appendix.C}{Tables}{}% 63
-\BOOKMARK [1][-]{section.C.1}{Results Tables}{appendix.C}% 64
+\BOOKMARK [3][-]{section*.11}{Analyzing Questions}{subsection.4.4.2}% 35
+\BOOKMARK [3][-]{section*.29}{Analyzing Color Models}{subsection.4.4.2}% 36
+\BOOKMARK [2][-]{subsection.4.4.3}{Color Mixtures}{section.4.4}% 37
+\BOOKMARK [3][-]{section*.42}{Primary Colors}{subsection.4.4.3}% 38
+\BOOKMARK [3][-]{section*.43}{Difficulty While Blending Colors}{subsection.4.4.3}% 39
+\BOOKMARK [2][-]{subsection.4.4.4}{Color Naming}{section.4.4}% 40
+\BOOKMARK [2][-]{subsection.4.4.5}{Demographic Results}{section.4.4}% 41
+\BOOKMARK [3][-]{section*.44}{Age Groups}{subsection.4.4.5}% 42
+\BOOKMARK [3][-]{section*.45}{Gender Groups}{subsection.4.4.5}% 43
+\BOOKMARK [1][-]{section.4.5}{Discussion}{chapter.4}% 44
+\BOOKMARK [2][-]{subsection.4.5.1}{Calibration Resiliency}{section.4.5}% 45
+\BOOKMARK [2][-]{subsection.4.5.2}{Creation of Color Scales}{section.4.5}% 46
+\BOOKMARK [2][-]{subsection.4.5.3}{Color Organization}{section.4.5}% 47
+\BOOKMARK [2][-]{subsection.4.5.4}{Implications for InfoVis}{section.4.5}% 48
+\BOOKMARK [0][-]{chapter.5}{Conclusion}{}% 49
+\BOOKMARK [1][-]{section.5.1}{Limitiations}{chapter.5}% 50
+\BOOKMARK [1][-]{section.5.2}{Future Work}{chapter.5}% 51
+\BOOKMARK [0][-]{section*.46}{Bibliography}{}% 52
+\BOOKMARK [0][-]{appendix.A}{User Study Protocol}{}% 53
+\BOOKMARK [1][-]{section.A.1}{Motivation}{appendix.A}% 54
+\BOOKMARK [1][-]{section.A.2}{User Profiling Phase}{appendix.A}% 55
+\BOOKMARK [1][-]{section.A.3}{Testing Calibration Phase}{appendix.A}% 56
+\BOOKMARK [1][-]{section.A.4}{Testing Color Vision Deficiences Phase}{appendix.A}% 57
+\BOOKMARK [1][-]{section.A.5}{Core Test Phase}{appendix.A}% 58
+\BOOKMARK [0][-]{appendix.B}{Chromaticity Diagrams}{}% 59
+\BOOKMARK [0][-]{appendix.C}{Tables}{}% 60
+\BOOKMARK [1][-]{section.C.1}{Results Tables}{appendix.C}% 61
