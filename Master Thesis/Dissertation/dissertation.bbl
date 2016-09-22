@@ -1,0 +1,33 @@
+\begin{thebibliography}{GG14b}
+
+\bibitem[dAK92]{Alwis1992}
+Dilogen de~Alwis and Chee Kon.
+\newblock A new way to use the ishihara test.
+\newblock {\em Journal of Neurology}, 239(8):451--454, 1992.
+
+\bibitem[FM97]{Fortner1997}
+Brand Fortner and Theodore~E. Meyer.
+\newblock {\em Number by Colors}.
+\newblock Springer-Verlag New York, 1 edition, 1997.
+
+\bibitem[GC04]{Gossett2004}
+N.~Gossett and Baoquan Chen.
+\newblock Paint inspired color mixing and compositing for visualization.
+\newblock In {\em Information Visualization, 2004. INFOVIS 2004. IEEE Symposium
+  on}, pages 113--118, 2004.
+
+\bibitem[GG14a]{Gama20142}
+Sandra Gama and Daniel Gon\c{c}alves.
+\newblock Studying the perception of color components' relative amounts in
+  blended colors.
+\newblock In {\em Proceedings of the 8th Nordic Conference on Human-Computer
+  Interaction: Fun, Fast, Foundational}, NordiCHI '14, pages 1015--1018, New
+  York, NY, USA, 2014. ACM.
+
+\bibitem[GG14b]{Gama20141}
+Sandra Gama and Daniel Gonçalves.
+\newblock {Studying Color Blending Perception for Data Visualization}.
+\newblock In N.~Elmqvist, M.~Hlawitschka, and J.~Kennedy, editors, {\em EuroVis
+  - Short Papers}. The Eurographics Association, 2014.
+
+\end{thebibliography}

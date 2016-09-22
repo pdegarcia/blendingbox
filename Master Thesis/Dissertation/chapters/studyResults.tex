@@ -264,12 +264,12 @@ needed to calculate the angular interpolation of their primitives. \par
     G_{final} = \frac{|G_{C1} - G_{C2}|}{2} + min(G_{C1}, G_{C2}); \\
     B_{final} = \frac{|B_{C1} - B_{C2}|}{2} + min(B_{C1}, B_{C2}); \\
   \end{aligned}
-\end{equation}
+\end{equation} \par
 %
 An example of linear interpolation between primitives can be seen on Equation \ref{eq:rgb_mix}, in which we blend \gls{RGB} primitives. The listing \ref{lst:hue_angular} shows
-how the angular interpolation is being calculated with our \emph{Matlab} script.
+how the angular interpolation is being calculated with our \emph{Matlab} script. \par
 %
-\begin{lstlisting} [frame=single,basicstyle=\small,label={lst:hue_angular},]
+\begin{lstlisting} [frame=single,basicstyle=\small,label={lst:hue_angular}, caption = Excerpt of \emph{Matlab} code which interpolates the angular Hue value.]
   diff_angles = abs(Hue_C1 - Hue_C2);
   if diff_angles > 180
       angle_small = (360 - diff_angles);
@@ -282,8 +282,7 @@ how the angular interpolation is being calculated with our \emph{Matlab} script.
   else
       hue_final = min([Hue_C1 Hue_C2]) + (diff_angles / 2);
   end
-\end{lstlisting}
-\captionof{lstlisting}{Excerpt of \emph{Matlab} code, which interpolates the angular Hue value.} \par
+\end{lstlisting} \par
 %
 Afterwards, every resulting blending is \textbf{compared to the pre-calculated value for each color model}; the distance to the late value is stored for statistical analysis. It is
 also \textbf{calculated the distance to the expected HSV values}, since the colors presented to the user were too calculated in HSV Color Model. Additional comparisons are: the colors
@@ -494,6 +493,8 @@ user (0.39\% of the user sample) contributed to the study.
 \subsection{Color Models}
 \label{subsec:results_colormodels}
 %
+Along with the statistics we are going to present, in the end we are going to map them against the questions exposed before, clearly identifying them whenever they are answered. We would like to emphasize that the important
+results are the ones collected in the laboratory environment: the online results will bridge and support the conclusions extracted from the laboratory conditions. \par
 \begin{table}[htbp]
   \resizebox{\textwidth}{!} {
   \begin{tabular}{@{}ccccccccc@{}}
@@ -520,9 +521,6 @@ user (0.39\% of the user sample) contributed to the study.
   \caption[Laboratory Results: Centroids of Results Mixed in each Color Model]{Laboratory Results: Centroids of Results Mixed in each Color Model, for each question, with the distance from itself to the ideal pre-calculated answer. In bold, the best result for each color model.}
   \label{table:colormodels_centroids}
 \end{table}
-%
-Along with the statistics we are going to present, in the end we are going to map them against the questions exposed before, clearly identifying them whenever they are answered. We would like to emphasize that the important
-results are the ones collected in the laboratory environment: the online results will bridge and support the conclusions extracted from the laboratory conditions. \par
 %
 \begin{table}[htbp]
   \resizebox{\textwidth}{!} {
@@ -586,14 +584,26 @@ Breaking down the results according to Color Models \emph{per} question, we obta
 \label{subsubsec:hsvcolormodel}
 %
 The questions which have shorter distances are (in this order) number 11 (\textbf{0.03}), 3 (\textbf{0.04}), 6, 9, and 17 (all with \textbf{0.05}) and, lastly, question 15 (\textbf{0.06}); the means related to each question, which can be
-seen on table \ref{table:colormodels_distances_questions_statistics}, corroborate the cited distances. On the other hand, the questions with larger distances are (in this order) number 10 (\textbf{0.23}), 13 (\textbf{0.17}), 7 (\textbf{0.15}), 14 and 16 (both \textbf{0.1}), 2 and
-5 (both \textbf{0.09}) which are, again, corroborated by table \ref{table:colormodels_distances_questions_statistics}. There are some interesting cases related to this color model: there are some questions which present exactly the same color, but the aim to test if users can present
+seen on table \ref{table:colormodels_distances_questions_statistics}, corroborate the cited distances. Performing the Friedman Test, we know that there are statistically significant differences among all these questions, since all asymptotic
+significances for all questions are below 0.05. Post hoc analysis with Wilcoxon test, with a significance value of $p < 0.05$ reveal that there are significant differences between HSV and CIE-L*C*h*, but a fairly agreement between HSV and CMYK
+($sig_{HSV-CMYK_3} = $ 0.680, $sig_{HSV-CMYK_6} = $ 0.429), RGB ($sig_{HSV-RGB_6} = $ 0.114, $sig_{HSV-RGB_15} = $ 0.116). Relating HSV and CIE L*a*b* has mixed feelings, since the significance values between each of 2
+of these questions do not have a statistically significant differences ($sig_{HSV-Lab_9} = $ 0.517 and $sig_{HSV-Lab_15} = $ 0.054) and other 3 have significant differences below 0.05. \par
+%
+On the other hand, the questions with larger distances are (in this order) number 10 (\textbf{0.23}), 13 (\textbf{0.17}), 7 (\textbf{0.15}), 14 and 16 (both \textbf{0.1}), 2 and
+5 (both \textbf{0.09}) which are, again, corroborated by table \ref{table:colormodels_distances_questions_statistics}. There are some interesting cases related to this color model: some questions which present exactly the same color, but the aim to test if users can present
 two different types of blends; for example, Questions 6 and 11 show fairly similar values for this color model, since they both show an orange color, but it was intended for user to indicate diffent mixtures (as seen on table \ref{table:colormodels_centroids}, on Question 6 should be
 indicated Red and Yellow, and on Question 11 Green and Magenta). This indicates that our users answered quite the same way on both questions, but the distances from the given answers to the expected ones is substantially different ($\tilde{x}_{distance-6} = $ 0.1868 and
 $\sigma_{distance-11} = $ 0.2467, $\tilde{x}_{distance-11} = $ 0.6448 and $\sigma_{distance-11} = $ 0.1396), which means that \textbf{the most intuitive mixture for the users is mixing Red and Yellow to obtain Orange, and not the second case}. \par
 %
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.5\textwidth]{images/HSV_hue.png}
+  \caption[Example of HSV Hue Circle, with opposed hue values.]{Example of HSV Hue Circle, with opposed hue values. Depicted: Question 3 and 4 case, with resulting hues 270º and 90º.}
+  \label{fig:hsvcircles_example}
+\end{figure}
+%
 As referred before, there are some color blends that, due to the fact that primitives of the mixture are precisely opposed (180º) in the HSV hue circle, the blending in HSV Model could produce two different outputs. This occurs if one mixes the colors obeying to a positive or negative
-rotation on the circle (as seeen on figure \ref{fig:hsvcircles_example}). There are in this study 3 pairs of colors which blend onto 2 possible colors: pair Red-Cyan (with possible outputs question 3 and 4), pair Green-Magenta (questions 10 and 11) and pair Blue-Yellow (questions 15
+rotation on the circle (as seen on figure \ref{fig:hsvcircles_example}). There are in this study 3 pairs of colors which blend onto 2 possible colors: pair Red-Cyan (with possible outputs question 3 and 4), pair Green-Magenta (questions 10 and 11) and pair Blue-Yellow (questions 15
 and 16). By placing these questions, we intended to understand which side the user would tend to follow (or even if he follows one) when asked to indicate the blending-basis. Therefore, we can produce the following conclusions:
 %
 \begin{enumerate}
@@ -684,13 +694,6 @@ Table \ref{table:hsvresults} contains the cited colors and questions, ranked fro
   \label{table:hsvresults}
 \end{table}
 %
-\begin{figure}[htbp]
-  \centering
-  \includegraphics[width=0.5\textwidth]{images/HSV_hue.png}
-  \caption[Example of HSV Hue Circle, with opposed hue values.]{Example of HSV Hue Circle, with opposed hue values. Depicted: Question 3 and 4 case, with resulting hues 270º and 90º.}
-  \label{fig:colornames_xkcd}
-\end{figure}
-%
 \subsubsection{CIE-L*C*h Color Model Blendings}
 \label{subsubsec:lchcolormodel}
 %
@@ -752,6 +755,19 @@ and 1 and 2 (\textbf{0.06}), which represent a wide range of colors mixtures. Th
 10), so as Yellow (6, 8 and 17). On the other hand, RGB Model is weakly represented besides Red appearing in 4 questions, with Green appearing in 2 and Blue only in one. This success could be related to the fact that \textbf{people tend to formulate mental models of color based on ink mixing in childhood}
 \cite{Gossett2004}, mostly associating it to \gls{RYB} and CMYK Color Models without even knowing it. \par
 %
+In fact, when performing the Friedman Test for Variance analysis, we conclude that CMYK Color Model consistently presents the lowest rank against all color models in use, which could \textbf{mean greater agreement between the users when indicating their answers}. When comparing it against other color model's
+results with the Wilcoxon Test, the CMYK color models shows a degree of concordance with the following color models:
+%
+\begin{itemize}
+  \item \textbf{\ul{HSV}} - Question 3 ($sig_{3} = $ 0.680), Question 6 ($sig_{6} = $ 0.429), Question 7 ($sig_{7} = $ 0.515), Question 8 ($sig_{8} = $ 0.326), Question 9 ($sig_{9} = $ 0.551), Question 12 ($sig_{12} = $ 0.163), Question 14 ($sig_{14} = $ 0.676) and Question 17 ($sig_{17} = $ 0.275).
+  \item \textbf{\ul{CIE-L*a*b*}} - Question 4 ($sig_{4} = $ 0.743), Question 5 ($sig_{5} = $ 0.739), Question 6 ($sig_{6} = $ 0.116), Question 8 ($sig_{8} = $ 0.058), Question 9 ($sig_{9} = $ 0.112), Question 12 ($sig_{12} = $ 0.161) and Question 16 ($sig_{16} = $ 0.253).
+  \item \textbf{\ul{CIE-L*C*h*}} - Question 4 ($sig_{4} = $ 0.444), Question 5 ($sig_{5} = $ 0.307), Question 8 ($sig_{8} = $ 0.086), Question 11 ($sig_{11} = $ 0.583), Question 13 ($sig_{13} = $ 0.959) and Question 16 ($sig_{16} = $ 0.130).
+  \item \textbf{\ul{RGB}} - Question 5 ($sig_{5} = $ 0.536), Question 8 ($sig_{8} = $ 0.071), Question 9 ($sig_{9} = $ 0.812) and Question 14 ($sig_{14} = $ 0.143).
+\end{itemize}
+%
+The HSV Color Model presents the higher number of questions without a non-statistically significant difference, which means more concordance between the answers of the users; on the other hand, RGB is the least compatible with the CMYK, which is no surprise
+since it is its complementary color model. \par
+%
 \begin{figure}[htbp]
   \centering
   \begin{minipage}{0.48\textwidth}
@@ -773,7 +789,7 @@ as many questions contain user answers that are close to the expected pre-calcul
 accuracy of the results and maximize this model's results, the number of available colors should be limited mostly to primitive colors like Cyan, Magenta or Yellow}, near the most common mental model of color of our users.  \par
 %
 Figure \ref{fig:labcmykregular_17} represents the results of Question 17, which had closer distances to the pre-calculated CMYK blend, and Figure \ref{fig:labcmykregular_5} show the results for Question 5; this last question has more sparse results, resulting in a more distant
-centroid. The next table sums up all the questions addressed.
+centroid. The next table sums up all the questions addressed. The table below gathers the best and worst questions about this color model. \par
 %
 \begin{table}[htbp]
   \centering
@@ -781,7 +797,7 @@ centroid. The next table sums up all the questions addressed.
   \toprule
       & \multicolumn{1}{l}{Best}                        & \multicolumn{1}{l}{}                            & \multicolumn{1}{l}{}                           & \multicolumn{1}{l}{}                            & \multicolumn{1}{l}{}                            & \multicolumn{1}{l}{}                            & \multicolumn{1}{l}{}                            & \multicolumn{1}{l}{Worst}                       \\ \midrule
   \multicolumn{1}{l|}{Shorter Distances} & \multicolumn{1}{c||}{\cellcolor[HTML]{0080FF}10} & \multicolumn{1}{c||}{\cellcolor[HTML]{FF0000}8}  & \multicolumn{1}{c||}{\cellcolor[HTML]{00FF00}17} & \multicolumn{1}{c||}{\cellcolor[HTML]{80FF00}3}  & \multicolumn{1}{c||}{\cellcolor[HTML]{FF8000}6} & \multicolumn{1}{c||}{\cellcolor[HTML]{0000FF}7} & \multicolumn{1}{c||}{\cellcolor[HTML]{FFFF00}1} & \multicolumn{1}{c|}{\cellcolor[HTML]{FF00FF}2} \\ \midrule
-  \multicolumn{1}{l|}{Longer Distances}  & \multicolumn{1}{c||}{\cellcolor[HTML]{00FF80}15} & \multicolumn{1}{c||}{\cellcolor[HTML]{7F00FF}4} & \multicolumn{1}{c||}{\cellcolor[HTML]{0080FF}13} & \multicolumn{1}{c||}{\cellcolor[HTML]{FF8000}11} & \multicolumn{1}{c||}{\cellcolor[HTML]{80FF00}12} & \multicolumn{1}{c||}{\cellcolor[HTML]{FF0080}5} & & \\ \bottomrule
+  \multicolumn{1}{l|}{Longer Distances}  & \multicolumn{1}{c||}{\cellcolor[HTML]{00FF80}15} & \multicolumn{1}{c||}{\cellcolor[HTML]{7F00FF}4} & \multicolumn{1}{c||}{\cellcolor[HTML]{0080FF}13} & \multicolumn{1}{c||}{\cellcolor[HTML]{FF8000}11} & \multicolumn{1}{c||}{\cellcolor[HTML]{80FF00}12} & \multicolumn{1}{c|}{\cellcolor[HTML]{FF0080}5} & & \\ \bottomrule
   \end{tabular}
   \caption[Laboratory Results: CMYK Centroids]{Laboratory Results: CMYK Centroids, with questions ranked from best result to the worst.}
   \label{table:centroids_cmykresults}
@@ -790,8 +806,17 @@ centroid. The next table sums up all the questions addressed.
 \subsubsection{RGB Color Model Blendings}
 \label{subsubsec:rgbcolormodel}
 %
-Results from RGB centroids are quite similar to CMYK results, which is no surprise since they are relatively similar opposite models and explained on the theorical background of this document.
-The shorter distances are on questions 8, 7, 10, 6, 3, 1, 16 and 17 while the longer are on questions 11, 4, 13, 11, 12 and 14. There is no significant pattern related to the kind of colors which generate best and worst results.
+This color model, as explained on the theorical background of this document, is complementary to the CMYK color model. Feedback collected from the users was such that, sometimes, the users which knew how to blend in subtractive color models, tended to be confused and tried to mix additive color models, also.
+Based on the results from RGB blends' centroid, we can tell that the results from this color model are quite similar to CMYK results: the shorter distances are on questions 8, 7, 10, 6, 3, 1, 16 and 17 while the longer are on questions 11, 4, 13, 12 and 14. \par
+%
+When comparing the results from the RGB color model, the majority of users did reveal lack of knowledge in mixing the colors according to an additive color model, as they tended to mix colors according to the CMYK color model. However, this color model has a high degree of compatibility with every other model,
+excepting CMYK: RGB presents non-statistically significant differences ($sig_{RGB-x} > $ 0.05) with HSV and CIE-L*a*b* in 10 questions both, and with CIE-L*C*h* in 9 questions. Regarding the CIE-L*a*b* model, the results are particularly dramatic: questions with no relevant differences, the values of the
+asymptotic significance are quite high, but when analyzing the results from Wilcoxon test for the statistically significant differences, these values are very low ($sig_{4} = $ 0.0, $sig_{6} = $ 0.0, $sig_{9} = $ 0.003, $sig_{11} = $ 0.0, $sig_{12} = $ 0.001, $sig_{15} = $ 0.010 and $sig_{16} = $ 0.004). \par
+%
+Similar to previous color models, question 6 yields the best results when analyzing the mean value ($\tilde{x}_{RGB-6} = $ 0.078), being opposed to question 4 with the highest value ($\tilde{x}_{RGB-4} = $ 0.260). \textbf{The orange color continues to be the color with the best results across every model}. \par
+%
+The Figure \ref{fig:labregular_8} shows the responses given by the laboratory users to question 8, while the Figure \ref{fig:labrgbregular_8} presents the same answer-pairs but blended in RGB Color Model. As it can be seen, results (represened in black empty circles) are a bit scattered, but around the ideal response
+(black filled circle). \par
 %
 \begin{table}[htbp]
   \centering
@@ -799,7 +824,7 @@ The shorter distances are on questions 8, 7, 10, 6, 3, 1, 16 and 17 while the lo
   \toprule
       & \multicolumn{1}{l}{Best}                        & \multicolumn{1}{l}{}                            & \multicolumn{1}{l}{}                           & \multicolumn{1}{l}{}                            & \multicolumn{1}{l}{}                            & \multicolumn{1}{l}{}                            & \multicolumn{1}{l}{}                            & \multicolumn{1}{l}{Worst}                       \\ \midrule
   \multicolumn{1}{l|}{Shorter Distances} & \multicolumn{1}{c||}{\cellcolor[HTML]{FF0000}8} & \multicolumn{1}{c||}{\cellcolor[HTML]{0000FF}7}  & \multicolumn{1}{c||}{\cellcolor[HTML]{0080FF}10} & \multicolumn{1}{c||}{\cellcolor[HTML]{FF8000}6}  & \multicolumn{1}{c||}{\cellcolor[HTML]{80FF00}3} & \multicolumn{1}{c||}{\cellcolor[HTML]{FFFF00}1} & \multicolumn{1}{c||}{\cellcolor[HTML]{FF007F}16} & \multicolumn{1}{c|}{\cellcolor[HTML]{00FF00}17} \\ \midrule
-  \multicolumn{1}{l|}{Longer Distances}  & \multicolumn{1}{c||}{\cellcolor[HTML]{FF8000}11} & \multicolumn{1}{c||}{\cellcolor[HTML]{7F00FF}4} & \multicolumn{1}{c||}{\cellcolor[HTML]{80FF00}3} & \multicolumn{1}{c||}{\cellcolor[HTML]{FF8000}11} & \multicolumn{1}{c||}{\cellcolor[HTML]{80FF00}12} & \multicolumn{1}{c||}{\cellcolor[HTML]{8000FF}14} & & \\ \bottomrule
+  \multicolumn{1}{l|}{Longer Distances}  & \multicolumn{1}{c||}{\cellcolor[HTML]{FF8000}11} & \multicolumn{1}{c||}{\cellcolor[HTML]{7F00FF}4} & \multicolumn{1}{c||}{\cellcolor[HTML]{80FF00}3} & \multicolumn{1}{c||}{\cellcolor[HTML]{80FF00}12} & \multicolumn{1}{c|}{\cellcolor[HTML]{8000FF}14} & & & \\ \bottomrule
   \end{tabular}
   \caption[Laboratory Results: RGB Centroids]{Laboratory Results: RGB Centroids, with questions ranked from best result to the worst.}
   \label{table:centroids_rgbresults}
@@ -808,9 +833,31 @@ The shorter distances are on questions 8, 7, 10, 6, 3, 1, 16 and 17 while the lo
 \subsubsection{CIE-L*a*b* Color Model Blendings}
 \label{subsubsec:lchcolormodel}
 %
-This color model is the one, by far, which builds more consensus, since there are much more questions which present the smallest number of weak (longer) distances to the ideal answer pair.
-The shorter distances questions are on questions 6, 7, 16 (all with \textbf{0.04}), 8 and 10 (both \textbf{0.05}), 3 (\textbf{0.07}), 1, 2 and 14 (all with \textbf{0.09}) and, finally, 5 and 9 (\textbf{0.1}); while the longer are on questions
-4, 12, 11, 13 and 15.
+This color model is the one which has the lowest range of values for the distance of centroids ($range_{Lab} = $ 0.14, wobbling between 0.04 and 0.18). The questions which had shorter distances to the ideal RGB pre-calculated answer are 6, 7, 16 (all with \textbf{0.04}), 8 and 10 (both \textbf{0.05}),
+3 (\textbf{0.07}), 1, 2 and 14 (all with \textbf{0.09}) and, finally, 5 and 9 (\textbf{0.1}). The set of questions with larger distances are: questions 4, 12, 11, 13 and 15. \par
+%
+By analyzing the results from Friedman Variance Test, we conclude that all questions show similar distributions among themselves (mean rank varying between $rank_{min} = 3$ and $rank_{max} = 3.67$), except for questions 6 ($rank_{6} = 1.91$), 16 ($rank_{16} = 2.23$), 4 ($rank_{4} = 2.57$),
+5 ($rank_{5} = 2.81$) and 9 ($rank_{9} = 2.97$). On the other hand, CIE-L*a*b* has a fairly high degree of compatibility with all other color models: this could be due to the fact that \textbf{CIE-L*a*b* is capable of representing all human perceivable colors}, turning this color model closer to the users
+expectation. When processing the distances from the centroids to the ideal answers, we conclude that \textbf{even the "worst" question (number 4, $distance_{Lab} = $ 0.18) is, by far, better than the worst questions from other models}, as seen on Table \ref{table:colormodels_centroids}. \par
+%
+\begin{figure}[htbp]
+  \centering
+  \begin{minipage}{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{images/6_lab_Labresponses.png}
+    \caption[Laboratory Results: Answers for Question 6, from regular users, mixed in CIE-L*a*b* Color Model.]{Laboratory Results: Answers for Question 6, from regular users, mixed in CIE-L*a*b* Color Model.}
+    \label{fig:lablabregular_6}
+  \end{minipage}\hfill
+  \begin{minipage}{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{images/13_lab_Labresponses.png}
+    \caption[Laboratory Results: Answers for Question 13, from regular users, mixed in CIE-L*a*b* Color Model.]{Laboratory Results: Answers for Question 5, from regular users, mixed in CIE-L*a*b* Color Model.}
+    \label{fig:lablabregular_13}
+  \end{minipage}
+\end{figure}
+%
+The question which has the lowest mean is, again, question number 6 ($\tilde{x}_{Lab-6} = $ 0.051) having in this color model its best result, when compared against other color models. Contrarily, question 13 has the most distant mean value ($\tilde{x}_{Lab-13} = $ 0.227), once again a shade of blue, consistent
+with the results from other color models. These questions can be analyzed on Figures \ref{fig:lablabregular_6} and \ref{fig:lablabregular_13}. \par
 %
 \begin{table}[htbp]
   \centering
@@ -824,16 +871,16 @@ The shorter distances questions are on questions 6, 7, 16 (all with \textbf{0.04
   \label{table:centroids_labresults}
 \end{table}
 %
-
 corroborar com online \\
 comparar com tipo oposto de questão. \\
-fazer ANOVA \\
 %
 \subsection{Color Mixtures}
 \label{subsec:results_colormixtures}
 %
 Regarding the color mixtures' related questions, we would like to make the following analysis. We asked at Section \ref{sec:impl_objectives} ... \par
-Ver também se existe cor preferida para começar mistura.
+Ver também se existe cor preferida para começar mistura. \\
+Ver misturas que tiveram maior distancia às cores esperadas. Analisar e perceber se respostas dadas também produzem a mesma cor pedida.
+Ver misturas que tiveram menor distancia às cores esperadas.
 %
 \subsubsection{Primary Colors}
 \label{subsubsec:primarycolors}

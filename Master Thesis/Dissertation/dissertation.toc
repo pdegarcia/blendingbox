@@ -1,0 +1,67 @@
+\select@language {english}
+\select@language {english}
+\select@language {portuguese}
+\contentsline {chapter}{List of Tables}{ix}{chapter*.3}
+\contentsline {chapter}{List of Figures}{xi}{chapter*.4}
+\contentsline {chapter}{Acronyms}{xiii}{section*.5}
+\contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}
+\contentsline {section}{\numberline {1.1}Dissertation Outline}{1}{section.1.1}
+\contentsline {chapter}{\numberline {2}Background}{3}{chapter.2}
+\contentsline {section}{\numberline {2.1}Theoretical Background}{3}{section.2.1}
+\contentsline {subsection}{\numberline {2.1.1}Color Perception}{3}{subsection.2.1.1}
+\contentsline {subsection}{\numberline {2.1.2}Color Models and Spaces}{3}{subsection.2.1.2}
+\contentsline {section}{\numberline {2.2}Related Work}{3}{section.2.2}
+\contentsline {subsection}{\numberline {2.2.1}Color Blending Research and Techniques}{3}{subsection.2.2.1}
+\contentsline {subsection}{\numberline {2.2.2}User Color Studies Online}{3}{subsection.2.2.2}
+\contentsline {section}{\numberline {2.3}Discussion}{3}{section.2.3}
+\contentsline {chapter}{\numberline {3}BlendMe!}{5}{chapter.3}
+\contentsline {section}{\numberline {3.1}Objectives}{5}{section.3.1}
+\contentsline {section}{\numberline {3.2}Designing the Solution}{6}{section.3.2}
+\contentsline {subsection}{\numberline {3.2.1}User Profiling Phase}{6}{subsection.3.2.1}
+\contentsline {subsection}{\numberline {3.2.2}Testing Calibration Phase}{6}{subsection.3.2.2}
+\contentsline {subsection}{\numberline {3.2.3}Testing Color Vision Deficiencies Phase}{7}{subsection.3.2.3}
+\contentsline {subsection}{\numberline {3.2.4}Core Test Phase}{7}{subsection.3.2.4}
+\contentsline {section}{\numberline {3.3}Evaluation Criteria}{7}{section.3.3}
+\contentsline {section}{\numberline {3.4}Divulgation}{7}{section.3.4}
+\contentsline {chapter}{\numberline {4}Analyzing Color Mixing Perception}{9}{chapter.4}
+\contentsline {section}{\numberline {4.1}Protocol}{9}{section.4.1}
+\contentsline {subsection}{\numberline {4.1.1}Laboratory Environment}{9}{subsection.4.1.1}
+\contentsline {subsection}{\numberline {4.1.2}Online Environment}{10}{subsection.4.1.2}
+\contentsline {section}{\numberline {4.2}Data Cleaning}{10}{section.4.2}
+\contentsline {section}{\numberline {4.3}Data Processing}{13}{section.4.3}
+\contentsline {subsection}{\numberline {4.3.1}Data Preparation}{13}{subsection.4.3.1}
+\contentsline {subsection}{\numberline {4.3.2}Color Bins Comparation}{15}{subsection.4.3.2}
+\contentsline {subsection}{\numberline {4.3.3}Outputs Generated}{17}{subsection.4.3.3}
+\contentsline {section}{\numberline {4.4}Results}{17}{section.4.4}
+\contentsline {subsection}{\numberline {4.4.1}User Profile}{18}{subsection.4.4.1}
+\contentsline {subsection}{\numberline {4.4.2}Color Models}{19}{subsection.4.4.2}
+\contentsline {subsubsection}{HSV Color Model Blendings}{20}{section*.20}
+\contentsline {subsubsection}{CIE-L*C*h Color Model Blendings}{24}{section*.26}
+\contentsline {subsubsection}{CMYK Color Model Blendings}{24}{section*.29}
+\contentsline {subsubsection}{RGB Color Model Blendings}{26}{section*.32}
+\contentsline {subsubsection}{CIE-L*a*b* Color Model Blendings}{27}{section*.34}
+\contentsline {subsection}{\numberline {4.4.3}Color Mixtures}{28}{subsection.4.4.3}
+\contentsline {subsubsection}{Primary Colors}{28}{section*.37}
+\contentsline {subsubsection}{Difficulty While Blending Colors}{28}{section*.38}
+\contentsline {subsection}{\numberline {4.4.4}Color Naming}{28}{subsection.4.4.4}
+\contentsline {subsection}{\numberline {4.4.5}Demographic Results}{28}{subsection.4.4.5}
+\contentsline {subsubsection}{Age Groups}{28}{section*.39}
+\contentsline {subsubsection}{Gender Groups}{28}{section*.40}
+\contentsline {section}{\numberline {4.5}Discussion}{28}{section.4.5}
+\contentsline {subsection}{\numberline {4.5.1}Calibration Resiliency}{29}{subsection.4.5.1}
+\contentsline {subsection}{\numberline {4.5.2}Creation of Color Scales}{29}{subsection.4.5.2}
+\contentsline {subsection}{\numberline {4.5.3}Color Organization}{29}{subsection.4.5.3}
+\contentsline {subsection}{\numberline {4.5.4}Consequences for InfoVis}{29}{subsection.4.5.4}
+\contentsline {chapter}{\numberline {5}Conclusion}{31}{chapter.5}
+\contentsline {section}{\numberline {5.1}Limitiations}{31}{section.5.1}
+\contentsline {section}{\numberline {5.2}Future Work}{31}{section.5.2}
+\contentsline {chapter}{Bibliography}{33}{section*.41}
+\contentsline {chapter}{\numberline {A}User Study Protocol}{35}{appendix.A}
+\contentsline {section}{\numberline {A.1}Motivation}{35}{section.A.1}
+\contentsline {section}{\numberline {A.2}User Profiling Phase}{35}{section.A.2}
+\contentsline {section}{\numberline {A.3}Testing Calibration Phase}{35}{section.A.3}
+\contentsline {section}{\numberline {A.4}Testing Color Vision Deficiences Phase}{36}{section.A.4}
+\contentsline {section}{\numberline {A.5}Core Test Phase}{36}{section.A.5}
+\contentsline {chapter}{\numberline {B}Chromaticity Diagrams}{37}{appendix.B}
+\contentsline {chapter}{\numberline {C}Tables}{39}{appendix.C}
+\contentsline {section}{\numberline {C.1}Results Tables}{39}{section.C.1}
