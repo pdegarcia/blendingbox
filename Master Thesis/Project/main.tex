@@ -9,7 +9,7 @@
 \documentclass{report}
 \usepackage[utf8]{inputenc}
 \usepackage{indentfirst}
-\usepackage{geometry}		
+\usepackage{geometry}
 \usepackage{fancyhdr}
 \usepackage{lastpage}
 \usepackage{graphicx}
@@ -25,11 +25,11 @@
 
 \geometry{				%% SET PAGE MARGINS AND ALL %%
 	a4paper,
-    textwidth=15cm,  
+    textwidth=15cm,
   	textheight=24cm,
-    heightrounded,   
-  	hratio=1:1,      
-  	vratio=2:3,   
+    heightrounded,
+  	hratio=1:1,
+  	vratio=2:3,
 }
 
 \linespread{1.3}
@@ -75,18 +75,18 @@
 Using color to convey information is not a recent rule: its usage is further associated to cartography, statistics and computer science. However, color is a subjective aspect of human perception, as it is strongly influenced by cultural background, childhood learning and possible existent color deficiencies. Over the last years, research has been made to ascertain if color is the ideal channel to transmit information; particularly, if the blending of two or more colors can reveal the true information lying within, using color blending techniques. \\
 Nonetheless, previous investigation has not come to an agreement about to which extent can color blending techniques be used, in an efficient and effective way, to convey information. \\
 Our goal is to study how color blending can be used to convey information in the best possible way creating, as product of this thesis, a set of rule-of-thumb guidelines to use color blending; we intend to study how color is influenced by its whereabouts, by the cultural background of each user, and if color perception is narrowed by the usage of nominal colors. \\
-To achieve the aforementioned results of this thesis, we will not only create a Color Tuner which does not influence the color perception, but also a test framework which will be capable of handling multiple forms of study (\emph{i.e.} online, laboratory and crowdsourced).  
+To achieve the aforementioned results of this thesis, we will not only create a Color Tuner which does not influence the color perception, but also a test framework which will be capable of handling multiple forms of study (\emph{i.e.} online, laboratory and crowdsourced).
 \end{abstract}
 %
 \pagenumbering{arabic}
-\setcounter{page}{1} 
+\setcounter{page}{1}
 \chapter{Introduction}
 %
 Color can inspire, affect your mood, influence your attitude and change your opinion. It has been associated
 to brands, constituting a powerful way of creating instant
 associations in people’s mind. It is one of the most interesting subjects of research due to its psychological
 and physiological complexity and, nowadays, it is impossible to dissociate what you see around
-from a color: Starbucks\textsuperscript{\textregistered} has a strong connection to Green, 
+from a color: Starbucks\textsuperscript{\textregistered} has a strong connection to Green,
 Target\textsuperscript{\textregistered} to Red, UPS\textsuperscript{\textregistered} to Brown, Wimbledon
 Championships\textsuperscript{\textregistered} are strongly associated to Purple and Green and Facebook\textsuperscript{\textregistered} to Blue.
 Everything around us produces sensations on us, which will be parsed by our sensorial system based on a set
@@ -108,7 +108,7 @@ known, the human visual system can only perceive light from a well defined wavel
 nanometers until 750 nanometers, approximately) and, consequently, determining the spectrum of colors which
 is human perceivable. \par
 Color is, nowadays, remarkably used as a powerful tool to convey information: it is used on statistical graphics,
-cartographical data, information visualization and developers are eager to use color in their interfaces to 
+cartographical data, information visualization and developers are eager to use color in their interfaces to
 create a better User Experience - when accompanied of an appropriate \emph{Color Scheme}. Particularly, when showing data
 variables on a graphic, it is commonly associated to each variable a color and relationships between them are
 concluded by observing it. Certainly, it would be useful to combine variables in the same graphic, using a technique of
@@ -128,12 +128,12 @@ ambits, such as blending colors forming stitched patterns in order to improve th
 colors \cite{Urness2003}, or methods to create colors that naturally mix without creating confusing colors to user \cite{Chuang2009}. \par
 Even though investigation has been done, there are flaws and situations raised from them which remain to be fully tested and understood.
 The focus of this research is to provide a more thorough understanding of what comprises the Color
-Blending field of research.  
+Blending field of research.
 
 \section{Research Goals}
 
 The goal of this research is to \emph{study to what extent can color blending techniques be used to efficiently and
-effectively convey information}.\par  
+effectively convey information}.\par
 It is important to understand if color is, in fact, a good channel to transport information and to understand how color
 is perceived by the users. In order to study Color Perception, it is needed \emph{an in-depth survey on color theory}, to
 review which color spaces and models present a better alternative for the task of representing human perceivable mixtures
@@ -159,13 +159,13 @@ understand the perception on this.
 \label{sec:colorp}
 In this section, we overview the philosophy about color, relating real-world perceptions to human perception
 through the eye. There are two main areas of interest, called the Cones and the Rods, which will be explained
-with quite detail; these areas restrict how we perceive color, specially if there are visual deficiencies. 
+with quite detail; these areas restrict how we perceive color, specially if there are visual deficiencies.
 Moreover, color creates mental models and codes, which are part of routines and rules followed by society, and will be exemplified in the end of this section.
 %
 \subsection{Color Philosophy}
 \label{sec:colorphilosophy}
 Looking up for a concrete definition of color is a hard task: there are quite a few ways to perceive color. Color
-raises serious metaphysical questions\footnote{"Stanford Encyclopedia (...)", Available at: \url{stanford.io/1MWp7Zh}. Last accessed on January 8th, 2016.}, 
+raises serious metaphysical questions\footnote{"Stanford Encyclopedia (...)", Available at: \url{stanford.io/1MWp7Zh}. Last accessed on January 8th, 2016.},
 concerning the physical and psychological reality of it. Color is an
 important feature of subjects: it allows us to recognize objects, locate them, it fires emotions and
 behaviors and supports protocols over the world. Probably, the major problem of color has to do with what
@@ -176,7 +176,7 @@ two important tendencies, the \textbf{elimininativism} and the \textbf{subjectiv
 view that tells physical objects don’t have an inherent color associated to themselves, the last one states
 that color is a subjective attribute of objects. Chirimuuta recently argued \cite{Chirimuuta2014} about the different
 mindsets one can have regarding color: its main argument is that color is a subjective interpretation of
-an objective physical stimuli and, to justify this statement, he settles a contrast between rival theories 
+an objective physical stimuli and, to justify this statement, he settles a contrast between rival theories
 of color. Color \textbf{realists} accept that colors are indeed physical properties of objects but instantaneously,
 two questions arise from this: \textbf{1)} what really is color and its properties, and \textbf{2)} do objects really possess
 those characteristics? With respect to these questions, we can derive even more theories: \textbf{Primitivism}, \textbf{Reductive Physicalism}, \textbf{Dispositionalism}, \textbf{Projectivism}, \textbf{Subjectivism}, among others. \par
@@ -224,10 +224,10 @@ the day light and night, although our night vision isn’t quite accurate. \par
 \footnotetext{"Claude Monet (...)", Available at: \url{bit.ly/1OSsW2Q}. Last accessed on January 8th, 2016.}
 %
 Light is electromagnetic radiation, but most of this radiation is invisible to the human eye: it can
-perceive light from under 400 nanometers until 750 nanometers, as seen on figure \ref{fig:lightspectrum}. \par 
+perceive light from under 400 nanometers until 750 nanometers, as seen on figure \ref{fig:lightspectrum}. \par
 When the light strikes an object, depending of the surface’s material, it can either: be wholly or partly
 absorbed, reflected or transmitted; what we perceive as being an object is the light reflected of the
-surface. The human eye (Figure \ref{fig:eye}), then, decodes light energy into neural activity: 
+surface. The human eye (Figure \ref{fig:eye}), then, decodes light energy into neural activity:
 this light reaches the eye through the \textbf{cornea}, crosses the pupil and is refracted by the lens, coming to a final
 projection of a sharp image in the back of the eye, the \textbf{retina}. However, this image is
 inverted, as the light rays from the top of the object are being project on the bottom of the retina,
@@ -243,7 +243,7 @@ retina. This image is going to be rearranged by the brain.  \par
 \end{wrapfigure}
 \footnotetext{"The Human Eye and Adaptive Optics", Available at: \url{bit.ly/1zMEgK6}. Last accessed on January 8th, 2016.}
 %
-In order to be rearranged, the light is converted in the retina, which contains specialized cells 
+In order to be rearranged, the light is converted in the retina, which contains specialized cells
 - photoreceptors - that convert light energy into neural impulses,
 which are send to the brain. There are two main types of photoreceptors: \textbf{cones} and
 \textbf{rods},
@@ -253,14 +253,14 @@ The image is only sent to the brain after the signal generated by the cones and 
 in the bipolar cells of the retina, where visual information begins to be analyzed. After all, the brain digests the signals sent as we discussed
 previously; moreover, as Attneave \cite{Attneave1954} states in its investigation in 1954, a major function of
 the human perception mechanism is to strip way some redundant information present in the \emph{stimuli},
-in order to encode or describe the incoming information in a more economical form, than the one in which 
+in order to encode or describe the incoming information in a more economical form, than the one in which
 it impinges on the receptors. Likewise, sensorial events from different sensory systems may create
 interdependencies among each other, either in space or in time, or crosscut both; over his life, any
 individual acquires notions about “what-goes-with what” and, as the author states \cite{Attneave1954}, we cannot make
 predictions about anything, based merely on the present visual field, but also depend on previous - and,
 for that, familiar - visual fields. \par
 As covered before, there are some specialized and important neurons
-that have the crucial task of capturing and transducing photons: they convert electromagnetic radiation 
+that have the crucial task of capturing and transducing photons: they convert electromagnetic radiation
 into trigger-signals to be send to the organism.
 The photoreceptors can be classified between \textbf{Cones} and \textbf{Rods}. \par
 %
@@ -272,13 +272,13 @@ between \underline{4.08 to 5.29 million}, Cone cells are not important to light 
 sensitive; however, color perception is completely instrumented by them. They can be seen on Figure \ref{fig:conesrods} as
 being the pink colored structures.
 These cells are named for their shapes and contain chemicals - the \emph{photospins} - that respond to light: when the
-light strikes these chemicals, they break and create a signal which will be transferred to the brain. 
+light strikes these chemicals, they break and create a signal which will be transferred to the brain.
 There are three kinds of light-sensitive chemicals in cones and they will be providers for the basis
 of color vision, creating the distinction between the number of cone types.
 %
 \begin{itemize}
-\item \underline{S-Cones} (Small Wavelength Sensitive), correspond to Blue color perception. 
-\item \underline{M-Cones} (Medium Wavelength Sensitive), correspond to Green color perception. 
+\item \underline{S-Cones} (Small Wavelength Sensitive), correspond to Blue color perception.
+\item \underline{M-Cones} (Medium Wavelength Sensitive), correspond to Green color perception.
 \item \underline{L-Cones} (Large Wavelength Sensitive), correspond to Green-Red color perception.
 \end{itemize} \par
 %
@@ -312,11 +312,11 @@ The english physician Thomas Young published a theory \cite{Young1802}, where he
 in the human eye existed three types of photoreceptors, the cone cells. Later in that century, he was
 joined by Hermann von Helmholtz when he concluded there exists three types of cone receptors and they could
 be classified as short-preferring, middle-preferring and long-preferring, according to their response to
-light’s wavelength. Together, they formed the \emph{Young-Helmholtz Theory}, or the so called \textbf{Trichromatic Theory}. 
+light’s wavelength. Together, they formed the \emph{Young-Helmholtz Theory}, or the so called \textbf{Trichromatic Theory}.
 No single cone can detect by itself the color of a source of light: it is the ratio of the three types of cones that
 determine what color will be sensed by the brain. This theory was largely applied in the creation of color
 screens, for example televisions which contain microscopic elements of Red, Green and Blue. \par
-\emph{Per contra}, german physiologist Ewald Hering developed in 1878 a theory: the 
+\emph{Per contra}, german physiologist Ewald Hering developed in 1878 a theory: the
 \textbf{Opponent Process Theory}. This theory suggest that our color perception is controlled by three
 opponent pairs: red and green, blue and yellow, white and black\footnote{"How to See Impossible Colors (...)", Available at: \url{bit.ly/1ZdtSKv}. Last accessed on January 8th, 2016.}. Hering postulated that the members of each
 pair either oppose or inhibit each other, only one element can be signaled at one time, but not both at the
@@ -325,8 +325,8 @@ example, if you stare for a long period of time to a red subject, when you look 
 red. \par
 Together, these theories summarize what we know about color vision. We perceive color because of the three
 photoreceptors in our retina and sense different colors when exists different ratios in the three cone
-cells. The Trichromatic Theory explains how we see what we see in color, but it is only valid for the 
-presence of all types of cells. However, it has to be considered the case in which these cells are totally or partially absent. 
+cells. The Trichromatic Theory explains how we see what we see in color, but it is only valid for the
+presence of all types of cells. However, it has to be considered the case in which these cells are totally or partially absent.
 %
 \subsection{Visual Deficiency}
 A color vision deficiency is the inability to distinguish a set of colors or, in some cases, total
@@ -334,7 +334,7 @@ inability to distinguish any color at all. As said before, cones normally contai
 to particular wavelengths of light: people who have cones containing less than three types of photospins are considered to have a \textbf{Color Vision Deficiency} (or colorblind, the most common term)
 and are able to discriminate fewer colors than regular people. Most people with color vision deficiency can
 see colors, but they find particularly difficult to differentiate between red and green, and blues and
-yellows, being the last one the least common deficiency. \par 
+yellows, being the last one the least common deficiency. \par
 Color deficiency is usually an inherited condition, but injuries, chemical exposure or simply aging can lead to color
 recognition loss: some of these factors include diabetes, leukemia, Parkinson’s disease or Alzheimer’s
 disease. These deficiencies can be classified as follows:
@@ -345,13 +345,13 @@ total absence of it. It occurs when two or all three types of cones don’t exis
 detection is reduced from three dimensions, to only one. This condition is reasonably rare.
 \item \textbf{\underline{Dichromacy:}} In this defect, one of the possible three cone chemical protein is
 missing. Is is an hereditary condition and it occurs when when one of the cone pigments doesn’t exist.
-Dichromacy can be divided into three conditions: 
+Dichromacy can be divided into three conditions:
 	\begin{itemize}
 	\item \underline{Protanopia} (from the Greek \emph{prot-}), refers to the absence of red retinal
     photoreceptors.
     Protans find hard to distinguish between red and green colors and blue and green colors.
     \item \underline{Deuteranopia} (from the Greek \emph{deuter-}), where the green photoreceptors don’t
-    exist. 
+    exist.
     \item \underline{Tritanopia} (from the Greek \emph{trit-}), where the blue photoreceptors are absent.
     This type of dichromacy is very rare.
 	\end{itemize}
@@ -370,7 +370,7 @@ spectral sensitivity. Also, it can be divided into three conditions: \underline{
 \end{figure}
 \footnotetext{"What About Color Blindness?", Available at: \url{bit.ly/1O7IK4G}. Last accessed on January 8th, 2016.}
 %
-Figure \ref{fig:correscolorblind} presents the color differences between a person with a normal visual condition, a protan, a deutran and tritan. \par 
+Figure \ref{fig:correscolorblind} presents the color differences between a person with a normal visual condition, a protan, a deutran and tritan. \par
 %
 \begin{wrapfigure}[11]{R}{0.3\textwidth}
 	\centering
@@ -384,10 +384,10 @@ Figure \ref{fig:correscolorblind} presents the color differences between a perso
 Color deficiency can be diagnosed through an eye examination. During that test, it will be used
 specially designed figures composed with colored dots, called \textbf{Pseudisochromatic Plates}, which
 include a number or a figure supposed to be easily decoded by someone without a visual deficiency, as the example
-of the figure \ref{fig:ishihara}. The user is asked to look at the plate with the figure and distinguish 
+of the figure \ref{fig:ishihara}. The user is asked to look at the plate with the figure and distinguish
 the number/figure: if it is correctly spotted the number, the subject does not have a particular type of deficiency; if some difficulty is found, that constitutes an evidence of possible color blindness. This test was created by Dr. Shinobu Ishihara in 1917: the original test
 consisted of 38 plates, but later \cite{Ishihara1972}, the author published a
-simplified version with 24 plates. This test has been used since then in various researches about color perception, as an important first verification. 
+simplified version with 24 plates. This test has been used since then in various researches about color perception, as an important first verification.
 %
 \subsection{Mental Models and Codes}
 Whether agreeing or not on it as an intrinsic existing characteristic, we perceive color on every
@@ -413,13 +413,13 @@ should follow; other examples of color standards are the International Maritime 
 \end{wrapfigure}
 %
 Color is even perceptually different among different countries, continents, environments and genders:
-as is know by now\footnote{"Where Man See White (...)", Available at: 
+as is know by now\footnote{"Where Man See White (...)", Available at:
 \url {bit.ly/1AMHgcW}.
 Last accessed on January 8th, 2016.} \cite{Ginter2011}, women can detect and describe with much more detail color than men, the
 photoreceptors of men take a little longer wavelengths to perceive hue of a color; this question remain
 to be fully researched, but the difference between genders is a certainty. In 2011, BBC shot a
-documentary\footnote{\label{itsnoteasy}"It's Not Easy Seeing Green". Available at: 
-{\url {nyti.ms/1S71yVo}}, 
+documentary\footnote{\label{itsnoteasy}"It's Not Easy Seeing Green". Available at:
+{\url {nyti.ms/1S71yVo}},
 Last accessed on January 8th, 2016.} in which they explore the differences from the western color
 perception, and tribal color perception; the researchers presented a circle of squares with different
 shades of green (Figure \ref{fig:himba}), to the Himba tribe from Northern Namibia. Surprisingly, they were able to detect a larger
@@ -428,7 +428,7 @@ manifest as much colors, and they need to detect different shades to hunt and pi
 fruits, which traditional western communities do not need to do. \\
 \par
 Every color is mapped into models which mathematically represent them, despite of physical attributes of display conditions.
-All of these models are mapped against a \emph{Color Space} that maps the real-world colors in discrete values.  
+All of these models are mapped against a \emph{Color Space} that maps the real-world colors in discrete values.
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%COLOR SPACES%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Color Models and Spaces}
@@ -436,7 +436,7 @@ All of these models are mapped against a \emph{Color Space} that maps the real-w
 \subsection{Colorimetry}
 Mixing the three primary color light channels to match any color is no longer an oddity and it constitutes
 the basics of \emph{Colorimetry}: it is the science used to quantify and describe the human perception of color.
-We can describe color as the following equation \cite{Ware2012}: 
+We can describe color as the following equation \cite{Ware2012}:
 \begin{equation}
 C = sS + mM + lL
 \end{equation}
@@ -456,10 +456,10 @@ sum of any three distinct primaries; this is the fundamental principle of colori
 one set of primaries to another, grounding the decision on phosphors of a monitor, a set of lamps or on the
 sensitivities of the human cone receptors. Of course, this freedom comes with a price: it would be very difficult
 do maintain and calibrate standardized lamps, specials instruments to evaluate color precision would be very
-expensive and this would not be very practical. \par 
+expensive and this would not be very practical. \par
 To solve this, it was assumed that every human being had about the
 same sensitivities to different colors (excluding the obvious color deficiencies), and the same receptor functions;
-it was the time to start creating color specification standards and understand the principal concepts of it. 
+it was the time to start creating color specification standards and understand the principal concepts of it.
 %
 \subsection{Color Fundamental Concepts}
 The organization and perceptual evaluation of color depends on some concepts which have been referred
@@ -481,7 +481,7 @@ This concepts are listed below, with an appropriate explanation seeking them.
 “the degree to which a stimulus can be described as similar or different from stimuli that are described”
 as red, green, blue, yellow, orange or violet. In case of two colors that are presented with the same hue, the
 distinction is made using adjectives referring to their lightness or colorfulness. Also, it was created the
-term \textbf{Unique Hue} to describe those colors that are instantaneously recognized as pure, the ones which do 
+term \textbf{Unique Hue} to describe those colors that are instantaneously recognized as pure, the ones which do
 not are the resulting product of a mixture; the colors known as unique are only four: Red, Green, Blue
 and Yellow. The concept of Hue is represented in Figure \ref{fig:hsvconcepts}, on the left column.
 %
@@ -498,10 +498,10 @@ confused with \textbf{Colorfulness} (which is the absolute color intensity of a 
 %
 \paragraph{\underline{Lightness}} This concept is usually known as \textbf{Value} or \textbf{Tone}, and is related
 to the variation of light in the subject, either lighter or darker (as seen on the right column of Figure
-\ref{fig:hsvconcepts}): light colors are called \textbf{Tints} and dark colors are called \textbf{Shades}. 
+\ref{fig:hsvconcepts}): light colors are called \textbf{Tints} and dark colors are called \textbf{Shades}.
 It defines the range from \textbf{dark (0\%) to fully illuminated
 (100\%)} and judges the lightness of an illuminated area, compared to another area that appears to be white
-or highly transmitting. 
+or highly transmitting.
 \paragraph{\underline{Brightness}} It is an attribute of our perception, highly influenced by color’s
 lightness, but not to be confused with it! It is the perception of whether a subject is radiating or
 reflecting light. For one color of a given hue, the perception of brightness is influenced by its saturation:
@@ -527,7 +527,7 @@ is below 50\%, it will increase when the saturation level decreases. The Figure 
 the percentage of white that each hue contains, being white the maximum percentage of 100\%.
 \paragraph{\underline{Chromaticity}} Similarly to what happens with saturation, it is an objective
 specification of the quality of a color, but regardless of its luminance. As it will be seen in a while, it
-is what is shown in the CIE 1931 XYZ Color Space Diagram. 
+is what is shown in the CIE 1931 XYZ Color Space Diagram.
 \paragraph{\underline{Contrast}} This concept estimates the influence of luminance that makes an object
 distinguishable from a background. The Human Visual System determines contrast by the difference in the color
 and brightness of the object and other subjects within the same field of view.
@@ -549,14 +549,14 @@ The concepts of \emph{Color Spaces} and \emph{Color Models} are often confused b
 (although they do use similar conceptions). Color models exist to mathematically conceive a description of color,
 in which color spaces will be based and present the equivalent colors. It is relevant to settle a distinction among
 them, paying special attention to the fundamental \emph{CIE Color Space}, which is acquired as one of the most
-fundamental perception studies.  
+fundamental perception studies.
 %
 \subsubsection{Color Models}
 A color model is a mathematical description of color, which is substantively different from a color space: the latter represents
 the gamut of colors described accordingly to the primitives of a color model, containing not only visible colors
 but also colors that are impossible to represent on physical devices. \par
 There are two types of color models: additive and subtractive. \textbf{Additive Color Models} use light
-to display color mixing, mixing primary colors such as Red, Green and Blue; equally combined and 
+to display color mixing, mixing primary colors such as Red, Green and Blue; equally combined and
 overlapped, they form white light, whereas \textbf{Subtractive Color Models} mix colors using paint pigments
 and the result of any mix is a color that tend to be darker, the more you mix it. Additive models are used
 in computer graphic displays, while subtractive models are commonly associated to dyes and inks. Examples
@@ -566,7 +566,7 @@ of this color models are given below \cite{Ware2012}. \par
   \centering
   \vspace{-2\baselineskip}
   \includegraphics[width=\linewidth]{RYB.png}
-  \caption[RYB Color Model Schematic]{RYB Color Model.\protect\footnotemark{}}	
+  \caption[RYB Color Model Schematic]{RYB Color Model.\protect\footnotemark{}}
   \label{fig:RYB}
 \end{wrapfigure}
 \footnotetext{"RYB Plano", Available at: \url{bit.ly/22MHzPJ}. Last accessed on January 8th, 2016.}
@@ -592,7 +592,7 @@ would create a standard in representation of images on digital display devices. 
 \centering
 \vspace{-\baselineskip}
 \includegraphics[width=\linewidth]{RGB.png}
-\caption[RGB Color Model Schematic]{RGB Color Model.\protect\footnotemark{}}	
+\caption[RGB Color Model Schematic]{RGB Color Model.\protect\footnotemark{}}
 \label{fig:RGB}
 \end{wrapfigure}
 \footnotetext{"RGB Cube", Available at: \url{bit.ly/1n5QCdZ}. Last accessed on January 8th, 2016.}
@@ -613,7 +613,7 @@ an accurate match to the color mixture recognized by human vision.
 \centering
 \vspace{-\baselineskip}
 \includegraphics[width=\linewidth]{HSV_TriangleCone.png}
-\caption[HSV Triangle and Cone Representation]{HSV Color Model.\protect\footnotemark{}}	
+\caption[HSV Triangle and Cone Representation]{HSV Color Model.\protect\footnotemark{}}
 \label{fig:HSV}
 \end{wrapfigure}
 \footnotetext{"Computer Graphics (CS 4300) (...)", Available at: \url{bit.ly/1OQh8Vh}. Last accessed on January 8th, 2016.}
@@ -623,9 +623,9 @@ stands for \underline{Hue-Saturation-Value}, depicting a three-dimensional color
 present relationships between colors, which is a direct improvement from RGB. There are several
 geometrical representations of this model, from cones to cylinders, but all of them provide the same
 visualization and concept disposal: Red, Green, Blue, Magenta, Yellow and Cyan \underline{Hues} are equally
-disposed in a circumference of a circle 
+disposed in a circumference of a circle
 composing the color wheel, (you can think of it as a cut of the cylinder, or the cone base) with the
-white color in the center; from the center of the circle towards the outer edge, varies the 
+white color in the center; from the center of the circle towards the outer edge, varies the
 \underline{Saturation} of colors, being the most saturated the farthest position from the center. In a
 perpendicular edge departing from the center of the circle until the bottom of the cylinder/cone, it
 oscillates the \underline{Value}, being the bottom value equal to 0 and the darkest color (black), the lightest
@@ -641,14 +641,14 @@ is the bicone or a cylinder. Both HSV and HSL are examples of \textbf{additive c
 \centering
 %\vspace{-\baselineskip}
 \includegraphics[width=\linewidth]{CMYK.jpg}
-\caption[CMY(K) Color Model Representation]{CMY(K) Color Model.\protect\footnotemark{}}	
+\caption[CMY(K) Color Model Representation]{CMY(K) Color Model.\protect\footnotemark{}}
 \label{fig:CMYK}
 \end{wrapfigure}
 %
 \paragraph{\underline{CMY(K)}} CMY(K) works as a subtractive color model, with four color
 components, and is primarily used in printing industries, given the feature of printed ink of reducing
 the light that otherwise would be reflected. It is composed by four color: \underline{Cyan-Magenta-Yellow-Key}.
-Key value is representing the black color, which is used because the combination of the three primaries 
+Key value is representing the black color, which is used because the combination of the three primaries
 does not produce a fully saturated black color. This color model is able to produce the entire color
 spectrum of visible colors, due to the \textbf{half-toning} process it executes: tiny dots of each
 primary color, with an assigned saturation, are printed in a pattern small enough so it is perceived
@@ -672,10 +672,10 @@ produce Yellow. CMY(K) is a device-dependent space. \par
 \footnotetext{"Halftone", Available at: \url{en.wikipedia.org/wiki/Halftone}. Last accessed on January 8th, 2016.}
 %
 \subsubsection{Color Spaces}
-A color space is the set of colors originated by the specification of a mathematical model of primitives; it also 
+A color space is the set of colors originated by the specification of a mathematical model of primitives; it also
 allows the representation of reproducible colors on a given physical device. It relates the description
 of a color model to actual colors, being a three dimensional object that contains all realizable color
-combinations. They can be, generally, grouped onto three categories: 
+combinations. They can be, generally, grouped onto three categories:
 	\begin{enumerate}
 	\item \textbf{Device-Dependent Spaces}, which express color relative to some other reference space. It
     indicates the subset of colors which can be displayed using a particular device (\emph{e.g.} a monitor or a
@@ -683,7 +683,7 @@ combinations. They can be, generally, grouped onto three categories:
 	\item \textbf{Device-Independent Spaces}, which express color in absolute terms, serving as universal
     reference colors.
 	\item \textbf{Working Spaces}, used by image editing software and file formats to constrain the range of
-    colors to a standardized palette. For example, one of the most used color working space is Adobe RGB 1998. 
+    colors to a standardized palette. For example, one of the most used color working space is Adobe RGB 1998.
 	\end{enumerate} \par
 There were two relevant studies made about color spaces: the fist one is the \textbf{Munsell Color System},
 which had began in 1898 and saw its full expression in 1905; the second is one of the principal color spaces used to describe the
@@ -694,7 +694,7 @@ according to different components: \textbf{CIE 1931 XYZ, CIE-L*a*b* and CIE-L*u*
   \centering
   \vspace{-\baselineskip}
   \includegraphics[width=0.9\linewidth]{MunsellSystem.png}
-  \caption[Munsell Color System Representation]{Munsell Color System.\protect\footnotemark{}}	
+  \caption[Munsell Color System Representation]{Munsell Color System.\protect\footnotemark{}}
   \label{fig:munsell}
 \end{wrapfigure}
 \footnotetext{"Munsell Color System", Available at: \url{bit.ly/1mJsH3I}. Last accessed on January 8th, 2016.}
@@ -704,7 +704,7 @@ Professor Albert H. Munsell in the first decade of the 20th century \cite{Munsel
 hue, value and chroma into perceptually different dimensions, and also illustrate in a systematic way these
 components in a three dimensional space. It consists of a cylindrical color solid, where value is measured
 vertically from 0 (black) to 10 (white), hue is measured in degrees around horizontal circles and chroma,
-radially measured in concentric circles. \par 
+radially measured in concentric circles. \par
 Each circle of the cylinder is divided into five principal hues: Red, Yellow, Green, Blue and Purple, where
 intermediate hues can be found
 in-between the principal ones. Two colors with equal chroma and value - residing in the same circle - but
@@ -727,10 +727,10 @@ The \textbf{CIE XYZ} comprises all color sensations a human can perceive, standi
 other color spaces and the tristimulus values have the following properties:
   \begin{itemize}
   \item All tristimulus are positive for all color. The XYZ axes are purely abstract, but all perceived
-  colors fall within CIE gamut \emph{i.e.} complete subset of colors. 
+  colors fall within CIE gamut \emph{i.e.} complete subset of colors.
   \item The X and Z values have zero luminance, being the Y value the only one which represents luminance
   information. By defining this, CIE space allows the XZ plane to contain all possible chromaticities
-  (a specification of a color, regardless of luminance) at a given Y luminance. 
+  (a specification of a color, regardless of luminance) at a given Y luminance.
   \end{itemize} \par
 %
 \begin{figure}[H]
@@ -767,8 +767,8 @@ interesting properties \cite{Ware2012}:
   x = 0.448 , y = 0.407
   \end{equation}
   which is considerably more yellow than normal daylight.
-  \item The vividness of a color is defined by the excitation purity, which quantifies 
-  distance along a line between a particular pure spectral wavelength and the white point of the diagram. 
+  \item The vividness of a color is defined by the excitation purity, which quantifies
+  distance along a line between a particular pure spectral wavelength and the white point of the diagram.
   \end{itemize} \par
 The CIE Color System is both a Color Model and a Color Space since, at the same time, it describes
 a mathematical representation using XYZ primaries and represents the superset of the entire range of human
@@ -778,7 +778,7 @@ perceivable colors. The \textbf{CIE RGB Color Space} is one of the many subsets 
   \centering
   \vspace{-\baselineskip}
   \includegraphics[width=\linewidth]{CIELAB.jpg}
-  \caption[CIE-L*a*b*]{CIE-L*a*b* axis.\protect\footnotemark{}}	
+  \caption[CIE-L*a*b*]{CIE-L*a*b* axis.\protect\footnotemark{}}
   \label{fig:cielab}
   \end{wrapfigure}
 \footnotetext{"CIELAB, Adobe Techical Guides", Available at: \url{bit.ly/1RmIZwL}. Last accessed on January 8th, 2016.}
@@ -788,9 +788,9 @@ created in 1976. The two axis are represented by the \textbf{a*} and \textbf{b*}
 Red-Green axis and the latter the Blue-Yellow one; the \textbf{L*} variable represents the lightness. This
 color space is often used when graphics have to be printed and converted from RGB to CMY(K) color model, as
 L*a*b* space contains both color gamuts. The asterisk that follows each variable is meant to be read as
-“star”. \par 
+“star”. \par
 There are some particularities related to this space, which can be seen on Figure \ref{fig:cielab}: \textbf{i)} The values for the three variables are absolute, with a pre-defined range; \textbf{ii)} L* = 0 represents black and L* = 100 the brightest white; \textbf{iii)} As for the a* and b*, they will represent a neutral gray value at 0 value; \textbf{iv)} On the Red-Green Axis, represented by a*, the positive end a* being the Red component and the negative end the Green component; \textbf{v)} On the Blue-Yellow Axis, represented by b*, the positive end b* being the Yellow component and the negative end the Blue component; and finally, \textbf{vi)} The value limits are implementation-dependent, since they can vary between -100 and +100 or -128 and +127. \par
-This color space derived into a cubic color space representation, which is recognized as the 
+This color space derived into a cubic color space representation, which is recognized as the
 \textbf{CIE-L*C*h*}, where the Cartesian coordinates of a* and b* are substituted cylindrical coordinates
 \textbf{C* and h*}: the first one stands for \textbf{Chroma} and the second one for the angle of the
 \textbf{Hue} in CIE-L*a*b* color wheel. \par
@@ -799,7 +799,7 @@ This color space derived into a cubic color space representation, which is recog
 inadequate because the two-dimensional diagram failed to give a uniformly-spaced visual representation
 of a three-dimensional color space. This was achieved by distributing color proportional to their
 perceived color difference. It is largely used nowadays by computer graphics systems which manipulate
-colored lights. In this space, the \textbf{L*} has the same significance as the CIE-L*a*b* space; 
+colored lights. In this space, the \textbf{L*} has the same significance as the CIE-L*a*b* space;
 \textbf{u*} and \textbf{v*} redefine x and y to present a visually more accurate two-dimensional model. Just like
 CIE XYZ and CIE-L*a*b*, this color space is also device-independent and therefore is not restrained by
 color gamut.
@@ -833,7 +833,7 @@ make sure colors match with no doubt (as in Figure \ref{fig:pantone}). The PMS i
 a large number of small sheets which contain every possible Pantone color, in every tint or shade. The type
 of paper used will affect the appearance of colors: Pantone covers this problem by showing how desired
 color will look on coated, uncoated or matte paper\footnote{"The Pantone Matching System\textsuperscript{\textregistered}",
-Available at: \url {bit.ly/1ZdsYNU}. Last accessed on Jauary 8th, 2016.}. 
+Available at: \url {bit.ly/1ZdsYNU}. Last accessed on Jauary 8th, 2016.}.
 PMS is used in a variety of industries, primarily offset printing. \par
 %
 \begin{wrapfigure}[11]{r}{0.4\textwidth}
@@ -849,7 +849,7 @@ axis description: there exist three pairs of opponent colors, the White-Black, G
 which were introduced by Ewald Hering \cite{Ware2012}. The NCS is based in mechanisms involved in signal processing
 in the ganglion cells in retina, which orientates the light to retinal cones before it is sent to the brain;
 this is different from what happens with RGB, where information is acquired at low level on the cones and
-rods. This color system is based on the six elementary colors referred in the beginning of the paragraph; 
+rods. This color system is based on the six elementary colors referred in the beginning of the paragraph;
 colors in NCS are defined by three values, specifying the amount of \textbf{darkness, the chromaticity and a
 percentage value between two of the colors}. The intuit of this color system is
 create color codes that can be spread and understood across the world. To define a color in this color
@@ -860,17 +860,17 @@ system you need to\footnote{\label{ncshowto}"How To Comunicate Your Color.", Ava
 	\item Find you shade or tint in the color triangle of the color chosen in the first step. This will give
     you its darkness and chromaticity, which must add up to 100\%: if a percentage value remains, it is
     attributed to whiteness.
-	\item Write the full name, preceding with “NCS”, adding “S” if the color is an NCS standard color. 
+	\item Write the full name, preceding with “NCS”, adding “S” if the color is an NCS standard color.
 	\end{enumerate} \par
 For example, \textbf{NCS S 1070-Y10R} translates into a NCS standard color perceive as: 90\% Yellow and
-10\% Red, with 10\% of Whiteness and 70\% of Chromaticity value. Since 10\% + 70\% = 80\%, the remaining 
+10\% Red, with 10\% of Whiteness and 70\% of Chromaticity value. Since 10\% + 70\% = 80\%, the remaining
 20\% belongs to \emph{Whiteness}. This color is shown in Figure \ref{fig:ncs}.
 %
 \subsection{Color Usage}
 We have grounded how color is represented \emph{via} color models and spaces, and what are the main concepts
 related to color understanding. However, color is used in different scopes and can be presented by itself or
 accompanied by other colors. Foremost, we have to analyze light to understand what originates color and how
-we can create schemes to relate colors: visible light is electromagnetic radiation in the range of sensitive 
+we can create schemes to relate colors: visible light is electromagnetic radiation in the range of sensitive
 wavelengths to human eye, about 400 to 700 nanometers \cite{Joblove1978}. Therefore,
 perceived color is a spectral distribution of amplitude by wavelength, where the shape of distribution determines
 what is the color perceived. If this light has a flat distribution or any other distribution that stimulates all
@@ -901,7 +901,7 @@ it is the same apple at night, we perceive the object as equal independently of 
 us to recognize objects. In the illusion of Figure \ref{fig:adelson}, the orange circle in the shadow appears brighter
 than the other circle but they are, in fact, exactly the same shade of orange. \par
 Since the start of the research on this area, in the 16th Century, when Franciscus Aguilonius created the RYB
-model, color representation was an important step in the creation of a mental model of color. 
+model, color representation was an important step in the creation of a mental model of color.
 %
 \subsubsection{Color Organization}
 Sir Isaac Newton developed the first circular diagram of color in 1666, when he started experimenting the
@@ -914,7 +914,7 @@ useful for painters; later, the concept of secondary and tertiary colors was int
 equivalent number of primary and/or secondary colors. \textbf{Primary Colors} were considered to be
 Red,Yellow and Blue, \textbf{Secondary Colors} were Green, Orange and Purple, which
 are formed by mixing only primary colors; by their turn, \textbf{Tertiary Colors} were created by mixing primary
-colors with adjacent secondary colors, deriving into Yellow-Orange, Yellow-Green, Blue-Green, Blue-Purple, 
+colors with adjacent secondary colors, deriving into Yellow-Orange, Yellow-Green, Blue-Green, Blue-Purple,
 Red-Purple, Red-Orange. However, it was only in the year of 1810 that
 Johann Goethe \cite{Goethe1810} introduced the first systematic study of the human perception of colors,
 providing a symmetric arrangement of the color circle, regularly referred to as \textbf{Color Wheel}. \par
@@ -978,7 +978,7 @@ which eventually transmits continuity and the idea of perceptual steps. Penny Rh
 common (and not common) techniques for color scales used to present univariate and bivariate data. \par
 %
 For Single-Variable Color Scales, a \textbf{Saturation Scale} can be created by keeping the hue
-invariable, oscillate the color saturation; the biggest advantage is the simplicity and its intuitiveness, 
+invariable, oscillate the color saturation; the biggest advantage is the simplicity and its intuitiveness,
 the biggest disadvantage the low PDR (Perceived Dynamic Range). Also, \textbf{Spectrum Scale} (Figure \ref{fig:spectrum})
 is a very commonly used scale, keeping the saturation and brightness invariables, oscillate hue within its full
 range (from red,
@@ -989,7 +989,7 @@ of each color (the boundaries of primary colors that can be described and named 
 observer and make him perceive limits where they don’t exist. For a protanopic person, rainbow color scales
 appear to have repetitive colors. Also, there are colors that appear brighter than
 others, for example yellow, since it activates both M and L Cones (Green and Green-Red, respectively), creating
-the false expectation of a greater value associated to yellow. \par 
+the false expectation of a greater value associated to yellow. \par
 %
 \begin{wrapfigure}[11]{R}{0.35\textwidth}
 	\centering
@@ -1025,7 +1025,7 @@ not, but could also create confusion in user’s perception. As Gossett stated \
 works if the users have the accurate perception of colors which originated the mixing. \par
 The perceptual accuracy of users, regarding the perception of relative amount of colors and the visualization
 of social artifacts has already been studied: could we use, in an efficient way, color blending to demonstrate
-information? 
+information?
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%COLOR BLENDING%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Color Blending Research and Techniques}
@@ -1049,7 +1049,7 @@ yields the most accurate results: hardware-oriented color models like RGB or col
 as CMY(K), fail to provide a color perception description, unlike HSV. This pitfall is amended by CIE-L*C*h*,
 by creating a perceptually uniform scale to lightness.  \par
 %
-\subsubsection{Data Visualization} 
+\subsubsection{Data Visualization}
 %
 \begin{wrapfigure}[8]{r}{0.45\textwidth}
 	\centering
@@ -1066,7 +1066,7 @@ RRG, RGG, RBG, RYG, RRB, RBB, RYB, RYR, RYY, GBG, GBB, GYB, GYG, GYY, BYB and BY
 profiling questionnaire about the users; on the second part, a color blindness detection test was conducted
 with a simplified 6-plate colorblindness Ishihara Test. On a third part, users were randomly
 presented with a color from set A or B and were asked to chose from a color palette, the colors which mix
-into that color, as in the top image on Figure \ref{fig:datavis}. After, users were presented to colors blended 
+into that color, as in the top image on Figure \ref{fig:datavis}. After, users were presented to colors blended
 into HSV, CMY(K) and CIE-L*C*h* and they had to pick the most natural transitions (bottom image of \ref{fig:datavis}).
 The final step was a simple satisfaction questionnaire where users were asked to indicate in a 5-point Likert Scale,
 how easy it was to find which pairs resulted in the colors given and the most natural blending option. \par
@@ -1084,9 +1084,9 @@ CIE-L*C*h* the second position in natural transition’s podium, they found it h
 that were mixed during the study (which were mixed in this color model). \par
 The fact that CMY(K) has the smoothest transition to users is related to what Gosset \cite{Gossett2004} stated, that
 subtractive color models learned in childhood restricts the mental model of color which users create;
-in depth research has to be done to compare blending perception between CIE-L*C*h* and CMY(K) models. It 
+in depth research has to be done to compare blending perception between CIE-L*C*h* and CMY(K) models. It
 should also be take into consideration that, although the sample is large, there is a considerable gap
-between genders: more women should be included in the study since, as previously mentioned, women can 
+between genders: more women should be included in the study since, as previously mentioned, women can
 distinguish a larger variety of shades. There is not an extensive cultural representation, just as there
 is no representation of various educational levels besides graduated users, which could be interesting to show. \par
 %
@@ -1096,7 +1096,7 @@ Perception investigated precisely, the extent people can perceive relative amoun
 blended colors \cite{Gama20142}. However, the amount of each component may not be evident: as it has been said before,
 there are pairs of colors which yield better results than others due to cultural standards, conceptual models
 or simply color conception. Color blending has one major handicap: although it reduces the cognitive load by
-associating familiar colors to information, it may not show the expected accuracy if we do not understand 
+associating familiar colors to information, it may not show the expected accuracy if we do not understand
 human color perception. \par
 %
 \begin{wrapfigure}[17]{R}{0.2\textwidth}
@@ -1137,9 +1137,9 @@ used; be that as it may, no more than three interpolations must be done between 
 can distinguish different component weights. Hence, a set of 5 colors is the optimal solution: 2
 pairwise colors and 3 interpolations, as on Figure \ref{fig:amount2}. \par
 %
-\subsubsection{Other Research} Apart from the previous referred studies, it is possible to give some 
+\subsubsection{Other Research} Apart from the previous referred studies, it is possible to give some
 examples of current work that already uses color blending techniques. For example FiftyThree\textsuperscript{\textregistered},
-the company which created the App for drawing on tablets called "Paper", put a lot of effort on reinventing the color mixer to 
+the company which created the App for drawing on tablets called "Paper", put a lot of effort on reinventing the color mixer to
 transmit a complete color blending experience which neither lacked realism or was too realistic\footnote{"The Magical Tech
 Behind Paper (...)". Available at: \url{bit.ly/1mIYpZK}. Last accessed on January 8th, 2016.}. FiftyThree's team
 of developers manually selected 100 pairs of popular colors and tested them to understand which pairs created the
@@ -1165,10 +1165,10 @@ Writing and Earning Money". Available at: \url{bit.ly/1RwnibG}.
 Last accessed on January 8th, 2016.}. However, the problem lies on the colors chosen to represent each variable: there were picked
 colors from the CMY(K) color model and they
 were mixed to convey information of three different variables at the same time; the problem in Figure \ref{fig:cmykbad} is such that
-it is almost impossible to tear apart perceive amounts of original colors since it is not provided an appropriate color 
+it is almost impossible to tear apart perceive amounts of original colors since it is not provided an appropriate color
 scale and it is quite difficult to distinguish darker colors near purple, dark green or black. \par
 Joshua Stevens presents\footnote{"Bivariate Choropleth Maps (...)". Available at:
-\url{bit.ly/17S3FaK}. Last accessed on January 8th, 2016.} an acceptable 
+\url{bit.ly/17S3FaK}. Last accessed on January 8th, 2016.} an acceptable
 solution for the problem of mixing colors that apparently do not correlate, mixing two colors (instead of 3, as the
 previous example) that are supported by 3-step scale each one, and combined create a 9-step scale in which each step
 can be perceived discreetly. The author advises that bivariate data can be complicated if not shown in a clear
@@ -1191,10 +1191,10 @@ tasks, which can be combined with color blending also.
 %
 \subsection{Color Blending Alternatives}
 Besides simple color blending techniques, researchers have been developing techniques in order to convey
-even more detailed and accurate information. Examples of these studies are: 
+even more detailed and accurate information. Examples of these studies are:
 a technique of color weaving and a hue-preserver color blending technique, covered in this section.
 %
-\subsubsection{Color Weaving} 
+\subsubsection{Color Weaving}
 %
 \begin{wrapfigure}[14]{r}{0.4\textwidth}
 	\centering
@@ -1247,7 +1247,7 @@ semi-transparent and then overlaid to form a single composite representation (th
 to averaging the CIE L*a*b* values of the individual overlapping colors), or via color-weaving, in which
 the separate color layers were individually sampled at independent pixels defined by a random noise
 function, and then stitched together to form a fine-grained textured mesh representation (Figure \ref{fig:weaving3}). For
-color-weaving, it was tested out small and large possible textures. Since the number of possible 
+color-weaving, it was tested out small and large possible textures. Since the number of possible
 combinations of variables and types of color representation is high, not all displays were shown and
 not every state was tested, only Iowa, which can limit user perception and influence results.
 18 users attended the study, 4 females and 14 males from different colleges.
@@ -1262,7 +1262,7 @@ blending and color weaving, in using more separated hues in CIE L*a*b*. Finally,
 this study is that hues and luminance play different roles, since the observers estimate the lightness
 value of each variable in question and hue is only used for distinguishing the variables from each other.
 %
-\subsubsection{Hue-Preserving Color Blending} 
+\subsubsection{Hue-Preserving Color Blending}
 %
 \begin{wrapfigure}[11]{r}{0.4\textwidth}
 	\centering
@@ -1287,7 +1287,7 @@ the authors created an approach that is not subject to any type of physical cons
 formulated as an algebraic model. \par
 Starting from the work on perceptual psychology (some of this is already covered in this document, the
 remaining is present in the referenced document), they have reached a set of design criteria that lead
-to an equation which expresses the color addition in Hue-Preserving color blending: 
+to an equation which expresses the color addition in Hue-Preserving color blending:
 \begin{equation}
 C_{new} = C_{1} \oplus C_{2}
 \end{equation} \par
@@ -1318,7 +1318,7 @@ However, there are some disadvantages: gray colors in hue-preserving blended ima
 gray can come from blending various hues (as on Figure \ref{fig:examples}), and this technique of blending
 colors is order-dependent, since
 blending colors in different blend orders can produced different results. Also, this technique is based
-on RGB: future work could implement hue-preserving blending on different color systems. 
+on RGB: future work could implement hue-preserving blending on different color systems.
 %
 \begin{figure}[!h]
   \centering%
@@ -1346,7 +1346,7 @@ cultural patterns which could be tested. Gama and Gonçalves have tested the col
 concluding that users can detect mixtures with higher success rates for colors which represent to smaller angles
 in the CIE-L*C*h* color wheel, but users found it hard to perceive the colors that were mixed during the study.
 The users also chose the CMY(K) Color Model as having the smoothest transition of color. It should be take into
-consideration that, although the sample is large, there is a considerable gap between genders, which should be 
+consideration that, although the sample is large, there is a considerable gap between genders, which should be
 more well balanced in future work. \par
 On the other hand, Gama and Gonçalves tested how the users perceive relative amounts of color \cite{Gama20142}, realizing that they happen to perceive most
 colors correctly regarding the pair (Red-Yellow) and other extreme colors, and at most 5 colors should be presented
@@ -1359,18 +1359,18 @@ as \textbf{Hue-Preserving Color Blending and Color Weaving}. In this technique, 
 colors that were mixed to create a resulting color, using a Noise function to create the pattern in which the
 relative amounts of colors were represented. The original studies conducted by Hagh-Shenas \cite{Hagh-Shenas2007} did not follow a
 regular specification,
-since in the first study there were a total of 9 graduates who attended, in the second study it rises to 18 
-users and in the third one, only 4 users participated; this represents a threat to the study, since it is a 
+since in the first study there were a total of 9 graduates who attended, in the second study it rises to 18
+users and in the third one, only 4 users participated; this represents a threat to the study, since it is a
 very restricted and small sample. Hagh-Shenas \emph{et. al} created a large number of displays and they were not able
 to test all of them. The ability of testing everything, while not crafting long and exhaustive tests should be
-considered in future work.  
+considered in future work.
 
 \chapter{Research Proposal}
 
 In this section, we introduce the majority of topics to be further studied, the different phases of our research, the metrics we are going to collect
 and how we are going to treat them. Since we aim to \emph{study to what extent can color blending techniques be used to efficiently and effectively
 convey information}, it is important learn from previous results, testing out not only the validity of them but also some missed opportunities. \par
-There are several aspects to be considered when developing the broadest study possible: regarding color blending profiling tests, it exists - among 
+There are several aspects to be considered when developing the broadest study possible: regarding color blending profiling tests, it exists - among
 others - some questions which remain unanswered; some of them were risen in the studies by Gama and Gonçalves \cite{Gama20141,Gama20142}. These questions can be divided in four categories:
 %
 \begin{itemize}
@@ -1378,17 +1378,17 @@ others - some questions which remain unanswered; some of them were risen in the 
 	\item \textbf{Questions raised Before}
     \begin{itemize}
     	\setlength\itemsep{0.1em}
-		\item Will perceived colors correspond to a particular fixed angular value, in the color wheel?	
+		\item Will perceived colors correspond to a particular fixed angular value, in the color wheel?
         \item Which is the best formula to blend colors, in each color model? Is it linear interpolation or another?
         \item In the case in which 3 colors are blended, do observers realize all colors at the same time or do they decompose the mixture, firstly in a mixture of two colors and then a blending of a third color?
-        \item What is the best way to present color, without influencing color perception? 
-        \item Does the user \emph{really} understands which colors are involved in a mixing? 
+        \item What is the best way to present color, without influencing color perception?
+        \item Does the user \emph{really} understands which colors are involved in a mixing?
 	\end{itemize}
     \item \textbf{Perception Questions}
     \begin{itemize}
     	\setlength\itemsep{0.1em}
     	\item Does the order in which colors are mixed, influence mental mixing models? Are there common patterns among mixing orders?
-        \item Do shapes and proximity, influence how color is perceived? 
+        \item Do shapes and proximity, influence how color is perceived?
         \item Until which extent does background influence the perception of a subject, in particular a blended color?
         \item If color parameters like Saturation, Value or Luminance change in a blending, does it modify color blending perception?
     \end{itemize}
@@ -1400,13 +1400,13 @@ others - some questions which remain unanswered; some of them were risen in the 
     	\setlength\itemsep{0.1em}
 		\item Do continuous scales yield better results than discrete color scales?
         \item What is the influence of nominal color scales in perception?
-        \item What are the results if no color scale is presented to guide the user? 
+        \item What are the results if no color scale is presented to guide the user?
 	\end{itemize}
     \item \textbf{Cultural Questions}
     \begin{itemize}
     	\setlength\itemsep{0.1em}
 		\item Does the gender really influences how the color is perceived? Is it possible to observe a significant gap between male and female answers?
-\item Is it possible to observe significant differences in observation, depending on user's cultural background?  
+\item Is it possible to observe significant differences in observation, depending on user's cultural background?
 	\end{itemize}
 \end{itemize} \par
 %
@@ -1416,15 +1416,15 @@ Although there are these questions whose answers remains to be found, only a por
 %
 As previously referred, only a set of questions will be answered in our research. We will perform three user studies to acquire the answers for several questions and the \textbf{goals for the First Study} are as follows:
 \begin{itemize}
-	\item Study the best way to present color, without influencing color perception. 
+	\item Study the best way to present color, without influencing color perception.
     \item Study shape's and proximity influence in color perception
     \item Obtain results to ascertain the cultural influence in color perception.
     \item Study the influence of discrete and continuous color scales.
 \end{itemize}
 %
 Additionally, it is relevant to understand which color model stands as the best to mix colors which are, from a perceptual point of view, more similar to the users expectation. \par
-We have decided to develop these studies in three different strands: in a \textbf{Laboratory Environment} (which will allow us to calibrate and perfectly control the entire study conditions), in an \textbf{Online Environment} (which will allow us to disseminate our study to a larger set of users, even without controlling the calibration of the testing environment) and, finally, using \textbf{Mechanical Turk Environment} (Amazon's worldwide crowdsourcing marketplace to perform Human Intelligence Tasks, which we will use in order to acquire a huge set of users, even though we can be dealing with speed-clicker users and letting go almost all environmental control). \par 
-To meet these study requirements, we drafted our study into three different phases: a \textbf{Profiling Phase}, a \textbf{Color Deficiency Test Phase} and a \textbf{Core Phase}. \par 
+We have decided to develop these studies in three different strands: in a \textbf{Laboratory Environment} (which will allow us to calibrate and perfectly control the entire study conditions), in an \textbf{Online Environment} (which will allow us to disseminate our study to a larger set of users, even without controlling the calibration of the testing environment) and, finally, using \textbf{Mechanical Turk Environment} (Amazon's worldwide crowdsourcing marketplace to perform Human Intelligence Tasks, which we will use in order to acquire a huge set of users, even though we can be dealing with speed-clicker users and letting go almost all environmental control). \par
+To meet these study requirements, we drafted our study into three different phases: a \textbf{Profiling Phase}, a \textbf{Color Deficiency Test Phase} and a \textbf{Core Phase}. \par
 In the \textbf{Profiling Phase}, questions will be asked about the Age, Gender, Academic Degree, Nationality and Country of Residence: these questions will help us
 conceiving user profiles with key indicators about cultural background and gender relation to results of each test. After that phase is finished, the user will be asked to perform the \textbf{Color Deficiency Test Phase}, with and Ishihara Color Deficiency Test, to understand if the user has any type of Red-Green deficiency
 (whether a Protanopia or Deuteranopia). \par
@@ -1446,7 +1446,7 @@ to each channel: in laboratory experiments, this test will be performed using pr
 will present the plates on the Profiling Phase of the Study, on screen. \par
 Nonetheless, it will be prepared an on-screen platform to conduct this test on the laboratory environment so that, if for some reason the plates will not
 be present, the test can be run still. \\
-When this phase finishes with success, the user can proceed to the \textbf{Core Phase} of the study. 
+When this phase finishes with success, the user can proceed to the \textbf{Core Phase} of the study.
 %
 \section{Core Phase}
 %
@@ -1460,7 +1460,7 @@ When this phase finishes with success, the user can proceed to the \textbf{Core 
 %
 The last phase is the principal part of the study: it will be separated in "Blending of Two Colors" and "Blending of Three Colors". They will be presented
 color combinations created from the principal color models' primaries: \textbf{Red, Green, Blue, Yellow, Cyan and Magenta}; colors will be mixed
-using HSV, CMY(K) and CIE-L*C*h* and the results from each combination will provide us hints about the effectiveness of each color model. \par 
+using HSV, CMY(K) and CIE-L*C*h* and the results from each combination will provide us hints about the effectiveness of each color model. \par
 Perhaps, the way color is presented is the most relevant detail: the mixed color will be presented as a square and the colors to be mixed will be presented as white
 circles, which we will call "Color Tuners" (two or three, depending on the number of mixtures), on top of sliders which the user will use to regulate
 the colors appearing on each circle, as seen on Figure \ref{fig:tuners1}: with this, only the necessary colors are displayed on the circles as the user wishes and there is no interference
@@ -1526,7 +1526,7 @@ Likewise, the Ishihara Color Deficiency Test constitutes a Control Question.
 %
 \section{Expected Results}
 Carrying out the described study will provide us some inputs to the cited questions. In the end, we expect to have sustainable results:
-i) Sample Size of the Laboratory Experiment around 70 users and, for the online study, at least 150 to 200 users;  
+i) Sample Size of the Laboratory Experiment around 70 users and, for the online study, at least 150 to 200 users;
 ii) Proof that genders influence color perception, comparing the percentage of correct and wrong results between Male and Female users;
 iii) Proof that cultural background influences color perception, comparing results from the cultures which may appear;
 iv) Since the Color Tuners will appear white, the user will have to create a mixture from the ground. This will let us extract trends, such as which
@@ -1544,7 +1544,7 @@ differences really exist. On the other hand, if data does present \emph{any othe
 \emph{Non-parametric Tests}, such as \textbf{Median} as central measure, \textbf{Spearman Correlation Test}, a \textbf{Wilcoxon Test} to compare
 a group to an hypothesis or two paired groups, a \textbf{Kruskal-Wallis Test} to test independent samples, among others. In order to test whether
 a sample can assume a normal distribution, it can be used \textbf{Kolmogorov-Smirnov Test} or the \textbf{Shapiro-Wilks Test}. \par
-These are only examples of possible statistical tests that can be performed over our data. The results which may emerge from this study can 
+These are only examples of possible statistical tests that can be performed over our data. The results which may emerge from this study can
 (and, for sure, it will) sharpen or following studies, to which I reserve the right to change their goals. \par
 An important expected result of this project is the development of test framework, capable of dealing with various tests at the same time, either online
 and laboratory: this would be particularly useful, as the work-load of adapting the back-end everytime the study changes would be costly.
@@ -1564,14 +1564,14 @@ The Figure \ref{fig:augmented} shows the scheduling of activities and tasks, and
     \includegraphics[width=1\textwidth]{Gantt.png}
     \caption[Gantt Chart of Planning]{Gantt Chart, reflecting the Planned Work.}
     \label{fig:augmented}
-\end{figure} 
+\end{figure}
 %
 \chapter{Conclusion}
 In this thesis, we aim to completely understand if the blending of colors can be used to, correctly, convey information; but, as we have seen in this
 document, color has many different scopes which are not trivial. It is important to conceive a scientifically adjusted research, since this topic
 aggregates so many different areas as psychology, physiology, medicine and computer science at the same time. \par
 There are many questions which remain unanswered, about the influence of our cultural background in color perception tasks, how the background of a subject influences its color, how information visualization is influenced by the usage of color blending, among others previously referred in this document. Since this project aims to achieve the Master Degree in Computer Science, we will tackle only some of the topics: we intend to study the best way to present color, without influencing color perception; also, study shape's and proximity influence in color perception; to obtain results to ascertain the cultural influence in color perception and, finally, study the influence of discrete and continuous color scales. These goals only constitute the first user study of our project, which will be composed by a set of three user studies; the goals for the remaining studies will be narrowed by the results of first one. \par
-This thesis deals with many important facets about the \emph{Color Blending} subject, such as the ordering the users impute in the mixture, the 
+This thesis deals with many important facets about the \emph{Color Blending} subject, such as the ordering the users impute in the mixture, the
 correctness of color perception not being affected by its neighborhood, the size of the sample for our user study to be large enough to demonstrate
 concrete results, or the correct calibration of correct over different channels of study. \par
 The advent of Information Visualization brings the eagerness of showing beautiful information, in most efficient and fastest way possible to attract

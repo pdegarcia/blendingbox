@@ -1,17 +1,19 @@
-id,typeOfQuestion,first_color,second_color,third_color,clicks,rating,C1_name,C2_name,distance_expectedC1C2,distance_HSV,distance_LCh,distance_CMYK,distance_RGB,distance_Lab,distance_pair1,distance_pair2
-5710ee9e58646,objTwoColors,#0080FF,244,81,496,2,Blue     ,Yellow   ,0.23,0.25,0.08,0.15,0.15,0.1,0.93,1.06
-571151812791a,objTwoColors,#0080FF,59,97,196,3,Green    ,Green    ,0.74,0.41,0.14,0.31,0.41,0.35,0.54,0.66
-572c85675a5ef,objTwoColors,#0080FF,219,185,285,5,Blue     ,Blue     ,0.11,0.02,0.17,0.08,0.06,0.05,0.69,0.73
-5739ff85289b2,objTwoColors,#0000FF,82,52,8,3,Yellow   ,Green    ,0.76,0.4,0.08,0.33,0.4,0.34,0.37,0.52
-573a059da0efd,objTwoColors,#0000FF,99,54,285,5,Green    ,Green    ,0.77,0.4,0.06,0.32,0.41,0.35,0.33,0.49
-573a0b8280839,objTwoColors,#0000FF,56,332,953,3,Green    ,Magenta  ,0.8,0.45,0.14,0.3,0.37,0.3,0.33,0.52
-573c70dabcfe0,objTwoColors,#0000FF,115,61,175,2,Green    ,Green    ,0.77,0.41,0.05,0.31,0.41,0.36,0.36,0.5
-573c783748e8b,objTwoColors,#0000FF,232,229,132,4,Blue     ,Blue     ,0.31,0.12,0.29,0.03,0.11,0.17,0.76,0.6
-573e47c26cb8e,objTwoColors,#0000FF,267,205,749,1,Blue     ,Navy-Blue,0.23,0.13,0.31,0.05,0.07,0.1,0.69,0.63
-573e4d0eb795b,objTwoColors,#0000FF,239,236,218,4,Blue     ,Blue     ,0.33,0.13,0.33,0.03,0.12,0.18,0.78,0.61
-5740ad339507d,objTwoColors,#0000FF,183,289,218,3,Blue     ,Navy-Blue,0.5,0.13,0.13,0.12,0.03,0.01,0.38,0.39
-5740b686127bb,objTwoColors,#0000FF,234,231,185,4,Blue     ,Blue     ,0.31,0.12,0.3,0.03,0.12,0.17,0.78,0.6
-5740bda9be3dc,objTwoColors,#0000FF,226,227,120,5,Blue     ,Blue     ,0.32,0.11,0.24,0.03,0.1,0.16,0.75,0.58
-5756ab1701ba0,objTwoColors,#0000FF,58,132,237,5,Green    ,Green    ,0.73,0.42,0.14,0.31,0.4,0.35,0.55,0.65
-5756ae6897296,objTwoColors,#0000FF,57,160,440,4,Green    ,Green    ,0.59,0.43,0.14,0.28,0.35,0.29,0.43,0.52
-57581518c2c07,objTwoColors,#0080FF,100,57,135,5,Green    ,Green    ,0.77,0.41,0.06,0.32,0.41,0.35,0.33,0.49
+id;typeOfQuestion;first_color;second_color;third_color;clicks;rating;C1_name;C2_name;distance_expectedC1C2;distance_HSV;distance_LCh;distance_CMYK;distance_RGB;distance_Lab;distance_pair1;distance_pair2
+5710ee9e58646;objTwoColors;#0080FF;244;81;496;2;Blue     ;Yellow   ;0.23;0.25;0.08;0.15;0.15;0.1;0.93;1.06
+571151812791a;objTwoColors;#0080FF;59;97;196;3;Green    ;Green    ;0.74;0.41;0.14;0.31;0.41;0.35;0.54;0.66
+572c85675a5ef;objTwoColors;#0080FF;219;185;285;5;Blue     ;Blue     ;0.11;0.02;0.17;0.08;0.06;0.05;0.69;0.73
+5739ff85289b2;objTwoColors;#0000FF;82;52;8;3;Yellow   ;Green    ;0.76;0.4;0.08;0.33;0.4;0.34;0.37;0.52
+573a059da0efd;objTwoColors;#0000FF;99;54;285;5;Green    ;Green    ;0.77;0.4;0.06;0.32;0.41;0.35;0.33;0.49
+573a0b8280839;objTwoColors;#0000FF;56;332;953;3;Green    ;Magenta  ;0.8;0.45;0.14;0.3;0.37;0.3;0.33;0.52
+573c70dabcfe0;objTwoColors;#0000FF;115;61;175;2;Green    ;Green    ;0.77;0.41;0.05;0.31;0.41;0.36;0.36;0.5
+573c783748e8b;objTwoColors;#0000FF;232;229;132;4;Blue     ;Blue     ;0.31;0.12;0.29;0.03;0.11;0.17;0.76;0.6
+573e47c26cb8e;objTwoColors;#0000FF;267;205;749;1;Blue     ;Navy-Blue;0.23;0.13;0.31;0.05;0.07;0.1;0.69;0.63
+573e4d0eb795b;objTwoColors;#0000FF;239;236;218;4;Blue     ;Blue     ;0.33;0.13;0.33;0.03;0.12;0.18;0.78;0.61
+5740ad339507d;objTwoColors;#0000FF;183;289;218;3;Blue     ;Navy-Blue;0.5;0.13;0.13;0.12;0.03;0.01;0.38;0.39
+5740b686127bb;objTwoColors;#0000FF;234;231;185;4;Blue     ;Blue     ;0.31;0.12;0.3;0.03;0.12;0.17;0.78;0.6
+5740bda9be3dc;objTwoColors;#0000FF;226;227;120;5;Blue     ;Blue     ;0.32;0.11;0.24;0.03;0.1;0.16;0.75;0.58
+5756ab1701ba0;objTwoColors;#0000FF;58;132;237;5;Green    ;Green    ;0.73;0.42;0.14;0.31;0.4;0.35;0.55;0.65
+5756ae6897296;objTwoColors;#0000FF;57;160;440;4;Green    ;Green    ;0.59;0.43;0.14;0.28;0.35;0.29;0.43;0.52
+57581518c2c07;objTwoColors;#0080FF;100;57;135;5;Green    ;Green    ;0.77;0.41;0.06;0.32;0.41;0.35;0.33;0.49
+;;;;;;;;;;0.27;0.17;0.19;0.25;0.23;;
+;;;;;;;;;;0.16;0.10;0.13;0.16;0.12;;

@@ -560,72 +560,98 @@ Model: the primitives anticipated for the blends are, then, colors required to p
 %
 \paragraph{\ul{Question One}}
 %
-This is the only question in the entire study which has yellow as the resulting color of the blending. The awaited colors are Red and Green, two primitives from RGB Color Model. Table \ref{table:lab_q1_expected} shows the
+This is the only question in the entire study which has \ul{yellow as the resulting color of the blending}. The expected colors are \ul{Red and Green}, two primitives from RGB Color Model. Table \ref{table:lab_q1_expected} shows the
 expected colors when mixing in each color model: HSV, CIE-L*C*h*, CMYK, RGB and CIE-L*a*b*. \par
 %
-\begin{table}[H]
-  \resizebox{\textwidth}{!} {
-  \begin{tabular}{@{}ccccccccc@{}}
-    \toprule
-                                  &                                                       & \multicolumn{2}{c}{Expected Colors}                   & \multicolumn{5}{c}{Possible Results}                                                                                                                                                                                                                                                  \\ \cmidrule(l){3-9}
-    \multirow{-2}{*}{Question ID} & \multirow{-2}{*}{Given Color}                         & C1                       & C2                         & HSV                                                   & CIE-L*C*h                                             & CMYK                                                  & RGB                                                   & CIE-L*a*b*                                            \\ \midrule
-    \multicolumn{1}{c|}{1}        & \multicolumn{1}{c|}{\cellcolor[HTML]{FFFF00}\#FFFF00} & \multicolumn{1}{c|}{Red} & \multicolumn{1}{c|}{Green} & \multicolumn{1}{c||}{\cellcolor[HTML]{FFFF00}\#FFFF00} & \multicolumn{1}{c||}{\cellcolor[HTML]{D7A700}\#D7A700} & \multicolumn{1}{c||}{\cellcolor[HTML]{808000}\#808000} & \multicolumn{1}{c||}{\cellcolor[HTML]{808000}\#808000} & \multicolumn{1}{c|}{\cellcolor[HTML]{C9AB00}\#C9AB00} \\ \midrule
-    \multicolumn{4}{l}{Mean Distance to Objective ($\tilde{x}$) - Laboratory}                                                                                  & 0.13                                                  & 0.20                                                  & \textbf{0.09}                                         & 0.12                                                  & 0.12                                                  \\
-    \multicolumn{4}{l}{Mean Distance to Objective ($\tilde{x}$) - Online}                                                                                  & 0.07                                                  & 0.21                                                  & \textbf{0.06}                                         & 0.07                                                  & 0.07                                                  \\ \bottomrule
-    \end{tabular}}
-  \caption[Question 1, with expected Results.]{Question 1, with expected results and mean distances to Objective colors.}
-  \label{table:lab_q1_expected}
-\end{table}
+As said before, each answer-pair was blended according to those 5 models; after processing data from each question, we performed the mean calculation over the entire set of distances, between each resulting blend and the ideal blend (according
+to every color model). This produced the results reported on Table \ref{table:lab_q1_expected}. \par
 %
-As said before, each answer-pair was blended according to those 5 models; after processing data from each question, we performed the mean calculation over each color model, producing the results reported on Table \ref{table:lab_q1_expected}.
-One can observe that the model which presents the lowest mean value is the CMYK ($\tilde{x} = 0.09$), possibily indicating that this model yields the best results for this question, while HSV, RGB and CIE-L*a*b* have close values. We performed
-the Friedman Test in order to evaluate the variance of distances between the blends, and the ideal mixture according to each color model: this test proved ($\chi^2 = 48.568$, $p < 0.05$) that there are statistically significant differences
-between each color model. \par
+One can observe that the model which presents the lowest mean value is the CMYK ($\tilde{x} = 0.09$), possibily indicating that this model yields the best results for this question, while HSV, RGB and CIE-L*a*b* have closer values.
+A Friedman Test showed that there are, indeed, significant differences ($\chi^2 = 48.568$, $p < 0.05$) between each color model. \par
 %
 Further analyis with the Wilcoxon Test reveals that CMYK ($p < 0.05$) has, in fact, very different responses from the other color models, which leads us to conclude that \textbf{the CMYK Color Model is the best model to represent yellow blends}.
 Since HSV, RGB and CIE-L*a*b* have similar mean values, we tried to compare them between each other: \textbf{there is no statiscally significant differences among HSV, RGB and CIE-L*a*b*, whereby there is insufficient information to evaluate this
-color models regarding this color mixture}. \par
+color models regarding this color mixture}. According to table, it is also possible to say that \textbf{CMYK Color Model presents a low deviation}, not only in laboratory results ($\sigma_{lab} = 0.06$), but
+such value is corroborated by the online users ($\sigma_{online} = 0.06$). \par
 %
 It is safe to say that \textbf{CIE-L*C*h* has the worst performance against the other color models}, since its mean is the highest of all ($\tilde{x} = 0.20$), and the values from Wilcoxon Test ($p < 0.005$) indicates that this color model has
-statistically signifcant differences every other model. \textbf{This results are corroborated by the online users}.
-%
-\paragraph{\ul{Question 2}}
-%
-This color question...
+statistically signifcant differences every other model. \textbf{This results are corroborated by the online users}. \par
 %
 \begin{table}[H]
   \resizebox{\textwidth}{!} {
-  \begin{tabular}{@{}ccccccccc@{}}
-    \toprule
-                                  &                                                       & \multicolumn{2}{c}{Expected Colors}                   & \multicolumn{5}{c}{Possible Results}                                                                                                                                                                                                                                                  \\ \cmidrule(l){3-9}
-    \multirow{-2}{*}{Question ID} & \multirow{-2}{*}{Given Color}                         & C1                       & C2                         & HSV                                                   & CIE-L*C*h                                             & CMYK                                                  & RGB                                                   & CIE-L*a*b*                                            \\ \midrule
-    \multicolumn{1}{c|}{2}        & \multicolumn{1}{c|}{\cellcolor[HTML]{FF00FF}\#FF00FF} & \multicolumn{1}{c|}{Red} & \multicolumn{1}{c|}{Blue} & \multicolumn{1}{c||}{\cellcolor[HTML]{FF00FF}\#FF00FF} & \multicolumn{1}{c||}{\cellcolor[HTML]{FB0080}\#FB0080} & \multicolumn{1}{c||}{\cellcolor[HTML]{800080}\#800080} & \multicolumn{1}{c||}{\cellcolor[HTML]{800080}\#800080} & \multicolumn{1}{c|}{\cellcolor[HTML]{CA0088}\#CA0088} \\ \midrule
-    \multicolumn{4}{l}{Mean Distance to Objective ($\tilde{x}$) - Laboratory}                                                                                   & 0.49                                                  & 0.545                                                  & 0.22                                         & 0.119                                                  & \textbf{0.095}                                                  \\
-    \multicolumn{4}{l}{Mean Distance to Objective ($\tilde{x}$) - Online}                                                                                   & 0.09                                                  & 0.17                                                  & \textbf{0.07}                                         & 0.1                                                  & 0.14                                                  \\ \bottomrule
+  \begin{tabular}{lccccccccccccc}
+    \hline
+    \multicolumn{1}{c}{}                              &                                      & \multicolumn{2}{c}{Expected Colors}                   & \multicolumn{10}{c}{Possible Results}                                                                                                                                                                                                                                                                                        \\ \cline{3-14}
+    \multicolumn{1}{c}{\multirow{-2}{*}{Question ID}} & \multirow{-2}{*}{Given Color}        & C1                       & C2                         & \multicolumn{2}{c}{HSV}                                        & \multicolumn{2}{c}{CIE-L*C*h*}                                 & \multicolumn{2}{c}{CMYK}                                       & \multicolumn{2}{c}{RGB}                                        & \multicolumn{2}{c}{CIE-L*a*b*}                                 \\ \hline
+    \multicolumn{1}{c}{1}                             & \cellcolor[HTML]{FFFF00}(77, 93, 14) & \multicolumn{1}{c|}{Red} & \multicolumn{1}{c|}{Green} & \multicolumn{2}{c|}{\cellcolor[HTML]{FFFF00}(77, 93, 14)}      & \multicolumn{2}{c|}{\cellcolor[HTML]{D7A700}(42, 42, 6)}       & \multicolumn{2}{c|}{\cellcolor[HTML]{808000}(17, 20, 3)}       & \multicolumn{2}{c|}{\cellcolor[HTML]{808000}(17, 20, 3)}       & \multicolumn{2}{c|}{\cellcolor[HTML]{C9AB00}(39, 42, 6)}       \\ \hline
+                                                      & \multicolumn{1}{l}{}                 & \multicolumn{1}{l}{}     & \multicolumn{1}{l}{}       & \multicolumn{1}{c}{$\tilde{x}$} & \multicolumn{1}{c}{$\sigma$} & \multicolumn{1}{c}{$\tilde{x}$} & \multicolumn{1}{c}{$\sigma$} & \multicolumn{1}{c}{$\tilde{x}$} & \multicolumn{1}{c}{$\sigma$} & \multicolumn{1}{c}{$\tilde{x}$} & \multicolumn{1}{c}{$\sigma$} & \multicolumn{1}{c}{$\tilde{x}$} & \multicolumn{1}{c}{$\sigma$} \\ \hline
+    \multicolumn{4}{l}{Distance to Objective - Laboratory}                                                                                           & \multicolumn{1}{|c}{0.13}       & \multicolumn{1}{c|}{0.08}    & \multicolumn{1}{|c}{0.2}        & \multicolumn{1}{c|}{0.06}    & \multicolumn{1}{|c}{\textbf{0.09}}       & \multicolumn{1}{c|}{0.06}    & \multicolumn{1}{|c}{0.12}       & \multicolumn{1}{c|}{0.08}    & \multicolumn{1}{|c}{0.12}       & \multicolumn{1}{c|}{0.08}    \\
+    \multicolumn{4}{l}{Distance to Objective - Online}                                                                                               & \multicolumn{1}{|c}{0.07}       & \multicolumn{1}{c|}{0.09}    & \multicolumn{1}{|c}{0.21}       & \multicolumn{1}{c|}{0.07}    & \multicolumn{1}{|c}{\textbf{0.06}}       & \multicolumn{1}{c|}{0.06}    & \multicolumn{1}{|c}{0.07}       & \multicolumn{1}{c|}{0.09}    & \multicolumn{1}{|c}{0.07}       & \multicolumn{1}{c|}{0.08}    \\ \hline
     \end{tabular}}
-  \caption[Question 2, with expected Results.]{Question 2, with expected results and mean distances to Objective colors.}
+  \caption[Question 1, with expected Results.]{Question 1, with expected colors, possible results, mean and standard deviation of distances to Objective colors.}
+  \label{table:lab_q1_expected}
+\end{table}
+%
+\paragraph{\ul{Question Two}}
+%
+This question \ul{presents a Magenta color} and expects to receive, from the user, the \ul{Red and Blue colors} according to the HSV Color Model. \par
+%
+The colors were blended, and again the mean values over distances were calculated, as Table \ref{table:lab_q2_expected} shows. It is observable that CMYK Color Model presents, yet again,
+the lowest mean value for distance to ideal answer ($\tilde{x} = 0.11$), whilst its standard deviation is also the lowest between both study environments. \par
+%
+However, it is not safe to say that which color model had the worst results: judging by laboratory values, the HSV Color Model would not only the have highest mean distance, but also
+the largest deviation of answers; yet, evaluating the online results, it would CIE-L*C*h* to occupy such position. Performing a Friedman Test, we can conclude that there are, in fact,
+significant differences ($\chi^2 = 22.041$, $p < 0.05$) between the color models; post hoc Wilcoxon Analysis ($p < 0.05$) reveals CMYK has statistically different results from every other
+color model, therefore concluding that \textbf{CMYK has the best solution for this blending}, according to users' responses. \par
+%
+The tendency of results to blend Magenta in CMYK Color Model, could be explained by the fact that magenta is a primitive color of such model, therefore leading the user to blend it
+accordingly. \par
+%
+In this question, \textbf{CIE-L*C*h* has only significant differences with HSV ($p < 0.05$)}, which is far opposite from question 1. The online results for this question validate the
+laboratory experience. \par
+%
+\begin{table}[H]
+  \resizebox{\textwidth}{!} {
+  \begin{tabular}{lccccccccccccc}
+    \hline
+    \multicolumn{1}{c}{}                              &                                      & \multicolumn{2}{c}{Expected Colors}                   & \multicolumn{10}{c}{Possible Results}                                                                                                                                                                                                                                                                                        \\ \cline{3-14}
+    \multicolumn{1}{c}{\multirow{-2}{*}{Question ID}} & \multirow{-2}{*}{Given Color}        & C1                       & C2                         & \multicolumn{2}{c}{HSV}                                        & \multicolumn{2}{c}{CIE-L*C*h*}                                 & \multicolumn{2}{c}{CMYK}                                       & \multicolumn{2}{c}{RGB}                                        & \multicolumn{2}{c}{CIE-L*a*b*}                                 \\ \hline
+    \multicolumn{1}{c}{2}                             & \cellcolor[HTML]{FF00FF}(59, 28, 97) & \multicolumn{1}{c|}{Red} & \multicolumn{1}{c|}{Blue}  & \multicolumn{2}{c|}{\cellcolor[HTML]{FF00FF}(59, 28, 97)}      & \multicolumn{2}{c|}{\cellcolor[HTML]{FB0080}(44, 22, 22)}       & \multicolumn{2}{c|}{\cellcolor[HTML]{800080}(13, 6, 21)}       & \multicolumn{2}{c|}{\cellcolor[HTML]{800080}(13, 6, 21)}       & \multicolumn{2}{c|}{\cellcolor[HTML]{CA0088}(29, 14, 25)}       \\ \hline
+                                                      & \multicolumn{1}{l}{}                 & \multicolumn{1}{l}{}     & \multicolumn{1}{l}{}       & \multicolumn{1}{c}{$\tilde{x}$} & \multicolumn{1}{c}{$\sigma$} & \multicolumn{1}{c}{$\tilde{x}$} & \multicolumn{1}{c}{$\sigma$} & \multicolumn{1}{c}{$\tilde{x}$} & \multicolumn{1}{c}{$\sigma$} & \multicolumn{1}{c}{$\tilde{x}$} & \multicolumn{1}{c}{$\sigma$} & \multicolumn{1}{c}{$\tilde{x}$} & \multicolumn{1}{c}{$\sigma$} \\ \hline
+    \multicolumn{4}{l}{Distance to Objective - Laboratory}                                                                                           & \multicolumn{1}{|c}{0.22}       & \multicolumn{1}{c|}{0.13}    & \multicolumn{1}{|c}{0.16}       & \multicolumn{1}{c|}{0.09}    & \multicolumn{1}{|c}{\textbf{0.11}}       & \multicolumn{1}{c|}{0.06}    & \multicolumn{1}{|c}{0.17}       & \multicolumn{1}{c|}{0.11}    & \multicolumn{1}{|c}{0.16}       & \multicolumn{1}{c|}{0.08}    \\
+    \multicolumn{4}{l}{Distance to Objective - Online}                                                                                               & \multicolumn{1}{|c}{0.15}       & \multicolumn{1}{c|}{0.13}    & \multicolumn{1}{|c}{0.16}       & \multicolumn{1}{c|}{0.08}    & \multicolumn{1}{|c}{\textbf{0.08}}       & \multicolumn{1}{c|}{0.04}    & \multicolumn{1}{|c}{0.1}        & \multicolumn{1}{c|}{0.08}    & \multicolumn{1}{|c}{0.12}       & \multicolumn{1}{c|}{0.05}    \\ \hline
+    \end{tabular}}
+  \caption[Question 2, with expected Results.]{Question 2, with expected colors, possible results, mean and standard deviation of distances to Objective colors.}
   \label{table:lab_q2_expected}
 \end{table}
 %
 %
-\paragraph{\ul{Question 3}}
+\paragraph{\ul{Question Three}}
 %
-This color question...
+This question \ul{presents a Green color} and expects to receive, from the user, the \ul{Red and Cyan colors}. According to the HSV Color Model, Red and Cyan are positioned in
+opposite angles in the Hue Circle of Colors: therefore, blending these opposite colors that output two different colors. It is important to study to which color the users tend
+to blend; this question should be evaluate along with Question Four, which has the contray output. \par
+%
+The colors were blended, and again the mean values over distances were calculated, as Table \ref{table:lab_q3_expected} shows. It is observable that HSV Color Model presents
+the lowest mean value for distance to ideal answer ($\tilde{x} = 0.045$); however, its standard deviation is the highest between both study environments ($\sigma = 0.12$). \par
+%
+\textbf{AQUI!!!} \par
+%
 %
 \begin{table}[H]
   \resizebox{\textwidth}{!} {
-  \begin{tabular}{@{}ccccccccc@{}}
-    \toprule
-                                  &                                                       & \multicolumn{2}{c}{Expected Colors}                   & \multicolumn{5}{c}{Possible Results}                                                                                                                                                                                                                                                  \\ \cmidrule(l){3-9}
-    \multirow{-2}{*}{Question ID} & \multirow{-2}{*}{Given Color}                         & C1                       & C2                         & HSV                                                   & CIE-L*C*h                                             & CMYK                                                  & RGB                                                   & CIE-L*a*b*                                            \\ \midrule
-    \multicolumn{1}{c|}{3}        & \multicolumn{1}{c|}{\cellcolor[HTML]{80FF00}\#80FF00} & \multicolumn{1}{c|}{Red} & \multicolumn{1}{c|}{Cyan} & \multicolumn{1}{c||}{\cellcolor[HTML]{80FF00}\#80FF00} & \multicolumn{1}{c||}{\cellcolor[HTML]{91C01D}\#91C01D} & \multicolumn{1}{c||}{\cellcolor[HTML]{808080}\#808080} & \multicolumn{1}{c||}{\cellcolor[HTML]{808080}\#808080} & \multicolumn{1}{c|}{\cellcolor[HTML]{DDA581}\#DDA581} \\ \midrule
-    \multicolumn{4}{l}{Mean Distance to Objective ($\tilde{x}$) - Laboratory}                                                                                   & 0.49                                                  & 0.538                                                  & 0.22                                         & 0.119                                                  & \textbf{0.083}                                                  \\
-    \multicolumn{4}{l}{Mean Distance to Objective ($\tilde{x}$) - Online}                                                                                   & \textbf{0.04}                                                  & 0.21                                                  & 0.06                                         & 0.11                                                  & 0.11                                                  \\ \bottomrule
+  \begin{tabular}{lccccccccccccc}
+    \hline
+    \multicolumn{1}{c}{}                              &                                      & \multicolumn{2}{c}{Expected Colors}                   & \multicolumn{10}{c}{Possible Results}                                                                                                                                                                                                                                                                                        \\ \cline{3-14}
+    \multicolumn{1}{c}{\multirow{-2}{*}{Question ID}} & \multirow{-2}{*}{Given Color}        & C1                       & C2                         & \multicolumn{2}{c}{HSV}                                        & \multicolumn{2}{c}{CIE-L*C*h*}                                 & \multicolumn{2}{c}{CMYK}                                       & \multicolumn{2}{c}{RGB}                                        & \multicolumn{2}{c}{CIE-L*a*b*}                                 \\ \hline
+    \multicolumn{1}{c}{3}                             & \cellcolor[HTML]{80FF00}(45, 76, 12) & \multicolumn{1}{c|}{Red} & \multicolumn{1}{c|}{Cyan}  & \multicolumn{2}{c|}{\cellcolor[HTML]{80FF00}(45, 76, 12)}      & \multicolumn{2}{c|}{\cellcolor[HTML]{91C01D}(31, 44, 8)}       & \multicolumn{2}{c|}{\cellcolor[HTML]{808080}(21, 22, 24)}       & \multicolumn{2}{c|}{\cellcolor[HTML]{808080}(21, 22, 24)}       & \multicolumn{2}{c|}{\cellcolor[HTML]{DDA581}(47, 44, 27)}       \\ \hline
+                                                      & \multicolumn{1}{l}{}                 & \multicolumn{1}{l}{}     & \multicolumn{1}{l}{}       & \multicolumn{1}{c}{$\tilde{x}$} & \multicolumn{1}{c}{$\sigma$} & \multicolumn{1}{c}{$\tilde{x}$} & \multicolumn{1}{c}{$\sigma$} & \multicolumn{1}{c}{$\tilde{x}$} & \multicolumn{1}{c}{$\sigma$} & \multicolumn{1}{c}{$\tilde{x}$} & \multicolumn{1}{c}{$\sigma$} & \multicolumn{1}{c}{$\tilde{x}$} & \multicolumn{1}{c}{$\sigma$} \\ \hline
+    \multicolumn{4}{l}{Distance to Objective - Laboratory}                                                                                           & \multicolumn{1}{|c}{\textbf{0.045}}       & \multicolumn{1}{c|}{0.12}    & \multicolumn{1}{|c}{0.215}       & \multicolumn{1}{c|}{0.06}    & \multicolumn{1}{|c}{0.05}       & \multicolumn{1}{c|}{0.03}    & \multicolumn{1}{|c}{0.095}       & \multicolumn{1}{c|}{0.06}    & \multicolumn{1}{|c}{0.11}       & \multicolumn{1}{c|}{0.04}    \\
+    \multicolumn{4}{l}{Distance to Objective - Online}                                                                                               & \multicolumn{1}{|c}{\textbf{0.04}}        & \multicolumn{1}{c|}{0.09}    & \multicolumn{1}{|c}{0.21}        & \multicolumn{1}{c|}{0.06}    & \multicolumn{1}{|c}{0.06}       & \multicolumn{1}{c|}{0.03}    & \multicolumn{1}{|c}{0.11}        & \multicolumn{1}{c|}{0.06}    & \multicolumn{1}{|c}{0.11}       & \multicolumn{1}{c|}{0.04}    \\ \hline
     \end{tabular}}
-  \caption[Question 3, with expected Results.]{Question 3, with expected results and mean distances to Objective colors.}
+  \caption[Question 3, with expected Results.]{Question 3, with expected colors, possible results, mean and standard deviation of distances to Objective colors.}
   \label{table:lab_q3_expected}
 \end{table}
-%
 %
 \paragraph{\ul{Question 4}}
 %
@@ -633,44 +659,266 @@ This color question...
 %
 \begin{table}[H]
   \resizebox{\textwidth}{!} {
-  \begin{tabular}{@{}ccccccccc@{}}
-    \toprule
-                                  &                                                       & \multicolumn{2}{c}{Expected Colors}                   & \multicolumn{5}{c}{Possible Results}                                                                                                                                                                                                                                                  \\ \cmidrule(l){3-9}
-    \multirow{-2}{*}{Question ID} & \multirow{-2}{*}{Given Color}                         & C1                       & C2                         & HSV                                                   & CIE-L*C*h                                             & CMYK                                                  & RGB                                                   & CIE-L*a*b*                                            \\ \midrule
-    \multicolumn{1}{c|}{3}        & \multicolumn{1}{c|}{\cellcolor[HTML]{7F00FF}\#7F00FF} & \multicolumn{1}{c|}{Red} & \multicolumn{1}{c|}{Cyan} & \multicolumn{1}{c||}{\cellcolor[HTML]{7F00FF}\#7F00FF} & \multicolumn{1}{c||}{ - } & \multicolumn{1}{c||}{ - } & \multicolumn{1}{c||}{ - } & \multicolumn{1}{c|}{ - } \\ \midrule
-    \multicolumn{4}{l}{Mean Distance to Objective ($\tilde{x}$) - Laboratory}                                                                                   & 0.49                                                  & -                                                  & -                                         & -                                                  & -                                                  \\
-    \multicolumn{4}{l}{Mean Distance to Objective ($\tilde{x}$) - Online}                                                                                   & \textbf{0.06}                                                  & -                                                  & -                                         & -                                                  & -                                                  \\ \bottomrule
+  \begin{tabular}{lccccccccccccc}
+    \hline
+    \multicolumn{1}{c}{}                              &                                      & \multicolumn{2}{c}{Expected Colors}                   & \multicolumn{10}{c}{Possible Results}                                                                                                                                                                                                                                                                                        \\ \cline{3-14}
+    \multicolumn{1}{c}{\multirow{-2}{*}{Question ID}} & \multirow{-2}{*}{Given Color}        & C1                       & C2                         & \multicolumn{2}{c}{HSV}                                        & \multicolumn{2}{c}{CIE-L*C*h*}                                 & \multicolumn{2}{c}{CMYK}                                       & \multicolumn{2}{c}{RGB}                                        & \multicolumn{2}{c}{CIE-L*a*b*}                                 \\ \hline
+    \multicolumn{1}{c}{4}                             & \cellcolor[HTML]{7F00FF}(27, 12, 95) & \multicolumn{1}{c|}{Red} & \multicolumn{1}{c|}{Cyan}  & \multicolumn{2}{c|}{\cellcolor[HTML]{FF00FF}(59, 28, 97)}      & \multicolumn{2}{c|}{-}       & \multicolumn{2}{c|}{-}        & \multicolumn{2}{c|}{-}       & \multicolumn{2}{c|}{-}       \\ \hline
+                                                      & \multicolumn{1}{l}{}                 & \multicolumn{1}{l}{}     & \multicolumn{1}{l}{}       & \multicolumn{1}{c}{$\tilde{x}$} & \multicolumn{1}{c}{$\sigma$} & \multicolumn{1}{c}{$\tilde{x}$} & \multicolumn{1}{c}{$\sigma$} & \multicolumn{1}{c}{$\tilde{x}$} & \multicolumn{1}{c}{$\sigma$} & \multicolumn{1}{c}{$\tilde{x}$} & \multicolumn{1}{c}{$\sigma$} & \multicolumn{1}{c}{$\tilde{x}$} & \multicolumn{1}{c}{$\sigma$} \\ \hline
+    \multicolumn{4}{l}{Distance to Objective - Laboratory}                                                                                           & \multicolumn{1}{|c}{0.12}       & \multicolumn{1}{c|}{0.13}    & \multicolumn{1}{|c}{-}       & \multicolumn{1}{c|}{-}    & \multicolumn{1}{|c}{-}         & \multicolumn{1}{c|}{-}    & \multicolumn{1}{|c}{-}       & \multicolumn{1}{c|}{-}    & \multicolumn{1}{|c}{-}       & \multicolumn{1}{c|}{-}    \\
+    \multicolumn{4}{l}{Distance to Objective - Online}                                                                                               & \multicolumn{1}{|c}{0.11}       & \multicolumn{1}{c|}{0.15}    & \multicolumn{1}{|c}{-}       & \multicolumn{1}{c|}{-}    & \multicolumn{1}{|c}{-}         & \multicolumn{1}{c|}{-}    & \multicolumn{1}{|c}{-}        & \multicolumn{1}{c|}{-}    & \multicolumn{1}{|c}{-}       & \multicolumn{1}{c|}{-}    \\ \hline
     \end{tabular}}
-  \caption[Question 4, with expected Results.]{Question 4, with expected results and mean distances to Objective colors.}
+  \caption[Question 4, with expected Results.]{Question 4, with expected colors, possible results, mean and standard deviation of distances to Objective colors.}
   \label{table:lab_q4_expected}
 \end{table}
 %
-%
 \paragraph{\ul{Question 5}}
+%
+This color question...
+%
+\begin{table}[H]
+  \resizebox{\textwidth}{!} {
+  \begin{tabular}{lccccccccccccc}
+    \hline
+    \multicolumn{1}{c}{}                              &                                      & \multicolumn{2}{c}{Expected Colors}                   & \multicolumn{10}{c}{Possible Results}                                                                                                                                                                                                                                                                                        \\ \cline{3-14}
+    \multicolumn{1}{c}{\multirow{-2}{*}{Question ID}} & \multirow{-2}{*}{Given Color}        & C1                       & C2                         & \multicolumn{2}{c}{HSV}                                        & \multicolumn{2}{c}{CIE-L*C*h*}                                 & \multicolumn{2}{c}{CMYK}                                       & \multicolumn{2}{c}{RGB}                                        & \multicolumn{2}{c}{CIE-L*a*b*}                                 \\ \hline
+    \multicolumn{1}{c}{5}                             & \cellcolor[HTML]{FF0080}(45, 23, 22) & \multicolumn{1}{c|}{Red} & \multicolumn{1}{c|}{Magenta}  & \multicolumn{2}{c|}{\cellcolor[HTML]{FF0080}(45, 23, 22)}      & \multicolumn{2}{c|}{\cellcolor[HTML]{FF0080}(45, 23, 22)}       & \multicolumn{2}{c|}{\cellcolor[HTML]{FF0080}(45, 23, 22)}       & \multicolumn{2}{c|}{\cellcolor[HTML]{FF0080}(45, 23, 22)}       & \multicolumn{2}{c|}{\cellcolor[HTML]{FF0087}(45, 23, 25)}       \\ \hline
+                                                      & \multicolumn{1}{l}{}                 & \multicolumn{1}{l}{}     & \multicolumn{1}{l}{}       & \multicolumn{1}{c}{$\tilde{x}$} & \multicolumn{1}{c}{$\sigma$} & \multicolumn{1}{c}{$\tilde{x}$} & \multicolumn{1}{c}{$\sigma$} & \multicolumn{1}{c}{$\tilde{x}$} & \multicolumn{1}{c}{$\sigma$} & \multicolumn{1}{c}{$\tilde{x}$} & \multicolumn{1}{c}{$\sigma$} & \multicolumn{1}{c}{$\tilde{x}$} & \multicolumn{1}{c}{$\sigma$} \\ \hline
+    \multicolumn{4}{l}{Distance to Objective - Laboratory}                                                                                           & \multicolumn{1}{|c}{0.17}       & \multicolumn{1}{c|}{0.10}    & \multicolumn{1}{|c}{0.15}       & \multicolumn{1}{c|}{0.08}    & \multicolumn{1}{|c}{\textbf{0.13}}       & \multicolumn{1}{c|}{0.07}    & \multicolumn{1}{|c}{0.14}       & \multicolumn{1}{c|}{0.09}    & \multicolumn{1}{|c}{0.14}       & \multicolumn{1}{c|}{0.08}    \\
+    \multicolumn{4}{l}{Distance to Objective - Online}                                                                                               & \multicolumn{1}{|c}{0.16}        & \multicolumn{1}{c|}{0.13}    & \multicolumn{1}{|c}{0.15}        & \multicolumn{1}{c|}{0.07}    & \multicolumn{1}{|c}{\textbf{0.13}}       & \multicolumn{1}{c|}{0.06}    & \multicolumn{1}{|c}{0.14}        & \multicolumn{1}{c|}{0.10}    & \multicolumn{1}{|c}{0.11}       & \multicolumn{1}{c|}{0.07}    \\ \hline
+    \end{tabular}}
+  \caption[Question 5, with expected Results.]{Question 5, with expected colors, possible results, mean and standard deviation of distances to Objective colors.}
+  \label{table:lab_q5_expected}
+\end{table}
 %
 \paragraph{\ul{Question 6}}
 %
+This color question...
+%
+\begin{table}[H]
+  \resizebox{\textwidth}{!} {
+  \begin{tabular}{lccccccccccccc}
+    \hline
+    \multicolumn{1}{c}{}                              &                                      & \multicolumn{2}{c}{Expected Colors}                   & \multicolumn{10}{c}{Possible Results}                                                                                                                                                                                                                                                                                        \\ \cline{3-14}
+    \multicolumn{1}{c}{\multirow{-2}{*}{Question ID}} & \multirow{-2}{*}{Given Color}        & C1                       & C2                         & \multicolumn{2}{c}{HSV}                                        & \multicolumn{2}{c}{CIE-L*C*h*}                                 & \multicolumn{2}{c}{CMYK}                                       & \multicolumn{2}{c}{RGB}                                        & \multicolumn{2}{c}{CIE-L*a*b*}                                 \\ \hline
+    \multicolumn{1}{c}{6}                             & \cellcolor[HTML]{FF8000}(49, 37, 5) & \multicolumn{1}{c|}{Red} & \multicolumn{1}{c|}{Yellow}  & \multicolumn{2}{c|}{\cellcolor[HTML]{FF8000}(49, 37, 5)}      & \multicolumn{2}{c|}{\cellcolor[HTML]{FF9F00}(54, 46, 6)}       & \multicolumn{2}{c|}{\cellcolor[HTML]{FF8000}(49, 37, 5)}       & \multicolumn{2}{c|}{\cellcolor[HTML]{FF8000}(49, 37, 5)}       & \multicolumn{2}{c|}{\cellcolor[HTML]{FFA100}(54, 47, 6)}       \\ \hline
+                                                      & \multicolumn{1}{l}{}                 & \multicolumn{1}{l}{}     & \multicolumn{1}{l}{}       & \multicolumn{1}{c}{$\tilde{x}$} & \multicolumn{1}{c}{$\sigma$} & \multicolumn{1}{c}{$\tilde{x}$} & \multicolumn{1}{c}{$\sigma$} & \multicolumn{1}{c}{$\tilde{x}$} & \multicolumn{1}{c}{$\sigma$} & \multicolumn{1}{c}{$\tilde{x}$} & \multicolumn{1}{c}{$\sigma$} & \multicolumn{1}{c}{$\tilde{x}$} & \multicolumn{1}{c}{$\sigma$} \\ \hline
+    \multicolumn{4}{l}{Distance to Objective - Laboratory}                                                                                           & \multicolumn{1}{|c}{0.07}       & \multicolumn{1}{c|}{0.10}    & \multicolumn{1}{|c}{0.13}       & \multicolumn{1}{c|}{0.09}    & \multicolumn{1}{|c}{0.06}       & \multicolumn{1}{c|}{0.06}    & \multicolumn{1}{|c}{0.08}       & \multicolumn{1}{c|}{0.09}    & \multicolumn{1}{|c}{\textbf{0.05}}       & \multicolumn{1}{c|}{0.07}    \\
+    \multicolumn{4}{l}{Distance to Objective - Online}                                                                                               & \multicolumn{1}{|c}{0.03}        & \multicolumn{1}{c|}{0.05}    & \multicolumn{1}{|c}{0.14}        & \multicolumn{1}{c|}{0.07}    & \multicolumn{1}{|c}{0.03}       & \multicolumn{1}{c|}{0.03}    & \multicolumn{1}{|c}{0.04}        & \multicolumn{1}{c|}{0.05}    & \multicolumn{1}{|c}{\textbf{0.02}}       & \multicolumn{1}{c|}{0.03}    \\ \hline
+    \end{tabular}}
+  \caption[Question 6, with expected Results.]{Question 6, with expected colors, possible results, mean and standard deviation of distances to Objective colors.}
+  \label{table:lab_q6_expected}
+\end{table}
+%
 \paragraph{\ul{Question 7}}
+%
+This color question...
+%
+\begin{table}[H]
+  \resizebox{\textwidth}{!} {
+  \begin{tabular}{lccccccccccccc}
+    \hline
+    \multicolumn{1}{c}{}                              &                                      & \multicolumn{2}{c}{Expected Colors}                   & \multicolumn{10}{c}{Possible Results}                                                                                                                                                                                                                                                                                        \\ \cline{3-14}
+    \multicolumn{1}{c}{\multirow{-2}{*}{Question ID}} & \multirow{-2}{*}{Given Color}        & C1                       & C2                         & \multicolumn{2}{c}{HSV}                                        & \multicolumn{2}{c}{CIE-L*C*h*}                                 & \multicolumn{2}{c}{CMYK}                                       & \multicolumn{2}{c}{RGB}                                        & \multicolumn{2}{c}{CIE-L*a*b*}                                 \\ \hline
+    \multicolumn{1}{c}{7}                             & \cellcolor[HTML]{0000FF}(18, 7, 95) & \multicolumn{1}{c|}{Cyan} & \multicolumn{1}{c|}{Magenta}  & \multicolumn{2}{c|}{\cellcolor[HTML]{0000FF}(18, 7, 95)}      & \multicolumn{2}{c|}{\cellcolor[HTML]{00CAFF}(39, 49, 102)}       & \multicolumn{2}{c|}{\cellcolor[HTML]{8080FF}(35, 27, 98)}       & \multicolumn{2}{c|}{\cellcolor[HTML]{8080FF}(35, 27, 98)}       & \multicolumn{2}{c|}{\cellcolor[HTML]{C6AEFF}(56, 50, 101)}       \\ \hline
+                                                      & \multicolumn{1}{l}{}                 & \multicolumn{1}{l}{}     & \multicolumn{1}{l}{}       & \multicolumn{1}{c}{$\tilde{x}$} & \multicolumn{1}{c}{$\sigma$} & \multicolumn{1}{c}{$\tilde{x}$} & \multicolumn{1}{c}{$\sigma$} & \multicolumn{1}{c}{$\tilde{x}$} & \multicolumn{1}{c}{$\sigma$} & \multicolumn{1}{c}{$\tilde{x}$} & \multicolumn{1}{c}{$\sigma$} & \multicolumn{1}{c}{$\tilde{x}$} & \multicolumn{1}{c}{$\sigma$} \\ \hline
+    \multicolumn{4}{l}{Distance to Objective - Laboratory}                                                                                           & \multicolumn{1}{|c}{0.16}       & \multicolumn{1}{c|}{0.21}    & \multicolumn{1}{|c}{0.23}       & \multicolumn{1}{c|}{0.10}    & \multicolumn{1}{|c}{\textbf{0.10}}       & \multicolumn{1}{c|}{0.08}    & \multicolumn{1}{|c}{0.15}       & \multicolumn{1}{c|}{0.13}    & \multicolumn{1}{|c}{0.17}       & \multicolumn{1}{c|}{0.08}    \\
+    \multicolumn{4}{l}{Distance to Objective - Online}                                                                                               & \multicolumn{1}{|c}{0.13}        & \multicolumn{1}{c|}{0.21}    & \multicolumn{1}{|c}{0.18}        & \multicolumn{1}{c|}{0.08}    & \multicolumn{1}{|c}{\textbf{0.11}}       & \multicolumn{1}{c|}{0.06}    & \multicolumn{1}{|c}{0.17}        & \multicolumn{1}{c|}{0.11}    & \multicolumn{1}{|c}{0.22}       & \multicolumn{1}{c|}{0.07}    \\ \hline
+    \end{tabular}}
+  \caption[Question 7, with expected Results.]{Question 7, with expected colors, possible results, mean and standard deviation of distances to Objective colors.}
+  \label{table:lab_q7_expected}
+\end{table}
 %
 \paragraph{\ul{Question 8}}
 %
+This color question...
+%
+\begin{table}[H]
+  \resizebox{\textwidth}{!} {
+  \begin{tabular}{lccccccccccccc}
+    \hline
+    \multicolumn{1}{c}{}                              &                                      & \multicolumn{2}{c}{Expected Colors}                   & \multicolumn{10}{c}{Possible Results}                                                                                                                                                                                                                                                                                        \\ \cline{3-14}
+    \multicolumn{1}{c}{\multirow{-2}{*}{Question ID}} & \multirow{-2}{*}{Given Color}        & C1                       & C2                         & \multicolumn{2}{c}{HSV}                                        & \multicolumn{2}{c}{CIE-L*C*h*}                                 & \multicolumn{2}{c}{CMYK}                                       & \multicolumn{2}{c}{RGB}                                        & \multicolumn{2}{c}{CIE-L*a*b*}                                 \\ \hline
+    \multicolumn{1}{c}{8}                             & \cellcolor[HTML]{FF0000}(41, 21, 2) & \multicolumn{1}{c|}{Magenta} & \multicolumn{1}{c|}{Yellow}  & \multicolumn{2}{c|}{\cellcolor[HTML]{FF0000}(41, 21, 2)}      & \multicolumn{2}{c|}{\cellcolor[HTML]{FF6755}(48, 32, 12)}       & \multicolumn{2}{c|}{\cellcolor[HTML]{FF8080}(53, 38, 25)}       & \multicolumn{2}{c|}{\cellcolor[HTML]{FF8080}(53, 38, 25)}       & \multicolumn{2}{c|}{\cellcolor[HTML]{FFA6A6}(62, 51, 43)}       \\ \hline
+                                                      & \multicolumn{1}{l}{}                 & \multicolumn{1}{l}{}     & \multicolumn{1}{l}{}       & \multicolumn{1}{c}{$\tilde{x}$} & \multicolumn{1}{c}{$\sigma$} & \multicolumn{1}{c}{$\tilde{x}$} & \multicolumn{1}{c}{$\sigma$} & \multicolumn{1}{c}{$\tilde{x}$} & \multicolumn{1}{c}{$\sigma$} & \multicolumn{1}{c}{$\tilde{x}$} & \multicolumn{1}{c}{$\sigma$} & \multicolumn{1}{c}{$\tilde{x}$} & \multicolumn{1}{c}{$\sigma$} \\ \hline
+    \multicolumn{4}{l}{Distance to Objective - Laboratory}                                                                                           & \multicolumn{1}{|c}{\textbf{0.10}}       & \multicolumn{1}{c|}{0.16}    & \multicolumn{1}{|c}{0.17}       & \multicolumn{1}{c|}{0.13}    & \multicolumn{1}{|c}{\textbf{0.10}}       & \multicolumn{1}{c|}{0.05}    & \multicolumn{1}{|c}{0.13}       & \multicolumn{1}{c|}{0.09}    & \multicolumn{1}{|c}{0.13}       & \multicolumn{1}{c|}{0.09}    \\
+    \multicolumn{4}{l}{Distance to Objective - Online}                                                                                               & \multicolumn{1}{|c}{0.10}        & \multicolumn{1}{c|}{0.17}    & \multicolumn{1}{|c}{\textbf{0.09}}        & \multicolumn{1}{c|}{0.12}    & \multicolumn{1}{|c}{0.12}       & \multicolumn{1}{c|}{0.05}    & \multicolumn{1}{|c}{0.14}        & \multicolumn{1}{c|}{0.07}    & \multicolumn{1}{|c}{0.16}       & \multicolumn{1}{c|}{0.07}    \\ \hline
+    \end{tabular}}
+  \caption[Question 8, with expected Results.]{Question 8, with expected colors, possible results, mean and standard deviation of distances to Objective colors.}
+  \label{table:lab_q8_expected}
+\end{table}
+%
 \paragraph{\ul{Question 9}}
+%
+This color question...
+%
+\begin{table}[H]
+  \resizebox{\textwidth}{!} {
+  \begin{tabular}{lccccccccccccc}
+    \hline
+    \multicolumn{1}{c}{}                              &                                      & \multicolumn{2}{c}{Expected Colors}                   & \multicolumn{10}{c}{Possible Results}                                                                                                                                                                                                                                                                                        \\ \cline{3-14}
+    \multicolumn{1}{c}{\multirow{-2}{*}{Question ID}} & \multirow{-2}{*}{Given Color}        & C1                       & C2                         & \multicolumn{2}{c}{HSV}                                        & \multicolumn{2}{c}{CIE-L*C*h*}                                 & \multicolumn{2}{c}{CMYK}                                       & \multicolumn{2}{c}{RGB}                                        & \multicolumn{2}{c}{CIE-L*a*b*}                                 \\ \hline
+    \multicolumn{1}{c}{9}                             & \cellcolor[HTML]{00FF80}(40, 73, 32) & \multicolumn{1}{c|}{Green} & \multicolumn{1}{c|}{Cyan}  & \multicolumn{2}{c|}{\cellcolor[HTML]{00FF80}(40, 73, 32)}      & \multicolumn{2}{c|}{\cellcolor[HTML]{00FFB7}(44, 75, 57)}       & \multicolumn{2}{c|}{\cellcolor[HTML]{00FF80}(40, 73, 32)}       & \multicolumn{2}{c|}{\cellcolor[HTML]{00FF80}(40, 73, 32)}       & \multicolumn{2}{c|}{\cellcolor[HTML]{46FF9C}(44, 75, 44)}       \\ \hline
+                                                      & \multicolumn{1}{l}{}                 & \multicolumn{1}{l}{}     & \multicolumn{1}{l}{}       & \multicolumn{1}{c}{$\tilde{x}$} & \multicolumn{1}{c}{$\sigma$} & \multicolumn{1}{c}{$\tilde{x}$} & \multicolumn{1}{c}{$\sigma$} & \multicolumn{1}{c}{$\tilde{x}$} & \multicolumn{1}{c}{$\sigma$} & \multicolumn{1}{c}{$\tilde{x}$} & \multicolumn{1}{c}{$\sigma$} & \multicolumn{1}{c}{$\tilde{x}$} & \multicolumn{1}{c}{$\sigma$} \\ \hline
+    \multicolumn{4}{l}{Distance to Objective - Laboratory}                                                                                           & \multicolumn{1}{|c}{0.13}       & \multicolumn{1}{c|}{0.10}    & \multicolumn{1}{|c}{0.16}       & \multicolumn{1}{c|}{0.07}    & \multicolumn{1}{|c}{\textbf{0.09}}       & \multicolumn{1}{c|}{0.05}    & \multicolumn{1}{|c}{0.10}       & \multicolumn{1}{c|}{0.08}    & \multicolumn{1}{|c}{0.11}       & \multicolumn{1}{c|}{0.07}    \\
+    \multicolumn{4}{l}{Distance to Objective - Online}                                                                                               & \multicolumn{1}{|c}{0.11}        & \multicolumn{1}{c|}{0.08}    & \multicolumn{1}{|c}{0.13}        & \multicolumn{1}{c|}{0.06}    & \multicolumn{1}{|c}{\textbf{0.10}}       & \multicolumn{1}{c|}{0.04}    & \multicolumn{1}{|c}{\textbf{0.10}}        & \multicolumn{1}{c|}{0.08}    & \multicolumn{1}{|c}{0.11}       & \multicolumn{1}{c|}{0.06}    \\ \hline
+    \end{tabular}}
+  \caption[Question 9, with expected Results.]{Question 9, with expected colors, possible results, mean and standard deviation of distances to Objective colors.}
+  \label{table:lab_q9_expected}
+\end{table}
 %
 \paragraph{\ul{Question 10}}
 %
+This color question...
+%
+\begin{table}[H]
+  \resizebox{\textwidth}{!} {
+  \begin{tabular}{lccccccccccccc}
+    \hline
+    \multicolumn{1}{c}{}                              &                                      & \multicolumn{2}{c}{Expected Colors}                   & \multicolumn{10}{c}{Possible Results}                                                                                                                                                                                                                                                                                        \\ \cline{3-14}
+    \multicolumn{1}{c}{\multirow{-2}{*}{Question ID}} & \multirow{-2}{*}{Given Color}        & C1                       & C2                         & \multicolumn{2}{c}{HSV}                                        & \multicolumn{2}{c}{CIE-L*C*h*}                                 & \multicolumn{2}{c}{CMYK}                                       & \multicolumn{2}{c}{RGB}                                        & \multicolumn{2}{c}{CIE-L*a*b*}                                 \\ \hline
+    \multicolumn{1}{c}{10}                             & \cellcolor[HTML]{0080FF}(26, 23, 98) & \multicolumn{1}{c|}{Green} & \multicolumn{1}{c|}{Magenta}  & \multicolumn{2}{c|}{\cellcolor[HTML]{0080FF}(26, 23, 98)}      & \multicolumn{2}{c|}{\cellcolor[HTML]{FF6F00}(47, 33, 4)}       & \multicolumn{2}{c|}{\cellcolor[HTML]{808080}(21, 22, 24)}       & \multicolumn{2}{c|}{\cellcolor[HTML]{808080}(21, 22, 24)}       & \multicolumn{2}{c|}{\cellcolor[HTML]{C9B2A2}(47, 48, 41)}       \\ \hline
+                                                      & \multicolumn{1}{l}{}                 & \multicolumn{1}{l}{}     & \multicolumn{1}{l}{}       & \multicolumn{1}{c}{$\tilde{x}$} & \multicolumn{1}{c}{$\sigma$} & \multicolumn{1}{c}{$\tilde{x}$} & \multicolumn{1}{c}{$\sigma$} & \multicolumn{1}{c}{$\tilde{x}$} & \multicolumn{1}{c}{$\sigma$} & \multicolumn{1}{c}{$\tilde{x}$} & \multicolumn{1}{c}{$\sigma$} & \multicolumn{1}{c}{$\tilde{x}$} & \multicolumn{1}{c}{$\sigma$} \\ \hline
+    \multicolumn{4}{l}{Distance to Objective - Laboratory}                                                                                           & \multicolumn{1}{|c}{0.30}       & \multicolumn{1}{c|}{0.16}    & \multicolumn{1}{|c}{0.26}       & \multicolumn{1}{c|}{0.12}    & \multicolumn{1}{|c}{\textbf{0.13}}       & \multicolumn{1}{c|}{0.05}    & \multicolumn{1}{|c}{0.21}       & \multicolumn{1}{c|}{0.06}    & \multicolumn{1}{|c}{0.20}       & \multicolumn{1}{c|}{0.10}    \\
+    \multicolumn{4}{l}{Distance to Objective - Online}                                                                                               & \multicolumn{1}{|c}{0.17}        & \multicolumn{1}{c|}{0.17}    & \multicolumn{1}{|c}{0.27}        & \multicolumn{1}{c|}{0.09}    & \multicolumn{1}{|c}{\textbf{0.13}}       & \multicolumn{1}{c|}{0.04}    & \multicolumn{1}{|c}{0.20}        & \multicolumn{1}{c|}{0.04}    & \multicolumn{1}{|c}{0.22}       & \multicolumn{1}{c|}{0.07}    \\ \hline
+    \end{tabular}}
+  \caption[Question 10, with expected Results.]{Question 10, with expected colors, possible results, mean and standard deviation of distances to Objective colors.}
+  \label{table:lab_q10_expected}
+\end{table}
+%
 \paragraph{\ul{Question 11}}
+%
+Related to Question 10... \par
+%
+\begin{table}[H]
+  \resizebox{\textwidth}{!} {
+  \begin{tabular}{lccccccccccccc}
+    \hline
+    \multicolumn{1}{c}{}                              &                                      & \multicolumn{2}{c}{Expected Colors}                   & \multicolumn{10}{c}{Possible Results}                                                                                                                                                                                                                                                                                        \\ \cline{3-14}
+    \multicolumn{1}{c}{\multirow{-2}{*}{Question ID}} & \multirow{-2}{*}{Given Color}        & C1                       & C2                         & \multicolumn{2}{c}{HSV}                                        & \multicolumn{2}{c}{CIE-L*C*h*}                                 & \multicolumn{2}{c}{CMYK}                                       & \multicolumn{2}{c}{RGB}                                        & \multicolumn{2}{c}{CIE-L*a*b*}                                 \\ \hline
+    \multicolumn{1}{c}{11}                             & \cellcolor[HTML]{FF8000}(49, 37, 5) & \multicolumn{1}{c|}{Green} & \multicolumn{1}{c|}{Magenta}  & \multicolumn{2}{c|}{\cellcolor[HTML]{FF8000}(49, 37, 5)}      & \multicolumn{2}{c|}{-}       & \multicolumn{2}{c|}{-}       & \multicolumn{2}{c|}{-}       & \multicolumn{2}{c|}{-}       \\ \hline
+                                                      & \multicolumn{1}{l}{}                 & \multicolumn{1}{l}{}     & \multicolumn{1}{l}{}       & \multicolumn{1}{c}{$\tilde{x}$} & \multicolumn{1}{c}{$\sigma$} & \multicolumn{1}{c}{$\tilde{x}$} & \multicolumn{1}{c}{$\sigma$} & \multicolumn{1}{c}{$\tilde{x}$} & \multicolumn{1}{c}{$\sigma$} & \multicolumn{1}{c}{$\tilde{x}$} & \multicolumn{1}{c}{$\sigma$} & \multicolumn{1}{c}{$\tilde{x}$} & \multicolumn{1}{c}{$\sigma$} \\ \hline
+    \multicolumn{4}{l}{Distance to Objective - Laboratory}                                                                                           & \multicolumn{1}{|c}{0.06}       & \multicolumn{1}{c|}{0.09}    & \multicolumn{1}{|c}{-}       & \multicolumn{1}{c|}{-}    & \multicolumn{1}{|c}{-}       & \multicolumn{1}{c|}{-}    & \multicolumn{1}{|c}{-}       & \multicolumn{1}{c|}{-}    & \multicolumn{1}{|c}{-}       & \multicolumn{1}{c|}{-}    \\
+    \multicolumn{4}{l}{Distance to Objective - Online}                                                                                               & \multicolumn{1}{|c}{0.04}        & \multicolumn{1}{c|}{0.06}    & \multicolumn{1}{|c}{-}        & \multicolumn{1}{c|}{-}    & \multicolumn{1}{|c}{-}       & \multicolumn{1}{c|}{-}    & \multicolumn{1}{|c}{-}        & \multicolumn{1}{c|}{-}    & \multicolumn{1}{|c}{-}       & \multicolumn{1}{c|}{-}    \\ \hline
+    \end{tabular}}
+  \caption[Question 11, with expected Results.]{Question 11, with expected colors, possible results, mean and standard deviation of distances to Objective colors.}
+  \label{table:lab_q11_expected}
+\end{table}
 %
 \paragraph{\ul{Question 12}}
 %
+This question...
+%
+\begin{table}[H]
+  \resizebox{\textwidth}{!} {
+  \begin{tabular}{lccccccccccccc}
+    \hline
+    \multicolumn{1}{c}{}                              &                                      & \multicolumn{2}{c}{Expected Colors}                   & \multicolumn{10}{c}{Possible Results}                                                                                                                                                                                                                                                                                        \\ \cline{3-14}
+    \multicolumn{1}{c}{\multirow{-2}{*}{Question ID}} & \multirow{-2}{*}{Given Color}        & C1                       & C2                         & \multicolumn{2}{c}{HSV}                                        & \multicolumn{2}{c}{CIE-L*C*h*}                                 & \multicolumn{2}{c}{CMYK}                                       & \multicolumn{2}{c}{RGB}                                        & \multicolumn{2}{c}{CIE-L*a*b*}                                 \\ \hline
+    \multicolumn{1}{c}{12}                             & \cellcolor[HTML]{80FF00}(45, 76, 12) & \multicolumn{1}{c|}{Green} & \multicolumn{1}{c|}{Yellow}  & \multicolumn{2}{c|}{\cellcolor[HTML]{80FF00}(45, 76, 12)}      & \multicolumn{2}{c|}{\cellcolor[HTML]{B1FF00}(54, 81, 13)}       & \multicolumn{2}{c|}{\cellcolor[HTML]{80FF00}(45, 76, 12)}       & \multicolumn{2}{c|}{\cellcolor[HTML]{80FF00}(45, 76, 12)}       & \multicolumn{2}{c|}{\cellcolor[HTML]{AEFF00}(53, 81, 13)}       \\ \hline
+                                                      & \multicolumn{1}{l}{}                 & \multicolumn{1}{l}{}     & \multicolumn{1}{l}{}       & \multicolumn{1}{c}{$\tilde{x}$} & \multicolumn{1}{c}{$\sigma$} & \multicolumn{1}{c}{$\tilde{x}$} & \multicolumn{1}{c}{$\sigma$} & \multicolumn{1}{c}{$\tilde{x}$} & \multicolumn{1}{c}{$\sigma$} & \multicolumn{1}{c}{$\tilde{x}$} & \multicolumn{1}{c}{$\sigma$} & \multicolumn{1}{c}{$\tilde{x}$} & \multicolumn{1}{c}{$\sigma$} \\ \hline
+    \multicolumn{4}{l}{Distance to Objective - Laboratory}                                                                                           & \multicolumn{1}{|c}{\textbf{0.11}}       & \multicolumn{1}{c|}{0.13}    & \multicolumn{1}{|c}{0.23}       & \multicolumn{1}{c|}{0.07}    & \multicolumn{1}{|c}{0.13}       & \multicolumn{1}{c|}{0.04}    & \multicolumn{1}{|c}{0.15}       & \multicolumn{1}{c|}{0.08}    & \multicolumn{1}{|c}{0.17}       & \multicolumn{1}{c|}{0.07}    \\
+    \multicolumn{4}{l}{Distance to Objective - Online}                                                                                               & \multicolumn{1}{|c}{\textbf{0.08}}        & \multicolumn{1}{c|}{0.11}    & \multicolumn{1}{|c}{0.24}        & \multicolumn{1}{c|}{0.06}    & \multicolumn{1}{|c}{0.12}       & \multicolumn{1}{c|}{0.05}    & \multicolumn{1}{|c}{0.13}        & \multicolumn{1}{c|}{0.09}    & \multicolumn{1}{|c}{0.15}       & \multicolumn{1}{c|}{0.09}    \\ \hline
+    \end{tabular}}
+  \caption[Question 12, with expected Results.]{Question 12, with expected colors, possible results, mean and standard deviation of distances to Objective colors.}
+  \label{table:lab_q12_expected}
+\end{table}
+%
 \paragraph{\ul{Question 13}}
+%
+This question...
+%
+\begin{table}[H]
+  \resizebox{\textwidth}{!} {
+  \begin{tabular}{lccccccccccccc}
+    \hline
+    \multicolumn{1}{c}{}                              &                                      & \multicolumn{2}{c}{Expected Colors}                   & \multicolumn{10}{c}{Possible Results}                                                                                                                                                                                                                                                                                        \\ \cline{3-14}
+    \multicolumn{1}{c}{\multirow{-2}{*}{Question ID}} & \multirow{-2}{*}{Given Color}        & C1                       & C2                         & \multicolumn{2}{c}{HSV}                                        & \multicolumn{2}{c}{CIE-L*C*h*}                                 & \multicolumn{2}{c}{CMYK}                                       & \multicolumn{2}{c}{RGB}                                        & \multicolumn{2}{c}{CIE-L*a*b*}                                 \\ \hline
+    \multicolumn{1}{c}{13}                             & \cellcolor[HTML]{0080FF}(26, 23, 98) & \multicolumn{1}{c|}{Blue} & \multicolumn{1}{c|}{Cyan}  & \multicolumn{2}{c|}{\cellcolor[HTML]{0080FF}(26, 23, 98)}      & \multicolumn{2}{c|}{\cellcolor[HTML]{00ACFF}(33, 37, 100)}       & \multicolumn{2}{c|}{\cellcolor[HTML]{0080FF}(26, 23, 98)}       & \multicolumn{2}{c|}{\cellcolor[HTML]{0080FF}(26, 23, 98)}       & \multicolumn{2}{c|}{\cellcolor[HTML]{5792FF}(32, 30, 99)}       \\ \hline
+                                                      & \multicolumn{1}{l}{}                 & \multicolumn{1}{l}{}     & \multicolumn{1}{l}{}       & \multicolumn{1}{c}{$\tilde{x}$} & \multicolumn{1}{c}{$\sigma$} & \multicolumn{1}{c}{$\tilde{x}$} & \multicolumn{1}{c}{$\sigma$} & \multicolumn{1}{c}{$\tilde{x}$} & \multicolumn{1}{c}{$\sigma$} & \multicolumn{1}{c}{$\tilde{x}$} & \multicolumn{1}{c}{$\sigma$} & \multicolumn{1}{c}{$\tilde{x}$} & \multicolumn{1}{c}{$\sigma$} \\ \hline
+    \multicolumn{4}{l}{Distance to Objective - Laboratory}                                                                                           & \multicolumn{1}{|c}{0.27}       & \multicolumn{1}{c|}{0.16}    & \multicolumn{1}{|c}{\textbf{0.17}}       & \multicolumn{1}{c|}{0.10}    & \multicolumn{1}{|c}{0.19}       & \multicolumn{1}{c|}{0.13}    & \multicolumn{1}{|c}{0.25}       & \multicolumn{1}{c|}{0.16}    & \multicolumn{1}{|c}{0.23}       & \multicolumn{1}{c|}{0.12}    \\
+    \multicolumn{4}{l}{Distance to Objective - Online}                                                                                               & \multicolumn{1}{|c}{0.14}        & \multicolumn{1}{c|}{0.16}    & \multicolumn{1}{|c}{0.20}        & \multicolumn{1}{c|}{0.09}    & \multicolumn{1}{|c}{0.14}       & \multicolumn{1}{c|}{0.11}    & \multicolumn{1}{|c}{\textbf{0.13}}        & \multicolumn{1}{c|}{0.15}    & \multicolumn{1}{|c}{0.14}       & \multicolumn{1}{c|}{0.11}    \\ \hline
+    \end{tabular}}
+  \caption[Question 13, with expected Results.]{Question 13, with expected colors, possible results, mean and standard deviation of distances to Objective colors.}
+  \label{table:lab_q13_expected}
+\end{table}
 %
 \paragraph{\ul{Question 14}}
 %
+this question...
+%
+\begin{table}[H]
+  \resizebox{\textwidth}{!} {
+  \begin{tabular}{lccccccccccccc}
+    \hline
+    \multicolumn{1}{c}{}                              &                                      & \multicolumn{2}{c}{Expected Colors}                   & \multicolumn{10}{c}{Possible Results}                                                                                                                                                                                                                                                                                        \\ \cline{3-14}
+    \multicolumn{1}{c}{\multirow{-2}{*}{Question ID}} & \multirow{-2}{*}{Given Color}        & C1                       & C2                         & \multicolumn{2}{c}{HSV}                                        & \multicolumn{2}{c}{CIE-L*C*h*}                                 & \multicolumn{2}{c}{CMYK}                                       & \multicolumn{2}{c}{RGB}                                        & \multicolumn{2}{c}{CIE-L*a*b*}                                 \\ \hline
+    \multicolumn{1}{c}{14}                             & \cellcolor[HTML]{8000FF}(27, 12, 95) & \multicolumn{1}{c|}{Blue} & \multicolumn{1}{c|}{Magenta}  & \multicolumn{2}{c|}{\cellcolor[HTML]{8000FF}(27, 12, 95)}      & \multicolumn{2}{c|}{\cellcolor[HTML]{B000FF}(36, 16, 96)}       & \multicolumn{2}{c|}{\cellcolor[HTML]{8000FF}(27, 12, 95)}       & \multicolumn{2}{c|}{\cellcolor[HTML]{8000FF}(27, 12, 95)}       & \multicolumn{2}{c|}{\cellcolor[HTML]{AB00FF}(35, 16, 96)}       \\ \hline
+                                                      & \multicolumn{1}{l}{}                 & \multicolumn{1}{l}{}     & \multicolumn{1}{l}{}       & \multicolumn{1}{c}{$\tilde{x}$} & \multicolumn{1}{c}{$\sigma$} & \multicolumn{1}{c}{$\tilde{x}$} & \multicolumn{1}{c}{$\sigma$} & \multicolumn{1}{c}{$\tilde{x}$} & \multicolumn{1}{c}{$\sigma$} & \multicolumn{1}{c}{$\tilde{x}$} & \multicolumn{1}{c}{$\sigma$} & \multicolumn{1}{c}{$\tilde{x}$} & \multicolumn{1}{c}{$\sigma$} \\ \hline
+    \multicolumn{4}{l}{Distance to Objective - Laboratory}                                                                                           & \multicolumn{1}{|c}{0.12}       & \multicolumn{1}{c|}{0.14}    & \multicolumn{1}{|c}{0.30}       & \multicolumn{1}{c|}{0.09}    & \multicolumn{1}{|c}{\textbf{0.10}}       & \multicolumn{1}{c|}{0.05}    & \multicolumn{1}{|c}{0.13}       & \multicolumn{1}{c|}{0.13}    & \multicolumn{1}{|c}{0.13}       & \multicolumn{1}{c|}{0.09}    \\
+    \multicolumn{4}{l}{Distance to Objective - Online}                                                                                               & \multicolumn{1}{|c}{0.10}        & \multicolumn{1}{c|}{0.12}    & \multicolumn{1}{|c}{0.29}        & \multicolumn{1}{c|}{0.13}    & \multicolumn{1}{|c}{\textbf{0.09}}       & \multicolumn{1}{c|}{0.05}    & \multicolumn{1}{|c}{0.11}        & \multicolumn{1}{c|}{0.12}    & \multicolumn{1}{|c}{0.12}       & \multicolumn{1}{c|}{0.09}    \\ \hline
+    \end{tabular}}
+  \caption[Question 14, with expected Results.]{Question 14, with expected colors, possible results, mean and standard deviation of distances to Objective colors.}
+  \label{table:lab_q14_expected}
+\end{table}
+%
 \paragraph{\ul{Question 15}}
+%
+This question...
+%
+\begin{table}[H]
+  \resizebox{\textwidth}{!} {
+  \begin{tabular}{lccccccccccccc}
+    \hline
+    \multicolumn{1}{c}{}                              &                                      & \multicolumn{2}{c}{Expected Colors}                   & \multicolumn{10}{c}{Possible Results}                                                                                                                                                                                                                                                                                        \\ \cline{3-14}
+    \multicolumn{1}{c}{\multirow{-2}{*}{Question ID}} & \multirow{-2}{*}{Given Color}        & C1                       & C2                         & \multicolumn{2}{c}{HSV}                                        & \multicolumn{2}{c}{CIE-L*C*h*}                                 & \multicolumn{2}{c}{CMYK}                                       & \multicolumn{2}{c}{RGB}                                        & \multicolumn{2}{c}{CIE-L*a*b*}                                 \\ \hline
+    \multicolumn{1}{c}{15}                             & \cellcolor[HTML]{00FF80}(40, 73, 32) & \multicolumn{1}{c|}{Blue} & \multicolumn{1}{c|}{Yellow}  & \multicolumn{2}{c|}{\cellcolor[HTML]{00FF80}(40, 73, 32)}      & \multicolumn{2}{c|}{\cellcolor[HTML]{FF0050}(43, 22, 10)}       & \multicolumn{2}{c|}{\cellcolor[HTML]{808080}(21, 22, 24)}       & \multicolumn{2}{c|}{\cellcolor[HTML]{808080}(21, 22, 24)}       & \multicolumn{2}{c|}{\cellcolor[HTML]{CA8AAA}(41, 34, 42)}       \\ \hline
+                                                      & \multicolumn{1}{l}{}                 & \multicolumn{1}{l}{}     & \multicolumn{1}{l}{}       & \multicolumn{1}{c}{$\tilde{x}$} & \multicolumn{1}{c}{$\sigma$} & \multicolumn{1}{c}{$\tilde{x}$} & \multicolumn{1}{c}{$\sigma$} & \multicolumn{1}{c}{$\tilde{x}$} & \multicolumn{1}{c}{$\sigma$} & \multicolumn{1}{c}{$\tilde{x}$} & \multicolumn{1}{c}{$\sigma$} & \multicolumn{1}{c}{$\tilde{x}$} & \multicolumn{1}{c}{$\sigma$} \\ \hline
+    \multicolumn{4}{l}{Distance to Objective - Laboratory}                                                                                           & \multicolumn{1}{|c}{0.09}       & \multicolumn{1}{c|}{0.04}    & \multicolumn{1}{|c}{0.30}       & \multicolumn{1}{c|}{0.08}    & \multicolumn{1}{|c}{\textbf{0.06}}       & \multicolumn{1}{c|}{0.03}    & \multicolumn{1}{|c}{0.11}       & \multicolumn{1}{c|}{0.05}    & \multicolumn{1}{|c}{0.13}       & \multicolumn{1}{c|}{0.06}    \\
+    \multicolumn{4}{l}{Distance to Objective - Online}                                                                                               & \multicolumn{1}{|c}{0.11}        & \multicolumn{1}{c|}{0.08}    & \multicolumn{1}{|c}{0.30}        & \multicolumn{1}{c|}{0.07}    & \multicolumn{1}{|c}{\textbf{0.06}}       & \multicolumn{1}{c|}{0.03}    & \multicolumn{1}{|c}{0.11}        & \multicolumn{1}{c|}{0.04}    & \multicolumn{1}{|c}{0.13}       & \multicolumn{1}{c|}{0.06}    \\ \hline
+    \end{tabular}}
+  \caption[Question 15, with expected Results.]{Question 15, with expected colors, possible results, mean and standard deviation of distances to Objective colors.}
+  \label{table:lab_q15_expected}
+\end{table}
 %
 \paragraph{\ul{Question 16}}
 %
+This question...
+%
+\begin{table}[H]
+  \resizebox{\textwidth}{!} {
+  \begin{tabular}{lccccccccccccc}
+    \hline
+    \multicolumn{1}{c}{}                              &                                      & \multicolumn{2}{c}{Expected Colors}                   & \multicolumn{10}{c}{Possible Results}                                                                                                                                                                                                                                                                                        \\ \cline{3-14}
+    \multicolumn{1}{c}{\multirow{-2}{*}{Question ID}} & \multirow{-2}{*}{Given Color}        & C1                       & C2                         & \multicolumn{2}{c}{HSV}                                        & \multicolumn{2}{c}{CIE-L*C*h*}                                 & \multicolumn{2}{c}{CMYK}                                       & \multicolumn{2}{c}{RGB}                                        & \multicolumn{2}{c}{CIE-L*a*b*}                                 \\ \hline
+    \multicolumn{1}{c}{16}                             & \cellcolor[HTML]{FF007F}(45, 23, 22) & \multicolumn{1}{c|}{Blue} & \multicolumn{1}{c|}{Yellow}  & \multicolumn{2}{c|}{\cellcolor[HTML]{FF007F}(45, 23, 22)}      & \multicolumn{2}{c|}{-}       & \multicolumn{2}{c|}{-}       & \multicolumn{2}{c|}{}       & \multicolumn{2}{c|}{}       \\ \hline
+                                                      & \multicolumn{1}{l}{}                 & \multicolumn{1}{l}{}     & \multicolumn{1}{l}{}       & \multicolumn{1}{c}{$\tilde{x}$} & \multicolumn{1}{c}{$\sigma$} & \multicolumn{1}{c}{$\tilde{x}$} & \multicolumn{1}{c}{$\sigma$} & \multicolumn{1}{c}{$\tilde{x}$} & \multicolumn{1}{c}{$\sigma$} & \multicolumn{1}{c}{$\tilde{x}$} & \multicolumn{1}{c}{$\sigma$} & \multicolumn{1}{c}{$\tilde{x}$} & \multicolumn{1}{c}{$\sigma$} \\ \hline
+    \multicolumn{4}{l}{Distance to Objective - Laboratory}                                                                                           & \multicolumn{1}{|c}{0.21}       & \multicolumn{1}{c|}{0.10}    & \multicolumn{1}{|c}{-}       & \multicolumn{1}{c|}{-}    & \multicolumn{1}{|c}{-}       & \multicolumn{1}{c|}{-}    & \multicolumn{1}{|c}{-}       & \multicolumn{1}{c|}{-}    & \multicolumn{1}{|c}{-}       & \multicolumn{1}{c|}{-}    \\
+    \multicolumn{4}{l}{Distance to Objective - Online}                                                                                               & \multicolumn{1}{|c}{0.19}        & \multicolumn{1}{c|}{0.12}    & \multicolumn{1}{|c}{-}        & \multicolumn{1}{c|}{-}    & \multicolumn{1}{|c}{-}       & \multicolumn{1}{c|}{-}    & \multicolumn{1}{|c}{-}        & \multicolumn{1}{c|}{-}    & \multicolumn{1}{|c}{-}       & \multicolumn{1}{c|}{-}    \\ \hline
+    \end{tabular}}
+  \caption[Question 16, with expected Results.]{Question 16, with expected colors, possible results, mean and standard deviation of distances to Objective colors.}
+  \label{table:lab_q16_expected}
+\end{table}
+%
 \paragraph{\ul{Question 17}}
+%
+This question...
+%
+\begin{table}[H]
+  \resizebox{\textwidth}{!} {
+  \begin{tabular}{lccccccccccccc}
+    \hline
+    \multicolumn{1}{c}{}                              &                                      & \multicolumn{2}{c}{Expected Colors}                   & \multicolumn{10}{c}{Possible Results}                                                                                                                                                                                                                                                                                        \\ \cline{3-14}
+    \multicolumn{1}{c}{\multirow{-2}{*}{Question ID}} & \multirow{-2}{*}{Given Color}        & C1                       & C2                         & \multicolumn{2}{c}{HSV}                                        & \multicolumn{2}{c}{CIE-L*C*h*}                                 & \multicolumn{2}{c}{CMYK}                                       & \multicolumn{2}{c}{RGB}                                        & \multicolumn{2}{c}{CIE-L*a*b*}                                 \\ \hline
+    \multicolumn{1}{c}{17}                             & \cellcolor[HTML]{00FF00}(36, 72, 13) & \multicolumn{1}{c|}{Cyan} & \multicolumn{1}{c|}{Yellow}  & \multicolumn{2}{c|}{\cellcolor[HTML]{00FF00}(36, 72, 13)}      & \multicolumn{2}{c|}{\cellcolor[HTML]{6EFFA3}(49, 77, 47)}       & \multicolumn{2}{c|}{\cellcolor[HTML]{80FF80}(49, 78, 33)}       & \multicolumn{2}{c|}{\cellcolor[HTML]{80FF80}(49, 78, 33)}       & \multicolumn{2}{c|}{\cellcolor[HTML]{C4FF9E}(66, 87, 46)}       \\ \hline
+                                                      & \multicolumn{1}{l}{}                 & \multicolumn{1}{l}{}     & \multicolumn{1}{l}{}       & \multicolumn{1}{c}{$\tilde{x}$} & \multicolumn{1}{c}{$\sigma$} & \multicolumn{1}{c}{$\tilde{x}$} & \multicolumn{1}{c}{$\sigma$} & \multicolumn{1}{c}{$\tilde{x}$} & \multicolumn{1}{c}{$\sigma$} & \multicolumn{1}{c}{$\tilde{x}$} & \multicolumn{1}{c}{$\sigma$} & \multicolumn{1}{c}{$\tilde{x}$} & \multicolumn{1}{c}{$\sigma$} \\ \hline
+    \multicolumn{4}{l}{Distance to Objective - Laboratory}                                                                                           & \multicolumn{1}{|c}{0.07}       & \multicolumn{1}{c|}{0.10}    & \multicolumn{1}{|c}{0.16}       & \multicolumn{1}{c|}{0.06}    & \multicolumn{1}{|c}{\textbf{0.05}}       & \multicolumn{1}{c|}{0.02}    & \multicolumn{1}{|c}{0.10}       & \multicolumn{1}{c|}{0.06}    & \multicolumn{1}{|c}{0.11}       & \multicolumn{1}{c|}{0.05}    \\
+    \multicolumn{4}{l}{Distance to Objective - Online}                                                                                               & \multicolumn{1}{|c}{0.08}        & \multicolumn{1}{c|}{0.13}    & \multicolumn{1}{|c}{0.17}        & \multicolumn{1}{c|}{0.06}    & \multicolumn{1}{|c}{\textbf{0.05}}       & \multicolumn{1}{c|}{0.03}    & \multicolumn{1}{|c}{0.10}        & \multicolumn{1}{c|}{0.06}    & \multicolumn{1}{|c}{0.11}       & \multicolumn{1}{c|}{0.05}    \\ \hline
+    \end{tabular}}
+  \caption[Question 17, with expected Results.]{Question 17, with expected colors, possible results, mean and standard deviation of distances to Objective colors.}
+  \label{table:lab_q17_expected}
+\end{table}
+%
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
