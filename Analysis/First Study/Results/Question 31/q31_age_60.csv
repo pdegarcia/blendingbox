@@ -1,6 +1,6 @@
-id,age,gender,num_answers,in_person,typeOfQuestion,first_color,second_color,third_color,clicks,rating,C3_name,distance_expectedC3_limegreen,distance_expectedC3_red,distance_HSV,distance_LCh,distance_CMYK,distance_RGB,distance_Lab
-57112b9e10661,64,Female,34,no,twoColorsObj,#0000FF,#FFFF00,#46ff9c,86,2,NA       ,0.07,0.25,0.07,0.25,0.3,0.08,0.08
-571165992a5c1,67,Female,32,no,twoColorsObj,#0000FF,#FFFF00,#6effa3,172,3,NA       ,0.08,0.24,0.08,0.24,0.29,0.07,0.07
-5715ea836193d,83,Female,3,no,twoColorsObj,#0000FF,#FFFF00,#00FF00,194,1,Yellow   ,0.08,0.29,0.08,0.29,0.31,0.15,0.16
-5740b0f8e9734,62,Male,33,yes,twoColorsObj,#0000FF,#CBFF00,#00A89E,60,4,NA       ,0.12,0.24,0.12,0.24,0.31,0.08,0.06
-5740bda9be3dc,83,Female,32,yes,twoColorsObj,#0000FF,#CBFF00,#51DF00,300,5,Yellow   ,0.09,0.28,0.09,0.28,0.3,0.14,0.15
+id,age,gender,num_answers,in_person,typeOfQuestion,first_color,second_color,third_color,clicks,rating,C3_name,distance_expectedC3_limegreen,distance_expectedC3_red,distance_HSV_1,distance_HSV_2,distance_LCh,distance_CMYK,distance_RGB,distance_Lab
+57112b9e10661,64,Female,34,no,twoColorsObj,#0000FF,#FFFF00,#46ff9c,86,2,NA       ,0.07,0.25,0.07,0.25,0.3,0.08,0.08,0.14
+571165992a5c1,67,Female,32,no,twoColorsObj,#0000FF,#FFFF00,#6effa3,172,3,NA       ,0.08,0.24,0.08,0.24,0.29,0.07,0.07,0.12
+5715ea836193d,83,Female,3,no,twoColorsObj,#0000FF,#FFFF00,#00FF00,194,1,Yellow   ,0.08,0.29,0.08,0.29,0.31,0.15,0.16,0.2
+5740b0f8e9734,62,Male,33,yes,twoColorsObj,#0000FF,#CBFF00,#00A89E,60,4,NA       ,0.12,0.24,0.12,0.24,0.31,0.08,0.06,0.11
+5740bda9be3dc,83,Female,32,yes,twoColorsObj,#0000FF,#CBFF00,#51DF00,300,5,Yellow   ,0.09,0.28,0.09,0.28,0.3,0.14,0.15,0.19
