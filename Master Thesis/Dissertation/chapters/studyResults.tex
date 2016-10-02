@@ -1747,7 +1747,7 @@ validation from the online users; marked in \textbf{bold} are the color models w
   \label{table:blendings_models_rank}
 \end{table}
 %
-\subsection{Color Mixtures}
+\subsection{Color Mixtures and Color Naming}
 \label{subsec:results_colormixtures}
 %
 Being the color models covered in the extensive previous analysis, we are left to analyze and break down each color mixture, understanding if there is a particular color blending which has an added level of
@@ -1756,7 +1756,10 @@ such as sliders, scales or color blends to convey information.
 %
 This subsection will be composed on two main groups: on the first one, we will focus our attention on the color blendings which are \textbf{based on primary colors, to generate other primary colors} to comprehend
 if the users can detect and formulate primary color blendings; the second group of this subsection will contain a \textbf{brief investigation about the difficulty found when blending colors}, focusing our attention
-not only on each question, but also on providing a general perception of how the study went, regarding the facility of unveiling color mixtures.
+not only on each question, but also on providing a general perception of how the study went, regarding the facility of unveiling color mixtures. \par
+%
+We also performed a color analysis by comparing the colors given by our users, with the ones obtained with the XKCD's Color Bins referred on the \emph{Data Processing} section (\ref{subsec:results_preparation}) of this document. This way,
+we can make sense out of the values, giving them meaning and necessary categorization. This is going to be useful when analyzing the proximity of values.
 %
 \subsubsection{Primary Colors}
 \label{subsubsec:primarycolors}
@@ -1783,30 +1786,182 @@ formulate the ones referred in the beggining of this paragraph. These questions 
 \end{table}
 %
 As analyzed before, according to the users' responses and expectations, these questions show a fair degree of concordance when blending que mixture-basis, since they all tend tend to present better results when
-blended according to a CMYK Color Model.
-
-
-fazer analise concreta das questões 1, 2, 7, 8 e 17, que são as primitivas. perceber se resultados são positivos para a geração de primitivas com base noutras. \\\\
+blended according to a CMYK Color Model. However, we have found an interesting behaviour from our users when answering these questions: some users indicated the resulting color on both the expected colors (\emph{e.g.}
+it was presented Red, and the users indicated twice the color Red in their answers); we will briefly analyze the values for each of the blendings referred on Table \ref{table:primary_blends}, as it has already been
+analyzed before.
 %
-existe cor preferencial para começar a mistura? segue ordenação do do espectro de cor, ou de como aparecia no slider meramente?
+\paragraph{\ul{Magenta + Yellow = Red}}
 %
-Comparar misturas que originam a mesma cor, com base em primárias diferentes e perceber se utilizadores conseguem detectar várias
-misturas para uma mesma cor. \par
+In this question, it was expected that users indicate a mixing of Magenta and Yellow to blend in a result of Red. These colors are primitives from the CMYK Color Model which, when blended, generate a color from the
+complementary color model, the RGB. However, the laboratory users did focus their answers on \textbf{orange, green, blue and even red hue}; moreover, these results were similar among the online users and did not
+demonstrated a consensual answer pair. \\
 %
-\subsubsection{Difficulty While Blending Colors}
+Additionaly, five laboratory users (from thirteen which indicated a pair of two answers - $38.46\%$ of the users) and fourty-two online users (from sixty-two - $67.74\%$ of the users) indicated, at least, one time the
+red color as an answer. We can even run some descriptive statistics on top of the \ul{distance values between the given answers and the expected Magenta-Yellow Pair} ($\tilde{x} = 0.49$, $\sigma = 0.25$) and observe that
+these evidences lead us to believe that \textbf{the users do not know how to create a red color based on other primary colors}. \\
+%
+When analyzing question number twenty-five, in which we ask the user which color is the result of blending Magenta and Yellow, we conclude that \textbf{the results are, also,
+scattered a bit}, which leads us to reinforce the statement above. \textbf{There is also no observable tendency to begin the color blending with a particular shade of a color}. Figures \ref{fig:redblend_1} and
+\ref{fig:redblend_2} show us the answers given by the online users in, respectively, question eight and twenty-five.
+%
+\begin{figure}[!htbp]
+  \centering
+  \begin{minipage}{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{images/8_online_regularUsers.png}
+    \caption[Online Results: Answers for Question 8, from regular users.]{Online Results: Answers for Question 8, from regular users.}
+    \label{fig:redblend_1}
+  \end{minipage}\hfill
+  \begin{minipage}{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{images/25_online_regularUsers.png}
+    \caption[Online Results: Answers for Question 25, from regular users.]{Online Results: Answers for Question 25, from regular users.}
+    \label{fig:redblend_2}
+  \end{minipage}
+\end{figure}
+%
+\paragraph{\ul{Cyan + Yellow = Green}}
+%
+Regarding this, it was expected that users indicate a mixing of Cyan and Yellow to blend in a result of Green. Similarly to the previous blend, these colors are primitives from the CMYK Color Model that, when blended,
+generate a color from the RGB Color Model. Curiously, both the laboratory and online users provided their answers on similar pairs, comprised between \textbf{blue shades and yellow ones}; the most repeated
+color pairs were, in fact, Blue shades combined with tones of green and yellow, as observable on Figure \ref{fig:greenblend_1}. \\
+%
+Additionaly, only two laboratory users (from twenty-three which indicated a pair of two answers - $8.70\%$ of the users) and six online users (from seventy-one - $8.45\%$ of the users) indicated an answer pair which did not even
+nearly approximate to the desired hues. Running some descriptive statistics on top of the distance values between the given answers and the expected Magenta-Yellow Pair ($\tilde{x} = 0.40$, $\sigma = 0.21$) did reveal longer distances
+also; however, since the majority of answers are near a cyan hue tending to a blue one, we consider these answers as valid ones. These evidences lead us to believe that \textbf{the users do present knowledge on how to create a green color
+based on other primary colors, such as cyan/blue and yellow}. \\
+%
+When analyzing question number thirty-two, in which we ask the user which color is the result of blending Cyan and Yellow, we conclude that \textbf{the results, as previously happened with other primary blends, are a bit scattered}.
+As before, \textbf{there is no observable tendency to begin the color blending with a particular shade of a color}. Figures \ref{fig:greenblend_2} and\ref{fig:greenblend_2} show us the answers given by the online users in, respectively,
+question seventeen and thirty-two.
+%
+\begin{figure}[!htbp]
+  \centering
+  \begin{minipage}{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{images/17_online_regularUsers.png}
+    \caption[Online Results: Answers for Question 17, from regular users.]{Online Results: Answers for Question 17, from regular users.}
+    \label{fig:greenblend_1}
+  \end{minipage}\hfill
+  \begin{minipage}{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{images/32_online_regularUsers.png}
+    \caption[Online Results: Answers for Question 32, from regular users.]{Online Results: Answers for Question 32, from regular users.}
+    \label{fig:greenblend_2}
+  \end{minipage}
+\end{figure}
+%
+\paragraph{\ul{Cyan + Magenta = Blue}}
+%
+In this question, it was expected that users indicate a mixing of Cyan and Magenta to blend in a result of Blue; these colors are primitives from the CMYK Color Model. Both the laboratory and online users provided their answers
+on similar pairs, comprised between \textbf{blue shades, yellow ones, magenta's and pink, and some greens and reds}. There was also an interesting agregation of results on both environment, near the green and yellow shades.  \\
+%
+However, as seen on Figures \ref{fig:blueblend_1} and \ref{fig:blueblend_2} there exists a tendency of users indicating answers very close to the given color (Blue Hue). This could reveal an \textbf{inability of detecting a blue blending
+basis}, which could be related to the (lack of) descriptive power among blue colors, previously referred. \\
+5
+Running some descriptive statistics on top of the distance values between the given answers and the expected Cyan-Magenta Pair ($\tilde{x} = 0.45$, $\sigma = 0.11$) reveals the same high mean distance value, but a lower than previous
+standard deviation of results. Due to the fact that the users indicated some answers in the magenta zone of colors and some blue/cyan hues, we could state that \textbf{although there is no strong evidence to verify this color blending, the
+users show a mild ability to blend cyan and magenta, providing a blue color}. \\
+%
+When analyzing question number twenty-four, in which we ask the user which color is the result of blending Cyan and Magenta, we conclude that \textbf{the results, as previously happened with other primary blends, are a bit scattered}.
+As before, \textbf{there is no observable tendency to begin the color blending with a particular shade of a color}.
+%
+\begin{figure}[!htbp]
+  \centering
+  \begin{minipage}{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{images/7_lab_regularUsers.png}
+    \caption[Laboratory Results: Answers for Question 7, from regular users.]{Laboratory Results: Answers for Question 7, from regular users.}
+    \label{fig:blueblend_1}
+  \end{minipage}\hfill
+  \begin{minipage}{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{images/7_online_regularUsers.png}
+    \caption[Online Results: Answers for Question 7, from regular users.]{Online Results: Answers for Question 7, from regular users.}
+    \label{fig:blueblend_2}
+  \end{minipage}
+\end{figure}
+%
+\paragraph{\ul{Green + Blue = Cyan}}
+%
+As said before, this color blending was only conducted only in one way. In this question, it was expected that users indicate the result of mixing Green and Blue: Cyan; these colors are primitives from the RGB Color Model. Both the laboratory
+and online users provided similar results, with an agregation of them on the blue and cyan hues on both environment, and also in the orange hue (for unknown reasons).  \\
+%
+Running some descriptive statistics on top of the distance values between the given answer and the expected Cyan Color ($\tilde{x} = 0.13$, $\sigma = 0.06$) reveals some proximity to the expected color, and a lower standard deviation of results.
+Ideally, the results should be compared with the other type of question asked; since there is no question to compare and based on previous analyzed results, we can affirm that \textbf{there are mild evidences that users can detect a Green-Blue blend
+to provide a Cyan color}. However, \textbf{further studies should deepen this question and determine if this affirmation could be corroborated}.
+%
+\paragraph{\ul{Red + Blue = Magenta}}
+%
+In this question, it was expected that users indicate a mixing of Red and Blue to mix in a result of Magenta. Both the laboratory and online users provided their answers on similar pairs, comprised between \textbf{blue shades, yellow ones, magenta's and
+pink, and some greens and reds}. There was also an interesting agregation of results on both environment, \textbf{along the line which unites Blue and Red}, with some scattering among the cyan and teal colors.  \\
+However, as seen on Figure \ref{fig:magentablend_1} there exists a tendency of users indicating answers very close to the given color (Blue Hue). This scattering of results could be related to the \textbf{blue blending
+detection problems}, previously referred. \\
+%
+Running some descriptive statistics on top of the distance values between the given answers and the expected Red-Blue Pair ($\tilde{x} = 0.53$, $\sigma = 0.36$) reveals the highest mean distance value so far, and also a deviation of results higher than before.
+the users indicated some scattered answers in the blue zone of the chromaticity diagram: answers include Light-Blue, Sky-Blue, Navy-Blue and Cyan, besides the typical Blue; on the other hand, the users have indicated spared answers in the Magenta zone: Dark-Purple,
+Pink, Magenta and Red. This shattering of data is coherent with the deviation of values obtained: we could state that \textbf{the users demonstrated some basic conception of blending red and blue to obtain magenta}. However, \textbf{the users have indicated more
+detailed colors, contrary to other color blends previously evaluated}, which may have implications on the level of detail that the displaying of color should have. \\
+%
+Analyzing question number nineteen, in which we ask the user which color is the result of blending Red and Blue, we conclude that \textbf{the results, as previously happened with other primary blends, are a bit scattered}, leaving no plausible conclusion to formulate.
+In this blending, \textbf{there is an observable tendency to begin the color blending with the red color}: on a frequency of twenty-four laboratory users, six of them ($25\%$) indicated a Red value as the first color, leaving the second color to indicate a
+more detailed color; the same happens when analzying sixty-three online users, where $33\%$ of them indicated a Red color as the first value. Relating the late dataset, it was also interesting to observe that $33\%$ of the users left the Blue color as a second answer.
+This could be due to \textbf{magenta being a relatively close color to a red hue}, leading the user to indicate firstly the color which he recalls the most, that happens to be red.
+%
+\begin{figure}[!htbp]
+  \centering
+  \begin{minipage}{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{images/2_online_regularUsers.png}
+    \caption[Online Results: Answers for Question 2, from regular users.]{Online Results: Answers for Question 2, from regular users.}
+    \label{fig:magentablend_1}
+  \end{minipage}\hfill
+  \begin{minipage}{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{images/19_online_regularUsers.png}
+    \caption[Online Results: Answers for Question 19, from regular users.]{Online Results: Answers for Question 19, from regular users.}
+    \label{fig:magentablend_2}
+  \end{minipage}
+\end{figure}
+%
+\paragraph{\ul{Red + Green = Yellow}}
+%
+Lastly, it was expected that users indicate a mixing of Red and Green to mix in a result of Yellow. Both the laboratory and online users provided their answers on similar pairs, comprised between \textbf{blue shades, yellow ones, red and cyan}. There was also an
+interesting agregation of results on both environment, \textbf{along the line which unites Blue and Green, and Green and Red}, with a heavy concentration of results near the yellow shades, as seen on Figure \ref{fig:yellowblend_1}. \\
+%
+The answer-pairs which contained Yellow presented this colors slightly shaded to orange, which could signify that \textbf{the users provided an orangish-yellow with another color in order to blend the first one to the ideal Yellow Hue}. \\
+%
+Running some descriptive statistics on top of the distance ($\tilde{x} = 0.41$, $\sigma = 0.22$) reveals roughly the same mean distance and standard deviation as before. In this question, the users revealed a balmy concordance amongst themselves, according to color bins
+labeling: the users centralized their answers on Blue, Navy-Blue, Orange, Red, Yellow and Green. We could state that \textbf{the users demonstrated some basic conception of blending red and green to obtain yellow}, but further studies should focus on understanting which
+influence is the blue color exercising on the user's mental model, since it was a constant result among study environments. \\
+%
+Analyzing question number eighteen, in which we ask the user which color is the result of blending Red and Green, we conclude that \textbf{the results show an approximation to the ideal color result, but a scattering over orange and yellow colors}.
+In this blending, \textbf{there is a slight observable tendency to begin the color blending with a red color}, as depicted in online users' dataset ($20\%$ of fifty-three users) started the mixture with a Red Color. However, this is not a relevant result by itself: it is
+indeed consistent with the result collect from the previous mixture. \\
+%
+\begin{figure}[!htbp]
+  \centering
+  \begin{minipage}{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{images/1_online_regularUsers.png}
+    \caption[Online Results: Answers for Question 1, from regular users.]{Online Results: Answers for Question 1, from regular users.}
+    \label{fig:yellowblend_1}
+  \end{minipage}\hfill
+  \begin{minipage}{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{images/18_online_regularUsers.png}
+    \caption[Online Results: Answers for Question 18, from regular users.]{Online Results: Answers for Question 18, from regular users.}
+    \label{fig:yellowblend_2}
+  \end{minipage}
+\end{figure}
+%
+\subsubsection{Color Blending Effort}
 \label{subsubsec:difficulty_rating}
 %
 Fazer também mistura mais fácil, comparando os ratings das questões e ver qual a mistura que apresenta melhores resultados. \\
 Falar de respostas em branco, analisar somente valores e perceber se é desconhecimento. \par
 %
 Talvez referir aqui novamente, quais foram as misturas com melhores e piores resultados, sem explorar novamente mas apenas para refresh.
-%
-\subsection{Color Naming}
-\label{subsec:results_namingcolors}
-%
-Cores mais comuns em algumas perguntas; existe alguma ordem caracteristica quando utilizador especifica uma mistura? \\
-Comparar se, mais do que pelos valores anteriormente calculados, se users identificam "uma mistura de vermelho com azul" como dando um resultado
-magenta, ou mais afinado para uma dada cor.
 %
 \subsection{Demographic Results}
 \label{subsec:results_demographic}
