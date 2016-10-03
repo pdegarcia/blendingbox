@@ -1,3 +1,3 @@
-id,age,gender,num_answers,in_person,typeOfQuestion,first_color,second_color,third_color,clicks,rating,C1_name,C2_name,distance_expectedC1C2,distance_HSV,distance_LCh,distance_CMYK,distance_RGB,distance_Lab
-57410611290e3,22,Other,5,no,objTwoColors,#FF00FF,344,0,370,5,Red      ,Red      ,0.6,0.31,0.05,0.13,0.29,0.18
-5745c1c07cc0c,18,Other,31,no,objTwoColors,#FF00FF,322,196,120,4,Magenta  ,LI-Blue  ,0.4,0.21,0.05,0.13,0.11,0.16
+id;age;gender;num_answers;in_person;typeOfQuestion;first_color;second_color;third_color;clicks;rating;C1_name;C2_name;distance_expectedC1C2;distance_HSV;distance_LCh;distance_CMYK;distance_RGB;distance_Lab
+5.74E+13;22;Other;5;no;objTwoColors;#FF00FF;344;0;370;5;Red      ;Red      ;0.6;0.31;0.05;0.13;0.29;0.18
+5745c1c07cc0c;18;Other;31;no;objTwoColors;#FF00FF;322;196;120;4;Magenta  ;LI-Blue  ;0.4;0.21;0.05;0.13;0.11;0.16
