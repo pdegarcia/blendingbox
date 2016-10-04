@@ -1,4 +1,5 @@
 %!TEX root = ../dissertation.tex
+%!TeX spellcheck = en-US
 
 \chapter{Analyzing Color Mixing Perception}
 \label{chapter:results}
@@ -203,7 +204,7 @@ demographic group and subset of users (non-calibrated and color vision deficient
 With this data processing, we intend to verify each answer-pair given by a certain user and compare the pairs with each other. It was important to separate the results by question
 ID, compare each questions' results with other questions that could conceive the same results, blend the values to check which color model answers are closer to (either \gls{HSV}, \gls{RGB},
 \gls{CMYK}, CIE-L*a*b* or CIE-L*C*h*) and also, give meaning to each value, attributing a name to each color. All these parameters and computations are describred in the next two
-sub-sections. \par
+subsections. \par
 %
 %\begin{lstlisting}[frame=single,basicstyle=\small,label={lst:pseudo_file},]
 %  % Pseudo-codigo generico;
@@ -2000,14 +2001,14 @@ Neverthless, it is interesting to observe that the results for the generality of
 best results, all the other blendings show nor an easy or hard level of effort to mix the basis}. These results are confirmed by the online responses, by running a Friedman Test which indicates us that there are no statistically significant differences
 ($p < 0.05$) when comparing the results from the laboratory environment, with the online results. \par
 %
-During the analysis and data cleaning, we have found a substantial portion of data which reflected the users' answers which contained only one component, when it was expected a pair of two. These answers were separated from the original dataset, in
-order to process it and discern if the users did not indicate a second color for the sake of convenience, or because they did not know what to blend, or simply to blend the given answer with a white color, lightning it down to a lighter color. The blendings
-which had more solitary answer were \textbf{Green-Magenta, producing a Blue shade} (\ul{sixty-three entries}), \textbf{Red-Green, producing Yellow} (\ul{sixty entries}) and \textbf{Blue-Yellow, producing a Pink shade} (fifty-six entries); the ones which had
-less were \textbf{Red-Yellow, producing a Orange shade} (twenty-six entries), \textbf{Green-Yellow, producing a Lime-Green color} (twenty-four entries) and \textbf{Blue-Magenta, producing a Purple shade} (twenty entries). Analyzing these answers, we conclude
-that the option of \textbf{indicating only one color \ul{is not} due to knowing just one primitive of the blending}, since a barely set of users indicated correctly one primitive. However, there was a tendency for users to indicate colors which were near
-($distance < 0.1$) the resulting color (already presented): this could indicate that \textbf{the users either left an empty color as a whitening one, along with a darker shade than the result, or they indicated the same color as the result, according to their
-expectation and color perception}. Since it is not possible for us to judge this information based on these results only, it would be ideal if further studies could deepen this matter. Figures \ref{fig:white_1}, \ref{fig:white_2} and \ref{fig:white_3} all
-represent the set of answer-pairs with one white component, for questions one, ten and fifteen, respectively. \par
+During the analysis and data cleaning, we have found a substantial portion of data which reflected the users' answers which contained only one component, when it was expected a pair of two. These answers were separated from the original dataset and we
+have decided not to eliminate these answers, since they could provide useful inputs to our analysis, discerning if the users did not indicate a second color for the sake of convenience, or because they did not know what to blend, or simply to blend the given
+answer with a white color, lightning it down to a lighter color. The blendings which had more solitary answer were \textbf{Green-Magenta, producing a Blue shade} (\ul{sixty-three entries}), \textbf{Red-Green, producing Yellow} (\ul{sixty entries}) and
+\textbf{Blue-Yellow, producing a Pink shade} (fifty-six entries); the ones which had less were \textbf{Red-Yellow, producing a Orange shade} (twenty-six entries), \textbf{Green-Yellow, producing a Lime-Green color} (twenty-four entries) and \textbf{Blue-Magenta,
+producing a Purple shade} (twenty entries). Analyzing these answers, we conclude that the option of \textbf{indicating only one color \ul{is not} due to knowing just one primitive of the blending}, since a barely set of users indicated correctly one primitive.
+However, there was a tendency for users to indicate colors which were near ($distance < 0.1$) the resulting color (already presented): this could indicate that \textbf{the users either left an empty color as a whitening one, along with a darker shade than the
+result, or they indicated the same color as the result, according to their expectation and color perception}. Since it is not possible for us to judge this information based on these results only, it would be ideal if further studies could deepen this matter.
+Figures \ref{fig:white_1}, \ref{fig:white_2} and \ref{fig:white_3} all represent the set of answer-pairs with one white component, for questions one, ten and fifteen, respectively. \par
 %
 \begin{figure}[!htbp]
   \centering
@@ -2034,17 +2035,42 @@ represent the set of answer-pairs with one white component, for questions one, t
 \subsection{Demographic Results}
 \label{subsec:results_demographic}
 %
-Fazer apenas comparação de faixas etárias entre si, e géneros entre si. \\
-Uma ánalise interesse seria comparar faxias etárias por género, mas seria necessária uma amostra bastante mais significativa para cada grupo.
+To conclude the analysis of our dataset, we performed a set of statistic tests to realize if there is some kind of connection between the demographic information of our users and the answers given by them, for example a relation between the answers given by
+the male and female users, or even if the younger users interpret the color blendings differently from the older ones. As referred in the beginning of this section, we have separated the users among some demographic groups: regarding the age division we have
+created six groups (users aged below 20 years, aged between 20 and 29, between 30 and 39, 40 and 49, 50 and 59, and above 60 years), and for the gender we have divided the dataset according to female, male and other gendered users. These groups were, then, iterated
+by question, performing a \ul{Spearman's Rank-Order Correlation test} between the ages and genders, with the answers; since the amount of data available is quite high, this test would dictate which questions would be subject of further analysis in this section. \par
+%
+Additionaly, it would be interesting to perform a crossed analysis between genders and age groups: however, the size of the dataset does not provide the amount of information needed to corroborate such analysis. Hereupon, we are going to divide the analysis of these demographic
+groups on the next subsections, starting by analyzing the results for the age groups highlighting the questions which manifested statistically significant correlations, followed by the evaluation of the gender groups. To end this section, we will perfom an additional
+informal evaluation of the results collected from color vision deficient users.
 %
 \subsubsection{Age Groups}
 \label{subsubsec:demo_age}
 %
+Recalling Table \ref{table:profiling_genderacademic}, present of Section \ref{subsec:results_userprofile}, we have collected a total of 259 users, being \ul{38 users aged below 20 years}, \ul{162 users aged between 20 and 29 years}, \ul{20 users aged between 30 and 39 years},
+\ul{19 users aged between 40 and 49 years}, \ul{12 users aged between 50 and 59 years} and \ul{8 users aged above 60 years}. When analyzing the results from all 32 questions, for each of these age groups, with Spearman's Correlation test we conclude that there are no statistically
+significant correlations ($\rho < 0.05$) when comparing the distances from answers blended in each color model (HSV, CIE-L*C*h*, CMYK, RGB and CIE-L*a*b*) with the age from the users, except for a small subset of questions: from all 32 questions asked, seven of them presented weak,
+positive and negative correlation between the age values and the calculated distances, which have statistically signifficant correlation values ($\rho < 0.05$). \par
+%
+These questions are \ul{number six} ($r_s(6) = 0.22$, $\rho = 0.013$), \ul{seven} ($r_s(7) = -0.18$, $\rho = 0.032$), \ul{eight} ($r_s(8) = -0.21$, $\rho = 0.015$), \ul{nine} ($r_s(9) = 0.19$, $\rho = 0.029$), \ul{nineteen} ($r_s(19) = 0.19, \rho = 0.028$), \ul{twenty-five}
+($r_s(25) = 0.18$, $\rho = 0.034$) and, finally, question \ul{thirty-one} ($r_s(31) = -0.19$, $\rho = 0.031$). \par
+%
+Particularizar para casos de perguntas que tenham valores interessantes. \\
+Concluir \\
+%
 \subsubsection{Gender Groups}
 \label{subsubsec:demo_age}
 %
-\subsubsection{Color Deficient Users Group}
+Recalling Table \ref{table:profiling_genderacademic}, present of Section \ref{subsec:results_userprofile}, we have collected a total of 259 users, being \ul{105 Female Users}, \ul{152 Male Users} and \ul{2 Other Gender Users}. From these users,
+%
+Referir perguntas (são 8). \\
+Particulizar para casos interessantes, se houver. \\
+Concluir \\
+%
+\subsubsection{Color Vision Deficient Users Group}
 \label{subsubsec:demo_daltonic}
+%
+Analise breve e de alto nivel. \\
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                DISCUSSION                                                                       %
