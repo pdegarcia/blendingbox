@@ -43,7 +43,7 @@ the same concerning the illumination, the position of the user and the computer 
 a fixed incadescent light-source (but slightly deviated from it, to minimize light reflections on screen), the user would sit in front
 of the laptop, in an almost silent environment. Ideal conditions of this test would be such that the user could be sitting alone in a completely
 silent room, his head would be always at the same distance from the screen, resting in a head-rest and the LCD display's inclination would be perfectly
-adjusted to the user's eyes. \par
+adjusted to the user's eyes.
 %
 \subsection{Online Environment}
 %
@@ -58,7 +58,6 @@ somehow, in a standardized calibration fashion. The calibration steps which were
   \item To adjust the \textbf{Black Point} of your screen, define the \ul{Contrast} and \ul{Brightness} of your screen to their maximum.
   \item After Step 3, gradually reduce \textbf{Brightness} value of your screen, in order to correctly distinguish the squares of each image below [calibration squares images].
   \item If possible, define the \textbf{Color Temperature} of your screen to 6500 Kelvin Degrees.
-  \item You are now ready to answer the following questions!
 \end{enumerate} \par
 %
 The ideal conditions of this test would be such that we could control and maniupulate the color calibration of online user's LCD display, using a software
@@ -72,7 +71,28 @@ The users were asked to fill in a profiling questionnaire (as seeen of section \
 object(s) placed on top of a bar, to indicate a(the) color(s) which he thought were the correct mixture answers. In the end, the user could leave
 feedback, by sending a message which would be stored in a Relational Database. \par
 %
-The instructions which were presented in each page can be consulted in Appendix \ref{appendix:protocol}. \par
+The instructions which were presented in each page can be consulted in Appendix \ref{appendix:protocol}.
+%
+\subsection{Broadcasting the User Study}
+\label{sec:results_divulgation}
+%
+In order to collect a larger amount of users (either for the laboratory or online study), we had to spread the study either by \emph{word-of-mouth} and
+across some online platforms. We have tried to explore a platform whose unique goal is to deploy tasks for other humans to accomplish: "Mechanical Turk"
+(MTurk) from Amazon\textsuperscript{\textregistered} could represent an interesting path, on performing studies which need fast grow and a large number
+of answers and providing scalability: there are studies which have been performed, not only in order to assess Visualization Design features
+\cite{Heer2010}, but also to extract color themes from images \cite{Lin2013}, relying on MTurk to provide participants. However, when we tried to probe
+into it, we have realized that \emph{MTurk} at this time does not support Requesters from countries outside de United States, bringing an obvious obstacle. \par
+%
+Therefore, we have opted for spreading the study across social networks like Facebook\textsuperscript{\textregistered} or StumbleUpon. However, we found
+that gathering the laboratory users was a tough job to do, since the users were not willing to fulfill the study. We had even create a paid \emph{FacebookAds}
+advertisement to boost the visits to our webpage, which was online for three days targeting users from Australia, Brazil, Central African Republic, China,
+India, Japan, Portugal, Russia, United States and South Africa. These countries were selected to represent each continent, with the goal of collecting a
+representative cultural diversity to analyze. In the final phase of our study, we raffled a FNAC Prize Card with 20 euros to attract the final users. \par
+%
+Since the social networks were not provide the wanted amount of users, we explored a \emph{Reddit} subthread called "Sample Size", which exists to disseminate
+user studies across the internet, which provided 159 new visitors to our webpage. \par
+%
+All these different broadcasting channels were monitored by a Google Analytics piece of code embodied in each webpage.
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                DATA CLEANING                                                                    %
@@ -88,54 +108,26 @@ reported by the users, apparently the inability to submit answers when using the
 when users tried to perform the study in some mobile devices (namely, the \emph{iPhone\textsuperscript{\textregistered} 6}), whereon the color slider was
 not able to be dragged and change the color value at the user will. \par
 %
-Concerning the percentage of users which showed up at the \textbf{laboratory trials, there were twenty-nine (28) users who performed the entire study}.
-On the other hand, there were \textbf{two-hundred and thirty-two (231) users which carried out the study online}. There was also a small sample of color vision
+Concerning the percentage of users which showed up at the \textbf{laboratory trials, there were 28 users who performed the entire study}.
+On the other hand, there were \textbf{231 users which carried out the study online}. There was also a small sample of color vision
 deficient users which we will analyze in a qualitative manner; this set of users contains only one (1) user from the Laboratory Environment - \textbf{3.57\%} of
-the sample size - and two (2) online users - \textbf{less than 1\%}. Lastly, we detected a small percentage of \textbf{six (6) users (2.59\%) which did not
+the sample size - and two online users - \textbf{less than 1\%}. Lastly, we detected a small percentage of \textbf{six (6) users (2.59\%) which did not
 presented a correct calibration of its LCD display}, evaluation based on the criteria referred before.
 %
 The data presented and used in this dissertation document was gathered along roughly two months, from 15th of April until 8th of June. As said before,
 it was collected both with online and laboratory users, which was therefore stored in a Relational Database as previously explained in section
-\ref{sec:impl_designingsolution}. \par
-%
-In the end of the study, \gls{CSV} files were exported from each table using a PostgreSQL for macOS called
+\ref{sec:impl_designingsolution}. In the end of the study, \gls{CSV} files were exported from each table using a PostgreSQL for macOS called
 \emph{Postico}\footnote{Postico - a modern PostgreSQL client for the Mac, Available at: \url{eggerapps.at/postico/}. Last accessed on
-September 11th, 2016.}, which originated five files containing raw data to be cleaned and processed. The files were as follows:
-%
-\begin{itemize}
-  \item \emph{raw\_data\_user\_profile.csv} - Data aggregated from "Profiling", "Calibration" and "Color Vision Deficiencies" Tables;
-  \item \emph{raw\_data\_first\_profiling.csv} - Data from "Profiling" Table;
-  \item \emph{raw\_data\_first\_calibration.csv} - Data from "Calibration" Table;
-  \item \emph{raw\_data\_first\_ishihara.csv} - Data from "Color Vision Deficiencies" Table;
-  \item \emph{raw\_data\_first\_results.csv} - Data from "Results" Table;
-\end{itemize} \par
-%
-\begin{table}[htbp]
-  \resizebox{\textwidth}{!} {
-  \begin{tabular} {|c|c|c|c|c|c|c|c|c|c|}
-    \hline
-    User ID & Type & First Color & Second Color & Third Color & Drags & Time & Rating & Resets & Question ID \\ \hline \hline
-    5710cca334d60 & objTwoColors & \#0080FF & hsl(58.69565217391305,1,0.50) & hsl(98.15217391304348,1,0.50) & 992 & 117 & 4 & 2 & 10 \\ \hline
-    5745c1c07cc0c & objTwoColors & \#8000FF & hsl(300,1,0.50) & hsl(324.13043478260875,1,0.50) & 645 & 55 & 2 & 1 & 14 \\ \hline
-    5745350dc1e22 & objTwoColors & \#0080FF & hsl(226.30434782608697,1,0.50) & NONE & 115 & 11 & 5 & 1 & 10 \\ \hline
-    57451c3b38192 & objTwoColors & \#00FF80 & NONE & hsl(150,1,0.50) & 462 & 39 & 5 & 1 & 15 \\ \hline
-    574511e99b6d9 & objTwoColors & \#0080FF & hsl(15.652173913043478,1,0.50) & hsl(316.30434782608694,1,0.50) & 442 & 40, & 1 & 1 & 10 \\ \hline
-    57427cf6bad0c & twoColorsObj & \#00FFFF & \#FFFF00 & \#46FF9C & 6 & 14 & 3 & 1 & 32 \\ \hline
-    5740bda9be3dc & objTwoColors & \#FF7200 & hsl(9.130434782608695,1,0.50) & hsl(50.21739130434783,1,0.50) & 45 & 22 & 5 & 1 & 11 \\ \hline
-    573c783748e8b & twoColorsObj & \#00FFFF & \#CBFF00 & \#00FF6B & 44 & 25 & 3 & 1 & 32 \\
-    \hline
-  \end{tabular}}
-  \caption[Excerpt of Raw "Results" Table]{Excerpt of Results Table, with raw data.}
-  \label{table:csv_resultsraw}
-\end{table} \par
+September 11th, 2016.}, which originated the files containing raw data to be cleaned and processed. \par
 %
 The refined tables were then divided into new and more specific ones so that we could detail our results analysis according to the goals defined before;
 the "Results" table was refined into \ul{Laboratory Results}, \ul{Online Results} and demographic results: concerning the age, we divided it
 on \ul{Users aged below 20 Years Results}, \ul{Users aged between 20 and 29 Years Results}, \ul{Users aged between 30 and 39 Years Results},
 \ul{Users aged between 40 and 49 Years Results}, \ul{Users aged between 50 and 59 Years Results} and \ul{Users aged above 60 Years Results}.
-Respecting the division of genders, we created the categories \ul{Female Users Results}, \ul{Male Users Results} and \ul{Other Gender Users Results}.
-An excerpt of raw data contained in "Results" table can be found in table \ref{table:csv_resultsraw}; this allows us to support the explanation of the
-following steps of the cleaning phase. \par
+Respecting the division of genders, we created the categories \ul{Female Users Results}, \ul{Male Users Results} and \ul{Other Gender Users Results}. We
+have \textbf{not} excluded nor the users which provided answer to only one question from the 32 question set, or questions with only one color given when
+expecting an answer-pair; since the aim of this study was to collect the maximum amount of possible information from our users, these could provided
+useful and interesting inputs. \par
 %
 Dividing the results among smaller \gls{CSV} files was the first step of the cleaning phase: the next checklist represents the detailed path which
 was followed to fulfill the data cleaning.
@@ -204,59 +196,33 @@ demographic group and subset of users (non-calibrated and color vision deficient
 With this data processing, we intend to verify each answer-pair given by a certain user and compare the pairs with each other. It was important to separate the results by question
 ID, compare each questions' results with other questions that could conceive the same results, blend the values to check which color model answers are closer to (either \gls{HSV}, \gls{RGB},
 \gls{CMYK}, CIE-L*a*b* or CIE-L*C*h*) and also, give meaning to each value, attributing a name to each color. All these parameters and computations are describred in the next two
-subsections. \par
-%
-%\begin{lstlisting}[frame=single,basicstyle=\small,label={lst:pseudo_file},]
-%  % Pseudo-codigo generico;
-%  % Estrutura do ficheiro;
-%\end{lstlisting}
-%\captionof{lstlisting}{Pseudo-code representing each Script organization.}
+subsections.
 %
 \subsection{Data Preparation}
 \label{subsec:results_preparation}
 %
 Given the fact that questions had some differences between each other, there would have to be a cautious analysis; to achieve this, we developed a script for each question, each of
-file contains the particular set of characteristics ans specific comparisons and values of each question. An exemplary structure of these files can be found on pseudo-code box above.
-Each question file is capable of computing the following datasets: \par
+file contains the particular set of characteristics and specific comparisons and values of each question. Each question file is capable of computing the following datasets:
 %
 \begin{itemize}[noitemsep]
-  \item Laboratory Results (Regular Users);
-  \item Laboratory Results (Daltonic Users);
-  \item Online Results (Regular Users);
-  \item Online Results (Daltonic Users);
-  \item Online Results (Uncalibrated Users);
-  \item Demographic Groups: Users Aged Below 20 Years Results;
-  \item Demographic Groups: Users Aged Betweeen 20 and 29 Years Results;
-  \item Demographic Groups: Users Aged Betweeen 30 and 39 Years Results;
-  \item Demographic Groups: Users Aged Betweeen 40 and 49 Years Results;
-  \item Demographic Groups: Users Aged Betweeen 50 and 59 Years Results;
-  \item Demographic Groups: Users Aged Above 60 Years Results;
-  \item Demographic Groups: Female Users Results;
-  \item Demographic Groups: Male Users Results;
-  \item Demographic Groups: Other Gender Users Results;
-  \item Demographic Groups: White Answers (this computation is only available for Questions 1 to 17).
+  \item \textbf{Laboratory Results} (Non-Color Vision Deficient Users and Color Vision Deficient Users);
+  \item \textbf{Online Results} (Non-Color Vision Deficient, Color Vision Deficient and Uncalibrated Users);
+  \item \textbf{Demographic Groups}, such as: Age and Gender groups according to the division previously established.
+  \item \textbf{One-Component-White Answers} (this computation is only available for Questions 1 to 17).
 \end{itemize} \par
 %
-All these datasets are analyzed by a block of code similar to the one in box below \_\_ ; all iterations over each dataset start by \ul{verifiying if any value contained in
+All these datasets are analyzed by a block of code similar to the one in Appendix \ref{appendix:matlab_example}; all iterations over each dataset start by \ul{verifiying if any value contained in
 the answer pair is a white} (\emph{i.e.} zero valued) answer: if it is, it is stored in a different table, along with all white answers. This was executed \textbf{only
 with non-daltonic users and calibrated users and it was no applied to any type of demographic group}, since its analysis is out of the scope of this thesis. This analysis is
 interesting, since we can understand if the users opted to leave one value as 0 to truly indicate a white color (to blend and create a lighter color), or simply because they
 didn't know what to blend. \par
-%
-\textbf{INCLUIR BLOCO DE PSEUDO CODIGO de cada ciclo}
-%
-%\begin{lstlisting}[frame=single,basicstyle=\small,label={lst:pseudo_file},]
-%  % Pseudo-codigo generico;
-%  % Estrutura do ficheiro;
-%\end{lstlisting}
-%\captionof{lstlisting}{Pseudo-code representing each Script organization.}
 %
 Since the colors obtained in the color slider indicate values for the HSV Color Model, it was mandatory to convert the color to a common color standard: for that reason,
 \ul{the values were converted from HSV to CIE-XYZ Color Model}. Thus, we can produce color blends in every studied color model (\gls{HSV}, \gls{RGB}, \gls{CMYK}, CIE-L*a*b* and
 CIE L*C*h*) and ensure that colors obey to the same common standard; also, this is specially important to produce Chromaticity Diagrams where colors are mapped according to a set
 of XYZ primitives. Both of the answers were blended according to each color model referred before: for models which contained no angular values (\gls{RGB}, \gls{CMYK} and
 CIE-L*a*b*) it was only needed to interpolate the values for each primitive; but for models that have angular values (\gls{HSV} and CIE-L*C*h have their Hue's value), it was
-needed to calculate the angular interpolation of their primitives. \par
+needed to calculate the angular interpolation of their primitives.
 %
 \begin{equation}
   \label{eq:rgb_mix}
@@ -268,7 +234,7 @@ needed to calculate the angular interpolation of their primitives. \par
 \end{equation} \par
 %
 An example of linear interpolation between primitives can be seen on Equation \ref{eq:rgb_mix}, in which we blend \gls{RGB} primitives. The listing \ref{lst:hue_angular} shows
-how the angular interpolation is being calculated with our \emph{Matlab} script. \par
+how the angular interpolation is being calculated with our \emph{Matlab} script.
 %
 \begin{lstlisting} [frame=single,basicstyle=\small,label={lst:hue_angular}, caption = Excerpt of \emph{Matlab} code which interpolates the angular Hue value.]
   diff_angles = abs(Hue_C1 - Hue_C2);
@@ -294,7 +260,7 @@ pre-calculated answer. \par
 This computation is applied to all questions from 1 to 17, when the resultant color is given and two answers expected. However, there are some differences when processing
 data from questions 18 to 32, which are questions where the two primitive colors are given and the resulting color is expected, which implies a much simpler analysis due to only have to
 process one answer: there are no white answers to process (the ones which exist are excluded) and no colors to mix with each other; it is only calculated the distance of the
-answered color, to the expected one. \par
+answered color, to the expected one.
 %
 \subsection{Color Bins Comparation}
 \label{subsec:results_preparation}
@@ -306,23 +272,19 @@ Luckily, the web page \emph{XKCD}\footnote{XKCD - Stick-figure strip featuring h
 Available at: \url{xkcd.com/}. Last accessed on September 11th, 2016.} had already conducted a widely large Color Survey\footnote{Color Survey Results. Available at:
 \url{https://blog.xkcd.com/2010/05/03/color-survey-results/}. Last accessed on September 11th, 2016.} to study wich were the most common RGB color triples among users. They performed roughly more
 than 222 000 user sessions to ascertain color naming: they produced a map which shows the dominant names attributed to \gls{RGB} colors over the faces of \gls{RGB} cube (Figure \ref{fig:colornames_xkcd}),
-and they also produced a huge file comprised of 196 608 named \gls{RGB} triplets, grouped by \ul{Color Bins}. \par
+and they also produced a huge file comprised of 196 608 named \gls{RGB} triplets, grouped by \ul{Color Bins}.
 %
 \begin{figure}[htbp]
 	\centering
   \includegraphics[width=0.5\textwidth]{images/results/satfaces_map.png}
   \caption[XKCD Color Survey: Color Dominant Names]{XKCD Color Survey: map of color dominant names.\protect\footnotemark{}}
   \label{fig:colornames_xkcd}
-\end{figure}
+\end{figure} \par
 %
 Despite the fact XKCD's Color Survey was not a research realized with a scientific purpose, we decided to use it since it has plenty of information available to compare our results to, and it was executed with a great amount of users
-which can verify it. We also found great compatibility between this survey and ours, since the values in the first were also presented in its maximum value of saturation (similar to our user study, in which we present colors in maximum hue).  \par
-As said, these represent \gls{RGB} triplets but, being our user results all in accordance with the CIE XYZ Color Model, we needed some cleaning and processing to match the data our
-responses. We \ul{converted the RGB to CIE XYZ values} and, then, \ul{divided all of the Color Bins in different tables}; there are 27 names atributted to colors, some have more triplets
-(\emph{e.g.} blue, green or purple), but some have a smaller set, which could mean greater agreement to assign names to colors. These bins of color are represent with their frequencies, in table
-\ref{table:colorbins}. \par
+which can verify it. We also found great compatibility between this survey and ours, since the values in the first were also presented in its maximum value of saturation (similar to our user study, in which we present colors in maximum hue).
 %
-\begin{table}[htbp]
+\begin{table}[!htbp]
   \begin{center}
     \begin{tabular} {| c | c || c | c |}
       \hline
@@ -346,14 +308,19 @@ responses. We \ul{converted the RGB to CIE XYZ values} and, then, \ul{divided al
   \end{center}
   \caption[XKCD Color Survey: Color Bins]{XKCD Color Survey: color bins.}
   \label{table:colorbins}
-\end{table}
+\end{table} \par
+%
+As said, these represent \gls{RGB} triplets but, being our user results all in accordance with the CIE XYZ Color Model, we needed some cleaning and processing to match the data our
+responses. We \ul{converted the RGB to CIE XYZ values} and, then, \ul{divided all of the Color Bins in different tables}; there are 27 names atributted to colors, some have more triplets
+(\emph{e.g.} blue, green or purple), but some have a smaller set, which could mean greater agreement to assign names to colors. These bins of color are represent with their frequencies, in table
+\ref{table:colorbins}. \par
 %
 The idea was to compare our answers with each color bin, to create a mapping between our users' values and commonly-used names; in order to simplify and speed up the computation
 of the comparations, each color bin was drawn and the lowest polygon formed by the set of triplets of each bin was used to compare the values (instead of comparing each answer
 with every triplet). Moreover, when processing these sets of RGB triplets, we left 3 color bins out of the game: \emph{Black} since it has no expressivity in the Chromaticity Diagram,
-\emph{Dark-Red} and \emph{Light-Green} because they have very few triplets to be drawn. \par
+\emph{Dark-Red} and \emph{Light-Green} because they have very few triplets to be drawn.
 %
-\begin{figure}
+\begin{figure}[!htbp]
   \centering
   \begin{minipage}{0.54\textwidth}
     \centering
@@ -367,20 +334,20 @@ with every triplet). Moreover, when processing these sets of RGB triplets, we le
     \caption[Approximate Color Regions on CIE 1931 Chromaticity Diagram]{Approximate Color Regions on CIE 1931 Chromaticity Diagram. \cite{Fortner1997}}
     \label{fig:cie_colorregions}
   \end{minipage}
-\end{figure}
+\end{figure} \par
 %
 However, we expected that when these color bins were drawn on a chromaticity diagram, they would create independent and more comprehensive shapes: we found that there are overlapping
 values for some color bins (Figure \ref{fig:colorbins_areas}), which ultimately complicates the analysis because there is more than one possible name for the same color. For example, \emph{Blue} and \emph{Dark-Blue}
 share 5 triplets: (0,0,76), (0,0,77), (0,0,78), (0,0,79) and (0,0,80); \emph{Green} and \emph{Dark-Green} share only 1 triplet, (0,57,0). No value was excluded from any color bin,
 instead we solve the problem by allowing the program to find only one of the names and look no more after finding it. Moreover, the shapes created by each color bin can be depicted as \textbf{lines}
 if they present contiguous values in the same edge of the triangle, or as \textbf{triangles} if the values are near the corner of the triangle and are distributed along two edges. The late situation is
-represented in Figure \ref{fig:colorbins_triangle}\par
+represented in Figure \ref{fig:colorbins_triangle}.
 %
 \begin{figure}
   \centering
   \includegraphics[width=0.8\textwidth]{images/results/colorbins_transformation.png}
   \caption[XKCD Color Survey: Color Bins Transformation]{XKCD Color Survey: Color Bins Transformation from line of points, to minimum polygon.}
-  \label{fig:colornames_xkcd}
+  \label{fig:colorbins_triangle}
 \end{figure} \par
 %
 Alternatively, we could have opted for another kind of color name detection, but its implementation would be out of the scope of this Master thesis and would take a much longer
@@ -389,15 +356,14 @@ value with calculated areas, roughly defined by Brand Fortner \cite{Fortner1997}
 of its solution (dated from 1997), and the inexistence of a ready-to-go implementation, completed with an svg with all areas defined, had added weight on the decision. \par
 %
 Another possible method to decode color into name would be to interpret color values and associate a color temperature, being the late one compared against a well defined table
-of values; the problem here was the non-existence of table of well defined values of color temperature. Further investigation is needed to ascertain the possibility of creating such
-table. \par
+of values; the problem here was the non-existence of table of well defined values of color temperature. Further investigation is needed to ascertain the possibility of creating such table.
 %
 \subsection{Outputs Generated}
 \label{subsec:results_outputsgenerated}
 %
 Each script ends its execution when saving all the outputs contained in table \ref{table:outputs}: it generates a set of \gls{CSV} tables ready for being analyzed by
 SPSS Program, besides creating a great amount of CIE chromaticity diagrams to support the analysis. As referred before, questions 18 to 32 do not generate any output about
-white answers. \par
+white answers.
 %
 \begin{table}[htbp]
   \begin{center}
@@ -424,21 +390,20 @@ white answers. \par
   \caption[Generated Outputs of Data Processing Phase]{Generated Outputs of Data Processing Phase.}
   \label{table:outputs}
 \end{table}
+%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                   RESULTS                                                                       %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
 \section{Results}
 \label{sec:results_results}
 %
 In the following section, we perform a statistical analysis of the processed data obtained from the user study. The main data to be analyzed is the one obtained in the
 laboratory environment, being the online data only the corroboration of the main data. We start by drawing a profile of users who responded the survey, characterizing them as the age,
-country of residence, academic degree, along with other characteristics; after, we begin mapping answers to the questions raised in the beginning of study, also referred in section
+country of residence, academic degree, along with other characteristics; after, we begin drafting answers to the questions raised in the beginning of study, also referred in section
 \ref{sec:impl_objectives}, which comprises topics about \emph{Color Mixtures}, \emph{Color Models}, \emph{Color Naming} and consider differences between \emph{demographic groups}. \par
 %
-By the end of this chapter, we are going to discuss the results of the analysis and consider eventual implications for \gls{InfoVis} field of research. The following table \ref{table:summarize_results}
-summarizes how the study is characterized: how many responses were given \emph{per} question, from which environment they came and the user sample from each demographic group. \par
-%
-\textbf{INCLUIR TABELA COM CONTAGEM.}
+By the end of this chapter, we are going to discuss the results of the analysis and consider eventual implications for \gls{InfoVis} field of research. \par
 %
 \subsection{User Profile}
 \label{subsec:results_userprofile}
@@ -658,10 +623,10 @@ does not generate a purple shade, according to users' expectations}. The results
     \hline
     \multicolumn{1}{c}{}                              &                                      & \multicolumn{2}{c}{Expected Colors}                   & \multicolumn{10}{c}{Possible Results}                                                                                                                                                                                                                                                                                        \\ \cline{3-14}
     \multicolumn{1}{c}{\multirow{-2}{*}{Question ID}} & \multirow{-2}{*}{Given Color}        & C1                       & C2                         & \multicolumn{2}{c}{HSV}                                        & \multicolumn{2}{c}{CIE-L*C*h*}                                 & \multicolumn{2}{c}{CMYK}                                       & \multicolumn{2}{c}{RGB}                                        & \multicolumn{2}{c}{CIE-L*a*b*}                                 \\ \hline
-    \multicolumn{1}{c}{4}                             & \cellcolor[HTML]{7F00FF}(27, 12, 95) & \multicolumn{1}{c|}{Red} & \multicolumn{1}{c|}{Cyan}  & \multicolumn{2}{c|}{\cellcolor[HTML]{FF00FF}(59, 28, 97)}      & \multicolumn{2}{c|}{-}       & \multicolumn{2}{c|}{-}        & \multicolumn{2}{c|}{-}       & \multicolumn{2}{c|}{-}       \\ \hline
+    \multicolumn{1}{c}{4}                             & \cellcolor[HTML]{7F00FF}(27, 12, 95) & \multicolumn{1}{c|}{Red} & \multicolumn{1}{c|}{Cyan}  & \multicolumn{2}{c|}{\cellcolor[HTML]{7F00FF}(27, 12, 95)      & \multicolumn{2}{c|}{\cellcolor[HTML]{91C01D}(31, 44, 8)}       & \multicolumn{2}{c|}{\cellcolor[HTML]{808080}(21, 22, 24)}       & \multicolumn{2}{c|}{\cellcolor[HTML]{808080}(21, 22, 24)}       & \multicolumn{2}{c|}{\cellcolor[HTML]{DDA581}(47, 44, 27)}       \\ \hline
                                                       & \multicolumn{1}{l}{}                 & \multicolumn{1}{l}{}     & \multicolumn{1}{l}{}       & \multicolumn{1}{c}{$\tilde{x}$} & \multicolumn{1}{c}{$\sigma$} & \multicolumn{1}{c}{$\tilde{x}$} & \multicolumn{1}{c}{$\sigma$} & \multicolumn{1}{c}{$\tilde{x}$} & \multicolumn{1}{c}{$\sigma$} & \multicolumn{1}{c}{$\tilde{x}$} & \multicolumn{1}{c}{$\sigma$} & \multicolumn{1}{c}{$\tilde{x}$} & \multicolumn{1}{c}{$\sigma$} \\ \hline
-    \multicolumn{4}{l}{Distance to Objective - Laboratory}                                                                                           & \multicolumn{1}{|c}{0.12}       & \multicolumn{1}{c|}{0.13}    & \multicolumn{1}{|c}{-}       & \multicolumn{1}{c|}{-}    & \multicolumn{1}{|c}{-}         & \multicolumn{1}{c|}{-}    & \multicolumn{1}{|c}{-}       & \multicolumn{1}{c|}{-}    & \multicolumn{1}{|c}{-}       & \multicolumn{1}{c|}{-}    \\
-    \multicolumn{4}{l}{Distance to Objective - Online}                                                                                               & \multicolumn{1}{|c}{0.11}       & \multicolumn{1}{c|}{0.15}    & \multicolumn{1}{|c}{-}       & \multicolumn{1}{c|}{-}    & \multicolumn{1}{|c}{-}         & \multicolumn{1}{c|}{-}    & \multicolumn{1}{|c}{-}        & \multicolumn{1}{c|}{-}    & \multicolumn{1}{|c}{-}       & \multicolumn{1}{c|}{-}    \\ \hline
+    \multicolumn{4}{l}{Distance to Objective - Laboratory}                                                                                           & \multicolumn{1}{|c}{0.12}       & \multicolumn{1}{c|}{0.13}    & \multicolumn{1}{|c}{0.20}       & \multicolumn{1}{c|}{0.06}    & \multicolumn{1}{|c}{\textbf{0.10}}         & \multicolumn{1}{c|}{0.04}    & \multicolumn{1}{|c}{0.19}       & \multicolumn{1}{c|}{0.06}    & \multicolumn{1}{|c}{0.20}       & \multicolumn{1}{c|}{0.09}    \\
+    \multicolumn{4}{l}{Distance to Objective - Online}                                                                                               & \multicolumn{1}{|c}{0.11}       & \multicolumn{1}{c|}{0.15}    & \multicolumn{1}{|c}{0.22}       & \multicolumn{1}{c|}{0.08}    & \multicolumn{1}{|c}{\textbf{0.11}}         & \multicolumn{1}{c|}{0.04}    & \multicolumn{1}{|c}{0.21}        & \multicolumn{1}{c|}{0.08}    & \multicolumn{1}{|c}{0.23}       & \multicolumn{1}{c|}{0.10}    \\ \hline
     \end{tabular}}
   \caption[Question 4, with expected Results.]{Question 4, with expected colors, possible results, mean and standard deviation of distances to Objective colors.}
   \label{table:lab_q4_expected}
@@ -903,10 +868,10 @@ demonstrates the placement of answer-pairs, and the pairs blended in HSV Color M
     \hline
     \multicolumn{1}{c}{}                              &                                      & \multicolumn{2}{c}{Expected Colors}                   & \multicolumn{10}{c}{Possible Results}                                                                                                                                                                                                                                                                                        \\ \cline{3-14}
     \multicolumn{1}{c}{\multirow{-2}{*}{Question ID}} & \multirow{-2}{*}{Given Color}        & C1                       & C2                         & \multicolumn{2}{c}{HSV}                                        & \multicolumn{2}{c}{CIE-L*C*h*}                                 & \multicolumn{2}{c}{CMYK}                                       & \multicolumn{2}{c}{RGB}                                        & \multicolumn{2}{c}{CIE-L*a*b*}                                 \\ \hline
-    \multicolumn{1}{c}{11}                             & \cellcolor[HTML]{FF8000}(49, 37, 5) & \multicolumn{1}{c|}{Green} & \multicolumn{1}{c|}{Magenta}  & \multicolumn{2}{c|}{\cellcolor[HTML]{FF8000}(49, 37, 5)}      & \multicolumn{2}{c|}{-}       & \multicolumn{2}{c|}{-}       & \multicolumn{2}{c|}{-}       & \multicolumn{2}{c|}{-}       \\ \hline
+    \multicolumn{1}{c}{11}                             & \cellcolor[HTML]{FF8000}(49, 37, 5) & \multicolumn{1}{c|}{Green} & \multicolumn{1}{c|}{Magenta}  & \multicolumn{2}{c|}{\cellcolor[HTML]{FF8000}(49, 37, 5)}      & \multicolumn{2}{c|}{\cellcolor[HTML]{FF6F00}(47, 33, 4)}       & \multicolumn{2}{c|}{\cellcolor[HTML]{808080}(21, 22, 24)}       & \multicolumn{2}{c|}{\cellcolor[HTML]{808080}(21, 22, 24)}       & \multicolumn{2}{c|}{\cellcolor[HTML]{C9B2A2}(47, 48, 41)}       \\ \hline
                                                       & \multicolumn{1}{l}{}                 & \multicolumn{1}{l}{}     & \multicolumn{1}{l}{}       & \multicolumn{1}{c}{$\tilde{x}$} & \multicolumn{1}{c}{$\sigma$} & \multicolumn{1}{c}{$\tilde{x}$} & \multicolumn{1}{c}{$\sigma$} & \multicolumn{1}{c}{$\tilde{x}$} & \multicolumn{1}{c}{$\sigma$} & \multicolumn{1}{c}{$\tilde{x}$} & \multicolumn{1}{c}{$\sigma$} & \multicolumn{1}{c}{$\tilde{x}$} & \multicolumn{1}{c}{$\sigma$} \\ \hline
-    \multicolumn{4}{l}{Distance to Objective - Laboratory}                                                                                           & \multicolumn{1}{|c}{0.06}       & \multicolumn{1}{c|}{0.09}    & \multicolumn{1}{|c}{-}       & \multicolumn{1}{c|}{-}    & \multicolumn{1}{|c}{-}       & \multicolumn{1}{c|}{-}    & \multicolumn{1}{|c}{-}       & \multicolumn{1}{c|}{-}    & \multicolumn{1}{|c}{-}       & \multicolumn{1}{c|}{-}    \\
-    \multicolumn{4}{l}{Distance to Objective - Online}                                                                                               & \multicolumn{1}{|c}{0.04}        & \multicolumn{1}{c|}{0.06}    & \multicolumn{1}{|c}{-}        & \multicolumn{1}{c|}{-}    & \multicolumn{1}{|c}{-}       & \multicolumn{1}{c|}{-}    & \multicolumn{1}{|c}{-}        & \multicolumn{1}{c|}{-}    & \multicolumn{1}{|c}{-}       & \multicolumn{1}{c|}{-}    \\ \hline
+    \multicolumn{4}{l}{Distance to Objective - Laboratory}                                                                                           & \multicolumn{1}{|c}{\textbf{0.06}}       & \multicolumn{1}{c|}{0.09}    & \multicolumn{1}{|c}{0.14}       & \multicolumn{1}{c|}{0.12}    & \multicolumn{1}{|c}{0.13}       & \multicolumn{1}{c|}{0.03}    & \multicolumn{1}{|c}{0.18}       & \multicolumn{1}{c|}{0.04}    & \multicolumn{1}{|c}{0.14}       & \multicolumn{1}{c|}{0.03}    \\
+    \multicolumn{4}{l}{Distance to Objective - Online}                                                                                               & \multicolumn{1}{|c}{\textbf{0.04}}        & \multicolumn{1}{c|}{0.06}    & \multicolumn{1}{|c}{0.12}        & \multicolumn{1}{c|}{0.10}    & \multicolumn{1}{|c}{0.14}       & \multicolumn{1}{c|}{0.02}    & \multicolumn{1}{|c}{0.19}        & \multicolumn{1}{c|}{0.02}    & \multicolumn{1}{|c}{0.15}       & \multicolumn{1}{c|}{0.01}    \\ \hline
     \end{tabular}}
   \caption[Question 11, with expected Results.]{Question 11, with expected colors, possible results, mean and standard deviation of distances to Objective colors.}
   \label{table:lab_q11_expected}
@@ -1141,10 +1106,10 @@ demonstrates the placement of answer-pairs, and the pairs blended in HSV Color M
     \hline
     \multicolumn{1}{c}{}                              &                                      & \multicolumn{2}{c}{Expected Colors}                   & \multicolumn{10}{c}{Possible Results}                                                                                                                                                                                                                                                                                        \\ \cline{3-14}
     \multicolumn{1}{c}{\multirow{-2}{*}{Question ID}} & \multirow{-2}{*}{Given Color}        & C1                       & C2                         & \multicolumn{2}{c}{HSV}                                        & \multicolumn{2}{c}{CIE-L*C*h*}                                 & \multicolumn{2}{c}{CMYK}                                       & \multicolumn{2}{c}{RGB}                                        & \multicolumn{2}{c}{CIE-L*a*b*}                                 \\ \hline
-    \multicolumn{1}{c}{16}                             & \cellcolor[HTML]{FF007F}(45, 23, 22) & \multicolumn{1}{c|}{Blue} & \multicolumn{1}{c|}{Yellow}  & \multicolumn{2}{c|}{\cellcolor[HTML]{FF007F}(45, 23, 22)}      & \multicolumn{2}{c|}{-}       & \multicolumn{2}{c|}{-}       & \multicolumn{2}{c|}{}       & \multicolumn{2}{c|}{}       \\ \hline
+    \multicolumn{1}{c}{16}                             & \cellcolor[HTML]{FF007F}(45, 23, 22) & \multicolumn{1}{c|}{Blue} & \multicolumn{1}{c|}{Yellow}  & \multicolumn{2}{c|}{\cellcolor[HTML]{FF007F}(45, 23, 22)}      & \multicolumn{2}{c|}{\cellcolor[HTML]{FF0050}(43, 22, 10)}       & \multicolumn{2}{c|}{\cellcolor[HTML]{808080}(21, 22, 24)}       & \multicolumn{2}{c|}{\cellcolor[HTML]{808080}(21, 22, 24)}       & \multicolumn{2}{c|}{\cellcolor[HTML]{CA8AAA}(41, 34, 42)}       \\ \hline
                                                       & \multicolumn{1}{l}{}                 & \multicolumn{1}{l}{}     & \multicolumn{1}{l}{}       & \multicolumn{1}{c}{$\tilde{x}$} & \multicolumn{1}{c}{$\sigma$} & \multicolumn{1}{c}{$\tilde{x}$} & \multicolumn{1}{c}{$\sigma$} & \multicolumn{1}{c}{$\tilde{x}$} & \multicolumn{1}{c}{$\sigma$} & \multicolumn{1}{c}{$\tilde{x}$} & \multicolumn{1}{c}{$\sigma$} & \multicolumn{1}{c}{$\tilde{x}$} & \multicolumn{1}{c}{$\sigma$} \\ \hline
-    \multicolumn{4}{l}{Distance to Objective - Laboratory}                                                                                           & \multicolumn{1}{|c}{0.21}       & \multicolumn{1}{c|}{0.10}    & \multicolumn{1}{|c}{-}       & \multicolumn{1}{c|}{-}    & \multicolumn{1}{|c}{-}       & \multicolumn{1}{c|}{-}    & \multicolumn{1}{|c}{-}       & \multicolumn{1}{c|}{-}    & \multicolumn{1}{|c}{-}       & \multicolumn{1}{c|}{-}    \\
-    \multicolumn{4}{l}{Distance to Objective - Online}                                                                                               & \multicolumn{1}{|c}{0.19}        & \multicolumn{1}{c|}{0.12}    & \multicolumn{1}{|c}{-}        & \multicolumn{1}{c|}{-}    & \multicolumn{1}{|c}{-}       & \multicolumn{1}{c|}{-}    & \multicolumn{1}{|c}{-}        & \multicolumn{1}{c|}{-}    & \multicolumn{1}{|c}{-}       & \multicolumn{1}{c|}{-}    \\ \hline
+    \multicolumn{4}{l}{Distance to Objective - Laboratory}                                                                                           & \multicolumn{1}{|c}{0.21}       & \multicolumn{1}{c|}{0.10}    & \multicolumn{1}{|c}{0.22}       & \multicolumn{1}{c|}{0.12}    & \multicolumn{1}{|c}{\textbf{0.10}}       & \multicolumn{1}{c|}{0.05}    & \multicolumn{1}{|c}{0.16}       & \multicolumn{1}{c|}{0.07}    & \multicolumn{1}{|c}{0.12}       & \multicolumn{1}{c|}{0.08}    \\
+    \multicolumn{4}{l}{Distance to Objective - Online}                                                                                               & \multicolumn{1}{|c}{0.19}        & \multicolumn{1}{c|}{0.12}    & \multicolumn{1}{|c}{0.17}        & \multicolumn{1}{c|}{0.09}    & \multicolumn{1}{|c}{\textbf{0.10}}       & \multicolumn{1}{c|}{0.06}    & \multicolumn{1}{|c}{0.15}        & \multicolumn{1}{c|}{0.07}    & \multicolumn{1}{|c}{0.11}       & \multicolumn{1}{c|}{0.06}    \\ \hline
     \end{tabular}}
   \caption[Question 16, with expected Results.]{Question 16, with expected colors, possible results, mean and standard deviation of distances to Objective colors.}
   \label{table:lab_q16_expected}
@@ -1201,14 +1166,6 @@ could be justified by the fact that \textbf{cyan and yellow are primitives from 
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
-\subsubsection{Analyzing Color Models}
-\label{subsubsec:models_analyzing}
-%
-Now that we have broke down the results for each question, it is important to evaluate the values according to each color model. Based on table \ref{table:colormodels_distances_labonline},
-which presents the mean values for each color model decomposed by question, we can run descriptive statistics over its column and produce table \ref{table:colormodels_distances_labonline_statistics} that
-is going to be helpul when inspecting the results \emph{per} color model. We have also gathered the results from the previous section, displaying the three best and worst results of each color model, identified as green and red,
-respectively: this information is condensed in table \ref{table:colormodels_distances_questions_statistics}. \par
-%
 \begin{table}[htbp]
   \resizebox{\textwidth}{!} {
   \begin{tabular}{@{}ccccccccccc@{}}
@@ -1236,6 +1193,14 @@ respectively: this information is condensed in table \ref{table:colormodels_dist
   \caption[Laboratory Results: Statistics for distances \emph{per} question, of Results Mixed in each Color Model]{Laboratory Results: Statistics for distances \emph{per} question, of Results Mixed in each Color Model, for each question. In Green/Red shade, the three best/worst results for each descriptive statistic.}
   \label{table:colormodels_distances_questions_statistics}
 \end{table}
+%
+\subsubsection{Analyzing Color Models}
+\label{subsubsec:models_analyzing}
+%
+Now that we have broke down the results for each question, it is important to evaluate the values according to each color model. Based on table \ref{table:colormodels_distances_labonline},
+which presents the mean values for each color model decomposed by question, we can run descriptive statistics over its column and produce table \ref{table:colormodels_distances_labonline_statistics} that
+is going to be helpul when inspecting the results \emph{per} color model. We have also gathered the results from the previous section, displaying the three best and worst results of each color model, identified as green and red,
+respectively: this information is condensed in table \ref{table:colormodels_distances_questions_statistics}. \par
 %
 \begin{table}[htbp]
   \resizebox{\textwidth}{!} {
@@ -1266,6 +1231,14 @@ we are going to break down the results according to Color Models \emph{per} ques
 \paragraph{\ul{HSV Color Model Blendings}} \par
 \label{par:hsvcolormodel}
 %
+\begin{wrapfigure}[12]{r}{0.4\textwidth}
+	\centering
+    \vspace{-\baselineskip}
+	  \includegraphics[width=0.3\textwidth]{images/results/HSV_hue.png}
+    \caption[Example of HSV Hue Circle, with opposed hue values.]{Example of HSV Hue Circle, with opposed hue values. Depicted: Questions 3 and 4, with resulting hues $270º$ and $90º$.}
+    \label{fig:hsvcircles_example}
+\end{wrapfigure}
+%
 The HSV Color Model, along with CMYK and RGB, is the one which presents the lowest standard deviation of distances between the results from the online environment; it is also one of the color models which has
 the lowest ranges of values on the same environment, which could indicate greater agreement between distances to the ideal HSV Color Model answer. \par
 %
@@ -1280,13 +1253,6 @@ this could be due to the fact that \textbf{the color sliders which were in the u
 %
 When comparing the results from the HSV color model with other color models' results, we detect some statiscally significant differences with other models: performing a Wilcoxon Test ($p < 0.05$), we can infer that HSV does
 have statistically significant differences with CIE-L*C*h*, CMYK, RGB and CIE-L*a*b* in the majority of questions. The model which HSV has least statistically significant differences with is RGB, with seven questions. \par
-%
-\begin{figure}[!htbp]
-  \centering
-  \includegraphics[width=0.5\textwidth]{images/results/HSV_hue.png}
-  \caption[Example of HSV Hue Circle, with opposed hue values.]{Example of HSV Hue Circle, with opposed hue values. Depicted: Questions 3 and 4, with resulting hues $270º$ and $90º$.}
-  \label{fig:hsvcircles_example}
-\end{figure}
 %
 As referred before, there are some color blends that, due to the fact that primitives of the mixture are precisely opposed ($180º$) in the HSV hue circle, the blending in HSV Model could produce two different outputs.
 This occurs if one mixes the colors obeying to a positive or negative rotation on the circle (as seen on figure \ref{fig:hsvcircles_example}). There are in this study three pairs of colors which blend onto two possible
@@ -1550,7 +1516,7 @@ Since the CIE-L*a*b* conveys the entire set of perceived by the human eye, it \t
   \begin{minipage}{0.48\textwidth}
     \centering
     \includegraphics[width=\textwidth]{images/results/6_online_Labresponses.png}
-    \caption[Online Results: Answers for Question 6, from regular users, mixed in CIE-L*a*b* Color Model.]{Laboratory Results: Answers for Question 6, from regular users, mixed in CIE-L*a*b* Color Model.}
+    \caption[Online Results: Answers for Question 6, from regular users, mixed in CIE-L*a*b* Color Model.]{Online Results: Answers for Question 6, from regular users, mixed in CIE-L*a*b* Color Model.}
     \label{fig:onlinelabregular_6}
   \end{minipage}
 \end{figure}
@@ -1576,7 +1542,7 @@ values (which were nothing more than all the results of all questions, blended a
 since the colors presented were already blended}, missing only to calculate the distance of answers to the ideal ones: the results for these questions are expressed on Table \ref{table:expectation_distances_labonline},
 with cells shaded in green which represent the best value for each one of questions. \par
 %
-\begin{table}[!htbp]
+\begin{table}[htbp]
   \resizebox{\textwidth}{!} {
   \begin{tabular}{@{}cccccclccccclcccc@{}}
     \toprule
@@ -1604,7 +1570,22 @@ with cells shaded in green which represent the best value for each one of questi
 \end{table}
 %
 As seen on the table, the results are roughly similar to the ones found on Table \ref{table:colormodels_distances_questions_statistics}, which depited the mean values for the results of questions which
-presented the result of a given mixture. However, there are some differences which we would like to comment. \par
+presented the result of a given mixture. However, there are some differences which we would like to comment.
+%
+\begin{table}[htbp]
+  \resizebox{\textwidth}{!} {
+  \begin{tabular}{lccccccccccccc}
+    \hline
+    \multicolumn{1}{c}{}                              & \multicolumn{2}{c}{Presented Colors}             &                                                            & \multicolumn{10}{c}{Possible Results}                                                                                                                                                                                                                                                                       \\ \cline{2-3} \cline{5-14}
+    \multicolumn{1}{c}{\multirow{-2}{*}{Question ID}} & C1                   & C2                        & \multirow{-2}{*}{Expected Color}                           & \multicolumn{2}{c}{HSV}                                    & \multicolumn{2}{c}{CIE-L*C*h}                              & \multicolumn{2}{c}{CMYK}                                  & \multicolumn{2}{c}{RGB}                                   & \multicolumn{2}{c}{CIE-L*a*b*}                            \\ \hline
+    \multicolumn{1}{c|}{20}                           & Green                & \multicolumn{1}{c|}{Blue} & \multicolumn{1}{c|}{\cellcolor[HTML]{00FFFF}(54, 79, 107)} & \multicolumn{2}{c|}{\cellcolor[HTML]{00FFFF}(54, 79, 107)} & \multicolumn{2}{c|}{\cellcolor[HTML]{00A5FF}(32, 34, 100)} & \multicolumn{2}{c|}{\cellcolor[HTML]{008080}(12, 17, 23)} & \multicolumn{2}{c|}{\cellcolor[HTML]{008080}(12, 17, 23)} & \multicolumn{2}{c|}{\cellcolor[HTML]{7D93A6}(26, 28, 40)} \\ \hline
+                                                      & \multicolumn{1}{l}{} & \multicolumn{1}{l}{}      & \multicolumn{1}{l}{}                                       & $\tilde{x}$           & $\sigma$                           & $\tilde{x}$           & $\sigma$                           & $\tilde{x}$          & $\sigma$                           & $\tilde{x}$          & $\sigma$                           & $\tilde{x}$           & $\sigma$                          \\ \hline
+    \multicolumn{4}{l|}{Distance to Objective - Laboratory}                                                                                                            & 0.13                  & \multicolumn{1}{c|}{0.06}          & 0.17                  & \multicolumn{1}{c|}{0.09}          & 0.14                 & \multicolumn{1}{c|}{0.08}          & 0.13                 & \multicolumn{1}{c|}{0.06}          & \textbf{0.11}         & \multicolumn{1}{c|}{0.05}         \\
+    \multicolumn{4}{l|}{Distance to Objective - Online}                                                                                                                & 0.12                  & \multicolumn{1}{c|}{0.06}          & 0.17                  & \multicolumn{1}{c|}{0.08}          & 0.13                 & \multicolumn{1}{c|}{0.07}          & 0.12                 & \multicolumn{1}{c|}{0.06}          & \textbf{0.10}         & \multicolumn{1}{c|}{0.06}         \\ \hline
+  \end{tabular}}
+  \caption[Question 20, with expected Results.]{Question 20, with expected colors, possible results, mean and standard deviation of distances to Objective colors.}
+  \label{table:lab_q20_expected}
+\end{table}
 %
 \begin{itemize}
   \item \ul{Cyan} - As referred before, mistakenly the cyan color was not presented to the user in order to indicate a blending-basis which could create such color. However, we can analyze the results of
@@ -1614,22 +1595,7 @@ presented the result of a given mixture. However, there are some differences whi
   expectactions}. Figure \ref{fig:onlineregular_20} depicts the answers given by the online users: although this user sample has the lowest distance to ideal answer, it is possible to observe that data is
   a bit scattered across the chromaticity diagram.
   %
-  \begin{table}[H]
-    \resizebox{\textwidth}{!} {
-    \begin{tabular}{lccccccccccccc}
-      \hline
-      \multicolumn{1}{c}{}                              & \multicolumn{2}{c}{Presented Colors}             &                                                            & \multicolumn{10}{c}{Possible Results}                                                                                                                                                                                                                                                                       \\ \cline{2-3} \cline{5-14}
-      \multicolumn{1}{c}{\multirow{-2}{*}{Question ID}} & C1                   & C2                        & \multirow{-2}{*}{Expected Color}                           & \multicolumn{2}{c}{HSV}                                    & \multicolumn{2}{c}{CIE-L*C*h}                              & \multicolumn{2}{c}{CMYK}                                  & \multicolumn{2}{c}{RGB}                                   & \multicolumn{2}{c}{CIE-L*a*b*}                            \\ \hline
-      \multicolumn{1}{c|}{20}                           & Green                & \multicolumn{1}{c|}{Blue} & \multicolumn{1}{c|}{\cellcolor[HTML]{00FFFF}(54, 79, 107)} & \multicolumn{2}{c|}{\cellcolor[HTML]{00FFFF}(54, 79, 107)} & \multicolumn{2}{c|}{\cellcolor[HTML]{00A5FF}(32, 34, 100)} & \multicolumn{2}{c|}{\cellcolor[HTML]{008080}(12, 17, 23)} & \multicolumn{2}{c|}{\cellcolor[HTML]{008080}(12, 17, 23)} & \multicolumn{2}{c|}{\cellcolor[HTML]{7D93A6}(26, 28, 40)} \\ \hline
-                                                        & \multicolumn{1}{l}{} & \multicolumn{1}{l}{}      & \multicolumn{1}{l}{}                                       & $\tilde{x}$           & $\sigma$                           & $\tilde{x}$           & $\sigma$                           & $\tilde{x}$          & $\sigma$                           & $\tilde{x}$          & $\sigma$                           & $\tilde{x}$           & $\sigma$                          \\ \hline
-      \multicolumn{4}{l|}{Distance to Objective - Laboratory}                                                                                                            & 0.13                  & \multicolumn{1}{c|}{0.06}          & 0.17                  & \multicolumn{1}{c|}{0.09}          & 0.14                 & \multicolumn{1}{c|}{0.08}          & 0.13                 & \multicolumn{1}{c|}{0.06}          & \textbf{0.11}         & \multicolumn{1}{c|}{0.05}         \\
-      \multicolumn{4}{l|}{Distance to Objective - Online}                                                                                                                & 0.12                  & \multicolumn{1}{c|}{0.06}          & 0.17                  & \multicolumn{1}{c|}{0.08}          & 0.13                 & \multicolumn{1}{c|}{0.07}          & 0.12                 & \multicolumn{1}{c|}{0.06}          & \textbf{0.10}         & \multicolumn{1}{c|}{0.06}         \\ \hline
-    \end{tabular}}
-    \caption[Question 20, with expected Results.]{Question 20, with expected colors, possible results, mean and standard deviation of distances to Objective colors.}
-    \label{table:lab_q20_expected}
-  \end{table}
-  %
-  \begin{figure}[!htbp]
+  \begin{figure}
     \centering
     \includegraphics[width=0.7\textwidth]{images/results/20_online_regularUsers.png}
     \caption[Online Results: Answers for Question 20, from regular users.]{Online Results: Answers for Question 20, from regular users.}
@@ -1715,7 +1681,7 @@ presented the result of a given mixture. However, there are some differences whi
     \label{table:colormodels_expectations_labonline_statistics}
   \end{table}
   %
-\end{itemize}
+\end{itemize} \par
 %
 Therefore, we can summarize the results in one table, which ranks the color models \emph{per} color blending, dividing it between two strands: based on the values that represent questions in which the user was
 asked to indicate the blending-basis, and based on the values that represent questions in which the user was asked to point out the correct blending result when given two colors. These results are presented in
@@ -2008,23 +1974,17 @@ answer with a white color, lightning it down to a lighter color. The blendings w
 producing a Purple shade} (twenty entries). Analyzing these answers, we conclude that the option of \textbf{indicating only one color \ul{is not} due to knowing just one primitive of the blending}, since a barely set of users indicated correctly one primitive.
 However, there was a tendency for users to indicate colors which were near ($distance < 0.1$) the resulting color (already presented): this could indicate that \textbf{the users either left an empty color as a whitening one, along with a darker shade than the
 result, or they indicated the same color as the result, according to their expectation and color perception}. Since it is not possible for us to judge this information based on these results only, it would be ideal if further studies could deepen this matter.
-Figures \ref{fig:white_1}, \ref{fig:white_2} and \ref{fig:white_3} all represent the set of answer-pairs with one white component, for questions one, ten and fifteen, respectively. \par
+Figures \ref{fig:white_2} and \ref{fig:white_3} all represent the set of answer-pairs with one white component, for questions one, ten and fifteen, respectively. \par
 %
 \begin{figure}[!htbp]
   \centering
-  \begin{minipage}{0.3\textwidth}
-    \centering
-    \includegraphics[width=\textwidth]{images/results/1_white_answers.png}
-    \caption[Answer-pairs with one white component, from Question 1.]{Answer-pairs with one white component, from Question 1.}
-    \label{fig:white_1}
-  \end{minipage}\hfill
-  \begin{minipage}{0.3\textwidth}
+  \begin{minipage}{0.48\textwidth}
     \centering
     \includegraphics[width=\textwidth]{images/results/10_white_answers.png}
     \caption[Answer-pairs with one white component, from Question 10.]{Answer-pairs with one white component, from Question 10.}
     \label{fig:white_2}
   \end{minipage}\hfill
-  \begin{minipage}{0.3\textwidth}
+  \begin{minipage}{0.48\textwidth}
     \centering
     \includegraphics[width=\textwidth]{images/results/15_white_answers.png}
     \caption[Answer-pairs with one white component, from Question 15.]{Answer-pairs with one white component, from Question 15.}
@@ -2049,28 +2009,176 @@ informal evaluation of the results collected from color vision deficient users.
 %
 Recalling Table \ref{table:profiling_genderacademic}, present of Section \ref{subsec:results_userprofile}, we have collected a total of 259 users, being \ul{38 users aged below 20 years}, \ul{162 users aged between 20 and 29 years}, \ul{20 users aged between 30 and 39 years},
 \ul{19 users aged between 40 and 49 years}, \ul{12 users aged between 50 and 59 years} and \ul{8 users aged above 60 years}. When analyzing the results from all 32 questions, for each of these age groups, with Spearman's Correlation test we conclude that there are no statistically
-significant correlations ($\rho < 0.05$) when comparing the distances from answers blended in each color model (HSV, CIE-L*C*h*, CMYK, RGB and CIE-L*a*b*) with the age from the users, except for a small subset of questions: from all 32 questions asked, seven of them presented weak,
+significant correlations ($\rho < 0.05$) when comparing the distances from answers blended in each color model (HSV, CIE-L*C*h*, CMYK, RGB and CIE-L*a*b*) with the age from the users, for the majority of questions except for a small subset: from all 32 questions asked, seven of them presented weak,
 positive and negative correlation between the age values and the calculated distances, which have statistically signifficant correlation values ($\rho < 0.05$). \par
 %
 These questions are \ul{number six} ($r_s(6) = 0.22$, $\rho = 0.013$), \ul{seven} ($r_s(7) = -0.18$, $\rho = 0.032$), \ul{eight} ($r_s(8) = -0.21$, $\rho = 0.015$), \ul{nine} ($r_s(9) = 0.19$, $\rho = 0.029$), \ul{nineteen} ($r_s(19) = 0.19, \rho = 0.028$), \ul{twenty-five}
 ($r_s(25) = 0.18$, $\rho = 0.034$) and, finally, question \ul{thirty-one} ($r_s(31) = -0.19$, $\rho = 0.031$). \par
 %
-Particularizar para casos de perguntas que tenham valores interessantes. \\
-Concluir \\
+To better comprehend the differences between age groups on the aforementioned questions, we have runned a Wilcoxon Signed-rank Test ($p < 0.05$) in order to detect significant differences which exist, between results for each color model, by age group. The test reveals that:
+%
+\begin{enumerate}
+  \item There are statistically significant differences ($p = 0.021$) on \ul{question six} (expected Red-Yellow, presented Orange color), when blending the answers in \ul{HSV Color Model}, between the users aged \ul{below 20 years} and the ones aged \ul{between 40 and 49 years};
+  \item There are statistically significant differences ($p = 0.042$) on \ul{question seven} (expected Cyan-Magenta, presented Blue color), when blending the answers in \ul{RGB Color Model}, between the users aged \ul{between 40 and 49} and the ones aged \ul{between 50 and 59 years}.
+  Also, there are significant differences ($p = 0.043$) when blending the same answers according to the \ul{CIE-L*a*b* Color Model}, between the same age groups.
+  \item There are statistically significant differences on \ul{question 25} (expected Red, presented Magenta-Yellow pair), when measuring the distances from the answers to the ideal blending, according to \ul{CIE-L*a*b* Color Model}, between the following age groups:
+  %
+    \begin{itemize}
+      \item The users aged \ul{below 20 years} and the ones aged \ul{between 20 and 29 years} ($p = 0.038$);
+      \item The users aged \ul{between 20 and 29 years} and the ones aged \ul{between 30 and 39 years} ($p = 0.002$);
+      \item The users aged \ul{between 20 and 29 years} and the ones aged \ul{between 40 and 49 years} ($p = 0.028$).
+    \end{itemize}
+  %
+  \item There are statistically significant differences on \ul{question 31} (expected Green or a shade of Magenta, presented Blue-Yellow pair), when measuring the distances from the answers according to the following Color Models:
+  %
+    \begin{itemize}
+      \item \ul{HSV}, for the distances to the shade of Magenta, between the users aged \ul{below 20 years} and the ones aged \ul{between 40 and 49 years} ($p = 0.008$);
+      \item \ul{CMYK}, between the users aged \ul{below 20 years} and the ones aged \ul{between 40 and 49 years} ($p = 0.042$);
+      \item \ul{CIE-L*a*b*}, between the users aged \ul{below 20 years} and the ones aged \ul{between 40 and 49 years} ($p = 0.032$).
+    \end{itemize}
+  %
+\end{enumerate} \par
+%
+These values indicate us that the age group which was always present in each difference, for the selected questions, was \textbf{the users aged between 40 and 49 years}. However, \textbf{there is insufficient information for us to confirm that this age group presents much different values
+from the others}, since these questions present a minority of the sample. It is also \textbf{not possible to affirm that there are significant differences between all age groups}, because there are more questions which do not present any difference \emph{per} color model and the analyzed
+differences include only a subset of all age groups. Hence, \textbf{we did not found relevant differences between age groups}; further studies should explore this research topic. \par
+%
+Figures \ref{fig:age_1} and \ref{fig:age_2} reflects the statistically significant difference when blending the answers from the orange blending (question six), in \ul{HSV Color Model}, between the users aged below 20 years and the ones aged between 40 and 49 years.
+%
+\begin{figure}[!htbp]
+  \centering
+  \begin{minipage}{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{images/results/6_demo_age20_HSVresponses.png}
+    \caption[Demographic Results, from Question 6, for answers given by users aged below 20 years, blended according to HSV Color Model.]{Demographic Results, from Question 6, for answers given by users aged below 20 years, blended according to HSV Color Model.}
+    \label{fig:age_1}
+  \end{minipage}\hfill
+  \begin{minipage}{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{images/results/6_demo_age40_49_HSVresponses.png}
+    \caption[Demographic Results, from Question 6, for answers given by users aged between 40 and 49 years, blended according to HSV Color Model.]{Demographic Results, from Question 6, for answers given by users aged between 40 and 49 years, blended according to HSV Color Model.}
+    \label{fig:age_2}
+  \end{minipage}
+\end{figure}
 %
 \subsubsection{Gender Groups}
 \label{subsubsec:demo_age}
 %
-Recalling Table \ref{table:profiling_genderacademic}, present of Section \ref{subsec:results_userprofile}, we have collected a total of 259 users, being \ul{105 Female Users}, \ul{152 Male Users} and \ul{2 Other Gender Users}. From these users,
+Recalling Table \ref{table:profiling_genderacademic}, we have collected a total of 259 users, being \ul{105 Female Users}, \ul{152 Male Users} and \ul{2 Other Gender Users}. Similarly to what was done before, we analyzed the results from
+all 32 questions, for each of these gender groups, with Spearman's Correlation test: we have conclude that there are no statistically significant correlations ($\rho < 0.05$) when comparing the distances from answers blended in each color model with users' gender, for the majority of questions.
+Notwithstanding, eight of them presented weak, positive and negative correlation between the gender types and the calculated distances, which have statistically signifficant correlation values ($\rho < 0.05$). \par
 %
-Referir perguntas (são 8). \\
-Particulizar para casos interessantes, se houver. \\
-Concluir \\
+These questions are \ul{number six} ($r_s(6) = 0.17$, $\rho = 0.049$), \ul{nine} ($r_s(9) = -0.17$, $\rho = 0.043$), \ul{eleven} ($r_s(11) = 0.182$, $\rho = 0.038$), \ul{fifteen} ($r_s(15) = 0.22$, $\rho = 0.012$), \ul{sixteen} ($r_s(16) = -0.19, \rho = 0.024$), \ul{seventeen}
+($r_s(17) = 0.18$, $\rho = 0.037$), question \ul{twenty-two} ($r_s(22) = 0.19$, $\rho = 0.024$) and, finally, question number \ul{thirty} ($r_s(30) = 0.19$, $\rho = 0.025$). \par
+%
+Equally to age groups' analysis, we have runned a Wilcoxon Signed-rank Test ($p < 0.05$) in order to detect significant differences which exist, between results for each color model, by gender group. The test reveals that:
+%
+\begin{enumerate}
+  \item There are statistically significant differences ($p = 0.027$) on \ul{question nine} (expected Green-Cyan, presented a tone of Green), when blending the answers in \ul{CMYK Color Model}, between the \ul{Male} and \ul{Female} users. Among 64 cases, 38 of them presented wider distances for
+  Female users, while 20 were higher for Male users;
+  \item There are statistically significant differences ($p = 0.035$) on \ul{question eleven} (expected Green-Magenta, presented Orange color), when blending the answers in \ul{HSV Color Model}, between the \ul{Male} and \ul{Female} users. Among 61 cases, 23 of them presented wider distances for
+  Female users, while 33 were higher for Male users;
+  \item There are statistically significant differences ($p = 0.048$) on \ul{question 15} (expected Blue-Yellow, presented a tone of Green), when blending the answers in \ul{CIE-L*C*h* Color Model}, between the \ul{Male} and \ul{Female} users. Among 63 cases, 25 of them presented wider distances for
+  Female users, while 33 were higher for Male users;
+  \item There are statistically significant differences on \ul{question 16} (expected Blue-Yellow, presented a shade of Magenta) between the \ul{Male} and \ul{Female} users, when blending their answers according to the following color models:
+  %
+    \begin{itemize}
+      \item \ul{RGB}, with 63 cases, 39 of them presented wider distances for Female users, while 17 were higher for Male users ($p = 0.009$);
+      \item \ul{CIE-L*a*b*}, with 63 cases, 38 of them presented wider distances for Female users, while 19 were higher for Male users ($p = 0.009$);
+    \end{itemize}
+  %
+  \item There are statistically significant differences ($p = 0.011$) on \ul{question 17} (expected Cyan-Yellow, presented Green color), when blending the answers in \ul{CIE-L*a*b* Color Model}, between the \ul{Male} and \ul{Female} users. Among 63 cases, 38 of them presented wider distances for
+  Female users, while 19 were higher for Male users;
+  \item There are statistically significant differences on \ul{question 23} (expected Orange, presented Red-Yellow pair), when measuring the distances from the answers according to the following Color Models:
+  %
+    \begin{itemize}
+      \item \ul{HSV}, with 69 cases, 19 of them presented wider distances for Female users, while 38 were higher for Male users ($p = 0.005$);
+      \item \ul{CMYK}, with 69 cases, 16 of them presented wider distances for Female users, while 33 were higher for Male users ($p = 0.006$);
+      \item \ul{RGB}, with 69 cases, 120 of them presented wider distances for Female users, while 39 were higher for Male users ($p = 0.008$);
+    \end{itemize}
+  %
+\end{enumerate} \par
+%
+These values potentiate a conclusion which was discussed in the theoretical background of this master thesis: there is a mild difference between the results from the Female gendered users, and the Male ones. It is not an absolute difference, since \textbf{not every question had presented significant
+differences between gender groups}; it is \textbf{not possible to formulate a conclusion about which gender generates the wider or closer distances to the ideal answer (according to each Model)}, since there is no visible pattern about this subject. There were no significant differences between female
+or male users, and the \emph{other} gendered users: this could due to the lack of a significant user sample relating the later gender. \par
+%
+This leads us to conclude that there is, in fact, space for a theory on \textbf{the existence of a difference in color perception by the female users, when compared with the male users}: this difference is observable in our study results, but not substantial to formulate any a formal research conclusion.
+Figures \ref{fig:gender_1} and \ref{fig:gender_2} represents the statistically significant difference when blending the answers from the shade of magenta blending (question 16), in \ul{RGB Color Model}, between the Female and Male users: in these figures, \textbf{we can distinguish an eventual lack of color
+descriptive power concerning Male users} - whose answers are conveying to the grey center of the chromaticity diagram (the black dot on the figure) - contrasting with the Female one, whose answers show a regular disposition along the edge which unites the Magenta and Red colors.
+%
+\begin{figure}[!htbp]
+  \centering
+  \begin{minipage}{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{images/results/16_demo_genderF_RGBresponses.png}
+    \caption[Demographic Results, from Question 16, for answers given by female users, blended according to RGB Color Model.]{Demographic Results, from Question 16, for answers given by female users, blended according to RGB Color Model.}
+    \label{fig:gender_1}
+  \end{minipage}\hfill
+  \begin{minipage}{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{images/results/16_demo_genderM_RGBresponses.png}
+    \caption[Demographic Results, from Question 16, for answers given by male users, blended according to RGB Color Model.]{Demographic Results, from Question 16, for answers given by male users, blended according to RGB Color Model.}
+    \label{fig:gender_2}
+  \end{minipage}
+\end{figure}
 %
 \subsubsection{Color Vision Deficient Users Group}
 \label{subsubsec:demo_daltonic}
 %
-Analise breve e de alto nivel. \\
+Based on the criteria defined on section \ref{sec:impl_evaluationcriteria}, we have analyzed the collected user sample and verified if there was any user which had any type of color vision deficiency. This filtering of users was accomplished via the data collected on the \emph{Color Vision Deficiencies Test
+Phase}. We had \ul{one laboratory user} which we have determined to have \textbf{\emph{Deuteranopia}, a Red-Green deficiency} and \ul{two online users} which have \textbf{\emph{Deuteranopia and Protanopia}}, each one. Since there is not enough information and data sample to perform a statistic analysis and we
+did not know which colors to expect, according to each color vision deficiency when blending the answers, we performed a qualitative analysis. Though, in this section, we give examples of some questions which presented colors that could not be correctly visualized by each color vision deficiency. \par
+%
+\paragraph{\ul{Magenta + Yellow = Red}}
+%
+In this color blending (question number eight), it was asked the users to indicate a Magenta-Yellow pair to mix into a Red color. While the non-color vision deficient users (therefore, simply called \emph{regular users}) have indicated a myriad of possible answer pairs waging between green, blue, yellow and magenta, the
+color vision deficient (therefore, simply called \emph{daltonic users}) gave answer-pairs very close to the resulting color; this case can be observe on Figures \ref{fig:dalt_1} and \ref{fig:dalt_2}. This could be caused due to the fact that the Red color, for both types of deficiencies in Red-Green cones, the users
+received a Yellow stimulus, instead of a Red one (recall Figure \ref{fig:correscolorblind}, of Section \ref{subsubsec:visual_deficiencies}).
+%
+\begin{figure}[!htbp]
+  \centering
+  \begin{minipage}{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{images/results/8_online_regularUsers.png}
+    \caption[Online Results: Answers for Question 8, from regular users.]{Online Results: Answers for Question 8, from regular users.}
+    \label{fig:dalt_1}
+  \end{minipage}\hfill
+  \begin{minipage}{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{images/results/8_online_daltonicUsers.png}
+    \caption[Online Results: Answers for Question 8, from daltonic users.]{Online Results: Answers for Question 8, from daltonic users.}
+    \label{fig:dalt_2}
+  \end{minipage}
+\end{figure} \par
+%
+\paragraph{\ul{Cyan + Yellow = Green}}
+%
+On the other hand, when we presented one of the blending which collected the best results from all (question 17), the users answered in a similar fashion from the regular users. It was asked the users to indicate a Cyan-Yellow pair to mix into a Green color, and the three daltonic users from both study envrionment have
+answered with similar answer-pairs. The laboratory user answered with a Green-Green pair, while the online users answered with a Yellow-Cyan one; this could have many reasons to happen, since these color vision deficiencies transform the Green presented color onto a Yellow shade, but preserves the Blue color as it is, and
+the yellow color is a very common color to perceive among these deficiencies. \par
+%
+We could make the following analysis: the laboratory user either mixed Yellow-Yellow (adjusted to its color vision deficiency) because he didn't realize the blending-basis, or simply because for him, the yellow color cannot be decomposed onto two primitive colors; respecting the online users, they could have provided this
+pair since they know for fact to which regular color the color they see correspond to, or because they see a darker shade of yellow (presented) and wanted to indicate a blending basis of Yellow and a darker color like Blue, to darken the mixture. Figures \ref{fig:dalt_3} and \ref{fig:dalt_4} help us supporting this explanation.
+%
+\begin{figure}[!htbp]
+  \centering
+  \begin{minipage}{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{images/results/17_lab_daltonicUsers.png}
+    \caption[Laboratory Results: Answers for Question 17, from daltonic users.]{Laboratory Results: Answers for Question 17, from daltonic users.}
+    \label{fig:dalt_3}
+  \end{minipage}\hfill
+  \begin{minipage}{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{images/results/17_online_daltonicUsers.png}
+    \caption[Online Results: Answers for Question 17, from daltonic users.]{Online Results: Answers for Question 17, from daltonic users.}
+    \label{fig:dalt_4}
+  \end{minipage}
+\end{figure} \\ \par
+%
+This is a \textbf{purely informal analysis}, since it does not provide any type of statistics and does not produce any type of research conclusion: in order to obtain factual conclusions about this investigation subject, it should be developed an entire user study with daltonic users, providing the necessary amount of data to be correctly
+analyzed.
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                DISCUSSION                                                                       %
@@ -2080,6 +2188,7 @@ Analise breve e de alto nivel. \\
 \label{sec:results_discussion}
 %
 Fazer apanhado dos resultados todos. \par
+Responder a perguntas levantadas. \\
 abordar questão de que modelos originaram melhores respostas, se são aditivos ou subtrativos. \\
 Referir que é preciso estudos para perceber de facto qual é o melhor entre o HSV, Lab e RGB. \\
 CMYK claramente melhor \\
@@ -2099,7 +2208,9 @@ Aproveitar resultado de respostas em branco
 %
 \subsection{Color Organization}
 \label{subsec:results_discussion_colororganization}
-
+%
+Falar da conclusão de A + B = C (=) C = A + B ?
+%
 \subsection{Implications for InfoVis}
 \label{subsec:results_discussion_infovis}
 %

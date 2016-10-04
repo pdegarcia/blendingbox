@@ -57,6 +57,15 @@ Justificar completamente todas as decisões que foram tomadas (número de placas
 %
 Falar de folha de calculo do excel com todas as cores, que depois for migrada para matlab
 e convertida de acordo com perfil de calibração.
+
+One of the points discussed in section \ref{sec:background_discussion} was the amount of users who performed the study of Gama and Gonçalves
+\cite{Gama20141,Gama20142}: it was large enough for their questions. However, considering the results we aim to achieve with this study, a considerably larger sample of users is the ideal: besides conducting
+the study in a laboratory environment, it is mandatory to expand the sample size by performing user studies with online users, trying to take advantage of
+the cultural diversity that may arise. These online answers will become from online users from social networks, in which we will spread our study in a \emph{word-of-mouth} scheme. \par
+
+
+
+
 %
 \subsection{User Profiling Phase}
 \label{subsec:design_profiling}
@@ -108,14 +117,31 @@ Referir aqui também que slider contemplava cores standard da folha de calculo p
 mas para ambiente laboratorio cores eram antes processadas no Matlab. Slider não tinha cores ordenadas para que utilizador não utilizasse
 algum modelo mental e aprendesse previamente a misturar. Cores foram misturadas sem qualque critério (referir ordem pela qual apareciam).
 Referir aqui caminho do calibrador -> icc -> matlab -> converter cores -> slider
+
+
+%
+\begin{table}[htbp]
+  \resizebox{\textwidth}{!} {
+  \begin{tabular} {|c|c|c|c|c|c|c|c|c|c|}
+    \hline
+    User ID & Type & First Color & Second Color & Third Color & Drags & Time & Rating & Resets & Question ID \\ \hline \hline
+    5710cca334d60 & objTwoColors & \#0080FF & hsl(58.69565217391305,1,0.50) & hsl(98.15217391304348,1,0.50) & 992 & 117 & 4 & 2 & 10 \\ \hline
+    5745c1c07cc0c & objTwoColors & \#8000FF & hsl(300,1,0.50) & hsl(324.13043478260875,1,0.50) & 645 & 55 & 2 & 1 & 14 \\ \hline
+    5745350dc1e22 & objTwoColors & \#0080FF & hsl(226.30434782608697,1,0.50) & NONE & 115 & 11 & 5 & 1 & 10 \\ \hline
+    57451c3b38192 & objTwoColors & \#00FF80 & NONE & hsl(150,1,0.50) & 462 & 39 & 5 & 1 & 15 \\ \hline
+    574511e99b6d9 & objTwoColors & \#0080FF & hsl(15.652173913043478,1,0.50) & hsl(316.30434782608694,1,0.50) & 442 & 40, & 1 & 1 & 10 \\ \hline
+    57427cf6bad0c & twoColorsObj & \#00FFFF & \#FFFF00 & \#46FF9C & 6 & 14 & 3 & 1 & 32 \\ \hline
+    5740bda9be3dc & objTwoColors & \#FF7200 & hsl(9.130434782608695,1,0.50) & hsl(50.21739130434783,1,0.50) & 45 & 22 & 5 & 1 & 11 \\ \hline
+    573c783748e8b & twoColorsObj & \#00FFFF & \#CBFF00 & \#00FF6B & 44 & 25 & 3 & 1 & 32 \\
+    \hline
+  \end{tabular}}
+  \caption[Excerpt of Raw "Results" Table]{Excerpt of Results Table, with raw data.}
+  \label{table:csv_resultsraw}
+\end{table} \par
+%
+
 %
 \section{Evaluation Criteria}
 \label{sec:impl_evaluationcriteria}
 Ishihara plates and more, whatever we consider relevant. Falar também de como a calibração era considerada válida ou não. Erros
 que poderiam ser gerados pelo field number html5, que com scrolls podia dar valores errados. \\
-
-\section{Divulgation}
-\label{sec:impl_divulgation}
-MTurk problems, facebook, Reddit, FacebookAds, FNAC prize money. \\
-Como fizemos o controlo dos users (Analytics).
-Bridge to next chapter.
