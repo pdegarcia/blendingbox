@@ -1,4 +1,4 @@
-![alt tag](https://github.com/pdegarcia/blendingbox/blob/master/Studies/images/header.jpg)
+![alt tag](https://github.com/pdegarcia/blendingbox/blob/master/Implementation/images/header.jpg)
 
 Blendingbox comprises every topic related to the "Will It Blend?" Master's Thesis of Paulo Garcia (67051).
 In this repository, it will be available some interesting stuff which you may want to check out!
