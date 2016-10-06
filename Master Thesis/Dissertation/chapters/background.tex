@@ -2,10 +2,21 @@
 
 \chapter{Background}
 \label{chapter:background}
-
+%
+In this work, we introduce a review through the topics related to this project. We start by introducing
+an explanatory view about Color Perception, narrowing it down to Color Philosophy and the Human Eye. Later,
+we are going to introduce the theory behind Color Spaces and Models, ending this section with an overview about
+the usage of Color Blending and the investigation that has been done, to understand the perception on this. In
+the end, we will discuss the results found from this investigation was draft research questions which remain
+unanswered.
+%
 \section{Theoretical Background}
 \label{sec:theory_background}
-
+%
+This section contains the research performed to ascertain the theoretical background which supports our investigation.
+We will begin by analizing the concepts \ul{Color Perception}, then briefly explaining the differences between \ul{Color
+Models and Color Spaces}.
+%
 \subsection{Color Perception}
 \label{subsec:colorperception}
 %
@@ -905,12 +916,330 @@ information?
 \section{Related Work}
 \label{sec:related_work}
 %
+Visualizing information is a task which, at the same time, communicates information and alleviates
+cognitive load associated with data interpretation. Usually, when it comes to encoding information, color
+appears as the number one choice, due to the its ease of perception and familiarity. When representing
+more than one colored variable at the same time, it would be useful to perceive interrelations among
+them and if the users are able to understand which of these entities are related, or blended: this leads
+us to the idea of blending colors together to form a mixture, conveying more than one channel of information.
+Research has been made to conclude if people can distinguish different percentages of blended colors or
+associate colors to daily-basis tasks, \emph{e.g.} reading and receiving emails \cite{Gama20143}. \par
+On the other hand, researchers have been developing alternatives to color mixture, enabling the end users
+to create different perspectives on how color is related; as we are going to see, color blending has its
+features and flaws, which complementary techniques try to recover. \par
+%
+In this section of the Background, we focus the attention on work previously developed in this research field. We
+start by analyzing the investigation conducted before, following it by an analysis of other user color studies
+which were performed across the internet, since this subject will be important to define how we drafted our own
+user study.
+%
 \subsection{Color Blending Research and Techniques}
 \label{subsec:colorblending}
 %
-Ver se houve desenvolvimentos na área em 2016. \par
+Until the year 2014, some aspects remained to be studied. Gama and Gonçalves started their research \cite{Gama20141}
+aiming to study to which extent people are able to, given a specific color resulting from a mixture of
+two colors, understand the blended color’s origin; besides, they studied which is the color model that
+yields the most accurate results: hardware-oriented color models like RGB or color-printing models such
+as CMY(K), fail to provide a color perception description, unlike HSV. This pitfall is amended by CIE-L*C*h*,
+by creating a perceptually uniform scale to lightness.  \par
 %
-\subsection{User Color Studies Online}
+\subsubsection{Data Visualization}
+\label{subsubsec:datavisualization}
+%
+\begin{wrapfigure}[8]{r}{0.45\textwidth}
+	\centering
+    \vspace{-\baselineskip}
+    \includegraphics[width=0.45\textwidth]{images/background/TestDataVis.png}
+    \caption[Color Blending for Data Visualization]{Example of Color Set. \protect\cite{Gama20141}}
+    \label{fig:datavis}
+\end{wrapfigure}
+%
+A user-study was designed \cite{Gama20141} to assess the afore mentioned goals, two sets of colors were created
+from the model CIE-L*C*h*. The first (set A) had to do with dyadic mixtures, with pairwise combinations between
+the four main colors (R: Red, G: Green, B: Blue, Y: Yellow): RG, RB, RY, GY and BY. The second set (set B) consisted
+of triadic mixtures of the referred colors:
+RRG, RGG, RBG, RYG, RRB, RBB, RYB, RYR, RYY, GBG, GBB, GYB, GYG, GYY, BYB and BYY. The study started with a
+profiling questionnaire about the users; on the second part, a color blindness detection test was conducted
+with a simplified 6-plate colorblindness Ishihara Test. On a third part, users were randomly
+presented with a color from set A or B and were asked to chose from a color palette, the colors which mix
+into that color, as in the top image on Figure \ref{fig:datavis}. After, users were presented to colors blended
+into HSV, CMY(K) and CIE-L*C*h* and they had to pick the most natural transitions (bottom image of \ref{fig:datavis}).
+The final step was a simple satisfaction questionnaire where users were asked to indicate in a 5-point Likert Scale,
+how easy it was to find which pairs resulted in the colors given and the most natural blending option. \par
+%
+The study was performed to 73 non-colorblind, mostly middle-aged, all graduated users; the majority
+(about 64\%) was male users and most everyone (96\%) lived in Europe. For the set A, the success rates
+were higher for RY and GY color mixtures, which correspond to smaller angles in the CIE-L*C*h* color wheel,
+and the worst success rates were consequently to wider angles in the wheel: BY, RG e RB.
+Respecting set B, results were considerably lower which can indicate that either choosing few colors from
+a wide palette is confusing or users were not able to correctly perceive the original colors which originated
+the mixed color; however, the highest and worst rate of success is aligned with the set A, since GYG, GYY
+and RYY yielded the best results, RRG, RBG, BYB and BYY the worst. Regarding, the most natural transition,
+users chose CMY(K) as having the smoothest one, followed by CIE-L*C*h* and HSV; despite users attributed to
+CIE-L*C*h* the second position in natural transition’s podium, they found it hard to perceive the colors
+that were mixed during the study (which were mixed in this color model). \par
+The fact that CMY(K) has the smoothest transition to users is related to what Gosset \cite{Gossett2004} stated, that
+subtractive color models learned in childhood restricts the mental model of color which users create;
+in depth research has to be done to compare blending perception between CIE-L*C*h* and CMY(K) models. It
+should also be take into consideration that, although the sample is large, there is a considerable gap
+between genders: more women should be included in the study since, as previously mentioned, women can
+distinguish a larger variety of shades. There is not an extensive cultural representation, just as there
+is no representation of various educational levels besides graduated users, which could be interesting to show. \par
+%
+\subsubsection{Perception of Relative Amounts of Color}
+\label{subsubsec:perception_amounts}
+%
+Humans can perceive the original
+components that created a particular color: the final study performed by Gama and Gonçalves relating Color Blending
+Perception investigated precisely, the extent people can perceive relative amounts of color components in
+blended colors \cite{Gama20142}. However, the amount of each component may not be evident: as it has been said before,
+there are pairs of colors which yield better results than others due to cultural standards, conceptual models
+or simply color conception. Color blending has one major handicap: although it reduces the cognitive load by
+associating familiar colors to information, it may not show the expected accuracy if we do not understand
+human color perception. \par
+%
+\begin{wrapfigure}[17]{R}{0.2\textwidth}
+	\centering
+    \vspace{-\baselineskip}
+    \includegraphics[width=0.2\textwidth]{images/background/TotalAmount.png}
+    \caption[Perception of Relative Amounts of Color - Rulers]{Pairs of 10 interpolated colors.
+    \protect\cite{Gama20142}}
+    \label{fig:amount1}
+\end{wrapfigure}
+%
+To fulfill this problem, it was designed a user-study similar to the previous ones, consisting of a first
+profiling phase, a color evaluation step and a 5-point Likert Scale to describe how easy it was to decide
+the amount of each color component in the given color. Respecting the color evaluation step, it was created
+a set of 10 interpolated colors for 4 pairs: (Red-Yellow), (Green-Yellow), (Green-Blue) and (Red-Blue),
+as seen on Figure \ref{fig:amount1}. Then, users were presented with each of the 40 blended colors individually and
+asked to rate these from 1 (only the first color component) to 10 (only the second color component). \par
+20 participants have attended the study, equally divided by genders, non-colorblind and all european
+citizens residing in Europe. Users happen to perceive most colors correctly regarding the pair (Red-Yellow)
+and likewise colors in both extremes, even for other pairs: “central colors” are generally the most
+problematic. An important conclusion from this research is that it should be considered, at maximum, 5
+colors when blending colors, so that the relative amount of each color component is perceivable by the
+users. Results have shown, also, that subjects found it moderately easy to perceive color component
+weight in blended colors. \par
+%
+\begin{wrapfigure}[6]{R}{0.2\textwidth}
+	\centering
+    \vspace{-3\baselineskip}
+    \includegraphics[width=0.2\textwidth]{images/background/TotalAmount2.png}
+    \caption[Perception of Relative Amounts of Color - Smaller Ruler]{5 Step Scales.
+    \protect\cite{Gama20142}}
+    \label{fig:amount2}
+\end{wrapfigure}
+%
+This study provides us several rules of thumb for crafting an information visualization or a color
+blending perception: when the idea is to provide rough information, color information may be successfully
+used; be that as it may, no more than three interpolations must be done between color pairs, so humans
+can distinguish different component weights. Hence, a set of 5 colors is the optimal solution: 2
+pairwise colors and 3 interpolations, as on Figure \ref{fig:amount2}. \par
+%
+\subsubsection{Other Research}
+\label{subsubsec:other_research}
+%
+Apart from the previous referred studies, it is possible to give some
+examples of current work that already uses color blending techniques. For example FiftyThree\textsuperscript{\textregistered},
+the company which created the App for drawing on tablets called "Paper", put a lot of effort on reinventing the color mixer to
+transmit a complete color blending experience which neither lacked realism or was too realistic\footnote{"The Magical Tech
+Behind Paper (...)". Available at: \url{bit.ly/1mIYpZK}. Last accessed on January 8th, 2016.}. FiftyThree's team
+of developers manually selected 100 pairs of popular colors and tested them to understand which pairs created the
+best blends. In the long run, the team wanted to have a complete perceptual-constant, touch-native mixer, capable of
+creating harmonious mixes between colors chosen by the user. Initially, they used the HSV Color Model but it was not
+working out correctly, whereby it was explored color systems in which changes in hue, saturation and lightness were
+perceptually even. In the end, FiftyThree\textsuperscript{\textregistered} produced a color mixer in which you mix
+a color from a palette with a previous color, gently swiping in circles to increase or decrease the mix.\par
+%
+\begin{wrapfigure}[11]{r}{0.4\textwidth}
+	\centering
+    \vspace{-\baselineskip}
+    \includegraphics[width=0.4\textwidth]{images/background/CMYKbad.png}
+    \caption[Color Blending: CMY(K) Bad Example]{Bad Color Blending Usage.\protect\footnotemark[29]}
+    \label{fig:cmykbad}
+\end{wrapfigure}
+%
+Obviously, there are some bad examples which represent mistakes in choosing the appropriate color palette or scale,
+not taking into account the area that would represent color. An example of such is a representation of the
+educational achievement and the median income on the United States of America, in order to perceive in which states people
+are going to school, where the are earning money and if there is any correlation between these variables\footnote{"Reading,
+Writing and Earning Money". Available at: \url{bit.ly/1RwnibG}.
+Last accessed on January 8th, 2016.}. However, the problem lies on the colors chosen to represent each variable: there were picked
+colors from the CMY(K) color model and they
+were mixed to convey information of three different variables at the same time; the problem in Figure \ref{fig:cmykbad} is such that
+it is almost impossible to tear apart perceive amounts of original colors since it is not provided an appropriate color
+scale and it is quite difficult to distinguish darker colors near purple, dark green or black. \par
+Joshua Stevens presents\footnote{"Bivariate Choropleth Maps (...)". Available at:
+\url{bit.ly/17S3FaK}. Last accessed on January 8th, 2016.} an acceptable
+solution for the problem of mixing colors that apparently do not correlate, mixing two colors (instead of 3, as the
+previous example) that are supported by 3-step scale each one, and combined create a 9-step scale in which each step
+can be perceived discreetly. The author advises that bivariate data can be complicated if not shown in a clear
+way, and indicates that the legend for a map in which color blending is used should not use many decimal numbers and use
+only the strictly-needed labels, lowering the cognitive load of the user. This work can be seen in the Figure \ref{fig:choropleth}.\\
+\par
+As seen, color blending can help conveying information but, at the same time, it can undermine the accuracy of
+the perception if too many variables are shown at the same time, or even if there exists scales with too many
+interpolations. Some techniques have been under research to provide a curated approach to color perception
+tasks, which can be combined with color blending also.
+%
+\begin{figure}[H]
+	\centering
+    \vspace{-5pt}
+    \includegraphics[width=\textwidth]{images/background/js_choroMath.png}
+    \caption[Bivariate Choropleth Maps]{Choropleth Maps.\protect\footnotemark[30]}
+    \vspace{-10pt}
+    \label{fig:choropleth}
+\end{figure}
+%
+\subsection{Color Blending Alternatives}
+Besides simple color blending techniques, researchers have been developing techniques in order to convey
+even more detailed and accurate information. Examples of these studies are:
+a technique of color weaving and a hue-preserver color blending technique, covered in this section.
+%
+\subsubsection{Color Weaving}
+%
+\begin{wrapfigure}[14]{r}{0.4\textwidth}
+	\centering
+    \vspace{-\baselineskip}
+    \includegraphics[width=0.4\textwidth]{images/background/WeavingTest1.png}
+    \caption[Color Weaving - First Study]{Example of a Map.
+    \protect\cite{Hagh-Shenas2007}}
+    \label{fig:weaving2}
+\end{wrapfigure}
+%
+One of the challenges of multivariate visualization
+is to clearly show different layers of information with color patterns, with no doubt to the user: as
+composing different layers on top of each other, most of the time it creates colors and patterns which
+do not have direct or significant meaning. Urness \emph{et al.} proposed new insights and introduced new
+techniques for using color and texture in a effective way, to convey information about two-dimensional
+scalar and vector distributions \cite{Urness2003}: beside other techniques, the authors have introduced the concept
+of color weaving, a color blend technique that presents original colors separately, composing a colored
+mesh with a fine-grain texture. Comparing to the tradicional color blending, the latter is a simple flat
+color used to illustrate the mix of different entities with different values, whereas the new one
+combines multiple scalar single-hue-encoded distributions, computed over a common field, to form a
+multi-colored line integral convolution tapestry, in which multiple color combinations are represented
+explicitly via adjacent lines in a texture, rather than overlaying multiple layers of single color. \par
+This technique was vastly studied by Hagh-Shenas \emph{et al.} \cite{Hagh-Shenas2007}. These researchers created a
+set of experiments, in which the user was questioned over a state map of U.S.A., reading it and giving answers
+that would be statistically analyzed. \par
+%
+\begin{wrapfigure}[11]{r}{0.4\textwidth}
+	\centering
+    \vspace{-0.8\baselineskip}
+    \includegraphics[width=0.4\textwidth]{images/background/WeavingTest3.png}
+    \caption[Color Weaving - Second Study]{Example of a Map.
+    \protect\cite{Hagh-Shenas2007}}
+    \label{fig:weaving3}
+\end{wrapfigure}
+%
+The goal of the \textbf{first study} was to test the capability of precisely reading and understanding
+numerical data based on color intensity. Each state of U.S.A. had a single color, which identified the
+percentage of a given data distribution, from 6 possible; each variable in test had a color scale from
+white to a particular color. It was considered eventual factual knowledge, so
+the information was mixed between states. The test methodology included configuration of parameters like
+background color of the test, the distance to monitor, its resolution, the width and height of the screen
+and maps. A map, a question and a slider to match the color was presented to the user, which was asked to
+found the answer in a map similar to Figure \ref{fig:weaving2}. There were a total of 9 graduates, undergraduates and academic staff
+participants, 3 females and 6 males and they were compensated 5 dollars per half an hour for completing
+the experiment; the results turned out to be uniformly accurate. \par
+Regarding the \textbf{second study}, the goal was to quantify differences among three conditions for visualizing
+multivariate data when variables overlap in a region. Again, a map of 12 states of the U.S.A. was showed,
+randomly presenting different combinations of variables, via color-blending where colors were made
+semi-transparent and then overlaid to form a single composite representation (these colors were equivalent
+to averaging the CIE L*a*b* values of the individual overlapping colors), or via color-weaving, in which
+the separate color layers were individually sampled at independent pixels defined by a random noise
+function, and then stitched together to form a fine-grained textured mesh representation (Figure \ref{fig:weaving3}). For
+color-weaving, it was tested out small and large possible textures. Since the number of possible
+combinations of variables and types of color representation is high, not all displays were shown and
+not every state was tested, only Iowa, which can limit user perception and influence results.
+18 users attended the study, 4 females and 14 males from different colleges.
+The authors concluded, with this study, that the error rate is quite lower when the original color information
+was presented in the mixture, than when colors were blended; also, Color-blending and color-weaving have a
+common problem: the background color and the surrounding color can change the appearance of a color. \par
+%
+These studies concluded that the technique of color weaving is substantially effective for multivariate
+visualization; combinations of 2, 3 or 4 different data variable remain error
+rate low, but with 6 the rate begins to rise. It was not found any significant advantage, for both color
+blending and color weaving, in using more separated hues in CIE L*a*b*. Finally, a relevant conclusion of
+this study is that hues and luminance play different roles, since the observers estimate the lightness
+value of each variable in question and hue is only used for distinguishing the variables from each other.
+%
+\subsubsection{Hue-Preserving Color Blending}
+%
+\begin{wrapfigure}[11]{r}{0.4\textwidth}
+	\centering
+    \vspace{-1.5\baselineskip}
+    \includegraphics[width=0.4\textwidth]{images/background/HuePreserving.png}
+    \caption[Hue-Preserving Color Blending - Orange-Green Scale]{(a) Regular and
+    Hue-preserving color blending. (b) Traditional alpha blending between teal and orange. (c) Hue-Preserving
+    color blending ofteal and orange.
+    \protect\cite{Chuang2009}}
+    \label{fig:huepreserving1}
+\end{wrapfigure}
+%
+Transparency is almost indispensable when visualizing three dimensional structures, since it is one way to
+alleviate the observer’s visual barriers.
+In 2009, Chuang et al. tried to combine color and transparency when visualizing volume information,
+introducing the idea of preserving the of preserving the hue of the original color when blending \cite{Chuang2009}. \par
+Perceptual transparency is not identical to physical transparency, which is typically the starting point
+in computer graphics. Perceptual transparency is the perception of an object being in front of another
+background object; on the other hand, physical transparency is affected by many aspects such as luminance,
+apparent motion, subjective contours, and figural organization (size, shape, etc.).  Since the target of their research was perceptual transparency,
+the authors created an approach that is not subject to any type of physical constraint, but can be
+formulated as an algebraic model. \par
+Starting from the work on perceptual psychology (some of this is already covered in this document, the
+remaining is present in the referenced document), they have reached a set of design criteria that lead
+to an equation which expresses the color addition in Hue-Preserving color blending:
+\begin{equation}
+C_{new} = C_{1} \oplus C_{2}
+\end{equation} \par
+There were some requirements that Hue-Preserving sum had to meet:
+    \begin{itemize}
+    \item The luminance of $\left(C_{1} \oplus C_{2}\right)$ should be identical to the sum of the
+    luminance of C1 and C2.
+    \item The hue of $C_{new}$ is either equal to the hue of C1 or C2: $Hue(C_{new}) \in \left\{Hue(C_{1}),
+    Hue(C_{2})\right\}$. The hue of $C_{new}$ is chosen as the dominant hue of the two colors $C_{1}$ and $C_{2}$. The
+    dominant color is the one whose hue would be closest to the blended color in traditional color summation.
+    When the dominant color, and thus the final hue, is to change, $C_{new}$ should go though the gray point
+    with vanishing saturation, so that even an abrupt change of hue does not imply a discontinuity in
+    chromaticity, as seen on Figure \ref{fig:huepreserving1}.(c).
+    \end{itemize} \par
+The goal of modifying the sum operator is that, when two colors are mixed, the resultant color only
+contains the hue of one of the mixed colors, the dominant one. This technique can be divided into two
+pieces, either occurring one or another:
+	\begin{itemize}
+	\item The blending from one input color $C_{1}$ towards the gray axis, keeping the hue of $C_{1}$.
+    \item The blending from the other input color $C_{2}$ towards the gray axis, keeping the hue of $C_{2}$.
+    \end{itemize} \par
+The hue from the dominant color does not change: it is the hue from the non-dominant that is modified
+(but only the saturation and luminance) until it reaches a complementary color to dominant. By adding
+the opponent colors, the mixing moves towards the gray point and it is guaranteed that the original hue
+does not change; this also guarantees that this method generates exactly the same result as the
+tradicional blending, when mixing opponent colors.
+However, there are some disadvantages: gray colors in hue-preserving blended images can be confusing as
+gray can come from blending various hues (as on Figure \ref{fig:examples}), and this technique of blending
+colors is order-dependent, since
+blending colors in different blend orders can produced different results. Also, this technique is based
+on RGB: future work could implement hue-preserving blending on different color systems.
+%
+\begin{figure}[!h]
+  \centering%
+  \begin{minipage}{0.3\textwidth}
+    \includegraphics[width=\linewidth]{images/background/HuePreserving_3.png}
+  \end{minipage}%
+  \hspace{0.2\textwidth}%
+  \begin{minipage}{0.3\textwidth}\centering
+    \includegraphics[width=\linewidth]{images/background/HuePreserving_4.png}
+  \end{minipage}%
+  \caption[Hue-Preserving Color Blending Examples]{Example of a Regular Color Blending (left side of each image) \emph{versus}
+    Hue-Preserving Color Blending (right side of each image). \protect\cite{Chuang2009}}
+  \label{fig:examples}
+\end{figure}
+%
+
+\textbf{Ver se houve desenvolvimentos na área em 2016!!!!!!!.} \par
+%
+\subsection{User Online Color Studies}
 \label{subsec:colorstudies}
 %
 Ler artigos do David Flatla, investigar se existe trabalho feito na área nos últimos meses. \par
@@ -919,7 +1248,36 @@ Procurar artigos do CHI. \par
 \section{Discussion}
 \label{sec:background_discussion}
 %
-Discutir aqui possíveis questões que podem ser abordadas. \par
+The goal of this research is to understand how people perceive the blending of particular colors and if perceived,
+in which terms do they understand the blended color. We have conducted an investigation to realize what is related to
+the act of perceiving color and how it is judged.  \par
+The usage of color blending is hugely related to the fact that color is great to convey information and messages,
+but there has not been quite an extensive analysis about how people react to blends of color, having in mind also
+cultural patterns which could be tested. Gama and Gonçalves have tested the color blending for Data Visualization \cite{Gama20141},
+concluding that users can detect mixtures with higher success rates for colors which represent to smaller angles
+in the CIE-L*C*h* color wheel, but users found it hard to perceive the colors that were mixed during the study.
+The users also chose the CMY(K) Color Model as having the smoothest transition of color. It should be take into
+consideration that, although the sample is large, there is a considerable gap between genders, which should be
+more well balanced in future work. \par
+On the other hand, Gama and Gonçalves tested how the users perceive relative amounts of color \cite{Gama20142}, realizing that they happen to perceive most
+colors correctly regarding the pair (Red-Yellow) and other extreme colors, and at most 5 colors should be presented
+to the user when blending colors, so that the relative amount of each color component is perceivable by the users.
+However, in none of the studies were considered cultural differences and standards and the sample of users was
+quite reduced to European citizens living in Europe. In further studies, a larger sample should be
+considered. \par
+Finally, there were studied some alternative techniques to color blending which could be further tested, such
+as \textbf{Hue-Preserving Color Blending and Color Weaving}. In this technique, a textured mesh presents the original
+colors that were mixed to create a resulting color, using a Noise function to create the pattern in which the
+relative amounts of colors were represented. The original studies conducted by Hagh-Shenas \cite{Hagh-Shenas2007} did not follow a
+regular specification,
+since in the first study there were a total of 9 graduates who attended, in the second study it rises to 18
+users and in the third one, only 4 users participated; this represents a threat to the study, since it is a
+very restricted and small sample. Hagh-Shenas \emph{et. al} created a large number of displays and they were not able
+to test all of them. The ability of testing everything, while not crafting long and exhaustive tests should be
+considered in future work. \par
+%
+Considering these conclusions drafted from both the theoretical background and research related work, we can divide the
+possible questions which remain unaswered as follows:
 %
 \begin{itemize}
 	\setlength\itemsep{0.1em}
@@ -928,9 +1286,10 @@ Discutir aqui possíveis questões que podem ser abordadas. \par
     	\setlength\itemsep{0.1em}
 			\item Will perceived colors correspond to a particular fixed angular value, in the color wheel?
       \item Which is the best formula to blend colors, in each color model? Is it linear interpolation or another?
-      \item In the case in which 3 colors are blended, do observers realize all colors at the same time or do they decompose the mixture, firstly in a mixture of two colors and then a blending of a third color?
+      \item In the case in which 3 colors are blended, do observers realize all colors at the same time or do they
+			decompose the mixture, firstly in a mixture of two colors and then a blending of a third color?
       \item What is the best way to present color, without influencing color perception?
-      \item Does the user \emph{really} understands which colors are involved in a mixing?
+      \item Does the user, in fact, understands which colors are involved in a mixing?
 		\end{itemize}
   \item \textbf{Perception Questions}
     \begin{itemize}
@@ -940,23 +1299,26 @@ Discutir aqui possíveis questões que podem ser abordadas. \par
       \item Until which extent does background influence the perception of a subject, in particular a blended color?
       \item If color parameters like Saturation, Value or Luminance change in a blending, does it modify color blending perception?
     \end{itemize}
-\end{itemize}
-
-\begin{itemize}
-    \item \textbf{Information Visualization Questions}
+  \item \textbf{Information Visualization Questions}
     \begin{itemize}
     	\setlength\itemsep{0.1em}
-		\item Do continuous scales yield better results than discrete color scales?
-        \item What is the influence of nominal color scales in perception?
-        \item What are the results if no color scale is presented to guide the user?
-	\end{itemize}
-    \item \textbf{Cultural Questions}
+			\item Do continuous scales yield better results than discrete color scales?
+      \item What is the influence of nominal color scales in perception?
+      \item What are the results if no color scale is presented to guide the user?
+		\end{itemize}
+  \item \textbf{Cultural Questions}
     \begin{itemize}
     	\setlength\itemsep{0.1em}
-		\item Does the gender really influences how the color is perceived? Is it possible to observe a significant gap between male and female answers?
-\item Is it possible to observe significant differences in observation, depending on user's cultural background?
-	\end{itemize}
+			\item Does the gender really influences how the color is perceived? Is it possible to observe a significant gap between
+			male and female answers?
+			\item Is it possible to observe significant differences in observation, depending on user's cultural background?
+		\end{itemize}
 \end{itemize} \par
 %
-Although there are these questions whose answers remains to be found, only a portion of them will meet their answers, since this is Master Thesis Research Problem. However, there is a set of these questions which was considered crucial and, consequently, had more priority above others: it was this set which was the focus of our studies. We intended to perform \textbf{three studies} and, in the following sections, it is covered the entire proposal for the first study, the conditions in which the study is ideally performed and other important details.
+Although we have rised all these questions which do not have met its answer, only a portion of them will meet their answers,
+since this is Master Thesis Research Problem. However, there is a set of these questions which was considered crucial and, consequently,
+had more priority above others: it was this set which was the focus of our studies. We performed \textbf{one user study} and,
+in the following sections, it is covered the entire description of the solution developed for this color study, the conditions in which
+the study is ideally performed and analyze the results collected from it. In the end, we will perform a discussion of results and deduce
+some possible implications for the Information Visualization research area.
 %
