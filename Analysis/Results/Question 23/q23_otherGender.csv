@@ -1,2 +1,2 @@
-id;age;gender;num_answers;in_person;typeOfQuestion;first_color;second_color;third_color;clicks;rating;colors_names;distance_expectedC3;distance_HSV;distance_LCh;distance_CMYK;distance_RGB;distance_Lab
-5745c1c07cc0c;18;Other;31;no;twoColorsObj;#FF0000;#FFFF00;#FF9F00;47;5;NA;0.08;0.08;0.07;0.07;0.09;0.06
+id,age,gender,num_answers,in_person,typeOfQuestion,first_color,second_color,third_color,clicks,rating,colors_names,distance_expectedC3,distance_HSV,distance_LCh,distance_CMYK,distance_RGB,distance_Lab
+5745c1c07cc0c,18,Other,31,no,twoColorsObj,#FF0000,#FFFF00,#FF9F00,47,5,NA,0.08,0.08,0.07,0.07,0.09,0.06

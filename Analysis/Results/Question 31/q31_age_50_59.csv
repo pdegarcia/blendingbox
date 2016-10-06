@@ -1,8 +1,8 @@
-id;age;gender;num_answers;in_person;typeOfQuestion;first_color;second_color;third_color;clicks;rating;C3_name;distance_expectedC3_limegreen;distance_expectedC3_red;distance_HSV_1;distance_HSV_2;distance_LCh;distance_CMYK;distance_RGB;distance_Lab
-5710e540a9514;52;Female;32;no;twoColorsObj;#0000FF;#FFFF00;#00FF00;195;4;Yellow   ;0.08;0.29;0.08;0.29;0.31;0.15;0.16;0.2
-571163013744e;53;Female;13;no;twoColorsObj;#0000FF;#FFFF00;#00FF00;7;4;Yellow   ;0.08;0.29;0.08;0.29;0.31;0.15;0.16;0.2
-5711800f2c5f3;59;Female;31;no;twoColorsObj;#0000FF;#FFFF00;#808000;58;4;NA       ;0.14;0.21;0.14;0.21;0.23;0.1;0.12;0.14
-571289ef76e18;55;Female;31;no;twoColorsObj;#0000FF;#FFFF00;#00FF00;125;4;Yellow   ;0.08;0.29;0.08;0.29;0.31;0.15;0.16;0.2
-57149713464b1;51;Female;32;no;twoColorsObj;#0000FF;#FFFF00;#FFFFFF;0;1;NA       ;0.15;0.19;0.15;0.19;0.26;0.03;0;0.06
-5716e9900f6ea;58;Female;31;no;twoColorsObj;#0000FF;#FFFF00;#80FF00;468;3;DK-Green ;0.09;0.27;0.09;0.27;0.29;0.13;0.14;0.18
-5739ff85289b2;56;Female;25;yes;twoColorsObj;#0000FF;#CBFF00;#FAFF00;64;5;NA       ;0.14;0.21;0.14;0.21;0.23;0.1;0.12;0.14
+id,age,gender,num_answers,in_person,typeOfQuestion,first_color,second_color,third_color,clicks,rating,C3_name,distance_expectedC3_limegreen,distance_expectedC3_red,distance_HSV_1,distance_HSV_2,distance_LCh,distance_CMYK,distance_RGB,distance_Lab
+5710e540a9514,52,Female,32,no,twoColorsObj,#0000FF,#FFFF00,#00FF00,195,4,Yellow   ,0.08,0.29,0.08,0.29,0.31,0.15,0.16,0.2
+571163013744e,53,Female,13,no,twoColorsObj,#0000FF,#FFFF00,#00FF00,7,4,Yellow   ,0.08,0.29,0.08,0.29,0.31,0.15,0.16,0.2
+5711800f2c5f3,59,Female,31,no,twoColorsObj,#0000FF,#FFFF00,#808000,58,4,NA       ,0.14,0.21,0.14,0.21,0.23,0.1,0.12,0.14
+571289ef76e18,55,Female,31,no,twoColorsObj,#0000FF,#FFFF00,#00FF00,125,4,Yellow   ,0.08,0.29,0.08,0.29,0.31,0.15,0.16,0.2
+57149713464b1,51,Female,32,no,twoColorsObj,#0000FF,#FFFF00,#FFFFFF,0,1,NA       ,0.15,0.19,0.15,0.19,0.26,0.03,0,0.06
+5716e9900f6ea,58,Female,31,no,twoColorsObj,#0000FF,#FFFF00,#80FF00,468,3,DK-Green ,0.09,0.27,0.09,0.27,0.29,0.13,0.14,0.18
+5739ff85289b2,56,Female,25,yes,twoColorsObj,#0000FF,#CBFF00,#FAFF00,64,5,NA       ,0.14,0.21,0.14,0.21,0.23,0.1,0.12,0.14

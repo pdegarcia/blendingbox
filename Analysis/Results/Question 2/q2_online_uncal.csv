@@ -1,5 +1,5 @@
-id;typeOfQuestion;first_color;second_color;third_color;clicks;rating;C1_name;C2_name;distance_expectedC1C2;distance_HSV;distance_LCh;distance_CMYK;distance_RGB;distance_Lab
-57113a5534205;objTwoColors;#FF00FF;9;176;412;1;Red      ;Blue     ;0.31;0.4;0.14;0.1;0.2;0.17
-571163013744e;objTwoColors;#FF00FF;217;334;58;2;Blue     ;Magenta  ;0.94;0.15;0.17;0.09;0.1;0.14
-571289ef76e18;objTwoColors;#FF00FF;352;63;332;4;Red      ;Green    ;0.53;0.3;0.08;0.13;0.28;0.2
-57149713464b1;objTwoColors;#FF00FF;0;0;0;1;Red      ;Red      ;0.55;0.33;0.08;0.15;0.31;0.2
+id,typeOfQuestion,first_color,second_color,third_color,clicks,rating,C1_name,C2_name,distance_expectedC1C2,distance_HSV,distance_LCh,distance_CMYK,distance_RGB,distance_Lab
+57113a5534205,objTwoColors,#FF00FF,9,176,412,1,Red      ,Blue     ,0.31,0.4,0.14,0.1,0.2,0.17
+571163013744e,objTwoColors,#FF00FF,217,334,58,2,Blue     ,Magenta  ,0.94,0.15,0.17,0.09,0.1,0.14
+571289ef76e18,objTwoColors,#FF00FF,352,63,332,4,Red      ,Green    ,0.53,0.3,0.08,0.13,0.28,0.2
+57149713464b1,objTwoColors,#FF00FF,0,0,0,1,Red      ,Red      ,0.55,0.33,0.08,0.15,0.31,0.2
