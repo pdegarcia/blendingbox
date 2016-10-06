@@ -4,12 +4,12 @@ Q1: Qual o modelo de cor que, informalmente, os utilizadores utilizaram para ind
     [CHECK]__Analisar pergunta a pergunta as distâncias dos centróides das respostas em cada modelo, à ideal
     [CHECK]__Analisar que perguntas tiveram distâncias menores, para cada modelo. Relacionar com as cores que eram dadas/esperadas, e analisar que modelos foram mais usados
     [CHECK]__Analisar que perguntas tiveram distâncias maiores, para cada modelo. Relacionar com as cores que eram dadas/esperadas, e analisar que modelos foram mais usados
-    __Analisar as perguntas em pares: para cada pergunta do tipo "A = B + C", perceber se o seu equivalente "B + C = A" também gera resultados semelhantes
-    __Verificar se modelos com melhores resultados são aditivos ou subtrativos
+    [CHECK]__Analisar as perguntas em pares: para cada pergunta do tipo "A = B + C", perceber se o seu equivalente "B + C = A" também gera resultados semelhantes
+    [CHECK]__Verificar se modelos com melhores resultados são aditivos ou subtrativos
     __No caso de ser o modelo HSV com melhores resultados, verificar se as cores estão dispostas de forma oposta ou não
-    __Analisar se para as cores primárias R,G,B,C,M,Y, existem evidências de que os utilizadores conseguem criar as mesmas tendo por base de mistura outras cores primárias
-    __Analisar facilidade de mistura
-    __Analisar nomes de cores
+    [CHECK]__Analisar se para as cores primárias R,G,B,C,M,Y, existem evidências de que os utilizadores conseguem criar as mesmas tendo por base de mistura outras cores primárias
+    [CHECK]__Analisar facilidade de mistura
+    [CHECK]__Analisar nomes de cores
 
 Q2: Para cada pergunta, existe uma cor preferida para se iniciar a mistura? - COLOR MIXTURE
     __Se sim, qual?

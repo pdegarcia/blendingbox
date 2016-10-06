@@ -1,5 +1,4 @@
 %!TEX root = ../dissertation.tex
-%!TeX spellcheck = en-US
 
 \chapter{Analyzing Color Mixing Perception}
 \label{chapter:results}
@@ -1231,7 +1230,7 @@ respectively: this information is condensed in table \ref{table:colormodels_dist
     \multicolumn{1}{c|}{Std-Dev ($\sigma$)}                                            & \cellcolor[HTML]{FD6864}\textbf{0.08}  & 0.06       & \cellcolor[HTML]{32CB00}\textbf{0.04}  & 0.05  & \multicolumn{1}{c|}{\cellcolor[HTML]{32CB00}\textbf{0.04}} & \cellcolor[HTML]{32CB00}\textbf{0.04} & \cellcolor[HTML]{FD6864}\textbf{0.06}       & \cellcolor[HTML]{32CB00}\textbf{0.04}  & \cellcolor[HTML]{32CB00}\textbf{0.04} & \multicolumn{1}{c|}{0.05}  \\ \midrule
     \multicolumn{1}{c|}{Maximum Value}                                                 & 0.30  & 0.30       & 0.19                                   & 0.25  & \multicolumn{1}{c|}{0.23}                                  & 0.17                                  & 0.30       & 0.14                                   & 0.20                                  & \multicolumn{1}{c|}{0.22}  \\ \midrule
     \multicolumn{1}{c|}{Minimum Value}                                                 & 0.05  & 0.13       & 0.05                                   & 0.08  & \multicolumn{1}{c|}{0.05}                                  & 0.03                                  & 0.09       & 0.30                                   & 0.04                                  & \multicolumn{1}{c|}{0.02}  \\ \midrule
-    \multicolumn{1}{c|}{Range}                                                         & \cellcolor[HTML]{FD6864}\textbf{0.26}  & 0.17       & \cellcolor[HTML]{32CB00}\textbf{0.14}  & 0.17  & \multicolumn{1}{c|}{0.18}                                  & 0.14                                  & \cellcolor[HTML]{FD6864}\textbf{0.21}       & \cellcolor[HTML]{32CB00}\textbf{0.11}  & 0.16                                  & \multicolumn{1}{c|}{0.20}  \\ \midrule
+    \multicolumn{1}{c|}{Range}                                                         & \cellcolor[HTML]{FD6864}\textbf{0.25}  & 0.17       & \cellcolor[HTML]{32CB00}\textbf{0.14}  & 0.17  & \multicolumn{1}{c|}{0.18}                                  & 0.14                                  & \cellcolor[HTML]{FD6864}\textbf{0.21}       & \cellcolor[HTML]{32CB00}\textbf{0.11}  & 0.16                                  & \multicolumn{1}{c|}{0.20}  \\ \midrule
     \multicolumn{1}{c|}{Variance ($\sigma^2$)}                                                      & \cellcolor[HTML]{FD6864}\textbf{0.006} & 0.003      & \cellcolor[HTML]{32CB00}\textbf{0.001} & 0.002 & \multicolumn{1}{c|}{0.002}                                 & 0.002                                 & \cellcolor[HTML]{FD6864}\textbf{0.004}      & \cellcolor[HTML]{32CB00}\textbf{0.001} & 0.002                                 & \multicolumn{1}{c|}{0.003} \\ \bottomrule
   \end{tabular}}
   \caption[Condensed Statistics for Distances to Ideal Results, mixed in each Color Model.]{Condensed Statistics for Distances to Ideal Results, mixed in each Color Model. In Green/Red shade, the best/worst result for each descriptive statistic.}
@@ -1258,8 +1257,8 @@ we are going to break down the results according to Color Models \emph{per} ques
     \label{fig:hsvcircles_example}
 \end{wrapfigure}
 %
-The HSV Color Model, along with CMYK and RGB, is the one which presents the lowest standard deviation of distances between the results from the online environment; it is also one of the color models which has
-the lowest ranges of values on the same environment, which could indicate greater agreement between distances to the ideal HSV Color Model answer. \par
+The HSV Color Model, along with CMYK and RGB, is the one which presents the lowest standard deviation of distances between the results from the online environment, which could indicate greater agreement between distances
+ to the ideal HSV Color Model answer. \par
 %
 The questions which have shorter distances are number eleven (given orange and expected green and magenta), number seventeen (given green, expected blue and yellow) and number six (given orange,
 expected red and yellow). The mean values distances for this questions were $\tilde{x}_{11} = 0.0587$, $\tilde{x}_{17} = 0.0683$ and $\tilde{x}_{6} = 0.0741$.
@@ -2229,19 +2228,66 @@ analyzed.
 \section{Discussion}
 \label{sec:results_discussion}
 %
-Fazer apanhado dos resultados todos. \par
-Responder a perguntas levantadas. \\
-abordar questão de que modelos originaram melhores respostas, se são aditivos ou subtrativos. \\
-Referir que é preciso estudos para perceber de facto qual é o melhor entre o HSV, Lab e RGB. \\
-CMYK claramente melhor \\
-LCh claramente pior. \\
+The goal of this color study was to: \textbf{study a way to present color information which does not influence color perception}, \textbf{understand if there is any mental organization of color} and \textbf{study the influence of discrete and continuous color scales} on
+user's answers. Additionaly, it was relevant to understand which color model stood as the best to blend colors which are more similar to users' expectation. This user study was developed in two different conditions: in a \textbf{Laboratory Environment}, which allowed us
+to calibrate ans control the entire study conditions, and in a \textbf{Online Environment}, which allowed us to broadcast our study to a larger set of users. \par
+%
+We have defined a set of questions which we wanted to answer to, as follows:
+%
+\begin{enumerate*}
+	\item Which Color Model meets best the users' expectations, when blending two colors? (\textbf{Q1}),
+	\item Is there evidence of a spatial arrangement of colors, when users are indicating possible color mixtures' results? (\textbf{Q2}), and if
+	\item Are there evidences from differences across demographic groups, such as the age or gender? (\textbf{Q3}).
+\end{enumerate*}
+%
+We have performed a statistical analysis of the processed data obtained from the user study: the main data which was analyzed was the one obtained in the laboratory environment, being the online data only the corroboration of the main data. We have started by drafting a
+profile from the users which we have obtained the data from: our user sample is composed by \textbf{259 users}, being 105 Females, 152 Males and a minority of 2 Other gendered users, \textbf{171 of these} have a High-Degree of Education and \textbf{215 users} have
+Portuguese Nationality. \par
+%
+In order to study which color model yields the best results, we have blended each answer-pair given by the users according to each color model in study: HSV, CIE-L*C*h*, CMYK, RGB and CIE-L*a*b*. This blendings were performed for the subset of questions comprised between
+number one and 17, which represent the questions in which the result of a given mixture was given, and the user had to answer the question by indicating the answer-pair which they thought it would fit the ideal blending-basis. Analyzing the statistics resulting from this
+analysis, we have observed that \textbf{the color blending which constantly yielded the best results across all color models is the mixing of Red-Yellow, to achieve Orange}, while the mixture which provided the worst results when evaluating the distance from the user's
+answers and the ideal answers, is \textbf{the blending of Green-Magenta, resulting in a Blue shade}: these results are coherent with the ones collected by Gama and Gonçalves \cite{Gama20141} before, which concluded that the success rates were higher for blending pairs
+like Red-Yellow, and worst for pairs which correspond to a wider angle in a Hue circle. For instance, \textbf{blending Cyan and Yellow, to obtain Green} had great results among the results, generating the lowest values for evaluated descriptive statistics across each
+every color model($\tilde{x}$, $\sigma$, $\sigma^2$). These results are, also, \textbf{consistent with the fact that the human color perception is conditioned by the amount of Cones present in our eyes} since the users have more descriptive power for colors near the
+green zone of the spectrum, due to the fact that the eye has substantially more green sensitive cones than blue ones, indicating that minimum variations within Blue colors could not be detected. \par
+%
+When analyzing the answers by Color Model, we can observe that \textbf{the HSV Color Model, along with CMYK and RGB, is the one which presents the lowest standard deviation of distances} between the results from the online environment, while \textbf{the Color Model
+which presented the lowest mean value for distances was the CMYK Color Model}. The RGB, HSV and CIE-L*a*b* Color Models all generate values very similar to each other, so \textbf{further studies should focus on discernin which color model is better than others, between
+HSV, RGB and CIE-L*a*b*}, since there were no relevant differences among them. \par
+%
+On the other hand, the CIE-L*C*h* Color Model is the one which typically provided the worst results across all color blendings, therefore being \textbf{the one which least resembles the users' expectactions when blending colors}. The CMYK Color Model is, by far, the one
+which presents the best results for most of the descriptive statistics, being corroborated by the results from the online environment: the distances from the given answers when blended according to the CMYK Color Model, presented consistently the lowest values across
+all questions. In fact, the questions which yielded better results are majorly related to primitives of the CMYK color model; this success could be related to the fact that people tend to formulate mental models of color based on ink mixing in childhood
+\cite{Gossett2004}, mostly associating it to Red, Yellow, Blue (RYB) and CMYK Color Models without even knowing it: \textbf{These results indicate that CMYK is a highly compatible color model with the users expectations}. For these reasons, we can answer question
+\textbf{Q1}, stating that \ul{the color model which most resembles the user's expectation, when blending two colors according to a given result, is the CMYK Color Model}. Since CMYK is an additive color model, it is safe to say that \ul{the type of color models which
+most resembles the user's expectation, when blending two colors according to a given result, is a subtractive color model}. \par
+%
+It is also interesting to observe that the users are able to blend primary colors (Red, Green, Blue, Cyan, Magenta and Yellow) using other primary colors as the blending-basis: however, the results obtained for \textbf{Blue and Cyan are consistent with the ones
+obtained previously}: there is no strong evidence that the users can produce Blue (or blue-derived) color blendings. In opposition, when \textbf{creating Green, Magenta and Yellow}, the users revealed some basic conception of blending their basis, with more emphasis
+on the process of creating Magenta: users have indicated more detailed shades of Red to create the color mixture, contrary to other color blends evaluated, which may have implications on the level of detail that the displaying of color should have. \par
+%
+We have also performed a demographic analysis to ascertain if there was any plausible difference present in our dataset, between demographic groups. We have conducted an analysis \emph{per} age groups (users aged below 20 years, between 20-29, 30-39, 40-49, 50-59 and
+above 60 years) and gender groups (Female, Male and Other gendered). Regarding the \ul{age groups}, we have not found relevant differences between age groups, since not every color blending had presented statistically significant differences between the groups; however,
+from the ones which had presented differences, the users aged between 40 and 49 years were present in every difference detected. Still, we do not have enough ground truth to sustent a conclusion about the existance of age diffences. \par
+%
+We cannot say the same thing about \ul{gender groups} differences: there is a mild difference between the results from the Female gendered users, and the Male ones. It is not an absolute difference, since not every question had presented significant differences between
+gender groups; also, it is not possible to formulate a conclusion about which gender generates the wider or closer distances to the ideal answer (according to each Model), since there is no visible pattern about this subject. There were no significant differences
+between female or male users, and the other gendered users: this could due to the lack of a significant user sample relating the later gender. This leads us to conclude that \textbf{there is, in fact, space for a theory on the existence of a difference in color
+perception by the female users, when compared with the male users}: this difference is observable in our study results, but not substantial to formulate any a formal research conclusion. \par
+%
+Finally, we have studied the users' effort in blending colors: the results are in agreement with the ones collected and concluded before, in which the blending of Red-Green resulting in Yellow, blending of Red-Yellow and Green-Magenta, both resulting in Orange and the
+blending of Cyan-Yellow resulting in Green were the mixtures which, according to the users’ answers, had the lowest effort when blending, consequently the highest rating of easiness. It is interesting to observe that the results for the generality of questions encircle
+the rating of two and three, on a scale from one to five, which could indicate that apart from the obvious color blendings which proved to yield the best results, all \textbf{the other blendings show nor an easy or hard level of effort to mix the basis}.
 %
 \subsection{Calibration Resiliency}
 \label{subsec:results_calibration}
 %
-Como verificamos ainda alguns users com calibração imprópria para teste, considerámos que poderia ser uma fonte de resultados
-interessantes. Como tal, criámos um dataset para os mesmos e comparámos com os resultados dos utilizadores calibrados. Os resultados
-são os que se seguem... \par
+During the analysis of the dataset, we verified that there was a smaller set of five online users which had presented erratic calibration values. Since these users could provide interesting values to establish a comparison between values gathered on a calibrated,
+\emph{versus} an uncalibrated study environment, we have kept them in a separate dataset for comparisons. These users, similarly to color vision deficient users, were subject of a qualitative comparison, due to the fact that there is insufficient data to
+demonstrate significant comparisons. In this section, we handle a brief analysis, exemplifing with one example \par
+%
+
 %
 \subsection{Creation of Color Scales}
 \label{subsec:results_discussion_colorscales}
@@ -2252,9 +2298,15 @@ Aproveitar resultado de respostas em branco
 \label{subsec:results_discussion_colororganization}
 %
 Falar da conclusão de A + B = C (=) C = A + B ?
+Indicar se existe ou não alguma ordem em particular para indicar cores (Magenta e Yellow, cor primaria)
 %
 \subsection{Implications for InfoVis}
 \label{subsec:results_discussion_infovis}
 %
 Resumo dos resultados todos e regras que se podem levar deste trabalho para a área de InfoVis em geral.
+CMYK em vez de HSV
+Escalas de cor devem incluir branco
+Escalas de cor continuas dão mais liberdade ao utilizador para indicar outras cores, mas criam entropia. Escalas de cor discretas são mais incisivas nos valores, mas criam restrição.
+Eventualmente, seria interessante explorar a vertente de mudar a interface da visualização consoante utilizador Male ou Female, mas são necessários estudos adicionais.
+Indicar se é melhor indicar as cores já misturadas, ou dar espaço ao utilizador para misturar as bases.
 %
