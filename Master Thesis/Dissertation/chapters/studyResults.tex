@@ -2014,9 +2014,6 @@ However, there was a tendency for users to indicate colors which were near ($dis
 result, or they indicated the same color as the result, according to their expectation and color perception}. Since it is not possible for us to judge this information based on these results only, it would be ideal if further studies could deepen this matter.
 Figures \ref{fig:white_2} and \ref{fig:white_3} all represent the set of answer-pairs with one white component, for questions one, ten and fifteen, respectively. \par
 %
-Evaluating the amount of one-white-component answers \emph{per} color blending, we detect that the ones which had the most were \textbf{Green-Magenta to produce a shade of Blue} (63 answers), \textbf{Red-Green to produce Yellow} (60 answers), and
-\textbf{Blue-Yellow to produce a shade of Magenta} (56 Answers).
-%
 \begin{figure}[!htbp]
   \centering
   \begin{minipage}{0.48\textwidth}
@@ -2253,7 +2250,7 @@ every color model($\tilde{x}$, $\sigma$, $\sigma^2$). These results are, also, \
 green zone of the spectrum, due to the fact that the eye has substantially more green sensitive cones than blue ones, indicating that minimum variations within Blue colors could not be detected. \par
 %
 When analyzing the answers by Color Model, we can observe that \textbf{the HSV Color Model, along with CMYK and RGB, is the one which presents the lowest standard deviation of distances} between the results from the online environment, while \textbf{the Color Model
-which presented the lowest mean value for distances was the CMYK Color Model}. The RGB, HSV and CIE-L*a*b* Color Models all generate values very similar to each other, so \textbf{further studies should focus on discernin which color model is better than others, between
+which presented the lowest mean value for distances was the CMYK Color Model}. The RGB, HSV and CIE-L*a*b* Color Models all generate values very similar to each other, so \textbf{further studies should focus on discerning which color model is better than others, between
 HSV, RGB and CIE-L*a*b*}, since there were no relevant differences among them. \par
 %
 On the other hand, the CIE-L*C*h* Color Model is the one which typically provided the worst results across all color blendings, therefore being \textbf{the one which least resembles the users' expectactions when blending colors}. The CMYK Color Model is, by far, the one
@@ -2265,7 +2262,14 @@ most resembles the user's expectation, when blending two colors according to a g
 %
 It is also interesting to observe that the users are able to blend primary colors (Red, Green, Blue, Cyan, Magenta and Yellow) using other primary colors as the blending-basis: however, the results obtained for \textbf{Blue and Cyan are consistent with the ones
 obtained previously}: there is no strong evidence that the users can produce Blue (or blue-derived) color blendings. In opposition, when \textbf{creating Green, Magenta and Yellow}, the users revealed some basic conception of blending their basis, with more emphasis
-on the process of creating Magenta: users have indicated more detailed shades of Red to create the color mixture, contrary to other color blends evaluated, which may have implications on the level of detail that the displaying of color should have. \par
+on the process of creating Magenta: users have indicated more detailed shades of Red to create the color mixture, contrary to other color blends evaluated, which may have implications on the level of detail that the displaying of color should have. This leads us to
+answer question \textbf{Q2}: \textbf{for some color blendings there is, in fact, evidence that the users sort the colors when indicating the blending-basis, revealing some mental color organization}: in the later case of the Magenta blending, users may have indicated
+first the Red shades, since it is a color that is more similar to Magenta (the resulting one) and users may have used it to start the mixture, just like when using paint colors. \par
+%
+Besides asking our users to indicate us the two primitives which composed a color blending of two colors, we intended to go further: comprehend if more than detecting two colors of a mixture, a user is capable of mentally blend two given colors and indicate us its results.
+Therefore, we reverted the way blendings were presented, giving the two primitives of the blending to the user, offering at the same time a color slider which contained discretized pre-calculated values (which were nothing more than all the results of all questions,
+blended accordingly to all color models). The distances for these questions were higher than the previous ones: this could be due to the fact \textbf{we have only presented discretized colors as options, and did not leave any wiggle-room for the user to indicate other
+colors which he thought it could be more appropriate}. For certain colors (\emph{e.g.} the orange blending) the results were equally good, since there are \textbf{color blendings which users are more familiar with and, therefore, are more intuitive}. \par
 %
 We have also performed a demographic analysis to ascertain if there was any plausible difference present in our dataset, between demographic groups. We have conducted an analysis \emph{per} age groups (users aged below 20 years, between 20-29, 30-39, 40-49, 50-59 and
 above 60 years) and gender groups (Female, Male and Other gendered). Regarding the \ul{age groups}, we have not found relevant differences between age groups, since not every color blending had presented statistically significant differences between the groups; however,
@@ -2278,35 +2282,59 @@ perception by the female users, when compared with the male users}: this differe
 %
 Finally, we have studied the users' effort in blending colors: the results are in agreement with the ones collected and concluded before, in which the blending of Red-Green resulting in Yellow, blending of Red-Yellow and Green-Magenta, both resulting in Orange and the
 blending of Cyan-Yellow resulting in Green were the mixtures which, according to the users’ answers, had the lowest effort when blending, consequently the highest rating of easiness. It is interesting to observe that the results for the generality of questions encircle
-the rating of two and three, on a scale from one to five, which could indicate that apart from the obvious color blendings which proved to yield the best results, all \textbf{the other blendings show nor an easy or hard level of effort to mix the basis}.
+the rating of two and three, on a scale from one to five, which could indicate that apart from the obvious color blendings which proved to yield the best results, all \textbf{the other blendings show nor an easy or hard level of effort to mix the basis}. Answering question
+\textbf{Q3}, \textbf{it is possible to that there are evidences of difference between demographic groups, but only between genders}.
 %
 \subsection{Calibration Resiliency}
 \label{subsec:results_calibration}
 %
 During the analysis of the dataset, we verified that there was a smaller set of five online users which had presented erratic calibration values. Since these users could provide interesting values to establish a comparison between values gathered on a calibrated,
 \emph{versus} an uncalibrated study environment, we have kept them in a separate dataset for comparisons. These users, similarly to color vision deficient users, were subject of a qualitative comparison, due to the fact that there is insufficient data to
-demonstrate significant comparisons. In this section, we handle a brief analysis, exemplifing with one example \par
+demonstrate significant comparisons. \par
 %
-
+Since the laboratory users performed the color study inside a controlled and calibrated environment, they are not examined in this analysis. Performing a Friedman Test over the results from calibrated users and uncalibrated users, we concluded that only two questions
+show statistically significant differences between results: they are question two ($\chi^2 = 24.853$, $p < 0.05$) an question 13 ($\chi^2 = 17.209$, $p < 0.05$). However, when analyzing the chromaticity diagrams from question two, present in Figures \ref{fig:uncal_1}
+and \ref{fig:uncal_2}, we end up concluding that \textbf{there is no substantial difference between calibrated and uncalibrated results}. Remember that question two asked for a answer-pair of Red-Blue to a Magenta color presented.
 %
-\subsection{Creation of Color Scales}
-\label{subsec:results_discussion_colorscales}
+\begin{figure}[!htbp]
+  \centering
+  \begin{minipage}{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{images/results/2_online_regularUsers.png}
+    \caption[Online Results: Answers for Question 2, from calibrated users.]{Online Results: Answers for Question 2, from calibrated users.}
+    \label{fig:uncal_1}
+  \end{minipage}\hfill
+  \begin{minipage}{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{images/results/2_online_uncalibratedUsers.png}
+    \caption[Online Results: Answers for Question 2, from uncalibrated users.]{Online Results: Answers for Question 2, from uncalibrated users.}
+    \label{fig:uncal_2}
+  \end{minipage}
+\end{figure} \par
 %
-Aproveitar resultado de respostas em branco
-%
-\subsection{Color Organization}
-\label{subsec:results_discussion_colororganization}
-%
-Falar da conclusão de A + B = C (=) C = A + B ?
-Indicar se existe ou não alguma ordem em particular para indicar cores (Magenta e Yellow, cor primaria)
+Therefore, since the majority of questions of this user study revealed no significant difference between calibrations, we can state that \textbf{this color study was resilient to changes in calibration values}.
 %
 \subsection{Implications for InfoVis}
 \label{subsec:results_discussion_infovis}
 %
-Resumo dos resultados todos e regras que se podem levar deste trabalho para a área de InfoVis em geral.
-CMYK em vez de HSV
-Escalas de cor devem incluir branco
-Escalas de cor continuas dão mais liberdade ao utilizador para indicar outras cores, mas criam entropia. Escalas de cor discretas são mais incisivas nos valores, mas criam restrição.
-Eventualmente, seria interessante explorar a vertente de mudar a interface da visualização consoante utilizador Male ou Female, mas são necessários estudos adicionais.
-Indicar se é melhor indicar as cores já misturadas, ou dar espaço ao utilizador para misturar as bases.
+This research produced a set of useful results which could have some impact in the \gls{InfoVis} Research area. In this final section, we summarize them and extract possible implications on the named area. \par
+%
+As referred in the beginning of this discussion, we have studied which color models are capable of yielding the best results to map the information conveyed with color, according with the user's expectations: we have concluded that this ideal model is the \textbf{CMYK
+Color Model}. However, this conclusion contradicts what is the standard nowadays, which is to use HSV to blend the colors when showing information to users \emph{via} Information Visualizations; moreover, it also contradicts the research already realized in this area
+\cite{Gama20141}. \par
+%
+Another useful output could be the implications when creating color scales: we have gathered a generous amount of data from users which provide only one answer, followed by a white color; as we have previously analyzed, we concluded that users have indicated the white color
+to whiten the color that they gave, transforming it in a lighter color according to their expectation. Consequently, we believe that \textbf{it would be of major interest to the user including the white color in a color scale} so he can adjust the "amount" (since saturation
+is many times associated with quantity of data, the more saturated the color the higher the amount of data) of color which he wants to indicate. Besides, in the light of our results we would like to discuss the usage of \ul{continuous or discrete color scales}: continous color
+scales give more freedom to the user to express the color he wants, which is specially useful when we want to indicate precise data values; yet, these scales can causa entropy in data, since a user which does not want to indicate a precise value and only to point out a
+color without looking into detail, it can turn out to be a bit messy. On the other hand, discrete color scales are more incisive in their values and provide more defined values to the user: the catch here is, as it is providing pre-calculated information, it is at the same time
+limiting the scope of answers which the user can indicate. According to our user study, we propose that \textbf{the usage of continuous color scales should be limited to cases in which the user is intended to oscilate the value of a variable and adjust it as he may}, and that
+\textbf{the usage of discrete color scales should be indicated when giving the user tools to blend colors associated to pre-defined containers of information} as Gama and Gonçalves stated \cite{Gama20142}. \par
+%
+Given the fact that we have tested out both possible channels of transmitting a color blending (either giving the already-blended color, or the blending-basis and waited for the result), we would like to state that \textbf{the best results are yielded when the result is already
+blended, and the user is asked to formulate a color blending}. Imagining an information visualization, it is the same as stating that \textbf{it is best for the user to perceive an already blended color and process it according to its mental model of color}, than to give a white
+screen and ask the user to create the color blendings. \par
+%
+An interesting field of research would be to explore the differences between genders (Female and Male) and adapt the amount of \emph{descriptiveness} visually perceived by the user according to its gender; since it is plausible that there is, in fact, some mild difference between
+the color descriptive power of man and woman, \textbf{an intelligent interface that could provide such feature would be, besides more enjoyable, more adapted to the descriptive capabilities of each user} and capable of providing better results and less frustration.
 %

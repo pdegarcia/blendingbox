@@ -1,0 +1,5 @@
+id;typeOfQuestion;first_color;second_color;third_color;clicks;rating;C1_name;C2_name;distance_expectedC1C2;distance_HSV;distance_LCh;distance_CMYK;distance_RGB;distance_Lab;distance_pair1;distance_pair2
+57113a5534205;objTwoColors;#FF8000;4;54;123;5;Red      ;Green    ;0.02;0.01;0.08;0.02;0.02;0.01;0.74;0.73
+571163013744e;objTwoColors;#FF8000;342;55;238;5;Red      ;Green    ;0.09;0.07;0.12;0.05;0.03;0.04;0.72;0.72
+571289ef76e18;objTwoColors;#FF8000;52;352;159;5;Green    ;Red      ;0.52;0.05;0.21;0.02;0.02;0.02;0.47;0.47
+57149713464b1;objTwoColors;#FF8000;0;0;0;1;Red      ;Red      ;0.28;0.12;0.09;0.12;0.11;0.16;0.74;0.73

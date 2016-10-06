@@ -1,0 +1,9 @@
+id,age,gender,num_answers,in_person,typeOfQuestion,first_color,second_color,third_color,clicks,rating,C1_name,C2_name,distance_expectedC1C2,distance_HSV,distance_LCh,distance_CMYK,distance_RGB,distance_Lab
+5710e540a9514,52,Female,32,no,objTwoColors,#FFFF00,10,111,191,4,Red      ,Green    ,0.04,0,0.13,0.03,0.04,0.01
+57116ce8cf9e5,50,Female,7,no,objTwoColors,#FFFF00,0,52,213,4,Red      ,Green    ,0.16,0.18,0.14,0.07,0.16,0.1
+5711800f2c5f3,59,Female,31,no,objTwoColors,#FFFF00,46,66,427,1,Green    ,Yellow   ,0.33,0.01,0.16,0.02,0.01,0.03
+571289ef76e18,55,Female,31,no,objTwoColors,#FFFF00,21,358,102,4,Red      ,Red      ,0.48,0.26,0.11,0.17,0.24,0.2
+57142079d871e,51,Male,8,no,objTwoColors,#FFFF00,50,129,340,4,Green    ,Green    ,0.26,0.11,0.18,0.05,0.1,0.1
+57149713464b1,51,Female,32,no,objTwoColors,#FFFF00,0,0,0,1,Red      ,Red      ,0.41,0.28,0.14,0.2,0.26,0.24
+5716e9900f6ea,58,Female,31,no,objTwoColors,#FFFF00,119,359,312,3,Green    ,Red      ,0.84,0,0.33,0.03,0.02,0.01
+5739ff85289b2,56,Female,25,yes,objTwoColors,#CEFF00,50,196,6,2,Green    ,LI-Blue  ,0.61,0.15,0.18,0.1,0.14,0.16

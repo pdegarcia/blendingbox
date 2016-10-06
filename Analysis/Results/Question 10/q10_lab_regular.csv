@@ -1,0 +1,15 @@
+id;typeOfQuestion;first_color;second_color;third_color;clicks;rating;C1_name;C2_name;distance_expectedC1C2;distance_HSV;distance_LCh;distance_CMYK;distance_RGB;distance_Lab;distance_pair1;distance_pair2;distance_pair3;distance_pair4;distance_pair5;distance_pair6
+5710ee9e58646;objTwoColors;#0080FF;10;242;620;2;Red      ;Blue     ;0.62;0.16;0.09;0.08;0.18;0.18;0.86;0.83;0.66;0.86;0.83;0.45
+571151812791a;objTwoColors;#0080FF;54;158;82;3;Green    ;Cyan     ;0.45;0.43;0.25;0.09;0.15;0.12;0.6;0.57;0.6;0.6;0.57;0.54
+572767049ccfa;objTwoColors;#0080FF;181;57;148;3;Blue     ;Green    ;0.61;0.43;0.28;0.06;0.12;0.07;0.49;0.46;0.48;0.49;0.46;0.77
+572c85675a5ef;objTwoColors;#0080FF;206;209;167;5;Navy-Blue;NA       ;0.61;0.02;0.22;0.17;0.22;0.29;0.33;0.31;0.14;0.33;0.31;0.52
+5739ff85289b2;objTwoColors;#0080FF;55;110;101;3;Green    ;Green    ;0.58;0.41;0.26;0.12;0.2;0.17;0.75;0.71;0.74;0.75;0.71;0.67
+573a059da0efd;objTwoColors;#0080FF;76;53;296;4;Yellow   ;Green    ;0.4;0.4;0.33;0.12;0.17;0.14;0.75;0.71;0.74;0.75;0.71;0.54
+573c70dabcfe0;objTwoColors;#0080FF;128;67;431;2;Green    ;Yellow   ;0.37;0.42;0.39;0.11;0.21;0.18;0.75;0.73;0.76;0.75;0.73;0.5
+573c783748e8b;objTwoColors;#0080FF;238;225;123;3;Blue     ;Blue     ;0.77;0.12;0.4;0.21;0.34;0.38;0.31;0.35;0.31;0.31;0.35;0.59
+573e47c26cb8e;objTwoColors;#0080FF;5;103;120;2;Red      ;Green    ;0.83;0.39;0.05;0.1;0.16;0.13;0.78;0.74;0.8;0.78;0.74;0.93
+5740ad339507d;objTwoColors;#0080FF;117;53;348;3;Green    ;Green    ;0.35;0.41;0.39;0.12;0.2;0.17;0.78;0.75;0.77;0.78;0.75;0.49
+5740b686127bb;objTwoColors;#0080FF;215;254;875;3;Blue     ;Blue     ;0.7;0.12;0.28;0.2;0.32;0.35;0.37;0.36;0.26;0.37;0.36;0.52
+5740bda9be3dc;objTwoColors;#0080FF;222;216;84;5;Blue     ;Blue     ;0.7;0.08;0.31;0.19;0.29;0.34;0.29;0.29;0.23;0.29;0.29;0.57
+5756ab1701ba0;objTwoColors;#0080FF;58;144;192;5;Green    ;Green    ;0.51;0.42;0.27;0.1;0.18;0.15;0.68;0.65;0.68;0.68;0.65;0.6
+5756ae6897296;objTwoColors;#0080FF;6;313;97;5;Red      ;Pink     ;0.44;0.39;0.06;0.17;0.21;0.19;0.77;0.73;0.64;0.77;0.73;0.63

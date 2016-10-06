@@ -1,0 +1,8 @@
+id,age,gender,num_answers,in_person,typeOfQuestion,first_color,second_color,third_color,clicks,rating,C3_name,distance_expectedC3,distance_HSV,distance_LCh,distance_CMYK,distance_RGB,distance_Lab
+5710e540a9514,52,Female,32,no,twoColorsObj,#FF0000,#FFFF00,#FF8000,24,4,NA       ,0.07,0.07,0.06,0.06,0.08,0.06
+571163013744e,53,Female,13,no,twoColorsObj,#FF0000,#FFFF00,#FF8000,5,5,NA       ,0.07,0.07,0.06,0.06,0.08,0.06
+5711800f2c5f3,59,Female,31,no,twoColorsObj,#FF0000,#FFFF00,#FF6F00,44,4,NA       ,0.06,0.06,0.07,0.06,0.07,0.07
+571289ef76e18,55,Female,31,no,twoColorsObj,#FF0000,#FFFF00,#FF9F00,31,5,NA       ,0.08,0.08,0.07,0.07,0.09,0.06
+57142079d871e,51,Male,8,no,twoColorsObj,#FF0000,#FFFF00,#FF6F00,40,4,NA       ,0.06,0.06,0.07,0.06,0.07,0.07
+57149713464b1,51,Female,32,no,twoColorsObj,#FF0000,#FFFF00,#FFFFFF,0,1,NA       ,0.2,0.2,0.19,0.19,0.22,0.19
+5716e9900f6ea,58,Female,31,no,twoColorsObj,#FF0000,#FFFF00,#FF6F00,33,5,NA       ,0.06,0.06,0.07,0.06,0.07,0.07

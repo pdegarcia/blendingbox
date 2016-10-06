@@ -1,0 +1,23 @@
+id;typeOfQuestion;first_color;second_color;third_color;clicks;rating;C1_name;C2_name;distance_expectedC1C2;distance_HSV;distance_LCh;distance_CMYK;distance_RGB;distance_Lab;distance_pair1;distance_pair2
+5710ee9e58646;objTwoColors;#FF8000;4;55;311;5;Red      ;Green    ;0.02;0;0.08;0.02;0.02;0.01;0.74;0.73
+571151812791a;objTwoColors;#FF8000;2;57;247;3;Red      ;Green    ;0.01;0;0.08;0.03;0.02;0.01;0.74;0.74
+5713a02a13044;objTwoColors;#FF8000;56;354;183;4;Green    ;Red      ;0.55;0.03;0.22;0.03;0.02;0.01;0.47;0.45
+572767049ccfa;objTwoColors;#FF8000;9;58;71;4;Red      ;Green    ;0.03;0.02;0.08;0.03;0.04;0.01;0.74;0.73
+572c85675a5ef;objTwoColors;#FF8000;8;173;80;3;Red      ;Green    ;0.24;0.27;0.04;0.12;0.23;0.12;0.63;0.63
+5739ff85289b2;objTwoColors;#FF8000;168;52;531;1;Green    ;Green    ;0.43;0.31;0.26;0.15;0.25;0.17;0.52;0.54
+573a059da0efd;objTwoColors;#FF8000;136;221;574;3;Green    ;Blue     ;0.9;0.32;0.37;0.27;0.32;0.29;0.24;0.26
+573a0b8280839;objTwoColors;#FF8000;52;42;44;3;Green    ;Yellow   ;0.33;0.1;0.21;0.07;0.11;0.06;0.47;0.47
+573c70dabcfe0;objTwoColors;#FF8000;56;92;116;2;Green    ;Green    ;0.39;0.21;0.22;0.14;0.23;0.17;0.55;0.55
+573c783748e8b;objTwoColors;#FF8000;353;57;132;4;Red      ;Green    ;0.02;0.03;0.1;0.03;0.02;0.01;0.74;0.74
+573e47c26cb8e;objTwoColors;#FF8000;18;47;44;3;Red      ;Green    ;0.11;0.02;0.07;0.02;0.03;0.02;0.68;0.67
+573edae85268b;objTwoColors;#FF8000;2;44;103;4;Red      ;Yellow   ;0.07;0.04;0.09;0.03;0.03;0.05;0.72;0.71
+5740a8b59d448;objTwoColors;#FF8000;3;57;60;5;Red      ;Green    ;0.01;0;0.08;0.03;0.02;0.01;0.74;0.74
+5740b686127bb;objTwoColors;#FF8000;3;52;192;5;Red      ;Green    ;0.03;0.02;0.08;0.02;0.01;0.02;0.73;0.73
+5740bda9be3dc;objTwoColors;#FF8000;1;57;42;5;Red      ;Green    ;0.01;0.01;0.09;0.03;0.02;0.01;0.74;0.75
+574859b8f3379;objTwoColors;#FF8000;8;59;78;5;Red      ;Green    ;0.01;0.02;0.08;0.03;0.04;0.01;0.74;0.73
+5756ae6897296;objTwoColors;#FF8000;58;44;140;4;Green    ;Yellow   ;0.34;0.12;0.23;0.08;0.13;0.08;0.45;0.44
+5756b2d9bd658;objTwoColors;#FF8000;2;59;132;5;Red      ;Green    ;0;0;0.08;0.03;0.03;0.01;0.75;0.74
+5757fd2703090;objTwoColors;#FF8000;6;59;60;5;Red      ;Green    ;0.01;0.02;0.08;0.03;0.04;0.01;0.74;0.74
+5757ffca0b4b1;objTwoColors;#FF8000;1;56;65;4;Red      ;Green    ;0.01;0.01;0.09;0.02;0.02;0.01;0.74;0.74
+57581518c2c07;objTwoColors;#FF8000;58;350;303;4;Green    ;Red      ;0.54;0.04;0.23;0.03;0.03;0.02;0.44;0.43
+57582b17cd76a;objTwoColors;#FF8000;15;57;54;4;Red      ;Green    ;0.05;0.04;0.07;0.03;0.05;0.01;0.7;0.71

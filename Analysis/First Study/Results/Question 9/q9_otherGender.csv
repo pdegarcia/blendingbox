@@ -1,3 +1,0 @@
-id,age,gender,num_answers,in_person,typeOfQuestion,first_color,second_color,third_color,clicks,rating,C1_name,C2_name,distance_expectedC1C2,distance_HSV,distance_LCh,distance_CMYK,distance_RGB,distance_Lab,distance_pair1,distance_pair2,distance_pair3,distance_pair4,distance_pair5,distance_pair6,distance_pair7,distance_pair8
-57410611290e3,22,Other,5,no,objTwoColors,#00FF80,59,188,191,4,Green    ,Cyan     ,0.22,0.1,0.13,0.1,0.06,0.08,0.37,0.37,0.43,0.45,0.45,0.45,0.45,0.81
-5745c1c07cc0c,18,Other,31,no,objTwoColors,#00FF80,138,157,228,4,Green    ,Cyan     ,0.14,0.03,0.18,0.08,0.02,0.03,0.52,0.53,0.2,0.23,0.23,0.23,0.22,0.67

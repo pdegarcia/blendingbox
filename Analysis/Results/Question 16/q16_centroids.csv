@@ -1,0 +1,13 @@
+Row,centroid_HSV_1,centroid_HSV_2,distance_centroid_HSV,centroid_LCh_1,centroid_LCh_2,distance_centroid_LCh,centroid_CMYK_1,centroid_CMYK_2,distance_centroid_CMYK,centroid_RGB_1,centroid_RGB_2,distance_centroid_RGB,centroid_Lab_1,centroid_Lab_2,distance_centroid_Lab
+Laboratory Users,0.4,0.26,0.1,0.41,0.36,0.2,0.44,0.35,0.07,0.4,0.31,0.08,0.43,0.31,0.04
+Online Users (Regular),0.4,0.28,0.1,0.46,0.35,0.14,0.45,0.33,0.08,0.41,0.28,0.1,0.44,0.29,0.06
+Online Users (Uncalibrated),0.36,0.18,0.16,0.48,0.38,0.14,0.43,0.29,0.09,0.38,0.21,0.15,0.41,0.22,0.1
+Users aged Less Than 20 Years,0.46,0.27,0.04,0.52,0.38,0.11,0.51,0.34,0.14,0.49,0.3,0.15,0.52,0.32,0.13
+Users aged Between 20 and 29 Years,0.48,0.3,0.05,0.47,0.34,0.14,0.5,0.33,0.13,0.48,0.3,0.15,0.49,0.3,0.11
+Users aged Between 30 and 39 Years,0.47,0.26,0.03,0.53,0.36,0.09,0.5,0.33,0.13,0.48,0.28,0.15,0.5,0.3,0.12
+Users aged Between 40 and 49 Years,0.57,0.29,0.08,0.52,0.34,0.09,0.56,0.32,0.2,0.57,0.29,0.23,0.58,0.3,0.19
+Users aged Between 50 and 59 Years,0.37,0.23,0.13,0.43,0.35,0.17,0.44,0.34,0.08,0.4,0.3,0.08,0.44,0.31,0.05
+Users aged Above 60 Years,0.53,0.27,0.03,0.48,0.34,0.12,0.52,0.3,0.16,0.52,0.26,0.2,0.51,0.26,0.14
+Female Users,0.51,0.3,0.05,0.48,0.35,0.13,0.51,0.33,0.15,0.51,0.3,0.17,0.52,0.3,0.13
+Male Users,0.46,0.28,0.04,0.48,0.35,0.12,0.49,0.33,0.12,0.46,0.29,0.14,0.49,0.3,0.1
+Other Gender Users,0.42,0.21,0.09,0.43,0.37,0.18,0.5,0.35,0.13,0.48,0.31,0.14,0.51,0.33,0.13
