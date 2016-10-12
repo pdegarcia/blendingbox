@@ -1,7 +1,7 @@
 ![alt tag](https://github.com/pdegarcia/blendingbox/blob/master/Implementation/images/header.jpg)
 
 Blendingbox comprises every topic related to the "Will It Blend?" Master's Thesis of Paulo Garcia (67051).
-In this repository, it will be available some interesting stuff which you may want to check out!
+In this repository, it is available some interesting stuff which you may want to check out!
 
  - Color Blends available in more than one Color Model.
  - Color Blending User Studies.
@@ -9,7 +9,8 @@ In this repository, it will be available some interesting stuff which you may wa
  - And more!
  
 ## User Studies
-- First Study **CONCLUDED** (ongoing evaluation)
+- First Study **CONCLUDED**
+- First Study Analysis **CONCLUDED**
  
 ## Tech Currently Being Used
 
@@ -37,8 +38,7 @@ In this repository, it will be available some interesting stuff which you may wa
 ## To-Do
 
 - See **Issues List**.
-- Analyze Results provided by the First Study.
-- Write Master Thesis.
+- Present Master Thesis!
 
 ## To generate the Dissertation and Extended-Abstract document in the PDF format, execute the following commands:
 
