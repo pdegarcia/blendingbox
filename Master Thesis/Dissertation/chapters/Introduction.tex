@@ -60,11 +60,16 @@ ambits, such as blending colors forming stitched patterns, improving the percept
 colors \cite{Urness2003}, or methods to create colors that naturally mix without confusing colors to user \cite{Chuang2009}. \par
 %
 Even though investigation has been done, there are flaws and situations raised from them which remain to be fully
-tested and understood. These led us to state that we wanted to study understand if color blendings can be detected
-by the users, besides testing if it is better to give the result already mixed, or indicate the blending-basis and
-the user creates the color mixture. Additionally, we believe that it would be interesting to infer if the users follow
-some kind of mental convention and organize the color when conveying the answers, formulating possible implications
-of color blending usage, in InfoVis field. \par
+tested and understood. These led us to state that reseach goal as: \\ \\
+%
+\textbf{Study if color blendings can be detected by the users, while testing if it is easier for
+users to estimate the pair of colors that resulted in a particular given blend, or reciprocally, to estimate
+which blend will result from a given pair of colors.} \\ \\
+%
+Additionally, we believe that it would be interesting to \textbf{observe if there are any color blendings which
+may yield better results than others}, and \textbf{infer if the users follow some kind of mental convention and
+organize the color when conveying the answers}, formulating possible implications of color blending usage, in
+InfoVis field. \par
 %
 Having the goals stated, we decided to conduct a user study to fulfill them and answer a small set of objective
 questions; this color study had to be realized in a \ul{controlled environment} where all calibration
@@ -78,26 +83,49 @@ Color Vision Deficiencies Test Phase} and, finally, \textbf{Core Test Phase}, wh
 blendings to the users. These phases are important since full coherence between all user data is a major concern. \par
 %
 It was created a set of color blendings based on the primitives from the RGB and CMYK Color Model: Red, Green, Blue,
-Cyan, Magenta and Yellow. This set was formed by blendings of two and three colors which ended up being tested, either
+Cyan, Magenta and Yellow. This set was formed by blendings of two and three colors, having the first ones been tested, either
 by being given the result of the color blending to the user and asked for the basis, or by giving the basis and asking
 for the result which the user though it would be appropriate. These colors were blended following the HSV, RGB, CMYK,
 CIE-L*a*b* and CIE-L*C*h* Color Models, interpolating the colors from each pair accordingly. \par
 %
-In the end of the study, the data should be analyzed dividing the results according to: \ul{environment}, \ul{color
+In the end of the study, we analyzed the data and divided the results according to: \ul{environment}, \ul{color
 models}, \ul{age groups} and \ul{gender groups}, and \ul{deficient and non-deficient color vision users}. The analysis
-of this groups should be also supported chromaticity diagrams, which depict the answers-pairs and expected answers
-mapped according to the standard CIE-XYZ. The analysis should be conducted \ul{by color blending}, evaluating the distances
-to the ideal answer from each Color Model, \ul{by color model}, observing the blendings which yielded better and worst
-results. The \ul{demographic groups} are against each other, comparing the results from each color blending according
-to these groups. \par
+of this groups was also supported chromaticity diagrams, which depicted the answers-pairs and reference answers
+mapped according to the standard CIE-XYZ. The analysis revealed that the color blending which constantly yielded the
+best results across all color models is the \textbf{mixing of Red-Yellow, to achieve Orange}, while the mixture which
+provided the worst results when evaluating the distance from the user’s answers and the ideal answers, is the blending
+of \textbf{Green-Magenta, resulting in a Blue shade}; these results are consistent with the fact that the human color
+perception is conditioned by the amount of Cones present in our eyes. \par
+%
+When analyzing the answers by Color Model, we can observe that the CMYK Color Model is the one which presents the best
+results across both study environments, while the CIE-L*C*h* Color Model is the one which typically provided the worst
+results across all color blendings. We have also found that, for color blendings which involved the Red color there was,
+in fact, evidence that the users sort the colors when indicating the blending-basis, revealing some mental color organization. \par
 %
 We have found some research opportunities along the analysis, namely \ul{evaluating the answers which came from
 uncalibrated users} because it could show us how resilient the user's expectation is to calibration changes, and \ul{explore
 the answer-pairs which contain one white component} which could reveal that either the user did not know how to blend
 the colors, or did use the white answer to lighten the color given a bit. \par
 %
-The focus of this Master thesis is to conclude relevant implications of using color blending techniques, in the Information
-Visualization field of research, which will be discussed later on this document.
+The focus of this Master thesis was to conclude relevant implications of using color blending techniques, in the Information
+Visualization field of research, which are going to be discussed later on this document.
+%
+\section{Contributions}
+%
+This dissertation aims to provide useful inputs about how color blending can be correctly used in Information Visualizations,
+and according to the users' expectations, leading to the following contributions:
+%
+\begin{itemize}
+  \item \ul{A set of results which determine the answers to the aforementioned questions}, obtained with online and laboratory
+  users. These results are organized in tables, divided according to each type of environment and users' condition, and are
+  already cleaned and ready to be used.
+  \item \ul{A user studies platform called \emph{BlendMe!}}, which is composed of four test phases, helping the process of creating
+  a user profile, testing the calibration of an LCD Display, evaluating the presence/absence of color vision deficiencies and collect
+  user feedback. Currently, the main core phase of the study is aimed to evaluate 32 questions about color blendings, but it can
+  be easily changed.
+  \item \ul{A compendium of guidelines on how to use color blending in Information Visualization}, produced based on users'
+  results, establishing aspects about color models and blendings which provide the best results.
+\end{itemize}
 %
 \section{Dissertation Outline}
 %

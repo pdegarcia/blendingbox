@@ -154,7 +154,7 @@ was followed to fulfill the data cleaning.
   the regular users to perform a qualitative evaluation.
 \end{itemize} \par
 %
-An example of clean data can be found in table \ref{table:csv_resultsclean}. The next step of data handling is processing it to prepare metrics, establish comparisons
+An example of clean data can be found in Table \ref{table:csv_resultsclean}. The next step of data handling is processing it to prepare metrics, establish comparisons
 to pre-calculated answers and depict results in a CIE Chromaticity Diagram. \par
 %
 \begin{table}[htbp]
@@ -217,6 +217,7 @@ specially important to produce Chromaticity Diagrams where colors are mapped acc
 for models which contained no angular values (RGB, CMYK and CIE-L*a*b*) it was only needed to linear interpolate the values for each primitive; but for models that have angular values (HSV and CIE-L*C*h have their Hue's value), it was
 needed to calculate the angular interpolation of their primitives.
 %
+\small
 \begin{equation}
   \label{eq:rgb_mix}
   \begin{aligned}
@@ -225,11 +226,14 @@ needed to calculate the angular interpolation of their primitives.
     B_{final} = \frac{|B_{C1} - B_{C2}|}{2} + min(B_{C1}, B_{C2}); \\
   \end{aligned}
 \end{equation} \par
+\normalsize
 %
 An example of linear interpolation between primitives can be seen on Equation \ref{eq:rgb_mix}, in which we blend \gls{RGB} primitives. The listing \ref{lst:hue_angular} shows
 how the angular interpolation is being calculated with our \emph{Matlab} script.
 %
-\begin{lstlisting} [frame=single,basicstyle=\small,label={lst:hue_angular}, caption = Excerpt of \emph{Matlab} code which interpolates the angular Hue value.]
+\begin{listing}[htbp]
+  \setlength{\belowcaptionskip}{5pt plus 2pt minus 2pt}
+  \begin{minted}[frame=lines, fontsize=\footnotesize]{matlab}
   diff_angles = abs(Hue_C1 - Hue_C2);
   if diff_angles > 180
       angle_small = (360 - diff_angles);
@@ -242,11 +246,15 @@ how the angular interpolation is being calculated with our \emph{Matlab} script.
   else
       hue_final = min([Hue_C1 Hue_C2]) + (diff_angles / 2);
   end
-\end{lstlisting} \par
+  \end{minted}
+  \caption{Excerpt of \emph{Matlab} code which interpolates the angular Hue value.}
+  \vspace{-15pt}
+  \label{lst:hue_angular}
+\end{listing}
 %
 Afterwards, every resulting blending is \textbf{compared to the pre-calculated value for each color model}; the \ul{euclidean distance} to the latter value is stored for statistical analysis. It is
 also \textbf{calculated the distance to the expected HSV values}, since the colors presented to the user were too calculated in HSV Color Model. Additional comparisons are: the colors
-blended in HSV are \textbf{compared to the expected color pairs of other questions which generate the same (or roughly) color}, to understand if our users tended to mix other pairs
+blended in HSV are \textbf{compared to the reference color pairs of other questions which generate the same (or roughly) color}, to understand if our users tended to mix other pairs
 than the one expected for that question. To end these comparisons, the centroids of each set of colors mixed in every color model are calculated, along with their distance to the expected
 pre-calculated answer. \par
 %
@@ -263,23 +271,8 @@ analysis to perform, since the users may have indicated various scattered values
 Red Color, when they may wanted to simply indicate the color which corresponds to the name \emph{Red}). Ideally, we would conduct a separated user study to perceive which names people normally attribute to colors;
 then we would gather all the data and analyze which were the most common names. \par
 %
-Luckily, the web page \emph{XKCD}\footnote{XKCD - Stick-Figure strip featuring humor about technology, science, mathematics and relationships, by Randall Munroe.
-Available at: \url{xkcd.com/}. Last accessed on October 17th, 2016.} had already conducted a widely large Color Survey\footnote{Color Survey Results. Available at:
-\url{blog.xkcd.com/2010/05/03/color-survey-results/}. Last accessed on October 17th, 2016.} to study wich were the most common RGB color triples among users. They performed roughly more
-than 222 000 user sessions to ascertain color naming: they produced a map which shows the dominant names attributed to \gls{RGB} colors over the faces of \gls{RGB} cube (Figure \ref{fig:colornames_xkcd}),
-and they also produced a huge file comprised of 196 608 named \gls{RGB} triplets, grouped by \ul{Color Bins}.
-%
-\begin{figure}[htbp]
-	\centering
-  \includegraphics[width=0.5\textwidth]{images/results/satfaces_map.png}
-  \caption[XKCD Color Survey: Color Dominant Names]{XKCD Color Survey: map of color dominant names.}
-  \label{fig:colornames_xkcd}
-\end{figure} \par
-%
-Despite the fact XKCD's Color Survey was not a research realized with a scientific purpose, we decided to use it since it given its large sample size, and it was executed with a great amount of users
-which can verify it. We also found great compatibility between this survey and ours, since the values in the first were also presented in its maximum value of saturation (similar to our user study, in which we present colors in maximum hue).
-%
-\begin{table}[!htbp]
+\begin{wraptable}[13]{r}{5.5cm}
+  \vspace{-10pt}
   \begin{center}
     \resizebox{0.3\textwidth}{!} {
     \begin{tabular}{@{}lclc@{}}
@@ -301,14 +294,24 @@ which can verify it. We also found great compatibility between this survey and o
       \multicolumn{1}{l|}{Light-Green} & \multicolumn{1}{c|}{1}     & \multicolumn{2}{l}{}                        \\ \cmidrule(r){1-2}
     \end{tabular}}
   \end{center}
-  \caption[XKCD Color Survey: Color Bins]{XKCD Color Survey: color bins.}
+  \vspace{-15pt}
+  \caption[XKCD Color Survey: Color Bins]{XKCD Color Bins.}
   \label{table:colorbins}
-\end{table} \par
+\end{wraptable}
+%
+Luckily, the web page \emph{XKCD}\footnote{XKCD - Stick-Figure strip featuring humor about technology, science, mathematics and relationships, by Randall Munroe.
+Available at: \url{xkcd.com/}. Last accessed on October 17th, 2016.} had already conducted a widely large Color Survey\footnote{Color Survey Results. Available at:
+\url{blog.xkcd.com/2010/05/03/color-survey-results/}. Last accessed on October 17th, 2016.} to study wich were the most common RGB color triples among users. They performed roughly more
+than 222 000 user sessions to ascertain color naming: they produced a map which shows the dominant names attributed to \gls{RGB} colors over the faces of \gls{RGB} cube (Appendix \ref{appendix:colorBins}),
+and they also produced a file comprised of 196 608 RGB triplets, grouped by \ul{Color Bins}. \par
+%
+Despite the fact XKCD's Color Survey was not a research realized with a scientific purpose, we decided to use it since it given its large sample size, and it was executed with a great amount of users
+which can verify it. We also found great compatibility between this survey and ours, since the values in the first were also presented in its maximum value of saturation (similar to our user study, in which we present colors in maximum hue).
 %
 As said, these represent \gls{RGB} triplets but, being our user results all in accordance with the CIE XYZ Color Model, we needed some cleaning and processing to match the data our
 responses. Using the sRGB color space, the default for computer screens and the one likely to have been used by the vast majority of the participants in the XKCD survey, we
 \ul{converted the RGB to CIE XYZ values} and, then, \ul{divided all of the Color Bins in different tables}; there are 27 names attributed to colors, some have more triplets
-(\emph{e.g.} blue, green or purple), but some have a smaller set, which could mean greater agreement to assign names to colors. These bins of color are represent with their frequencies, in table
+(\emph{e.g.} blue, green or purple), but some have a smaller set, which could mean greater agreement to assign names to colors. These bins of color are represented with their frequencies, in Table
 \ref{table:colorbins}. \par
 %
 The idea was to compare our answers with each color bin, creating a mapping between our users' values and commonly-used names; in order to simplify and speed up the computation
@@ -317,6 +320,7 @@ with every triplet). Moreover, when processing these sets of RGB triplets, we le
 \emph{Dark-Red} and \emph{Light-Green} because they have very few triplets to be drawn.
 %
 \begin{figure}[!htbp]
+  \vspace{-15pt}
   \centering
   \begin{minipage}{0.54\textwidth}
     \centering
@@ -330,6 +334,7 @@ with every triplet). Moreover, when processing these sets of RGB triplets, we le
     \caption[Approximate Color Regions on CIE 1931 Chromaticity Diagram]{Approximate Color Regions on CIE 1931 Chromaticity Diagram. \cite{Fortner1997}}
     \label{fig:cie_colorregions}
   \end{minipage}
+  \vspace{-15pt}
 \end{figure} \par
 %
 However, we expected that when these color bins were drawn on a chromaticity diagram, they would create independent and more comprehensive shapes: we found that there are overlapping
@@ -346,12 +351,12 @@ minimum polygon, testing if they are inside a given threshold ($threshold = 0.03
 Moreover, the shapes created by each color bin can be depicted as \textbf{lines} if they present contiguous values in the same edge of the triangle, or as \textbf{triangles}
 if the values are near the corner of the triangle and are distributed along two edges. The late situation is represented in Figure \ref{fig:colorbins_triangle}.
 %
-\begin{figure}
+\begin{wrapfigure}[8]{r}{0.4\textwidth}
   \centering
-  \includegraphics[width=0.8\textwidth]{images/results/colorbins_transformation.png}
-  \caption[XKCD Color Survey: Color Bins Transformation]{XKCD Color Survey: Color Bins Transformation from line of points, to minimum polygon.}
+  \includegraphics[width=0.4\textwidth]{images/results/colorbins_transformation.png}
+  \caption[XKCD Color Survey: Color Bins Transformation]{XKCD Color Bins: Transformation from line of points, to minimum polygon.}
   \label{fig:colorbins_triangle}
-\end{figure} \par
+\end{wrapfigure}
 %
 Alternatively, we could have opted for another kind of color name detection, but its implementation would be out of the scope of this Master thesis and would take a much longer
 analysis than the one performed. For instance, one could have gone identifying the colors by analyzing their values and processing the wavelength originated, comparing the resulting
@@ -364,30 +369,15 @@ of values; the problem here was the non-existence of table of well defined value
 \subsection{Outputs Generated}
 \label{subsec:results_outputsgenerated}
 %
-Each script ends its execution when saving all the outputs contained in table \ref{table:outputs}: it generates a set of \gls{CSV} tables ready for being analyzed by
+Each script ends its execution when saving all the outputs referred below: it generates a set of \gls{CSV} tables ready for being analyzed by
 SPSS Program, besides creating a great amount of CIE chromaticity diagrams to support the analysis. As referred before, questions 18 to 32 do not generate any output about
-white answers.
+white answers. The outputs produced are:
 %
-\begin{table}[htbp]
-  \begin{center}
-    \resizebox{0.8\textwidth}{!} {
-    \begin{tabular}{
-      >{\columncolor[HTML]{FFFFFF}}c ll}
-      \hline
-      \multicolumn{3}{c}{\cellcolor[HTML]{EFEFEF}Outputs Generated}                                                                                                                                                                                                                                                                                                                                                                             \\ \hline
-      \cellcolor[HTML]{FFFFFF}                                                                                  & \multicolumn{1}{l|}{Laboratory Results}          & - Regular and Daltonic Users                                                                                                                                                                                                                                               \\ \cline{2-3}
-      \cellcolor[HTML]{FFFFFF}                                                                                  & \multicolumn{1}{l|}{Online Results}              & \begin{tabular}[c]{@{}l@{}}- Regular and Daltonic Users\\ - Uncalibrated Users\end{tabular}                                                                                                                                                                                \\ \cline{2-3}
-      \cellcolor[HTML]{FFFFFF}                                                                                  & \multicolumn{1}{l|}{Demographic Results}         & \begin{tabular}[c]{@{}l@{}}- Age below 20 Years\\ - Age between 20 and 29 Years\\ - Age between 30 and 39 Years\\ - Age between 40 and 49 Years\\ - Age between 50 and 59 Years\\ - Age above 60 Years\\ - Female Users\\ - Male Users\\ - Other Gender Users\end{tabular} \\ \cline{2-3}
-      \multirow{-4}{*}{\cellcolor[HTML]{FFFFFF}\begin{tabular}[c]{@{}c@{}}Dataset\\ Tables\end{tabular}}        & \multicolumn{1}{l|}{One-Component White Results} & - All responses with one white component                                                                                                                                                                                                                                   \\ \hline
-      \cellcolor[HTML]{FFFFFF}                                                                                  & \multicolumn{1}{l|}{Laboratory Results}          & \begin{tabular}[c]{@{}l@{}}- Regular and Daltonic Responses \\ - Responses interpolated in RGB, HSV, CMYK, CIE-L*C*h* and L*a*b*\end{tabular}                                                                                                                              \\ \cline{2-3}
-      \cellcolor[HTML]{FFFFFF}                                                                                  & \multicolumn{1}{l|}{Online Results}              & \begin{tabular}[c]{@{}l@{}}- Regular and Daltonic Responses \\ - Uncalibrated Responses\\ - Responses interpolated in RGB, HSV, CMYK, CIE-L*C*h* and L*a*b*\end{tabular}                                                                                                   \\ \cline{2-3}
-      \cellcolor[HTML]{FFFFFF}                                                                                  & \multicolumn{1}{l|}{Demographic Results}         & - Responses interpolated in RGB, HSV, CMYK, CIE-L*C*h* and L*a*b*                                                                                                                                                                                                          \\ \cline{2-3}
-      \multirow{-4}{*}{\cellcolor[HTML]{FFFFFF}\begin{tabular}[c]{@{}c@{}}Chromaticity\\ Diagrams\end{tabular}} & \multicolumn{1}{l|}{One-Component White Results} & - All responses with one white component                                                                                                                                                                                                                                   \\ \hline
-    \end{tabular}}
-  \end{center}
-  \caption[Generated Outputs of Data Processing Phase]{Generated Outputs of Data Processing Phase.}
-  \label{table:outputs}
-\end{table}
+\begin{itemize}
+  \item \ul{Dataset Tables}, for laboratory, online and demographic results, as well as the one-component white answers.
+  \item \ul{CIE Chromaticity Diagrams}, for laboratory, online and demographic results, as well as the one-component white answers. Particularly,
+  we generate diagrams for each users group's answers, interpolated in RGB, HSV, CMYK, CIE-L*a*b* and CIE-L*C*h*.
+\end{itemize}
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                   RESULTS                                                                       %
@@ -427,6 +417,7 @@ academic degrees. \par
       Total                                              & 259                    & 38          & 162          & 20          & 19          & 12          & 8            & 105      & 152    & 2        & 38      & 47          & 92       & 74     & 5      & 3        \\ \hline
     \end{tabular}}
   \caption[Results: Profiling Information (Gender and Academic)]{Results: Profiling Information (Gender and Academic)}
+  \vspace{-5pt}
   \label{table:profiling_genderacademic}
 \end{table}
 %
@@ -447,10 +438,11 @@ of users remains with the same proportions: more male users than females, mostly
     Total                                              & 259                    & 5   & 3  & 215& 7  & 11 & 18     & 5    & 3    & 9    & 217  & 11  & 14      & 216     & 29      & 14         \\ \hline
   \end{tabular}}
   \caption[Results: Profiling Information (Nationalities, Countries of Residence and Languages)]{Results: Profiling Information (Nationalities, Countries of Residence and Languages)}
+  \vspace{-5pt}
   \label{table:profiling_nacionalities}
 \end{table}
 %
-The table \ref{table:profiling_nacionalities} depicts nationalities, current countries of residence and native languages spoken by our users. From the 259 (100\%) participant users,
+The Table \ref{table:profiling_nacionalities} depicts nationalities, current countries of residence and native languages spoken by our users. From the 259 (100\%) participant users,
 \textbf{215 (83.01\%) of them have Portuguese nationality}, \textbf{217 (83.78\%) live in Portugal} currently and \textbf{216 (83.40\%) speak Portuguese}; the second most influent group of users are the ones from english-speaking
 countries (United Kingdom, United States of America, and others). Other minor users which contributed to our survey came from Turkey, France, New Zealand, Sweden or even Antarctica (among others) -
 \textbf{these countries represent only 5.41\%}. An ideal distribution of users would be such that it included enough users from all continents, which would give us room to investigate better the cultural
@@ -467,9 +459,10 @@ to emphasize that the important results are the ones collected in the laboratory
 are measured inside the finite interval $[0 ; 1]$, since the CIE Chromaticity Diagram has its values comprised between this interval. \par
 %
 \begin{table}[!htbp]
-  \resizebox{\textwidth}{!} {
+  \centering
+  \resizebox{0.8\textwidth}{!} {
   \begin{tabular}{@{}cccccccccccccc@{}}
-                                  &                                                       & \multicolumn{2}{c}{Expected Colors}                         & \multicolumn{5}{c}{Laboratory Environment}                                                                                                                                                                                                                                      & \multicolumn{5}{c}{Online Environment}                                                                                                                                                                                                                                                                         \\ \cmidrule(l){3-14}
+                                  &                                                       & \multicolumn{2}{c}{Reference Pairs}                         & \multicolumn{5}{c}{Laboratory Environment}                                                                                                                                                                                                                                      & \multicolumn{5}{c}{Online Environment}                                                                                                                                                                                                                                                                         \\ \cmidrule(l){3-14}
     \multirow{-2}{*}{Question ID} & \multirow{-2}{*}{Presented Color}                     & C1                           & \multicolumn{1}{c|}{C2}      & HSV                                                         & CIE-L*C*h*                                                 & CMYK                                                       & RGB                        & \multicolumn{1}{c||}{CIE-L*a*b*}                            & HSV                                                        & CIE-L*C*h*                                                 & CMYK                                                       & RGB                                                        & \multicolumn{1}{c|}{CIE-L*a*b*}                            \\ \midrule
     \multicolumn{1}{c}{1}       & \multicolumn{1}{c}{\cellcolor[HTML]{FFFF00}\#FFFF00} & \multicolumn{1}{c|}{Red}     & \multicolumn{1}{c|}{Green}   & \multicolumn{1}{c|}{0.13}                                   & \multicolumn{1}{c|}{0.2}                                   & \multicolumn{1}{c|}{\cellcolor[HTML]{32CB00}\textbf{0.09}} & \multicolumn{1}{c|}{0.12}  & \multicolumn{1}{c||}{0.12}                                  & \multicolumn{1}{c|}{0.07}                                  & \multicolumn{1}{c|}{0.21}                                  & \multicolumn{1}{c|}{\cellcolor[HTML]{32CB00}\textbf{0.06}} & \multicolumn{1}{c|}{0.07}                                  & \multicolumn{1}{c|}{0.07}                                  \\ \midrule
     \multicolumn{1}{c}{2}       & \multicolumn{1}{c}{\cellcolor[HTML]{FF00FF}\#FF00FF} & \multicolumn{1}{c|}{Red}     & \multicolumn{1}{c|}{Blue}    & \multicolumn{1}{c|}{0.22}                                   & \multicolumn{1}{c|}{0.16}                                  & \multicolumn{1}{c|}{\cellcolor[HTML]{32CB00}\textbf{0.11}} & \multicolumn{1}{c|}{0.17}  & \multicolumn{1}{c||}{0.16}                                  & \multicolumn{1}{c|}{0.15}                                  & \multicolumn{1}{c|}{0.16}                                  & \multicolumn{1}{c|}{\cellcolor[HTML]{32CB00}\textbf{0.08}} & \multicolumn{1}{c|}{0.1}                                   & \multicolumn{1}{c|}{0.12}                                  \\ \midrule
@@ -489,7 +482,8 @@ are measured inside the finite interval $[0 ; 1]$, since the CIE Chromaticity Di
     \multicolumn{1}{c}{16}      & \multicolumn{1}{c}{\cellcolor[HTML]{FF007F}\#FF007F} & \multicolumn{1}{c|}{Blue}    & \multicolumn{1}{c|}{Yellow}  & \multicolumn{1}{c|}{0.21}                                   & \multicolumn{4}{c||}{}                                                                                                                                                                                             & \multicolumn{1}{c|}{0.19}                                  & \multicolumn{4}{c|}{}                                                                                                                                                                                                                             \\ \midrule
     \multicolumn{1}{c}{17}      & \multicolumn{1}{c}{\cellcolor[HTML]{00FF00}\#00FF00} & \multicolumn{1}{c|}{Cyan}    & \multicolumn{1}{c|}{Yellow}  & \multicolumn{1}{c|}{0.07}                                   & \multicolumn{1}{c|}{0.16}                                  & \multicolumn{1}{c|}{\cellcolor[HTML]{32CB00}\textbf{0.05}} & \multicolumn{1}{c|}{0.10}  & \multicolumn{1}{c||}{0.11}                                  & \multicolumn{1}{c|}{0.08}                                  & \multicolumn{1}{c|}{0.17}                                  & \multicolumn{1}{c|}{\cellcolor[HTML]{32CB00}\textbf{0.05}} & \multicolumn{1}{c|}{0.10}                                  & \multicolumn{1}{c|}{0.11}                                  \\ \bottomrule
   \end{tabular}}
-  \caption[Distances of Results Interpolated in each Color Model]{Distances between interpolated results in each Color Model, for each question, to the ideal pre-calculated answer.}
+  \caption[Distances of Results Interpolated in each Color Model]{Distances between interpolated results in each Color Model, to the ideal pre-calculated answer.}
+  \vspace{-5pt}
   \label{table:colormodels_distances_labonline}
 \end{table}
 %
@@ -499,10 +493,9 @@ each color model and the given answer-pair would be conveyed in a standard color
 and we are representing our values in the same plane of maximum saturation, the XYZ coordinates had to be flattened down to XY coordinates only, dropping
 the Z component: this is a conversion from CIE-XYZ to CIE-XYY, where the X and Y coordinates were divided by the sum of all XYZ coordinates. Then, the
 euclidean distance between this interpolated blend and the one pre-calculated was measured, indicating us the proximity of the user's answers to each
-color model. \textbf{It was this distance which we had considered when analyzing the relationship between the users' expectations and each color model}. \par
-%
+color model. \textbf{It was this distance which we had considered when analyzing the relationship between the users' expectations and each color model}.
 In order to improve this analysis, we present Table \ref{table:colormodels_distances_labonline} which contains the mean value for these distances,
-according to each color model for each question, in each study environment (laboratory and online). Colored in green are, the color model which has the
+according to each color model for each question, in each study environment. Colored in green are, the color model which has the
 smallest distance, \emph{per} question, in each environment. \par
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -518,32 +511,25 @@ Therefore, \textbf{the resulting colors which we present to the user when asking
 said before, we intended to compare the interpolated answer pairs given by the users, to each of the previously referred color models: as it will be seen
 on each question below, we compared these answers with the pre-calculated values for each blending in each color model. For example, the answers were
 interpolated in CIE-L*C*h*, and then they were compared with the result which was supposed to happen when blending the two colors from that question, in
-CIE-L*C*h*; this happens with all color models. \par
+CIE-L*C*h*. \par
 %
 On the other hand, when the blending-basis was given to the user and we intended to test which resulting color the users would tend to, we needed to give
 them every pre-calculated result, in every color model: this way, \textbf{we presented to the user the entire set of pre-calculated blending results,
 containing the results from HSV, CIE-L*C*h*, CMYK, RGB and CIE-L*a*b*}. \par
 %
-The triples presented in each shaded cell of tables below represent the resulting color of that color blending, according to each color model, and it is
-a XYZ Triple value that maps that color on the CIE-XYZ Chromaticity Diagram.
+The triples presented in tables below represent the resulting color of each color blending, \emph{per} color model, and it is
+a XYZ Triple value that maps that color on the CIE Chromaticity Diagram.
 %
 \paragraph{\ul{Question One}}
 %
-This is the only question in the entire study which has \ul{yellow as the resulting color of the blending}. The expected colors are \ul{Red and Green},
-two primitives from RGB Color Model. Table \ref{table:lab_q1_expected} shows the expected colors when mixing in each color model: HSV, CIE-L*C*h*, CMYK,
-RGB and CIE-L*a*b*. As said before, each answer-pair was blended according to those 5 models; after processing data from each question, we performed the
-mean calculation over the entire set of distances, between each resulting blend and the ideal blend (according to every color model). This produced the
-results reported on Table \ref{table:lab_q1_expected}. \par
-%
 One can observe that the model which presents the lowest mean value is the CMYK ($\overline{x} = 0.09$), possibly indicating that this model yields
 the best results for this question, while HSV, RGB and CIE-L*a*b* have closer values. A Friedman Test showed that there are, indeed, significant
-differences ($\chi^2 = 48.568$, $p < 0.05$) between each color model. \par
-%
+differences ($\chi^2 = 48.568$, $p < 0.05$) between each color model.
 Further analysis with the Wilcoxon Test reveals that CMYK ($p < 0.05$) has, in fact, very different responses from the other color models, which leads
 us to conclude that \textbf{the CMYK Color Model is the best model to represent yellow blends}. Since HSV, RGB and CIE-L*a*b* have similar mean values,
 we tried to compare them between each other: \textbf{there is no statistically significant differences among HSV, RGB and CIE-L*a*b*, whereby there is insufficient
 information to evaluate this color models regarding this color mixture}. According to table, it is also possible to say that \textbf{CMYK Color Model
-presents a low deviation}, not only in laboratory results ($s_{lab} = 0.06$), but such value is corroborated by the online users ($s_{online} = 0.06$). \par
+presents a low deviation}, not only in laboratory results ($s_{lab} = 0.06$). \par
 %
 It is safe to say that \textbf{CIE-L*C*h* has the worst performance against the other color models}, since its mean is the highest of all
 ($\overline{x} = 0.20$), and the values from Wilcoxon Test ($p < 0.05$) indicates that this color model has statistically significant differences every
@@ -554,7 +540,7 @@ differences between the laboratory distances and online ones ($p < 0.05$).
   \resizebox{\textwidth}{!} {
   \begin{tabular}{lccccccccccccc}
     \hline
-    \multicolumn{1}{c}{}                              &                                      & \multicolumn{2}{c}{Expected Colors}                   & \multicolumn{10}{c}{Possible Results}                                                                                                                                                                                                                                                                                        \\ \cline{3-14}
+    \multicolumn{1}{c}{}                              &                                      & \multicolumn{2}{c}{Reference Pair}                   & \multicolumn{10}{c}{Possible Results}                                                                                                                                                                                                                                                                                        \\ \cline{3-14}
     \multicolumn{1}{c}{\multirow{-2}{*}{Question ID}} & \multirow{-2}{*}{Given Color}        & C1                       & C2                         & \multicolumn{2}{c}{HSV}                                        & \multicolumn{2}{c}{CIE-L*C*h*}                                 & \multicolumn{2}{c}{CMYK}                                       & \multicolumn{2}{c}{RGB}                                        & \multicolumn{2}{c}{CIE-L*a*b*}                                 \\ \hline
     \multicolumn{1}{c}{1}                             & \cellcolor[HTML]{FFFF00}(77, 93, 14) & \multicolumn{1}{c|}{Red} & \multicolumn{1}{c|}{Green} & \multicolumn{2}{c|}{\cellcolor[HTML]{FFFF00}(77, 93, 14)}      & \multicolumn{2}{c|}{\cellcolor[HTML]{D7A700}(42, 42, 6)}       & \multicolumn{2}{c|}{\cellcolor[HTML]{808000}(17, 20, 3)}       & \multicolumn{2}{c|}{\cellcolor[HTML]{808000}(17, 20, 3)}       & \multicolumn{2}{c|}{\cellcolor[HTML]{C9AB00}(39, 42, 6)}       \\ \hline
                                                       & \multicolumn{1}{l}{}                 & \multicolumn{1}{l}{}     & \multicolumn{1}{l}{}       & \multicolumn{1}{c}{$\overline{x}$} & \multicolumn{1}{c}{$s$} & \multicolumn{1}{c}{$\overline{x}$} & \multicolumn{1}{c}{$s$} & \multicolumn{1}{c}{$\overline{x}$} & \multicolumn{1}{c}{$s$} & \multicolumn{1}{c}{$\overline{x}$} & \multicolumn{1}{c}{$s$} & \multicolumn{1}{c}{$\overline{x}$} & \multicolumn{1}{c}{$s$} \\ \hline
@@ -562,34 +548,29 @@ differences between the laboratory distances and online ones ($p < 0.05$).
     \multicolumn{4}{l}{Distance to Objective - Online}                                                                                               & \multicolumn{1}{|c}{0.07}       & \multicolumn{1}{c|}{0.09}    & \multicolumn{1}{|c}{0.21}       & \multicolumn{1}{c|}{0.07}    & \multicolumn{1}{|c}{\textbf{0.06}}       & \multicolumn{1}{c|}{0.06}    & \multicolumn{1}{|c}{0.07}       & \multicolumn{1}{c|}{0.09}    & \multicolumn{1}{|c}{0.07}       & \multicolumn{1}{c|}{0.08}    \\ \hline
     \end{tabular}}
   \caption[Question 1, with expected Results.]{Question 1: expected colors, possible results and statistics of distances to Objective.}
+  \vspace{-5pt}
   \label{table:lab_q1_expected}
 \end{table}
 %
 \paragraph{\ul{Question Two}}
 %
-This question \ul{presents a Magenta color} and expects to receive, from the user, the \ul{Red and Blue colors} according to the HSV Color Model.
-The colors were blended, and again the mean values over distances were calculated, as Table \ref{table:lab_q2_expected} shows. It is observable
-that CMYK Color Model presents, yet again, the lowest mean value for distance to ideal answer ($\overline{x} = 0.11$), whilst its standard
-deviation is also the lowest between both study environments. \par
-%
+CMYK Color Model presents, yet again, the lowest mean value for distance to ideal answer ($\overline{x} = 0.11$).
 However, it is not safe to say that which color model had the worst results: judging by laboratory values, the HSV Color Model would not only
 the have highest mean distance, but also the largest deviation of answers; yet, evaluating the online results, it would CIE-L*C*h* to occupy
 such position. Performing a Friedman Test, we can conclude that there are, in fact, significant differences ($\chi^2 = 22.041$, $p < 0.05$) between
 the color models; post hoc Wilcoxon Analysis ($p < 0.05$) reveals CMYK has statistically different results from every other color model, therefore
-concluding that \textbf{CMYK has the best solution for this blending}, according to users' responses. \par
+concluding that \textbf{CMYK has the best solution for this blending}.\par
 %
 The tendency of results to blend Magenta in CMYK Color Model, could be explained by the fact that magenta is a primitive color of such model,
-therefore leading the user to blend it accordingly. \par
-%
-In this question, \textbf{CIE-L*C*h* has only significant differences with HSV ($p < 0.05$)}, which is far opposite from question 1. The online
-results for this question validate the laboratory experience, since a Wilcoxon Test show that there are no statistically significant differences
-between the laboratory distances and online ones ($p < 0.05$).
+therefore leading the user to blend it accordingly. In this question, \textbf{CIE-L*C*h* has only significant differences with HSV ($p < 0.05$)},
+which is far opposite from question 1. The online results for this question validate the laboratory experience, since a Wilcoxon Test show that there
+are no statistically significant differences between the laboratory distances and online ones ($p < 0.05$).
 %
 \begin{table}[H]
   \resizebox{\textwidth}{!} {
   \begin{tabular}{lccccccccccccc}
     \hline
-    \multicolumn{1}{c}{}                              &                                      & \multicolumn{2}{c}{Expected Colors}                   & \multicolumn{10}{c}{Possible Results}                                                                                                                                                                                                                                                                                        \\ \cline{3-14}
+    \multicolumn{1}{c}{}                              &                                      & \multicolumn{2}{c}{Reference Pair}                   & \multicolumn{10}{c}{Possible Results}                                                                                                                                                                                                                                                                                        \\ \cline{3-14}
     \multicolumn{1}{c}{\multirow{-2}{*}{Question ID}} & \multirow{-2}{*}{Given Color}        & C1                       & C2                         & \multicolumn{2}{c}{HSV}                                        & \multicolumn{2}{c}{CIE-L*C*h*}                                 & \multicolumn{2}{c}{CMYK}                                       & \multicolumn{2}{c}{RGB}                                        & \multicolumn{2}{c}{CIE-L*a*b*}                                 \\ \hline
     \multicolumn{1}{c}{2}                             & \cellcolor[HTML]{FF00FF}(59, 28, 97) & \multicolumn{1}{c|}{Red} & \multicolumn{1}{c|}{Blue}  & \multicolumn{2}{c|}{\cellcolor[HTML]{FF00FF}(59, 28, 97)}      & \multicolumn{2}{c|}{\cellcolor[HTML]{FB0080}{\color[HTML]{FFFFFF}(44, 22, 22)}}       & \multicolumn{2}{c|}{\cellcolor[HTML]{800080}{\color[HTML]{FFFFFF}(13, 6, 21)}}       & \multicolumn{2}{c|}{\cellcolor[HTML]{800080}{\color[HTML]{FFFFFF}(13, 6, 21)}}       & \multicolumn{2}{c|}{\cellcolor[HTML]{CA0088}(29, 14, 25)}       \\ \hline
                                                       & \multicolumn{1}{l}{}                 & \multicolumn{1}{l}{}     & \multicolumn{1}{l}{}       & \multicolumn{1}{c}{$\overline{x}$} & \multicolumn{1}{c}{$s$} & \multicolumn{1}{c}{$\overline{x}$} & \multicolumn{1}{c}{$s$} & \multicolumn{1}{c}{$\overline{x}$} & \multicolumn{1}{c}{$s$} & \multicolumn{1}{c}{$\overline{x}$} & \multicolumn{1}{c}{$s$} & \multicolumn{1}{c}{$\overline{x}$} & \multicolumn{1}{c}{$s$} \\ \hline
@@ -597,24 +578,18 @@ between the laboratory distances and online ones ($p < 0.05$).
     \multicolumn{4}{l}{Distance to Objective - Online}                                                                                               & \multicolumn{1}{|c}{0.15}       & \multicolumn{1}{c|}{0.13}    & \multicolumn{1}{|c}{0.16}       & \multicolumn{1}{c|}{0.08}    & \multicolumn{1}{|c}{\textbf{0.08}}       & \multicolumn{1}{c|}{0.04}    & \multicolumn{1}{|c}{0.1}        & \multicolumn{1}{c|}{0.08}    & \multicolumn{1}{|c}{0.12}       & \multicolumn{1}{c|}{0.05}    \\ \hline
     \end{tabular}}
   \caption[Question 2, with expected Results.]{Question 2: expected colors, possible results and statistics of distances to Objective.}
+  \vspace{-5pt}
   \label{table:lab_q2_expected}
 \end{table}
 %
-%
 \paragraph{\ul{Question Three}}
 %
-This question \ul{presents a Green color} and expects to receive, from the user, the \ul{Red and Cyan colors}. According to the HSV Color
-Model, Red and Cyan are positioned in opposite angles in the Hue Circle of Colors: therefore, blending these opposite colors that output two
-different colors. It is important to study to which color the users tend to blend; this question should be evaluated along with Question Four,
-which has the contrary output. The colors were blended, and again the mean values over distances were calculated, as Table \ref{table:lab_q3_expected}
-shows. It is observable that CMYK Color Model presents the lowest mean value for distance to ideal answer ($\overline{x} = 0.05$); however,
-the standard deviation for the HSV Color Model is the highest between both study environments ($s = 0.12$). \par
-%
+It is observable that CMYK Color Model presents the lowest mean value for distance to ideal answer ($\overline{x} = 0.05$); however,
+the standard deviation for the HSV Color Model is the highest between both study environments ($s = 0.12$).
 Running the Friedman Test, we can conclude that there are significant differences ($\chi^2 = 84.448$, $p < 0.05$) between the color models;
-Wilcoxon Analysis ($p < 0.05$) reveals CMYK has statistically different results from other color models (except RGB), therefore concluding that
-\textbf{CMYK has the best solution for this blending}, according to users' responses. CIE-L*C*h* is again the lower color model being
-significantly different from every other color model. The second best color model is \textbf{CMYK}, with statistically different results with
-every color model, except for \textbf{HSV}. \par
+Wilcoxon Analysis ($p < 0.05$) reveals that CMYK has statistically different results from other color models (except RGB), therefore concluding that
+\textbf{CMYK has the best solution for this blending}. CIE-L*C*h* is again the lower color model being
+significantly different from every other color model. \par
 %
 Once again, these results are validated by the online users' dataset, since a Wilcoxon Test show that there are no statistically significant differences between the laboratory
 distances and online ones ($p < 0.05$).The results from this question will be useful later, when analyzing question twelve.
@@ -623,7 +598,7 @@ distances and online ones ($p < 0.05$).The results from this question will be us
   \resizebox{\textwidth}{!} {
   \begin{tabular}{lccccccccccccc}
     \hline
-    \multicolumn{1}{c}{}                              &                                      & \multicolumn{2}{c}{Expected Colors}                   & \multicolumn{10}{c}{Possible Results}                                                                                                                                                                                                                                                                                        \\ \cline{3-14}
+    \multicolumn{1}{c}{}                              &                                      & \multicolumn{2}{c}{Reference Pair}                   & \multicolumn{10}{c}{Possible Results}                                                                                                                                                                                                                                                                                        \\ \cline{3-14}
     \multicolumn{1}{c}{\multirow{-2}{*}{Question ID}} & \multirow{-2}{*}{Given Color}        & C1                       & C2                         & \multicolumn{2}{c}{HSV}                                        & \multicolumn{2}{c}{CIE-L*C*h*}                                 & \multicolumn{2}{c}{CMYK}                                       & \multicolumn{2}{c}{RGB}                                        & \multicolumn{2}{c}{CIE-L*a*b*}                                 \\ \hline
     \multicolumn{1}{c}{3}                             & \cellcolor[HTML]{80FF00}(45, 76, 12) & \multicolumn{1}{c|}{Red} & \multicolumn{1}{c|}{Cyan}  & \multicolumn{2}{c|}{\cellcolor[HTML]{80FF00}(45, 76, 12)}      & \multicolumn{2}{c|}{\cellcolor[HTML]{91C01D}(31, 44, 8)}       & \multicolumn{2}{c|}{\cellcolor[HTML]{808080}{\color[HTML]{FFFFFF}(21, 22, 24)}}       & \multicolumn{2}{c|}{\cellcolor[HTML]{808080}{\color[HTML]{FFFFFF}(21, 22, 24)}}       & \multicolumn{2}{c|}{\cellcolor[HTML]{DDA581}(47, 44, 27)}       \\ \hline
                                                       & \multicolumn{1}{l}{}                 & \multicolumn{1}{l}{}     & \multicolumn{1}{l}{}       & \multicolumn{1}{c}{$\overline{x}$} & \multicolumn{1}{c}{$s$} & \multicolumn{1}{c}{$\overline{x}$} & \multicolumn{1}{c}{$s$} & \multicolumn{1}{c}{$\overline{x}$} & \multicolumn{1}{c}{$s$} & \multicolumn{1}{c}{$\overline{x}$} & \multicolumn{1}{c}{$s$} & \multicolumn{1}{c}{$\overline{x}$} & \multicolumn{1}{c}{$s$} \\ \hline
@@ -631,53 +606,49 @@ distances and online ones ($p < 0.05$).The results from this question will be us
     \multicolumn{4}{l}{Distance to Objective - Online}                                                                                               & \multicolumn{1}{|c}{\textbf{0.07}}        & \multicolumn{1}{c|}{0.09}    & \multicolumn{1}{|c}{0.23}        & \multicolumn{1}{c|}{0.06}    & \multicolumn{1}{|c}{\textbf{0.07}}       & \multicolumn{1}{c|}{0.03}    & \multicolumn{1}{|c}{0.12}        & \multicolumn{1}{c|}{0.06}    & \multicolumn{1}{|c}{0.13}       & \multicolumn{1}{c|}{0.04}    \\ \hline
     \end{tabular}}
   \caption[Question 3, with expected Results.]{Question 3: expected colors, possible results and statistics of distances to Objective.}
+  \vspace{-5pt}
   \label{table:lab_q3_expected}
 \end{table}
 %
 \paragraph{\ul{Question Four}}
 %
-As explained in previous question, this one is the second possible output from the blend of \ul{Red and Cyan colors}. Comparing the results for the HSV Color Model of both questions, mean distances are quite lower for question thirteen
+This one is the second possible output from the blend of \ul{Red and Cyan colors}. Comparing the results for the HSV Color Model of both questions, mean distances are quite lower for question thirteen
 ($\overline{x} = 0.045$), whilst the deviation of answers is higher in both questions. \par
 %
-Based on these results, corroborated by the online users, we can conclude \textbf{users tend to blend in CMYK Color Model to obtain a green color}, \textbf{mixing red and cyan
-does not generate a purple shade, according to users' expectations}. The results from this question can be found in table \ref{table:lab_q4_expected}. \textbf{These results are
-corroborated by the online users}, since a Wilcoxon Test show that there are no statistically significant differences between the laboratory distances and online ones ($p < 0.05$).
+Based on these results, we can conclude \textbf{users tend to blend in CMYK Color Model to obtain a green color}, \textbf{mixing red and cyan
+does not generate a purple shade, according to users' expectations}. \textbf{These results are corroborated by the online users}, since a Wilcoxon
+Test show that there are no statistically significant differences between the laboratory distances and online ones ($p < 0.05$).
 %
 \begin{table}[H]
   \resizebox{\textwidth}{!} {
   \begin{tabular}{lccccccccccccc}
     \hline
-    \multicolumn{1}{c}{}                              &                                      & \multicolumn{2}{c}{Expected Colors}                   & \multicolumn{10}{c}{Possible Results}                                                                                                                                                                                                                                                                                        \\ \cline{3-14}
+    \multicolumn{1}{c}{}                              &                                      & \multicolumn{2}{c}{Reference Pair}                   & \multicolumn{10}{c}{Possible Results}                                                                                                                                                                                                                                                                                        \\ \cline{3-14}
     \multicolumn{1}{c}{\multirow{-2}{*}{Question ID}} & \multirow{-2}{*}{Given Color}        & C1                       & C2                         & \multicolumn{2}{c}{HSV}                                        & \multicolumn{2}{c}{CIE-L*C*h*}                                 & \multicolumn{2}{c}{CMYK}                                       & \multicolumn{2}{c}{RGB}                                        & \multicolumn{2}{c}{CIE-L*a*b*}                                 \\ \hline
-    \multicolumn{1}{c}{4}                             & \cellcolor[HTML]{7F00FF}(27, 12, 95) & \multicolumn{1}{c|}{Red} & \multicolumn{1}{c|}{Cyan}  & \multicolumn{2}{c|}{\cellcolor[HTML]{FF00FF}(59, 28, 97)}      & \multicolumn{2}{c|}{\cellcolor[HTML]{91C01D}(31, 44, 8)}       & \multicolumn{2}{c|}{\cellcolor[HTML]{808080}{\color[HTML]{FFFFFF}(21, 22, 24)}}       & \multicolumn{2}{c|}{\cellcolor[HTML]{808080}{\color[HTML]{FFFFFF}(21, 22, 24)}}       & \multicolumn{2}{c|}{\cellcolor[HTML]{DDA581}(47, 44, 27)}       \\ \hline
+    \multicolumn{1}{c}{4}                             & \cellcolor[HTML]{7F00FF}{\color[HTML]{FFFFFF}(27, 12, 95)} & \multicolumn{1}{c|}{Red} & \multicolumn{1}{c|}{Cyan}  & \multicolumn{2}{c|}{\cellcolor[HTML]{FF00FF}(59, 28, 97)}      & \multicolumn{2}{c|}{\cellcolor[HTML]{91C01D}(31, 44, 8)}       & \multicolumn{2}{c|}{\cellcolor[HTML]{808080}{\color[HTML]{FFFFFF}(21, 22, 24)}}       & \multicolumn{2}{c|}{\cellcolor[HTML]{808080}{\color[HTML]{FFFFFF}(21, 22, 24)}}       & \multicolumn{2}{c|}{\cellcolor[HTML]{DDA581}(47, 44, 27)}       \\ \hline
                                                       & \multicolumn{1}{l}{}                 & \multicolumn{1}{l}{}     & \multicolumn{1}{l}{}       & \multicolumn{1}{c}{$\overline{x}$} & \multicolumn{1}{c}{$s$} & \multicolumn{1}{c}{$\overline{x}$} & \multicolumn{1}{c}{$s$} & \multicolumn{1}{c}{$\overline{x}$} & \multicolumn{1}{c}{$s$} & \multicolumn{1}{c}{$\overline{x}$} & \multicolumn{1}{c}{$s$} & \multicolumn{1}{c}{$\overline{x}$} & \multicolumn{1}{c}{$s$} \\ \hline
     \multicolumn{4}{l}{Distance to Objective - Laboratory}                                                                                           & \multicolumn{1}{|c}{0.12}       & \multicolumn{1}{c|}{0.13}    & \multicolumn{1}{|c}{0.20}       & \multicolumn{1}{c|}{0.06}    & \multicolumn{1}{|c}{\textbf{0.10}}         & \multicolumn{1}{c|}{0.04}    & \multicolumn{1}{|c}{0.19}       & \multicolumn{1}{c|}{0.06}    & \multicolumn{1}{|c}{0.20}       & \multicolumn{1}{c|}{0.09}    \\
     \multicolumn{4}{l}{Distance to Objective - Online}                                                                                               & \multicolumn{1}{|c}{0.11}       & \multicolumn{1}{c|}{0.15}    & \multicolumn{1}{|c}{0.22}       & \multicolumn{1}{c|}{0.08}    & \multicolumn{1}{|c}{\textbf{0.11}}         & \multicolumn{1}{c|}{0.04}    & \multicolumn{1}{|c}{0.21}        & \multicolumn{1}{c|}{0.08}    & \multicolumn{1}{|c}{0.23}       & \multicolumn{1}{c|}{0.10}    \\ \hline
     \end{tabular}}
   \caption[Question 4, with expected Results.]{Question 4: expected colors, possible results and statistics of distances to Objective.}
+  \vspace{-5pt}
   \label{table:lab_q4_expected}
 \end{table}
 %
 \paragraph{\ul{Question Five}}
 %
-This question expected \ul{Red and Magenta} colors as response to a shade of red presented. As observed in Table \ref{table:lab_q5_expected}, when this mixture is blended according
-to each color model, it generates fairly the same color. The colors were blended, and again the mean values over distances were calculated, as Table \ref{table:lab_q5_expected} shows.
-It is observable that CMYK Color Model presents, the lowest mean value for distance to ideal answer ($\overline{x} = 0.13$), whilst its standard deviation is also the lowest between both study environments. \par
+It is observable that CMYK Color Model presents, the lowest mean value for distance to ideal answer ($\overline{x} = 0.13$), whilst its standard deviation is also the lowest between both study environments.
+Judging by laboratory and online values, every color model have closer values from each other, being the standard deviation the differentiator between them. The HSV Color Model has not only the have highest
+mean distance, but also the largest deviation of answers; yet, evaluating the result from Friedman Test, we can conclude that there are, in fact, significant differences ($\chi^2 = 32.720$, $p < 0.05$) between
+the color models; post hoc Wilcoxon Analysis ($p < 0.05$) reveals CMYK only has statistically different results from HSV color model, and RGB and CIE-L*a*b* have both statistically significant differences with HSV. \par
 %
-However, it is not safe to say that which color model had the worst results: judging by laboratory and online values, every color model have closer values from each other, being the
-standard deviation the differentiator between them. The HSV Color Model has, again, not only the have highest mean distance, but also the largest deviation of answers; yet, evaluating
-the result from Friedman Test, we can conclude that there are, in fact, significant differences ($\chi^2 = 32.720$, $p < 0.05$) between the color models; post hoc Wilcoxon Analysis
-($p < 0.05$) reveals CMYK only has statistically different results from HSV color model, and RGB and CIE-L*a*b* have both statistically significant differences with HSV. \par
-%
-Evaluating this question by the values only, it would be possible to affirm that CMYK has the best results; despite, \textbf{there are no substantial differences to declare that}, which
-leads us to allege that \textbf{every color model studied yield acceptable results when blending red and magenta}. \textbf{The confirmation of similarity of values with the online users},
-can be achieved performing a Wilcoxon Test, showing that there are no statistically significant differences between the laboratory distances and online ones ($p < 0.05$).
+\textbf{Every color model studied yield acceptable results when blending red and magenta}. \textbf{The confirmation of similarity of values with the online users}, can be achieved performing a Wilcoxon Test, showing that there are no statistically significant differences between the laboratory distances and online ones ($p < 0.05$).
 %
 \begin{table}[H]
   \resizebox{\textwidth}{!} {
   \begin{tabular}{lccccccccccccc}
     \hline
-    \multicolumn{1}{c}{}                              &                                      & \multicolumn{2}{c}{Expected Colors}                   & \multicolumn{10}{c}{Possible Results}                                                                                                                                                                                                                                                                                        \\ \cline{3-14}
+    \multicolumn{1}{c}{}                              &                                      & \multicolumn{2}{c}{Reference Pair}                   & \multicolumn{10}{c}{Possible Results}                                                                                                                                                                                                                                                                                        \\ \cline{3-14}
     \multicolumn{1}{c}{\multirow{-2}{*}{Question ID}} & \multirow{-2}{*}{Given Color}        & C1                       & C2                         & \multicolumn{2}{c}{HSV}                                        & \multicolumn{2}{c}{CIE-L*C*h*}                                 & \multicolumn{2}{c}{CMYK}                                       & \multicolumn{2}{c}{RGB}                                        & \multicolumn{2}{c}{CIE-L*a*b*}                                 \\ \hline
     \multicolumn{1}{c}{5}                             & \cellcolor[HTML]{FF0080}{\color[HTML]{FFFFFF}(45, 23, 22)} & \multicolumn{1}{c|}{Red} & \multicolumn{1}{c|}{Magenta}  & \multicolumn{2}{c|}{\cellcolor[HTML]{FF0080}{\color[HTML]{FFFFFF}(45, 23, 22)}}      & \multicolumn{2}{c|}{\cellcolor[HTML]{FF0080}{\color[HTML]{FFFFFF}(45, 23, 22)}}       & \multicolumn{2}{c|}{\cellcolor[HTML]{FF0080}{\color[HTML]{FFFFFF}(45, 23, 22)}}       & \multicolumn{2}{c|}{\cellcolor[HTML]{FF0080}{\color[HTML]{FFFFFF}(45, 23, 22)}}       & \multicolumn{2}{c|}{\cellcolor[HTML]{FF0087}{\color[HTML]{FFFFFF}(45, 23, 25)}}       \\ \hline
                                                       & \multicolumn{1}{l}{}                 & \multicolumn{1}{l}{}     & \multicolumn{1}{l}{}       & \multicolumn{1}{c}{$\overline{x}$} & \multicolumn{1}{c}{$s$} & \multicolumn{1}{c}{$\overline{x}$} & \multicolumn{1}{c}{$s$} & \multicolumn{1}{c}{$\overline{x}$} & \multicolumn{1}{c}{$s$} & \multicolumn{1}{c}{$\overline{x}$} & \multicolumn{1}{c}{$s$} & \multicolumn{1}{c}{$\overline{x}$} & \multicolumn{1}{c}{$s$} \\ \hline
@@ -685,32 +656,27 @@ can be achieved performing a Wilcoxon Test, showing that there are no statistica
     \multicolumn{4}{l}{Distance to Objective - Online}                                                                                               & \multicolumn{1}{|c}{0.16}        & \multicolumn{1}{c|}{0.13}    & \multicolumn{1}{|c}{0.15}        & \multicolumn{1}{c|}{0.07}    & \multicolumn{1}{|c}{\textbf{0.13}}       & \multicolumn{1}{c|}{0.06}    & \multicolumn{1}{|c}{0.14}        & \multicolumn{1}{c|}{0.10}    & \multicolumn{1}{|c}{0.11}       & \multicolumn{1}{c|}{0.07}    \\ \hline
     \end{tabular}}
   \caption[Question 5, with expected Results.]{Question 5: expected colors, possible results and statistics of distances to Objective.}
+  \vspace{-5pt}
   \label{table:lab_q5_expected}
 \end{table}
 %
 \paragraph{\ul{Question Six}}
 %
-This question expected \ul{Red and Yellow} colors as response to a shade of \ul{Orange} presented. As observed in Table \ref{table:lab_q6_expected}, when this mixture is blended according
-to each color model, it generates fairly the same color (HSV, RGB and CMYK all generate the same shade). The colors were blended, and again the mean values over distances were calculated, as Table \ref{table:lab_q6_expected} shows. It is observable that CIE-L*a*b* Color Model presents,
-the lowest mean value for distance to ideal answer ($\overline{x} = 0.05$). \par
-%
-However, it is not safe to say that which color model had the worst results: judging by laboratory and online values, every color model have closer values from each other, being the
-standard deviation the differentiator between them. In fact, \textbf{HSV, CMYK and RGB have similar values due to the similarity between their outputs}: their mean values, though not
+It is observable that CIE-L*a*b* Color Model presents, the lowest mean value for distance to ideal answer ($\overline{x} = 0.05$).
+Judging by laboratory and online values, every color model have closer values from each other, being the standard deviation the differentiator between them. In fact, \textbf{HSV, CMYK and RGB have similar values due to the similarity between their outputs}: their mean values, though not
 the lower ones, are still very good and closer to the objective colors ($\overline{x}_{CMYK} = 0.06$, $\overline{x}_{HSV} = 0.07$ and $\overline{x}_{RGB} = 0.08$). \par
 %
 The CMYK Color Model has, again, the lowest deviation of results. Performing a Friedman Test, we can conclude that there are, in fact, significant differences ($\chi^2 = 45.396$, $p < 0.05$)
 between the color models; post hoc Wilcoxon Analysis ($p < 0.05$) reveals CIE-L*a*b* only has no statistically different results from CMYK color model, and CIE-L*C*h* has statistically
-significant differences with every color model.
-Evaluating this question by the values only, it would be possible to affirm that CIE-L*a*b* has the best results; despite, \textbf{there is no substantial differences to declare that}, since
-every color model besides CIE-L*C*h offers great results, which leads us to allege that \textbf{HSV, RGB, CMYK and CIE-L*a*b* color models provide quite good results when blending red and yellow}. \par
-%
-\textbf{These results are corroborated by the online users}, since a Wilcoxon Test show that there are no statistically significant differences between the laboratory distances and online ones ($p < 0.05$).
+significant differences with every color model. Every color model besides CIE-L*C*h offers great results, which leads us to allege that \textbf{HSV, RGB, CMYK and CIE-L*a*b* color models
+provide quite good results when blending red and yellow}. \textbf{These results are corroborated by the online users}, since a Wilcoxon Test show that there are no statistically significant
+differences between the laboratory distances and online ones ($p < 0.05$).
 %
 \begin{table}[H]
   \resizebox{\textwidth}{!} {
   \begin{tabular}{lccccccccccccc}
     \hline
-    \multicolumn{1}{c}{}                              &                                      & \multicolumn{2}{c}{Expected Colors}                   & \multicolumn{10}{c}{Possible Results}                                                                                                                                                                                                                                                                                        \\ \cline{3-14}
+    \multicolumn{1}{c}{}                              &                                      & \multicolumn{2}{c}{Reference Pair}                   & \multicolumn{10}{c}{Possible Results}                                                                                                                                                                                                                                                                                        \\ \cline{3-14}
     \multicolumn{1}{c}{\multirow{-2}{*}{Question ID}} & \multirow{-2}{*}{Given Color}        & C1                       & C2                         & \multicolumn{2}{c}{HSV}                                        & \multicolumn{2}{c}{CIE-L*C*h*}                                 & \multicolumn{2}{c}{CMYK}                                       & \multicolumn{2}{c}{RGB}                                        & \multicolumn{2}{c}{CIE-L*a*b*}                                 \\ \hline
     \multicolumn{1}{c}{6}                             & \cellcolor[HTML]{FF8000}(49, 37, 5) & \multicolumn{1}{c|}{Red} & \multicolumn{1}{c|}{Yellow}  & \multicolumn{2}{c|}{\cellcolor[HTML]{FF8000}(49, 37, 5)}      & \multicolumn{2}{c|}{\cellcolor[HTML]{FF9F00}(54, 46, 6)}       & \multicolumn{2}{c|}{\cellcolor[HTML]{FF8000}(49, 37, 5)}       & \multicolumn{2}{c|}{\cellcolor[HTML]{FF8000}(49, 37, 5)}       & \multicolumn{2}{c|}{\cellcolor[HTML]{FFA100}(54, 47, 6)}       \\ \hline
                                                       & \multicolumn{1}{l}{}                 & \multicolumn{1}{l}{}     & \multicolumn{1}{l}{}       & \multicolumn{1}{c}{$\overline{x}$} & \multicolumn{1}{c}{$s$} & \multicolumn{1}{c}{$\overline{x}$} & \multicolumn{1}{c}{$s$} & \multicolumn{1}{c}{$\overline{x}$} & \multicolumn{1}{c}{$s$} & \multicolumn{1}{c}{$\overline{x}$} & \multicolumn{1}{c}{$s$} & \multicolumn{1}{c}{$\overline{x}$} & \multicolumn{1}{c}{$s$} \\ \hline
@@ -718,30 +684,27 @@ every color model besides CIE-L*C*h offers great results, which leads us to alle
     \multicolumn{4}{l}{Distance to Objective - Online}                                                                                               & \multicolumn{1}{|c}{0.03}        & \multicolumn{1}{c|}{0.05}    & \multicolumn{1}{|c}{0.14}        & \multicolumn{1}{c|}{0.07}    & \multicolumn{1}{|c}{0.03}       & \multicolumn{1}{c|}{0.03}    & \multicolumn{1}{|c}{0.04}        & \multicolumn{1}{c|}{0.05}    & \multicolumn{1}{|c}{\textbf{0.02}}       & \multicolumn{1}{c|}{0.03}    \\ \hline
     \end{tabular}}
   \caption[Question 6, with expected Results.]{Question 6: expected colors, possible results and statistics of distances to Objective.}
+  \vspace{-5pt}
   \label{table:lab_q6_expected}
 \end{table}
 %
 \paragraph{\ul{Question Seven}}
 %
-This question expected \ul{Cyan and Magenta} colors as response to \ul{Blue}, presented. The range of colors generated as possible outputs from color models, varies between blue,
-cyan, purple and pink.
-The colors were blended, and mean values over distances were calculated, as Table \ref{table:lab_q7_expected} shows. It is observable that CMYK Color Model proves to be again the
-lowest mean value for distance to ideal answer ($\overline{x} = 0.10$), whilst offering the lowest value for deviation along with CIE-L*a*b* ($s = 0.08$). CIE-L*C*h* has the
-highest mean result of distances, but the one which has the highest deviation is the HSV Color Model. In fact, \textbf{HSV, RGB and CIE-L*a*b* have similar}. \par
-%
+It is observable that CMYK Color Model proves to be again the lowest mean value for distance to ideal answer ($\overline{x} = 0.10$), whilst offering the lowest value for deviation along with CIE-L*a*b* ($s = 0.08$). CIE-L*C*h* has the
+highest mean result of distances, but the one which has the highest deviation is the HSV Color Model.
 Performing a Friedman Test, we can conclude that there are, in fact, significant differences ($\chi^2 = 60.886$, $p < 0.05$) between the color models; Wilcoxon Analysis ($p < 0.05$)
 shows HSV has no statistically different results from any color model and CIE-L*C*h* has statistically significant differences only with CMYK color model. In general, this question
 gathers a low quantity of statistically significant differences: between CIE-L*C*h* and CMYK, CMYK and RGB, and CMYK and CIE-L*a*b* \par
 %
 Based on these results, corroborated by the online users with a Wilcoxon Test that shows that there are no significant differences ($p < 0.05$), we can conclude \textbf{users tend
 to blend in HSV to obtain a blue color}. However, it should be considered that \textbf{HSV, RGB and CIE-L*a*b* also yielded good results, particularly the last one which had the
-lowest deviation of answers}. The results from this question can be found in table \ref{table:lab_q7_expected}.
+lowest deviation of answers}. The results from this question can be found in Table \ref{table:lab_q7_expected}.
 %
 \begin{table}[H]
   \resizebox{\textwidth}{!} {
   \begin{tabular}{lccccccccccccc}
     \hline
-    \multicolumn{1}{c}{}                              &                                      & \multicolumn{2}{c}{Expected Colors}                   & \multicolumn{10}{c}{Possible Results}                                                                                                                                                                                                                                                                                        \\ \cline{3-14}
+    \multicolumn{1}{c}{}                              &                                      & \multicolumn{2}{c}{Reference Pair}                   & \multicolumn{10}{c}{Possible Results}                                                                                                                                                                                                                                                                                        \\ \cline{3-14}
     \multicolumn{1}{c}{\multirow{-2}{*}{Question ID}} & \multirow{-2}{*}{Given Color}        & C1                       & C2                         & \multicolumn{2}{c}{HSV}                                        & \multicolumn{2}{c}{CIE-L*C*h*}                                 & \multicolumn{2}{c}{CMYK}                                       & \multicolumn{2}{c}{RGB}                                        & \multicolumn{2}{c}{CIE-L*a*b*}                                 \\ \hline
     \multicolumn{1}{c}{7}                             & \cellcolor[HTML]{0000FF}{\color[HTML]{FFFFFF}(18, 7, 95)} & \multicolumn{1}{c|}{Cyan} & \multicolumn{1}{c|}{Magenta}  & \multicolumn{2}{c|}{\cellcolor[HTML]{0000FF}{\color[HTML]{FFFFFF}(18, 7, 95)}}      & \multicolumn{2}{c|}{\cellcolor[HTML]{00CAFF}(39, 49, 102)}       & \multicolumn{2}{c|}{\cellcolor[HTML]{8080FF}{\color[HTML]{FFFFFF}(35, 27, 98)}}       & \multicolumn{2}{c|}{\cellcolor[HTML]{8080FF}{\color[HTML]{FFFFFF}(35, 27, 98)}}       & \multicolumn{2}{c|}{\cellcolor[HTML]{C6AEFF}(56, 50, 101)}       \\ \hline
                                                       & \multicolumn{1}{l}{}                 & \multicolumn{1}{l}{}     & \multicolumn{1}{l}{}       & \multicolumn{1}{c}{$\overline{x}$} & \multicolumn{1}{c}{$s$} & \multicolumn{1}{c}{$\overline{x}$} & \multicolumn{1}{c}{$s$} & \multicolumn{1}{c}{$\overline{x}$} & \multicolumn{1}{c}{$s$} & \multicolumn{1}{c}{$\overline{x}$} & \multicolumn{1}{c}{$s$} & \multicolumn{1}{c}{$\overline{x}$} & \multicolumn{1}{c}{$s$} \\ \hline
@@ -749,33 +712,27 @@ lowest deviation of answers}. The results from this question can be found in tab
     \multicolumn{4}{l}{Distance to Objective - Online}                                                                                               & \multicolumn{1}{|c}{0.13}        & \multicolumn{1}{c|}{0.21}    & \multicolumn{1}{|c}{0.18}        & \multicolumn{1}{c|}{0.08}    & \multicolumn{1}{|c}{\textbf{0.11}}       & \multicolumn{1}{c|}{0.06}    & \multicolumn{1}{|c}{0.17}        & \multicolumn{1}{c|}{0.11}    & \multicolumn{1}{|c}{0.22}       & \multicolumn{1}{c|}{0.07}    \\ \hline
     \end{tabular}}
   \caption[Question 7, with expected Results.]{Question 7: expected colors, possible results and statistics of distances to Objective.}
+  \vspace{-5pt}
   \label{table:lab_q7_expected}
 \end{table}
 %
 \paragraph{\ul{Question Eight}}
 %
-This blending question expected \ul{Magenta and Yellow} colors as response to \textbf{Red} presented. As observed in Table \ref{table:lab_q8_expected}, when this mixture is blended according
-to each color model, it generates fairly the same color, similarly to question five.
-The colors were blended, and again the mean values over distances were calculated, as Table \ref{table:lab_q8_expected} shows. It is observable that CMYK and HSV Color Model presents,
-the lowest mean value for distance to ideal answer ($\overline{x} = 0.10$), whilst standard deviation for the CMYK Color Model is also the lowest between both study environments. \par
-%
+The CMYK and HSV Color Model present the lowest mean value for distance to ideal answer ($\overline{x} = 0.10$), whilst standard deviation for the CMYK Color Model is also the lowest between both study environments.
 Surprisingly, CIE-L*C*h has the lowest result for the mean distance of online results ($\overline{x} = 0.09$), which is quite lower than the maximum value of this parameter in the online
 environment ($\overline{x}_{lab} = 0.16$). This result is different from the laboratory data, in which this same color model has the highest mean value for distance to ideal answer. With
-this said, \textbf{it is not safe to say that which color model had the worst results}.
-Also, there should be some sort of affinity between RGB and CIE-L*a*b* models, regarding the Laboratory: they both have the same mean distance and deviation values.
+this said, \textbf{it is not safe to say that which color model had the worst results}. Also, there should be some sort of affinity between RGB and CIE-L*a*b* models, regarding the Laboratory: they both have the same mean distance and deviation values.
 Evaluating the data with the Friedman Test, we can conclude that there are, in fact, significant differences ($\chi^2 = 27.377$, $p < 0.05$) between the color models; a Wilcoxon Analysis
 ($p < 0.05$) does not reveal a significant difference between color models. \par
 %
-Evaluating this question by the values only, it would be possible to affirm that CMYK has the best results, due to the commitment between the mean value and standard deviation; despite,
-\textbf{there are no substantial differences to declare that}, which leads us to allege that \textbf{every color model studied yield acceptable results when blending magenta and yellow},
-but further depth studying should be applied. \textbf{These results are corroborated by the online users}, since a Wilcoxon Test show that there are no statistically significant differences
-between the laboratory distances and online ones ($p < 0.05$).
+\textbf{Every color model studied yield acceptable results when blending magenta and yellow}, but further depth studying should be applied. \textbf{These results are corroborated by the online users}, since a Wilcoxon Test show that there are no
+statistically significant differences between the laboratory distances and online ones ($p < 0.05$).
 %
 \begin{table}[H]
   \resizebox{\textwidth}{!} {
   \begin{tabular}{lccccccccccccc}
     \hline
-    \multicolumn{1}{c}{}                              &                                      & \multicolumn{2}{c}{Expected Colors}                   & \multicolumn{10}{c}{Possible Results}                                                                                                                                                                                                                                                                                        \\ \cline{3-14}
+    \multicolumn{1}{c}{}                              &                                      & \multicolumn{2}{c}{Reference Pair}                   & \multicolumn{10}{c}{Possible Results}                                                                                                                                                                                                                                                                                        \\ \cline{3-14}
     \multicolumn{1}{c}{\multirow{-2}{*}{Question ID}} & \multirow{-2}{*}{Given Color}        & C1                       & C2                         & \multicolumn{2}{c}{HSV}                                        & \multicolumn{2}{c}{CIE-L*C*h*}                                 & \multicolumn{2}{c}{CMYK}                                       & \multicolumn{2}{c}{RGB}                                        & \multicolumn{2}{c}{CIE-L*a*b*}                                 \\ \hline
     \multicolumn{1}{c}{8}                             & \cellcolor[HTML]{FF0000}{\color[HTML]{FFFFFF}(41, 21, 2)} & \multicolumn{1}{c|}{Magenta} & \multicolumn{1}{c|}{Yellow}  & \multicolumn{2}{c|}{\cellcolor[HTML]{FF0000}{\color[HTML]{FFFFFF}(41, 21, 2)}}      & \multicolumn{2}{c|}{\cellcolor[HTML]{FF6755}{\color[HTML]{FFFFFF}(48, 32, 12)}}       & \multicolumn{2}{c|}{\cellcolor[HTML]{FF8080}{\color[HTML]{FFFFFF}(53, 38, 25)}}       & \multicolumn{2}{c|}{\cellcolor[HTML]{FF8080}{\color[HTML]{FFFFFF}(53, 38, 25)}}       & \multicolumn{2}{c|}{\cellcolor[HTML]{FFA6A6}(62, 51, 43)}       \\ \hline
                                                       & \multicolumn{1}{l}{}                 & \multicolumn{1}{l}{}     & \multicolumn{1}{l}{}       & \multicolumn{1}{c}{$\overline{x}$} & \multicolumn{1}{c}{$s$} & \multicolumn{1}{c}{$\overline{x}$} & \multicolumn{1}{c}{$s$} & \multicolumn{1}{c}{$\overline{x}$} & \multicolumn{1}{c}{$s$} & \multicolumn{1}{c}{$\overline{x}$} & \multicolumn{1}{c}{$s$} & \multicolumn{1}{c}{$\overline{x}$} & \multicolumn{1}{c}{$s$} \\ \hline
@@ -783,31 +740,26 @@ between the laboratory distances and online ones ($p < 0.05$).
     \multicolumn{4}{l}{Distance to Objective - Online}                                                                                               & \multicolumn{1}{|c}{0.10}        & \multicolumn{1}{c|}{0.17}    & \multicolumn{1}{|c}{\textbf{0.09}}        & \multicolumn{1}{c|}{0.12}    & \multicolumn{1}{|c}{0.12}       & \multicolumn{1}{c|}{0.05}    & \multicolumn{1}{|c}{0.14}        & \multicolumn{1}{c|}{0.07}    & \multicolumn{1}{|c}{0.16}       & \multicolumn{1}{c|}{0.07}    \\ \hline
     \end{tabular}}
   \caption[Question 8, with expected Results.]{Question 8: expected colors, possible results and statistics of distances to Objective.}
+  \vspace{-5pt}
   \label{table:lab_q8_expected}
 \end{table}
 %
 \paragraph{\ul{Question Nine}}
 %
-This blending question expected \ul{Magenta and Yellow} colors as response to \textbf{Red} presented. As observed in Table \ref{table:lab_q9_expected}, when this mixture is blended according
-to each color model, it generates fairly the same color, similarly to question five.
-The colors were blended, and again the mean values over distances were calculated, as Table \ref{table:lab_q9_expected} shows. It is observable that CMYK and HSV Color Model presents,
-the lowest mean value for distance to ideal answer ($\overline{x} = 0.10$), whilst standard deviation for the CMYK Color Model is also the lowest between both study environments. \par
-%
+CMYK and HSV Color Model present the lowest mean value for distance to ideal answer ($\overline{x} = 0.10$), whilst standard deviation for the CMYK Color Model is also the lowest between both study environments. \par
 The results show that CIE-L*C*h* is the worst-generating values Color Model, having the higher mean value of all models across study environments. There is also the same tendency of RGB,
 CIE-L*a*b* and HSV present closer values between each other. Evaluating the data with the Friedman Test, we can conclude that there are significant differences ($\chi^2 = 48.252$, $p < 0.05$)
 between the color models; a Wilcoxon Analysis ($p < 0.05$) does reveal there are almost no significant difference between color models: mostly, the significant differences reside in CIE-L*C*h*, when
 compared again with CMYK, RGB and CIE-L*a*b*. \par
 %
-Evaluating this question by the values only, it would be possible to affirm that CMYK has the best results, due to the commitment between the mean value and standard deviation; despite,
-\textbf{there are no substantial differences to declare that}, which leads us to allege that \textbf{every color model studied, except CIE-L*C*h*, yield acceptable results when blending green and cyan}.
-\textbf{These results are corroborated by the online users}, since a Wilcoxon Test show that there are no statistically significant differences between the laboratory distances and online ones ($p < 0.05$).
-The results from this question will be useful when analyzing question fifteen.
+\textbf{Every color model studied, except CIE-L*C*h*, yield acceptable results when blending green and cyan}. \textbf{These results are corroborated by the online users}, since a Wilcoxon Test show that there are no
+statistically significant differences between the laboratory distances and online ones ($p < 0.05$).
 %
 \begin{table}[H]
   \resizebox{\textwidth}{!} {
   \begin{tabular}{lccccccccccccc}
     \hline
-    \multicolumn{1}{c}{}                              &                                      & \multicolumn{2}{c}{Expected Colors}                   & \multicolumn{10}{c}{Possible Results}                                                                                                                                                                                                                                                                                        \\ \cline{3-14}
+    \multicolumn{1}{c}{}                              &                                      & \multicolumn{2}{c}{Reference Pair}                   & \multicolumn{10}{c}{Possible Results}                                                                                                                                                                                                                                                                                        \\ \cline{3-14}
     \multicolumn{1}{c}{\multirow{-2}{*}{Question ID}} & \multirow{-2}{*}{Given Color}        & C1                       & C2                         & \multicolumn{2}{c}{HSV}                                        & \multicolumn{2}{c}{CIE-L*C*h*}                                 & \multicolumn{2}{c}{CMYK}                                       & \multicolumn{2}{c}{RGB}                                        & \multicolumn{2}{c}{CIE-L*a*b*}                                 \\ \hline
     \multicolumn{1}{c}{9}                             & \cellcolor[HTML]{00FF80}(40, 73, 32) & \multicolumn{1}{c|}{Green} & \multicolumn{1}{c|}{Cyan}  & \multicolumn{2}{c|}{\cellcolor[HTML]{00FF80}(40, 73, 32)}      & \multicolumn{2}{c|}{\cellcolor[HTML]{00FFB7}(44, 75, 57)}       & \multicolumn{2}{c|}{\cellcolor[HTML]{00FF80}(40, 73, 32)}       & \multicolumn{2}{c|}{\cellcolor[HTML]{00FF80}(40, 73, 32)}       & \multicolumn{2}{c|}{\cellcolor[HTML]{46FF9C}(44, 75, 44)}       \\ \hline
                                                       & \multicolumn{1}{l}{}                 & \multicolumn{1}{l}{}     & \multicolumn{1}{l}{}       & \multicolumn{1}{c}{$\overline{x}$} & \multicolumn{1}{c}{$s$} & \multicolumn{1}{c}{$\overline{x}$} & \multicolumn{1}{c}{$s$} & \multicolumn{1}{c}{$\overline{x}$} & \multicolumn{1}{c}{$s$} & \multicolumn{1}{c}{$\overline{x}$} & \multicolumn{1}{c}{$s$} & \multicolumn{1}{c}{$\overline{x}$} & \multicolumn{1}{c}{$s$} \\ \hline
@@ -815,18 +767,13 @@ The results from this question will be useful when analyzing question fifteen.
     \multicolumn{4}{l}{Distance to Objective - Online}                                                                                               & \multicolumn{1}{|c}{0.11}        & \multicolumn{1}{c|}{0.08}    & \multicolumn{1}{|c}{0.13}        & \multicolumn{1}{c|}{0.06}    & \multicolumn{1}{|c}{\textbf{0.10}}       & \multicolumn{1}{c|}{0.04}    & \multicolumn{1}{|c}{\textbf{0.10}}        & \multicolumn{1}{c|}{0.08}    & \multicolumn{1}{|c}{0.11}       & \multicolumn{1}{c|}{0.06}    \\ \hline
     \end{tabular}}
   \caption[Question 9, with expected Results.]{Question 9: expected colors, possible results and statistics of distances to Objective.}
+  \vspace{-5pt}
   \label{table:lab_q9_expected}
 \end{table}
 %
 \paragraph{\ul{Question Ten}}
 %
-This question \ul{presents a shade of Blue color} and expects to receive, the pair \ul{Green and Magenta}. As in question 3, according to the HSV Color Model, Green and Magenta are positioned in
-opposite angles in the Hue Circle of Colors: therefore, blending these opposite colors that output two different colors. This question should be evaluated along with Question Eleven, which has
-the opposite output.
-These two colors, when blended, produce substantially different colors according to each model interpolation: this question could produce significant different results from model to model,
-since the users would be clearly indicating which color they would tend to. \par
-%
-The colors were blended and the mean values over distances were calculated, as Table \ref{table:lab_q10_expected} shows. It is observable that CMYK Color Model presents
+The colors were interpolated and the mean values over distances were calculated, as Table \ref{table:lab_q10_expected} shows. It is observable that CMYK Color Model presents
 the lowest mean value for distance to ideal answer ($\overline{x} = 0.013$); its standard deviation is also the lowest between both study environments ($s = 0.05$), which could indicate a preference
 for this color model. Notwithstanding, all the mean values are substantially high when compared with previous questions, which could indicate that \textbf{none of these models produce the color blending according
 to the users' expectations, nor blending green and magenta to produce a blue shade}. \par
@@ -841,7 +788,7 @@ analyzing question thirteen. Figures \ref{fig:onlineregular_10} and \ref{fig:onl
   \resizebox{\textwidth}{!} {
   \begin{tabular}{lccccccccccccc}
     \hline
-    \multicolumn{1}{c}{}                              &                                      & \multicolumn{2}{c}{Expected Colors}                   & \multicolumn{10}{c}{Possible Results}                                                                                                                                                                                                                                                                                        \\ \cline{3-14}
+    \multicolumn{1}{c}{}                              &                                      & \multicolumn{2}{c}{Reference Pair}                   & \multicolumn{10}{c}{Possible Results}                                                                                                                                                                                                                                                                                        \\ \cline{3-14}
     \multicolumn{1}{c}{\multirow{-2}{*}{Question ID}} & \multirow{-2}{*}{Given Color}        & C1                       & C2                         & \multicolumn{2}{c}{HSV}                                        & \multicolumn{2}{c}{CIE-L*C*h*}                                 & \multicolumn{2}{c}{CMYK}                                       & \multicolumn{2}{c}{RGB}                                        & \multicolumn{2}{c}{CIE-L*a*b*}                                 \\ \hline
     \multicolumn{1}{c}{10}                             & \cellcolor[HTML]{0080FF}{\color[HTML]{FFFFFF}(26, 23, 98)} & \multicolumn{1}{c|}{Green} & \multicolumn{1}{c|}{Magenta}  & \multicolumn{2}{c|}{\cellcolor[HTML]{0080FF}{\color[HTML]{FFFFFF}(26, 23, 98)}}      & \multicolumn{2}{c|}{\cellcolor[HTML]{FF6F00}(47, 33, 4)}       & \multicolumn{2}{c|}{\cellcolor[HTML]{808080}{\color[HTML]{FFFFFF}(21, 22, 24)}}       & \multicolumn{2}{c|}{\cellcolor[HTML]{808080}{\color[HTML]{FFFFFF}(21, 22, 24)}}       & \multicolumn{2}{c|}{\cellcolor[HTML]{C9B2A2}(47, 48, 41)}       \\ \hline
                                                       & \multicolumn{1}{l}{}                 & \multicolumn{1}{l}{}     & \multicolumn{1}{l}{}       & \multicolumn{1}{c}{$\overline{x}$} & \multicolumn{1}{c}{$s$} & \multicolumn{1}{c}{$\overline{x}$} & \multicolumn{1}{c}{$s$} & \multicolumn{1}{c}{$\overline{x}$} & \multicolumn{1}{c}{$s$} & \multicolumn{1}{c}{$\overline{x}$} & \multicolumn{1}{c}{$s$} & \multicolumn{1}{c}{$\overline{x}$} & \multicolumn{1}{c}{$s$} \\ \hline
@@ -849,43 +796,43 @@ analyzing question thirteen. Figures \ref{fig:onlineregular_10} and \ref{fig:onl
     \multicolumn{4}{l}{Distance to Objective - Online}                                                                                               & \multicolumn{1}{|c}{0.17}        & \multicolumn{1}{c|}{0.17}    & \multicolumn{1}{|c}{0.27}        & \multicolumn{1}{c|}{0.09}    & \multicolumn{1}{|c}{\textbf{0.13}}       & \multicolumn{1}{c|}{0.04}    & \multicolumn{1}{|c}{0.20}        & \multicolumn{1}{c|}{0.04}    & \multicolumn{1}{|c}{0.22}       & \multicolumn{1}{c|}{0.07}    \\ \hline
     \end{tabular}}
   \caption[Question 10, with expected Results.]{Question 10: expected colors, possible results and statistics of distances to Objective.}
+  \vspace{-5pt}
   \label{table:lab_q10_expected}
 \end{table}
 %
 \begin{figure}[htbp]
   \centering
+  \vspace{-15pt}
   \begin{minipage}{0.48\textwidth}
     \centering
     \includegraphics[width=\textwidth]{images/results/10_online_regularUsers.png}
-    \caption[Online: Answers for Question 10, from regular users.]{Online: Answers for Question 10, from regular users.}
+    \caption[Online: Answers for Question 10, from regular users.]{Online: Question 10, Regular users.}
     \label{fig:onlineregular_10}
   \end{minipage}\hfill
   \begin{minipage}{0.48\textwidth}
     \centering
     \includegraphics[width=\textwidth]{images/results/10_online_HSVresponses.png}
-    \caption[Online: Answers for Question 10, from regular users, mixed in HSV Color Model.]{Online: Answers for Question 10, from regular users, mixed in HSV Color Model.}
+    \caption[Online: Answers for Question 10, from regular users, mixed in HSV Color Model.]{Online: Question 10, Regular users, mixed in HSV.}
     \label{fig:onlinehsvregular_10}
   \end{minipage}
+  \vspace{-5pt}
 \end{figure}
 %
 \paragraph{\ul{Question Eleven}}
 %
-As explained in previous question, this one is the second possible output from the blend of \ul{Green and Magenta colors}. Comparing the results
-for the HSV Color Model of both questions, mean distances are dramatically lower for question fourteen ($\overline{x} = 0.06$), whilst the deviation of answers is also lower in question fourteen.
-However, there is an interesting feature: instead of believing in a Green-Magenta blending to produce Orange, \textbf{the users tend to use again Red and Yellow} as on question six,
+This question has the second possible output from the blend of \ul{Green and Magenta colors}. Mean distances are dramatically lower for this question ($\overline{x} = 0.06$),
+whilst the deviation of answers is also lower. However, there is an interesting feature: instead of believing in a Green-Magenta blending to produce Orange, \textbf{the users tend to use again Red and Yellow} as on question six,
 which explains the low HSV mean value for question eleven.
 %
 Based on these results, we can conclude \textbf{the orange color is a strongly implemented color in mental models of our users}. The results from this question can be found in table
-\ref{table:lab_q11_expected}. These differences can be seen on Figures \ref{fig:onlineregular_11} and \ref{fig:onlinehsvregular_11}, which largely demonstrates the placement of
-answer-pairs, and the pairs blended in HSV Color Model.
-Once again, \textbf{these results are corroborated by the online users}, since a Wilcoxon Test show that there are no statistically significant differences between the laboratory
+\ref{table:lab_q11_expected}. Once again, \textbf{these results are corroborated by the online users}, since a Wilcoxon Test show that there are no statistically significant differences between the laboratory
 distances and online ones ($p < 0.05$).
 %
 \begin{table}[H]
   \resizebox{\textwidth}{!} {
   \begin{tabular}{lccccccccccccc}
     \hline
-    \multicolumn{1}{c}{}                              &                                      & \multicolumn{2}{c}{Expected Colors}                   & \multicolumn{10}{c}{Possible Results}                                                                                                                                                                                                                                                                                        \\ \cline{3-14}
+    \multicolumn{1}{c}{}                              &                                      & \multicolumn{2}{c}{Reference Pair}                   & \multicolumn{10}{c}{Possible Results}                                                                                                                                                                                                                                                                                        \\ \cline{3-14}
     \multicolumn{1}{c}{\multirow{-2}{*}{Question ID}} & \multirow{-2}{*}{Given Color}        & C1                       & C2                         & \multicolumn{2}{c}{HSV}                                        & \multicolumn{2}{c}{CIE-L*C*h*}                                 & \multicolumn{2}{c}{CMYK}                                       & \multicolumn{2}{c}{RGB}                                        & \multicolumn{2}{c}{CIE-L*a*b*}                                 \\ \hline
     \multicolumn{1}{c}{11}                             & \cellcolor[HTML]{FF8000}(49, 37, 5) & \multicolumn{1}{c|}{Green} & \multicolumn{1}{c|}{Magenta}  & \multicolumn{2}{c|}{\cellcolor[HTML]{FF8000}(49, 37, 5)}      & \multicolumn{2}{c|}{\cellcolor[HTML]{FF6F00}(47, 33, 4)}       & \multicolumn{2}{c|}{\cellcolor[HTML]{808080}{\color[HTML]{FFFFFF}(21, 22, 24)}}       & \multicolumn{2}{c|}{\cellcolor[HTML]{808080}{\color[HTML]{FFFFFF}(21, 22, 24)}}       & \multicolumn{2}{c|}{\cellcolor[HTML]{C9B2A2}(47, 48, 41)}       \\ \hline
                                                       & \multicolumn{1}{l}{}                 & \multicolumn{1}{l}{}     & \multicolumn{1}{l}{}       & \multicolumn{1}{c}{$\overline{x}$} & \multicolumn{1}{c}{$s$} & \multicolumn{1}{c}{$\overline{x}$} & \multicolumn{1}{c}{$s$} & \multicolumn{1}{c}{$\overline{x}$} & \multicolumn{1}{c}{$s$} & \multicolumn{1}{c}{$\overline{x}$} & \multicolumn{1}{c}{$s$} & \multicolumn{1}{c}{$\overline{x}$} & \multicolumn{1}{c}{$s$} \\ \hline
@@ -893,37 +840,15 @@ distances and online ones ($p < 0.05$).
     \multicolumn{4}{l}{Distance to Objective - Online}                                                                                               & \multicolumn{1}{|c}{\textbf{0.04}}        & \multicolumn{1}{c|}{0.06}    & \multicolumn{1}{|c}{0.12}        & \multicolumn{1}{c|}{0.10}    & \multicolumn{1}{|c}{0.14}       & \multicolumn{1}{c|}{0.02}    & \multicolumn{1}{|c}{0.19}        & \multicolumn{1}{c|}{0.02}    & \multicolumn{1}{|c}{0.15}       & \multicolumn{1}{c|}{0.01}    \\ \hline
     \end{tabular}}
   \caption[Question 11, with expected Results.]{Question 11: expected colors, possible results and statistics of distances to Objective.}
+  \vspace{-5pt}
   \label{table:lab_q11_expected}
 \end{table}
 %
-\begin{figure}[htbp]
-  \centering
-  \begin{minipage}{0.48\textwidth}
-    \centering
-    \includegraphics[width=\textwidth]{images/results/11_online_regularUsers.png}
-    \caption[Online: Answers for Question 11, from regular users.]{Online: Answers for Question 11, from regular users.}
-    \label{fig:onlineregular_11}
-  \end{minipage}\hfill
-  \begin{minipage}{0.48\textwidth}
-    \centering
-    \includegraphics[width=\textwidth]{images/results/11_online_HSVresponses.png}
-    \caption[Online: Answers for Question 11, from regular users, mixed in HSV Color Model.]{Online: Answers for Question 11, from regular users, mixed in HSV Color Model.}
-    \label{fig:onlinehsvregular_11}
-  \end{minipage}
-\end{figure}
-%
 \paragraph{\ul{Question Twelve}}
 %
-This blending question expected \ul{Green and Yellow} colors as response to a tone of \textbf{Green} presented. This green tone is equal to the one presented in question three, therefore
-its results are interesting to compare with this question. As observed in Table \ref{table:lab_q12_expected}, when this mixture is blended according to each color model, it generates almost
-the same green color, so distances and their statistics are expected to be closer to each other. \par
-%
-The colors were blended, and again the mean values over distances were calculated, as Table \ref{table:lab_q12_expected} shows. It is observable that HSV Color Model presents,
-the lowest mean value for distance to ideal answer ($\overline{x} = 0.11$), whilst standard deviation for the CMYK Color Model provides the lowest value between both study environments
-($s_{lab} = 0.04$, $s_{online} = 0.05$). \par
-%
-The results show that CIE-L*C*h* the worst-generating values Color Model, having the higher mean value of all models across study environments. There is also the same tendency of RGB,
-CIE-L*a*b* and CMYK present closer values between each other. Evaluating the data with the Friedman Test, we can conclude that there are significant differences ($\chi^2 = 71.788$, $p < 0.05$)
+It is observable that HSV Color Model presents, the lowest mean value for distance to ideal answer ($\overline{x} = 0.11$), whilst standard deviation for the CMYK Color Model provides the lowest value between both study environments
+($s_{lab} = 0.04$, $s_{online} = 0.05$).
+The results show that CIE-L*C*h* the worst-generating values Color Model; there is also the same tendency of RGB, CIE-L*a*b* and CMYK present closer values between each other. Evaluating the data with the Friedman Test, we can conclude that there are significant differences ($\chi^2 = 71.788$, $p < 0.05$)
 between the color models; a Wilcoxon Analysis ($p < 0.05$) does reveal \textbf{there are significant difference between color models}: when analyzing the results for the tests between HSV and other
 color models, it presents significant differences between all models except CMYK; the model which consistently presents the larger distances is CIE-L*C*h* against every color model, leading to
 statistically significant differences with every other model. \par
@@ -931,13 +856,12 @@ statistically significant differences with every other model. \par
 Comparing the results of this question with number three, we can observe that the later has shorter values: HSV Color Model still presents the best mean values between questions.
 The fact that question three has lower values, leads us to conclude that \textbf{mixing Red and Cyan to achieve this green tone is more similar with the users' expectations, than blending a Green and
 Yellow color}. Figures \ref{fig:onlinehsvregular_3} and \ref{fig:onlinehsvregular_12} compare the results from both question three and twelve, blended in HSV (the model which yields the best results).
-\textbf{These results are corroborated by the online users}, since a Wilcoxon Test show that there are no statistically significant differences between the laboratory distances and online ones ($p < 0.05$).
 %
 \begin{table}[H]
   \resizebox{\textwidth}{!} {
   \begin{tabular}{lccccccccccccc}
     \hline
-    \multicolumn{1}{c}{}                              &                                      & \multicolumn{2}{c}{Expected Colors}                   & \multicolumn{10}{c}{Possible Results}                                                                                                                                                                                                                                                                                        \\ \cline{3-14}
+    \multicolumn{1}{c}{}                              &                                      & \multicolumn{2}{c}{Reference Pair}                   & \multicolumn{10}{c}{Possible Results}                                                                                                                                                                                                                                                                                        \\ \cline{3-14}
     \multicolumn{1}{c}{\multirow{-2}{*}{Question ID}} & \multirow{-2}{*}{Given Color}        & C1                       & C2                         & \multicolumn{2}{c}{HSV}                                        & \multicolumn{2}{c}{CIE-L*C*h*}                                 & \multicolumn{2}{c}{CMYK}                                       & \multicolumn{2}{c}{RGB}                                        & \multicolumn{2}{c}{CIE-L*a*b*}                                 \\ \hline
     \multicolumn{1}{c}{12}                             & \cellcolor[HTML]{80FF00}(45, 76, 12) & \multicolumn{1}{c|}{Green} & \multicolumn{1}{c|}{Yellow}  & \multicolumn{2}{c|}{\cellcolor[HTML]{80FF00}(45, 76, 12)}      & \multicolumn{2}{c|}{\cellcolor[HTML]{B1FF00}(54, 81, 13)}       & \multicolumn{2}{c|}{\cellcolor[HTML]{80FF00}(45, 76, 12)}       & \multicolumn{2}{c|}{\cellcolor[HTML]{80FF00}(45, 76, 12)}       & \multicolumn{2}{c|}{\cellcolor[HTML]{AEFF00}(53, 81, 13)}       \\ \hline
                                                       & \multicolumn{1}{l}{}                 & \multicolumn{1}{l}{}     & \multicolumn{1}{l}{}       & \multicolumn{1}{c}{$\overline{x}$} & \multicolumn{1}{c}{$s$} & \multicolumn{1}{c}{$\overline{x}$} & \multicolumn{1}{c}{$s$} & \multicolumn{1}{c}{$\overline{x}$} & \multicolumn{1}{c}{$s$} & \multicolumn{1}{c}{$\overline{x}$} & \multicolumn{1}{c}{$s$} & \multicolumn{1}{c}{$\overline{x}$} & \multicolumn{1}{c}{$s$} \\ \hline
@@ -945,11 +869,13 @@ Yellow color}. Figures \ref{fig:onlinehsvregular_3} and \ref{fig:onlinehsvregula
     \multicolumn{4}{l}{Distance to Objective - Online}                                                                                               & \multicolumn{1}{|c}{\textbf{0.08}}        & \multicolumn{1}{c|}{0.11}    & \multicolumn{1}{|c}{0.24}        & \multicolumn{1}{c|}{0.06}    & \multicolumn{1}{|c}{0.12}       & \multicolumn{1}{c|}{0.05}    & \multicolumn{1}{|c}{0.13}        & \multicolumn{1}{c|}{0.09}    & \multicolumn{1}{|c}{0.15}       & \multicolumn{1}{c|}{0.09}    \\ \hline
     \end{tabular}}
   \caption[Question 12, with expected Results.]{Question 12: expected colors, possible results and statistics of distances to Objective.}
+  \vspace{-5pt}
   \label{table:lab_q12_expected}
 \end{table}
 %
 \begin{figure}[htbp]
   \centering
+  \vspace{-15pt}
   \begin{minipage}{0.48\textwidth}
     \centering
     \includegraphics[width=\textwidth]{images/results/3_online_HSVresponses.png}
@@ -962,29 +888,21 @@ Yellow color}. Figures \ref{fig:onlinehsvregular_3} and \ref{fig:onlinehsvregula
     \caption[Online: Answers for Question 12, from regular users, mixed in HSV Color Model.]{Online: Answers for Question 12, from regular users, mixed in HSV Color Model.}
     \label{fig:onlinehsvregular_12}
   \end{minipage}
+  \vspace{-5pt}
 \end{figure}
 %
 \paragraph{\ul{Question Thirteen}}
 %
-This mixture expected in this question contains \ul{Blue and Cyan} colors as response to a lighter tone of \textbf{Blue}, which was presented. Similar to previous question, this one had
-presented a repeated color: this blue shade is equal to the one presented in question ten, therefore its results are interesting to compare with this question. As observed in Table
-\ref{table:lab_q13_expected}, when this mixture is blended according to each color model it generates similar colors, except for CIE-L*C*h* that has a lighter blending than others. \par
-%
-The colors were blended, mean values over distances calculated, as Table \ref{table:lab_q13_expected} shows. It is interesting to see CIE-L*C*h* overcoming the lowest result in the laboratory environment, against other
-color models which regularly had best results in previous questions; however, these results are not consistent with the online users, which indicated responses closer to the RGB Color Model
-($s_{online} = 0.13$). \par
-%
+It is interesting to see CIE-L*C*h* overcoming the lowest result in the laboratory environment, against other color models which regularly had best results in previous questions; however, these results are not consistent with the online users, which indicated responses closer to the RGB Color Model
+($s_{online} = 0.13$).
 Analyzing the laboratory results, it shows that HSV is the worst-generating values Color Model, having the higher mean value ($\overline{x}_{HSV} = 0.27$) of all models. When comparing it to the online dataset,
 HSV, CMYK and CIE-L*a*b* have all the same mean values. Evaluating the data with the Friedman Test, we can conclude that there are significant differences ($\chi^2 = 38.993$, $p < 0.05$)
 between the color models on the laboratory results; a Wilcoxon Analysis ($p < 0.05$) does reveal \textbf{there are significant difference between color models}: when analyzing the results for the tests between HSV and other
 color models, it presents significant differences between all models except CIE-L*C*h*. \par
 %
-The fact that online users' data indicate a slight tendency to the RGB Color Model, could be justified as \textbf{the blue color is a primitive of such color model, making it easier to map against
-a mental model of color}.
 Comparing the results of this question with number ten, we can observe that this question has shorter HSV value; however we know that HSV was not the lowest mean value on question thirteen
 These results leads us to conclude that \textbf{there are insufficient values to ascertain the best color model to achieve this blue tone}. Further studies are required to unveil the
-appropriate color model and clarify this matter. Figures \ref{fig:onlinehsvregular_10} and \ref{fig:onlinehsvregular_13} compare the results from both question three and twelve, blended in HSV and RGB respectively,
-(the model which yielded the best results in each question). \par
+appropriate color model and clarify this matter. Figures \ref{fig:onlinehsvregular_10} and \ref{fig:onlinehsvregular_13} compare the results from both question ten and thirteen, blended in HSV and RGB respectively. \par
 %
 Moreover, these results are \textbf{not} corroborated by the online users, since a Wilcoxon Test show that there are indeed statistically significant differences between the laboratory distances
 and online ones ($p < 0.05$): namely between the CMYK distance values ($p = 0.041$) and RGB ($p = 0.005$).
@@ -993,7 +911,7 @@ and online ones ($p < 0.05$): namely between the CMYK distance values ($p = 0.04
   \resizebox{\textwidth}{!} {
   \begin{tabular}{lccccccccccccc}
     \hline
-    \multicolumn{1}{c}{}                              &                                      & \multicolumn{2}{c}{Expected Colors}                   & \multicolumn{10}{c}{Possible Results}                                                                                                                                                                                                                                                                                        \\ \cline{3-14}
+    \multicolumn{1}{c}{}                              &                                      & \multicolumn{2}{c}{Reference Pair}                   & \multicolumn{10}{c}{Possible Results}                                                                                                                                                                                                                                                                                        \\ \cline{3-14}
     \multicolumn{1}{c}{\multirow{-2}{*}{Question ID}} & \multirow{-2}{*}{Given Color}        & C1                       & C2                         & \multicolumn{2}{c}{HSV}                                        & \multicolumn{2}{c}{CIE-L*C*h*}                                 & \multicolumn{2}{c}{CMYK}                                       & \multicolumn{2}{c}{RGB}                                        & \multicolumn{2}{c}{CIE-L*a*b*}                                 \\ \hline
     \multicolumn{1}{c}{13}                             & \cellcolor[HTML]{0080FF}{\color[HTML]{FFFFFF}(26, 23, 98)} & \multicolumn{1}{c|}{Blue} & \multicolumn{1}{c|}{Cyan}  & \multicolumn{2}{c|}{\cellcolor[HTML]{0080FF}{\color[HTML]{FFFFFF}(26, 23, 98)}}      & \multicolumn{2}{c|}{\cellcolor[HTML]{00ACFF}(33, 37, 100)}       & \multicolumn{2}{c|}{\cellcolor[HTML]{0080FF}{\color[HTML]{FFFFFF}(26, 23, 98)}}       & \multicolumn{2}{c|}{\cellcolor[HTML]{0080FF}{\color[HTML]{FFFFFF}(26, 23, 98)}}       & \multicolumn{2}{c|}{\cellcolor[HTML]{5792FF}{\color[HTML]{FFFFFF}(32, 30, 99)}}       \\ \hline
                                                       & \multicolumn{1}{l}{}                 & \multicolumn{1}{l}{}     & \multicolumn{1}{l}{}       & \multicolumn{1}{c}{$\overline{x}$} & \multicolumn{1}{c}{$s$} & \multicolumn{1}{c}{$\overline{x}$} & \multicolumn{1}{c}{$s$} & \multicolumn{1}{c}{$\overline{x}$} & \multicolumn{1}{c}{$s$} & \multicolumn{1}{c}{$\overline{x}$} & \multicolumn{1}{c}{$s$} & \multicolumn{1}{c}{$\overline{x}$} & \multicolumn{1}{c}{$s$} \\ \hline
@@ -1001,11 +919,13 @@ and online ones ($p < 0.05$): namely between the CMYK distance values ($p = 0.04
     \multicolumn{4}{l}{Distance to Objective - Online}                                                                                               & \multicolumn{1}{|c}{0.14}        & \multicolumn{1}{c|}{0.16}    & \multicolumn{1}{|c}{0.20}        & \multicolumn{1}{c|}{0.09}    & \multicolumn{1}{|c}{0.14}       & \multicolumn{1}{c|}{0.11}    & \multicolumn{1}{|c}{\textbf{0.13}}        & \multicolumn{1}{c|}{0.15}    & \multicolumn{1}{|c}{0.14}       & \multicolumn{1}{c|}{0.11}    \\ \hline
     \end{tabular}}
   \caption[Question 13, with expected Results.]{Question 13: expected colors, possible results and statistics of distances to Objective.}
+  \vspace{-5pt}
   \label{table:lab_q13_expected}
 \end{table}
 %
 \begin{figure}[htbp]
   \centering
+  \vspace{-15pt}
   \begin{minipage}{0.48\textwidth}
     \centering
     \includegraphics[width=\textwidth]{images/results/10_online_HSVresponses.png}
@@ -1018,30 +938,23 @@ and online ones ($p < 0.05$): namely between the CMYK distance values ($p = 0.04
     \caption[Online: Answers for Question 13, from regular users, mixed in RGB Color Model.]{Online: Answers for Question 13, from regular users, mixed in RGB Color Model.}
     \label{fig:onlinehsvregular_13}
   \end{minipage}
+  \vspace{-5pt}
 \end{figure}
 %
 \paragraph{\ul{Question Fourteen}}
 %
-This blending question expected \ul{Blue and Magenta} colors as response to a resulting color of \textbf{Purple} (presented to the user). As in Table \ref{table:lab_q14_expected},
-when this mixture is blended according to each color model, it generates fairly the same color (precisely the same between HSV, RGB and CMYK).
-The colors were blended, and again the mean values over distances were calculated, as Table \ref{table:lab_q14_expected} shows. It is observable that CMYK Color Model presents,
-the lowest mean value for distance to ideal answer ($\overline{x} = 0.10$ laboratory, and $\overline{x} = 0.09$ online), whilst standard deviation for the CMYK Color Model is also the
-lowest between both study environments presenting exactly the same value. \par
-%
+It is observable that CMYK Color Model presents, the lowest mean value for distance to ideal answer ($\overline{x} = 0.10$ laboratory, and $\overline{x} = 0.09$ online), whilst standard deviation for the CMYK Color Model is also the
+lowest between both study environments presenting exactly the same value.
 The results show that CIE-L*C*h* the worst-generating values Color Model having, by far, the higher mean value of all models across study environments ($\overline{x} = 0.30$). There is also the same tendency of RGB,
 CIE-L*a*b* and HSV present closer values between each other. Evaluating the data with the Friedman Test, we can conclude that there are significant differences ($\chi^2 = 51.726$, $p < 0.05$)
 between the color models; a Wilcoxon Analysis ($p < 0.05$) does reveal there are no significant difference between color models: mostly, the significant differences reside in CIE-L*C*h*, when
 compared with HSV, CMYK and CIE-L*a*b*. \par
 %
-Evaluating this question, it is possible to affirm that \textbf{CMYK has the best results when mixing purple, a color derived from magenta}, due to the commitment between the mean value and standard deviation, which
-could be justified by the fact that \textbf{magenta is a primitive from such model, combined with the indication shown throughout the study to demonstrate a subtractive mental model of color}.
-\textbf{These results are corroborated by the online users}, since a Wilcoxon Test show that there are no statistically significant differences between the laboratory distances and online ones ($p < 0.05$).
-%
 \begin{table}[H]
   \resizebox{\textwidth}{!} {
   \begin{tabular}{lccccccccccccc}
     \hline
-    \multicolumn{1}{c}{}                              &                                      & \multicolumn{2}{c}{Expected Colors}                   & \multicolumn{10}{c}{Possible Results}                                                                                                                                                                                                                                                                                        \\ \cline{3-14}
+    \multicolumn{1}{c}{}                              &                                      & \multicolumn{2}{c}{Reference Pair}                   & \multicolumn{10}{c}{Possible Results}                                                                                                                                                                                                                                                                                        \\ \cline{3-14}
     \multicolumn{1}{c}{\multirow{-2}{*}{Question ID}} & \multirow{-2}{*}{Given Color}        & C1                       & C2                         & \multicolumn{2}{c}{HSV}                                        & \multicolumn{2}{c}{CIE-L*C*h*}                                 & \multicolumn{2}{c}{CMYK}                                       & \multicolumn{2}{c}{RGB}                                        & \multicolumn{2}{c}{CIE-L*a*b*}                                 \\ \hline
     \multicolumn{1}{c}{14}                             & \cellcolor[HTML]{8000FF}{\color[HTML]{FFFFFF}(27, 12, 95)} & \multicolumn{1}{c|}{Blue} & \multicolumn{1}{c|}{Magenta}  & \multicolumn{2}{c|}{\cellcolor[HTML]{8000FF}{\color[HTML]{FFFFFF}(27, 12, 95)}}      & \multicolumn{2}{c|}{\cellcolor[HTML]{B000FF}{\color[HTML]{FFFFFF}(36, 16, 96)}}       & \multicolumn{2}{c|}{\cellcolor[HTML]{8000FF}{\color[HTML]{FFFFFF}(27, 12, 95)}}       & \multicolumn{2}{c|}{\cellcolor[HTML]{8000FF}{\color[HTML]{FFFFFF}(27, 12, 95)}}       & \multicolumn{2}{c|}{\cellcolor[HTML]{AB00FF}{\color[HTML]{FFFFFF}(35, 16, 96)}}       \\ \hline
                                                       & \multicolumn{1}{l}{}                 & \multicolumn{1}{l}{}     & \multicolumn{1}{l}{}       & \multicolumn{1}{c}{$\overline{x}$} & \multicolumn{1}{c}{$s$} & \multicolumn{1}{c}{$\overline{x}$} & \multicolumn{1}{c}{$s$} & \multicolumn{1}{c}{$\overline{x}$} & \multicolumn{1}{c}{$s$} & \multicolumn{1}{c}{$\overline{x}$} & \multicolumn{1}{c}{$s$} & \multicolumn{1}{c}{$\overline{x}$} & \multicolumn{1}{c}{$s$} \\ \hline
@@ -1049,18 +962,18 @@ could be justified by the fact that \textbf{magenta is a primitive from such mod
     \multicolumn{4}{l}{Distance to Objective - Online}                                                                                               & \multicolumn{1}{|c}{0.10}        & \multicolumn{1}{c|}{0.12}    & \multicolumn{1}{|c}{0.29}        & \multicolumn{1}{c|}{0.13}    & \multicolumn{1}{|c}{\textbf{0.09}}       & \multicolumn{1}{c|}{0.05}    & \multicolumn{1}{|c}{0.11}        & \multicolumn{1}{c|}{0.12}    & \multicolumn{1}{|c}{0.12}       & \multicolumn{1}{c|}{0.09}    \\ \hline
     \end{tabular}}
   \caption[Question 14, with expected Results.]{Question 14: expected colors, possible results and statistics of distances to Objective.}
+  \vspace{-5pt}
   \label{table:lab_q14_expected}
 \end{table}
 %
+Evaluating this question, it is possible to affirm that \textbf{CMYK has the best results when mixing purple, a color derived from magenta}, due to the commitment between the mean value and standard deviation, which
+could be justified by the fact that \textbf{magenta is a primitive from such model, combined with the indication shown throughout the study to demonstrate a subtractive mental model of color}.
+\textbf{These results are corroborated by the online users}, since a Wilcoxon Test show that there are no statistically significant differences between the laboratory distances and online ones ($p < 0.05$).
+%
 \paragraph{\ul{Question Fifteen}}
 %
-This question \ul{presents a shade of Green color} and expects to receive, the pair \ul{Blue and Yellow}. According to the HSV Color Model, Blue and Yellow are positioned in
-opposite angles in the Hue Circle of Colors: therefore, blending these opposite colors that output two different colors. This question should be evaluate along with Question Sixteen, which has
-the opposite output. This question also presented a repeated color: this green shade is equal to the one presented in question nine, therefore its results are interesting to compare with this question.\par
-%
-These two colors, when blended, produce substantially different colors according to each model interpolation: this question could produce significant different results from model to model,
-since the users would be clearly indicating which color they would tend to.
-The colors were blended and the mean values over distances were calculated, as Table \ref{table:lab_q15_expected} shows. It is observable that CMYK Color Model presents the lowest mean value
+This question also presented a repeated color: this green shade is equal to the one presented in question nine, therefore its results are interesting to compare with this question.
+The colors were blended and the mean values over distances were calculated: it is observable that CMYK Color Model presents the lowest mean value
 for distance to ideal answer ($\overline{x} = 0.06$); its standard deviation is also the lowest between both study environments ($s = 0.03$). Though, it is important to analyze this result: since we
 are mixing opposite colors, both CMYK and RGB generate a neutral color, which means that the closer the users' answers are from the ideal answers (Blue and Yellow), the shorter the distance on these color
 models, and greyer the shade. \textbf{This value, in fact, supports the result of HSV Color} ($\overline{x}_{HSV} = 0.09$), which is very acceptable since the answer pairs are very close to the expected one. \par
@@ -1071,15 +984,14 @@ Comparing the results of this question with number nine, we can observe that thi
 answers are lower for all models against question 9. This fact leads us to conclude that \textbf{mixing Blue and Cyan to achieve this green shade is more similar with the users' expectations, than blending a Green and
 Cyan color}. Figures \ref{fig:onlinehsvregular_9} and \ref{fig:onlinehsvregular_15} compare the results from both question nine and fifteen, blended in HSV (the model which yields the best results). \par
 %
-HSV has statistically different results from other color models, therefore concluding that \textbf{HSV has the best solution for this blending}, according to users' responses. It is necessary to analyze
-pairwise the next question to evaluate the effectiveness of this output, for Blue and Yellow colors blending. \textbf{The laboratory results are corroborated by the online ones}, since a Wilcoxon Test show that there
+HSV has statistically different results from other color models, therefore concluding that \textbf{HSV has the best solution for this blending}. \textbf{The laboratory results are corroborated by the online ones}, since a Wilcoxon Test show that there
 are no statistically significant differences between the laboratory distances and online ($p < 0.05$).\par
 %
 \begin{table}[H]
   \resizebox{\textwidth}{!} {
   \begin{tabular}{lccccccccccccc}
     \hline
-    \multicolumn{1}{c}{}                              &                                      & \multicolumn{2}{c}{Expected Colors}                   & \multicolumn{10}{c}{Possible Results}                                                                                                                                                                                                                                                                                        \\ \cline{3-14}
+    \multicolumn{1}{c}{}                              &                                      & \multicolumn{2}{c}{Reference Pair}                   & \multicolumn{10}{c}{Possible Results}                                                                                                                                                                                                                                                                                        \\ \cline{3-14}
     \multicolumn{1}{c}{\multirow{-2}{*}{Question ID}} & \multirow{-2}{*}{Given Color}        & C1                       & C2                         & \multicolumn{2}{c}{HSV}                                        & \multicolumn{2}{c}{CIE-L*C*h*}                                 & \multicolumn{2}{c}{CMYK}                                       & \multicolumn{2}{c}{RGB}                                        & \multicolumn{2}{c}{CIE-L*a*b*}                                 \\ \hline
     \multicolumn{1}{c}{15}                             & \cellcolor[HTML]{00FF80}(40, 73, 32) & \multicolumn{1}{c|}{Blue} & \multicolumn{1}{c|}{Yellow}  & \multicolumn{2}{c|}{\cellcolor[HTML]{00FF80}(40, 73, 32)}      & \multicolumn{2}{c|}{\cellcolor[HTML]{FF0050}(43, 22, 10)}       & \multicolumn{2}{c|}{\cellcolor[HTML]{808080}{\color[HTML]{FFFFFF}(21, 22, 24)}}       & \multicolumn{2}{c|}{\cellcolor[HTML]{808080}{\color[HTML]{FFFFFF}(21, 22, 24)}}       & \multicolumn{2}{c|}{\cellcolor[HTML]{CA8AAA}(41, 34, 42)}       \\ \hline
                                                       & \multicolumn{1}{l}{}                 & \multicolumn{1}{l}{}     & \multicolumn{1}{l}{}       & \multicolumn{1}{c}{$\overline{x}$} & \multicolumn{1}{c}{$s$} & \multicolumn{1}{c}{$\overline{x}$} & \multicolumn{1}{c}{$s$} & \multicolumn{1}{c}{$\overline{x}$} & \multicolumn{1}{c}{$s$} & \multicolumn{1}{c}{$\overline{x}$} & \multicolumn{1}{c}{$s$} & \multicolumn{1}{c}{$\overline{x}$} & \multicolumn{1}{c}{$s$} \\ \hline
@@ -1087,11 +999,13 @@ are no statistically significant differences between the laboratory distances an
     \multicolumn{4}{l}{Distance to Objective - Online}                                                                                               & \multicolumn{1}{|c}{0.11}        & \multicolumn{1}{c|}{0.08}    & \multicolumn{1}{|c}{0.30}        & \multicolumn{1}{c|}{0.07}    & \multicolumn{1}{|c}{\textbf{0.06}}       & \multicolumn{1}{c|}{0.03}    & \multicolumn{1}{|c}{0.11}        & \multicolumn{1}{c|}{0.04}    & \multicolumn{1}{|c}{0.13}       & \multicolumn{1}{c|}{0.06}    \\ \hline
     \end{tabular}}
   \caption[Question 15, with expected Results.]{Question 15: expected colors, possible results and statistics of distances to Objective.}
+  \vspace{-5pt}
   \label{table:lab_q15_expected}
 \end{table}
 %
 \begin{figure}[htbp]
   \centering
+  \vspace{-15pt}
   \begin{minipage}{0.48\textwidth}
     \centering
     \includegraphics[width=\textwidth]{images/results/9_online_HSVresponses.png}
@@ -1104,25 +1018,26 @@ are no statistically significant differences between the laboratory distances an
     \caption[Online: Answers for Question 15, from regular users, mixed in HSV Color Model.]{Online: Answers for Question 15, from regular users, mixed in HSV Color Model.}
     \label{fig:onlinehsvregular_15}
   \end{minipage}
+  \vspace{-5pt}
 \end{figure}
 %
 \paragraph{\ul{Question Sixteen}}
 %
-As explained in previous question, this one is the second possible output from the blend of \ul{Blue and Yellow colors}. Comparing the results for the HSV Color Model of both questions, mean distances are largely high for question sixteen
-($\overline{x}_{lab} = 0.21$, $\overline{x}_{online} = 0.19$), whilst the deviation of answers is also lower in question fifteen.
+Comparing the results for the HSV Color Model of both question 15 and 16, mean distances are largely high for question 16
+($\overline{x}_{lab} = 0.21$, $\overline{x}_{online} = 0.19$), whilst the deviation of answers is also lower in question 15.
 Whilst the color presented was fairly similar with Magenta, the users tended to answer with Red-Blue pair of colors (which, as seen on question two, produces magenta according
 to the HSV Color Model). \par
 %
 Based on these results, corroborated by the online users by a Wilcoxon Test with no significant differences ($p < 0.05$), we can conclude that \textbf{blending Blue and Yellow, according to users' mental model of color, produces Green instead of Magenta}. It is also
 possible to conclude that \textbf{to produce Magenta, according to user's mental model of color, it is needed to blend Red and Blue}. The results from
-this question can be found in table \ref{table:lab_q16_expected}. These differences can be seen on Figures \ref{fig:onlineregular_16} and \ref{fig:onlinehsvregular_16}, which largely
+this question can be found in Table \ref{table:lab_q16_expected}. These differences can be seen on Figures \ref{fig:onlineregular_16} and \ref{fig:onlinehsvregular_16}, which largely
 demonstrate the placement of answer-pairs, and the pairs blended in HSV Color Model.
 %
 \begin{table}[H]
   \resizebox{\textwidth}{!} {
   \begin{tabular}{lccccccccccccc}
     \hline
-    \multicolumn{1}{c}{}                              &                                      & \multicolumn{2}{c}{Expected Colors}                   & \multicolumn{10}{c}{Possible Results}                                                                                                                                                                                                                                                                                        \\ \cline{3-14}
+    \multicolumn{1}{c}{}                              &                                      & \multicolumn{2}{c}{Reference Pair}                   & \multicolumn{10}{c}{Possible Results}                                                                                                                                                                                                                                                                                        \\ \cline{3-14}
     \multicolumn{1}{c}{\multirow{-2}{*}{Question ID}} & \multirow{-2}{*}{Given Color}        & C1                       & C2                         & \multicolumn{2}{c}{HSV}                                        & \multicolumn{2}{c}{CIE-L*C*h*}                                 & \multicolumn{2}{c}{CMYK}                                       & \multicolumn{2}{c}{RGB}                                        & \multicolumn{2}{c}{CIE-L*a*b*}                                 \\ \hline
     \multicolumn{1}{c}{16}                             & \cellcolor[HTML]{FF007F}{\color[HTML]{FFFFFF}(45, 23, 22)} & \multicolumn{1}{c|}{Blue} & \multicolumn{1}{c|}{Yellow}  & \multicolumn{2}{c|}{\cellcolor[HTML]{FF007F}{\color[HTML]{FFFFFF}(45, 23, 22)}}      & \multicolumn{2}{c|}{\cellcolor[HTML]{FF0050}{\color[HTML]{FFFFFF}(43, 22, 10)}}       & \multicolumn{2}{c|}{\cellcolor[HTML]{808080}{\color[HTML]{FFFFFF}(21, 22, 24)}}       & \multicolumn{2}{c|}{\cellcolor[HTML]{808080}{\color[HTML]{FFFFFF}(21, 22, 24)}}       & \multicolumn{2}{c|}{\cellcolor[HTML]{CA8AAA}(41, 34, 42)}       \\ \hline
                                                       & \multicolumn{1}{l}{}                 & \multicolumn{1}{l}{}     & \multicolumn{1}{l}{}       & \multicolumn{1}{c}{$\overline{x}$} & \multicolumn{1}{c}{$s$} & \multicolumn{1}{c}{$\overline{x}$} & \multicolumn{1}{c}{$s$} & \multicolumn{1}{c}{$\overline{x}$} & \multicolumn{1}{c}{$s$} & \multicolumn{1}{c}{$\overline{x}$} & \multicolumn{1}{c}{$s$} & \multicolumn{1}{c}{$\overline{x}$} & \multicolumn{1}{c}{$s$} \\ \hline
@@ -1130,11 +1045,13 @@ demonstrate the placement of answer-pairs, and the pairs blended in HSV Color Mo
     \multicolumn{4}{l}{Distance to Objective - Online}                                                                                               & \multicolumn{1}{|c}{0.19}        & \multicolumn{1}{c|}{0.12}    & \multicolumn{1}{|c}{0.17}        & \multicolumn{1}{c|}{0.09}    & \multicolumn{1}{|c}{\textbf{0.10}}       & \multicolumn{1}{c|}{0.06}    & \multicolumn{1}{|c}{0.15}        & \multicolumn{1}{c|}{0.07}    & \multicolumn{1}{|c}{0.11}       & \multicolumn{1}{c|}{0.06}    \\ \hline
     \end{tabular}}
   \caption[Question 16, with expected Results.]{Question 16: expected colors, possible results and statistics of distances to Objective.}
+  \vspace{-5pt}
   \label{table:lab_q16_expected}
 \end{table}
 %
 \begin{figure}[htbp]
   \centering
+  \vspace{-15pt}
   \begin{minipage}{0.48\textwidth}
     \centering
     \includegraphics[width=\textwidth]{images/results/16_online_regularUsers.png}
@@ -1147,30 +1064,26 @@ demonstrate the placement of answer-pairs, and the pairs blended in HSV Color Mo
     \caption[Online: Answers for Question 16, from regular users, mixed in HSV Color Model.]{Online: Answers for Question 16, from regular users, mixed in HSV Color Model.}
     \label{fig:onlinehsvregular_16}
   \end{minipage}
+  \vspace{-5pt}
 \end{figure}
 %
 \paragraph{\ul{Question Seventeen}}
 %
-The last question in which we ask the user to indicate two colors is this: we expected to receive \ul{Cyan and Yellow} colors as response, to a resulting color of \textbf{Green}
-(presented to the user). As in Table \ref{table:lab_q17_expected}, when this mixture is blended according to each color model, it generates fairly the same color (precisely the same between
-RGB and CMYK).
-The colors were blended, and mean values over distances were calculated. It is observable that CMYK Color Model presents the lowest mean value for distance to ideal answer ($\overline{x} = 0.05$
-laboratory, and $\overline{x} = 0.05$ online), whilst standard deviation for the CMYK Color Model is also the lowest between both study environments presenting exactly the same value. \par
-%
+Finally, the colors for this last question were blended: it is observable that CMYK Color Model presents the lowest mean value for distance to ideal answer ($\overline{x} = 0.05$
+laboratory, and $\overline{x} = 0.05$ online), whilst standard deviation for the CMYK Color Model is also the lowest between both study environments presenting exactly the same value.
 The results show that CIE-L*C*h* the worst-generating values Color Model having the higher mean value of all models across study environments ($\overline{x} = 0.16$), which is consistent with the
 entire user study. There is also the tendency of RGB and CIE-L*a*b* to present closer values between each other. Evaluating the data with the Friedman Test, we can conclude that there are significant
 differences ($\chi^2 = 86.654$, $p < 0.05$) between the color models; a Wilcoxon Analysis ($p < 0.05$) does reveal there are clearly significant difference between color models: mostly, every color model
 has significant differences between each other, except for HSV-CMYK, and RGB-CIE-L*a*b* which in fact present no statistically significant differences. \par
 %
-Evaluating this question, it is possible to affirm that \textbf{CMYK has the best results when cyan and yellow}, due to the commitment between the mean value and standard deviation, which
-could be justified by the fact that \textbf{cyan and yellow are primitives from such model, combined with the indication shown throughout the study to demonstrate a subtractive mental model of color}.
+It is possible to affirm that \textbf{CMYK has the best results when cyan and yellow}, which could be justified by the fact that \textbf{cyan and yellow are primitives from such model, combined with the indication shown throughout the study to demonstrate a subtractive mental model of color}.
 \textbf{These results are corroborated by the online users}, since a Wilcoxon Test show that there are no statistically significant differences between the laboratory distances and online ones ($p < 0.05$).
 %
 \begin{table}[H]
   \resizebox{\textwidth}{!} {
   \begin{tabular}{lccccccccccccc}
     \hline
-    \multicolumn{1}{c}{}                              &                                      & \multicolumn{2}{c}{Expected Colors}                   & \multicolumn{10}{c}{Possible Results}                                                                                                                                                                                                                                                                                        \\ \cline{3-14}
+    \multicolumn{1}{c}{}                              &                                      & \multicolumn{2}{c}{Reference Pair}                   & \multicolumn{10}{c}{Possible Results}                                                                                                                                                                                                                                                                                        \\ \cline{3-14}
     \multicolumn{1}{c}{\multirow{-2}{*}{Question ID}} & \multirow{-2}{*}{Given Color}        & C1                       & C2                         & \multicolumn{2}{c}{HSV}                                        & \multicolumn{2}{c}{CIE-L*C*h*}                                 & \multicolumn{2}{c}{CMYK}                                       & \multicolumn{2}{c}{RGB}                                        & \multicolumn{2}{c}{CIE-L*a*b*}                                 \\ \hline
     \multicolumn{1}{c}{17}                             & \cellcolor[HTML]{00FF00}(36, 72, 13) & \multicolumn{1}{c|}{Cyan} & \multicolumn{1}{c|}{Yellow}  & \multicolumn{2}{c|}{\cellcolor[HTML]{00FF00}(36, 72, 13)}      & \multicolumn{2}{c|}{\cellcolor[HTML]{6EFFA3}(49, 77, 47)}       & \multicolumn{2}{c|}{\cellcolor[HTML]{80FF80}(49, 78, 33)}       & \multicolumn{2}{c|}{\cellcolor[HTML]{80FF80}(49, 78, 33)}       & \multicolumn{2}{c|}{\cellcolor[HTML]{C4FF9E}(66, 87, 46)}       \\ \hline
                                                       & \multicolumn{1}{l}{}                 & \multicolumn{1}{l}{}     & \multicolumn{1}{l}{}       & \multicolumn{1}{c}{$\overline{x}$} & \multicolumn{1}{c}{$s$} & \multicolumn{1}{c}{$\overline{x}$} & \multicolumn{1}{c}{$s$} & \multicolumn{1}{c}{$\overline{x}$} & \multicolumn{1}{c}{$s$} & \multicolumn{1}{c}{$\overline{x}$} & \multicolumn{1}{c}{$s$} & \multicolumn{1}{c}{$\overline{x}$} & \multicolumn{1}{c}{$s$} \\ \hline
@@ -1178,6 +1091,7 @@ could be justified by the fact that \textbf{cyan and yellow are primitives from 
     \multicolumn{4}{l}{Distance to Objective - Online}                                                                                               & \multicolumn{1}{|c}{0.08}        & \multicolumn{1}{c|}{0.13}    & \multicolumn{1}{|c}{0.17}        & \multicolumn{1}{c|}{0.06}    & \multicolumn{1}{|c}{\textbf{0.05}}       & \multicolumn{1}{c|}{0.03}    & \multicolumn{1}{|c}{0.10}        & \multicolumn{1}{c|}{0.06}    & \multicolumn{1}{|c}{0.11}       & \multicolumn{1}{c|}{0.05}    \\ \hline
     \end{tabular}}
   \caption[Question 17, with expected Results.]{Question 17: expected colors, possible results and statistics of distances to Objective.}
+  \vspace{-5pt}
   \label{table:lab_q17_expected}
 \end{table}
 %
@@ -1185,7 +1099,8 @@ could be justified by the fact that \textbf{cyan and yellow are primitives from 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 \begin{table}[htbp]
-  \resizebox{\textwidth}{!} {
+  \centering
+  \resizebox{0.8\textwidth}{!} {
   \begin{tabular}{@{}ccccccccccc@{}}
     \toprule
                                   & \multicolumn{2}{c}{HSV}                                                                                                                              & \multicolumn{2}{c}{CIE-L*C*h*}                                                                                               & \multicolumn{2}{c}{CMYK}                                                                                                     & \multicolumn{2}{c}{RGB}                                                                                                      & \multicolumn{2}{c}{CIE-L*a*b*}                                                                                               \\ \cmidrule(l){2-11}
@@ -1209,6 +1124,7 @@ could be justified by the fact that \textbf{cyan and yellow are primitives from 
     \multicolumn{1}{c|}{17}       & \multicolumn{1}{c|}{\cellcolor[HTML]{32CB00}{\color[HTML]{000000} \textbf{0.0683}}} & \multicolumn{1}{c||}{0.10228}                                   & \multicolumn{1}{c|}{0.1626}                                  & \multicolumn{1}{c||}{\cellcolor[HTML]{32CB00}\textbf{0.05902}} & \multicolumn{1}{c|}{\cellcolor[HTML]{32CB00}\textbf{0.0452}} & \multicolumn{1}{c||}{\cellcolor[HTML]{32CB00}\textbf{0.0162}}  & \multicolumn{1}{c|}{\cellcolor[HTML]{32CB00}\textbf{0.103}}  & \multicolumn{1}{c||}{\cellcolor[HTML]{32CB00}\textbf{0.0574}}  & \multicolumn{1}{c|}{\cellcolor[HTML]{32CB00}\textbf{0.113}}  & \multicolumn{1}{c|}{\cellcolor[HTML]{32CB00}\textbf{0.05112}}                      \\ \bottomrule
   \end{tabular}}
   \caption[Laboratory: Statistics for distances \emph{per} question, of Results Interpolated in each Color Model]{Laboratory: Statistics for distances \emph{per} question, of Results Interpolated in each Color Model.}
+  \vspace{-5pt}
   \label{table:colormodels_distances_questions_statistics}
 \end{table}
 %
@@ -1223,7 +1139,8 @@ which presents the mean values for each color model decomposed by question, we c
 a set of descriptive statistics for each Color Model. In green/red, it is identified the color model which had the best/worst result for each statistic. \par
 %
 \begin{table}[htbp]
-  \resizebox{\textwidth}{!} {
+  \centering
+  \resizebox{0.8\textwidth}{!} {
   \begin{tabular}{@{}ccccccccccc@{}}
     \toprule
                                                                                        & \multicolumn{5}{c}{Laboratory Environment}                                                                                       & \multicolumn{5}{c}{Online Environment}                                                                                                                           \\ \cmidrule(l){2-11}
@@ -1236,6 +1153,7 @@ a set of descriptive statistics for each Color Model. In green/red, it is identi
     \multicolumn{1}{c|}{Variance ($s^2$)}                                                      & \cellcolor[HTML]{FD6864}\textbf{0.006} & 0.003      & \cellcolor[HTML]{32CB00}\textbf{0.001} & 0.002 & \multicolumn{1}{c|}{0.002}                                 & 0.002                                 & \cellcolor[HTML]{FD6864}\textbf{0.004}      & \cellcolor[HTML]{32CB00}\textbf{0.001} & 0.002                                 & \multicolumn{1}{c|}{0.003} \\ \bottomrule
   \end{tabular}}
   \caption[Condensed Statistics for Distances to Ideal Results, mixed in each Color Model.]{Condensed Statistics for Distances to Ideal Results, mixed in each Color Model. In Green/Red shade, the best/worst result for each descriptive statistic.}
+  \vspace{-5pt}
   \label{table:colormodels_distances_labonline_statistics}
 \end{table}
 %
@@ -1251,16 +1169,16 @@ we are going to break down the results according to Color Models \emph{per} ques
 \paragraph{\ul{HSV Color Model Blendings}} \par
 \label{par:hsvcolormodel}
 %
-\begin{wrapfigure}[12]{r}{0.4\textwidth}
+\begin{wrapfigure}[9]{r}{0.25\textwidth}
 	\centering
     \vspace{-\baselineskip}
-	  \includegraphics[width=0.3\textwidth]{images/results/HSV_hue.png}
-    \caption[Example of HSV Hue Circle, with opposed hue values.]{Example of HSV Hue Circle, with opposed hue values. Depicted: Questions 3 and 4, with resulting hues $270º$ and $90º$.}
+	  \includegraphics[width=0.25\textwidth]{images/results/HSV_hue.png}
+    \caption[Example of HSV Hue Circle, with opposed hue values.]{Example of HSV Hue Circle, with opposed hue values.}
     \label{fig:hsvcircles_example}
 \end{wrapfigure}
 %
 The HSV Color Model, along with CMYK and RGB, is the one which presents the lowest standard deviation of distances between the results from the online environment, which could indicate greater agreement between distances
- to the ideal HSV Color Model answer. \par
+ to the ideal HSV answer. \par
 %
 The questions which have shorter distances are number eleven (given orange and expected green and magenta), number seventeen (given green, expected blue and yellow) and number six (given orange,
 expected red and yellow), with mean values of $\overline{x} = 0.0587$, $\overline{x} = 0.0683$ and $\overline{x} = 0.0741$, respectively.
@@ -1279,23 +1197,23 @@ understand which side the user would tend to follow (or even if he follows one) 
 present the essence of them in the following topics:
 %
 \begin{enumerate}
-  \item \ul{Red \& Cyan Blend} - Analyzing answers for questions three and four, they produce fairly similar results: they are both a bit far from the expected colors ($\overline{x}_{distance-3} = 0.0941$ and
+  \item \ul{Red \& Cyan Blend} - Analyzing answers for questions three and four, they produce fairly similar results: they are both a bit far from the reference pair ($\overline{x}_{distance-3} = 0.0941$ and
   $\overline{x}_{HSV-4} = 0.1162$), although the mean distance to the HSV pre-calculated blending for question three has a slightly lower value than question four. This could be also compared to question 12, which also
   produces \textbf{Lime-Green} like question three, but even when compared, question three still has the best results when generating this tone of green. This leads us to specify that, although the mean distances to the
   ideal HSV Color blend for this mixture, are not the lowest among all questions, \textbf{the users show a tendency to associate the blending of red and cyan to a result of lime-green, instead of shade of purple}. When comparing
   these results with online, we found that the later ones corroborate and prove this conclusion.
   %
-  \item \ul{Green \& Magenta Blend} - Unlike the previous blend, the results between these questions were quite different between each other concerning the distance to the expected colors: $\overline{x}_{HSV-10} = 0.3$
+  \item \ul{Green \& Magenta Blend} - Unlike the previous blend, the results between these questions were quite different between each other concerning the distance to the reference pair: $\overline{x}_{HSV-10} = 0.3$
   and $\overline{x}_{HSV-11} = 0.0587$. However, the lower results associated with question eleven are due to the simple fact that \textbf{users indicated answers pairs which contained Red and Yellow}, which is the pair
   analyzed previously that also blended into orange; if the distance to the ideal answer pair for this question was measured, its mean value would be $\overline{x}_{distanceC1-C2} = 0.645$, which is largely different from the
-  expected colors. Therefore we can conclude that \textbf{it is hard for the users to blend green and magenta, to obtain either a blue or an orange shade}; we can also conclude that \textbf{the blending of red and yellow
+  reference pair. Therefore we can conclude that \textbf{it is hard for the users to blend green and magenta, to obtain either a blue or an orange shade}; we can also conclude that \textbf{the blending of red and yellow
   onto an orange color, is a strongly implemented color mixture, in mental models of our users}.
   %
   \item \ul{Blue \& Yellow Blend} - Evaluating the results obtained on question fifteen and sixteen, we obtain different results for both. Analyzing results of question fifteen, we know that the distance to the expected
   pair of colors it presents one of the lowest values among all results for HSV Color Model ($\overline{x}_{HSV-15} = 0.09$, $s_{HSV-15} = 0.03559$); however, when comparing the result-pairs given on this question, with
   the ones given on question nine (which presented the exact same shade of green, when asked for pair Green-Cyan), question fifteen still presents the results to generate this color.
   As it can be seen on Figure \ref{fig:labhsvregular_15}, the resulting blend in HSV Color Model tend to be close to the ideal HSV answer: despite being nearer to the top corner of the HSV Model Triangle, \textbf{we can still
-  consider the answers to be a tone of green color}. Regarding the results from question 16, they present themselves to be one of the worst for this color model: the distance to the expected colors is $\overline{x}_{HSV-16} = 0.2087$
+  consider the answers to be a tone of green color}. Regarding the results from question 16, they present themselves to be one of the worst for this color model: the distance to the reference pair is $\overline{x}_{HSV-16} = 0.2087$
   and the standard deviation for the distances of answers blended in HSV is $s_{HSV-16} = 0.10378$. Since the presented color had a strong value of red component, users tended their answers to the red shade, while blending
   it with a purple or pink one, to indicate a mixture close to magenta. This indicates that \textbf{blending Blue and Yellow, in HSV Color Model, does not correspond to a red shade, but to a green one, according to
   the users' expectations}.
@@ -1314,6 +1232,7 @@ present the essence of them in the following topics:
       \caption[Laboratory: Answers for Question 16, from regular users, mixed in HSV Color Model.]{Laboratory: Answers for Question 16, from regular users, mixed in HSV Color Model.}
       \label{fig:labhsvregular_16}
     \end{minipage}
+    \vspace{-5pt}
   \end{figure}
   %
 \end{enumerate} \par
@@ -1329,9 +1248,11 @@ HSV Color Model response, while is accompanied by the range of values which comp
 %
 \begin{figure}[!htbp]
   \centering
-  \includegraphics[width=0.7\textwidth]{images/results/hsv_questions_analysis.png}
+  \vspace{-15pt}
+  \includegraphics[width=0.65\textwidth]{images/results/hsv_questions_analysis.png}
   \caption[Best and Worst Questions, according to HSV Color Model.]{Best and Worst Questions, according to HSV Color Model.}
   \label{fig:hsv_analysis}
+  \vspace{-5pt}
 \end{figure}
 %
 %%%%%%%%%%%%%%%%%% LCh Analise %%%%%%%%%%%%%%%%%%
@@ -1340,8 +1261,7 @@ HSV Color Model response, while is accompanied by the range of values which comp
 \label{par:lchcolormodel}
 %
 In turn, the CIE-L*C*h* Color Model is the one which presents the worst results for most of the descriptive statistics present on Table \ref{table:colormodels_distances_labonline_statistics}: it has the highest
-mean value on laboratory and online environment, and the highest standard deviation, range and variance exclusively on the online environment. These results are consistent with the individual questions' values, seen before this
-Section. \par
+mean value on laboratory and online environment, and the highest standard deviation, range and variance exclusively on the online environment. \par
 %
 The three questions which have shorter distances are number six (given orange, expected red and yellow), number five (given a shade of red, expected red and magenta) and number two (given magenta, expected red
 and blue). The mean values distances for this questions were $\overline{x}_{6} = 0.1332$, $\overline{x}_{5} = 0.15$ and $\overline{x}_{2} = 0.1573$ which, contrary to the previous color model, are all values above $0.1$ (a quite
@@ -1360,6 +1280,7 @@ that it is the color which human have less descriptive power}. \par
 %
 \begin{figure}[!htbp]
   \centering
+  \vspace{-15pt}
   \begin{minipage}{0.48\textwidth}
     \centering
     \includegraphics[width=\textwidth]{images/results/3_online_LChresponses.png}
@@ -1372,6 +1293,7 @@ that it is the color which human have less descriptive power}. \par
     \caption[Online: Answers for Question 6, from regular users, mixed in CIE-L*C*h* Color Model.]{Online: Answers for Question 6, from regular users, mixed in CIE-L*C*h* Color Model.}
     \label{fig:onlinelchregular_6}
   \end{minipage}
+  \vspace{-5pt}
 \end{figure}
 %
 The question which revealed one of the lowest standard deviation value (meaning less oscillation of results), relating the online environment, was question three ($s_{3} = 0.05855$): this question help us
@@ -1383,12 +1305,14 @@ questions have all answers pairs which, when blended according to CIE-L*C*h*, ge
 the color model which hatches the best results when blending colors, according to users' expectations}. \par
 %
 The diagram of Figure \ref{fig:lch_analysis} contains the three top and bottom-valued questions, disposed on top of an interval $[0 ; 0.5]$ of differences. Each question is mapped according to its mean value for
-distance to the ideal CIE-L*C*h* Color Model response, while is accompanied by the range of values which compose its answers. \par
+distance to the ideal CIE-L*C*h* Color Model response, while is accompanied by the range its answers. \par
 %
 \begin{figure}[!htbp]
   \centering
-  \includegraphics[width=0.7\textwidth]{images/results/lch_questions_analysis.png}
+  \vspace{-15pt}
+  \includegraphics[width=0.65\textwidth]{images/results/lch_questions_analysis.png}
   \caption[Best and Worst Questions, according to CIE-L*C*h* Color Model.]{Best and Worst Questions, according to CIE-L*C*h* Color Model.}
+  \vspace{-5pt}
   \label{fig:lch_analysis}
 \end{figure}
 %
@@ -1397,8 +1321,7 @@ distance to the ideal CIE-L*C*h* Color Model response, while is accompanied by t
 \paragraph{\ul{CMYK Color Model Blendings}}
 \label{par:cmykcolormodel}
 %
-The CMYK Color Model is, by far, the one which presents the best results for most of the descriptive statistics present on Table \ref{table:colormodels_distances_labonline_statistics}, being authenticated by the
-results from the online environment: it has the lowest mean value of distances ($\overline{x}_{lab} = 0.10$, $\overline{x}_{online} = 0.09$), lowest standard deviation ($s_{lab} = 0.04$, $s_{online} = 0.04$),
+The CMYK Color Model is, by far, the one which presents the best results for most of the descriptive statistics present on Table \ref{table:colormodels_distances_labonline_statistics}: it has the lowest mean value of distances ($\overline{x}_{lab} = 0.10$, $\overline{x}_{online} = 0.09$), lowest standard deviation ($s_{lab} = 0.04$, $s_{online} = 0.04$),
 the lowest range of values ($range_{lab} = 0.14$, $range_{online} = 0.11$) and, finally, the lowest variance value ($s^2_{lab} = 0.001$, $s^2_{online} = 0.001$). \par
 %
 The three questions which have shorter distances are number seventeen (given a green, expected cyan and blue), number six (given orange, expected red and yellow) and number fifteen (given a shade of green, expected blue
@@ -1421,10 +1344,11 @@ in the green zone of the spectrum, due to the amount of cones which exist in the
 %
 As it was explained before in the theoretical background, this color model is mainly a subtractive one, meaning it will naturally darken the colors when they are blended; the questions which yielded \textbf{better results are majorly
 related to primitives of the CMYK color model}. This success could be related to the fact that \textbf{people tend to formulate mental models of color based on ink mixing in childhood} \cite{Gossett2004}, mostly associating it to
-\gls{RYB} and CMYK Color Models without even knowing it. \par
+RYB and CMYK Color Models without even knowing it. \par
 %
 \begin{figure}[!htbp]
   \centering
+  \vspace{-5pt}
   \begin{minipage}{0.48\textwidth}
     \centering
     \includegraphics[width=\textwidth]{images/results/13_online_CMYKresponses.png}
@@ -1437,6 +1361,7 @@ related to primitives of the CMYK color model}. This success could be related to
     \caption[Online: Answers for Question 17, from regular users, mixed in CMYK Color Model.]{Online: Answers for Question 17, from regular users, mixed in CMYK Color Model.}
     \label{fig:onlinecmykregular_17}
   \end{minipage}
+  \vspace{-5pt}
 \end{figure}
 %
 These results indicate that \textbf{CMYK is a highly compatible color model with the users expectations}, as this model presents statistics which prove that CMYK had smaller distances to ideal answers and lower deviation of answers.
@@ -1446,8 +1371,10 @@ distance to the ideal CMYK Color Model response, while is accompanied by the ran
 %
 \begin{figure}[!htbp]
   \centering
-  \includegraphics[width=0.7\textwidth]{images/results/cmyk_questions_analysis.png}
+  \vspace{-15pt}
+  \includegraphics[width=0.65\textwidth]{images/results/cmyk_questions_analysis.png}
   \caption[Best and Worst Questions, according to CMYK Color Model.]{Best and Worst Questions, according to CMYK Color Model.}
+  \vspace{-5pt}
   \label{fig:cmyk_analysis}
 \end{figure}
 %
@@ -1458,26 +1385,19 @@ distance to the ideal CMYK Color Model response, while is accompanied by the ran
 %
 This color model, as covered before, is complementary to the CMYK color model. Feedback collected from the users was such that, sometimes, the users which knew how to blend in subtractive color models,
 tended to be confused and tried to mix additive color models, also. Based on the results collected from the laboratory users, we can tell that the results from this color model are quite similar to CMYK results: the descriptive statistics present
-on Table \ref{table:colormodels_distances_labonline_statistics}, authenticated by the results from the online environment, prove RGB has one of the lowest mean value of distances ($\overline{x}_{lab} = 0.14$, $\overline{x}_{online} = 0.12$) and one of
+on Table \ref{table:colormodels_distances_labonline_statistics}, prove RGB has one of the lowest mean value of distances ($\overline{x}_{lab} = 0.14$, $\overline{x}_{online} = 0.12$) and one of
 the lowest standard deviations ($s_{lab} = 0.05$, $s_{online} = 0.04$ equal to $s_{CMYK-online}$). \par
 %
 The three questions which have shorter distances are number number six (given orange, expected red and yellow), number nine (given a shade of green, expected green and cyan) and seventeen (given a green, expected cyan and blue). The mean values
-distances for this questions were $\overline{x}_{6} = 0.0777$, $\overline{x}_{9} = 0.1005$ and $\overline{x}_{17} = 0.1030$. \par
-%
+distances for this questions were $\overline{x}_{6} = 0.0777$, $\overline{x}_{9} = 0.1005$ and $\overline{x}_{17} = 0.1030$.
 On its turn, we consider that the questions which generate the worst results are number two (given magenta, expected red and blue), number ten (given a shade of blue, expected green and magenta) and, again, number thirteen (given a shade of blue,
 expected blue and cyan), with correspondent mean values $\overline{x}_{2} = 0.1660$, $\overline{x}_{10} = 0.2107$ and $\overline{x}_{13} = 0.2450$.
 Comparing them with the CIE-L*C*h* Color Model, we can observe these values are likely to be similar when compared with the later's worst results, but a little high when compared with CMYK results. \textbf{The colors orange and green continue to
 present the best values, while the blue shades are the lowest}. \par
 %
-When comparing the results from the RGB color model, the majority of users did reveal lack of knowledge in mixing the colors according to an additive color model, as they tended to mix colors according to the CMYK color model. However, this color
-model has a high degree of compatibility with every other model, excepting CMYK: performing a Wilcoxon Test ($p < 0.05$), we can infer that RGB does not present statistically significant differences with HSV, CIE-L*a*b* and with CIE-L*C*h* in the
-majority of questions (ten questions), while presenting statistically significant differences with CMYK in thirteen questions. \par
-%
-Relating to the fact that people either tend to blend colors in an additive or subtractive way, we can compare the results from this color model with CMYK model and state that \textbf{users tend to formulate subtractive mental models of color
-blending}. However, \textbf{there is room for further investigation, to fully understand if users are influenced by additive color models (\emph{e.g.} RGB) or subtractive ones (\emph{e.g.} CMYK)}. \par
-%
 \begin{figure}[!htbp]
   \centering
+  \vspace{-15pt}
   \begin{minipage}{0.48\textwidth}
     \centering
     \includegraphics[width=\textwidth]{images/results/6_online_RGBresponses.png}
@@ -1490,15 +1410,24 @@ blending}. However, \textbf{there is room for further investigation, to fully un
     \caption[Online: Answers for Question 13, from regular users, mixed in RGB Color Model.]{Online: Answers for Question 13, from regular users, mixed in RGB Color Model.}
     \label{fig:onlinergbregular_13}
   \end{minipage}
+  \vspace{-5pt}
 \end{figure}
+%
+When comparing the results from the RGB color model, the majority of users did reveal lack of knowledge in mixing the colors according to an additive color model, as they tended to mix colors according to the CMYK color model. However, this color
+model has a high degree of compatibility with every other model, excepting CMYK: performing a Wilcoxon Test ($p < 0.05$), we can infer that RGB does not present statistically significant differences with HSV, CIE-L*a*b* and with CIE-L*C*h* in 10
+questions, while presenting statistically significant differences with CMYK in 13 questions.
+Relating to the fact that people either tend to blend colors in an additive or subtractive way, we can compare the results from this color model with CMYK model and state that \textbf{users tend to formulate subtractive mental models of color
+blending}. However, \textbf{there is room for further investigation, to fully understand if users are influenced by additive color models or subtractive ones}. \par
 %
 Figure \ref{fig:onlinergbregular_6} represents the results of Question 6, which had the shortest distances to the pre-calculated RGB blend, and Figure \ref{fig:onlinergbregular_13} show the results for Question 13, the question with wider
 distances. The diagram of Figure \ref{fig:rgb_analysis} contains the three top and bottom-valued questions, disposed on top of an interval $[0 ; 0.5]$ of differences. \par
 %
 \begin{figure}[!htbp]
   \centering
-  \includegraphics[width=0.7\textwidth]{images/results/rgb_questions_analysis.png}
+  \vspace{-15pt}
+  \includegraphics[width=0.65\textwidth]{images/results/rgb_questions_analysis.png}
   \caption[Best and Worst Questions, according RGB Color Model.]{Best and Worst Questions, according to RGB Color Model.}
+  \vspace{-5pt}
   \label{fig:rgb_analysis}
 \end{figure}
 %
@@ -1507,13 +1436,13 @@ distances. The diagram of Figure \ref{fig:rgb_analysis} contains the three top a
 \paragraph{\ul{CIE-L*a*b* Color Model Blendings}} \par
 \label{par:labcolormodel}
 %
-This color model has results very similar to CMYK and RGB, since its descriptive statistics have comparable values to this model. \par
-%
+This color model has results very similar to CMYK and RGB, since its descriptive statistics have comparable values to this model.
 The three questions which have shorter distances are number number six (given orange, expected red and yellow), seventeen (given a green, expected cyan and blue) and number nine (given a shade
 of green, expected green and cyan), which are exactly the same as before. The mean values distances for this questions were $\overline{x}_{6} = 0.0509$, $\overline{x}_{17} = 0.1130$ and $\overline{x}_{9} = 0.1142$. \par
 %
 \begin{figure}[!htbp]
   \centering
+  \vspace{-15pt}
   \begin{minipage}{0.48\textwidth}
     \centering
     \includegraphics[width=\textwidth]{images/results/6_lab_Labresponses.png}
@@ -1526,6 +1455,7 @@ of green, expected green and cyan), which are exactly the same as before. The me
     \caption[Online: Answers for Question 6, from regular users, mixed in CIE-L*a*b* Color Model.]{Online: Answers for Question 6, from regular users, mixed in CIE-L*a*b* Color Model.}
     \label{fig:onlinelabregular_6}
   \end{minipage}
+  \vspace{-5pt}
 \end{figure}
 %
 Considering the questions which generate the worst results are number twelve (given a tone of green, expected green and yellow), number ten (given a shade of blue, expected green and magenta) and number thirteen
@@ -1535,16 +1465,17 @@ best-valued color model). \textbf{The colors orange and green proved, once again
 %
 When comparing the results from the CIE-L*a*b* color model, we detected that this model has significant differences with all other color models: performing a Wilcoxon Test ($p < 0.05$), we can infer that
 CIE-L*a*b* does present statistically significant differences with HSV, CMYK and with CIE-L*C*h* in only nine questions, while presenting no statistically significant differences with RGB
-in ten questions. \par
-%
+in ten questions.
 Since the CIE-L*a*b* conveys the entire set of perceived by the human eye, it \textbf{explains why the results associated with this color model are so close to others which yield the best results}.
 Figure \ref{fig:lablabregular_6} represents the laboratory results of Question 6, which not only had the best mean value to the pre-calculated RGB blend, but also its best mean value across all color models,
 and Figure \ref{fig:onlinelabregular_6} shows the results for the same question, but the online results which confirm the laboratory ones. The diagram of Figure \ref{fig:lab_analysis} contains the three top and bottom-valued questions, disposed on top of an interval $[0 ; 0.5]$ of differences. \par
 %
 \begin{figure}[!htbp]
   \centering
-  \includegraphics[width=0.7\textwidth]{images/results/lab_questions_analysis.png}
+  \vspace{-15pt}
+  \includegraphics[width=0.65\textwidth]{images/results/lab_questions_analysis.png}
   \caption[Best and Worst Questions, according to CIE-L*a*b* Color Model.]{Best and Worst Questions, according to CIE-L*a*b* Color Model.}
+  \vspace{-5pt}
   \label{fig:lab_analysis}
 \end{figure}
 %
@@ -1560,11 +1491,12 @@ since the colors presented were already blended}, missing only to calculate the 
 with cells shaded in green which represent the best value for each one of questions. \par
 %
 \begin{table}[!htbp]
-  \resizebox{\textwidth}{!} {
+  \centering
+  \resizebox{0.8\textwidth}{!} {
   \begin{tabular}{@{}cccccclccccclcccc@{}}
     \toprule
                                      & \multicolumn{2}{c}{Presented Colors}                        & \multicolumn{2}{c}{}                                                                                                  & \multicolumn{6}{c}{Laboratory Environment}                                                                                                                                                                                                                                                                     & \multicolumn{6}{c}{Online Environment}                                                                                                                                                                                                                                                                         \\ \cmidrule(lr){2-3} \cmidrule(l){6-17}
-    \multirow{-2}{*}{Question ID}    & C1                           & C2                           & \multicolumn{2}{c}{\multirow{-2}{*}{Expected Color}}                                                                  & \multicolumn{2}{c}{HSV}                                    & CIE-L*C*h*                                                 & CMYK                                                       & RGB                                                        & CIE-L*a*b*                                                 & \multicolumn{2}{c}{HSV}                                    & CIE-L*C*h*                                                 & CMYK                                                       & RGB                                                        & CIE-L*a*b*                                                 \\ \midrule
+    \multirow{-2}{*}{Question ID}    & C1                           & C2                           & \multicolumn{2}{c}{\multirow{-2}{*}{Reference Pair}}                                                                  & \multicolumn{2}{c}{HSV}                                    & CIE-L*C*h*                                                 & CMYK                                                       & RGB                                                        & CIE-L*a*b*                                                 & \multicolumn{2}{c}{HSV}                                    & CIE-L*C*h*                                                 & CMYK                                                       & RGB                                                        & CIE-L*a*b*                                                 \\ \midrule
     \multicolumn{1}{c|}{Question 18} & \multicolumn{1}{c|}{Red}     & \multicolumn{1}{c|}{Green}   & \multicolumn{2}{c||}{\cellcolor[HTML]{FFFF00}(77, 93, 14)}                                                             & \multicolumn{2}{c|}{0.14}                                  & \multicolumn{1}{c|}{0.14}                                  & \multicolumn{1}{c|}{\cellcolor[HTML]{32CB00}\textbf{0.11}} & \multicolumn{1}{c|}{0.15}                                  & \multicolumn{1}{c||}{0.14}                                  & \multicolumn{2}{c|}{\cellcolor[HTML]{FFFFFF}0.12}          & \multicolumn{1}{c|}{\cellcolor[HTML]{FFFFFF}0.12}          & \multicolumn{1}{c|}{\cellcolor[HTML]{32CB00}\textbf{0.08}} & \multicolumn{1}{c|}{\cellcolor[HTML]{FFFFFF}0.12}          & \multicolumn{1}{c|}{0.11}                                  \\ \midrule
     \multicolumn{1}{c|}{Question 19} & \multicolumn{1}{c|}{Red}     & \multicolumn{1}{c|}{Blue}    & \multicolumn{2}{c||}{\cellcolor[HTML]{FF00FF}(59, 28, 97)}                                                             & \multicolumn{2}{c|}{\cellcolor[HTML]{32CB00}\textbf{0.16}} & \multicolumn{1}{c|}{0.23}                                  & \multicolumn{1}{c|}{0.17}                                  & \multicolumn{1}{c|}{\cellcolor[HTML]{32CB00}\textbf{0.16}} & \multicolumn{1}{c||}{0.19}                                  & \multicolumn{2}{c|}{\cellcolor[HTML]{32CB00}\textbf{0.13}} & \multicolumn{1}{c|}{0.24}                                  & \multicolumn{1}{c|}{0.19}                                  & \multicolumn{1}{c|}{0.14}                                  & \multicolumn{1}{c|}{0.19}                                  \\ \midrule
     \multicolumn{1}{c|}{Question 20} & \multicolumn{1}{c|}{Green}   & \multicolumn{1}{c|}{Blue}    & \multicolumn{2}{c||}{\cellcolor[HTML]{00FFFF}(54, 79, 107)}                                                            & \multicolumn{2}{c|}{0.13}                                  & \multicolumn{1}{c|}{0.17}                                  & \multicolumn{1}{c|}{0.14}                                  & \multicolumn{1}{c|}{0.13}                                  & \multicolumn{1}{c||}{\cellcolor[HTML]{32CB00}\textbf{0.11}} & \multicolumn{2}{c|}{0.12}                                  & \multicolumn{1}{c|}{0.17}                                  & \multicolumn{1}{c|}{0.13}                                  & \multicolumn{1}{c|}{0.12}                                  & \multicolumn{1}{c|}{\cellcolor[HTML]{32CB00}\textbf{0.10}} \\ \midrule
@@ -1581,8 +1513,8 @@ with cells shaded in green which represent the best value for each one of questi
     \multicolumn{1}{c|}{Question 31} & \multicolumn{1}{c|}{Blue}    & \multicolumn{1}{c|}{Yellow}  & \multicolumn{1}{c||}{\cellcolor[HTML]{00FF80}(40, 73, 32)} & \multicolumn{1}{c||}{\cellcolor[HTML]{FF007F}(45, 23, 22)} & \multicolumn{1}{c|}{0.11}    & \multicolumn{1}{l|}{0.24}   & \multicolumn{1}{c|}{0.29}                                  & \multicolumn{1}{c|}{\cellcolor[HTML]{32CB00}\textbf{0.10}}                                  & \multicolumn{1}{c|}{\cellcolor[HTML]{32CB00}\textbf{0.10}}                                  & \multicolumn{1}{c||}{0.14}                                  & \multicolumn{1}{c|}{\cellcolor[HTML]{32CB00}\textbf{0.10}}    & \multicolumn{1}{l|}{0.26}   & \multicolumn{1}{c|}{0.29}                                  & \multicolumn{1}{c|}{0.12}                                  & \multicolumn{1}{c|}{0.13}                                  & \multicolumn{1}{c|}{0.17}                                  \\ \midrule
     \multicolumn{1}{c|}{Question 32} & \multicolumn{1}{c|}{Cyan}    & \multicolumn{1}{c|}{Yellow}  & \multicolumn{2}{c||}{\cellcolor[HTML]{00FF00}(36, 72, 13)}                                                             & \multicolumn{2}{c|}{0.16}                                  & \multicolumn{1}{c|}{0.09}                                  & \multicolumn{1}{c|}{0.09}                                  & \multicolumn{1}{c|}{0.09}                                  & \multicolumn{1}{c||}{\cellcolor[HTML]{32CB00}\textbf{0.07}} & \multicolumn{2}{c|}{0.15}                                  & \multicolumn{1}{c|}{0.08}                                  & \multicolumn{1}{c|}{0.07}                                  & \multicolumn{1}{c|}{0.08}                                  & \multicolumn{1}{c|}{\cellcolor[HTML]{32CB00}\textbf{0.05}} \\ \bottomrule
   \end{tabular}}
-  \caption[Results: Distances of Results according to each Color Model, for questions 18 to 32.]{Results: Distances of Results according to each Color Model, for questions 18 to 32, with the distance from itself to the ideal pre-calculated answer. Colored
-  in green are, the color model which has the best result, \emph{per} question, in each environment.}
+  \caption[Results: Distances of Results according to each Color Model, for questions 18 to 32.]{Results: Distances of Results according to each Color Model, for questions 18 to 32, with the distance from itself to the ideal pre-calculated answer.}
+  \vspace{-5pt}
   \label{table:expectation_distances_labonline}
 \end{table}
 %
@@ -1594,19 +1526,20 @@ presented the result of a given mixture. However, there are some differences whi
   \begin{tabular}{lccccccccccccc}
     \hline
     \multicolumn{1}{c}{}                              & \multicolumn{2}{c}{Presented Colors}             &                                                            & \multicolumn{10}{c}{Possible Results}                                                                                                                                                                                                                                                                       \\ \cline{2-3} \cline{5-14}
-    \multicolumn{1}{c}{\multirow{-2}{*}{Question ID}} & C1                   & C2                        & \multirow{-2}{*}{Expected Color}                           & \multicolumn{2}{c}{HSV}                                    & \multicolumn{2}{c}{CIE-L*C*h}                              & \multicolumn{2}{c}{CMYK}                                  & \multicolumn{2}{c}{RGB}                                   & \multicolumn{2}{c}{CIE-L*a*b*}                            \\ \hline
+    \multicolumn{1}{c}{\multirow{-2}{*}{Question ID}} & C1                   & C2                        & \multirow{-2}{*}{Reference Pair}                           & \multicolumn{2}{c}{HSV}                                    & \multicolumn{2}{c}{CIE-L*C*h}                              & \multicolumn{2}{c}{CMYK}                                  & \multicolumn{2}{c}{RGB}                                   & \multicolumn{2}{c}{CIE-L*a*b*}                            \\ \hline
     \multicolumn{1}{c|}{20}                           & Green                & \multicolumn{1}{c|}{Blue} & \multicolumn{1}{c|}{\cellcolor[HTML]{00FFFF}(54, 79, 107)} & \multicolumn{2}{c|}{\cellcolor[HTML]{00FFFF}(54, 79, 107)} & \multicolumn{2}{c|}{\cellcolor[HTML]{00A5FF}(32, 34, 100)} & \multicolumn{2}{c|}{\cellcolor[HTML]{008080}{\color[HTML]{FFFFFF}(12, 17, 23)}} & \multicolumn{2}{c|}{\cellcolor[HTML]{008080}{\color[HTML]{FFFFFF}(12, 17, 23)}} & \multicolumn{2}{c|}{\cellcolor[HTML]{7D93A6}{\color[HTML]{FFFFFF}(26, 28, 40)}} \\ \hline
                                                       & \multicolumn{1}{l}{} & \multicolumn{1}{l}{}      & \multicolumn{1}{l}{}                                       & $\overline{x}$           & $s$                           & $\overline{x}$           & $s$                           & $\overline{x}$          & $s$                           & $\overline{x}$          & $s$                           & $\overline{x}$           & $s$                          \\ \hline
     \multicolumn{4}{l|}{Distance to Objective - Laboratory}                                                                                                            & 0.13                  & \multicolumn{1}{c|}{0.06}          & 0.17                  & \multicolumn{1}{c|}{0.09}          & 0.14                 & \multicolumn{1}{c|}{0.08}          & 0.13                 & \multicolumn{1}{c|}{0.06}          & \textbf{0.11}         & \multicolumn{1}{c|}{0.05}         \\
     \multicolumn{4}{l|}{Distance to Objective - Online}                                                                                                                & 0.12                  & \multicolumn{1}{c|}{0.06}          & 0.17                  & \multicolumn{1}{c|}{0.08}          & 0.13                 & \multicolumn{1}{c|}{0.07}          & 0.12                 & \multicolumn{1}{c|}{0.06}          & \textbf{0.10}         & \multicolumn{1}{c|}{0.06}         \\ \hline
   \end{tabular}}
   \caption[Question 20, with expected Results.]{Question 20, with expected colors, possible results, mean and standard deviation of distances to Objective colors.}
+  \vspace{-5pt}
   \label{table:lab_q20_expected}
 \end{table}
 %
 \begin{itemize}
   \item \ul{Cyan} - As referred before, mistakenly the cyan color was not presented to the user in order to indicate a blending-basis which could create such color. However, we can analyze the results of
-  this question present on table \ref{table:lab_q20_expected}; as seen, the color model which has the closest ideal result is the CIE-L*a*b* ($\overline{x}_{lab} = 0.11$, $\overline{x}_{online} = 0.10$), opposite
+  this question present on Table \ref{table:lab_q20_expected}; as seen, the color model which has the closest ideal result is the CIE-L*a*b* ($\overline{x}_{lab} = 0.11$, $\overline{x}_{online} = 0.10$), opposite
   to CIE-L*C*h* which has the farthest response, according to users' responses in both laboratory and online environment. Curiously, HSV, RGB and CMYK all have very close results from each other. Further
   studies may focus in unraveling which is, in fact, the best color model, since \textbf{there is insufficient information to affirm which color model originates the closest distances, according to users'
   expectations}. Figure \ref{fig:onlineregular_20} depicts the answers given by the online users: although this user sample has the lowest distance to ideal answer, it is possible to observe that data is
@@ -1614,8 +1547,10 @@ presented the result of a given mixture. However, there are some differences whi
   %
   \begin{figure}[!htbp]
     \centering
-    \includegraphics[width=0.7\textwidth]{images/results/20_online_regularUsers.png}
+    \vspace{-15pt}
+    \includegraphics[width=0.48\textwidth]{images/results/20_online_regularUsers.png}
     \caption[Online: Answers for Question 20, from regular users.]{Online: Answers for Question 20, from regular users.}
+    \vspace{-15pt}
     \label{fig:onlineregular_20}
   \end{figure}
   %
@@ -1630,6 +1565,7 @@ presented the result of a given mixture. However, there are some differences whi
   %
   \begin{figure}[!htbp]
     \centering
+    \vspace{-15pt}
     \begin{minipage}{0.48\textwidth}
       \centering
       \includegraphics[width=\textwidth]{images/results/17_online_Labresponses.png}
@@ -1642,6 +1578,7 @@ presented the result of a given mixture. However, there are some differences whi
       \caption[Online: Answers for Question 32, from regular users.]{Online: Answers for Question 32, from regular users.}
       \label{fig:onlineregular_32}
     \end{minipage}
+    \vspace{-5pt}
   \end{figure}
   %
   \item \ul{Orange Blending} - Comparing the results from all questions, we end up concluding that the question which constantly had best results among all color models was the blending of red and yellow to create
@@ -1702,7 +1639,7 @@ presented the result of a given mixture. However, there are some differences whi
 %
 Therefore, we can summarize the results in one table, which ranks the color models \emph{per} color blending, dividing it between two strands: based on the values that represent questions in which the user was
 asked to indicate the blending-basis, and based on the values that represent questions in which the user was asked to point out the correct blending result when given two colors. These results are presented in
-table \ref{table:blendings_models_rank}. The color models were ranked according to the descriptive statistics' values generated by each question, weighted with the results from the laboratory environment and the
+Table \ref{table:blendings_models_rank}. The color models were ranked according to the descriptive statistics' values generated by each question, weighted with the results from the laboratory environment and the
 validation from the online users: for each question, we started by searching for the lowest mean value from the laboratory values, then comparing it with its correspondent from the online environment to validate
 it; if there was any tie between values from the same environment, \textbf{the untie would be done by evaluating the standard deviations} and it would be chosen the color model which had the lowest value. If the
 untie was not possible, then \textbf{we did not have enough information to state which color model was better than another}. \par
@@ -1792,7 +1729,7 @@ color model. These questions are refreshed again on Table \ref{table:primary_ble
 \end{table}
 %
 As analyzed before, according to the users' responses and expectations, these questions show a fair degree of concordance when blending the mixture-basis, since they all tend tend to present better results when
-blended according to a CMYK Color Model. However, we have found an interesting behavior from our users when answering these questions: some users indicated the resulting color on both the expected colors (\emph{e.g.}
+blended according to a CMYK Color Model. However, we have found an interesting behavior from our users when answering these questions: some users indicated the resulting color on both the reference pairs (\emph{e.g.}
 Red was presented, and the users indicated twice the color Red in their answers); we will briefly analyze the values for each of the blendings referred on Table \ref{table:primary_blends}, as it has already been
 analyzed before.
 %
@@ -1920,7 +1857,7 @@ problems related to human blue color perception.
 As said before, this color blending was only conducted only in one way. In this question, it was expected that users indicate the result of mixing Green and Blue: Cyan; these colors are primitives from the RGB Color Model. Both the laboratory
 and online users provided similar results, with an aggregation of them on the blue and cyan hues on both environment, and also in the orange hue (for unknown reasons).  \\
 %
-Running some descriptive statistics on top of the distance values between the given answer and the expected Cyan Color ($\overline{x} = 0.13$, $s = 0.06$) reveals some proximity to the expected color, and a lower standard deviation of results.
+Running some descriptive statistics on top of the distance values between the given answer and the expected Cyan Color ($\overline{x} = 0.13$, $s = 0.06$) reveals some proximity to the reference pair, and a lower standard deviation of results.
 Ideally, the results should be compared with the other type of question asked; since there is no question to compare and based on previous analyzed results, we can affirm that \textbf{there are mild evidences that users can detect a Green-Blue blend
 to provide a Cyan color}. However, \textbf{further studies should deepen this question and determine if this affirmation could be corroborated}.
 %
@@ -1974,7 +1911,7 @@ indeed consistent with the result collect from the previous mixture. \\
 %
 Performing a qualitative analysis of each answer pair's colors names while comparing it to the expected pair was
 \ul{Red-Green}, we obtain the following results: among 53 answers from the online users to question 1, \textbf{we conclude
-that the colors Red and Green were among the most indicated ones}; the expected color pair was indicated 15 times ($28.3\%$),
+that the colors Red and Green were among the most indicated ones}; the reference pair was indicated 15 times ($28.3\%$),
 while the Green-Green pair also referred in other questions appears 25 repetitions ($47\%$): this latter pair may be referred
 by the user as an "escape answer", when he does not knwo what to blend. This could be observed in Figure \ref{fig:yellowblend_1}.
 
