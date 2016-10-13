@@ -8,9 +8,9 @@ supporting platform of our user color study. For the sake of simplification when
 this platform, we have called it \emph{BlendMe!}, since its purpose is to support the collecting and analysis
 of data from color blendings! \par
 %
-We are going to state the objectives for this user study, concrectly defining the questions which we want to
+We are going to state the objectives for this user study, concretely defining the questions which we want to
 have answers in the end of the study; then, we will discuss how the \emph{BlendMe!} was implemented, justifying
-the decisions taken in each phase of the study. To end this section, we will define some evaluation criteria which
+the decisions taken in each phase of the study. To end this section, we will define evaluation criteria which
 is going to be important for the data cleaning and processing phase of the research.
 %
 \section{Objectives}
@@ -19,22 +19,23 @@ is going to be important for the data cleaning and processing phase of the resea
 As seen before, there is a myriad of questions about the usage of color blendings when conveying information,
 which remained unanswered. However, only a set of questions is answered in our research, since it is not possible
 to reach answers to all questions. Therefore, the goals which we have picked for this User Study were to
-\ul{understand if color blendings can be detected by the users}, \ul{test if it is better to give the result
-already mixed, or indicate the blending-basis and the user creates the color mixture}, \ul{to detect if the users
-follow some kind of mental convention and organizate the color when conveying the answers}, and formulate possible
-implications of color blending usage, in Information Visualization field of research. \par
+\ul{understand if color blendings can be detected by the users}, \ul{is it easier for users to estimate the pair
+of colors that resulted in a particular given blend, or reciprocally, to estimate which blend will result from a
+given pair of colors.}, \ul{to detect if the users follow some kind of mental convention and organize the color
+when conveying the answers}, and formulate possible implications of color blending usage, in Information Visualization field of research. \par
 %
 Additionally, it is relevant to understand which color model stands as the best to mix colors which are, from a
 perceptual point of view, more similar to the users expectation. We have planned to develop this study in two
 different strands: in a \textbf{Laboratory Environment}, which will allow us to calibrate and perfectly control the
 entire study conditions, and in an \textbf{Online Environment}, which will allow us to disseminate our study to a
-larger set of users, even without controlling the calibration of the testing environment. \par
+larger set of users, even without controlling the calibration of the testing environment, but that may be useful
+to corroborate the laboratory results with a larger user sample. \par
 %
 The questions which we think define our research goals, for this study, are:
 %
 \begin{itemize}
-	\item \textbf{Q1:} Which Color Model meets best the users' expectations, when blending two colors?
-	\item \textbf{Q2:} Is there evidence of a spatial arrangement of colors, when users are indicating possible color
+	\item \textbf{Q1:} Which Color Model best meets the users' expectations, when blending two colors?
+	\item \textbf{Q2:} Do users specify the Blending-basis following some order, when users are indicating possible color
 	mixtures' results?
 	\item \textbf{Q3:} Are there evidences from differences across demographic groups, such as the age or gender?
 \end{itemize}
@@ -68,14 +69,15 @@ One of the points discussed in section \ref{sec:background_discussion} was the a
 of Gama and Gonçalves \cite{Gama20141,Gama20142}: it was large enough for their questions. However, considering the
 results we aim to achieve with this study, a considerably larger sample of users is the ideal: besides conducting
 the study in a laboratory environment, it is mandatory to expand the sample size by performing user studies with
-online users, trying to take advantage of the cultural diversity that may arise. \par
+online users, taking advantage of the cultural diversity that may arise. \par
 %
 Therefore, we intended to develop a user study which could support the laboratory controlled environment, while at
 the same time supporting the collection of metrics and data from the online users: this is an important consideration,
 since the workload when analyzing the results would be dramatically reduced because the data is condensed and gathered
-in the same fashion. As referred, the user study was divided onto four different stages: the \textbf{user profiling},
+in the same fashion, and data would be more comparable. As referred, the user study was divided onto four different
+stages: the \textbf{user profiling},
 \textbf{calibration testing}, \textbf{color deficiency testing} and, finally, the \textbf{principal part of the study}
-where the core information was collected from the users. Each of these phases will be adressed later in this section. \par
+where the core information was collected from the users. Each of these phases will be addressed later in this section. \par
 %
 When brainstorming the ideas for this study, we started with the intention of testing both the blending of two colors and
 three colors; we decided that the colors which would be blended were Red (\textbf{R}), Green (\textbf{G}),
@@ -90,8 +92,14 @@ representative different color model types (additive and subtractive). Lastly, t
 that it is the color model which represents the entire range of human perceivable colors. \par
 %
 Then, we produced a wide spreadsheet of possible blendings of these colors, according to these color models, \textbf{mixed in
-pairs of two colors} and \textbf{triples of three colors, without opposed colors in HSV angle}: this generated the total amount
-of 183 Color Blendings, being 78 from blendings of two colors and 105 from blendings of three colors. \textbf{There are 15
+pairs of two colors} and \textbf{triples of three colors, without opposed colors in HSV angle}: this last restriction derives
+from the fact that, since the HSV Color Model provides angular values for hues, there are colors from the set we have chosen
+that have opposed angles (R-C, G-M and B-Y); therefore, when interpolating the angular values for these colors, the resulting color
+could be obtained on another two opposed resulting angles. If we had added these color pairs to blendings with three colors,
+color blendings with one of these three pairs would provide, at least, two possible outputs. Then, we have only produced blendings
+of three colors which did not contain any of these three pairs, in order to simplify its future analysis. \par
+%
+This generated the total amount of 183 Color Blendings, being 78 from blendings of two colors and 105 from blendings of three colors. \textbf{There are 15
 possible mixtures of two colors}, when combining the previous defined colors: R-G, R-B, G-B, R-C, R-M, R-Y, C-M, M-Y, G-C, G-M,
 G-Y, B-C, B-M, B-Y and C-Y; on the other hand, there are 21 possible color mixtures of three colors without opposed colors in the
 HSV hue circle: R-G-B, R-B-G, B-G-R, R-M-B, R-B-M, B-M-R, C-G-B, C-B-G, B-G-C, C-M-Y, C-Y-M, Y-M-C, C-M-B, C-B-M, B-M-C, C-G-Y,
@@ -101,7 +109,7 @@ for each color pair, blended according to the five color models chosen.
 \begin{figure}[htbp]
 	\centering
   \includegraphics[width=0.8\textwidth]{images/implementation/table_blends.png}
-  \caption[Excerpt of Table containg the pre-calculated Color Blends.]{Excerpt of Table containg the pre-calculated Color Blends.}
+  \caption[Excerpt of Table containing the pre-calculated Color Blends.]{Excerpt of Table containing the pre-calculated Color Blends.}
   \label{fig:table_blends}
 \end{figure} \par
 %
@@ -144,12 +152,12 @@ set of questions is mapped in Table \ref{table:color_blendings}. \par
 %
 This user study was entirely developed used web-development libraries (\emph{e.g.} Bootstrap), technologies (\emph{e.g.} HTML5, Javascript
 and CSS) and relational databases (PostgreSQL): the user is uniquely identified by a \ul{primary key (PK)} which corresponds to its user ID generated
-by \emph{uniqid()} function from PHP, based on the user's timesamp, that every table from the database uses to inequivocally identify it.
+by \emph{uniqid()} function from PHP, based on the user's timestamp, that every table from the database uses to unequivocally identify it.
 An entity-relationship model maps all the information related to a given a user which will be stored for further analysis; this ER Model is present on
 Figure \ref{fig:er_model}. \par
 %
-Being this an online published user study and known that we wanted to converge the inputs from all users in the same platform, we have runned this study
-in a web browser: we have runned the majority of tests using Google Chrome and a few using Safari.
+Being this an online published user study and known that we wanted to converge the inputs from all users in the same platform, we have executed this study
+in a web browser: we have executed the majority of tests using Google Chrome and a few using Safari.
 %
 \begin{figure}[htbp]
 	\centering
@@ -167,7 +175,7 @@ In the \textbf{Profiling Phase}, questions were asked about the Age, Gender, Aca
 questions helped us conceiving user profiles with key indicators about cultural background and gender relation to results of each test.
 %
 We have drafted a wireframe version of this test phase, which is present in Figure \ref{fig:mockup_profiling}. This is a straight-forward
-phase, in which the user is asked to indicate some demographic informations. All of these informations are stored in a relational database's
+phase, in which the user is asked to indicate some demographic information. All of these information are stored in a relational database's
 table called \emph{calibration\_info}, which will be entry point of the database. We had to include the \ul{Other} gender type, since it was
 mandatory by Reddit to publish it online. The nationalities, academic degrees, countries of residence and native languages were all standard
 JSON files which contained each set of options. \par
@@ -189,7 +197,7 @@ JSON files which contained each set of options. \par
 \end{figure}
 %
 Figure \ref{fig:screen_profiling} presents a snipping of the interface implemented for this user
-study phase: be aware that this screenshot has been shrinked down to a proper scale for this document, so the proportions of the interface
+study phase: be aware that this screenshot has been shrunk down to a proper scale for this document, so the proportions of the interface
 are \ul{not} the ones presented to the user. \par
 %
 When this phase was concluded, the user was guided to another stage of the study, to perform the \textbf{Calibration Phase}, where
@@ -223,10 +231,10 @@ rendering the study's main page. \par
 \end{figure}
 %
 Since we have not found a way to tackle this solution so far, we developed another solution for remote controlling the calibration on the
-\ul{online environment}: to present two similar calibration images, one presenting a set of shaded squares ranging fom grey to black shades against
+\ul{online environment}: to present two similar calibration images, one presenting a set of shaded squares ranging from grey to black shades against
 a black background, and another presenting instead white squares against a white background. All of the squares presented a \ul{red number in its
 corner and it was accompanied by a random word}, shaded in same color as the square it follows: the user's task was to provide us the number (and
-word) from the last square which he could easily see. This informations provide us input about the white-level and black-level of the screen, which
+word) from the last square which he could easily see. This information provide us input about the white-level and black-level of the screen, which
 are nothing more than the \textbf{Contrast} and \textbf{Brightness}, respectively, of the display. This test is \ul{inspired in PLUGE} (stands for \textbf{P}icture
 \textbf{L}ine-\textbf{U}p \textbf{G}eneration \textbf{E}quipment) Patterns, which present consecutive bars shaded between black and white, used to calibrate the black-level from a video
 monitor. These calibrations images were created by us, using Adobe's Photoshop, and are presented in Figures \ref{fig:black_level} and
@@ -260,7 +268,7 @@ for this phase is quite extensive. \par
 \end{figure}
 %
 When this phase was concluded, the user was guided to another stage of the study, to perform the \textbf{Color Deficiency Test Phase}, where
-he was asked to analyze a set coloured plates and answer with its number. \par
+he was asked to analyze a set colored plates and answer with its number. \par
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% ISHIHARA %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
@@ -325,7 +333,7 @@ created from the principal color models' primaries referred before and these col
 %
 In this test phase, we have composed an interface with the description of the task to fulfill and presented a small set of objects which would be used and
 interacted with to provide the colors to the user, and receive his input values. Perhaps, the way color is presented is the most relevant detail: since we
-wanted to provide a tool which would be capable of displaying without being influenced by its surrouding of even by the proximity of other colors, the colors
+wanted to provide a tool which would be capable of displaying without being influenced by its surrounding of even by the proximity of other colors, the colors
 were presented in rounded shapes, accompanied by what we call \emph{\textbf{color sliders}} whenever it was needed input colors from the user. With this,
 only the necessary colors are displayed on the circles as the user wishes and there is no interference of undesired colors, allowing us to eliminate the
 influence of them. The sliders will alternately present a discrete or continuous color scale underneath, according to the type of question which is being
@@ -334,14 +342,14 @@ presented to the user. \par
 \begin{figure}[htbp]
 	\centering
   \includegraphics[width=\textwidth]{images/implementation/mockup_core_objTwoColors.png}
-  \caption[Mock-up of Color Study's Core Test Phase: presenting the result and asking the blending-basis.]{Mock-up of Color Study's Core
+  \caption[Mock-up of Color Study's Core Test Phase: present the result and ask the blending-basis.]{Mock-up of Color Study's Core
 	Test Phase: presenting the result and asking the blending-basis.}
   \label{fig:mockup_core_1}
 \end{figure} \par
 %
 Since there are two possible types of questions, we have wireframed two screens: \ul{in the first one}, we display a shape filled with the objective color of the
 blending and two empty shapes which the user should fill with the colors that he thinks it corresponds the best to his expectations. These shapes start filled
-with an empty color (or white) so the user is not influenced by previsouly used colors, when answering to another question. There is no particular reason for
+with an empty color (or white) so the user is not influenced by previously used colors, when answering to another question. There is no particular reason for
 the chosen shapes are circles, since \textbf{we are not studying the best visualizations to convey information, when using color blending techniques}. These
 shapes presented against a white background so it \textbf{does not influence color perception}, equally spaced between each other, being followed by a small
 set of arithmetic operands which \ul{leads the user to realize he has to add a pair of colors}. This screen is depicted in the left side of Figure
@@ -354,45 +362,45 @@ fashion so the user does not create any kind of habit or routine when blending t
 %
 \begin{figure}[htbp]
 	\centering
-  \includegraphics[width=0.5\textwidth]{images/implementation/mockup_core_twoColorsObj.png}
-  \caption[Mock-up of Color Study's Core Test Phase: presenting the blending-basis and asking the resulting color.]{Mock-up of Color Study's Core
+  \includegraphics[width=0.4\textwidth]{images/implementation/mockup_core_twoColorsObj.png}
+  \caption[Mock-up of Color Study's Core Test Phase: present the blending-basis and ask the result.]{Mock-up of Color Study's Core
 	Test Phase: presenting the blending-basis and asking the resulting color.}
   \label{fig:mockup_core_2}
 \end{figure} \par
 %
-The most interesting fact of this test phase is how the color slider is engined. We chose the HSV Color Model to represent the colors to show, since the
-\textbf{HSV Color Model has the best compromise when presenting colors in information visualization} because of its primtives (Hue, Saturation and Value)
+The most interesting fact of this test phase is how the color slider works: we chose the HSV Color Model to represent the colors to show, since the
+\textbf{HSV Color Model has the best compromise when presenting colors in information visualization} because of its primitives (Hue, Saturation and Value)
 which allows to manipulate colors in a better way. However, \textbf{we have chosen to only modify the Hue value and leave the Saturation and Value on its
 maximum value}: this way, we could ensure that we could present the entire range of colors at its full saturation and value, also simplifying the gathering
 of values from the users. Therefore, the color slider yields a value within the range of $[0 ; 360]$ degrees which corresponds to an angle in the Hue circle
 of the HSV Color Model. \par
 %
-The color slider has another particularity, such as the scale of values is not continuous in its essence: \textbf{fixed intervals of values are
-mixed within each other}, so the user does not formulate any mental organization in the moment and does not demonstrate any previous conception or mindset
+The color slider has another particularity: the scale of values, though representing continuous angle values, does not presents the values ordered from 0 to 360.
+Instead, \textbf{fixed intervals of values are mixed within each other}, so the user does not formulate any mental organization in the moment and does not demonstrate any previous conception or mindset
 (\emph{e.g.} the organization of colors according to the color spectrum). The colors were arranged in the following order: \ul{Red-Yellow} ($[0º; 60º]$),
 \ul{Blue-Greenish-Blue} ($[240º; 150º]$), \ul{Magenta-Blue} ($[300º; 240º]$), \ul{Greenish-Blue-Yellow} ($[150º; 60º]$) and, lastly, \ul{Magenta-Red} ($[300º; 360º]$). If these
-intervals were disposed in its normal order, the order would be seeemlessly percerived by the user: this way, \textbf{the user always has to search for the
+intervals were disposed in its normal order, the order would be seamlessly perceived by the user: this way, \textbf{the user always has to search for the
 color he wants to see depicted}. For the questions which the user has to give only one answer (the resulting color from the blend), the color slider
 already yields a defined set of pre-calculated colors (the ones present in the referred spreadsheet, on section \ref{sec:impl_designingsolution}), and the
 user hand-picks the best-fitting solution from that set. \par
 %
-However, even the colors represented in the shapes and the ones present in the pre-calculated answers have a trick, in the laboratory environment: these
+However, even the colors represented in the shapes and the ones present in the pre-calculated answers have a particularity, in the laboratory environment: these
 pre-calculated values are, with the help of a \emph{Matlab} script, going to be \textbf{converted to adapted color values, according to the .icc color profile
 file generated by the Spyder Colorimeter}. This way, we guarantee that no matter if the laboratory environmental conditions change, the colors will always be
 presented equally to every user. \textbf{This script processes each possible result for every color pair, in every color model}, converts it to a normalized
 CIE-XYZ value and in the end, to an hexadecimal color code to be printed on the shapes of the interface, when time comes for the laboratory user to choose a
 color from the color slider. This process was realized before each user session. \par
 %
-After the user indicates and confirms his answer, \textbf{he was presented a satisfaction question with a 5-point Likert Scale} to double-check the easiness
-of each mixture. The question asked was \textbf{"How Easy it was for you to Identify the Mixture?"}; the user had to select the equivalent rating in a
-five-star system. If the user was not happy with its response, it was provided a "Reset Mixture" button to clean all parameters. All of these details are
+After the users indicated and confirms their answer, \textbf{they were presented a satisfaction question with a 5-point Likert Scale} to double-check the easiness
+of each mixture. The question asked was \textbf{"How Easy it was for you to Identify the Mixture?"}; the users had to select the equivalent rating in a
+five-star system. If the users were not happy with its response, it was provided a "Reset Mixture" button to clean all parameters. All of these details are
 showed in Figure \ref{fig:screen_core}, which shows the resulting interface for the type of questions in which the result was given and the blending-basis
 was asked. \par
 %
 \begin{figure}[htbp]
 	\centering
   \includegraphics[width=0.8\textwidth]{images/implementation/screen_core.png}
-  \caption[Screenshot of Color Study's Core Test Phase: presenting the resulting color and asking the blending-basis.]{Screenshot of
+  \caption[Screenshot of Color Study's Core Test Phase: present the result and ask the blending-basis.]{Screenshot of
 	Color Study's Core Test Phase: presenting the resulting color and asking the blending-basis.}
   \label{fig:screen_core}
 \end{figure} \par
@@ -423,7 +431,7 @@ gathered is present on Table \ref{table:csv_resultsraw}. \par
 \section{Evaluation Criteria}
 \label{sec:impl_evaluationcriteria}
 %
-For a user and its responses to be considered as valids, they have to be evaluated against the following set of rules:
+For a user and its responses to be considered as valid, they have to be evaluated against the following set of rules:
 %
 \begin{enumerate}
 	\item For \ul{Profiling and Ishihara Test Phases}, it is considered as valid the values which are very close from the expected one, since there might

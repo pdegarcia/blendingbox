@@ -32,20 +32,20 @@ giving instructions. The instructions were available on two languages, depending
 %
 Before each session of the laboratory environment test-run, a Datacolor\textsuperscript{\textregistered} Spyder 5 Elite Color Calibrator was USB-connected to the computer and, using
 the software which is shipped along with it, the computer's LCD display was fully calibrated (the software offers the option of recalibrating,
-the option of checking the calibration and also, the option of fully calibrating the display) by testing the pixel emission when emmiting a particular
+the option of checking the calibration and also, the option of fully calibrating the display) by testing the pixel emission when emitting a particular
 set of colors; the LCD display was fully calibrated before every test. \par
 %
 The tests were conducted sixteen times in \gls{RNL} at \gls{IST}, and twelve times in other locations with similar conditions:
 this is due to constraints in finding users, so the test site needed to have a (limited) mobility feature. However, the conditions remained
-the same concerning the illumination, the position of the user and the computer used: a Macbook Air 13' (Mid-2013) was prepared undeneath
-a fixed incadescent light-source (but slightly deviated from it, to minimize light reflections on screen), the user would sit in front
+the same concerning the illumination, the position of the user and the computer used: a Macbook Air 13' (Mid-2013) was prepared underneath
+a fixed incandescent light-source (but slightly deviated from it, to minimize light reflections on screen), the user would sit in front
 of the laptop, in an almost silent environment. \ul{Ideal conditions of this test} would be such that the user could be sitting alone in a completely
 silent room, his head would be always at the same distance from the screen, resting is chin in a head-rest and the LCD display's inclination would be perfectly
 adjusted to the user's eyes.
 %
 \subsection{Online Environment}
 %
-Performing the study online, as easily predictable, develops some characteristics which cannot be completly controlled. For the sake of calibration, the user was asked to
+Performing the study online, as easily predictable, develops some characteristics which cannot be completely controlled. For the sake of calibration, the user was asked to
 to perform a set of six calibration easy steps before starting the test, so the online user's screen would be,
 somehow, in a standardized calibration fashion. The calibration steps which were asked are:
 %
@@ -58,12 +58,12 @@ somehow, in a standardized calibration fashion. The calibration steps which were
   \item If possible, define the \textbf{Color Temperature} of your screen to 6500 Kelvin Degrees.
 \end{enumerate} \par
 %
-The ideal conditions of this test would be such that we could control and maniupulate the color calibration of online user's LCD display, using a software
-piece which would acquire important informations from the screen configuration, \emph{e.g.} resolution, white-point, black-point, brightness, among others,
-digest the values and present the questions from the Core Phase in a completely controled and calibrated window. Further investigation could focus in
+The ideal conditions of this test would be such that we could control and manipulate the color calibration of online user's LCD display, using a software
+piece which would acquire important information from the screen configuration, \emph{e.g.} resolution, white-point, black-point, brightness, among others,
+digest the values and present the questions from the Core Phase in a completely controlled and calibrated window. Further investigation could focus in
 developing this system. \par
 %
-The users were asked to fill in a profiling questionnaire (as seeen of Section \ref{subsec:design_profiling}), as well as to respond to a calibration form
+The users were asked to fill in a profiling questionnaire (as seen of Section \ref{subsec:design_profiling}), as well as to respond to a calibration form
 (Section \ref{subsec:design_calibration}). A validated simplified 6-plate Ishihara color blindness test \cite{Alwis1992} is, then performed
 (Section \ref{subsec:design_ishihara}), before proceeding onto the 32 questions test-phase, in which the user is asked to slide one (or two) circular
 object(s) placed on top of a bar, to indicate a(the) color(s) which he thought were the correct mixture answers. In the end, the user could leave
@@ -136,8 +136,8 @@ was followed to fulfill the data cleaning.
   (remember Section \ref{sec:impl_objectives}). These values are the \emph{Saturation} (S) and \emph{Value} (V), primitives of the HSV Color Model used.
   \item \textbf{Format Values} - The value which remains to be formatted is simply the \emph{Hue} (H),
   which is equal to a very precise position on the coded color slider on the interface; the value was composed of 14 decimal numbers and
-  was rounded up to its closest integer number, then. Also, the \emph{NONE} values neeeded to be replaced by 0, to simplify the processing of null answers.
-  \item \textbf{Sort Entries} - In order to favour the iteration when processing the data, each line of the "Results" Table was
+  was rounded up to its closest integer number, then. Also, the \emph{NONE} values needed to be replaced by 0, to simplify the processing of null answers.
+  \item \textbf{Sort Entries} - In order to favor the iteration when processing the data, each line of the "Results" Table was
   sorted according, firstly to the \emph{Question ID}, and after by \emph{User ID}.
   \item \textbf{Normalize Laboratory Data} - We have used a Spyder Color Calibrator to manage the color representation independently of the environmental
   conditions of light. Since the colors were adapted to be presented to each user, those same colors had to be trackbacked to the original color, for the
@@ -154,7 +154,7 @@ was followed to fulfill the data cleaning.
   the regular users to perform a qualitative evaluation.
 \end{itemize} \par
 %
-An example of clean data can be found in table \ref{table:csv_resultsclean}. The next step of data handling is processing it to prepare metrics, establish comparations
+An example of clean data can be found in table \ref{table:csv_resultsclean}. The next step of data handling is processing it to prepare metrics, establish comparisons
 to pre-calculated answers and depict results in a CIE Chromaticity Diagram. \par
 %
 \begin{table}[htbp]
@@ -184,11 +184,11 @@ to pre-calculated answers and depict results in a CIE Chromaticity Diagram. \par
 %
 Processing the data was an important part of the process, since it was important to prepare the raw data collected and compute additional metrics which could be further
 analyzed to answer the raised questions. To perform this processing, we decided to implement a set of scripts in \emph{Matlab} which could gauge the dataset of each question,
-demographic group and subset of users (non-calibrated and color vision deficients). \par
+demographic group and subset of users (non-calibrated and color vision deficient). \par
 %
 With this data processing, we intend to verify each answer-pair given by a certain user and compare the pairs with each other. It was important to separate the results by question
 ID, compare each questions' results with other questions that could conceive the same results, interpolate the values from each pair to check which color model ideal answers are closer
-to (either HSV, RGB, CMYK, CIE-L*a*b* or CIE-L*C*h*) and also, give meaning to each value, attributing a name to each color. All these parameters and computations are describred in the next two
+to (either HSV, RGB, CMYK, CIE-L*a*b* or CIE-L*C*h*) and also, give meaning to each value, attributing a name to each color. All these parameters and computations are described in the next two
 subSections.
 %
 \subsection{Data Preparation}
@@ -204,7 +204,7 @@ file contains the particular set of characteristics and specific comparisons and
   \item \textbf{One-Component-White Answers} (this computation is only available for Questions 1 to 17).
 \end{itemize} \par
 %
-All these datasets are analyzed by a block of code similar to the one in Appendix \ref{appendix:matlab_example}; all iterations over each dataset start by \ul{verifiying if any value contained in
+All these datasets are analyzed by a block of code similar to the one in Appendix \ref{appendix:matlab_example}; all iterations over each dataset start by \ul{verifying if any value contained in
 the answer pair is a white} (\emph{i.e.} zero valued) answer: if so, it is stored in a different table, along with all white answers. This was executed \textbf{only
 with non-daltonic users and calibrated users and it was not applied to any type of demographic group}, since its analysis is out of the scope of this thesis. This analysis is
 interesting, since we can understand if the users opted to leave one value as 0 to truly indicate a white color (to blend and create a lighter color), or simply because they
@@ -255,15 +255,15 @@ However, there are some differences when processing data from questions 18 to 32
 implies a much simpler analysis due to only have to process one answer: there are no white answers to process (the ones which exist are excluded) and no colors to mix with each other; we only need to calculate
 the distance of the answered color, to the expected one.
 %
-\subsection{Color Bins Comparation}
+\subsection{Color Bins Comparison}
 \label{subsec:results_preparation}
 %
 This analysis phase had a very important step, which was to assign meaning to the answers given by the users: \textbf{to attribute commonly used names by the users, to colors indicated}. This is an interesting
 analysis to perform, since the users may have indicated various scattered values among a common color when, in fact, the users all wanted to indicate the same color (\emph{e.g.} indicating many values around the
-Red Color, when they may wanted to simply indicate the color which corresponds to the name \emph{Red}). Ideally, we would conduct a separated user study to perceive which names people normaly attribute to colors;
+Red Color, when they may wanted to simply indicate the color which corresponds to the name \emph{Red}). Ideally, we would conduct a separated user study to perceive which names people normally attribute to colors;
 then we would gather all the data and analyze which were the most common names. \par
 %
-Luckily, the web page \emph{XKCD}\footnote{XKCD - Stick-Figure strip featuring humour about technology, science, mathematics and relationships, by Randall Munroe.
+Luckily, the web page \emph{XKCD}\footnote{XKCD - Stick-Figure strip featuring humor about technology, science, mathematics and relationships, by Randall Munroe.
 Available at: \url{xkcd.com/}. Last accessed on October 17th, 2016.} had already conducted a widely large Color Survey\footnote{Color Survey Results. Available at:
 \url{blog.xkcd.com/2010/05/03/color-survey-results/}. Last accessed on October 17th, 2016.} to study wich were the most common RGB color triples among users. They performed roughly more
 than 222 000 user sessions to ascertain color naming: they produced a map which shows the dominant names attributed to \gls{RGB} colors over the faces of \gls{RGB} cube (Figure \ref{fig:colornames_xkcd}),
@@ -307,12 +307,12 @@ which can verify it. We also found great compatibility between this survey and o
 %
 As said, these represent \gls{RGB} triplets but, being our user results all in accordance with the CIE XYZ Color Model, we needed some cleaning and processing to match the data our
 responses. Using the sRGB color space, the default for computer screens and the one likely to have been used by the vast majority of the participants in the XKCD survey, we
-\ul{converted the RGB to CIE XYZ values} and, then, \ul{divided all of the Color Bins in different tables}; there are 27 names atributted to colors, some have more triplets
+\ul{converted the RGB to CIE XYZ values} and, then, \ul{divided all of the Color Bins in different tables}; there are 27 names attributed to colors, some have more triplets
 (\emph{e.g.} blue, green or purple), but some have a smaller set, which could mean greater agreement to assign names to colors. These bins of color are represent with their frequencies, in table
 \ref{table:colorbins}. \par
 %
 The idea was to compare our answers with each color bin, creating a mapping between our users' values and commonly-used names; in order to simplify and speed up the computation
-of the comparations, each color bin was drawn and the smallest polygon formed by the set of triplets of each bin was used to compare the values (instead of comparing each answer
+of the comparisons, each color bin was drawn and the smallest polygon formed by the set of triplets of each bin was used to compare the values (instead of comparing each answer
 with every triplet). Moreover, when processing these sets of RGB triplets, we left 3 color bins out of the game: \emph{Black} since it has no expressivity in the Chromaticity Diagram,
 \emph{Dark-Red} and \emph{Light-Green} because they have very few triplets to be drawn.
 %
@@ -408,11 +408,11 @@ answer pair given. \par
 \subsection{User Profile}
 \label{subsec:results_userprofile}
 %
-As previosuly said in Section \ref{sec:results_datacleaning}, we gathered a total amount of 259 users with, at least, one valid answer: from the laboratory environment
+As previously said in Section \ref{sec:results_datacleaning}, we gathered a total amount of 259 users with, at least, one valid answer: from the laboratory environment
 we collected 28 users, and 231 from the online strand. All of these users gave valid answers for the Profiling, Calibration and Color Deficiencies Tests Phases: the information collected
 in the Profiling page is the most important to compose a user profile. \par
 %
-Recalling Section \ref{subsec:design_profiling}, we established that the most important informations to collect were the \emph{age}, the \emph{gender}, \emph{academic degree},
+Recalling Section \ref{subsec:design_profiling}, we established that the most important information to collect were the \emph{age}, the \emph{gender}, \emph{academic degree},
 \emph{nationality} and \emph{country of residence}, as well as the \emph{native language} of each user. The Table \ref{table:profiling_genderacademic} represents the frequencies of genders, ages and
 academic degrees. \par
 %
@@ -431,7 +431,7 @@ academic degrees. \par
 \end{table}
 %
 As seen above, our user sample is composed by 259 (100\%) users, being \textbf{105 (40.5\%) Females}, \textbf{152 (58.7\%) Males} and a minority of \textbf{2 (0.8\%) Other gendered users}: this sample age can
-be characterized as being generally young ($\overline{x} = 29.77$, $\overline{x} = 23$, $s = 40.30$ ), surprinsigly having \textbf{8 users (3.09\%) aged above 60 years old} which could enhance some interesting
+be characterized as being generally young ($\overline{x} = 29.77$, $\overline{x} = 23$, $s = 40.30$ ), surprisingly having \textbf{8 users (3.09\%) aged above 60 years old} which could enhance some interesting
 differences between age groups. Generally, our users have hight academic qualifications, representing \textbf{66.02\% of all users (Bachelor, Master and Doctoral Degrees)}, being \textbf{38 (14.67\%) users
 qualified with College degree}, \textbf{47 (18.15\%) have a High-School degree} and only \textbf{3 (1.16\%) subjects do not presented any academic degree}. Between the laboratory and online environment, the distribution
 of users remains with the same proportions: more male users than females, mostly aged between 20 and 29 years old (60.71\%) and the majority having a superior academic degree (46.43\% BSc and 35.71\% MSc). \par
@@ -440,7 +440,7 @@ of users remains with the same proportions: more male users than females, mostly
   \resizebox{\textwidth}{!} {
   \begin{tabular}{| l || c || c | c | c | c | c | c || c | c | c | c | c | c || c | c | c |}
     \hline
-    \multicolumn{1}{|c||}{\multirow{2}{*}{Environment}} & \multirow{2}{*}{Users} & \multicolumn{6}{c||}{Nacionality} & \multicolumn{6}{c||}{Country of Residence} & \multicolumn{3}{c|}{Languages} \\ \cline{3-17}
+    \multicolumn{1}{|c||}{\multirow{2}{*}{Environment}} & \multirow{2}{*}{Users} & \multicolumn{6}{c||}{Nationality} & \multicolumn{6}{c||}{Country of Residence} & \multicolumn{3}{c|}{Languages} \\ \cline{3-17}
     \multicolumn{1}{|c||}{}                             &                        & CA  & ES & PT & UK & US & Others & CA   & DE   & GB   & PT   & US  & Others  & PT      & EN      & Others     \\ \hline
     Laboratory                                         & 28                     & 0   & 0  & 27 & 1  & 0  & 0      & 0    & 0    & 0    & 28   & 0   & 0       & 28      & 0       & 0          \\ \hline
     Online                                             & 231                    & 5   & 3  & 188& 6  & 11 & 18     & 5    & 3    & 9    & 189  & 11  & 14      & 188     & 29      & 14         \\ \hline \hline
@@ -496,7 +496,7 @@ are measured inside the finite interval $[0 ; 1]$, since the CIE Chromaticity Di
 As referred before, each answer pair given from our users on questions 1 to 17 (one color given, two colors asked) was interpolated in five color models:
 HSV, CIE-L*C*h*, CMYK, RGB and CIE-L*a*b*. Then, we have converted the result into CIE-XYZ values, so the comparison between the pre-calculated blend for
 each color model and the given answer-pair would be conveyed in a standard color model. However, since the CIE-XYZ color model represents a 3D color space
-and we are representing our values in the same plane of maximum saturation, the XYZ coordinates had to be flatened down to XY coordinates only, dropping
+and we are representing our values in the same plane of maximum saturation, the XYZ coordinates had to be flattened down to XY coordinates only, dropping
 the Z component: this is a conversion from CIE-XYZ to CIE-XYY, where the X and Y coordinates were divided by the sum of all XYZ coordinates. Then, the
 euclidean distance between this interpolated blend and the one pre-calculated was measured, indicating us the proximity of the user's answers to each
 color model. \textbf{It was this distance which we had considered when analyzing the relationship between the users' expectations and each color model}. \par
@@ -515,7 +515,7 @@ results for each mixture. The results from this Section will be critical to dete
 which model yields better results and others who do not. In order to present the colors to the user, in the interface, we interpolated the colors from
 each color blending according to the HSV model, since it provides three parameters which are convenient for us to manipulate (the hue, saturation and value).
 Therefore, \textbf{the resulting colors which we present to the user when asking him the blending-basis are blended in HSV} for convenience. However, as
-said before, we intended to compare the interpolated answer pairs given by the users, to each of the previosuly referred color models: as it will be seen
+said before, we intended to compare the interpolated answer pairs given by the users, to each of the previously referred color models: as it will be seen
 on each question below, we compared these answers with the pre-calculated values for each blending in each color model. For example, the answers were
 interpolated in CIE-L*C*h*, and then they were compared with the result which was supposed to happen when blending the two colors from that question, in
 CIE-L*C*h*; this happens with all color models. \par
@@ -525,7 +525,7 @@ them every pre-calculated result, in every color model: this way, \textbf{we pre
 containing the results from HSV, CIE-L*C*h*, CMYK, RGB and CIE-L*a*b*}. \par
 %
 The triples presented in each shaded cell of tables below represent the resulting color of that color blending, according to each color model, and it is
-a XYZ Triple value that maps that color on the CIE-XYZ Chromaticty Diagram.
+a XYZ Triple value that maps that color on the CIE-XYZ Chromaticity Diagram.
 %
 \paragraph{\ul{Question One}}
 %
@@ -535,18 +535,18 @@ RGB and CIE-L*a*b*. As said before, each answer-pair was blended according to th
 mean calculation over the entire set of distances, between each resulting blend and the ideal blend (according to every color model). This produced the
 results reported on Table \ref{table:lab_q1_expected}. \par
 %
-One can observe that the model which presents the lowest mean value is the CMYK ($\overline{x} = 0.09$), possibily indicating that this model yields
+One can observe that the model which presents the lowest mean value is the CMYK ($\overline{x} = 0.09$), possibly indicating that this model yields
 the best results for this question, while HSV, RGB and CIE-L*a*b* have closer values. A Friedman Test showed that there are, indeed, significant
 differences ($\chi^2 = 48.568$, $p < 0.05$) between each color model. \par
 %
-Further analyis with the Wilcoxon Test reveals that CMYK ($p < 0.05$) has, in fact, very different responses from the other color models, which leads
+Further analysis with the Wilcoxon Test reveals that CMYK ($p < 0.05$) has, in fact, very different responses from the other color models, which leads
 us to conclude that \textbf{the CMYK Color Model is the best model to represent yellow blends}. Since HSV, RGB and CIE-L*a*b* have similar mean values,
 we tried to compare them between each other: \textbf{there is no statistically significant differences among HSV, RGB and CIE-L*a*b*, whereby there is insufficient
 information to evaluate this color models regarding this color mixture}. According to table, it is also possible to say that \textbf{CMYK Color Model
 presents a low deviation}, not only in laboratory results ($s_{lab} = 0.06$), but such value is corroborated by the online users ($s_{online} = 0.06$). \par
 %
 It is safe to say that \textbf{CIE-L*C*h* has the worst performance against the other color models}, since its mean is the highest of all
-($\overline{x} = 0.20$), and the values from Wilcoxon Test ($p < 0.05$) indicates that this color model has statistically signifcant differences every
+($\overline{x} = 0.20$), and the values from Wilcoxon Test ($p < 0.05$) indicates that this color model has statistically significant differences every
 other model. \textbf{These results are corroborated by the online users}, since a Wilcoxon Test shows that there are no statistically significant
 differences between the laboratory distances and online ones ($p < 0.05$).
 %
@@ -698,7 +698,7 @@ However, it is not safe to say that which color model had the worst results: jud
 standard deviation the differentiator between them. In fact, \textbf{HSV, CMYK and RGB have similar values due to the similarity between their outputs}: their mean values, though not
 the lower ones, are still very good and closer to the objective colors ($\overline{x}_{CMYK} = 0.06$, $\overline{x}_{HSV} = 0.07$ and $\overline{x}_{RGB} = 0.08$). \par
 %
-The CMYK Color Model has, again, the lowest deviaton of results. Performing a Friedman Test, we can conclude that there are, in fact, significant differences ($\chi^2 = 45.396$, $p < 0.05$)
+The CMYK Color Model has, again, the lowest deviation of results. Performing a Friedman Test, we can conclude that there are, in fact, significant differences ($\chi^2 = 45.396$, $p < 0.05$)
 between the color models; post hoc Wilcoxon Analysis ($p < 0.05$) reveals CIE-L*a*b* only has no statistically different results from CMYK color model, and CIE-L*C*h* has statistically
 significant differences with every color model.
 Evaluating this question by the values only, it would be possible to affirm that CIE-L*a*b* has the best results; despite, \textbf{there is no substantial differences to declare that}, since
@@ -762,7 +762,7 @@ the lowest mean value for distance to ideal answer ($\overline{x} = 0.10$), whil
 Surprisingly, CIE-L*C*h has the lowest result for the mean distance of online results ($\overline{x} = 0.09$), which is quite lower than the maximum value of this parameter in the online
 environment ($\overline{x}_{lab} = 0.16$). This result is different from the laboratory data, in which this same color model has the highest mean value for distance to ideal answer. With
 this said, \textbf{it is not safe to say that which color model had the worst results}.
-Also, there should be some sort of affinity between RGB and CIE-L*a*b* models, regarding the laboratory results: they both have the same mean distance and deviation values.
+Also, there should be some sort of affinity between RGB and CIE-L*a*b* models, regarding the Laboratory: they both have the same mean distance and deviation values.
 Evaluating the data with the Friedman Test, we can conclude that there are, in fact, significant differences ($\chi^2 = 27.377$, $p < 0.05$) between the color models; a Wilcoxon Analysis
 ($p < 0.05$) does not reveal a significant difference between color models. \par
 %
@@ -823,12 +823,12 @@ The results from this question will be useful when analyzing question fifteen.
 This question \ul{presents a shade of Blue color} and expects to receive, the pair \ul{Green and Magenta}. As in question 3, according to the HSV Color Model, Green and Magenta are positioned in
 opposite angles in the Hue Circle of Colors: therefore, blending these opposite colors that output two different colors. This question should be evaluated along with Question Eleven, which has
 the opposite output.
-These two colors, when blended, produce substantially different colors according to each model interpolation: this question could produce significally different results from model to model,
+These two colors, when blended, produce substantially different colors according to each model interpolation: this question could produce significant different results from model to model,
 since the users would be clearly indicating which color they would tend to. \par
 %
 The colors were blended and the mean values over distances were calculated, as Table \ref{table:lab_q10_expected} shows. It is observable that CMYK Color Model presents
 the lowest mean value for distance to ideal answer ($\overline{x} = 0.013$); its standard deviation is also the lowest between both study environments ($s = 0.05$), which could indicate a preference
-for this color model. Notwithstanding, all the mean values are substatially high when compared with previous questions, which could indicate that \textbf{none of these models produce the color blending according
+for this color model. Notwithstanding, all the mean values are substantially high when compared with previous questions, which could indicate that \textbf{none of these models produce the color blending according
 to the users' expectations, nor blending green and magenta to produce a blue shade}. \par
 %
 Running the Friedman Test, we can conclude that there are significant differences ($\chi^2 = 37.700$, $p < 0.05$) between the color models; a Wilcoxon Analysis ($p < 0.05$) reveals
@@ -857,13 +857,13 @@ analyzing question thirteen. Figures \ref{fig:onlineregular_10} and \ref{fig:onl
   \begin{minipage}{0.48\textwidth}
     \centering
     \includegraphics[width=\textwidth]{images/results/10_online_regularUsers.png}
-    \caption[Online Results: Answers for Question 10, from regular users.]{Online Results: Answers for Question 10, from regular users.}
+    \caption[Online: Answers for Question 10, from regular users.]{Online: Answers for Question 10, from regular users.}
     \label{fig:onlineregular_10}
   \end{minipage}\hfill
   \begin{minipage}{0.48\textwidth}
     \centering
     \includegraphics[width=\textwidth]{images/results/10_online_HSVresponses.png}
-    \caption[Online Results: Answers for Question 10, from regular users, mixed in HSV Color Model.]{Online Results: Answers for Question 10, from regular users, mixed in HSV Color Model.}
+    \caption[Online: Answers for Question 10, from regular users, mixed in HSV Color Model.]{Online: Answers for Question 10, from regular users, mixed in HSV Color Model.}
     \label{fig:onlinehsvregular_10}
   \end{minipage}
 \end{figure}
@@ -901,13 +901,13 @@ distances and online ones ($p < 0.05$).
   \begin{minipage}{0.48\textwidth}
     \centering
     \includegraphics[width=\textwidth]{images/results/11_online_regularUsers.png}
-    \caption[Online Results: Answers for Question 11, from regular users.]{Online Results: Answers for Question 11, from regular users.}
+    \caption[Online: Answers for Question 11, from regular users.]{Online: Answers for Question 11, from regular users.}
     \label{fig:onlineregular_11}
   \end{minipage}\hfill
   \begin{minipage}{0.48\textwidth}
     \centering
     \includegraphics[width=\textwidth]{images/results/11_online_HSVresponses.png}
-    \caption[Online Results: Answers for Question 11, from regular users, mixed in HSV Color Model.]{Online Results: Answers for Question 11, from regular users, mixed in HSV Color Model.}
+    \caption[Online: Answers for Question 11, from regular users, mixed in HSV Color Model.]{Online: Answers for Question 11, from regular users, mixed in HSV Color Model.}
     \label{fig:onlinehsvregular_11}
   \end{minipage}
 \end{figure}
@@ -953,13 +953,13 @@ Yellow color}. Figures \ref{fig:onlinehsvregular_3} and \ref{fig:onlinehsvregula
   \begin{minipage}{0.48\textwidth}
     \centering
     \includegraphics[width=\textwidth]{images/results/3_online_HSVresponses.png}
-    \caption[Online Results: Answers for Question 3, from regular users, mixed in HSV Color Model.]{Online Results: Answers for Question 3, from regular users, mixed in HSV Color Model.}
+    \caption[Online: Answers for Question 3, from regular users, mixed in HSV Color Model.]{Online: Answers for Question 3, from regular users, mixed in HSV Color Model.}
     \label{fig:onlinehsvregular_3}
   \end{minipage}\hfill
   \begin{minipage}{0.48\textwidth}
     \centering
     \includegraphics[width=\textwidth]{images/results/12_online_HSVresponses.png}
-    \caption[Online Results: Answers for Question 12, from regular users, mixed in HSV Color Model.]{Online Results: Answers for Question 12, from regular users, mixed in HSV Color Model.}
+    \caption[Online: Answers for Question 12, from regular users, mixed in HSV Color Model.]{Online: Answers for Question 12, from regular users, mixed in HSV Color Model.}
     \label{fig:onlinehsvregular_12}
   \end{minipage}
 \end{figure}
@@ -968,7 +968,7 @@ Yellow color}. Figures \ref{fig:onlinehsvregular_3} and \ref{fig:onlinehsvregula
 %
 This mixture expected in this question contains \ul{Blue and Cyan} colors as response to a lighter tone of \textbf{Blue}, which was presented. Similar to previous question, this one had
 presented a repeated color: this blue shade is equal to the one presented in question ten, therefore its results are interesting to compare with this question. As observed in Table
-\ref{table:lab_q13_expected}, when this mixture is blended according to each color model it generates similars colors, except for CIE-L*C*h* that has a ligher blending than others. \par
+\ref{table:lab_q13_expected}, when this mixture is blended according to each color model it generates similar colors, except for CIE-L*C*h* that has a lighter blending than others. \par
 %
 The colors were blended, mean values over distances calculated, as Table \ref{table:lab_q13_expected} shows. It is interesting to see CIE-L*C*h* overcoming the lowest result in the laboratory environment, against other
 color models which regularly had best results in previous questions; however, these results are not consistent with the online users, which indicated responses closer to the RGB Color Model
@@ -1009,13 +1009,13 @@ and online ones ($p < 0.05$): namely between the CMYK distance values ($p = 0.04
   \begin{minipage}{0.48\textwidth}
     \centering
     \includegraphics[width=\textwidth]{images/results/10_online_HSVresponses.png}
-    \caption[Online Results: Answers for Question 10, from regular users, mixed in HSV Color Model.]{Online Results: Answers for Question 10, from regular users, mixed in HSV Color Model.}
+    \caption[Online: Answers for Question 10, from regular users, mixed in HSV Color Model.]{Online: Answers for Question 10, from regular users, mixed in HSV Color Model.}
     \label{fig:onlinehsvregular_10}
   \end{minipage}\hfill
   \begin{minipage}{0.48\textwidth}
     \centering
     \includegraphics[width=\textwidth]{images/results/13_online_RGBresponses.png}
-    \caption[Online Results: Answers for Question 13, from regular users, mixed in RGB Color Model.]{Online Results: Answers for Question 13, from regular users, mixed in RGB Color Model.}
+    \caption[Online: Answers for Question 13, from regular users, mixed in RGB Color Model.]{Online: Answers for Question 13, from regular users, mixed in RGB Color Model.}
     \label{fig:onlinehsvregular_13}
   \end{minipage}
 \end{figure}
@@ -1058,12 +1058,12 @@ This question \ul{presents a shade of Green color} and expects to receive, the p
 opposite angles in the Hue Circle of Colors: therefore, blending these opposite colors that output two different colors. This question should be evaluate along with Question Sixteen, which has
 the opposite output. This question also presented a repeated color: this green shade is equal to the one presented in question nine, therefore its results are interesting to compare with this question.\par
 %
-These two colors, when blended, produce substantially different colors according to each model interpolation: this question could produce significally different results from model to model,
+These two colors, when blended, produce substantially different colors according to each model interpolation: this question could produce significant different results from model to model,
 since the users would be clearly indicating which color they would tend to.
 The colors were blended and the mean values over distances were calculated, as Table \ref{table:lab_q15_expected} shows. It is observable that CMYK Color Model presents the lowest mean value
 for distance to ideal answer ($\overline{x} = 0.06$); its standard deviation is also the lowest between both study environments ($s = 0.03$). Though, it is important to analyze this result: since we
 are mixing opposite colors, both CMYK and RGB generate a neutral color, which means that the closer the users' answers are from the ideal answers (Blue and Yellow), the shorter the distance on these color
-models, and greyer the shade. \textbf{This value, in fact, sustents the result of HSV Color} ($\overline{x}_{HSV} = 0.09$), which is very acceptable since the answer pairs are very close to the expected one. \par
+models, and greyer the shade. \textbf{This value, in fact, supports the result of HSV Color} ($\overline{x}_{HSV} = 0.09$), which is very acceptable since the answer pairs are very close to the expected one. \par
 %
 Running the Friedman Test, we can conclude that there are significant differences ($\chi^2 = 63.068$, $p < 0.05$) between the color models; a Wilcoxon Analysis ($p < 0.05$) reveals that
 there are statistically different results among all color models, except for \ul{HSV and RGB} and \ul{HSV and CIE-L*a*b*}, which do not have statistically significant differences.
@@ -1072,7 +1072,7 @@ answers are lower for all models against question 9. This fact leads us to concl
 Cyan color}. Figures \ref{fig:onlinehsvregular_9} and \ref{fig:onlinehsvregular_15} compare the results from both question nine and fifteen, blended in HSV (the model which yields the best results). \par
 %
 HSV has statistically different results from other color models, therefore concluding that \textbf{HSV has the best solution for this blending}, according to users' responses. It is necessary to analyze
-pairwise the next question to evaluate the efectiveness of this output, for Blue and Yellow colors blending. \textbf{The laboratory results are corroborated by the online ones}, since a Wilcoxon Test show that there
+pairwise the next question to evaluate the effectiveness of this output, for Blue and Yellow colors blending. \textbf{The laboratory results are corroborated by the online ones}, since a Wilcoxon Test show that there
 are no statistically significant differences between the laboratory distances and online ($p < 0.05$).\par
 %
 \begin{table}[H]
@@ -1095,13 +1095,13 @@ are no statistically significant differences between the laboratory distances an
   \begin{minipage}{0.48\textwidth}
     \centering
     \includegraphics[width=\textwidth]{images/results/9_online_HSVresponses.png}
-    \caption[Online Results: Answers for Question 9, from regular users, mixed in HSV Color Model.]{Online Results: Answers for Question 9, from regular users, mixed in HSV Color Model.}
+    \caption[Online: Answers for Question 9, from regular users, mixed in HSV Color Model.]{Online: Answers for Question 9, from regular users, mixed in HSV Color Model.}
     \label{fig:onlinehsvregular_9}
   \end{minipage}\hfill
   \begin{minipage}{0.48\textwidth}
     \centering
     \includegraphics[width=\textwidth]{images/results/15_online_HSVresponses.png}
-    \caption[Online Results: Answers for Question 15, from regular users, mixed in HSV Color Model.]{Online Results: Answers for Question 15, from regular users, mixed in HSV Color Model.}
+    \caption[Online: Answers for Question 15, from regular users, mixed in HSV Color Model.]{Online: Answers for Question 15, from regular users, mixed in HSV Color Model.}
     \label{fig:onlinehsvregular_15}
   \end{minipage}
 \end{figure}
@@ -1138,13 +1138,13 @@ demonstrate the placement of answer-pairs, and the pairs blended in HSV Color Mo
   \begin{minipage}{0.48\textwidth}
     \centering
     \includegraphics[width=\textwidth]{images/results/16_online_regularUsers.png}
-    \caption[Online Results: Answers for Question 16, from regular users.]{Online Results: Answers for Question 16, from regular users.}
+    \caption[Online: Answers for Question 16, from regular users.]{Online: Answers for Question 16, from regular users.}
     \label{fig:onlineregular_16}
   \end{minipage}\hfill
   \begin{minipage}{0.48\textwidth}
     \centering
     \includegraphics[width=\textwidth]{images/results/16_online_HSVresponses.png}
-    \caption[Online Results: Answers for Question 16, from regular users, mixed in HSV Color Model.]{Online Results: Answers for Question 16, from regular users, mixed in HSV Color Model.}
+    \caption[Online: Answers for Question 16, from regular users, mixed in HSV Color Model.]{Online: Answers for Question 16, from regular users, mixed in HSV Color Model.}
     \label{fig:onlinehsvregular_16}
   \end{minipage}
 \end{figure}
@@ -1208,7 +1208,7 @@ could be justified by the fact that \textbf{cyan and yellow are primitives from 
     \multicolumn{1}{c|}{16}       & \multicolumn{1}{c|}{0.2087}                                                         & \multicolumn{1}{c||}{0.10378}                                   & \multicolumn{8}{c}{}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      \\ \midrule \midrule
     \multicolumn{1}{c|}{17}       & \multicolumn{1}{c|}{\cellcolor[HTML]{32CB00}{\color[HTML]{000000} \textbf{0.0683}}} & \multicolumn{1}{c||}{0.10228}                                   & \multicolumn{1}{c|}{0.1626}                                  & \multicolumn{1}{c||}{\cellcolor[HTML]{32CB00}\textbf{0.05902}} & \multicolumn{1}{c|}{\cellcolor[HTML]{32CB00}\textbf{0.0452}} & \multicolumn{1}{c||}{\cellcolor[HTML]{32CB00}\textbf{0.0162}}  & \multicolumn{1}{c|}{\cellcolor[HTML]{32CB00}\textbf{0.103}}  & \multicolumn{1}{c||}{\cellcolor[HTML]{32CB00}\textbf{0.0574}}  & \multicolumn{1}{c|}{\cellcolor[HTML]{32CB00}\textbf{0.113}}  & \multicolumn{1}{c|}{\cellcolor[HTML]{32CB00}\textbf{0.05112}}                      \\ \bottomrule
   \end{tabular}}
-  \caption[Laboratory Results: Statistics for distances \emph{per} question, of Results Interpolated in each Color Model]{Laboratory Results: Statistics for distances \emph{per} question, of Results Interpolated in each Color Model.}
+  \caption[Laboratory: Statistics for distances \emph{per} question, of Results Interpolated in each Color Model]{Laboratory: Statistics for distances \emph{per} question, of Results Interpolated in each Color Model.}
   \label{table:colormodels_distances_questions_statistics}
 \end{table}
 %
@@ -1219,7 +1219,7 @@ Now that we have broke down the results for each question, it is important to ev
 the results from the previous Section, displaying the three best and worst results of each color model, identified as green and red, respectively:
 this information is presented in Table \ref{table:colormodels_distances_questions_statistics}. Also, based on Table \ref{table:colormodels_distances_labonline},
 which presents the mean values for each color model decomposed by question, we can run descriptive statistics over its column and produce Table
-\ref{table:colormodels_distances_labonline_statistics} that is going to be helpul when inspecting the results \emph{per} color model, which contains
+\ref{table:colormodels_distances_labonline_statistics} that is going to be helpful when inspecting the results \emph{per} color model, which contains
 a set of descriptive statistics for each Color Model. In green/red, it is identified the color model which had the best/worst result for each statistic. \par
 %
 \begin{table}[htbp]
@@ -1280,12 +1280,12 @@ present the essence of them in the following topics:
 %
 \begin{enumerate}
   \item \ul{Red \& Cyan Blend} - Analyzing answers for questions three and four, they produce fairly similar results: they are both a bit far from the expected colors ($\overline{x}_{distance-3} = 0.0941$ and
-  $\overline{x}_{HSV-4} = 0.1162$), although the mean distance to the HSV precalculated blending for question three has a slightly lower value than question four. This could be also compared to question 12, which also
-  produces \textbf{Lime-Green} like question three, but even when compared, question three still has the best results when generating this tone of green. This leads us to specifiy that, although the mean distances to the
+  $\overline{x}_{HSV-4} = 0.1162$), although the mean distance to the HSV pre-calculated blending for question three has a slightly lower value than question four. This could be also compared to question 12, which also
+  produces \textbf{Lime-Green} like question three, but even when compared, question three still has the best results when generating this tone of green. This leads us to specify that, although the mean distances to the
   ideal HSV Color blend for this mixture, are not the lowest among all questions, \textbf{the users show a tendency to associate the blending of red and cyan to a result of lime-green, instead of shade of purple}. When comparing
   these results with online, we found that the later ones corroborate and prove this conclusion.
   %
-  \item \ul{Green \& Magenta Blend} - Unlike the previous blend, the results bewteen these questions were quite different between each other concerning the distance to the expected colors: $\overline{x}_{HSV-10} = 0.3$
+  \item \ul{Green \& Magenta Blend} - Unlike the previous blend, the results between these questions were quite different between each other concerning the distance to the expected colors: $\overline{x}_{HSV-10} = 0.3$
   and $\overline{x}_{HSV-11} = 0.0587$. However, the lower results associated with question eleven are due to the simple fact that \textbf{users indicated answers pairs which contained Red and Yellow}, which is the pair
   analyzed previously that also blended into orange; if the distance to the ideal answer pair for this question was measured, its mean value would be $\overline{x}_{distanceC1-C2} = 0.645$, which is largely different from the
   expected colors. Therefore we can conclude that \textbf{it is hard for the users to blend green and magenta, to obtain either a blue or an orange shade}; we can also conclude that \textbf{the blending of red and yellow
@@ -1305,13 +1305,13 @@ present the essence of them in the following topics:
     \begin{minipage}{0.48\textwidth}
       \centering
       \includegraphics[width=\textwidth]{images/results/15_lab_HSVresponses.png}
-      \caption[Laboratory Results: Answers for Question 15, from regular users, mixed in HSV Color Model.]{Laboratory Results: Answers for Question 15, from regular users, mixed in HSV Color Model.}
+      \caption[Laboratory: Answers for Question 15, from regular users, mixed in HSV Color Model.]{Laboratory: Answers for Question 15, from regular users, mixed in HSV Color Model.}
       \label{fig:labhsvregular_15}
     \end{minipage}\hfill
     \begin{minipage}{0.48\textwidth}
       \centering
       \includegraphics[width=\textwidth]{images/results/16_lab_HSVresponses.png}
-      \caption[Laboratory Results: Answers for Question 16, from regular users, mixed in HSV Color Model.]{Laboratory Results: Answers for Question 16, from regular users, mixed in HSV Color Model.}
+      \caption[Laboratory: Answers for Question 16, from regular users, mixed in HSV Color Model.]{Laboratory: Answers for Question 16, from regular users, mixed in HSV Color Model.}
       \label{fig:labhsvregular_16}
     \end{minipage}
   \end{figure}
@@ -1319,7 +1319,7 @@ present the essence of them in the following topics:
 \end{enumerate} \par
 %
 Another interesting example are Question 10 and 13: they both present a shade of blue, which could be obtained by two combinations, either Green and Magenta (Question ten) or Blue and Cyan (Question thirteen). Particularly, the
-late question had a fairly simple expected pair (two shades of blue), but the users demonstrated some dispersion when aswering the question: moreover, the statistics prove it, by having a rather high standard deviation
+late question had a fairly simple expected pair (two shades of blue), but the users demonstrated some dispersion when answering the question: moreover, the statistics prove it, by having a rather high standard deviation
 ($\overline{x}_{HSV-10} = 0.3$, $s_{HSV-10} = 0.15792$) when compared to the standard deviation of the whole model ($s_{HSV} = 0.08$). These results are, thus, consistent with the know fact revealed in the Background of this thesis that
 \textbf{human color perception is poorer in the blue region of the color spectrum, than in others}, \emph{e.g} the green zone, which produced the best results for this color model; these results are extensible to the purple region
 of the spectrum, which is contiguous to the blue one. \par
@@ -1351,7 +1351,7 @@ On the other hand, we consider that the questions which generate the worst resul
 fifteen (given a shade of green, expected blue and yellow), with correspondent mean values $\overline{x}_{10} = 0.2557$, $\overline{x}_{14} = 0.2995$ and $\overline{x}_{15} = 0.3031$. Curiously, the standard deviations of distances (for the
 laboratory environment) in this color model are fairly low when compared to the previous color model. \par
 %
-When comparing the results from the CIE-L*C*h* color model with other color models' results, we detect some statiscally significant differences with other models: performing a Wilcoxon Test ($p < 0.05$), we can infer that CIE-L*C*h* does
+When comparing the results from the CIE-L*C*h* color model with other color models' results, we detect some statistically significant differences with other models: performing a Wilcoxon Test ($p < 0.05$), we can infer that CIE-L*C*h* does
 present statistically significant differences with HSV, CMYK, RGB and CIE-L*a*b* in the majority of questions (between 8 to 10 questions). The model which CIE-L*C*h* has most statistically significant differences with is CMYK, with eleven questions. \par
 %
 Question six presented again a constant top value for the mean value, on this model, which reinforces the theory that the \textbf{orange color is commonly used and mixed by the users}. On the other hand, question number
@@ -1363,22 +1363,22 @@ that it is the color which human have less descriptive power}. \par
   \begin{minipage}{0.48\textwidth}
     \centering
     \includegraphics[width=\textwidth]{images/results/3_online_LChresponses.png}
-    \caption[Online Results: Answers for Question 3, from regular users, mixed in CIE-L*C*h* Color Model.]{Online Results: Answers for Question 3, from regular users, mixed in CIE-L*C*h* Color Model.}
+    \caption[Online: Answers for Question 3, from regular users, mixed in CIE-L*C*h* Color Model.]{Online: Answers for Question 3, from regular users, mixed in CIE-L*C*h* Color Model.}
     \label{fig:onlinelchregular_3}
   \end{minipage}\hfill
   \begin{minipage}{0.48\textwidth}
     \centering
     \includegraphics[width=\textwidth]{images/results/6_online_LChresponses.png}
-    \caption[Online Results: Answers for Question 6, from regular users, mixed in CIE-L*C*h* Color Model.]{Online Results: Answers for Question 6, from regular users, mixed in CIE-L*C*h* Color Model.}
+    \caption[Online: Answers for Question 6, from regular users, mixed in CIE-L*C*h* Color Model.]{Online: Answers for Question 6, from regular users, mixed in CIE-L*C*h* Color Model.}
     \label{fig:onlinelchregular_6}
   \end{minipage}
 \end{figure}
 %
-The question which revealed one of the lowest standard deviation value (meaning less osccilation of results), relating the online environment, was question three ($s_{3} = 0.05855$): this question help us
+The question which revealed one of the lowest standard deviation value (meaning less oscillation of results), relating the online environment, was question three ($s_{3} = 0.05855$): this question help us
 illustrate the difference between each of the descriptive statistics, since it has one of the highest mean value of distances ($\overline{x}_{17} = 0.23$) and, at the same time, lowest standard deviation. This could
 portray a scenario in which the users agreed on a quite distant answer. This question is illustrated in Figure \ref{fig:onlinelchregular_3}. \par
 %
-The question which has the lowest mean value of distances was question six ($s_{LCh-6} = 0.1332$), and it is represented on Figure \ref{fig:onlinelchregular_6}. Nonethless, we can observe that \textbf{these
+The question which has the lowest mean value of distances was question six ($s_{LCh-6} = 0.1332$), and it is represented on Figure \ref{fig:onlinelchregular_6}. Nonetheless, we can observe that \textbf{these
 questions have all answers pairs which, when blended according to CIE-L*C*h*, generate results that are farther apart from the ideal answer of each question}, therefore concluding that \textbf{CIE-L*C*h* is not
 the color model which hatches the best results when blending colors, according to users' expectations}. \par
 %
@@ -1412,11 +1412,11 @@ $\overline{x}_{13} = 0.1875$. Comparing them with the CIE-L*C*h* Color Model, we
 Question six keeps presenting a constant top value for the mean value, on this model, while question number ten and thirteen (both presented blue shades) kept having the worst mean and deviation values ($\overline{x}_{13} = 0.1875$,
 $s_{13} = 0.13097$), strengthening the theories aforementioned. \par
 %
-When comparing the results from the CMYK color model with other color models' results, we detect some statiscally significant differences with other models: performing a Wilcoxon Test ($p < 0.05$), we can infer that CMYK does
+When comparing the results from the CMYK color model with other color models' results, we detect some statistically significant differences with other models: performing a Wilcoxon Test ($p < 0.05$), we can infer that CMYK does
 present statistically significant differences with HSV, CIE-L*C*h*, RGB and CIE-L*a*b* in the majority of questions. The model which CMYK has most statistically significant differences with is RGB, with thirteen questions. \par
 %
 Question seventeen presented consistently another low value: along with question three and fifteen, these presented different \ul{shades of green} and all had yielded favorable results. Having this in mind, this may lead us to
-form another conclusion: \textbf{questions which presented shades of green color may produce better results, according to users' expectactions}. This is consistent with the fact that \textbf{humans have more descriptive power
+form another conclusion: \textbf{questions which presented shades of green color may produce better results, according to users' expectations}. This is consistent with the fact that \textbf{humans have more descriptive power
 in the green zone of the spectrum, due to the amount of cones which exist in the human eye}. \par
 %
 As it was explained before in the theoretical background, this color model is mainly a subtractive one, meaning it will naturally darken the colors when they are blended; the questions which yielded \textbf{better results are majorly
@@ -1428,13 +1428,13 @@ related to primitives of the CMYK color model}. This success could be related to
   \begin{minipage}{0.48\textwidth}
     \centering
     \includegraphics[width=\textwidth]{images/results/13_online_CMYKresponses.png}
-    \caption[Online Results: Answers for Question 13, from regular users, mixed in CMYK Color Model.]{Online Results: Answers for Question 13, from regular users, mixed in CMYK Color Model.}
+    \caption[Online: Answers for Question 13, from regular users, mixed in CMYK Color Model.]{Online: Answers for Question 13, from regular users, mixed in CMYK Color Model.}
     \label{fig:onlinecmykregular_13}
   \end{minipage}\hfill
   \begin{minipage}{0.48\textwidth}
     \centering
     \includegraphics[width=\textwidth]{images/results/17_online_CMYKresponses.png}
-    \caption[Online Results: Answers for Question 17, from regular users, mixed in CMYK Color Model.]{Online Results: Answers for Question 17, from regular users, mixed in CMYK Color Model.}
+    \caption[Online: Answers for Question 17, from regular users, mixed in CMYK Color Model.]{Online: Answers for Question 17, from regular users, mixed in CMYK Color Model.}
     \label{fig:onlinecmykregular_17}
   \end{minipage}
 \end{figure}
@@ -1457,7 +1457,7 @@ distance to the ideal CMYK Color Model response, while is accompanied by the ran
 \label{subsubsec:rgbcolormodel}
 %
 This color model, as covered before, is complementary to the CMYK color model. Feedback collected from the users was such that, sometimes, the users which knew how to blend in subtractive color models,
-tended to be confused and tried to mix additive color models, also. Based on the results collectd from the laboratory users, we can tell that the results from this color model are quite similar to CMYK results: the descriptive statistics present
+tended to be confused and tried to mix additive color models, also. Based on the results collected from the laboratory users, we can tell that the results from this color model are quite similar to CMYK results: the descriptive statistics present
 on Table \ref{table:colormodels_distances_labonline_statistics}, authenticated by the results from the online environment, prove RGB has one of the lowest mean value of distances ($\overline{x}_{lab} = 0.14$, $\overline{x}_{online} = 0.12$) and one of
 the lowest standard deviations ($s_{lab} = 0.05$, $s_{online} = 0.04$ equal to $s_{CMYK-online}$). \par
 %
@@ -1481,13 +1481,13 @@ blending}. However, \textbf{there is room for further investigation, to fully un
   \begin{minipage}{0.48\textwidth}
     \centering
     \includegraphics[width=\textwidth]{images/results/6_online_RGBresponses.png}
-    \caption[Online Results: Answers for Question 6, from regular users, mixed in RGB Color Model.]{Online Results: Answers for Question 6, from regular users, mixed in RGB Color Model.}
+    \caption[Online: Answers for Question 6, from regular users, mixed in RGB Color Model.]{Online: Answers for Question 6, from regular users, mixed in RGB Color Model.}
     \label{fig:onlinergbregular_6}
   \end{minipage}\hfill
   \begin{minipage}{0.48\textwidth}
     \centering
     \includegraphics[width=\textwidth]{images/results/13_online_RGBresponses.png}
-    \caption[Online Results: Answers for Question 13, from regular users, mixed in RGB Color Model.]{Online Results: Answers for Question 13, from regular users, mixed in RGB Color Model.}
+    \caption[Online: Answers for Question 13, from regular users, mixed in RGB Color Model.]{Online: Answers for Question 13, from regular users, mixed in RGB Color Model.}
     \label{fig:onlinergbregular_13}
   \end{minipage}
 \end{figure}
@@ -1517,13 +1517,13 @@ of green, expected green and cyan), which are exactly the same as before. The me
   \begin{minipage}{0.48\textwidth}
     \centering
     \includegraphics[width=\textwidth]{images/results/6_lab_Labresponses.png}
-    \caption[Laboratory Results: Answers for Question 6, from regular users, mixed in CIE-L*a*b* Color Model.]{Laboratory Results: Answers for Question 6, from regular users, mixed in CIE-L*a*b* Color Model.}
+    \caption[Laboratory: Answers for Question 6, from regular users, mixed in CIE-L*a*b* Color Model.]{Laboratory: Answers for Question 6, from regular users, mixed in CIE-L*a*b* Color Model.}
     \label{fig:lablabregular_6}
   \end{minipage}\hfill
   \begin{minipage}{0.48\textwidth}
     \centering
     \includegraphics[width=\textwidth]{images/results/6_online_Labresponses.png}
-    \caption[Online Results: Answers for Question 6, from regular users, mixed in CIE-L*a*b* Color Model.]{Online Results: Answers for Question 6, from regular users, mixed in CIE-L*a*b* Color Model.}
+    \caption[Online: Answers for Question 6, from regular users, mixed in CIE-L*a*b* Color Model.]{Online: Answers for Question 6, from regular users, mixed in CIE-L*a*b* Color Model.}
     \label{fig:onlinelabregular_6}
   \end{minipage}
 \end{figure}
@@ -1586,7 +1586,7 @@ with cells shaded in green which represent the best value for each one of questi
   \label{table:expectation_distances_labonline}
 \end{table}
 %
-As seen on the table, the results are roughly similar to the ones found on Table \ref{table:colormodels_distances_questions_statistics}, which depited the mean values for the results of questions which
+As seen on the table, the results are roughly similar to the ones found on Table \ref{table:colormodels_distances_questions_statistics}, which depicts the mean values for the results of questions which
 presented the result of a given mixture. However, there are some differences which we would like to comment.
 %
 \begin{table}[!htbp]
@@ -1609,13 +1609,13 @@ presented the result of a given mixture. However, there are some differences whi
   this question present on table \ref{table:lab_q20_expected}; as seen, the color model which has the closest ideal result is the CIE-L*a*b* ($\overline{x}_{lab} = 0.11$, $\overline{x}_{online} = 0.10$), opposite
   to CIE-L*C*h* which has the farthest response, according to users' responses in both laboratory and online environment. Curiously, HSV, RGB and CMYK all have very close results from each other. Further
   studies may focus in unraveling which is, in fact, the best color model, since \textbf{there is insufficient information to affirm which color model originates the closest distances, according to users'
-  expectactions}. Figure \ref{fig:onlineregular_20} depicts the answers given by the online users: although this user sample has the lowest distance to ideal answer, it is possible to observe that data is
+  expectations}. Figure \ref{fig:onlineregular_20} depicts the answers given by the online users: although this user sample has the lowest distance to ideal answer, it is possible to observe that data is
   a bit scattered across the chromaticity diagram.
   %
   \begin{figure}[!htbp]
     \centering
     \includegraphics[width=0.7\textwidth]{images/results/20_online_regularUsers.png}
-    \caption[Online Results: Answers for Question 20, from regular users.]{Online Results: Answers for Question 20, from regular users.}
+    \caption[Online: Answers for Question 20, from regular users.]{Online: Answers for Question 20, from regular users.}
     \label{fig:onlineregular_20}
   \end{figure}
   %
@@ -1633,22 +1633,22 @@ presented the result of a given mixture. However, there are some differences whi
     \begin{minipage}{0.48\textwidth}
       \centering
       \includegraphics[width=\textwidth]{images/results/17_online_Labresponses.png}
-      \caption[Online Results: Answers for Question 17, from regular users, mixed in CIE-L*a*b* Color Model.]{Online Results: Answers for Question 17, from regular users, mixed in CIE-L*a*b* Color Model.}
+      \caption[Online: Answers for Question 17, from regular users, mixed in CIE-L*a*b* Color Model.]{Online: Answers for Question 17, from regular users, mixed in CIE-L*a*b* Color Model.}
       \label{fig:onlinelabregular_17}
     \end{minipage}\hfill
     \begin{minipage}{0.48\textwidth}
       \centering
       \includegraphics[width=\textwidth]{images/results/32_online_regularUsers.png}
-      \caption[Online Results: Answers for Question 32, from regular users.]{Online Results: Answers for Question 32, from regular users.}
+      \caption[Online: Answers for Question 32, from regular users.]{Online: Answers for Question 32, from regular users.}
       \label{fig:onlineregular_32}
     \end{minipage}
   \end{figure}
   %
   \item \ul{Orange Blending} - Comparing the results from all questions, we end up concluding that the question which constantly had best results among all color models was the blending of red and yellow to create
-  orange. However, as it is observable, these results represent much higher distances to the ideal answer in any color model, than when given the user the resulting color of the blending. This fact could indiciate
+  orange. However, as it is observable, these results represent much higher distances to the ideal answer in any color model, than when given the user the resulting color of the blending. This fact could accuse
   that \textbf{it is harder for the users to detect the result of a color blend, when two blending basis are given, than when the resulting color is given}, even for the orange color blending which produced very good
   results in the previous analysis. This could be related to the lack of descriptive power which the color slider supplied the user, which was referred before. This conclusion is corroborated by the online users which,
-  although generating lower mean values than the laboratory ones, are coeherent with being higher than the ones previously studied.
+  although generating lower mean values than the laboratory ones, are coherent with being higher than the ones previously studied.
   %
   \item \ul{Blue Blending} - Recalling the previous analysis, the results for mixtures which resulted in a blue shade all had the worst results among all questions, across all color models. \emph{Per contra}, the
   results for questions which present a blending basis for creating a blue color had presented much closer distances than before. For example, question twenty-four presented \ul{Cyan and Magenta} seeking a \ul{Blue}
@@ -1720,8 +1720,8 @@ For example, we performed the following evaluation for \textbf{question four} va
 %
 Marked in \textbf{bold}, on Table \ref{table:blendings_models_rank}, are the color models which we have concluded to yield the best results, according to each type of question asked: \textbf{CMYK} when given the
 result and asked for the blending-basis, and \textbf{CMYK and RGB} for the questions whose blending-basis was given and the result was asked. For the blends of Magenta-Yellow and Blue-Cyan, we did not found
-conclusive results, as referred before: for the first one, it was not possible to concretly state which color model was the best, since all color models yielded similar closer distances; for the later blending, it was possible
-to concretly affirm which color model was the best or worst, since all color models provided higher distances, very similar between each other.
+conclusive results, as referred before: for the first one, it was not possible to concretely state which color model was the best, since all color models yielded similar closer distances; for the later blending, it was possible
+to concretely affirm which color model was the best or worst, since all color models provided higher distances, very similar between each other.
 %
 \begin{table}[htbp]
   \resizebox{\textwidth}{!} {
@@ -1791,8 +1791,8 @@ color model. These questions are refreshed again on Table \ref{table:primary_ble
   \label{table:primary_blends}
 \end{table}
 %
-As analyzed before, according to the users' responses and expectations, these questions show a fair degree of concordance when blending que mixture-basis, since they all tend tend to present better results when
-blended according to a CMYK Color Model. However, we have found an interesting behaviour from our users when answering these questions: some users indicated the resulting color on both the expected colors (\emph{e.g.}
+As analyzed before, according to the users' responses and expectations, these questions show a fair degree of concordance when blending the mixture-basis, since they all tend tend to present better results when
+blended according to a CMYK Color Model. However, we have found an interesting behavior from our users when answering these questions: some users indicated the resulting color on both the expected colors (\emph{e.g.}
 Red was presented, and the users indicated twice the color Red in their answers); we will briefly analyze the values for each of the blendings referred on Table \ref{table:primary_blends}, as it has already been
 analyzed before.
 %
@@ -1802,7 +1802,7 @@ In this question, it was expected that users indicate a mixing of Magenta and Ye
 complementary color model, the RGB. However, the laboratory users did focus their answers on \textbf{orange, green, blue and even red hue}; moreover, these results were similar among the online users and did not
 demonstrated a consensual answer pair. \\
 %
-Additionaly, five laboratory users (from thirteen which indicated a pair of two answers - $38.46\%$ of the users) and fourty-two online users (from sixty-two - $67.74\%$ of the users) indicated, at least, one time the
+Additionally, five laboratory users (from thirteen which indicated a pair of two answers - $38.46\%$ of the users) and forty-two online users (from sixty-two - $67.74\%$ of the users) indicated, at least, one time the
 red color as an answer. We can even run some descriptive statistics on top of the \ul{distance values between the given answers and the expected Magenta-Yellow Pair} ($\overline{x} = 0.49$, $s = 0.25$) and observe that
 these evidences lead us to believe that \textbf{the users do not know how to create a red color based on other primary colors}. \\
 %
@@ -1822,13 +1822,13 @@ with Green and Red, while Yellow was combined with Red, Green and Blue; however,
   \begin{minipage}{0.48\textwidth}
     \centering
     \includegraphics[width=\textwidth]{images/results/8_online_regularUsers.png}
-    \caption[Online Results: Answers for Question 8, from regular users.]{Online Results: Answers for Question 8, from regular users.}
+    \caption[Online: Answers for Question 8, from regular users.]{Online: Answers for Question 8, from regular users.}
     \label{fig:redblend_1}
   \end{minipage}\hfill
   \begin{minipage}{0.48\textwidth}
     \centering
     \includegraphics[width=\textwidth]{images/results/25_online_regularUsers.png}
-    \caption[Online Results: Answers for Question 25, from regular users.]{Online Results: Answers for Question 25, from regular users.}
+    \caption[Online: Answers for Question 25, from regular users.]{Online: Answers for Question 25, from regular users.}
     \label{fig:redblend_2}
   \end{minipage}
 \end{figure}
@@ -1839,7 +1839,7 @@ Regarding this, it was expected that users indicate a mixing of Cyan and Yellow 
 generate a color from the RGB Color Model. Curiously, both the laboratory and online users provided their answers on similar pairs, comprised between \textbf{blue shades and yellow ones}; the most repeated
 color pairs were, in fact, Blue shades combined with tones of green and yellow, as observable on Figure \ref{fig:greenblend_1}. \\
 %
-Additionaly, only two laboratory users (from twenty-three which indicated a pair of two answers - $8.70\%$ of the users) and six online users (from seventy-one - $8.45\%$ of the users) indicated an answer pair which did not even
+Additionally, only two laboratory users (from twenty-three which indicated a pair of two answers - $8.70\%$ of the users) and six online users (from seventy-one - $8.45\%$ of the users) indicated an answer pair which did not even
 nearly approximate to the desired hues. Running some descriptive statistics on top of the distance values between the given answers and the expected Magenta-Yellow Pair ($\overline{x} = 0.40$, $s = 0.21$) did reveal longer distances
 also; however, since the majority of answers are near a cyan hue tending to a blue one, we consider these answers as valid ones. These evidences lead us to believe that \textbf{the users do present knowledge on how to create a green color
 based on other primary colors, such as cyan/blue and yellow}. \\
@@ -1864,13 +1864,13 @@ capabilities}.
   \begin{minipage}{0.48\textwidth}
     \centering
     \includegraphics[width=\textwidth]{images/results/17_online_regularUsers.png}
-    \caption[Online Results: Answers for Question 17, from regular users.]{Online Results: Answers for Question 17, from regular users.}
+    \caption[Online: Answers for Question 17, from regular users.]{Online: Answers for Question 17, from regular users.}
     \label{fig:greenblend_1}
   \end{minipage}\hfill
   \begin{minipage}{0.48\textwidth}
     \centering
     \includegraphics[width=\textwidth]{images/results/32_online_regularUsers.png}
-    \caption[Online Results: Answers for Question 32, from regular users.]{Online Results: Answers for Question 32, from regular users.}
+    \caption[Online: Answers for Question 32, from regular users.]{Online: Answers for Question 32, from regular users.}
     \label{fig:greenblend_2}
   \end{minipage}
 \end{figure}
@@ -1878,7 +1878,7 @@ capabilities}.
 \paragraph{\ul{Cyan + Magenta = Blue}}
 %
 In this question, it was expected that users indicate a mixing of Cyan and Magenta to blend in a result of Blue; these colors are primitives from the CMYK Color Model. Both the laboratory and online users provided their answers
-on similar pairs, comprised between \textbf{blue shades, yellow ones, magenta's and pink, and some greens and reds}. There was also an interesting agregation of results on both environment, near the green and yellow shades.  \\
+on similar pairs, comprised between \textbf{blue shades, yellow ones, magenta's and pink, and some greens and reds}. There was also an interesting aggregation of results on both environment, near the green and yellow shades.  \\
 %
 However, as seen on Figures \ref{fig:blueblend_1} and \ref{fig:blueblend_2} there exists a tendency of users indicating answers very close to the given color (Blue Hue). This could reveal an \textbf{inability of detecting a blue blending
 basis}, which could be related to the (lack of) descriptive power among blue colors, previously referred. \\
@@ -1897,20 +1897,20 @@ like Blue (97 times, consistent with the previously analyzed blending using Cyan
 However, it is interesting to observe that the users consistently answered a Green shade 26 times, as observed in the CIE Chromaticity Diagram
 in Figure \ref{fig:blueblend_2}. The users answered 35 times with an answer pair of Blue-Blue ($46\%$ of users sample), 11 times Green-Green ($15\%$),
 and 8 pairs with Blue shaded colors and Magenta derived ones ($11\%$). This is a question with poorer results, which may bye derived from aforementioned
-problemas related to human blue color perception.
+problems related to human blue color perception.
 %
 \begin{figure}[!htbp]
   \centering
   \begin{minipage}{0.48\textwidth}
     \centering
     \includegraphics[width=\textwidth]{images/results/7_lab_regularUsers.png}
-    \caption[Laboratory Results: Answers for Question 7, from regular users.]{Laboratory Results: Answers for Question 7, from regular users.}
+    \caption[Laboratory: Answers for Question 7, from regular users.]{Laboratory: Answers for Question 7, from regular users.}
     \label{fig:blueblend_1}
   \end{minipage}\hfill
   \begin{minipage}{0.48\textwidth}
     \centering
     \includegraphics[width=\textwidth]{images/results/7_online_regularUsers.png}
-    \caption[Online Results: Answers for Question 7, from regular users.]{Online Results: Answers for Question 7, from regular users.}
+    \caption[Online: Answers for Question 7, from regular users.]{Online: Answers for Question 7, from regular users.}
     \label{fig:blueblend_2}
   \end{minipage}
 \end{figure}
@@ -1918,7 +1918,7 @@ problemas related to human blue color perception.
 \paragraph{\ul{Green + Blue = Cyan}}
 %
 As said before, this color blending was only conducted only in one way. In this question, it was expected that users indicate the result of mixing Green and Blue: Cyan; these colors are primitives from the RGB Color Model. Both the laboratory
-and online users provided similar results, with an agregation of them on the blue and cyan hues on both environment, and also in the orange hue (for unknown reasons).  \\
+and online users provided similar results, with an aggregation of them on the blue and cyan hues on both environment, and also in the orange hue (for unknown reasons).  \\
 %
 Running some descriptive statistics on top of the distance values between the given answer and the expected Cyan Color ($\overline{x} = 0.13$, $s = 0.06$) reveals some proximity to the expected color, and a lower standard deviation of results.
 Ideally, the results should be compared with the other type of question asked; since there is no question to compare and based on previous analyzed results, we can affirm that \textbf{there are mild evidences that users can detect a Green-Blue blend
@@ -1927,7 +1927,7 @@ to provide a Cyan color}. However, \textbf{further studies should deepen this qu
 \paragraph{\ul{Red + Blue = Magenta}}
 %
 In this question, it was expected that users indicate a mixing of Red and Blue to mix in a result of Magenta. Both the laboratory and online users provided their answers on similar pairs, comprised between \textbf{blue shades, yellow ones, magenta's and
-pink, and some greens and reds}. There was also an interesting agregation of results on both environment, \textbf{along the line which unites Blue and Red}, with some scattering among the cyan and teal colors.  \\
+pink, and some greens and reds}. There was also an interesting aggregation of results on both environment, \textbf{along the line which unites Blue and Red}, with some scattering among the cyan and teal colors.  \\
 However, as seen on Figure \ref{fig:magentablend_1} there exists a tendency of users indicating answers very close to the given color (Blue Hue). This scattering of results could be related to the \textbf{blue blending
 detection problems}, previously referred. \\
 %
@@ -1938,7 +1938,7 @@ detailed colors, contrary to other color blends previously evaluated}, which may
 %
 Analyzing question number nineteen, in which we ask the user which color is the result of blending Red and Blue, we conclude that \textbf{the results, as previously happened with other primary blends, are a bit scattered}, leaving no plausible conclusion to formulate.
 In this blending, \textbf{there is an observable tendency to begin the color blending with the red color}: on a frequency of twenty-four laboratory users, six of them ($25\%$) indicated a Red value as the first color, leaving the second color to indicate a
-more detailed color; the same happens when analzying sixty-three online users, where $33\%$ of them indicated a Red color as the first value. Relating the late dataset, it was also interesting to observe that $33\%$ of the users left the Blue color as a second answer.
+more detailed color; the same happens when analyzing sixty-three online users, where $33\%$ of them indicated a Red color as the first value. Relating the late dataset, it was also interesting to observe that $33\%$ of the users left the Blue color as a second answer.
 This could be due to \textbf{magenta being a relatively close color to a red hue}, leading the user to indicate firstly the color which he recalls the most, that happens to be red.
 %
 \begin{figure}[!htbp]
@@ -1946,13 +1946,13 @@ This could be due to \textbf{magenta being a relatively close color to a red hue
   \begin{minipage}{0.48\textwidth}
     \centering
     \includegraphics[width=\textwidth]{images/results/2_online_regularUsers.png}
-    \caption[Online Results: Answers for Question 2, from regular users.]{Online Results: Answers for Question 2, from regular users.}
+    \caption[Online: Answers for Question 2, from regular users.]{Online: Answers for Question 2, from regular users.}
     \label{fig:magentablend_1}
   \end{minipage}\hfill
   \begin{minipage}{0.48\textwidth}
     \centering
     \includegraphics[width=\textwidth]{images/results/19_online_regularUsers.png}
-    \caption[Online Results: Answers for Question 19, from regular users.]{Online Results: Answers for Question 19, from regular users.}
+    \caption[Online: Answers for Question 19, from regular users.]{Online: Answers for Question 19, from regular users.}
     \label{fig:magentablend_2}
   \end{minipage}
 \end{figure}
@@ -1960,12 +1960,12 @@ This could be due to \textbf{magenta being a relatively close color to a red hue
 \paragraph{\ul{Red + Green = Yellow}}
 %
 Lastly, it was expected that users indicate a mixing of Red and Green to mix in a result of Yellow. Both the laboratory and online users provided their answers on similar pairs, comprised between \textbf{blue shades, yellow ones, red and cyan}. There was also an
-interesting agregation of results on both environment, \textbf{along the line which unites Blue and Green, and Green and Red}, with a heavy concentration of results near the yellow shades, as seen on Figure \ref{fig:yellowblend_1}. \\
+interesting aggregation of results on both environment, \textbf{along the line which unites Blue and Green, and Green and Red}, with a heavy concentration of results near the yellow shades, as seen on Figure \ref{fig:yellowblend_1}. \\
 %
 The answer-pairs which contained Yellow presented this colors slightly shaded to orange, which could signify that \textbf{the users provided an orangish-yellow with another color in order to blend the first one to the ideal Yellow Hue}. \\
 %
 Running some descriptive statistics on top of the distance ($\overline{x} = 0.41$, $s = 0.22$) reveals roughly the same mean distance and standard deviation as before. In this question, the users revealed a balmy concordance amongst themselves, according to color bins
-labeling: the users centralized their answers on Blue, Navy-Blue, Orange, Red, Yellow and Green. We could state that \textbf{the users demonstrated some basic conception of blending red and green to obtain yellow}, but further studies should focus on understanting which
+labeling: the users centralized their answers on Blue, Navy-Blue, Orange, Red, Yellow and Green. We could state that \textbf{the users demonstrated some basic conception of blending red and green to obtain yellow}, but further studies should focus on understating which
 influence is the blue color exercising on the user's mental model, since it was a constant result among study environments. \\
 %
 Analyzing question number eighteen, in which we ask the user which color is the result of blending Red and Green, we conclude that \textbf{the results show an approximation to the ideal color result, but a scattering over orange and yellow colors}.
@@ -1983,20 +1983,20 @@ like Blue (97 times, consistent with the previously analyzed blending using Cyan
 However, it is interesting to observe that the users consistently answered a Green shade 26 times, as observed in the CIE Chromaticity Diagram
 in Figure \ref{fig:blueblend_2}. The users answered 35 times with an answer pair of Blue-Blue ($46\%$ of users sample), 11 times Green-Green ($15\%$),
 and 8 pairs with Blue shaded colors and Magenta derived ones ($11\%$). This is a question with poorer results, which may bye derived from aforementioned
-problemas related to human blue color perception.
+problems related to human blue color perception.
 %
 \begin{figure}[!htbp]
   \centering
   \begin{minipage}{0.48\textwidth}
     \centering
     \includegraphics[width=\textwidth]{images/results/1_online_regularUsers.png}
-    \caption[Online Results: Answers for Question 1, from regular users.]{Online Results: Answers for Question 1, from regular users.}
+    \caption[Online: Answers for Question 1, from regular users.]{Online: Answers for Question 1, from regular users.}
     \label{fig:yellowblend_1}
   \end{minipage}\hfill
   \begin{minipage}{0.48\textwidth}
     \centering
     \includegraphics[width=\textwidth]{images/results/18_online_regularUsers.png}
-    \caption[Online Results: Answers for Question 18, from regular users.]{Online Results: Answers for Question 18, from regular users.}
+    \caption[Online: Answers for Question 18, from regular users.]{Online: Answers for Question 18, from regular users.}
     \label{fig:yellowblend_2}
   \end{minipage}
 \end{figure}
@@ -2039,10 +2039,10 @@ For better appreciation, the table presents in green shaded cells the color blen
 \end{table}
 %
 As seen on the table, the results are in agreement with the ones collected and concluded before: the \textbf{blending of Red-Green resulting in Yellow}, \textbf{blending of Red-Yellow and Green-Magenta, both resulting in Orange} and the
-\textbf{blending of Cyan-Yellow resulting in Green} were the mixtures which, according to the users' answers, had the lowest effor of blending, consequently the highest rating of easiness; particularly for the mixture of Red and Yellow, resulting in
-Orange, it provides the best results in both question types. Contrary, the questions which had the lowest results were almost always the ones in which the user was incquired about the result of given blending basis. \par
+\textbf{blending of Cyan-Yellow resulting in Green} were the mixtures which, according to the users' answers, had the lowest effort of blending, consequently the highest rating of easiness; particularly for the mixture of Red and Yellow, resulting in
+Orange, it provides the best results in both question types. Contrary, the questions which had the lowest results were almost always the ones in which the user was inquired about the result of given blending basis. \par
 %
-Neverthless, it is interesting to observe that the results for the generality of questions encircle the rating of 2 and 3 in the interval $[1 ; 5]$, which could indicate that \textbf{apart from the obvious color blendings which proved to yield the
+Nevertheless, it is interesting to observe that the results for the generality of questions encircle the rating of 2 and 3 in the interval $[1 ; 5]$, which could indicate that \textbf{apart from the obvious color blendings which proved to yield the
 best results, all the other blendings show nor an easy or hard level of effort to mix the basis}. These results are confirmed by the online responses, by running a Friedman Test which indicates us that there are no statistically significant differences
 ($p < 0.05$) when comparing the results from the laboratory environment, with the online results. \par
 %
@@ -2079,8 +2079,8 @@ the male and female users, or even if the younger users interpret the color blen
 created six groups (users aged below 20 years, aged between 20 and 29, between 30 and 39, 40 and 49, 50 and 59, and above 60 years), and for the gender we have divided the dataset according to female, male and other gendered users. These groups were, then, iterated
 by question, performing a \ul{Spearman's Rank-Order Correlation test} between the ages and genders, with the answers; since the amount of data available is quite high, this test would dictate which questions would be subject of further analysis in this Section. \par
 %
-Additionaly, it would be interesting to perform a crossed analysis between genders and age groups: however, the size of the dataset does not provide the amount of information needed to corroborate such analysis. Hereupon, we are going to divide the analysis of these demographic
-groups on the next subSections, starting by analyzing the results for the age groups highlighting the questions which manifested statistically significant correlations, followed by the evaluation of the gender groups. To end this Section, we will perfom an additional
+Additionally, it would be interesting to perform a crossed analysis between genders and age groups: however, the size of the dataset does not provide the amount of information needed to corroborate such analysis. Hereupon, we are going to divide the analysis of these demographic
+groups on the next subSections, starting by analyzing the results for the age groups highlighting the questions which manifested statistically significant correlations, followed by the evaluation of the gender groups. To end this Section, we will perform an additional
 informal evaluation of the results collected from color vision deficient users.
 %
 \subsubsection{Age Groups}
@@ -2089,12 +2089,12 @@ informal evaluation of the results collected from color vision deficient users.
 Recalling Table \ref{table:profiling_genderacademic}, present of Section \ref{subsec:results_userprofile}, we have collected a total of 259 users, being \ul{38 users aged below 20 years}, \ul{162 users aged between 20 and 29 years}, \ul{20 users aged between 30 and 39 years},
 \ul{19 users aged between 40 and 49 years}, \ul{12 users aged between 50 and 59 years} and \ul{8 users aged above 60 years}. When analyzing the results from all 32 questions, for each of these age groups, with Spearman's Correlation test we conclude that there are no statistically
 significant correlations ($\rho < 0.05$) when comparing the distances from answers blended in each color model (HSV, CIE-L*C*h*, CMYK, RGB and CIE-L*a*b*) with the age from the users, for the majority of questions except for a small subset: from all 32 questions asked, seven of them presented weak,
-positive and negative correlation between the age values and the calculated distances, which have statistically signifficant correlation values ($\rho < 0.05$). \par
+positive and negative correlation between the age values and the calculated distances, which have statistically significant correlation values ($\rho < 0.05$). \par
 %
 These questions are \ul{number six} ($r_s(6) = 0.22$, $\rho = 0.013$), \ul{seven} ($r_s(7) = -0.18$, $\rho = 0.032$), \ul{eight} ($r_s(8) = -0.21$, $\rho = 0.015$), \ul{nine} ($r_s(9) = 0.19$, $\rho = 0.029$), \ul{nineteen} ($r_s(19) = 0.19, \rho = 0.028$), \ul{twenty-five}
 ($r_s(25) = 0.18$, $\rho = 0.034$) and, finally, question \ul{thirty-one} ($r_s(31) = -0.19$, $\rho = 0.031$). \par
 %
-To better comprehend the differences between age groups on the aforementioned questions, we have runned a Wilcoxon Signed-rank Test ($p < 0.05$) in order to detect significant differences which exist, between results for each color model, by age group. The test reveals that:
+To better comprehend the differences between age groups on the aforementioned questions, we have executed a Wilcoxon Signed-rank Test ($p < 0.05$) in order to detect significant differences which exist, between results for each color model, by age group. The test reveals that:
 %
 \begin{enumerate}
   \item There are statistically significant differences ($p = 0.021$) on \ul{question six} (expected Red-Yellow, presented Orange color), when blending the answers in \ul{HSV Color Model}, between the users aged \ul{below 20 years} and the ones aged \ul{between 40 and 49 years};
@@ -2129,13 +2129,13 @@ Figures \ref{fig:age_1} and \ref{fig:age_2} reflects the statistically significa
   \begin{minipage}{0.48\textwidth}
     \centering
     \includegraphics[width=\textwidth]{images/results/6_demo_age20_HSVresponses.png}
-    \caption[Demographic Results, from Question 6, for answers given by users aged below 20 years, blended according to HSV Color Model.]{Demographic Results, from Question 6, for answers given by users aged below 20 years, blended according to HSV Color Model.}
+    \caption[Demographic Results, Question 6, Age below 20 years, according to HSV.]{Demographic Results, from Question 6, from users aged below 20 years, blended according to HSV Color Model.}
     \label{fig:age_1}
   \end{minipage}\hfill
   \begin{minipage}{0.48\textwidth}
     \centering
     \includegraphics[width=\textwidth]{images/results/6_demo_age40_49_HSVresponses.png}
-    \caption[Demographic Results, from Question 6, for answers given by users aged between 40 and 49 years, blended according to HSV Color Model.]{Demographic Results, from Question 6, for answers given by users aged between 40 and 49 years, blended according to HSV Color Model.}
+    \caption[Demographic Results, Question 6, Age between 40-49 years, according to HSV.]{Demographic Results, from Question 6, for answers given by users aged between 40 and 49 years, blended according to HSV Color Model.}
     \label{fig:age_2}
   \end{minipage}
 \end{figure}
@@ -2145,12 +2145,12 @@ Figures \ref{fig:age_1} and \ref{fig:age_2} reflects the statistically significa
 %
 Recalling Table \ref{table:profiling_genderacademic}, we have collected a total of 259 users, being \ul{105 Female Users}, \ul{152 Male Users} and \ul{2 Other Gender Users}. Similarly to what was done before, we analyzed the results from
 all 32 questions, for each of these gender groups, with Spearman's Correlation test: we have conclude that there are no statistically significant correlations ($\rho < 0.05$) when comparing the distances from answers blended in each color model with users' gender, for the majority of questions.
-Notwithstanding, eight of them presented weak, positive and negative correlation between the gender types and the calculated distances, which have statistically signifficant correlation values ($\rho < 0.05$). \par
+Notwithstanding, eight of them presented weak, positive and negative correlation between the gender types and the calculated distances, which have statistically significant correlation values ($\rho < 0.05$). \par
 %
 These questions are \ul{number six} ($r_s(6) = 0.17$, $\rho = 0.049$), \ul{nine} ($r_s(9) = -0.17$, $\rho = 0.043$), \ul{eleven} ($r_s(11) = 0.182$, $\rho = 0.038$), \ul{fifteen} ($r_s(15) = 0.22$, $\rho = 0.012$), \ul{sixteen} ($r_s(16) = -0.19, \rho = 0.024$), \ul{seventeen}
 ($r_s(17) = 0.18$, $\rho = 0.037$), question \ul{twenty-two} ($r_s(22) = 0.19$, $\rho = 0.024$) and, finally, question number \ul{thirty} ($r_s(30) = 0.19$, $\rho = 0.025$). \par
 %
-Equally to age groups' analysis, we have runned a Wilcoxon Signed-rank Test ($p < 0.05$) in order to detect significant differences which exist, between results for each color model, by gender group. The test reveals that:
+Equally to age groups' analysis, we have executed a Wilcoxon Signed-rank Test ($p < 0.05$) in order to detect significant differences which exist, between results for each color model, by gender group. The test reveals that:
 %
 \begin{enumerate}
   \item There are statistically significant differences ($p = 0.027$) on \ul{question nine} (expected Green-Cyan, presented a tone of Green), when blending the answers in \ul{CMYK Color Model}, between the \ul{Male} and \ul{Female} users. Among 64 cases, 38 of them presented wider distances for
@@ -2191,13 +2191,13 @@ descriptive power concerning Male users} - whose answers are conveying to the gr
   \begin{minipage}{0.48\textwidth}
     \centering
     \includegraphics[width=\textwidth]{images/results/16_demo_genderF_RGBresponses.png}
-    \caption[Demographic Results, from Question 16, for answers given by female users, blended according to RGB Color Model.]{Demographic Results, from Question 16, for answers given by female users, blended according to RGB Color Model.}
+    \caption[Demographic Results, Question 16, Female users, according to RGB.]{Demographic Results, from Question 16, from female users, blended according to RGB Color Model.}
     \label{fig:gender_1}
   \end{minipage}\hfill
   \begin{minipage}{0.48\textwidth}
     \centering
     \includegraphics[width=\textwidth]{images/results/16_demo_genderM_RGBresponses.png}
-    \caption[Demographic Results, from Question 16, for answers given by male users, blended according to RGB Color Model.]{Demographic Results, from Question 16, for answers given by male users, blended according to RGB Color Model.}
+    \caption[Demographic Results, Question 16, Male users, according to RGB.]{Demographic Results, from Question 16, from male users, blended according to RGB Color Model.}
     \label{fig:gender_2}
   \end{minipage}
 \end{figure}
@@ -2220,20 +2220,20 @@ received a Yellow stimulus, instead of a Red one (recall Figure \ref{fig:corresc
   \begin{minipage}{0.48\textwidth}
     \centering
     \includegraphics[width=\textwidth]{images/results/8_online_regularUsers.png}
-    \caption[Online Results: Answers for Question 8, from regular users.]{Online Results: Answers for Question 8, from regular users.}
+    \caption[Online: Answers for Question 8, from regular users.]{Online: Answers for Question 8, from regular users.}
     \label{fig:dalt_1}
   \end{minipage}\hfill
   \begin{minipage}{0.48\textwidth}
     \centering
     \includegraphics[width=\textwidth]{images/results/8_online_daltonicUsers.png}
-    \caption[Online Results: Answers for Question 8, from daltonic users.]{Online Results: Answers for Question 8, from daltonic users.}
+    \caption[Online: Answers for Question 8, from daltonic users.]{Online: Answers for Question 8, from daltonic users.}
     \label{fig:dalt_2}
   \end{minipage}
 \end{figure} \par
 %
 \paragraph{\ul{Cyan + Yellow = Green}}
 %
-On the other hand, when we presented one of the blending which collected the best results from all (question 17), the users answered in a similar fashion from the regular users. It was asked the users to indicate a Cyan-Yellow pair to mix into a Green color, and the three daltonic users from both study envrionment have
+On the other hand, when we presented one of the blending which collected the best results from all (question 17), the users answered in a similar fashion from the regular users. It was asked the users to indicate a Cyan-Yellow pair to mix into a Green color, and the three daltonic users from both study environment have
 answered with similar answer-pairs. The laboratory user answered with a Green-Green pair, while the online users answered with a Yellow-Cyan one; this could have many reasons to happen, since these color vision deficiencies transform the Green presented color onto a Yellow shade, but preserves the Blue color as it is, and
 the yellow color is a very common color to perceive among these deficiencies. \par
 %
@@ -2245,13 +2245,13 @@ pair since they know for fact to which regular color the color they see correspo
   \begin{minipage}{0.48\textwidth}
     \centering
     \includegraphics[width=\textwidth]{images/results/17_lab_daltonicUsers.png}
-    \caption[Laboratory Results: Answers for Question 17, from daltonic users.]{Laboratory Results: Answers for Question 17, from daltonic users.}
+    \caption[Laboratory: Answers for Question 17, from daltonic users.]{Laboratory: Answers for Question 17, from daltonic users.}
     \label{fig:dalt_3}
   \end{minipage}\hfill
   \begin{minipage}{0.48\textwidth}
     \centering
     \includegraphics[width=\textwidth]{images/results/17_online_daltonicUsers.png}
-    \caption[Online Results: Answers for Question 17, from daltonic users.]{Online Results: Answers for Question 17, from daltonic users.}
+    \caption[Online: Answers for Question 17, from daltonic users.]{Online: Answers for Question 17, from daltonic users.}
     \label{fig:dalt_4}
   \end{minipage}
 \end{figure} \\ \par
@@ -2267,7 +2267,7 @@ analyzed.
 \label{sec:results_discussion}
 %
 The goal of this color study was to: \textbf{study a way to present color information which does not influence color perception}, \textbf{understand if there is any mental organization of color} and \textbf{study the influence of discrete and continuous color scales} on
-user's answers. Additionaly, it was relevant to understand which color model stood as the best to blend colors which are more similar to users' expectation. This user study was developed in two different conditions: in a \textbf{Laboratory Environment}, which allowed us
+user's answers. Additionally, it was relevant to understand which color model stood as the best to blend colors which are more similar to users' expectation. This user study was developed in two different conditions: in a \textbf{Laboratory Environment}, which allowed us
 to calibrate ans control the entire study conditions, and in a \textbf{Online Environment}, which allowed us to broadcast our study to a larger set of users. \par
 %
 We have defined a set of questions which we wanted to answer to, as follows:
@@ -2291,7 +2291,7 @@ When analyzing the answers by Color Model, we can observe that \textbf{the HSV C
 which presented the lowest mean value for distances was the CMYK Color Model}. The RGB, HSV and CIE-L*a*b* Color Models all generate values very similar to each other, so \textbf{further studies should focus on discerning which color model is better than others, between
 HSV, RGB and CIE-L*a*b*}, since there were no relevant differences among them. \par
 %
-On the other hand, the CIE-L*C*h* Color Model is the one which typically provided the worst results across all color blendings, therefore being \textbf{the one which least resembles the users' expectactions when blending colors}. The CMYK Color Model is, by far, the one
+On the other hand, the CIE-L*C*h* Color Model is the one which typically provided the worst results across all color blendings, therefore being \textbf{the one which least resembles the users' expectations when blending colors}. The CMYK Color Model is, by far, the one
 which presents the best results for most of the descriptive statistics, being corroborated by the results from the online environment: the distances from the given answers when blended according to the CMYK Color Model, presented consistently the lowest values across
 all questions. In fact, the questions which yielded better results are majorly related to primitives of the CMYK color model; this success could be related to the fact that people tend to formulate mental models of color based on ink mixing in childhood
 \cite{Gossett2004}, mostly associating it to Red, Yellow, Blue (RYB) and CMYK Color Models without even knowing it: \textbf{These results indicate that CMYK is a highly compatible color model with the users expectations}. For these reasons, we can answer question
@@ -2301,7 +2301,7 @@ most resembles the user's expectation, when blending two colors according to a g
 It is also interesting to observe that the users are able to blend primary colors (Red, Green, Blue, Cyan, Magenta and Yellow) using other primary colors as the blending-basis: however, the results obtained for \textbf{Blue and Cyan are consistent with the ones
 obtained previously}: there is no strong evidence that the users can produce Blue (or blue-derived) color blendings. In opposition, when \textbf{creating Green, Magenta and Yellow}, the users revealed some basic conception of blending their basis, with more emphasis
 on the process of creating Magenta: users have indicated more detailed shades of Red to create the color mixture, contrary to other color blends evaluated, which may have implications on the level of detail that the displaying of color should have. This leads us to
-answer question \textbf{Q2}: \textbf{for color blendings which envolve the Red color there is, in fact, evidence that the users sort the colors when indicating the blending-basis, revealing some mental color organization}: in the latter case of the Magenta blending, users may have indicated
+answer question \textbf{Q2}: \textbf{for color blendings which involve the Red color there is, in fact, evidence that the users sort the colors when indicating the blending-basis, revealing some mental color organization}: in the latter case of the Magenta blending, users may have indicated
 first the Red shades, since it is a color that is more similar to Magenta (the resulting one) and users may have used it to start the mixture, just like when using paint colors. \par
 %
 Besides asking our users to indicate us the two primitives which composed a color blending of two colors, we intended to go further: comprehend if more than detecting two colors of a mixture, a user is capable of mentally blend two given colors and indicate us its results.
@@ -2311,7 +2311,7 @@ colors which he thought it could be more appropriate}. For certain colors (\emph
 %
 We have also performed a demographic analysis to ascertain if there was any plausible difference present in our dataset, between demographic groups. We have conducted an analysis \emph{per} age groups (users aged below 20 years, between 20-29, 30-39, 40-49, 50-59 and
 above 60 years) and gender groups (Female, Male and Other gendered). Regarding the \ul{age groups}, we have not found relevant differences between age groups, since not every color blending had presented statistically significant differences between the groups; however,
-from the ones which had presented differences, the users aged between 40 and 49 years were present in every difference detected. Still, \textbf{we do not have enough ground truth to sustent a conclusion about the existance of age diffences}. \par
+from the ones which had presented differences, the users aged between 40 and 49 years were present in every difference detected. Still, \textbf{we do not have enough ground truth to support a conclusion about the existence of age differences}. \par
 %
 We cannot say the same thing about \ul{gender groups} differences: there is a mild difference between the results from the Female gendered users, and the Male ones. It is not an absolute difference, since not every question had presented significant differences between
 gender groups; also, it is not possible to formulate a conclusion about which gender generates the wider or closer distances to the ideal answer (according to each Model), since there is no visible pattern about this subject. There were no significant differences
@@ -2364,13 +2364,13 @@ Remember that question 2 asked for a answer-pair of Red-Blue to a Magenta color 
   \begin{minipage}{0.48\textwidth}
     \centering
     \includegraphics[width=\textwidth]{images/results/2_online_regularUsers.png}
-    \caption[Online Results: Answers for Question 2, from calibrated users.]{Online Results: Answers for Question 2, from calibrated users.}
+    \caption[Online: Answers for Question 2, from calibrated users.]{Online: Answers for Question 2, from calibrated users.}
     \label{fig:uncal_1}
   \end{minipage}\hfill
   \begin{minipage}{0.48\textwidth}
     \centering
     \includegraphics[width=\textwidth]{images/results/2_online_uncalibratedUsers.png}
-    \caption[Online Results: Answers for Question 2, from uncalibrated users.]{Online Results: Answers for Question 2, from uncalibrated users.}
+    \caption[Online: Answers for Question 2, from uncalibrated users.]{Online: Answers for Question 2, from uncalibrated users.}
     \label{fig:uncal_2}
   \end{minipage}
 \end{figure} \par
@@ -2387,7 +2387,7 @@ conclusions to elaborate from this subject}.
 This research produced a set of useful results which could have some impact in the \gls{InfoVis} Research area. As it is know,
 conveying data values through marks and channels is typical of an infovis: via geometric shapes, their size, length, motion, or hue;
 particularly, the latter is an interesting topic, which is to convey information via color. Using one color to transmit the information
-contained in one variable is straighforward (though discussion may be rised about which is the best color), the not-so-trivial subject about
+contained in one variable is straightforward (though discussion may be raised about which is the best color), the not-so-trivial subject about
 this is when we want to carry more than one variable with different colors: do color blendings effectively work when two colors are mixed and
 presented to the user? \par
 %
@@ -2399,7 +2399,7 @@ adding relative quantities of each color?}. \par
 %
 Though this subject may be extended to blendings with more than two colors, we believed that \textbf{the more colors involved in a color mixture,
 the greater the confusion which may happen when trying to interpret the results carried in each color}: this could occur, since the majority of
-users may not be familar with the process of mixing colors, as it is not a task conducted out recurrently in a daily basis. If the user is not
+users may not be familiar with the process of mixing colors, as it is not a task conducted out recurrently in a daily basis. If the user is not
 familiar with the process, this could cause an overhead when he tries to interpret the visualization and, if he cannot interpret it, whatever
 happens next may lead him to leave the visualization since he may not be able to overcome the inherent learning curve. \par
 %
@@ -2410,12 +2410,12 @@ a set of colors which resulted from blending pairs of two colors according to fi
 were presented in the study interface in agreement with the HSV Color Model, since it was the one which could provide the \emph{tools} of presenting the
 color as we wanted in the visualization: varying \textbf{H}ue, maximum \textbf{S}aturation and maximum \textbf{V}alue, so we could range the colors we
 wanted to present inside the range of $[0º ; 360º]$. It is totally valid to use the HSV Color Model to manipulate the colors presented in a information
-visualization (typically developed using web technologies), since it provides light colors, shades and greys only by varing the H, S and V primitives. \par
+visualization (typically developed using web technologies), since it provides light colors, shades and greys only by varying the H, S and V primitives. \par
 %
 Though, we have found that \textbf{the color model which better corresponds to the user's blending expectation is the CMYK Color Model}: this is
 notably interesting, since we can relate this result with the known fact that the users created their mental models of color according to infant
 experiences of paint pigments blending. In fact, the users are much more familiar with blending paint colors, than blending light colors: except
-for the users which are familar with RGB Color Model (tipically the Computer Science ones), the majority of users formulated their mental model of
+for the users which are familiar with RGB Color Model (typically the Computer Science ones), the majority of users formulated their mental model of
 color in accordance with subtractive color models. \par
 %
 CMYK, then, proves to be the color model which most likely the users would follow if they had to decompose a color presented. There are some artifacts
@@ -2433,7 +2433,7 @@ On the other hand, it should not be provided \ul{any Luminance or Saturation} wh
 there. In our study, we provided a continuous color scale when we asked for the color-pair which originated a given result color, since the underlying
 values of the slider were simply the Hue angles from the HSV color model; contrary, we have presented a discrete color scale when asked for the result
 of blending a given blending-basis, since the values of the slider were the pre-calculated results according to each color model. Our user study confirms
-that \textbf{the usage of continuous color scales should be limited to cases in which the user is intended to oscilate the value of a variable and adjust
+that \textbf{the usage of continuous color scales should be limited to cases in which the user is intended to oscillate the value of a variable and adjust
 it as he may}, and that \textbf{the usage of discrete color scales should be indicated when giving the user tools to blend colors associated to
 pre-defined containers of information} as Gama and Gonçalves stated \cite{Gama20142}.\par
 %
@@ -2449,7 +2449,7 @@ example, \textbf{it was easier for the users to indicate that \ul{Magenta and Ye
 was given}. Imagining an information visualization, it is the same as stating that \textbf{it is best for the user to perceive an already blended color
 and process it according to its mental model of color}, than to give a white screen and ask the user to create the color blendings. \par
 %
-Additionaly, it would be interesting to explore the differences between genders (Female and Male) and adapt the amount of \emph{descriptiveness} visually
+Additionally, it would be interesting to explore the differences between genders (Female and Male) and adapt the amount of \emph{descriptiveness} visually
 perceived by the user according to its gender; since it is plausible that there is, in fact, some mild difference between the color descriptive power of
 man and woman, \textbf{an information visualization that could provide such feature would be, besides more enjoyable, more adapted to the descriptive
 capabilities of each user} and capable of providing better results and less frustration.
