@@ -1,0 +1,55 @@
+\documentclass[conference,twocolumn,letterpaper,10pt]{ieee-sty/IEEEtran}
+
+% Adds support for acronyms
+\usepackage[acronym]{glossaries}
+% Adds support for UTF-8 text
+\usepackage[utf8]{inputenc}
+% Adds support for figures
+\usepackage{graphicx}
+% Allows to import pdf pages
+\usepackage{pdfpages}
+% Adds support for referencing
+\usepackage{hyperref}
+% Fixes references for footnotes
+\usepackage[all]{hypcap}
+
+% Generates the acronyms list
+\makeglossaries
+
+% Acronyms list
+\input{acronyms/acronyms.tex}
+
+% ------------------------------------------
+%  ARTICLE
+% ------------------------------------------
+
+\begin{document}
+
+% Variables file
+\input{variables.tex}
+
+% Article title
+\title{\Title}
+
+% Author(s) Name
+\author{\Authors}
+
+\maketitle
+\thispagestyle{plain}
+\pagestyle{plain}
+
+% Abstract
+\input{abstract/abstract.tex}
+
+% Keywords
+\input{keywords/keywords.tex}
+
+% Sections
+\input{sections/main.tex}
+
+% Bibliography
+\bibliographystyle{IEEEtran}
+% Bibliography file
+\bibliography{IEEEabrv,bibliography/article}
+
+\end{document}
