@@ -454,9 +454,9 @@ with each corner being the purest colors, as in the Figure \ref{fig:RGB}.
 Nonetheless, this color model needed improvements, specially a better geometrical representation, since RGB does not create
 an accurate match to the color mixture recognized by human vision.
 %
-\begin{wrapfigure}[6]{r}{0.35\textwidth}
+\begin{wrapfigure}[4]{r}{0.35\textwidth}
 	\centering
-	\vspace{-10pt}
+	\vspace{-35pt}
 	\includegraphics[width=\linewidth]{images/background/HSV_TriangleCone.png}
 	\caption[HSV Triangle and Cone Representation]{HSV Model.\protect\footnotemark{}}
 	\label{fig:HSV}
@@ -523,32 +523,10 @@ combinations. They can be, generally, grouped onto three categories:
   	colors to a standardized palette. For example, one of the most used color working space is Adobe RGB 1998.
 \end{enumerate} \par
 %
-There were two relevant studies made about color spaces: the fist one is the \textbf{Munsell Color System},
+There were two relevant studies made about color spaces: the fist one is the \textbf{Munsell Color System} \cite{Munsell1919},
 which had began in 1898 and saw its full expression in 1905; the second is one of the principal color spaces used to describe the
 entire range of human perceivable colors, which is the \textbf{CIE Color System}. The CIE space of visible color is expressed
 according to different components: \textbf{CIE 1931 XYZ, CIE-L*a*b* and CIE-L*u*v*}, and all three present the same range of colors.
-%
-\begin{wrapfigure}[10]{R}{0.25\textwidth}
-  \centering
-  \vspace{-\baselineskip}
-  \includegraphics[width=\linewidth]{images/background/MunsellSystem.png}
-  \caption[Munsell Color System Representation]{Munsell Color System.\protect\footnotemark{}}
-  \label{fig:munsell}
-\end{wrapfigure}
-\footnotetext{"Munsell Color System", Available at: \url{www.bit.ly/1mJsH3I}. Last accessed on October 17th, 2016.}
-%
-\paragraph{\ul{Munsell Color System}} One interesting color system is the one created by
-Professor Albert H. Munsell in the first decade of the 20th century \cite{Munsell1919}. This was the first system to separate
-hue, value and chroma into perceptually different dimensions, and also illustrate in a systematic way these
-components in a three dimensional space. It consists of a cylindrical color solid, where value is measured
-vertically from 0 (black) to 10 (white), hue is measured in degrees around horizontal circles and chroma,
-radially measured in concentric circles. \\
-Each circle of the cylinder is divided into five principal hues: Red, Yellow, Green, Blue and Purple, where
-intermediate hues can be found
-in-between the principal ones. Two colors with equal chroma and value - residing in the same circle - but
-found on opposite sides are complementary colors, and create gray color found in center of the
-circle, when mixed together.  Colors in this system are defined in the format \textbf{“H V/C”}, for example,
-“5R 5/10” means Red Hue, with 5 meaning middle value and a chroma of 10, indicating a high level of purity. \par
 %
 \paragraph{\ul{CIE 1931}} The \emph{Commission Internationale de l’Éclairage} (\textbf{CIE}, or
 International Commission on Illumination) defined in 1931 the first set of color spaces, which defined the
@@ -811,6 +789,7 @@ between genders: more women should be included in the study since, as previously
 distinguish a larger variety of shades. There is not an extensive cultural representation, just as there
 is no representation of various educational levels besides graduated users, which could be interesting to show. \par
 %
+\newpage
 \subsubsection{Perception of Relative Amounts of Color}
 \label{subsubsec:perception_amounts}
 %
@@ -916,15 +895,6 @@ a technique of color weaving and a hue-preserver color blending technique, cover
 %
 \subsubsection{Color Weaving}
 %
-\begin{wrapfigure}[10]{r}{0.25\textwidth}
-	\centering
-    \vspace{-\baselineskip}
-    \includegraphics[width=0.25\textwidth]{images/background/WeavingTest1.png}
-    \caption[Color Weaving - First Study]{Example of a Map.
-    \protect\cite{Hagh-Shenas2007}}
-    \label{fig:weaving2}
-\end{wrapfigure}
-%
 One of the challenges of multivariate visualization
 is to clearly show different layers of information with color patterns, with no doubt to the user: as
 composing different layers on top of each other, most of the time it creates colors and patterns which
@@ -937,6 +907,16 @@ color used to illustrate the mix of different entities with different values, wh
 combines multiple scalar single-hue-encoded distributions, computed over a common field, to form a
 multi-colored line integral convolution tapestry, in which multiple color combinations are represented
 explicitly via adjacent lines in a texture, rather than overlaying multiple layers of single color. \par
+%
+\begin{wrapfigure}[10]{r}{0.25\textwidth}
+	\centering
+    \vspace{-\baselineskip}
+    \includegraphics[width=0.25\textwidth]{images/background/WeavingTest1.png}
+    \caption[Color Weaving - First Study]{Example of a Map.
+    \protect\cite{Hagh-Shenas2007}}
+    \label{fig:weaving2}
+\end{wrapfigure}
+%
 This technique was vastly studied by Hagh-Shenas \emph{et al.} \cite{Hagh-Shenas2007}. These researchers created a
 set of experiments, in which the user was questioned over a state map of U.S.A., reading it and giving answers
 that would be statistically analyzed. \par
@@ -1015,6 +995,14 @@ blending colors in different blend orders can produced different results.
 %
 \subsubsection{Other Investigation in Color Usage}
 %
+\begin{wrapfigure}[18]{r}{0.35\textwidth}
+	\centering
+    \vspace{-20pt}
+    \includegraphics[width=0.35\textwidth]{images/background/stoffel.png}
+    \caption[Stoffel's Technique to Visualize Proportions with Hues.]{Stoffel's Technique to Visualize Proportions with Hues. \protect\cite{Stoffel2012}}
+    \label{fig:stoffel}
+\end{wrapfigure}
+%
 Colormaps are commonly used in many domains in computer science, \emph{e.g.}, computer graphics, visualization, computer vision and image processing.
 Particularly in visualizations, as they are able to improve the efficiency and effectiveness of data perception and therefore allow more insights
 into the data. Therefore, it is crucial for visualization designers and users to understand colormap generation techniques as well as the general
@@ -1027,14 +1015,6 @@ create false perceived boundaries in data. Additionaly, the authors classify col
 based} and \textbf{data-driven}, which shows that with a deeper understanding of colors and data, as well as the advent of more powerful computation,
 methods for colormap generation have evolved from procedurally designing a default colormap for all data, into more intelligent data-driven approaches
 as the state-of-the-art. \par
-%
-\begin{wrapfigure}[18]{r}{0.35\textwidth}
-	\centering
-    \vspace{-10pt}
-    \includegraphics[width=0.35\textwidth]{images/background/stoffel.png}
-    \caption[Stoffel's Technique to Visualize Proportions with Hues.]{Stoffel's Technique to Visualize Proportions with Hues. \protect\cite{Stoffel2012}}
-    \label{fig:stoffel}
-\end{wrapfigure}
 %
 Stoffel, Janetzko and Mansmann introduced a new technique \cite{Stoffel2012} for visualizing proportions in categorical data; in particular, they combine bipolar colormaps
 with an adapted double-rendering of polygons to simultaneously visually represent the first two categories and the spatial location; as the example given
