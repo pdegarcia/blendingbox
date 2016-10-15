@@ -254,13 +254,13 @@ should follow; other examples of color standards are the International Maritime 
 \end{wrapfigure}
 %
 Color is even perceptually different among different countries, continents, environments and genders:
-as is know by now\footnote{"Where Man See White (...)", Available at:
+as it is known by now\footnote{"Where Man See White (...)", Available at:
 \url{www.bit.ly/1AMHgcW}.
 Last accessed on October 17th, 2016.} \cite{Ginter2011}, women can detect and describe with much more detail color than men, the
 photoreceptors of men take a little longer wavelengths to perceive hue of a color; this question remain
 to be fully researched, but the difference between genders is a certainty. In 2011, BBC shot a
 documentary\footnote{\label{itsnoteasy}"It's Not Easy Seeing Green". Available at:
-\url{www.nyti.ms/1S71yVo},
+\url{www.nyti.ms/1S71yVo}.
 Last accessed on October 17th, 2016.} in which they explore the differences from the western color
 perception, and tribal color perception; the researchers presented a circle of squares with different
 shades of green (Figure \ref{fig:himba}), to the Himba tribe from Northern Namibia. Surprisingly, they were able to detect a larger
@@ -520,7 +520,7 @@ combinations. They can be, generally, grouped onto three categories:
 	\item \textbf{Device-Independent Spaces}, which express color in absolute terms, serving as universal
 	  reference colors.
 	\item \textbf{Working Spaces}, used by image editing software and file formats to constrain the range of
-  	colors to a standardized palette. For example, one of the most used color working space is Adobe RGB 1998.
+  	colors to a standardized palette. For example, one of the most used is Adobe RGB 1998.
 \end{enumerate} \par
 %
 There were two relevant studies made about color spaces: the fist one is the \textbf{Munsell Color System} \cite{Munsell1919},
@@ -618,7 +618,7 @@ according to a concrete color setup, defined by the user. \par
 	\centering
     \vspace{-10pt}
     \includegraphics[width=0.4\textwidth]{images/background/Pantone_rose_serenity.jpg}
-    \caption[Pantone Matching System - Marsala]{Pantone's Color of the Year.\protect\footnotemark[18]}
+    \caption[Pantone Matching System - Marsala]{Pantone's Color of the Year.\protect\footnotemark[16]}
     \label{fig:pantone}
 \end{wrapfigure}
 %
@@ -641,7 +641,7 @@ rods. This color system is based on the six elementary colors referred in the be
 colors in NCS are defined by three values, specifying the amount of \textbf{darkness, the chromaticity and a
 percentage value between two of the colors}. The intuit of this color system is
 create color codes that can be spread and understood across the world. To define a color in this color
-system you need to\footnote{\label{ncshowto}"How To Comunicate Your Color.", Available at: \url {bit.ly/1OSrttr}. Last accessed on Jauary 8th, 2016.}:
+system you need to\footnote{\label{ncshowto}"How To Comunicate Your Color.", Available at: \url {bit.ly/1OSrttr}. Last accessed on October 17th, 2016.}:
 %
 \begin{enumerate}
 	\setlength\itemsep{0.01em}
@@ -827,7 +827,7 @@ users. Results have shown, also, that subjects found it moderately easy to perce
 weight in blended colors. \par
 %
 This study provides us several rules of thumb for crafting an information visualization or a color
-blending perception: when the idea is to provide rough information, color information may be successfully
+blending perception: when the idea is to provide rough information, color blending may be successfully
 used; be that as it may, no more than three interpolations must be done between color pairs, so humans
 can distinguish different component weights. Hence, a set of 5 colors is the optimal solution: 2
 pairwise colors and 3 interpolations. \par
@@ -883,6 +883,40 @@ only the strictly-needed labels, lowering the cognitive load of the user. This w
     \label{fig:choropleth}
 \end{figure}
 %
+\begin{wrapfigure}[18]{r}{0.35\textwidth}
+	\centering
+    \vspace{-20pt}
+    \includegraphics[width=0.35\textwidth]{images/background/stoffel.png}
+    \caption[Stoffel's Technique to Visualize Proportions with Hues.]{Stoffel's Technique to Visualize Proportions with Hues. \protect\cite{Stoffel2012}}
+    \label{fig:stoffel}
+\end{wrapfigure}
+%
+Colormaps are commonly used in many domains in computer science, \emph{e.g.}, computer graphics, visualization, computer vision and image processing.
+Particularly in visualizations, as they are able to improve the efficiency and effectiveness of data perception and therefore allow more insights
+into the data. Therefore, it is crucial for visualization designers and users to understand colormap generation techniques as well as the general
+rules for choosing appropriate colormaps for specific data. Zhou and Hansen \cite{Zhou2016} provide a way to classify colormapping techniques into
+a taxonomy for readers to quickly identify the appropriate techniques they might use, classifying representative visualization techniques that
+explicitly discuss the use of colormaps. These authors gathered the investigation performed by other researchers in this paper. There are a set of
+standards for a good colormap, namely \ul{order} (colors should have perceptual orders in a colormap), \ul{uniformity and representative distance}
+in which perceived color distances should match actual differences between the data they represent; and \ul{boundaries} where colors should not
+create false perceived boundaries in data. Additionaly, the authors classify colormap generation as: \textbf{procedural, user-study based, rule
+based} and \textbf{data-driven}, which shows that with a deeper understanding of colors and data, as well as the advent of more powerful computation,
+methods for colormap generation have evolved from procedurally designing a default colormap for all data, into more intelligent data-driven approaches
+as the state-of-the-art. \par
+%
+Stoffel, Janetzko and Mansmann introduced a new technique \cite{Stoffel2012} for visualizing proportions in categorical data; in particular, they combine bipolar colormaps
+with an adapted double-rendering of polygons to simultaneously visually represent the first two categories and the spatial location. As the example given
+in their paper, this enables the recognition of close election results as well as clear majorities, or other similar subjects. Representing data variables
+in a map makes the choice of visual variables more challenging, as the most important variable, namely position, is already occupied representing the geographic location:
+therefore, when showing values of a categorical data set, it stands to reason using color hue to represent the different categories (in the particular case of this
+example, each party). The difference in this technique resides in reusing the visual variable shape by placing a shrunk polygon of the specific shape
+on top of the original polygon, to express the distance to the second ranked category: if the distance between both polygons is very large, then the winner is
+far ahead of the second one, and the inner polygon will be very small, and vice versa. While attributing a color to categories, the outer polygon is filled in
+the color of the winning party, and a gradient fill is applied from the color of the second party (inner) to the color of the winner (outer). However, there is one
+issue addressed here, namely the visibility of the first ranked category in cases of a very tight result: in this case the outer polygon would diminish and could
+not be visible at all; also, this techniwue cannot handle different sized polygons very well as the visual salience of large polygons will always exceed the
+salience of small polygons. Figure \ref{fig:stoffel} exemplifies a map for Germany's 2009 Elections, showing the results crossed for all parties.
+%
 As seen, color blending can help conveying information but, at the same time, it can undermine the accuracy of
 the perception if too many variables are shown at the same time, or even if there exists scales with too many
 interpolations. Some techniques have been under research to provide a curated approach to color perception
@@ -910,7 +944,7 @@ explicitly via adjacent lines in a texture, rather than overlaying multiple laye
 %
 \begin{wrapfigure}[10]{r}{0.25\textwidth}
 	\centering
-    \vspace{-\baselineskip}
+    %\vspace{-10pt}
     \includegraphics[width=0.25\textwidth]{images/background/WeavingTest1.png}
     \caption[Color Weaving - First Study]{Example of a Map.
     \protect\cite{Hagh-Shenas2007}}
@@ -992,42 +1026,6 @@ blending colors in different blend orders can produced different results.
     Hue-Preserving Color Blending (right side of each image). \protect\cite{Chuang2009}}
   \label{fig:examples}
 \end{figure}
-%
-\subsubsection{Other Investigation in Color Usage}
-%
-\begin{wrapfigure}[18]{r}{0.35\textwidth}
-	\centering
-    \vspace{-20pt}
-    \includegraphics[width=0.35\textwidth]{images/background/stoffel.png}
-    \caption[Stoffel's Technique to Visualize Proportions with Hues.]{Stoffel's Technique to Visualize Proportions with Hues. \protect\cite{Stoffel2012}}
-    \label{fig:stoffel}
-\end{wrapfigure}
-%
-Colormaps are commonly used in many domains in computer science, \emph{e.g.}, computer graphics, visualization, computer vision and image processing.
-Particularly in visualizations, as they are able to improve the efficiency and effectiveness of data perception and therefore allow more insights
-into the data. Therefore, it is crucial for visualization designers and users to understand colormap generation techniques as well as the general
-rules for choosing appropriate colormaps for specific data. Zhou and Hansen \cite{Zhou2016} provide a way to classify colormapping techniques into
-a taxonomy for readers to quickly identify the appropriate techniques they might use, classifying representative visualization techniques that
-explicitly discuss the use of colormaps. These authors gathered the investigation performed by other researchers in this paper. There are a set of
-standards for a good colormap, namely \ul{order} (colors should have perceptual orders in a colormap), \ul{uniformity and representative distance}
-in which perceived color distances should match actual differences between the data they represent; and \ul{boundaries} where colors should not
-create false perceived boundaries in data. Additionaly, the authors classify colormap generation as: \textbf{procedural, user-study based, rule
-based} and \textbf{data-driven}, which shows that with a deeper understanding of colors and data, as well as the advent of more powerful computation,
-methods for colormap generation have evolved from procedurally designing a default colormap for all data, into more intelligent data-driven approaches
-as the state-of-the-art. \par
-%
-Stoffel, Janetzko and Mansmann introduced a new technique \cite{Stoffel2012} for visualizing proportions in categorical data; in particular, they combine bipolar colormaps
-with an adapted double-rendering of polygons to simultaneously visually represent the first two categories and the spatial location; as the example given
-in their paper, this enables the recognition of close election results as well as clear majorities, or other similar subjects. Representing data variables
-in a map makes the choice of visual variables more challenging, as the most important variable, namely position, is already occupied representing the geographic location:
-therefore, when showing values of a categorical data set, it stands to reason using color hue to represent the different categories (in the particular case of this
-example, each party). The difference in this technique resides in reusing the visual variable shape by placing a shrunk polygon of the specific shape
-on top of the original polygon, to express the distance to the second ranked category: if the distance between both polygons is very large, then the winner is
-far ahead of the second one, and the inner polygon will be very small, and vice versa. While attributing a color to categories, the outer polygon is filled in
-the color of the winning party, and a gradient fill is applied from the color of the second party (inner) to the color of the winner (outer). However, there is one
-issue addressed here, namely the visibility of the first ranked category in cases of a very tight result: in this case the outer polygon would diminish and could
-not be visible at all; also, this techniwue cannot handle different sized polygons very well as the visual salience of large polygons will always exceed the
-salience of small polygons. Figure \ref{fig:stoffel} exemplifies a map for Germany's 2009 Elections, showing the results crossed for all parties.
 %
 \section{Discussion}
 \label{sec:background_discussion}

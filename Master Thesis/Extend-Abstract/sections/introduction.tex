@@ -2,7 +2,77 @@
 
 \section{Introduction}
 \label{sec:introduction}
-
-\cite{Stoffel2012}
-
+%
+As it is stated by Chirimuuta \cite{Chirimuuta2014}, Color is a subjective interpretation of an objective physical
+\emph{stimulus}, which may differ from person to person. We, as humans, do not equally perceive color: by saying
+this, it is affirmed that the definition and the interpretation of a colored \emph{stimuli} can diverge depending
+on the philosophical mindset a person follows. Color has been object of study of different Philosophies and the
+definitions of this concept can fluctuate from the simplest statement that colors are simple, primitive intrinsic
+properties of physical objects, to the description that colors are subjective properties projected onto object’s
+physical surface and light-sources. Color perception is influenced by cultural patterns and the environment in which
+we evolved as a specie. \par
+%
+As it is known, the human visual system can only perceive light from a well defined wavelength range (from under 400
+nanometers until 750 nanometers, approximately) and, consequently, determining the spectrum of colors which is human
+perceivable. The colors are combined and represented by Color Models (\emph{e.g.} RGB, HSV or CMYK) which have their
+own color gamut: the combination of all these gamuts could be represent in a Color Space like CIE-XYZ, which maps all
+the human perceivable colors in a Chromaticity Diagram, frequently named as a Horseshoe Diagram given its shape. \par
+%
+Color is, nowadays, remarkably used as a powerful tool to convey information: it is used on statistical graphics,
+cartographical data, information visualization and developers are eager to use color in their interfaces to
+create a better User Experience - when accompanied of an appropriate \emph{Color Scheme}. Particularly, when
+showing data variables on a graphic, it is commonly associated to each variable a color and relationships between
+them are concluded by observing it. Certainly, it would be useful to combine variables in the same graphic, using
+a technique of \emph{Color Blending}, conveying exactly the same information but, from a Computer Graphics
+perspective, in an economical way. \par
+%
+This technique has not been widely exposed and investigated, but some interesting advances have been made yet. It
+has been researched if the blending of colors for data visualization \cite{Gama20141} would be a proper technique
+to convey information, so as for Visualizing Social Personal Information \cite{Gama20143}; on the other hand, it
+is also important to understand if users are able to perceive different amounts of blended colors \cite{Gama20142}. \par
+%
+Even though investigation has been done, there are flaws and situations raised from them which remain to be fully
+tested and understood. These led us to state that reseach goal as: \\ \\
+%
+\textbf{Study if color blendings can be detected by the users, while testing if it is easier for
+users to estimate the pair of colors that resulted in a particular given blend, or reciprocally, to estimate
+which blend will result from a given pair of colors.} \\ \\
+%
+We decided to conduct a user study to fulfill them and answer a small set of objective
+questions. We developed a platform which would be capable of dealing with laboratory and online data: this way,
+the overhead of analyzing data from two different environment would be reduced and data was concentrated in the same
+place. The study should be divided onto four important phases which will be addressed shortly in Section \ref{sec:blendme}. \par
+%
+It was created a set of color blendings based on the primitives from the RGB and CMYK Color Model: Red, Green, Blue,
+Cyan, Magenta and Yellow. This set was formed by blendings of two, which was presented to the user in two forms:
+by being given the result of the color blending to the user and asked for the basis, or by giving the basis and asking
+for the result which the user though it would be appropriate. These colors were blended following the HSV, RGB, CMYK,
+CIE-L*a*b* and CIE-L*C*h* Color Models, interpolating the colors from each pair accordingly. \par
+%
+In the end of the study, the analysis revealed that the color blending which
+constantly yielded the best results across all color models is the \textbf{mixing of Red-Yellow, to achieve Orange}, while
+the mixture which provided the worst results when evaluating the distance from the user’s answers and the ideal answers,
+is the blending of \textbf{Green-Magenta, resulting in a Blue shade}; these results are consistent with the fact that
+the human color perception is conditioned by the amount of Cones present in our eyes. \par
+%
+When analyzing the answers by Color Model, we can observe that the CMYK Color Model is the one which presents the best
+results across both study environments, while the CIE-L*C*h* Color Model is the one which typically provided the worst
+results across all color blendings. We have also found that, for color blendings which involved the Red color there was,
+in fact, evidence that the users sort the colors when indicating the blending-basis, revealing some mental color organization. \par
+%
+The focus of this Master thesis was to conclude relevant implications of using color blending techniques, in the Information
+Visualization field of research, which are going to be discussed later on this document.
+%
 \subsection{Contribution}
+%
+This dissertation aims to provide useful inputs about how color blending can be correctly used in Information Visualizations,
+and according to the users' expectations, leading to the following contributions:
+%
+\begin{itemize}
+  \item \ul{A set of results which determine the answers to the aforementioned questions}, obtained with online and laboratory
+  users.
+  \item \ul{A user studies platform called \emph{BlendMe!}}, which is composed of four test phases, helping the process of creating
+  a user profile, testing the calibration and color vision deficiencies and collect user feedback.
+  \item \ul{A compendium of guidelines on how to use color blending in Information Visualization}, produced based on users'
+  results, establishing aspects about color models and blendings which provide the best results.
+\end{itemize}

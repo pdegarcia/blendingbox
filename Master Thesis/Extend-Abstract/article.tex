@@ -1,5 +1,8 @@
 \documentclass[conference,twocolumn,letterpaper,10pt]{ieee-sty/IEEEtran}
 
+% Support for colors in tables
+\usepackage{booktabs}
+\usepackage[table]{xcolor}
 % Adds support for acronyms
 \usepackage[acronym]{glossaries}
 % Adds support for UTF-8 text
@@ -12,6 +15,11 @@
 \usepackage{hyperref}
 % Fixes references for footnotes
 \usepackage[all]{hypcap}
+% Allows underlined sentences to break when reaching EOL
+\usepackage{soul}
+% Adds support for multiple rows in a table
+\usepackage{multirow}
+
 
 % Generates the acronyms list
 \makeglossaries

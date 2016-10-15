@@ -4,9 +4,91 @@
 \label{sec:background}
 
 \subsection{Color Perception}
-
-\subsection{Color Models \& Spaces}
-
+%
+The Animal visual system is prepared to distinguish a wide range of green colors since we evolved as a species
+surrounded by green vegetation and knowing what to eat was a matter of life or death. The human visual system
+is adapted to detect sharpness and color with great precision and sensitivity during the day light and night.
+Hence, the light which reaches our human visual system is converted in the retina, which contains specialized
+cells - photoreceptors - that convert light energy into neural impulses, which are send to the brain. \par
+%
+There are two main types of photoreceptors: \textbf{cones} and \textbf{rods}, retinal cells that respond to light
+due to the absorption of photons in their proteins; cones are concentrated in the fovea. Particularly, the
+first ones can be classified in three different types: S (Small), M (Medium) and L (Large), according to the
+type of wavelength which they are sensitive to; the absence of one or more type of these cones causes a color
+vision deficiency.
+%
 \subsection{Mental Models of Color}
-
+%
+Mixing colors is a constant: learning how colors are disposed in a color wheel happens in our childhood and, in
+most of the case, a subtractive color model like the \textbf{RYB} is taught. As Gosset \emph{et al.} state
+\cite{Gossett2004}, the usage or learning of subtractive color spaces, in childhood, modifies the mental color
+model of each person. Typically, these models are quite different from the \textbf{RGB} model, which may confuse
+the observer, since these types of models constitute additive color spaces and are commonly used in visual
+displays. \par
+%
+Mental models of color are created individually by each user, and it can be influenced by many characteristics
+from his environment: Color is even perceptually different among different countries, continents, environments
+and genders: as it is known\footnote{"Where Man See White (...)", Available at: \url{www.bit.ly/1AMHgcW}. Last
+accessed on October 17th, 2016.} \cite{Ginter2011}, women can detect and describe with much more detail color
+than men, since the photoreceptors of men take a little longer wavelengths to perceive hue of a color. Also, it
+was investigated the cultural influence of each individual in his color perception: researchers have
+explored\footnote{\label{itsnoteasy}"It's Not Easy Seeing Green". Available at: \url{www.nyti.ms/1S71yVo}. Last
+accessed on October 17th, 2016.} the differences from the western color perception, and tribal color perception;
+the researchers presented a circle of squares with different shades of green, to the Himba tribe from Northern Namibia.
+Surprisingly, they were able to detect a larger number of shades of green than a western, non-colorblind person,
+which may occur because their environment do not manifest as much colors, and they need to detect different shades
+to hunt and pick up vegetation and fruits, which traditional western communities do not need to do. \par
+%
+\subsection{Color Models \& Spaces}
+%
+Mixing the three primary color light channels to match any color is no longer an oddity and it constitutes
+the basics of \emph{Colorimetry}: it is the science used to quantify and describe the human perception of color.
+We can describe color as the following equation \cite{Ware2012}: \textbf{$C = sS + mM + lL$}, where C stands for the color
+to be matched, \emph{S, M} and \emph{L} are the primary light sources used to create the final color and that are
+detected in three types of cones, \emph{s, m} and \emph{l} represent the precise amounts of each primary lights. \par
+%
+The concepts of \ul{Color Spaces} and \ul{Color Models}
+are often confused but, in fact, they do not present the same idea (although they do use similar conceptions). Color models
+exist to mathematically conceive a description of color, in which color spaces will be based and present the equivalent
+colors, while the latter represents the gamut of colors described accordingly to the primitives of a color model,
+containing not only visible colors but also colors that are impossible to represent on physical devices. \par
+%
+Regarding \ul{Color Models}, there are two types: \textbf{Additive Color Models} use light to display color mixing, mixing
+primary colors such as Red, Green and Blue; equally combined and overlapped, they form white light, whereas
+\textbf{Subtractive Color Models} mix colors using paint pigments and the result of any blend is a color that tend to be
+darker, the more you mix it. Examples of Color Models are RGB (Red-Green-Blue), HSV (Hue-Sauration-Value) and CMYK
+(Cyan-Magenta-Yellow-Key). \par
+%
+\ul{Color Spaces} allow the representation of reproducible colors on a given physical device, while relating the
+description of a color model to actual colors, being a three dimensional object that contains all realizable color combinations.
+There are three types of them: \textbf{Device-Dependent}, \textbf{Device-Independent} and \textbf{Working Spaces}. The
+most important Color Space is the \textbf{CIE 1931} which, nowadays, is derived by \textbf{CIE 1931 XYZ} and \textbf{CIE 1931
+RGB}; the first one is the most important, comprising all color sensations which a human can perceive, standing out as a
+standard for other color spaces. Another frequently used color space is the \textbf{CIE-L*a*b*}, where two axis are represented
+by the a* and b*, being the first one representative of Red-Green and the latter the Blue-Yellow; the L* variable represents the
+lightness. This color space derives in a cubic color space representation, which is recognized as the \textbf{CIE-L*C*h*}.
+%
 \subsection{Related Work}
+%
+Usually, when it comes to encoding information, color appears as the number one choice, due to the its ease of perception and
+familiarity. When representing more than one colored variable at the same time, it would be useful to perceive interrelations
+among them and if the users are able to understand which of these entities are related, or blended. \par
+%
+Gama and Gonçalves started their research \cite{Gama20141} aiming to study to which extent people are able to, given a specific
+color resulting from a mixture of two colors, understand the blended color’s origin; besides, they studied which is the color
+model that yields the most accurate results: hardware-oriented color models like RGB or color-printing models such as CMYK,
+fail to provide a color perception description, unlike HSV. This pitfall is amended by CIE-L*C*h*, by creating a perceptually
+uniform scale to lightness. On the other hand, when these researchers have tested the perception of relative amounts of colors
+\cite{Gama20142}, they have concluded that users happen to perceive most colors correctly regarding the pair Red-Yellow and,
+likewise, colors in both extremes, even for other pairs: “central colors” are generally the most problematic.\par
+%
+There was some research regarding the usage of color in InfoVis: particularly, about colormaps which are commonly used
+in computer science. Zhou and Hansen \cite{Zhou2016} provide a way to classify colormapping techniques into
+a taxonomy for readers to quickly identify the appropriate techniques they might use, classifying representative
+visualization techniques that explicitly discuss the use of colormaps; these authors gathered the investigation
+performed by other researchers in this paper. Additionaly, the authors classify colormap generation as:
+\textbf{procedural, user-study based, rule based} and \textbf{data-driven}. One good example of Color Blending
+applied with colormaps is the one studied by Stoffel \emph{et al.} \cite{Stoffel2012}, since they introduced a
+new technique for visualizing proportions in categorical data; in particular, they combine bipolar colormaps
+with an adapted double-rendering of polygons to simultaneously visually represent the first two categories
+and the spatial location.

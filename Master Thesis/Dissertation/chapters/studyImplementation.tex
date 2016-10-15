@@ -54,7 +54,7 @@ threads, such as:
 \end{enumerate*}
 \\ \\
 %
-To meet these study requirements, we drafted our study into three different phases: a \textbf{User Profiling Phase},
+To meet these study requirements, we drafted our study into four different phases: a \textbf{User Profiling Phase},
 a \textbf{Calibration Phase}, a \textbf{Color Deficiency Test Phase} and finally, the \textbf{Core Phase}. In the
 following section, we detail each of these study phases. \par
 %
@@ -150,8 +150,7 @@ in the \ul{Core Phase of the study}, which will be explained later. \par
 Since we wanted to \textbf{test if it is better to give the result already mixed, or indicate the blending-basis and the users create
 the color mixture}, we developed a set of 32 questions to present to the user: 17 of them are of the type \textbf{presenting the resulting
 color, and ask for the blending-basis}, and 15 of them are of type \textbf{given the blending-basis, ask for the blending-result}. The entire
-set of questions is mapped in Table \ref{table:color_blendings}: as seen, for each color-pair, we have interpolated it for each of the five selected
-color models. Concerning the \ul{questions from 1 to 17}, we present the results of blending the aforementioned colors according to the HSV Color Model:
+set of questions is mapped in Table \ref{table:color_blendings}. Concerning the \ul{questions from 1 to 17}, we present the results of blending the aforementioned colors according to the HSV Color Model:
 \ul{there is no concept of wrong or right answers}, but instead a referenced answer-pair for each blending result. Thus, we can compare the answer
 pair given by the users with each reference pair, measuring the euclidean distance between each pair. For example, when presenting Question 1 to users,
 we show a \textbf{Yellow color and expect that the answer-pair given by them is composed of Red and Green}; then, the answer-pair is interpolated in each
@@ -291,20 +290,20 @@ they were asked to analyze a set colored plates and answer with its number. \par
 %
 The Color Deficiency Test was comprised of a set of six plates, which were able to detect which type of color vision deficiencies the user
 would eventually have. They could be interpreted in different ways, depending on Deficiency: this color deficiency test in commonly known as the
-Ishihara Test, which has a validated \cite{Alwis1992} short form that rearranges the order in which the plates are presented. We have only chosen plates
+\emph{Ishihara Test}, which has a validated \cite{Alwis1992} short form that rearranges the order in which the plates are presented. We have only chosen plates
 which detect color vision deficiencies in the Red-Green field, since it is the most common deficiency. This test was explored
 in the Theoretical Background (Section \ref{subsubsec:visual_deficiencies}) of this Master Thesis. We have chosen the following plates:
 %
 \begin{itemize}
 	\item \ul{Plate \#1} - We have chosen \cite{Alwis1992} the plate ($ID = 1$) which presents the number \textbf{12}. This is an \ul{Instruction and
-	Demonstration} plate, since every user should be capable of viewing the number and it is intended to demonstrate how to interpret the plate numbers.
+	Demonstration} plate, since every user should be capable of viewing the same number and it is intended to demonstrate how to interpret the plate numbers.
 	\item \ul{Plate \#2} - This plate ($ID = 4$) presents the number \textbf{29}. This a plate from the \ul{Transformation} group, presenting the number
 	\textbf{29} for regular	users which do not have any color vision deficiency, and the number \textbf{70} to users which have \ul{a color vision
 	deficiency in the Red-Green field}.
 	\item \ul{Plate \#3} - This plate is a confirmation from the result of the previous one. This plate ($ID = 9$) presents the number \textbf{74}, also a
 	\ul{Transformation} one, presenting \textbf{74} to regular users and \textbf{21} to users which have \ul{a color vision deficiency in the Red-Green field}.
 	\item \ul{Plate \#4} - This plate ($ID = 13$) presents the number \textbf{45}. This is a \ul{Discrimination} plate, since all the regular users see the
-	number \textbf{45}, and	the ones which color vision deficiencies are supposed to see a blob.
+	number \textbf{45}, and	the ones which have a color vision deficiencies are supposed to see a blob.
 	\item \ul{Plate \#5} - This plate ($ID = 22$) presents the number \textbf{26}. Both this plate and number \#6 are \ul{Classification} plates: the regular users see the
 	normal \textbf{26} number, the ones which have \ul{Deuteranopia see only the number \textbf{2}} and the ones which have \ul{Protanopia see only the number
 	\textbf{6}}.
@@ -386,7 +385,7 @@ The most interesting fact of this test phase is how the color slider works: we c
 \textbf{HSV Color Model has the best compromise when presenting colors in information visualization} because of its primitives (Hue, Saturation and Value)
 which allows to manipulate colors in a better way. However, \textbf{we have chosen to only modify the Hue value and leave the Saturation and Value on its
 maximum value}: this way, we could ensure that we could present the entire range of colors at its full saturation and value, also simplifying the gathering
-of values from the users. Therefore, the color slider yields a value within the range of $[0 ; 360]$ degrees which corresponds to an angle in the Hue circle
+of values from the users. Therefore, the color slider yields a value within the range of $[0º ; 360º]$ degrees which corresponds to an angle in the Hue circle
 of the HSV Color Model. \par
 %
 The color slider has another particularity: the scale of values, though representing continuous angle values, does not presents the values ordered from 0 to 360.
