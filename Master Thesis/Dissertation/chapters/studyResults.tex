@@ -191,7 +191,7 @@ demographic group and subset of users (non-calibrated and color vision deficient
 With this data processing, we intend to verify each answer-pair given by a certain user and compare the pairs with each other. It was important to separate the results by question
 ID, compare each questions' results with other questions that could conceive the same results, interpolate the values from each pair to check which color model ideal answers are closer
 to (either HSV, RGB, CMYK, CIE-L*a*b* or CIE-L*C*h*) and also, give meaning to each value, attributing a name to each color. All these parameters and computations are described in the next two
-subSections.
+subsections.
 %
 \subsection{Data Preparation}
 \label{subsec:results_preparation}
@@ -256,10 +256,9 @@ how the angular interpolation is being calculated with our \emph{Matlab} script.
 \end{listing}
 %
 Afterwards, every resulting blending is \textbf{compared to the pre-calculated value for each color model}; the \ul{euclidean distance} to the latter value is stored for statistical analysis. It is
-also \textbf{calculated the distance to the expected HSV values}, since the colors presented to the user were too calculated in HSV Color Model. Additional comparisons are: the colors
+also \textbf{calculated the distance to the reference HSV values}, since the colors presented to the user were, too, calculated in HSV Color Model. Additional comparisons are: the colors
 blended in HSV are \textbf{compared to the reference color pairs of other questions which generate the same (or roughly) color}, to understand if our users tended to mix other pairs
-than the one expected for that question. To end these comparisons, the centroids of each set of colors mixed in every color model are calculated, along with their distance to the expected
-pre-calculated answer. \par
+than the one expected for that question. \par
 %
 This computation is applied to all questions from 1 to 17, when a color is given and the users must provide two other colors that, in their opinion, were mixed to obtain the one provided.
 However, there are some differences when processing data from questions 18 to 32, which are questions where two colors are given and the user is expected to provide the color resulting from their blending, which
@@ -274,8 +273,14 @@ analysis to perform, since the users may have indicated various scattered values
 Red Color, when they may wanted to simply indicate the color which corresponds to the name \emph{Red}). Ideally, we would conduct a separated user study to perceive which names people normally attribute to colors;
 then we would gather all the data and analyze which were the most common names. \par
 %
+Luckily, the web page \emph{XKCD}\footnote{XKCD - Stick-Figure strip featuring humor about technology, science, mathematics and relationships, by Randall Munroe.
+Available at: \url{xkcd.com/}. Last accessed on October 17th, 2016.} had already conducted a widely large Color Survey\footnote{Color Survey Results. Available at:
+\url{blog.xkcd.com/2010/05/03/color-survey-results/}. Last accessed on October 17th, 2016.} to study wich were the most common RGB color triples among users. They performed roughly more
+than 222 000 user sessions to ascertain color naming: they produced a map which shows the dominant names attributed to \gls{RGB} colors over the faces of \gls{RGB} cube (Appendix \ref{appendix:colorBins}),
+and they also produced a file comprised of 196 608 RGB triplets, grouped by \ul{Color Bins}. \par
+%
 \begin{wraptable}[13]{r}{5.5cm}
-  \vspace{-10pt}
+  \vspace{-15pt}
   \begin{center}
     \resizebox{0.3\textwidth}{!} {
     \begin{tabular}{@{}lclc@{}}
@@ -302,13 +307,7 @@ then we would gather all the data and analyze which were the most common names. 
   \label{table:colorbins}
 \end{wraptable}
 %
-Luckily, the web page \emph{XKCD}\footnote{XKCD - Stick-Figure strip featuring humor about technology, science, mathematics and relationships, by Randall Munroe.
-Available at: \url{xkcd.com/}. Last accessed on October 17th, 2016.} had already conducted a widely large Color Survey\footnote{Color Survey Results. Available at:
-\url{blog.xkcd.com/2010/05/03/color-survey-results/}. Last accessed on October 17th, 2016.} to study wich were the most common RGB color triples among users. They performed roughly more
-than 222 000 user sessions to ascertain color naming: they produced a map which shows the dominant names attributed to \gls{RGB} colors over the faces of \gls{RGB} cube (Appendix \ref{appendix:colorBins}),
-and they also produced a file comprised of 196 608 RGB triplets, grouped by \ul{Color Bins}. \par
-%
-Despite the fact XKCD's Color Survey was not a research realized with a scientific purpose, we decided to use it since it given its large sample size, and it was executed with a great amount of users
+Despite the fact XKCD's Color Survey was not a research realized with a scientific purpose, we decided to use it given its large sample size, and it was executed with a great amount of users
 which can verify it. We also found great compatibility between this survey and ours, since the values in the first were also presented in its maximum value of saturation (similar to our user study, in which we present colors in maximum hue).
 %
 As said, these represent \gls{RGB} triplets but, being our user results all in accordance with the CIE XYZ Color Model, we needed some cleaning and processing to match the data our
@@ -427,7 +426,7 @@ academic degrees. \par
 %
 As seen above, our user sample is composed by 259 (100\%) users, being \textbf{105 (40.5\%) Females}, \textbf{152 (58.7\%) Males} and a minority of \textbf{2 (0.8\%) Other gendered users}: this sample age can
 be characterized as being generally young ($\overline{x} = 29.77$, $\overline{x} = 23$, $s = 40.30$ ), surprisingly having \textbf{8 users (3.09\%) aged above 60 years old} which could enhance some interesting
-differences between age groups. Generally, our users have hight academic qualifications, representing \textbf{66.02\% of all users (Bachelor, Master and Doctoral Degrees)}, being \textbf{38 (14.67\%) users
+differences between age groups. Generally, our users have high academic qualifications, representing \textbf{66.02\% of all users (Bachelor, Master and Doctoral Degrees)}, being \textbf{38 (14.67\%) users
 qualified with College degree}, \textbf{47 (18.15\%) have a High-School degree} and only \textbf{3 (1.16\%) subjects do not presented any academic degree}. Between the laboratory and online environment, the distribution
 of users remains with the same proportions: more male users than females, mostly aged between 20 and 29 years old (60.71\%) and the majority having a superior academic degree (46.43\% BSc and 35.71\% MSc). \par
 %
@@ -1126,7 +1125,7 @@ It is possible to affirm that \textbf{CMYK has the best results when cyan and ye
     \multicolumn{1}{c|}{16}       & \multicolumn{1}{c|}{0.2087}                                                         & \multicolumn{1}{c||}{0.10378}                                   & \multicolumn{8}{c}{}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      \\ \midrule \midrule
     \multicolumn{1}{c|}{17}       & \multicolumn{1}{c|}{\cellcolor[HTML]{32CB00}{\color[HTML]{000000} \textbf{0.0683}}} & \multicolumn{1}{c||}{0.10228}                                   & \multicolumn{1}{c|}{0.1626}                                  & \multicolumn{1}{c||}{\cellcolor[HTML]{32CB00}\textbf{0.05902}} & \multicolumn{1}{c|}{\cellcolor[HTML]{32CB00}\textbf{0.0452}} & \multicolumn{1}{c||}{\cellcolor[HTML]{32CB00}\textbf{0.0162}}  & \multicolumn{1}{c|}{\cellcolor[HTML]{32CB00}\textbf{0.103}}  & \multicolumn{1}{c||}{\cellcolor[HTML]{32CB00}\textbf{0.0574}}  & \multicolumn{1}{c|}{\cellcolor[HTML]{32CB00}\textbf{0.113}}  & \multicolumn{1}{c|}{\cellcolor[HTML]{32CB00}\textbf{0.05112}}                      \\ \bottomrule
   \end{tabular}}
-  \caption[Laboratory: Statistics for distances \emph{per} question, of Results Interpolated in each Color Model]{Laboratory: Statistics for distances \emph{per} question, of Results Interpolated in each Color Model.}
+  \caption[Laboratory: Statistics \emph{per} question, of Results Interpolated in each Color Model]{Laboratory: Statistics for distances \emph{per} question, of Results Interpolated in each Color Model.}
   \vspace{-5pt}
   \label{table:colormodels_distances_questions_statistics}
 \end{table}
@@ -1165,7 +1164,7 @@ CIE-L*C*h the model which has the highest calculated distances ($\overline{x} = 
 $range = 0.14$), opposed to the HSV ($s^2 = 0.006$, $range = 0.26$). \par
 %
 By analyzing the results from the online users, we can verify that they corroborate the smallest data set (from laboratory users). In pursuance of fully understanding which color model provides the best results,
-we are going to break down the results according to Color Models \emph{per} question, describing it in the following sub-subSections. \par
+we are going to break down the results according to Color Models \emph{per} question, describing it in the following sub-subsections. \par
 %
 %%%%%%%%%%%%%%%%%% HSV Analise %%%%%%%%%%%%%%%%%%
 %
@@ -1196,7 +1195,7 @@ have statistically significant differences with CIE-L*C*h*, CMYK, RGB and CIE-L*
 As referred before, there are some color blends that, due to the fact that primitives of the mixture are precisely opposed ($180º$) in the HSV hue circle, the blending in HSV Model could produce two different outputs.
 This occurs if one mixes the colors obeying to a positive or negative rotation on the circle (as seen on Figure \ref{fig:hsvcircles_example}). There are in this study three pairs of colors which blend onto two possible
 colors: pair Red-Cyan (with possible outputs question three and four), pair Green-Magenta (questions ten and eleven) and pair Blue-Yellow (questions fifteen and sixteen). By placing these questions, we intended to
-understand which side the user would tend to follow (or even if he follows one) when asked to indicate the blending-basis. The results for each question were already analyzed in the previous subSection, therefore we
+understand which side the user would tend to follow (or even if he follows one) when asked to indicate the blending-basis. The results for each question were already analyzed in the previous subsection, therefore we
 present the essence of them in the following topics:
 %
 \begin{enumerate}
@@ -1639,7 +1638,7 @@ presented the result of a given mixture. However, there are some differences whi
       \multicolumn{1}{c|}{Range}                                                         & \cellcolor[HTML]{FFFFFF}0.17          & \cellcolor[HTML]{FD6864}\textbf{0.22}  & \cellcolor[HTML]{FFFFFF}0.17          & \cellcolor[HTML]{32CB00}\textbf{0.12}  & \multicolumn{1}{c|}{\cellcolor[HTML]{FFFFFF}0.13}          & \cellcolor[HTML]{FFFFFF}0.20          & \cellcolor[HTML]{FD6864}\textbf{0.22}  & \cellcolor[HTML]{FFFFFF}0.13          & \cellcolor[HTML]{32CB00}\textbf{0.10}  & \multicolumn{1}{c|}{\cellcolor[HTML]{FFFFFF}0.14}  \\ \midrule
       \multicolumn{1}{c|}{Variance ($s^2$)}                                         & \cellcolor[HTML]{FFFFFF}0.003         & \cellcolor[HTML]{FD6864}\textbf{0.005} & \cellcolor[HTML]{FFFFFF}0.002         & \cellcolor[HTML]{32CB00}\textbf{0.001} & \multicolumn{1}{c|}{\cellcolor[HTML]{FFFFFF}0.002}         & \cellcolor[HTML]{FFFFFF}0.004         & \cellcolor[HTML]{FD6864}\textbf{0.005} & \cellcolor[HTML]{FFFFFF}0.002         & \cellcolor[HTML]{32CB00}\textbf{0.001} & \multicolumn{1}{c|}{\cellcolor[HTML]{FFFFFF}0.002} \\ \bottomrule
     \end{tabular}}
-    \caption[Condensed Statistics for Distances to Ideal Results, according to each Color Model, for questions 18 to 32.]{Condensed Statistics for Distances to Ideal Results, according to each Color Model, for questions 18 to 32. In Green/Red shade, the best/worst result for each descriptive statistic.}
+    \caption[Condensed Statistics for Distances to Ideal Results, \emph{per} Color Model, questions 18 to 32.]{Condensed Statistics for Distances to Ideal Results, according to each Color Model, for questions 18 to 32. In Green/Red shade, the best/worst result for each descriptive statistic.}
     \vspace{-5pt}
     \label{table:colormodels_expectations_labonline_statistics}
   \end{table}
@@ -1706,8 +1705,8 @@ Being the color models covered in the extensive previous analysis, we are left t
 difficulty. As stated on Section \ref{sec:impl_objectives}, it is also interesting to study if the users have a particular choice to order the colors when demonstrating their answers, given its implications on how to draft \ul{Information Visualization Artifacts},
 such as sliders, scales or color blends to convey information.
 %
-This subSection will be composed on two main groups: on the first one, we will focus our attention on the color blendings which are \textbf{based on primary colors, to generate other primary colors} to comprehend
-if the users can detect and formulate primary color blendings; the second group of this subSection will contain a \textbf{brief investigation about the difficulty found when blending colors}, focusing our attention
+This subsection will be composed on two main groups: on the first one, we will focus our attention on the color blendings which are \textbf{based on primary colors, to generate other primary colors} to comprehend
+if the users can detect and formulate primary color blendings; the second group of this subsection will contain a \textbf{brief investigation about the difficulty found when blending colors}, focusing our attention
 not only on each question, but also on providing a general perception of how the study went, regarding the facility of unveiling color mixtures. \par
 %
 We also performed a color analysis by comparing the colors given by our users, with the ones obtained with the XKCD's Color Bins referred on the \emph{Data Processing} Section (\ref{subsec:results_preparation}) of this document. This way,
@@ -1737,7 +1736,7 @@ we can make sense out of the values, giving them meaning and necessary categoriz
 \end{table}
 %
 Among all the questions proponed to the user, there were of six of them which presented as the result of a color mixture, either one of the following primary colors: \textbf{Red, Green, Blue, Cyan, Magenta,}
-or \textbf{Yellow}. These results are the primitives from one additive color model (RGB) and one subtractive color model (CMYK): what we intend to know is if the user is capable of creating color blendings
+or \textbf{Yellow}. These results are the primitives from one additive color model (RGB) and one subtractive color model (CMYK): what we intended to know is if the users are capable of creating color blendings
 which result in these colors; since these color models are complementary, the user must reveal knowledge of mixing colors according to these two models, while creating blendings with colors from the opposite
 color model. These questions are refreshed again on Table \ref{table:primary_blends}.
 %
@@ -1805,7 +1804,7 @@ with Green and Red, while Yellow was combined with Red, Green and Blue; however,
 %
 \paragraph{\ul{Cyan + Yellow = Green}}
 %
-Regarding this, it was expected that users indicate a mixing of Cyan and Yellow to blend in a result of Green. Similarly to the previous blend, these colors are primitives from the CMYK Color Model that, when blended,
+Regarding this blending, it was expected that users indicate a mixing of Cyan and Yellow to blend in a result of Green. Similarly to the previous blend, these colors are primitives from the CMYK Color Model that, when blended,
 generate a color from the RGB Color Model. Curiously, both the laboratory and online users provided their answers on similar pairs, comprised between \textbf{blue shades and yellow ones}; the most repeated
 color pairs were, in fact, Blue shades combined with tones of green and yellow, as observable on Figure \ref{fig:greenblend_1}. \\
 %
@@ -2044,7 +2043,7 @@ created six groups (users aged below 20 years, aged between 20 and 29, between 3
 by question, performing a \ul{Spearman's Rank-Order Correlation test} between the ages and genders, with the answers; since the amount of data available is quite high, this test would dictate which questions would be subject of further analysis in this Section. \par
 %
 Additionally, it would be interesting to perform a crossed analysis between genders and age groups: however, the size of the dataset does not provide the amount of information needed to corroborate such analysis. Hereupon, we are going to divide the analysis of these demographic
-groups on the next subSections, starting by analyzing the results for the age groups highlighting the questions which manifested statistically significant correlations, followed by the evaluation of the gender groups. To end this Section, we will perform an additional
+groups on the next subsections, starting by analyzing the results for the age groups highlighting the questions which manifested statistically significant correlations, followed by the evaluation of the gender groups. To end this Section, we will perform an additional
 informal evaluation of the results collected from color vision deficient users.
 %
 \subsubsection{Age Groups}

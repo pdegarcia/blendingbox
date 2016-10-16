@@ -34,6 +34,7 @@ to corroborate the laboratory results with a larger user sample. \par
 The questions which we think define our research goals, for this study, are:
 %
 \begin{itemize}
+	\setlength\itemsep{0.01em}
 	\item \textbf{Q1:} Which Color Model best meets the users' expectations, when blending two colors?
 	\item \textbf{Q2:} Do users specify the Blending-basis following some order, when users are indicating possible color
 	mixtures' results?
@@ -108,7 +109,7 @@ for each color pair, blended according to the five color models chosen.
 %
 \begin{figure}[htbp]
 	\centering
-  \includegraphics[width=0.8\textwidth]{images/implementation/table_blends.png}
+  \includegraphics[width=0.6\textwidth]{images/implementation/table_blends.png}
   \caption[Excerpt of Table containing the pre-calculated Color Blends.]{Excerpt of Table containing the pre-calculated Color Blends.}
   \label{fig:table_blends}
 \end{figure} \par
@@ -174,7 +175,7 @@ in a web browser: we have executed the majority of tests using Google Chrome and
 %
 \begin{figure}[htbp]
 	\centering
-  \includegraphics[width=0.8\textwidth]{images/implementation/tables_schema.png}
+  \includegraphics[width=0.7\textwidth]{images/implementation/tables_schema.png}
   \caption[Entity-Relationship Model representing the User Study information.]{Entity-Relationship Model representing the User Study information.}
   \label{fig:er_model}
 \end{figure}
@@ -195,13 +196,13 @@ JSON files which contained each set of options. \par
 %
 \begin{figure}[htbp]
   \centering
-  \begin{minipage}{0.48\textwidth}
+  \begin{minipage}{0.4\textwidth}
 		\centering
 	  \includegraphics[width=\textwidth]{images/implementation/mockup_profiling.png}
 	  \caption[Mock-up of Color Study's User Profiling Phase.]{Mock-up of Color Study's User Profiling Phase.}
 	  \label{fig:mockup_profiling}
   \end{minipage}\hfill
-  \begin{minipage}{0.48\textwidth}
+  \begin{minipage}{0.4\textwidth}
 		\centering
 	  \includegraphics[width=\textwidth]{images/implementation/screen_profiling.png}
 	  \caption[Screenshot of Color Study's User Profiling Phase.]{Screenshot of Color Study's USer Profiling Phase.}
@@ -229,13 +230,13 @@ rendering the study's main page. \par
 %
 \begin{figure}[htbp]
   \centering
-  \begin{minipage}{0.48\textwidth}
+  \begin{minipage}{0.4\textwidth}
 		\centering
 	  \includegraphics[width=\textwidth]{images/implementation/calibration_blackLevel.jpg}
 	  \caption[Calibration image: Black-Level Measure.]{Calibration image: Black-Level Measure.}
 	  \label{fig:black_level}
   \end{minipage}\hfill
-  \begin{minipage}{0.48\textwidth}
+  \begin{minipage}{0.4\textwidth}
 		\centering
 	  \includegraphics[width=\textwidth]{images/implementation/calibration_whiteLevel.jpg}
 	  \caption[Calibration image: White-Level Measure.]{Calibration image: White-Level Measure.}
@@ -266,13 +267,13 @@ for this phase is quite extensive. \par
 %
 \begin{figure}[htbp]
   \centering
-  \begin{minipage}{0.49\textwidth}
+  \begin{minipage}{0.4\textwidth}
 		\centering
 	  \includegraphics[width=\textwidth]{images/implementation/mockup_calibration.png}
 	  \caption[Mock-up of Color Study's Calibration Testing Phase.]{Mock-up of Color Study's Calibration Testing Phase.}
 	  \label{fig:mockup_calibration}
   \end{minipage} \hfill
-	\begin{minipage}{0.49\textwidth}
+	\begin{minipage}{0.4\textwidth}
 		\centering
 		\includegraphics[width=\textwidth]{images/implementation/screen_calibration.png}
 		\caption[Screenshot of Color Study's Calibration Testing Phase.]{Screenshot of Color Study's Calibration Testing Phase.}
@@ -295,6 +296,7 @@ which detect color vision deficiencies in the Red-Green field, since it is the m
 in the Theoretical Background (Section \ref{subsubsec:visual_deficiencies}) of this Master Thesis. We have chosen the following plates:
 %
 \begin{itemize}
+	\setlength\itemsep{0.01em}
 	\item \ul{Plate \#1} - We have chosen \cite{Alwis1992} the plate ($ID = 1$) which presents the number \textbf{12}. This is an \ul{Instruction and
 	Demonstration} plate, since every user should be capable of viewing the same number and it is intended to demonstrate how to interpret the plate numbers.
 	\item \ul{Plate \#2} - This plate ($ID = 4$) presents the number \textbf{29}. This a plate from the \ul{Transformation} group, presenting the number
@@ -314,13 +316,13 @@ in the Theoretical Background (Section \ref{subsubsec:visual_deficiencies}) of t
 %
 \begin{figure}[htbp]
   \centering
-  \begin{minipage}{0.49\textwidth}
+  \begin{minipage}{0.4\textwidth}
 		\centering
 	  \includegraphics[width=\textwidth]{images/implementation/mockup_ishihara.png}
 	  \caption[Mock-up of Color Study's Color Deficiencies Test Phase.]{Mock-up of Color Study's Color Deficiencies Test Phase.}
 	  \label{fig:mockup_ishihara}
   \end{minipage} \hfill
-	\begin{minipage}{0.49\textwidth}
+	\begin{minipage}{0.4\textwidth}
 		\centering
 		\includegraphics[width=\textwidth]{images/implementation/screen_calibration.png}
 		\caption[Screenshot of Color Study's Calibration Testing Phase.]{Screenshot of Color Study's Calibration Testing Phase.}
@@ -354,7 +356,7 @@ presented to the users. \par
 %
 \begin{figure}[htbp]
 	\centering
-  \includegraphics[width=\textwidth]{images/implementation/mockup_core_objTwoColors.png}
+  \includegraphics[width=0.7\textwidth]{images/implementation/mockup_core_objTwoColors.png}
   \caption[Mock-up of Color Study's Core Test Phase: present the result and ask the blending-basis.]{Mock-up of Color Study's Core
 	Test Phase: presenting the result and asking the blending-basis.}
   \label{fig:mockup_core_1}
@@ -366,20 +368,19 @@ with an empty color (or white) so the users are not influenced by previously use
 the chosen shapes are circles, since \textbf{we are not studying the best visualizations to convey information, when using color blending techniques}. These
 shapes presented against a white background so it \textbf{does not influence color perception}, equally spaced between each other, being followed by a small
 set of arithmetic operands which \ul{leads the users to realize they have to add a pair of colors}. This screen is depicted in the left side of Figure
-\ref{fig:mockup_core_1}. \par
-%
-\ul{The other screen} presents exactly the same number of circle shapes (three), but one less color slider since this screen is designed to attend questions in
+\ref{fig:mockup_core_1}. \ul{The other screen} presents exactly the same number of circle shapes (three), but one less color slider since this screen is designed to attend questions in
 which the blending-basis is already given and the users have to blend them, indicating only \ul{one} answer. These two screens appear, alternately, in a random
 fashion so the users do not create any kind of habit or routine when blending the colors from the 32 questions. This screen is depicted in Figure
 \ref{fig:mockup_core_2}. \par
 %
-\begin{figure}[htbp]
+\begin{wrapfigure}[13]{r}{0.4\textwidth}
 	\centering
+	\vspace{-15pt}
   \includegraphics[width=0.4\textwidth]{images/implementation/mockup_core_twoColorsObj.png}
   \caption[Mock-up of Color Study's Core Test Phase: present the blending-basis and ask the result.]{Mock-up of Color Study's Core
 	Test Phase: presenting the blending-basis and asking the resulting color.}
   \label{fig:mockup_core_2}
-\end{figure} \par
+\end{wrapfigure}
 %
 The most interesting fact of this test phase is how the color slider works: we chose the HSV Color Model to represent the colors to show, since the
 \textbf{HSV Color Model has the best compromise when presenting colors in information visualization} because of its primitives (Hue, Saturation and Value)
@@ -404,42 +405,22 @@ presented equally to every user. \textbf{This script processes each possible res
 CIE-XYZ value and in the end, to an hexadecimal color code to be printed on the shapes of the interface, when time comes for the laboratory user to choose a
 color from the color slider. This process was realized before each user session. \par
 %
+\begin{wrapfigure}[10]{r}{0.45\textwidth}
+	\centering
+  \includegraphics[width=0.45\textwidth]{images/implementation/screen_core.png}
+  \caption[Screenshot of Color Study's Core Test Phase: present the result and ask the blending-basis.]{Screenshot of
+	Color Study's Core Test Phase: presenting the resulting color and asking the blending-basis.}
+  \label{fig:screen_core}
+\end{wrapfigure} \par
+%
 After the users indicated and confirms their answer, \textbf{they were presented a satisfaction question with a 5-point Likert Scale} to double-check the easiness
 of each mixture. The question asked was \textbf{"How Easy it was for you to Identify the Mixture?"}; the users had to select the equivalent rating in a
 five-star system. If the users were not happy with its response, it was provided a "Reset Mixture" button to clean all parameters. All of these details are
 showed in Figure \ref{fig:screen_core}, which shows the resulting interface for the type of questions in which the result was given and the blending-basis
 was asked. \par
 %
-\begin{figure}[htbp]
-	\centering
-  \includegraphics[width=0.8\textwidth]{images/implementation/screen_core.png}
-  \caption[Screenshot of Color Study's Core Test Phase: present the result and ask the blending-basis.]{Screenshot of
-	Color Study's Core Test Phase: presenting the resulting color and asking the blending-basis.}
-  \label{fig:screen_core}
-\end{figure} \par
-%
 In the end, the users were thanked for the time they spent performing the test and it was provided a \ul{Contact Form}, so the users could leave their feedback or
-demonstrate the interest (or not) for this subject. All of the data was being stored in the table \emph{results}: a portion of example from the type of data
-gathered is present on Table \ref{table:csv_resultsraw}. \par
-%
-\begin{table}[htbp]
-  \resizebox{\textwidth}{!} {
-  \begin{tabular} {|c|c|c|c|c|c|c|c|c|c|}
-    \hline
-    User ID & Type & First Color & Second Color & Third Color & Drags & Time & Rating & Resets & Question ID \\ \hline \hline
-    5710cca334d60 & objTwoColors & \#0080FF & hsl(58.69565217391305,1,0.50) & hsl(98.15217391304348,1,0.50) & 992 & 117 & 4 & 2 & 10 \\ \hline
-    5745c1c07cc0c & objTwoColors & \#8000FF & hsl(300,1,0.50) & hsl(324.13043478260875,1,0.50) & 645 & 55 & 2 & 1 & 14 \\ \hline
-    5745350dc1e22 & objTwoColors & \#0080FF & hsl(226.30434782608697,1,0.50) & NONE & 115 & 11 & 5 & 1 & 10 \\ \hline
-    57451c3b38192 & objTwoColors & \#00FF80 & NONE & hsl(150,1,0.50) & 462 & 39 & 5 & 1 & 15 \\ \hline
-    574511e99b6d9 & objTwoColors & \#0080FF & hsl(15.652173913043478,1,0.50) & hsl(316.30434782608694,1,0.50) & 442 & 40, & 1 & 1 & 10 \\ \hline
-    57427cf6bad0c & twoColorsObj & \#00FFFF & \#FFFF00 & \#46FF9C & 6 & 14 & 3 & 1 & 32 \\ \hline
-    5740bda9be3dc & objTwoColors & \#FF7200 & hsl(9.130434782608695,1,0.50) & hsl(50.21739130434783,1,0.50) & 45 & 22 & 5 & 1 & 11 \\ \hline
-    573c783748e8b & twoColorsObj & \#00FFFF & \#CBFF00 & \#00FF6B & 44 & 25 & 3 & 1 & 32 \\
-    \hline
-  \end{tabular}}
-  \caption[Excerpt of Raw "Results" Table]{Excerpt of Results Table, with raw data.}
-  \label{table:csv_resultsraw}
-\end{table} \par
+demonstrate the interest (or not) for this subject. \par
 %
 \section{Evaluation Criteria}
 \label{sec:impl_evaluationcriteria}
@@ -447,6 +428,7 @@ gathered is present on Table \ref{table:csv_resultsraw}. \par
 For a user and its responses to be considered as valid, they have to be evaluated against the following set of rules:
 %
 \begin{enumerate}
+	\setlength\itemsep{0.01em}
 	\item For \ul{Profiling and Ishihara Test Phases}, it is considered as valid the values which are very close from the expected one, since there might
 	have been, inadvertently, a slight drift when using the \emph{HTML5} input type "Number" objects.
 	\item For \ul{Profiling and Ishihara Test Phases}, it is considered as valid the values which are extremely apart from the expected one, if: \textbf{A:}
@@ -459,5 +441,4 @@ For a user and its responses to be considered as valid, they have to be evaluate
 \end{enumerate}
 %
 These criteria will be important in the following section, in which we clean the data gathered along the user color study, process, analyze and infer conclusions.
-Besides, these criteria, it should be followed the ones defined in Section \ref{subsec:design_ishihara} which concern the analysis of color vision deficient users.
-It will help us defining which users provide useful inputs, and how to separate them among datasets.
+Besides these, it should be followed the ones defined in Section \ref{subsec:design_ishihara} which concern the analysis of color vision deficient users.
