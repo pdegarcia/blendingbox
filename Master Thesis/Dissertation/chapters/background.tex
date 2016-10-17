@@ -7,7 +7,7 @@ In this work, we introduce a review through the topics related to this project. 
 an explanatory view about Color Perception, narrowing it down to Color Philosophy and the Human Eye. Later,
 we are going to introduce the theory behind Color Spaces and Models, ending this section with an overview about
 the usage of Color Blending and the investigation that has been done, to understand the perception on this. In
-the end, we will discuss the results found from this investigation was draft research questions which remain
+the end, we will discuss the results found with this investigation and draft research questions which remain
 unanswered.
 %
 \section{Theoretical Background}
@@ -23,7 +23,7 @@ Models and Color Spaces}.
 In this section, we overview the philosophy about color, relating real-world perceptions to human perception
 through the eye. There are two main areas of interest, called the Cones and the Rods, which will be explained
 with quite detail; these areas restrict how we perceive color, specially if there are visual deficiencies.
-Moreover, color creates mental models and codes, which are part of routines and rules followed by society, and will be exemplified in the end of this section.
+Moreover, color creates mental models and codes, which are part of routines and rules followed by society.
 %
 \subsubsection{Color Philosophy}
 \label{sec:colorphilosophy}
@@ -97,7 +97,7 @@ for that, familiar - visual fields. \par
 As covered before, there are some specialized and important neurons
 that have the crucial task of capturing and transducing photons: they convert electromagnetic radiation
 into trigger-signals to be send to the organism.
-The photoreceptors can be classified between \textbf{Cones} and \textbf{Rods}. \par
+The photoreceptors can be classified between \textbf{Cones} and \textbf{Rods}.
 %
 \paragraph{Cones}
 %
@@ -189,7 +189,7 @@ recognition loss: some of these factors include diabetes, leukemia, Parkinson’
 disease. These deficiencies can be classified as \textbf{Monochromacy}, \textbf{Dichromacy} and \textbf{Trichromacy}.
 We would like to empashize the second type: in this defect, one of the possible three cone chemical protein is
 missing. Is is an hereditary condition and it occurs when when one of the cone pigments doesn’t exist.
-Dichromacy can be divided into three conditions, which figure \ref{fig:correscolorblind} presents: \par
+Dichromacy can be divided into three conditions, which Figure \ref{fig:correscolorblind} presents: \par
 %
 \begin{itemize}
 	\setlength\itemsep{0.01em}
@@ -266,7 +266,7 @@ perception, and tribal color perception; the researchers presented a circle of s
 shades of green (Figure \ref{fig:himba}), to the Himba tribe from Northern Namibia. Surprisingly, they were able to detect a larger
 number of shades of green than a western, non-colorblind person: this may occur because their environment do not
 manifest as much colors, and they need to detect different shades to hunt and pick up vegetation and
-fruits, which traditional western communities do not need to do. \\
+fruits, which traditional western communities do not need to do. \\ \par
 %
 Every color is mapped into models which mathematically represent them, despite of physical attributes of display conditions.
 All of these models are mapped against a \emph{Color Space} that maps the real-world colors in discrete values.
@@ -355,7 +355,6 @@ if we increase it, the color also looks brighter.
   \vspace{-5pt}
   \includegraphics[width=0.45\linewidth]{images/background/Luminance.jpg}
   \caption[Luminance]{Luminance schematic.\protect\footnotemark{}}
-  \vspace{-25pt}
   \label{fig:luminance}
 \end{figure}
 \footnotetext{"Color Luminance", Available at: \url{www.bit.ly/22O3vdp}. Last accessed on October 17th, 2016.}
@@ -406,7 +405,7 @@ to display color mixing, mixing primary colors such as Red, Green and Blue; equa
 overlapped, they form white light, whereas \textbf{Subtractive Color Models} mix colors using paint pigments
 and the result of any mix is a color that tend to be darker, the more you mix it. Additive models are used
 in computer graphic displays, while subtractive models are commonly associated to dyes and inks. Examples
-of this color models are given below \cite{Ware2012}. \par
+of these color models are given below \cite{Ware2012}. \par
 %
 \begin{wrapfigure}[9]{r}{0.25\textwidth}
   \centering
@@ -454,9 +453,9 @@ with each corner being the purest colors, as in the Figure \ref{fig:RGB}.
 Nonetheless, this color model needed improvements, specially a better geometrical representation, since RGB does not create
 an accurate match to the color mixture recognized by human vision.
 %
-\begin{wrapfigure}[4]{r}{0.35\textwidth}
+\begin{wrapfigure}[6]{r}{0.35\textwidth}
 	\centering
-	\vspace{-35pt}
+	\vspace{-10pt}
 	\includegraphics[width=\linewidth]{images/background/HSV_TriangleCone.png}
 	\caption[HSV Triangle and Cone Representation]{HSV Model.\protect\footnotemark{}}
 	\label{fig:HSV}
@@ -588,7 +587,7 @@ The CIE Color System is both a Color Model and a Color Space since, at the same 
 a mathematical representation using XYZ primaries and represents the superset of the entire range of human
 perceivable colors. The \textbf{CIE RGB Color Space} is one of the many subsets of CIE XYZ. \par
 %
-\paragraph{\underline{CIE-L*a*b}} It is a device-independent color space based on color-opponent axis,
+\paragraph{\underline{CIE-L*a*b*}} It is a device-independent color space based on color-opponent axis,
 created in 1976. The two axis are represented by the \textbf{a*} and \textbf{b*}, where the first one represents the
 Red-Green axis and the latter the Blue-Yellow one; the \textbf{L*} variable represents the lightness. This
 color space is often used when graphics have to be printed and converted from RGB to CMYK color model, as
@@ -678,8 +677,7 @@ invariable, oscillate the color saturation; the biggest advantage is the simplic
 the biggest disadvantage the low PDR (Perceived Dynamic Range). Also, \textbf{Spectrum Scale} (Figure \ref{fig:spectrum})
 is a very commonly used scale, keeping the saturation and brightness invariables, oscillate hue within its full
 range (from red, orange and yellow, to yellow, green, blue and then purple). The problem lies in the fact that this scale
-is not intuitively continuously perceived for all observers\footnote{"Dear NASA (...)",
-Available at: \url{www.blog.visual.ly/rainbow-color-scales/}. Last accessed on October 17th, 2016.}:
+is not intuitively continuously perceived for all observers:
 perceptual discontinuities occur in the scale in the transitions between primary colors, in the “naming boundaries”
 of each color (the boundaries of primary colors that can be described and named by the observer), which can mislead the
 observer and make him perceive limits where they don’t exist. For a protanopic person, rainbow color scales
@@ -704,7 +702,7 @@ spectrum scale, it augments monotonically with luminance; it fluctuates from bla
 and, in the end, to white. It happens to have more distinguishable perceptual steps and more contrast, than
 the gray scale. \par
 %
-Rheingans defines \textbf{Hue-Other Scales} for two or more variables, as mapping variables to
+Rheingans \cite{Rheingans2000} defines \textbf{Hue-Other Scales} for two or more variables, as mapping variables to
 different color models, like hue, lightness or saturation. Lightness
 gives the perception of order, as we perceive the values as having a natural order. It is also easier to
 judge the relative magnitude of two lightness values than of two hues. For example, areas with similar hue
@@ -714,10 +712,6 @@ different hue.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% COLOR BLENDING - RELATED WORK %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Related Work}
 \label{sec:related_work}
-%
-Color plays an important role on how we perceive subjects and in the information we extract from them; it is usually
-associated to the representation of information, due to is expressiveness and the familiarity that users have: if you
-picture a graph or a chart, you instantaneously think of colors to represent variables. \par
 %
 Visualizing information is a task which, at the same time, communicates information and alleviates
 cognitive load associated with data interpretation. Usually, when it comes to encoding information, color
@@ -733,7 +727,7 @@ features and flaws, which complementary techniques try to recover. \par
 %
 In this section of the Background, we focus the attention on work previously developed in this research field. We
 start by analyzing the investigation conducted before, following it by an analysis of other user color studies
-which were performed in other domains of Infovis.
+which were performed in other domains of InfoVis.
 %
 \subsection{Color Blending Research and Techniques}
 \label{subsec:colorblending}
@@ -839,7 +833,7 @@ pairwise colors and 3 interpolations. \par
 	\centering
     \vspace{-10pt}
     \includegraphics[width=0.4\textwidth]{images/background/CMYKbad.png}
-    \caption[Color Blending: CMYK Bad Example]{Bad Color Blending Usage.\protect\footnotemark[25]}
+    \caption[Color Blending: CMYK Bad Example]{Bad Color Blending Usage.\protect\footnotemark[19]}
     \label{fig:cmykbad}
 \end{wrapfigure}
 %
@@ -878,7 +872,7 @@ only the strictly-needed labels, lowering the cognitive load of the user. This w
 	\centering
     \vspace{-10pt}
     \includegraphics[width=0.7\textwidth]{images/background/js_choroMath.png}
-    \caption[Bivariate Choropleth Maps]{Choropleth Maps.\protect\footnotemark[26]}
+    \caption[Bivariate Choropleth Maps]{Choropleth Maps.\protect\footnotemark[20]}
     \vspace{-10pt}
     \label{fig:choropleth}
 \end{figure}
@@ -896,15 +890,15 @@ Particularly in visualizations, as they are able to improve the efficiency and e
 into the data. Therefore, it is crucial for visualization designers and users to understand colormap generation techniques as well as the general
 rules for choosing appropriate colormaps for specific data. Zhou and Hansen \cite{Zhou2016} provide a way to classify colormapping techniques into
 a taxonomy for readers to quickly identify the appropriate techniques they might use, classifying representative visualization techniques that
-explicitly discuss the use of colormaps. These authors gathered the investigation performed by other researchers in this paper. There are a set of
+explicitly discuss the use of colormaps. These authors gathered the investigation performed by other researchers in this paper. There is a set of
 standards for a good colormap, namely \ul{order} (colors should have perceptual orders in a colormap), \ul{uniformity and representative distance}
 in which perceived color distances should match actual differences between the data they represent; and \ul{boundaries} where colors should not
 create false perceived boundaries in data. Additionaly, the authors classify colormap generation as: \textbf{procedural, user-study based, rule
-based} and \textbf{data-driven}, which shows that with a deeper understanding of colors and data, as well as the advent of more powerful computation,
+based} and \textbf{data-driven}, which could show that with a deeper understanding of colors and data,
 methods for colormap generation have evolved from procedurally designing a default colormap for all data, into more intelligent data-driven approaches
 as the state-of-the-art. \par
 %
-Stoffel, Janetzko and Mansmann introduced a new technique \cite{Stoffel2012} for visualizing proportions in categorical data; in particular, they combine bipolar colormaps
+Stoffel \emph{et al.} introduced a new technique \cite{Stoffel2012} for visualizing proportions in categorical data; in particular, they combine bipolar colormaps
 with an adapted double-rendering of polygons to simultaneously visually represent the first two categories and the spatial location. As the example given
 in their paper, this enables the recognition of close election results as well as clear majorities, or other similar subjects. Representing data variables
 in a map makes the choice of visual variables more challenging, as the most important variable, namely position, is already occupied representing the geographic location:
@@ -930,7 +924,7 @@ a technique of color weaving and a hue-preserver color blending technique, cover
 \subsubsection{Color Weaving}
 %
 One of the challenges of multivariate visualization
-is to clearly show different layers of information with color patterns, with no doubt to the user: as
+is to clearly show different layers of information with color patterns, with no confusion to the user: as
 composing different layers on top of each other, most of the time it creates colors and patterns which
 do not have direct or significant meaning. Urness \emph{et al.} proposed new insights and introduced new
 techniques for using color and texture in a effective way, to convey information about two-dimensional
@@ -972,7 +966,7 @@ introducing the idea of preserving the of preserving the hue of the original col
 Perceptual transparency is the perception of an object being in front of another
 background object: the authors created an approach that is not subject to any type of physical constraint, but can be
 formulated as an algebraic model. They have reached a set of design criteria that lead
-to an equation which expresses the color addition in Hue-Preserving color blending: $C_{new} = C_{1} \oplus C_{2}$ \par
+to an equation which expresses the color addition in Hue-Preserving color blending: $C_{new} = C_{1} \oplus C_{2}$. \par
 %
 \begin{wrapfigure}[10]{r}{0.4\textwidth}
 	\centering
@@ -1033,7 +1027,7 @@ blending colors in different blend orders can produced different results.
 The goal of this research is to understand how people perceive the blending of particular colors and if perceived,
 in which terms do they understand the blended color. We have conducted an investigation to realize what is related to
 the act of perceiving color and how it is judged.  \par
-The usage of color blending is hugely related to the fact that color is great to convey information and messages,
+The usage of color blending is largely related to the fact that color is great to convey information and messages,
 but there has not been quite an extensive analysis about how people react to blends of color, having in mind also
 cultural patterns which could be tested. Gama and Gonçalves have tested the color blending for Data Visualization \cite{Gama20141},
 concluding that users can detect mixtures with higher success rates for colors which represent to smaller angles
@@ -1050,7 +1044,7 @@ considered. \par
 Finally, there were studied some alternative techniques to color blending which could be further tested, such
 as \textbf{Hue-Preserving Color Blending and Color Weaving}, by Hagh-Shenas \cite{Hagh-Shenas2007}. In this technique, a textured mesh presents the original
 colors that were mixed to create a resulting color, using a Noise function to create the pattern in which the
-relative amounts of colors were represented. It was also studied by Stoffel and felow researchers \cite{Stoffel2012} a Technique
+relative amounts of colors were represented. It was also studied by Stoffel and felow researchers \cite{Stoffel2012} a technique
 to present more than one variable at time, in a map, using hues: it attributed a color to each shape of the map and placed a shrunk polygon of the specific shape
 on top of the original polygon, to express the distance to the second ranked category. Then, the polygons were colored according to
 a pre-defined mapping of colors and categories: the outer polygon is filled with the color of the winning category, and a gradient fill is
@@ -1095,8 +1089,7 @@ possible questions which remain unaswered as follows:
 		\end{itemize}
 \end{itemize} \par
 %
-Although we have rised all these questions which do not have met its answer, only a portion of them will meet their answers,
-since this is Master Thesis Research Problem. However, there is a set of these questions which was considered crucial and, consequently,
+However, there was a set of these questions which was considered crucial and, consequently,
 had more priority above others: it was this set which was the focus of our studies. We performed \textbf{one user study} and,
 in the following sections, it is covered the entire description of the solution developed for this color study, the conditions in which
 the study is ideally performed and analyze the results collected from it. In the end, we will perform a discussion of results and deduce

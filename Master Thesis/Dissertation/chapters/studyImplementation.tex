@@ -28,7 +28,7 @@ Additionally, it is relevant to understand which color model stands as the best 
 perceptual point of view, more similar to the users expectation. We have planned to develop this study in two
 different strands: in a \textbf{Laboratory Environment}, which will allow us to calibrate and perfectly control the
 entire study conditions, and in an \textbf{Online Environment}, which will allow us to disseminate our study to a
-larger set of users, even without controlling the calibration of the testing environment, but that may be useful
+larger set of users, even without controlling the calibration of the study environment, but that may be useful
 to corroborate the laboratory results with a larger user sample. \par
 %
 The questions which we think define our research goals, for this study, are:
@@ -41,8 +41,7 @@ The questions which we think define our research goals, for this study, are:
 	\item \textbf{Q3:} Are there evidences from differences across demographic groups, such as the age or gender?
 \end{itemize}
 %
-Along the result analysis, each question will meet its answers. These questions will be explored in multiple
-threads, such as:
+These questions will be explored in multiple threads, such as:
 %
 \begin{enumerate*}
 		\item \textbf{Analyzing the distances of each answer pair to the ideal answers of each color model}, verifying
@@ -89,7 +88,7 @@ The color models we intended to study: the color models were \textbf{HSV, RGB, C
 These color models were picked according to previous studies conducted by Gama and Gonçalves, which have concluded that HSV
 and CIE-L*C*h* were the models which generated better results \cite{Gama20141,Gama20142}; the RGB and CMYK were obvious
 additions, since they are represented by their primitives and we wanted to compare the users' expectations with two
-representative different color model types (additive and subtractive). Lastly, the inclusion of CIE-L*a*b* was due to the fact
+representative different color model types. Lastly, the inclusion of CIE-L*a*b* was due to the fact
 that it is the color model which represents the entire range of human perceivable colors. \par
 %
 Then, we produced a wide spreadsheet of possible blendings of these colors, according to these color models, \textbf{mixed in
@@ -104,8 +103,8 @@ This generated the total amount of 183 Color Blendings, being 78 from blendings 
 possible mixtures of two colors}, when combining the previous defined colors: R-G, R-B, G-B, R-C, R-M, R-Y, C-M, M-Y, G-C, G-M,
 G-Y, B-C, B-M, B-Y and C-Y; on the other hand, there are 21 possible color mixtures of three colors without opposed colors in the
 HSV hue circle: R-G-B, R-B-G, B-G-R, R-M-B, R-B-M, B-M-R, C-G-B, C-B-G, B-G-C, C-M-Y, C-Y-M, Y-M-C, C-M-B, C-B-M, B-M-C, C-G-Y,
-C-Y-G, Y-G-C, R-M-Y, R-Y-M and Y-M-R. Figure \ref{fig:table_blends} shows an excerpt of the table produced: it depicts the results,
-for each color pair, blended according to the five color models chosen.
+C-Y-G, Y-G-C, R-M-Y, R-Y-M and Y-M-R. Figure \ref{fig:table_blends} shows an excerpt of the table produced: it depicts the results
+of blendings of two colors, for each pair, mixed according to the five color models chosen.
 %
 \begin{figure}[htbp]
 	\centering
@@ -117,7 +116,7 @@ for each color pair, blended according to the five color models chosen.
 For the sake of simplicity, we have decided to drop the idea of testing the blendings of three colors, since the blendings of two
 colors already produce a generous amount of possible questions, and Gama and Gonçalves already concluded that blendings of three
 colors do not provide satisfactory results \cite{Gama20141}. This table was converted to \gls{CSV} file, which will be useful
-in the \ul{Core Phase of the study}, which will be explained later. \par
+in the \ul{Core Phase of the study}. \par
 %
 \begin{table}[htbp]
 	\centering
@@ -159,12 +158,12 @@ color model and the result is compared with the one according to each color mode
 (composed of two color primitives) and the users are expected to indicate a result, from the entire set of possible results depicted in Figure
 \ref{fig:table_blends}. \par
 %
-There is a particularity among these questions: questions 2 and 3 present two different colors (\#FF00FF - \#80FF00) but, in fact, they will be compared with
+There is a particularity among these questions: questions 2 and 3 present two different colors \textbf{(\#FF00FF - \#80FF00)} but, in fact, they will be compared with
 the same reference pair. This is the result of blending to opposite colors (Red-Blue) which, as referred before, results into two possible results; by
-presenting both results, we intend to understand to which color the users tend to. This particularity occurs with questions 10 and 11, and 15 and 16
+presenting both results, we intend to understand to which color the users tend to. This particularity occurs with questions \ul{10 and 11}, and \ul{15 and 16}
 (\#0080FF - \#FF8000, \#00FF80 - \#FF007F, respectively), which will be compared with reference pairs Green-Magenta and Blue-Yellow, correspondingly. \par
 %
-This user study was entirely developed used web-development libraries (\emph{e.g.} Bootstrap), technologies (\emph{e.g.} HTML5, Javascript
+This user study was entirely developed used web-development libraries (\emph{e.g.} Bootstrap), web technologies (\emph{e.g.} HTML5, Javascript
 and CSS) and relational databases (PostgreSQL): the users are uniquely identified by a \ul{primary key (PK)} which corresponds to its user ID generated
 by \emph{uniqid()} function from PHP, based on the user's timestamp, that every table from the database uses to unequivocally identify it.
 An entity-relationship model maps all the information related to a given a user which will be stored for further analysis; this ER Model is present on
@@ -175,7 +174,7 @@ in a web browser: we have executed the majority of tests using Google Chrome and
 %
 \begin{figure}[htbp]
 	\centering
-  \includegraphics[width=0.7\textwidth]{images/implementation/tables_schema.png}
+  \includegraphics[width=0.85\textwidth]{images/implementation/tables_schema.png}
   \caption[Entity-Relationship Model representing the User Study information.]{Entity-Relationship Model representing the User Study information.}
   \label{fig:er_model}
 \end{figure}
@@ -189,8 +188,7 @@ In the \textbf{Profiling Phase}, questions were asked about the Age, Gender, Aca
 questions helped us conceiving user profiles with key indicators about cultural background and gender relation to results of each test.
 %
 We have drafted a wireframe version of this test phase, which is present in Figure \ref{fig:mockup_profiling}. This is a straight-forward
-phase, in which the users are asked to indicate some demographic information. All of these information are stored in a relational database's
-table called \emph{calibration\_info}, which will be entry point of the database. We had to include the \ul{Other} gender type, since it was
+phase, in which the users are asked to indicate some demographic information. We had to include the \ul{Other} gender type, since it was
 mandatory by Reddit to publish it online. The nationalities, academic degrees, countries of residence and native languages were all standard
 JSON files which contained each set of options. \par
 %
@@ -253,10 +251,10 @@ are nothing more than the \textbf{Contrast} and \textbf{Brightness}, respectivel
 \textbf{L}ine-\textbf{U}p \textbf{G}eneration \textbf{E}quipment) Patterns, which present consecutive bars shaded between black and white, used to calibrate the black-level from a video
 monitor. These calibrations images were created by us, using Adobe's Photoshop, and are presented in Figures \ref{fig:black_level} and
 \ref{fig:white_level}. In the end, we have to analyze the answers to verify if they are compliant with a certain pattern of calibration acceptability,
-determining if the answers of a certain user can be considered true and not misleading. \par
+determining if the answers of each user can be considered true and not misleading. \par
 %
 Regarding the \ul{laboratory environment}, we conducted the users tests in a LCD monitor, under a fixed light source; the monitor was calibrated
-using a Spyder\footnote{"Spyder - Datacolor Imaging Solutions", Available at: \url{http://spyder.datacolor.com}. Last accessed on October 17th, 2016.}
+using a Spyder\footnote{"Spyder - Datacolor Imaging Solutions", Available at: \url{spyder.datacolor.com}. Last accessed on October 17th, 2016.}
 Colorimeter which will consider the existing light in the environment and adjust the color of each pixel to a standard. This colorimeter will produce an
 \emph{.icc} \textbf{color profile which will be important for the Core Test Phase}. \par
 %
@@ -291,13 +289,13 @@ they were asked to analyze a set colored plates and answer with its number. \par
 %
 The Color Deficiency Test was comprised of a set of six plates, which were able to detect which type of color vision deficiencies the user
 would eventually have. They could be interpreted in different ways, depending on Deficiency: this color deficiency test in commonly known as the
-\emph{Ishihara Test}, which has a validated \cite{Alwis1992} short form that rearranges the order in which the plates are presented. We have only chosen plates
+\emph{Ishihara Test}, which has a validated \cite{Alwis1992} short form that rearranges the order in which the plates are presented. We have chosen plates
 which detect color vision deficiencies in the Red-Green field, since it is the most common deficiency. This test was explored
 in the Theoretical Background (Section \ref{subsubsec:visual_deficiencies}) of this Master Thesis. We have chosen the following plates:
 %
 \begin{itemize}
 	\setlength\itemsep{0.01em}
-	\item \ul{Plate \#1} - We have chosen \cite{Alwis1992} the plate ($ID = 1$) which presents the number \textbf{12}. This is an \ul{Instruction and
+	\item \ul{Plate \#1} - We have chosen the plate ($ID = 1$) which presents the number \textbf{12}. This is an \ul{Instruction and
 	Demonstration} plate, since every user should be capable of viewing the same number and it is intended to demonstrate how to interpret the plate numbers.
 	\item \ul{Plate \#2} - This plate ($ID = 4$) presents the number \textbf{29}. This a plate from the \ul{Transformation} group, presenting the number
 	\textbf{29} for regular	users which do not have any color vision deficiency, and the number \textbf{70} to users which have \ul{a color vision
@@ -347,8 +345,8 @@ The last phase is the principal part of the study, which will evaluate the \text
 created from the principal color models' primaries referred before and these color blendings are represent in Table \ref{table:color_blendings}. \par
 %
 In this test phase, we have composed an interface with the description of the task to fulfill and presented a small set of objects which would be used and
-interacted with to provide the colors to the user, and receive his input values. Perhaps, the way color is presented is the most relevant detail: since we
-wanted to provide a tool which would be capable of displaying without being influenced by its surrounding of even by the proximity of other colors, the colors
+interacted with to provide the colors to the user, and receive his input values. Perhaps, the way color is presented is the most relevant detail: since \textbf{we
+wanted to provide a tool which would be capable of displaying without being influenced by its surrounding of even by the proximity of other colors}, the colors
 were presented in rounded shapes, accompanied by what we call \emph{\textbf{color sliders}} whenever it was needed input colors from the user. With this,
 only the necessary colors are displayed on the circles as the users wish and there is no interference of undesired colors, allowing us to eliminate the
 influence of them. The sliders will alternately present a discrete or continuous color scale underneath, according to the type of question which is being
@@ -365,7 +363,7 @@ presented to the users. \par
 Since there are two possible types of questions, we have wireframed two screens: \ul{in the first one}, we display a shape filled with the objective color of the
 blending and two empty shapes which the users should fill with the colors that they think it corresponds the best to their expectations. These shapes start filled
 with an empty color (or white) so the users are not influenced by previously used colors, when answering to another question. There is no particular reason for
-the chosen shapes are circles, since \textbf{we are not studying the best visualizations to convey information, when using color blending techniques}. These
+the chosen shapes are circles, since \textbf{we are not studying the best shapes to convey information, when using color blending techniques}. These
 shapes presented against a white background so it \textbf{does not influence color perception}, equally spaced between each other, being followed by a small
 set of arithmetic operands which \ul{leads the users to realize they have to add a pair of colors}. This screen is depicted in the left side of Figure
 \ref{fig:mockup_core_1}. \ul{The other screen} presents exactly the same number of circle shapes (three), but one less color slider since this screen is designed to attend questions in
@@ -390,17 +388,16 @@ of values from the users. Therefore, the color slider yields a value within the 
 of the HSV Color Model. \par
 %
 The color slider has another particularity: the scale of values, though representing continuous angle values, does not presents the values ordered from 0 to 360.
-Instead, \textbf{fixed intervals of values are mixed within each other}, so the users do not formulate any mental organization in the moment and do not demonstrate any previous conception or mindset
+Instead, \textbf{well-defined intervals of values are mixed within each other}, so the users do not formulate any mental organization in the moment and do not demonstrate any previous conception or mindset
 (\emph{e.g.} the organization of colors according to the color spectrum). The colors were arranged in the following order: \ul{Red-Yellow} ($[0º; 60º]$),
-\ul{Blue-Greenish-Blue} ($[240º; 150º]$), \ul{Magenta-Blue} ($[300º; 240º]$), \ul{Greenish-Blue-Yellow} ($[150º; 60º]$) and, lastly, \ul{Magenta-Red} ($[300º; 360º]$). If these
-intervals were disposed in its normal order, the order would be seamlessly perceived by the user: this way, \textbf{the users always have to search for the
+\ul{Blue-Greenish-Blue} ($[240º; 150º]$), \ul{Magenta-Blue} ($[300º; 240º]$), \ul{Greenish-Blue-Yellow} ($[150º; 60º]$) and, lastly, \ul{Magenta-Red} ($[300º; 360º]$). This way, \textbf{the users always have to search for the
 color they wants to see depicted}. For the questions which the users have to give only one answer (the resulting color from the blend), the color slider
 already yields a defined set of pre-calculated colors (the ones present in the referred spreadsheet, on section \ref{sec:impl_designingsolution}), and the
 users hand-pick the best-fitting solution from that set. \par
 %
 However, even the colors represented in the shapes and the ones present in the pre-calculated answers have a particularity, in the laboratory environment: these
-pre-calculated values are, with the help of a \emph{Matlab} script, going to be \textbf{converted to adapted color values, according to the .icc color profile
-file generated by the Spyder Colorimeter}. This way, we guarantee that no matter if the laboratory environmental conditions change, the colors will always be
+pre-calculated values are, using a \emph{Matlab} script, going to be \textbf{converted to color values adapted to the environment, according to the .icc color profile
+file generated by the Spyder Colorimeter}. This way, we guarantee that if the laboratory environmental conditions change, the colors will always be
 presented equally to every user. \textbf{This script processes each possible result for every color pair, in every color model}, converts it to a normalized
 CIE-XYZ value and in the end, to an hexadecimal color code to be printed on the shapes of the interface, when time comes for the laboratory user to choose a
 color from the color slider. This process was realized before each user session. \par
@@ -413,7 +410,7 @@ color from the color slider. This process was realized before each user session.
   \label{fig:screen_core}
 \end{wrapfigure} \par
 %
-After the users indicated and confirms their answer, \textbf{they were presented a satisfaction question with a 5-point Likert Scale} to double-check the easiness
+After the users indicate their answer, \textbf{they were presented a satisfaction question with a 5-point Likert Scale} to double-check the easiness
 of each mixture. The question asked was \textbf{"How Easy it was for you to Identify the Mixture?"}; the users had to select the equivalent rating in a
 five-star system. If the users were not happy with its response, it was provided a "Reset Mixture" button to clean all parameters. All of these details are
 showed in Figure \ref{fig:screen_core}, which shows the resulting interface for the type of questions in which the result was given and the blending-basis
